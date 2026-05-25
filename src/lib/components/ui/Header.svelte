@@ -31,30 +31,21 @@
     <div class="flex items-center gap-4 min-w-0">
       <!-- Logo mark: Abu Dhabi emirate outline -->
       <div class="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-white/8 border border-brand-500/30 shadow-inner">
-        <svg class="h-7 w-7 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round">
-          <!--
-            Abu Dhabi emirate outline (clockwise from NW coast):
-            - NW: where Gulf coast meets western Saudi border
-            - N coast sweeps east (Gulf of Arabia)
-            - Abu Dhabi city peninsula juts north (centre-north)
-            - NE: short diagonal Dubai border
-            - E/SE: Oman & Saudi border going south
-            - S: long Saudi Arabia border going west
-            - W: Saudi border going north back to coast
-          -->
+        <!-- Abu Dhabi skyline silhouette — solid gold fill -->
+        <svg class="w-9 h-9 text-brand-400" viewBox="0 0 80 40" fill="currentColor">
           <path d="
-            M 1.5,10
-            Q 5,7 9,6
-            L 10.5,6
-            L 12,3.5
-            L 13.5,6
-            Q 17,6 20,7
-            L 22.5,9.5
-            L 22,15.5
-            L 19.5,21
-            L 11.5,22.5
-            L 4,20.5
-            L 1.5,14
+            M 0,38
+            L 0,30 L 5,30 L 5,26 L 10,26 L 10,30
+            L 11,30 L 11,25 Q 15.5,18 20,25 L 20,30
+            L 21,30 L 21,21
+            L 23,21 L 23,13 L 25,3 L 27,13 L 27,21
+            L 29,21 L 29,17
+            L 31,17 L 31,7 L 32,7 L 32,2 L 32.5,0 L 33,2 L 33,7 L 34,7 L 34,17
+            L 35,17 L 35,21
+            L 37,21 L 37,13 L 39.5,7 L 42,13 L 42,21
+            L 44,21 L 44,16 L 47,13 L 50,16 L 50,21
+            L 52,21 L 52,27 L 57,27 L 57,23 L 64,23 L 64,27 L 72,27 L 72,31 L 80,31
+            L 80,38
             Z
           "/>
         </svg>
@@ -62,7 +53,7 @@
 
       <div class="min-w-0">
         <div class="flex items-center gap-2.5">
-          <h1 class="text-[17px] font-extrabold text-brand-300 leading-none tracking-tight">ADInteract</h1>
+          <h1 class="text-[24px] font-extrabold text-brand-300 leading-none tracking-tight">ADInteract</h1>
           <!-- ADREC verified badge -->
           <span class="hidden sm:inline-flex items-center gap-1 rounded-full bg-brand-500/15 border border-brand-500/25 px-2 py-0.5 text-[10px] font-semibold text-brand-400 tracking-wide">
             <svg class="h-2.5 w-2.5" viewBox="0 0 24 24" fill="currentColor">

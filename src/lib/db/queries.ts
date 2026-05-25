@@ -102,6 +102,27 @@ export async function queryChartData(
 	`);
 }
 
+export async function queryTopProjects(
+	f: FilterState,
+	dateStart: string,
+	dateEnd: string,
+	limit = 10
+): Promise<DistrictSummary[]> {
+	const where = buildWhere(f, dateStart, dateEnd);
+	return query<DistrictSummary>(`
+		SELECT
+			project_name AS district,
+			COUNT(*) AS volume,
+			PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY price_aed) AS "medianPrice",
+			PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft) FILTER (WHERE rate_per_sqft IS NOT NULL AND rate_per_sqft > 0) AS "medianRate"
+		FROM transactions
+		WHERE ${where} AND project_name IS NOT NULL AND project_name != ''
+		GROUP BY project_name
+		ORDER BY COUNT(*) DESC
+		LIMIT ${limit}
+	`);
+}
+
 export async function queryTopDistricts(
 	f: FilterState,
 	dateStart: string,

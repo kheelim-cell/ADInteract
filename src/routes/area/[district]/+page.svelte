@@ -6,7 +6,7 @@
   import {
     queryStats,
     queryChartData,
-    queryTopDistricts,
+    queryTopProjects,
     queryPriceDistribution,
     queryTransactions,
     queryTransactionCount
@@ -52,7 +52,7 @@
     Promise.all([
       queryStats(f, range.start, range.end, prev.start, prev.end),
       queryChartData(f, range.start, range.end),
-      queryTopDistricts(f, range.start, range.end),
+      queryTopProjects(f, range.start, range.end),
       queryPriceDistribution(f, range.start, range.end),
       queryTransactions(f, range.start, range.end),
       queryTransactionCount(f, range.start, range.end)
@@ -147,7 +147,7 @@
     </div>
 
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-      <h3 class="text-sm font-semibold text-gray-700 mb-3">Top Areas by Volume</h3>
+      <h3 class="text-sm font-semibold text-gray-700 mb-3">Top Projects by Volume</h3>
       {#if loading && topDistricts.length === 0}
         <div class="h-64 flex items-center justify-center">
           <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>

@@ -4,7 +4,7 @@ update_sheets.py
 Uploads the downloaded ADREC CSV to the Google Sheet so it stays
 in sync as a source-of-truth backup.
 
-Requires the GOOGLE_SHEETS_CREDENTIALS environment variable to be
+Requires the GOOGLE_CREDENTIALS_JSON environment variable to be
 set to a base64-encoded Google Service Account JSON key.
 
 Sheet  : https://docs.google.com/spreadsheets/d/1ZK7oA_qAwTOdaNhy8vE6Oh7omT6TRAdOI0bXmEtysMg
@@ -27,10 +27,10 @@ CHUNK_SIZE    = 5_000   # rows per gspread batch call
 
 
 def update():
-    creds_b64 = os.environ.get("GOOGLE_SHEETS_CREDENTIALS", "")
+    creds_b64 = os.environ.get("GOOGLE_CREDENTIALS_JSON", "")
     if not creds_b64:
         raise EnvironmentError(
-            "GOOGLE_SHEETS_CREDENTIALS env var is not set. "
+            "GOOGLE_CREDENTIALS_JSON env var is not set. "
             "Add it as a GitHub Actions secret (base64-encoded service account JSON)."
         )
 

@@ -1,9 +1,11 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import * as echarts from 'echarts';
+  import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   import type { DistrictSummary } from '$lib/db/types';
 
-  let { data = [] as DistrictSummary[] } = $props();
+  let { data = [] as DistrictSummary[], clickable = true } = $props();
   let chartEl = $state<HTMLDivElement>();
   let chart: echarts.ECharts | undefined;
 
@@ -77,12 +79,21 @@
             type: 'bar',
             data: volumes,
             barMaxWidth: 22,
+            cursor: clickable ? 'pointer' : 'default',
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
                 { offset: 0, color: '#1B4332' },
                 { offset: 1, color: '#C8A951' }
               ]),
               borderRadius: [0, 4, 4, 0]
+            },
+            emphasis: {
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                  { offset: 0, color: '#2D6A4F' },
+                  { offset: 1, color: '#dfb83c' }
+                ])
+              }
             },
             label: {
               show: true,
@@ -94,6 +105,16 @@
           }
         ]
       });
+
+      // Wire up click → district page (only on home/overview, not district detail)
+      chart.off('click');
+      if (clickable) {
+        chart.on('click', (params: any) => {
+          if (params.componentType === 'series') {
+            goto(`${base}/area/${encodeURIComponent(params.name)}`);
+          }
+        });
+      }
     }
   });
 </script>

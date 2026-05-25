@@ -153,7 +153,7 @@
           <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>
         </div>
       {:else}
-        <TopAreasChart data={topDistricts} />
+        <TopAreasChart data={topDistricts} clickable={false} />
       {/if}
     </div>
 

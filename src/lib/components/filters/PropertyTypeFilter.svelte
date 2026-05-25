@@ -1,17 +1,18 @@
 <script lang="ts">
   import { filters, updateFilter } from '$lib/stores/filters';
-  import { metadata } from '$lib/stores/db';
 
   let open = $state(false);
   let el = $state<HTMLDivElement>();
 
-  const ALLOWED = ['Apartment', 'Duplex', 'Townhouse', 'Attached Villa', 'Villa', 'Office', 'Retail'];
-  let options = $derived(
-    ($metadata?.propertyTypes ?? []).filter(t => ALLOWED.some(a => t.toLowerCase().includes(a.toLowerCase())))
-      .length > 0
-      ? ($metadata?.propertyTypes ?? []).filter(t => ALLOWED.some(a => t.toLowerCase().includes(a.toLowerCase())))
-      : ALLOWED
-  );
+  const PROPERTY_OPTIONS = [
+    { label: 'Apartment',                value: 'apartment' },
+    { label: 'Duplex',                   value: 'duplex' },
+    { label: 'Townhouse / Attached Villa', value: 'townhouse / attached villa' },
+    { label: 'Villa',                    value: 'villa' },
+    { label: 'Office',                   value: 'office' },
+    { label: 'Retail',                   value: 'retail' },
+  ];
+
   let selected = $derived($filters.propertyTypes);
   let count = $derived(selected.length);
 
@@ -79,15 +80,15 @@
         </div>
       {/if}
       <div class="max-h-60 overflow-y-auto py-1">
-        {#each options as option}
+        {#each PROPERTY_OPTIONS as option}
           <label class="flex items-center gap-2.5 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer transition-colors">
             <input
               type="checkbox"
-              checked={selected.includes(option)}
-              onchange={() => toggle(option)}
+              checked={selected.includes(option.value)}
+              onchange={() => toggle(option.value)}
               class="h-3.5 w-3.5 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
             />
-            <span class="truncate text-xs">{option}</span>
+            <span class="truncate text-xs">{option.label}</span>
           </label>
         {/each}
       </div>

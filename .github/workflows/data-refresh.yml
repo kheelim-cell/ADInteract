@@ -1,0 +1,42 @@
+name: Daily Data Refresh
+on:
+  schedule:
+    - cron: '0 2 * * *' # Daily at 02:00 UTC (06:00 GST)
+  workflow_dispatch: # Manual trigger
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install Python dependencies
+        run: pip install -r scripts/requirements.txt
+      - name: Fetch and transform data
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        run: python scripts/fetch_and_transform.py
+      - name: Install Node dependencies
+        run: npm ci
+      - name: Build site
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

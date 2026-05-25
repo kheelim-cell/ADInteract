@@ -26,18 +26,45 @@ INPUT_CSV     = "scripts/data/adrec_raw.csv"
 CHUNK_SIZE    = 5_000   # rows per gspread batch call
 
 
-def update():
-    creds_b64 = os.environ.get("GOOGLE_CREDENTIALS_JSON", "")
-    if not creds_b64:
+def load_credentials(env_var: str) -> dict:
+    """
+    Decode the service account JSON from an env var.
+    Handles three formats:
+      1. Raw JSON string (secret was pasted as-is)
+      2. Base64-encoded JSON (recommended)
+      3. Base64 with missing padding
+    """
+    value = os.environ.get(env_var, "").strip()
+    if not value:
         raise EnvironmentError(
-            "GOOGLE_CREDENTIALS_JSON env var is not set. "
-            "Add it as a GitHub Actions secret (base64-encoded service account JSON)."
+            f"{env_var} env var is not set. "
+            "Add it as a GitHub Actions secret."
         )
 
-    # Strip whitespace and fix any missing base64 padding
-    creds_b64 = creds_b64.strip()
-    creds_b64 += "=" * (4 - len(creds_b64) % 4)
-    creds_json = json.loads(base64.b64decode(creds_b64))
+    # Try raw JSON first (starts with '{')
+    if value.startswith("{"):
+        try:
+            return json.loads(value)
+        except json.JSONDecodeError:
+            pass
+
+    # Try base64 decode (fix padding if needed)
+    try:
+        padded = value + "=" * (4 - len(value) % 4)
+        decoded = base64.b64decode(padded)
+        return json.loads(decoded.decode("utf-8"))
+    except Exception as exc:
+        raise ValueError(
+            f"Could not decode {env_var} as JSON or base64-encoded JSON.\n"
+            f"Error: {exc}\n"
+            f"To fix: re-encode your service account JSON file and update the secret:\n"
+            f"  PowerShell: [Convert]::ToBase64String([IO.File]::ReadAllBytes('credentials.json'))\n"
+            f"  Linux/Mac:  base64 -i credentials.json | tr -d '\\n'"
+        )
+
+
+def update():
+    creds_json = load_credentials("GOOGLE_CREDENTIALS_JSON")
     scopes = [
         "https://spreadsheets.google.com/feeds",
         "https://www.googleapis.com/auth/spreadsheets",

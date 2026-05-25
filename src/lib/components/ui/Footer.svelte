@@ -67,7 +67,7 @@
             </div>
           {/if}
         {/if}
-        <p class="text-[11px] text-gray-300">© {currentYear} Khee Lim. All rights reserved.</p>
+        <p class="text-[11px] text-gray-300">© {currentYear} ADInteract. All rights reserved.</p>
       </div>
 
     </div>

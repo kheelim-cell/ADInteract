@@ -98,12 +98,12 @@
             smooth: true,
             symbol: 'circle',
             symbolSize: 4,
-            lineStyle: { width: 2.5, color: '#C5A028' },
-            itemStyle: { color: '#C5A028' },
+            lineStyle: { width: 2.5, color: '#C8A951' },
+            itemStyle: { color: '#C8A951' },
             areaStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: 'rgba(197,160,40,0.18)' },
-                { offset: 1, color: 'rgba(197,160,40,0.01)' }
+                { offset: 0, color: 'rgba(200,169,81,0.18)' },
+                { offset: 1, color: 'rgba(200,169,81,0.01)' }
               ])
             }
           },
@@ -115,8 +115,8 @@
             smooth: true,
             symbol: 'circle',
             symbolSize: 4,
-            lineStyle: { width: 2, color: '#0A1628', type: 'dashed' },
-            itemStyle: { color: '#0A1628' }
+            lineStyle: { width: 2, color: '#1B4332', type: 'dashed' },
+            itemStyle: { color: '#1B4332' }
           }
         ]
       });

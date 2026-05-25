@@ -72,8 +72,8 @@
             type: 'boxplot',
             data: boxData,
             itemStyle: {
-              color: '#fdf8ec',
-              borderColor: '#C5A028',
+              color: '#f6f3e8',
+              borderColor: '#C8A951',
               borderWidth: 1.5
             },
             boxWidth: ['30%', '50%'],

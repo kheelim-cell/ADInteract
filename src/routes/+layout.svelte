@@ -35,7 +35,7 @@
   });
 </script>
 
-<div class="min-h-screen flex flex-col bg-[#F4F1EB]">
+<div class="min-h-screen flex flex-col bg-[#FAFAF6]">
   <Header lastUpdated={$metadata?.lastUpdated ?? ''} />
 
   <main class="flex-1">

@@ -4,8 +4,8 @@
 
 @layer base {
 	body {
-		@apply bg-[#F4F1EB] text-gray-900 antialiased;
-		font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+		@apply bg-[#FAFAF6] text-gray-900 antialiased;
+		font-family: 'Manrope', system-ui, sans-serif;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -15,11 +15,11 @@
 
 @layer components {
 	.stat-card {
-		@apply rounded-2xl bg-white p-6 shadow-sm border border-white/80 transition-all duration-200 hover:shadow-md hover:-translate-y-px;
+		@apply rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition-all duration-200 hover:shadow-md hover:-translate-y-px;
 	}
 
 	.chart-card {
-		@apply rounded-2xl bg-white p-5 shadow-sm border border-white/80;
+		@apply rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5;
 	}
 
 	.btn-primary {
@@ -27,6 +27,6 @@
 	}
 
 	.section-heading {
-		@apply text-xs font-semibold uppercase tracking-widest text-navy/40 mb-4;
+		@apply text-[11px] font-bold uppercase tracking-widest text-navy/40 mb-4;
 	}
 }

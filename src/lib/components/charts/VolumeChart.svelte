@@ -74,7 +74,7 @@
             data: offPlan,
             barMaxWidth: 28,
             itemStyle: {
-              color: '#D4AF37',
+              color: '#C8A951',
               borderRadius: [0, 0, 0, 0]
             }
           },
@@ -85,7 +85,7 @@
             data: ready,
             barMaxWidth: 28,
             itemStyle: {
-              color: '#0A1628',
+              color: '#1B4332',
               borderRadius: [3, 3, 0, 0]
             }
           }

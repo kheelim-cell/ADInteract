@@ -3,6 +3,9 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {
+			fontFamily: {
+				sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				brand: {
 					50:  '#fdf8ec',
@@ -18,9 +21,10 @@ export default {
 					950: '#331d06'
 				},
 				navy: {
-					DEFAULT: '#0A1628',
-					light:   '#14253f',
-					dark:    '#060e1a'
+					DEFAULT: '#1B3A5C',
+					light:   '#2A5280',
+					dark:    '#0F2238',
+					subtle:  '#E8EEF5'
 				}
 			}
 		}

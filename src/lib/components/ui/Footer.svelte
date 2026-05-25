@@ -1,10 +1,10 @@
-<footer class="bg-gray-100 border-t border-gray-200 py-4 px-6">
-  <div class="flex flex-col sm:flex-row items-center justify-between gap-2 max-w-screen-2xl mx-auto">
-    <p class="text-sm text-gray-500">
-      Data source: ADREC (Abu Dhabi Real Estate Centre)
+<footer class="bg-navy mt-16">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+    <p class="text-xs text-white/30 font-medium">
+      Data source: <span class="text-white/50">ADREC — Abu Dhabi Real Estate Centre</span>
     </p>
-    <p class="text-sm text-gray-400">
-      Built with <span class="font-medium text-gray-500">ADInteract</span>
+    <p class="text-xs text-white/20">
+      ADInteract &copy; {new Date().getFullYear()}
     </p>
   </div>
 </footer>

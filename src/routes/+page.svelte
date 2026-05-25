@@ -95,8 +95,8 @@
   <!-- Charts Grid: Price Trend + Volume -->
   <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Price Trend -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-      <h3 class="text-sm font-semibold text-gray-700 mb-3">Median Price Trend</h3>
+    <div class="chart-card">
+      <h3 class="text-sm font-semibold text-navy mb-4">Median Price Trend</h3>
       {#if chartsLoading && chartData.length === 0}
         <div class="h-64 flex items-center justify-center">
           <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>
@@ -107,8 +107,8 @@
     </div>
 
     <!-- Volume Chart -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-      <h3 class="text-sm font-semibold text-gray-700 mb-3">Transaction Volume</h3>
+    <div class="chart-card">
+      <h3 class="text-sm font-semibold text-navy mb-4">Transaction Volume</h3>
       {#if chartsLoading && chartData.length === 0}
         <div class="h-64 flex items-center justify-center">
           <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>
@@ -127,8 +127,8 @@
   <!-- Secondary Charts: Top Areas + Price Distribution (below table) -->
   <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Top Areas -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-      <h3 class="text-sm font-semibold text-gray-700 mb-3">Top Areas by Volume</h3>
+    <div class="chart-card">
+      <h3 class="text-sm font-semibold text-navy mb-4">Top Areas by Volume</h3>
       {#if chartsLoading && topDistricts.length === 0}
         <div class="h-64 flex items-center justify-center">
           <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>
@@ -139,8 +139,8 @@
     </div>
 
     <!-- Price Distribution -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-      <h3 class="text-sm font-semibold text-gray-700 mb-3">Price per Sqft by Layout</h3>
+    <div class="chart-card">
+      <h3 class="text-sm font-semibold text-navy mb-4">Price per Sqft by Layout</h3>
       {#if chartsLoading && priceDistribution.length === 0}
         <div class="h-64 flex items-center justify-center">
           <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>

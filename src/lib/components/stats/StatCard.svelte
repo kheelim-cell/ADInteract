@@ -21,22 +21,29 @@
   let isNeutral = $derived(growth === null || growth === 0);
 </script>
 
-<div class="stat-card flex flex-col items-center text-center py-6 px-4">
-  <span class="inline-block px-4 py-1 rounded-full bg-gray-100 text-xs font-medium text-gray-500 mb-4">{label}</span>
-  <p class="text-3xl font-bold text-gray-900 tracking-tight">{value}</p>
+<div class="stat-card flex flex-col gap-3">
+  <!-- Label -->
+  <span class="text-[11px] font-semibold uppercase tracking-widest text-navy/40">{label}</span>
+
+  <!-- Value -->
+  <p class="text-3xl font-bold text-navy leading-none">{value}</p>
+
+  <!-- Growth badge -->
   {#if !isNeutral && growth !== null}
-    <span class="mt-3 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-sm font-semibold
-                 {isPositive ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600'}">
+    <span class="inline-flex items-center gap-1 self-start px-2.5 py-1 rounded-full text-xs font-semibold
+                 {isPositive ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200' : 'bg-red-50 text-red-700 ring-1 ring-red-200'}">
       {#if isPositive}
-        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
         </svg>
       {:else}
-        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 4.5l15 15m0 0V8.25m0 11.25H8.25" />
         </svg>
       {/if}
-      {formatPercent(growth)}
+      {formatPercent(growth)} vs prior period
     </span>
+  {:else}
+    <span class="text-xs text-navy/30 font-medium">No comparison data</span>
   {/if}
 </div>

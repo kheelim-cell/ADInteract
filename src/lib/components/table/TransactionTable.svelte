@@ -100,7 +100,7 @@
   const skeletonRows = Array.from({ length: 10 });
 </script>
 
-<div class="rounded-xl bg-white shadow-sm border border-gray-100 overflow-hidden">
+<div class="rounded-2xl bg-white shadow-sm border border-white/80 overflow-hidden">
   <!-- Sort bar -->
   <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
     <div class="flex items-center gap-3">

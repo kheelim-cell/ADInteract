@@ -45,7 +45,7 @@
   });
 </script>
 
-<div class="sticky top-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+<div class="sticky top-0 z-10 bg-white/98 backdrop-blur-md border-b border-gray-200/80 shadow-sm">
   <div class="px-4 sm:px-6 py-3">
     <!-- Single row: all filters -->
     <div class="flex flex-wrap items-center gap-2">

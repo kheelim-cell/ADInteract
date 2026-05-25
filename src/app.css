@@ -4,15 +4,29 @@
 
 @layer base {
 	body {
-		@apply bg-gray-50 text-gray-900 antialiased;
+		@apply bg-[#F4F1EB] text-gray-900 antialiased;
+		font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		@apply font-semibold tracking-tight;
 	}
 }
 
 @layer components {
 	.stat-card {
-		@apply rounded-xl bg-white p-5 shadow-sm border border-gray-100 transition-shadow hover:shadow-md;
+		@apply rounded-2xl bg-white p-6 shadow-sm border border-white/80 transition-all duration-200 hover:shadow-md hover:-translate-y-px;
 	}
-.btn-primary {
-		@apply rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2;
+
+	.chart-card {
+		@apply rounded-2xl bg-white p-5 shadow-sm border border-white/80;
+	}
+
+	.btn-primary {
+		@apply rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2;
+	}
+
+	.section-heading {
+		@apply text-xs font-semibold uppercase tracking-widest text-navy/40 mb-4;
 	}
 }

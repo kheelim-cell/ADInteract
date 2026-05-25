@@ -5,7 +5,10 @@ import type {
 	ChartDataPoint,
 	DistrictSummary,
 	PriceDistributionPoint,
-	Transaction
+	Transaction,
+	ProjectInfo,
+	LayoutSummaryRow,
+	ComparableProject
 } from './types';
 
 function buildWhere(f: FilterState, dateStart: string, dateEnd: string): string {
@@ -268,4 +271,164 @@ export async function queryTransactionCount(
 		SELECT COUNT(*) AS cnt FROM transactions WHERE ${where}
 	`);
 	return result?.cnt ?? 0;
+}
+
+export async function queryProjectInfo(
+	projectName: string,
+	dateStart: string,
+	dateEnd: string
+): Promise<ProjectInfo | null> {
+	const escapedProject = esc(projectName);
+
+	// Main stats + district benchmark in one CTE query
+	const rows = await query<{
+		district: string;
+		community: string;
+		total_count: number;
+		off_plan_count: number;
+		ready_count: number;
+		first_sale: string;
+		last_sale: string;
+		project_median_rate: number;
+		district_median_rate: number;
+	}>(`
+		WITH project_data AS (
+			SELECT
+				district,
+				ANY_VALUE(community) AS community,
+				COUNT(*) AS total_count,
+				COUNT(*) FILTER (WHERE sale_type = 'off-plan') AS off_plan_count,
+				COUNT(*) FILTER (WHERE sale_type = 'ready') AS ready_count,
+				CAST(MIN(sale_date) AS VARCHAR) AS first_sale,
+				CAST(MAX(sale_date) AS VARCHAR) AS last_sale,
+				PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft)
+					FILTER (WHERE rate_per_sqft IS NOT NULL AND rate_per_sqft > 0) AS project_median_rate
+			FROM transactions
+			WHERE project_name = '${escapedProject}'
+				AND sale_date >= '${dateStart}' AND sale_date <= '${dateEnd}'
+			GROUP BY district
+			ORDER BY COUNT(*) DESC
+			LIMIT 1
+		),
+		district_data AS (
+			SELECT
+				PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY t.rate_per_sqft)
+					FILTER (WHERE t.rate_per_sqft IS NOT NULL AND t.rate_per_sqft > 0) AS district_median_rate
+			FROM transactions t
+			CROSS JOIN project_data pd
+			WHERE t.district = pd.district
+				AND t.sale_date >= '${dateStart}' AND t.sale_date <= '${dateEnd}'
+		)
+		SELECT pd.*, dd.district_median_rate
+		FROM project_data pd CROSS JOIN district_data dd
+	`);
+
+	if (!rows.length) return null;
+	const row = rows[0];
+
+	// Distinct property types
+	const typeRows = await query<{ property_type: string }>(`
+		SELECT DISTINCT property_type
+		FROM transactions
+		WHERE project_name = '${escapedProject}'
+			AND sale_date >= '${dateStart}' AND sale_date <= '${dateEnd}'
+			AND property_type IS NOT NULL AND property_type != ''
+		ORDER BY property_type
+	`);
+
+	// Distinct layouts in bedroom order
+	const layoutRows = await query<{ layout: string }>(`
+		SELECT DISTINCT layout
+		FROM transactions
+		WHERE project_name = '${escapedProject}'
+			AND sale_date >= '${dateStart}' AND sale_date <= '${dateEnd}'
+			AND layout IS NOT NULL AND layout != '' AND layout != 'unclassified'
+		ORDER BY CASE layout
+			WHEN 'studio' THEN 1 WHEN '1 bed' THEN 2 WHEN '2 beds' THEN 3
+			WHEN '3 beds' THEN 4 WHEN '4 beds' THEN 5 WHEN '5 beds' THEN 6
+			WHEN '6+ beds' THEN 7 ELSE 8
+		END
+	`);
+
+	return {
+		district: row.district,
+		community: row.community,
+		propertyTypes: typeRows.map((r) => r.property_type),
+		layouts: layoutRows.map((r) => r.layout),
+		firstSale: row.first_sale,
+		lastSale: row.last_sale,
+		totalCount: row.total_count,
+		offPlanCount: row.off_plan_count,
+		readyCount: row.ready_count,
+		projectMedianRate: row.project_median_rate,
+		districtMedianRate: row.district_median_rate
+	};
+}
+
+export async function queryLayoutSummary(
+	f: FilterState,
+	dateStart: string,
+	dateEnd: string
+): Promise<LayoutSummaryRow[]> {
+	const where = buildWhere(f, dateStart, dateEnd);
+	return query<LayoutSummaryRow>(`
+		SELECT
+			layout,
+			COUNT(*) AS count,
+			PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY price_aed) AS "medianPrice",
+			PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft)
+				FILTER (WHERE rate_per_sqft IS NOT NULL AND rate_per_sqft > 0) AS "medianRate"
+		FROM transactions
+		WHERE ${where}
+			AND layout IS NOT NULL AND layout != '' AND layout != 'unclassified'
+		GROUP BY layout
+		HAVING COUNT(*) >= 2
+		ORDER BY CASE layout
+			WHEN 'studio' THEN 1 WHEN '1 bed' THEN 2 WHEN '2 beds' THEN 3
+			WHEN '3 beds' THEN 4 WHEN '4 beds' THEN 5 WHEN '5 beds' THEN 6
+			WHEN '6+ beds' THEN 7 ELSE 8
+		END
+	`);
+}
+
+export async function queryComparableProjects(
+	projectName: string,
+	dateStart: string,
+	dateEnd: string,
+	limit = 5
+): Promise<ComparableProject[]> {
+	const escapedProject = esc(projectName);
+	return query<ComparableProject>(`
+		WITH target AS (
+			SELECT
+				district,
+				PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft)
+					FILTER (WHERE rate_per_sqft IS NOT NULL AND rate_per_sqft > 0) AS target_rate
+			FROM transactions
+			WHERE project_name = '${escapedProject}'
+				AND sale_date >= '${dateStart}' AND sale_date <= '${dateEnd}'
+			GROUP BY district
+			ORDER BY COUNT(*) DESC
+			LIMIT 1
+		)
+		SELECT
+			t.project_name,
+			t.district,
+			COUNT(*) AS volume,
+			PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY t.rate_per_sqft)
+				FILTER (WHERE t.rate_per_sqft IS NOT NULL AND t.rate_per_sqft > 0) AS "medianRate",
+			(PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY t.rate_per_sqft)
+				FILTER (WHERE t.rate_per_sqft IS NOT NULL AND t.rate_per_sqft > 0) - tgt.target_rate)
+				/ tgt.target_rate AS "rateDiff"
+		FROM transactions t
+		CROSS JOIN target tgt
+		WHERE t.district = tgt.district
+			AND t.project_name != '${escapedProject}'
+			AND t.project_name IS NOT NULL AND t.project_name != ''
+			AND t.sale_date >= '${dateStart}' AND t.sale_date <= '${dateEnd}'
+		GROUP BY t.project_name, t.district, tgt.target_rate
+		HAVING COUNT(*) >= 3
+		ORDER BY ABS("rateDiff") ASC
+		LIMIT ${limit}
+	`);
 }

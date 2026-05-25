@@ -67,6 +67,35 @@ export interface PriceDistributionPoint {
 	count: number;
 }
 
+export interface ProjectInfo {
+	district: string;
+	community: string;
+	propertyTypes: string[];
+	layouts: string[];
+	firstSale: string;
+	lastSale: string;
+	totalCount: number;
+	offPlanCount: number;
+	readyCount: number;
+	projectMedianRate: number;
+	districtMedianRate: number;
+}
+
+export interface LayoutSummaryRow {
+	layout: string;
+	count: number;
+	medianPrice: number;
+	medianRate: number;
+}
+
+export interface ComparableProject {
+	project_name: string;
+	district: string;
+	volume: number;
+	medianRate: number;
+	rateDiff: number;
+}
+
 export interface Metadata {
 	lastUpdated: string;
 	rowCount: number;

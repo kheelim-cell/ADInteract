@@ -27,12 +27,13 @@
       const rates = data.map((d) => d.medianRate);
 
       chart.setOption({
+        textStyle: { fontFamily: 'Manrope, system-ui, sans-serif' },
         tooltip: {
           trigger: 'axis',
           backgroundColor: '#fff',
           borderColor: '#e5e7eb',
           borderWidth: 1,
-          textStyle: { color: '#374151', fontSize: 12 },
+          textStyle: { color: '#374151', fontSize: 12, fontFamily: 'Manrope, system-ui, sans-serif' },
           formatter(params: any) {
             const month = params[0].axisValue;
             let html = `<div class="font-medium mb-1">${month}</div>`;

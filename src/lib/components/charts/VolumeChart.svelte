@@ -26,12 +26,13 @@
       const ready = data.map((d) => d.readyVolume);
 
       chart.setOption({
+        textStyle: { fontFamily: 'Manrope, system-ui, sans-serif' },
         tooltip: {
           trigger: 'axis',
           backgroundColor: '#fff',
           borderColor: '#e5e7eb',
           borderWidth: 1,
-          textStyle: { color: '#374151', fontSize: 12 },
+          textStyle: { color: '#374151', fontSize: 12, fontFamily: 'Manrope, system-ui, sans-serif' },
           formatter(params: any) {
             const month = params[0].axisValue;
             let total = 0;

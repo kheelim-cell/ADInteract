@@ -324,14 +324,18 @@
                 {/if}
               </td>
 
-              <!-- View Button -->
+              <!-- Project link -->
               <td class="px-4 py-4 text-right align-top">
                 {#if row.project_name && row.project_name.toLowerCase() !== 'private'}
                   <a
                     href="{base}/project/{encodeURIComponent(row.project_name)}"
-                    class="inline-flex items-center px-3 py-1 rounded-md border border-brand-600 text-xs font-semibold text-brand-600 hover:bg-brand-50 transition-colors"
+                    title="Open project analytics for {row.project_name}"
+                    class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-gray-200 text-xs font-medium text-gray-600 hover:border-brand-400 hover:text-brand-700 hover:bg-brand-50 transition-all whitespace-nowrap"
                   >
-                    VIEW
+                    <svg class="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                    </svg>
+                    Explore
                   </a>
                 {/if}
               </td>

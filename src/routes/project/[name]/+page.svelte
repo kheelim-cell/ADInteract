@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import { updateFilter } from '$lib/stores/filters';
   import DashboardContent from '$lib/components/DashboardContent.svelte';
+  import ProjectHero from '$lib/components/project/ProjectHero.svelte';
 
   let projectName = $derived(decodeURIComponent($page.params.name));
 
@@ -25,7 +26,7 @@
     <span class="font-medium text-gray-900">{projectName}</span>
   </nav>
 
-  <div class="flex items-start justify-between mb-2">
+  <div class="flex items-start justify-between mb-5">
     <div>
       <h1 class="text-2xl font-bold text-navy">{projectName}</h1>
       <p class="text-sm text-gray-400 mt-0.5">Project analytics</p>
@@ -42,7 +43,11 @@
   </div>
 </div>
 
+<!-- Identity strip: location, types, off-plan split, vs district benchmark -->
+<ProjectHero {projectName} />
+
 <DashboardContent
   topAreasLabel="Top Districts by Volume"
   topAreasClickable={true}
+  {projectName}
 />

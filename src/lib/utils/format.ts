@@ -15,7 +15,6 @@ const dateFormatter = new Intl.DateTimeFormat('en-GB', {
 
 export function formatCurrency(n: number | null | undefined): string {
 	if (n == null || isNaN(n)) return '-';
-	if (Math.abs(n) >= 1_000_000) return compactFormatter.format(n) + ' AED';
 	return currencyFormatter.format(n) + ' AED';
 }
 

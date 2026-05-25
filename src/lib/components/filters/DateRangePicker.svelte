@@ -37,8 +37,8 @@
   }
 </script>
 
-<div class="flex items-center gap-1 flex-nowrap">
-  <div class="inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5 flex-nowrap">
+<div class="flex items-center gap-1 flex-wrap">
+  <div class="inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5">
     {#each presets as preset}
       <button
         type="button"

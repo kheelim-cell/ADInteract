@@ -117,7 +117,7 @@
         oninput={handleInput}
         onfocus={handleFocus}
         {placeholder}
-        class="w-full min-w-[220px] rounded-full border border-gray-200 bg-gray-50 py-1.5 pl-8 pr-3 text-xs text-gray-700 placeholder-gray-400 transition-colors focus:bg-white focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100"
+        class="w-full min-w-[160px] rounded-full border border-gray-200 bg-gray-50 py-1.5 pl-8 pr-3 text-xs text-gray-900 placeholder-gray-500 transition-colors focus:bg-white focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100"
       />
     </div>
 

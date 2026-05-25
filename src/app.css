@@ -5,12 +5,21 @@
 @layer base {
 	body {
 		@apply bg-[#FAFAF6] text-gray-900 antialiased;
-		font-family: 'Inter', system-ui, sans-serif;
+		font-family: 'Manrope', system-ui, sans-serif;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
 		@apply font-semibold tracking-tight;
 	}
+}
+
+/* Hide scrollbar on filter bar but keep it scrollable */
+.scrollbar-none {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+	display: none;
 }
 
 @layer components {

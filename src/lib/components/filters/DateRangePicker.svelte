@@ -37,16 +37,16 @@
   }
 </script>
 
-<div class="flex items-center gap-1 flex-wrap">
-  <div class="inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5">
+<div class="flex items-center gap-1 flex-nowrap">
+  <div class="inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5 flex-nowrap">
     {#each presets as preset}
       <button
         type="button"
         onclick={() => selectPreset(preset.value)}
-        class="rounded-full px-3 py-1 text-xs font-semibold transition-all
+        class="rounded-full px-3 py-1 text-xs font-semibold transition-all whitespace-nowrap
                {$filters.dateRange === preset.value
                  ? 'bg-brand-600 text-white shadow-sm'
-                 : 'text-gray-500 hover:text-gray-700 hover:bg-white'}"
+                 : 'text-gray-900 hover:text-gray-900 hover:bg-white'}"
       >
         {preset.label}
       </button>
@@ -54,10 +54,10 @@
     <button
       type="button"
       onclick={toggleCustom}
-      class="rounded-full px-3 py-1 text-xs font-semibold transition-all inline-flex items-center gap-1
+      class="rounded-full px-3 py-1 text-xs font-semibold transition-all inline-flex items-center gap-1 whitespace-nowrap
              {$filters.dateRange === 'custom'
                ? 'bg-brand-600 text-white shadow-sm'
-               : 'text-gray-500 hover:text-gray-700 hover:bg-white'}"
+               : 'text-gray-900 hover:text-gray-900 hover:bg-white'}"
     >
       <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />

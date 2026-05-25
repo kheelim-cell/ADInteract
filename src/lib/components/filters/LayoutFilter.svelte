@@ -53,7 +53,7 @@
     class="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-all cursor-pointer select-none
            {count > 0
              ? 'border-brand-300 bg-brand-50 text-brand-700'
-             : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50'}"
+             : 'border-gray-200 bg-white text-gray-900 hover:border-gray-300 hover:bg-gray-50'}"
   >
     Layout
     {#if count > 0}

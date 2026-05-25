@@ -45,7 +45,6 @@ jobs:
           retention-days: 7
 
       - name: Update Google Sheet
-        if: ${{ secrets.GOOGLE_CREDENTIALS_JSON != '' }}
         env:
           GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
         run: python scripts/update_sheets.py

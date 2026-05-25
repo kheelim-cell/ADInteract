@@ -16,7 +16,7 @@ import os
 from datetime import datetime
 from playwright.async_api import async_playwright
 
-ADREC_URL   = "https://adrec.gov.ae/en/property_and_index/adrec-dashboard"
+ADREC_URL   = "https://www.dari.ae/adrec/MarketDetails.html"
 OUTPUT_PATH = "scripts/data/adrec_raw.csv"
 DEBUG_DIR   = "scripts/data"
 

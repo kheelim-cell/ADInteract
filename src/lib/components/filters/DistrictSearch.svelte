@@ -13,6 +13,9 @@
     searchType === 'district' ? $filters.district : $filters.project
   );
 
+  // Districts: show all on focus (≤~50). Projects: require ≥2 chars before showing anything.
+  const MIN_QUERY_LENGTH = searchType === 'project' ? 2 : 0;
+
   let options = $derived(() => {
     if (!$metadata) return [];
     return searchType === 'district' ? $metadata.districts : $metadata.projects;
@@ -20,10 +23,23 @@
 
   let filtered = $derived(() => {
     const items = options();
-    if (!query.trim()) return items;
-    const q = query.toLowerCase();
+    const q = query.trim().toLowerCase();
+    if (q.length < MIN_QUERY_LENGTH) {
+      // Districts: show all on focus. Projects: show nothing until 2 chars typed.
+      return searchType === 'district' ? items : [];
+    }
     return items.filter((item) => item.toLowerCase().includes(q));
   });
+
+  // True when the user has typed enough but no matches exist
+  let noResults = $derived(
+    open && query.trim().length >= MIN_QUERY_LENGTH && filtered().length === 0
+  );
+
+  // True when focused on project search but hasn't typed enough yet
+  let showHint = $derived(
+    open && searchType === 'project' && query.trim().length < MIN_QUERY_LENGTH
+  );
 
   function select(value: string) {
     if (searchType === 'district') {
@@ -45,7 +61,7 @@
   }
 
   function handleInput() {
-    open = query.length > 0 || document.activeElement === inputEl;
+    open = true;
   }
 
   function handleFocus() {
@@ -105,7 +121,11 @@
       />
     </div>
 
-    {#if open && filtered().length > 0}
+    {#if showHint}
+      <div class="absolute z-20 mt-1.5 w-full rounded-xl border border-gray-200 bg-white shadow-lg px-3 py-3">
+        <p class="text-xs text-gray-400 text-center">Type at least 2 characters to search projects</p>
+      </div>
+    {:else if open && filtered().length > 0}
       <div class="absolute z-20 mt-1.5 w-full max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
         {#each filtered() as item}
           <button
@@ -120,6 +140,10 @@
             <span class="truncate">{item}</span>
           </button>
         {/each}
+      </div>
+    {:else if noResults}
+      <div class="absolute z-20 mt-1.5 w-full rounded-xl border border-gray-200 bg-white shadow-lg px-3 py-3">
+        <p class="text-xs text-gray-400 text-center">No results for "{query.trim()}"</p>
       </div>
     {/if}
   {/if}

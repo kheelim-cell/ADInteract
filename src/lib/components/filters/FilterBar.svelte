@@ -82,19 +82,21 @@
 
 <div class="sticky top-0 z-10 bg-white/98 backdrop-blur-md border-b border-gray-200/80 shadow-sm">
   <div class="px-4 sm:px-6 py-3">
-    <!-- Row 1: search + dropdowns + sale type -->
+    <!-- Row 1 (mobile): two searches side-by-side grid; (desktop): inline flex with all controls -->
     <div class="flex flex-wrap items-center gap-2">
-      <DistrictSearch searchType="district" />
+      <!-- Searches: 2-col grid wrapper on mobile, contents on sm+ -->
+      <div class="grid grid-cols-2 gap-2 w-full sm:w-auto sm:contents">
+        <DistrictSearch searchType="district" />
+        <DistrictSearch searchType="project" />
+      </div>
 
-      <div class="h-5 w-px bg-gray-200"></div>
-
-      <DistrictSearch searchType="project" />
-
-      <div class="h-5 w-px bg-gray-200"></div>
+      <!-- Divider — desktop only -->
+      <div class="hidden sm:block h-5 w-px bg-gray-200"></div>
 
       <SaleTypeToggle />
 
-      <div class="h-5 w-px bg-gray-200"></div>
+      <!-- Divider — desktop only -->
+      <div class="hidden sm:block h-5 w-px bg-gray-200"></div>
 
       <PropertyTypeFilter />
       <LayoutFilter />

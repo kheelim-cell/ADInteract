@@ -121,7 +121,7 @@
   <!-- Stats -->
   <div class="mt-6">
     {#if loading && !stats}
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {#each Array(4) as _}
           <div class="stat-card animate-pulse">
             <div class="h-3 w-20 bg-gray-200 rounded mb-3"></div>

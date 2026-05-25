@@ -6,7 +6,7 @@
   let { stats }: { stats: StatsResult } = $props();
 </script>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
   <StatCard
     label="Transaction Volume"
     value={formatNumber(stats.totalVolume)}

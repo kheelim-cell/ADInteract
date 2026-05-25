@@ -42,10 +42,10 @@
 
 <div class="stat-card flex flex-col gap-3">
   <!-- Label -->
-  <span class="text-[11px] font-semibold uppercase tracking-widest text-navy/40">{label}</span>
+  <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider sm:tracking-widest text-navy/40">{label}</span>
 
   <!-- Value -->
-  <p class="text-3xl font-bold text-navy leading-none">{value}</p>
+  <p class="text-2xl sm:text-3xl font-bold text-navy leading-none">{value}</p>
 
   <!-- Growth badge -->
   {#if showComparison && growth !== null}

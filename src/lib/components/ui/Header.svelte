@@ -1,7 +1,12 @@
 <script lang="ts">
-  import { metadata } from '$lib/stores/db';
+  import { page } from '$app/stores';
+  import { base } from '$app/paths';
+  import { metadata, rentalMetadata } from '$lib/stores/db';
 
   let { lastUpdated = '' } = $props();
+
+  let isRentalPage = $derived($page.url.pathname.includes('/rental'));
+  let hasRental    = $derived($rentalMetadata !== null);
 
   function formatUpdated(ts: string): string {
     if (!ts) return '';
@@ -67,6 +72,30 @@
         </p>
       </div>
     </div>
+
+    <!-- Centre: Sales / Rental nav tabs (only shown when rental data available) -->
+    {#if hasRental}
+      <nav class="hidden sm:flex items-center rounded-full bg-white/8 border border-white/15 p-0.5 gap-0.5">
+        <a
+          href="{base}/"
+          class="rounded-full px-4 py-1.5 text-xs font-semibold transition-colors
+                 {!isRentalPage
+                   ? 'bg-brand-500 text-white shadow-sm'
+                   : 'text-white/60 hover:text-white hover:bg-white/10'}"
+        >
+          Sales
+        </a>
+        <a
+          href="{base}/rental"
+          class="rounded-full px-4 py-1.5 text-xs font-semibold transition-colors
+                 {isRentalPage
+                   ? 'bg-brand-500 text-white shadow-sm'
+                   : 'text-white/60 hover:text-white hover:bg-white/10'}"
+        >
+          Rental Index
+        </a>
+      </nav>
+    {/if}
 
     <!-- Right: dataset stats + last updated -->
     <div class="hidden md:flex flex-col items-end gap-1 flex-shrink-0">

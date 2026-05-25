@@ -1,0 +1,234 @@
+<script lang="ts">
+  import type { RentalProjectRow } from '$lib/db/rental_types';
+
+  let {
+    rows,
+    total,
+    loading,
+    page,
+    pageSize,
+    sortCol,
+    sortDir,
+    onSort,
+    onPage
+  }: {
+    rows: RentalProjectRow[];
+    total: number;
+    loading: boolean;
+    page: number;
+    pageSize: number;
+    sortCol: string;
+    sortDir: 'asc' | 'desc';
+    onSort: (col: string) => void;
+    onPage: (p: number) => void;
+  } = $props();
+
+  function fmt(n: number | null): string {
+    if (n === null || n === undefined) return '—';
+    if (n >= 1_000_000) return `AED ${(n / 1_000_000).toFixed(2)}M`;
+    if (n >= 1_000)     return `AED ${Math.round(n).toLocaleString('en-US')}`;
+    return `AED ${n}`;
+  }
+
+  function fmtYoY(n: number | null): string {
+    if (n === null || n === undefined) return '—';
+    return (n > 0 ? '+' : '') + n.toFixed(1) + '%';
+  }
+
+  const totalPages = $derived(Math.max(1, Math.ceil(total / pageSize)));
+  const showing = $derived({
+    from: total === 0 ? 0 : (page - 1) * pageSize + 1,
+    to:   Math.min(page * pageSize, total)
+  });
+
+  function sortArrow(col: string): string {
+    if (sortCol !== col) return '';
+    return sortDir === 'asc' ? ' ↑' : ' ↓';
+  }
+
+  const HEADERS: { label: string; col: string; align: string }[] = [
+    { label: 'Project',    col: 'project_name', align: 'left'  },
+    { label: 'District',   col: 'district',     align: 'left'  },
+    { label: 'Layout',     col: 'layout',       align: 'left'  },
+    { label: 'Lower',      col: 'lower_rent',   align: 'right' },
+    { label: 'Median',     col: 'median_rent',  align: 'right' },
+    { label: 'Upper',      col: 'upper_rent',   align: 'right' },
+    { label: 'YoY',        col: 'yoy_change',   align: 'right' }
+  ];
+
+  // Mobile page numbers
+  function mobilePaginationPages(): (number | '…')[] {
+    if (totalPages <= 5) return Array.from({ length: totalPages }, (_, i) => i + 1);
+    const pages: (number | '…')[] = [1];
+    if (page > 3) pages.push('…');
+    for (let i = Math.max(2, page - 1); i <= Math.min(totalPages - 1, page + 1); i++) pages.push(i);
+    if (page < totalPages - 2) pages.push('…');
+    if (totalPages > 1) pages.push(totalPages);
+    return pages;
+  }
+</script>
+
+<div class="rounded-2xl bg-white shadow-sm ring-1 ring-black/5 overflow-hidden">
+
+  <!-- Header row -->
+  <div class="px-4 sm:px-6 py-4 border-b border-gray-100 flex items-center justify-between gap-4">
+    <div>
+      <h3 class="text-sm font-semibold text-navy">Project Rental Rates</h3>
+      {#if !loading}
+        <p class="text-xs text-gray-400 mt-0.5">
+          Showing {showing.from}–{showing.to} of {total.toLocaleString('en-US')} projects
+        </p>
+      {/if}
+    </div>
+  </div>
+
+  <!-- Desktop table -->
+  <div class="hidden md:block overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="bg-gray-50 border-b border-gray-100">
+          {#each HEADERS as h}
+            <th
+              class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-400 cursor-pointer hover:text-gray-700 whitespace-nowrap
+                     {h.align === 'right' ? 'text-right' : 'text-left'}"
+              onclick={() => onSort(h.col)}
+            >
+              {h.label}{sortArrow(h.col)}
+            </th>
+          {/each}
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-50">
+        {#if loading}
+          {#each Array(5) as _}
+            <tr class="animate-pulse">
+              {#each HEADERS as _}
+                <td class="px-4 py-3">
+                  <div class="h-3.5 bg-gray-100 rounded w-24"></div>
+                </td>
+              {/each}
+            </tr>
+          {/each}
+        {:else if rows.length === 0}
+          <tr>
+            <td colspan={HEADERS.length} class="px-4 py-12 text-center text-gray-400 text-sm">
+              No projects match the selected filters.
+            </td>
+          </tr>
+        {:else}
+          {#each rows as row}
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="px-4 py-3 font-medium text-gray-900 max-w-[220px] truncate">{row.project_name}</td>
+              <td class="px-4 py-3 text-gray-600 whitespace-nowrap">{row.district}</td>
+              <td class="px-4 py-3 text-gray-500 whitespace-nowrap capitalize">{row.layout}</td>
+              <td class="px-4 py-3 text-right text-gray-600 whitespace-nowrap">{fmt(row.lower_rent)}</td>
+              <td class="px-4 py-3 text-right font-semibold text-gray-900 whitespace-nowrap">{fmt(row.median_rent)}</td>
+              <td class="px-4 py-3 text-right text-gray-600 whitespace-nowrap">{fmt(row.upper_rent)}</td>
+              <td class="px-4 py-3 text-right whitespace-nowrap">
+                {#if row.yoy_change !== null && row.yoy_change !== undefined}
+                  <span class="inline-flex items-center gap-1 text-xs font-semibold rounded-full px-2 py-0.5
+                               {row.yoy_change > 0
+                                 ? 'bg-emerald-50 text-emerald-700'
+                                 : row.yoy_change < 0
+                                 ? 'bg-red-50 text-red-700'
+                                 : 'bg-gray-50 text-gray-500'}">
+                    {fmtYoY(row.yoy_change)}
+                  </span>
+                {:else}
+                  <span class="text-gray-300 text-xs">—</span>
+                {/if}
+              </td>
+            </tr>
+          {/each}
+        {/if}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Mobile cards -->
+  <div class="block md:hidden">
+    {#if loading}
+      {#each Array(5) as _}
+        <div class="px-4 py-3.5 border-b border-gray-50 animate-pulse">
+          <div class="flex justify-between gap-3">
+            <div class="h-4 bg-gray-100 rounded w-36 mb-2"></div>
+            <div class="h-4 bg-gray-100 rounded w-20"></div>
+          </div>
+          <div class="h-3 bg-gray-100 rounded w-24"></div>
+        </div>
+      {/each}
+    {:else if rows.length === 0}
+      <div class="px-4 py-12 text-center text-gray-400 text-sm">No projects match the selected filters.</div>
+    {:else}
+      <div class="divide-y divide-gray-50">
+        {#each rows as row}
+          <div class="px-4 py-3.5">
+            <div class="flex items-start justify-between gap-3">
+              <div class="min-w-0 flex-1">
+                <p class="text-sm font-semibold text-gray-900 truncate">{row.project_name}</p>
+                <p class="text-xs text-gray-400 mt-0.5">{row.district} · <span class="capitalize">{row.layout}</span></p>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <p class="text-sm font-bold text-gray-900">{fmt(row.median_rent)}</p>
+                <p class="text-xs text-gray-400">median/yr</p>
+              </div>
+            </div>
+            <div class="mt-1.5 flex items-center gap-2 text-xs text-gray-500 flex-wrap">
+              {#if row.lower_rent !== null}
+                <span>{fmt(row.lower_rent)} – {fmt(row.upper_rent)}</span>
+              {/if}
+              {#if row.yoy_change !== null && row.yoy_change !== undefined}
+                <span class="inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-xs font-semibold
+                             {row.yoy_change > 0 ? 'bg-emerald-50 text-emerald-700' : row.yoy_change < 0 ? 'bg-red-50 text-red-700' : 'bg-gray-50 text-gray-500'}">
+                  {fmtYoY(row.yoy_change)} YoY
+                </span>
+              {/if}
+            </div>
+          </div>
+        {/each}
+      </div>
+    {/if}
+  </div>
+
+  <!-- Pagination -->
+  {#if totalPages > 1}
+    <div class="px-4 sm:px-6 py-3 border-t border-gray-100 flex items-center justify-between gap-4">
+      <span class="text-xs text-gray-400 hidden sm:block">
+        Page {page} of {totalPages}
+      </span>
+      <div class="flex items-center gap-1 mx-auto sm:mx-0">
+        <button
+          type="button"
+          onclick={() => onPage(page - 1)}
+          disabled={page <= 1}
+          class="rounded-lg px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          Prev
+        </button>
+        {#each mobilePaginationPages() as p}
+          {#if p === '…'}
+            <span class="px-2 text-gray-400 text-xs">…</span>
+          {:else}
+            <button
+              type="button"
+              onclick={() => onPage(p as number)}
+              class="rounded-lg w-8 h-8 text-xs font-medium transition-colors
+                     {page === p ? 'bg-brand-600 text-white' : 'text-gray-600 hover:bg-gray-100'}"
+            >
+              {p}
+            </button>
+          {/if}
+        {/each}
+        <button
+          type="button"
+          onclick={() => onPage(page + 1)}
+          disabled={page >= totalPages}
+          class="rounded-lg px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  {/if}
+
+</div>

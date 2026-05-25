@@ -29,11 +29,33 @@ export async function getConnection(): Promise<AsyncDuckDBConnection> {
 	return conn;
 }
 
+/** DuckDB-WASM requires absolute URLs for HTTP protocol. */
+function absUrl(path: string): string {
+	if (typeof window === 'undefined') return path;
+	if (path.startsWith('http://') || path.startsWith('https://')) return path;
+	return `${window.location.origin}${path.startsWith('/') ? '' : '/'}${path}`;
+}
+
+export async function loadRentalData(baseUrl: string): Promise<boolean> {
+	if (!db) throw new Error('DuckDB not initialized');
+	const parquetUrl = absUrl(`${baseUrl}/data/rental.parquet`);
+	try {
+		const res = await fetch(parquetUrl, { method: 'HEAD' });
+		if (!res.ok) return false;
+		const c = await getConnection();
+		await db.registerFileURL('rental.parquet', parquetUrl, duckdb.DuckDBDataProtocol.HTTP, false);
+		await c.query(`CREATE OR REPLACE TABLE rental AS SELECT * FROM read_parquet('rental.parquet')`);
+		return true;
+	} catch {
+		return false;
+	}
+}
+
 export async function loadData(baseUrl: string): Promise<void> {
 	if (!db) throw new Error('DuckDB not initialized');
 
-	const parquetUrl = `${baseUrl}/data/transactions.parquet`;
-	const csvUrl = `${baseUrl}/data/transactions.csv`;
+	const parquetUrl = absUrl(`${baseUrl}/data/transactions.parquet`);
+	const csvUrl     = absUrl(`${baseUrl}/data/transactions.csv`);
 
 	const c = await getConnection();
 

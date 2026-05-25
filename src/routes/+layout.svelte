@@ -4,10 +4,11 @@
   import Header from '$lib/components/ui/Header.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import LoadingSpinner from '$lib/components/ui/LoadingSpinner.svelte';
-  import { initDuckDB, loadData } from '$lib/db/duckdb';
-  import { dbReady, dbError, dbLoading, metadata } from '$lib/stores/db';
+  import { initDuckDB, loadData, loadRentalData } from '$lib/db/duckdb';
+  import { dbReady, dbError, dbLoading, metadata, rentalMetadata } from '$lib/stores/db';
   import { base } from '$app/paths';
   import type { Metadata } from '$lib/db/types';
+  import type { RentalMetadata } from '$lib/db/rental_types';
 
   let { children } = $props();
 
@@ -24,6 +25,20 @@
         }
       } catch {
         /* meta.json is optional */
+      }
+
+      // Load rental data in parallel (non-blocking — failure just means no rental tab)
+      try {
+        const rentalOk = await loadRentalData(base || '');
+        if (rentalOk) {
+          const rRes = await fetch(`${base}/data/rental_meta.json`);
+          if (rRes.ok) {
+            const rmeta: RentalMetadata = await rRes.json();
+            rentalMetadata.set(rmeta);
+          }
+        }
+      } catch {
+        /* rental data is optional */
       }
 
       dbReady.set(true);

@@ -11,10 +11,22 @@ import type {
 	ComparableProject
 } from './types';
 
+// Only these 6 property types are shown across the entire platform
+const ALLOWED_PROPERTY_TYPES = [
+	'apartment',
+	'duplex',
+	'townhouse / attached villa',
+	'villa',
+	'office',
+	'retail'
+];
+const PROPERTY_TYPE_FILTER = `property_type IN (${ALLOWED_PROPERTY_TYPES.map((t) => `'${t}'`).join(', ')})`;
+
 function buildWhere(f: FilterState, dateStart: string, dateEnd: string): string {
 	const clauses: string[] = [];
 	clauses.push(`sale_date >= '${dateStart}'`);
 	clauses.push(`sale_date <= '${dateEnd}'`);
+	clauses.push(PROPERTY_TYPE_FILTER);
 	if (f.district) clauses.push(`district = '${esc(f.district)}'`);
 	if (f.project) clauses.push(`project_name = '${esc(f.project)}'`);
 	if (f.saleType === 'off-plan') clauses.push(`sale_type = 'off-plan'`);
@@ -306,6 +318,7 @@ export async function queryProjectInfo(
 			FROM transactions
 			WHERE project_name = '${escapedProject}'
 				AND sale_date >= '${dateStart}' AND sale_date <= '${dateEnd}'
+				AND ${PROPERTY_TYPE_FILTER}
 			GROUP BY district
 			ORDER BY COUNT(*) DESC
 			LIMIT 1
@@ -326,13 +339,14 @@ export async function queryProjectInfo(
 	if (!rows.length) return null;
 	const row = rows[0];
 
-	// Distinct property types
+	// Distinct property types (within allowed set)
 	const typeRows = await query<{ property_type: string }>(`
 		SELECT DISTINCT property_type
 		FROM transactions
 		WHERE project_name = '${escapedProject}'
 			AND sale_date >= '${dateStart}' AND sale_date <= '${dateEnd}'
 			AND property_type IS NOT NULL AND property_type != ''
+			AND ${PROPERTY_TYPE_FILTER}
 		ORDER BY property_type
 	`);
 
@@ -407,6 +421,7 @@ export async function queryComparableProjects(
 			FROM transactions
 			WHERE project_name = '${escapedProject}'
 				AND sale_date >= '${dateStart}' AND sale_date <= '${dateEnd}'
+				AND ${PROPERTY_TYPE_FILTER}
 			GROUP BY district
 			ORDER BY COUNT(*) DESC
 			LIMIT 1
@@ -426,6 +441,7 @@ export async function queryComparableProjects(
 			AND t.project_name != '${escapedProject}'
 			AND t.project_name IS NOT NULL AND t.project_name != ''
 			AND t.sale_date >= '${dateStart}' AND t.sale_date <= '${dateEnd}'
+			AND ${PROPERTY_TYPE_FILTER}
 		GROUP BY t.project_name, t.district, tgt.target_rate
 		HAVING COUNT(*) >= 3
 		ORDER BY ABS("rateDiff") ASC

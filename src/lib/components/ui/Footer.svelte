@@ -27,7 +27,7 @@
           <span class="text-xs text-gray-500">Abu Dhabi Property Transactions</span>
         </div>
         <p class="text-xs text-gray-400">
-          Data sourced from the
+          Data sourced from the public dashboard of the
           <a
             href="https://adrec.gov.ae"
             target="_blank"
@@ -36,9 +36,12 @@
           >
             Abu Dhabi Real Estate Centre (ADREC)
           </a>
-          — updated daily.
+          — updated daily. ADInteract is an independent platform and is not affiliated with,
+          endorsed by, or officially connected to ADREC or any Abu Dhabi government entity.
         </p>
-        <p class="text-[11px] text-gray-300">
+        <p class="text-[11px] text-gray-400">
+          Data is derived from ADREC's public dashboard and has been processed for analysis
+          (unit conversion, normalisation). Figures may differ from official ADREC records.
           For informational purposes only. Not financial or investment advice.
         </p>
       </div>
@@ -64,7 +67,7 @@
             </div>
           {/if}
         {/if}
-        <p class="text-[11px] text-gray-300">© {currentYear} ADInteract</p>
+        <p class="text-[11px] text-gray-300">© {currentYear} Khee Lim. All rights reserved.</p>
       </div>
 
     </div>

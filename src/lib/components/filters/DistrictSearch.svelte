@@ -20,9 +20,9 @@
 
   let filtered = $derived(() => {
     const items = options();
-    if (!query.trim()) return items.slice(0, 10);
+    if (!query.trim()) return items;
     const q = query.toLowerCase();
-    return items.filter((item) => item.toLowerCase().includes(q)).slice(0, 10);
+    return items.filter((item) => item.toLowerCase().includes(q));
   });
 
   function select(value: string) {
@@ -66,7 +66,7 @@
   });
 
   let placeholder = $derived(
-    searchType === 'district' ? 'Search district or project...' : 'Search projects...'
+    searchType === 'district' ? 'Search district...' : 'Search project...'
   );
 </script>
 

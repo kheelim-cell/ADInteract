@@ -32,13 +32,14 @@
       }
 
       chart.setOption({
+        textStyle: { fontFamily: 'Manrope, system-ui, sans-serif' },
         tooltip: {
           trigger: 'axis',
           axisPointer: { type: 'shadow' },
           backgroundColor: '#fff',
           borderColor: '#e5e7eb',
           borderWidth: 1,
-          textStyle: { color: '#374151', fontSize: 12 },
+          textStyle: { color: '#374151', fontSize: 12, fontFamily: 'Manrope, system-ui, sans-serif' },
           formatter(params: any) {
             const p = params[0];
             const item = sorted.find((d) => d.district === p.name);

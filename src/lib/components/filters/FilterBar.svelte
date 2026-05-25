@@ -53,6 +53,10 @@
 
       <div class="h-5 w-px bg-gray-200"></div>
 
+      <DistrictSearch searchType="project" />
+
+      <div class="h-5 w-px bg-gray-200"></div>
+
       <SaleTypeToggle />
 
       <div class="h-5 w-px bg-gray-200"></div>

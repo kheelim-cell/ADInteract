@@ -34,6 +34,9 @@ def update():
             "Add it as a GitHub Actions secret (base64-encoded service account JSON)."
         )
 
+    # Strip whitespace and fix any missing base64 padding
+    creds_b64 = creds_b64.strip()
+    creds_b64 += "=" * (4 - len(creds_b64) % 4)
     creds_json = json.loads(base64.b64decode(creds_b64))
     scopes = [
         "https://spreadsheets.google.com/feeds",

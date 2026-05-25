@@ -12,10 +12,10 @@ permissions:
 
 jobs:
   # ───────────────────────────────────────────────────────────────────────
-  # Job 1: Download from Google Sheet → generate Parquet → commit
+  # Job 1: Scrape ADREC → update Google Sheet → generate Parquet
   # ───────────────────────────────────────────────────────────────────────
   refresh-data:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04   # pinned: Playwright 1.44 needs libasound2 (not in 24.04)
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,19 +29,28 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r scripts/requirements.txt
 
-      - name: Fetch from Google Sheet
-        env:
-          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
-        run: python scripts/fetch_sheets.py
+      - name: Install Playwright (Chromium)
+        run: playwright install chromium --with-deps
 
-      # Upload raw CSV as a downloadable artifact (useful for debugging)
-      - name: Save raw CSV artifact
+      - name: Fetch ADREC export
+        run: python scripts/fetch_adrec.py
+
+      # Always upload debug artifacts so failures can be diagnosed
+      - name: Upload debug artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: adrec-raw-${{ github.run_id }}
-          path: scripts/data/adrec_raw.csv
+          name: adrec-debug-${{ github.run_id }}
+          path: |
+            scripts/data/adrec_raw.csv
+            scripts/data/debug_screenshot.png
+            scripts/data/debug_page.html
           retention-days: 7
+
+      - name: Update Google Sheet
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        run: python scripts/update_sheets.py
 
       - name: Transform → Parquet + meta.json
         run: python scripts/transform.py

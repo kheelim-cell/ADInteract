@@ -4,13 +4,14 @@ on:
     - cron: '0 2 * * *' # Daily at 02:00 UTC (06:00 GST)
   workflow_dispatch: # Manual trigger
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -33,6 +34,8 @@ jobs:
         run: npm ci
       - name: Build site
         run: npm run build
+        env:
+          BASE_PATH: /ADInteract
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

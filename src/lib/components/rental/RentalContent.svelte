@@ -3,29 +3,26 @@
   import { dbReady, rentalMetadata } from '$lib/stores/db';
   import {
     queryRentalStats,
-    queryRentalByLayout,
     queryRentalTrend,
-    queryTopRentalDistricts,
+    queryRentalNewVsRenew,
     queryRentalProjects
   } from '$lib/db/rental_queries';
   import RentalFilterBar from './RentalFilterBar.svelte';
   import RentalStatsGrid from './RentalStatsGrid.svelte';
   import RentalTrendChart from './RentalTrendChart.svelte';
-  import RentalLayoutChart from './RentalLayoutChart.svelte';
-  import RentalDistrictChart from './RentalDistrictChart.svelte';
+  import RentalNewVsRenewChart from './RentalNewVsRenewChart.svelte';
+
   import RentalTable from './RentalTable.svelte';
   import type {
     RentalStatsResult,
-    RentalLayoutRow,
     RentalTrendPoint,
-    RentalDistrictRow,
+    NewVsRenewRow,
     RentalProjectRow
   } from '$lib/db/rental_types';
 
   let stats: RentalStatsResult | null = $state(null);
-  let layoutData: RentalLayoutRow[] = $state([]);
   let trendData: RentalTrendPoint[] = $state([]);
-  let districtData: RentalDistrictRow[] = $state([]);
+  let newVsRenewData: NewVsRenewRow[] = $state([]);
   let projectRows: RentalProjectRow[] = $state([]);
   let totalProjects = $state(0);
   let loading = $state(false);
@@ -47,39 +44,50 @@
     tablePage = 1;
   }
 
+  // Effect 1: stats + charts — re-runs when filters change
   $effect(() => {
-    const ready      = $dbReady;
-    const f          = $rentalFilters;
-    const meta       = $rentalMetadata;
-    const latestYear = meta?.latestYear ?? new Date().getFullYear();
+    const f    = $rentalFilters;
+    const meta = $rentalMetadata;
+    const ly   = meta?.latestYear ?? new Date().getFullYear();
+    if (!$dbReady || !meta) return;
 
-    if (!ready || !meta) return;
-
-    loading       = true;
     chartsLoading = true;
-
     const timer = setTimeout(() => {
       Promise.all([
-        queryRentalStats(f, latestYear),
-        queryRentalByLayout(f, latestYear),
-        queryRentalTrend(f, latestYear),
-        queryTopRentalDistricts(f, latestYear),
-        queryRentalProjects(f, latestYear, tableSortCol, tableSortDir, tablePage, PAGE_SIZE)
+        queryRentalStats(f, ly),
+        queryRentalTrend(f, ly),
+        queryRentalNewVsRenew(f, ly)
       ])
-        .then(([s, lay, trend, dist, proj]) => {
-          stats        = s;
-          layoutData   = lay;
-          trendData    = trend;
-          districtData = dist;
-          projectRows  = proj.rows;
+        .then(([s, trend, nvr]) => {
+          stats          = s;
+          trendData      = trend;
+          newVsRenewData = nvr;
+        })
+        .finally(() => { chartsLoading = false; });
+    }, 200);
+    return () => clearTimeout(timer);
+  });
+
+  // Effect 2: project table — re-runs when filters OR sort/page change
+  $effect(() => {
+    const f    = $rentalFilters;
+    const meta = $rentalMetadata;
+    const ly   = meta?.latestYear ?? new Date().getFullYear();
+    // Read these in the effect body so Svelte 5 tracks them as dependencies
+    const col  = tableSortCol;
+    const dir  = tableSortDir;
+    const pg   = tablePage;
+    if (!$dbReady || !meta) return;
+
+    loading = true;
+    const timer = setTimeout(() => {
+      queryRentalProjects(f, ly, col, dir, pg, PAGE_SIZE)
+        .then((proj) => {
+          projectRows   = proj.rows;
           totalProjects = proj.total;
         })
-        .finally(() => {
-          loading       = false;
-          chartsLoading = false;
-        });
+        .finally(() => { loading = false; });
     }, 200);
-
     return () => clearTimeout(timer);
   });
 </script>
@@ -118,7 +126,7 @@
     {/if}
   </div>
 
-  <!-- Charts: Trend + Layout -->
+  <!-- Row 1: Trend + New vs Renewal -->
   <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
     <div class="chart-card">
       <h3 class="text-sm font-semibold text-navy mb-1">Median Rent Trend</h3>
@@ -133,29 +141,16 @@
     </div>
 
     <div class="chart-card">
-      <h3 class="text-sm font-semibold text-navy mb-1">Rent by Bed Size</h3>
-      <p class="text-xs text-gray-400 mb-4">Lower / Median / Upper annual rent (AED)</p>
-      {#if chartsLoading && layoutData.length === 0}
-        <div class="h-64 flex items-center justify-center">
+      <h3 class="text-sm font-semibold text-navy mb-1">New Contract vs Renewal</h3>
+      <p class="text-xs text-gray-400 mb-4">Annual rent (AED) — how much more new tenants pay vs renewals</p>
+      {#if chartsLoading && newVsRenewData.length === 0}
+        <div class="h-52 flex items-center justify-center">
           <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>
         </div>
       {:else}
-        <RentalLayoutChart data={layoutData} />
+        <RentalNewVsRenewChart data={newVsRenewData} />
       {/if}
     </div>
-  </div>
-
-  <!-- Top Districts chart -->
-  <div class="mt-6 chart-card">
-    <h3 class="text-sm font-semibold text-navy mb-1">Top Districts by Median Rent</h3>
-    <p class="text-xs text-gray-400 mb-4">Click a bar to filter. Annual rent (AED) · {$rentalFilters.year ?? $rentalMetadata?.latestYear}</p>
-    {#if chartsLoading && districtData.length === 0}
-      <div class="h-64 flex items-center justify-center">
-        <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>
-      </div>
-    {:else}
-      <RentalDistrictChart data={districtData} />
-    {/if}
   </div>
 
   <!-- Project table -->

@@ -5,7 +5,9 @@ import type {
 	RentalLayoutRow,
 	RentalTrendPoint,
 	RentalDistrictRow,
-	RentalProjectRow
+	RentalProjectRow,
+	NewVsRenewRow,
+	PriceToRentRow
 } from './rental_types';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -96,19 +98,23 @@ export async function queryRentalStats(
 // ─── Layout breakdown ────────────────────────────────────────────────────────
 
 /**
- * Per-layout summary: project count + rent percentiles.
- * Ignores f.layout and f.typology so every bed size is shown.
+ * Per-layout summary: always shows every bed size so the chart is a full
+ * comparison. Respects typology, year, district, community, and rent_type.
+ * Ignores f.layout (filtering to one bed size would leave a single bar).
  */
 export async function queryRentalByLayout(
 	f: RentalFilterState,
 	latestYear: number
 ): Promise<RentalLayoutRow[]> {
 	const resolvedYear = f.year ?? latestYear;
+	const typologyClause = (f.typology && f.typology !== 'All property types')
+		? `typology = '${esc(f.typology)}'`
+		: `typology = 'All property types'`;
 
 	const clauses: string[] = [
 		`year = ${resolvedYear}`,
-		`typology = 'All property types'`,
-		`layout != 'all beds'`,   // exclude the all-beds summary row
+		typologyClause,
+		`layout != 'all beds'`,
 		`rent_type = '${esc(f.rentType || 'All types')}'`
 	];
 	if (f.district)  clauses.push(`district  = '${esc(f.district)}'`);
@@ -145,10 +151,17 @@ export async function queryRentalTrend(
 	f: RentalFilterState,
 	latestYear: number
 ): Promise<RentalTrendPoint[]> {
-	// Use "all beds" + "All property types" + chosen rent_type across ALL years
+	// Respect selected layout and typology; fall back to aggregate rows
+	const layoutClause = (f.layout && f.layout !== 'all beds')
+		? `layout = '${esc(f.layout)}'`
+		: `layout = 'all beds'`;
+	const typologyClause = (f.typology && f.typology !== 'All property types')
+		? `typology = '${esc(f.typology)}'`
+		: `typology = 'All property types'`;
+
 	const clauses: string[] = [
-		`typology = 'All property types'`,
-		`layout   = 'all beds'`,
+		typologyClause,
+		layoutClause,
 		`rent_type = '${esc(f.rentType || 'All types')}'`
 	];
 	if (f.district)  clauses.push(`district  = '${esc(f.district)}'`);
@@ -288,4 +301,118 @@ export async function queryRentalProjects(
 	`);
 
 	return { rows, total };
+}
+
+// ─── New vs Renewal rent gap ─────────────────────────────────────────────────
+
+export async function queryRentalNewVsRenew(
+	f: RentalFilterState,
+	latestYear: number
+): Promise<NewVsRenewRow[]> {
+	const resolvedYear = f.year ?? latestYear;
+	const typologyClause = (f.typology && f.typology !== 'All property types')
+		? `typology = '${esc(f.typology)}'`
+		: `typology = 'All property types'`;
+
+	const clauses: string[] = [
+		`year = ${resolvedYear}`,
+		typologyClause,
+		`layout IN ('studio', '1 bed', '2 beds', '3 beds')`,
+		`rent_type IN ('New', 'Renew')`
+	];
+	if (f.district)  clauses.push(`district  = '${esc(f.district)}'`);
+	if (f.community) clauses.push(`community = '${esc(f.community)}'`);
+
+	const where = clauses.join(' AND ');
+
+	const rows = await query<{ layout: string; newRent: number | null; renewRent: number | null }>(`
+		SELECT
+			layout,
+			PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent)
+				FILTER (WHERE rent_type = 'New')   AS newRent,
+			PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent)
+				FILTER (WHERE rent_type = 'Renew') AS renewRent
+		FROM rental
+		WHERE ${where}
+		GROUP BY layout
+		ORDER BY
+			CASE layout
+				WHEN 'studio'  THEN 0
+				WHEN '1 bed'   THEN 1
+				WHEN '2 beds'  THEN 2
+				WHEN '3 beds'  THEN 3
+				WHEN '4 beds'  THEN 4
+				WHEN '5 beds'  THEN 5
+				WHEN '6 beds'  THEN 6
+				ELSE 99
+			END
+	`);
+
+	return rows
+		.filter((r) => r.newRent !== null || r.renewRent !== null)
+		.map((r) => ({
+			layout:    r.layout,
+			newRent:   r.newRent,
+			renewRent: r.renewRent,
+			gapPct:
+				r.newRent !== null && r.renewRent !== null && r.renewRent > 0
+					? Math.round(((r.newRent - r.renewRent) / r.renewRent) * 1000) / 10
+					: null
+		}));
+}
+
+// ─── Price-to-Rent yield (cross-table) ────────────────────────────────────────
+
+export async function queryPriceToRent(
+	f: RentalFilterState,
+	latestYear: number,
+	limit = 15
+): Promise<PriceToRentRow[]> {
+	const resolvedYear = f.year ?? latestYear;
+	const typologyClause = (f.typology && f.typology !== 'All property types')
+		? `r.typology = '${esc(f.typology)}'`
+		: `r.typology = 'All property types'`;
+
+	const districtClause = f.district ? `r.district = '${esc(f.district)}'` : '1=1';
+
+	return query<PriceToRentRow>(`
+		WITH rental_agg AS (
+			SELECT
+				district,
+				PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS median_rent
+			FROM rental r
+			WHERE r.year = ${resolvedYear}
+				AND ${typologyClause}
+				AND r.layout    = 'all beds'
+				AND r.rent_type = 'All types'
+				AND r.median_rent > 0
+				AND ${districtClause}
+			GROUP BY district
+		),
+		tx_agg AS (
+			SELECT
+				district,
+				PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY price_aed) AS median_price
+			FROM transactions
+			WHERE sale_date >= (CURRENT_DATE - INTERVAL '24 months')
+				AND property_type IN (
+					'apartment', 'duplex',
+					'townhouse / attached villa', 'villa'
+				)
+				AND price_aed  > 100000
+				AND area_sqft  > 0
+			GROUP BY district
+		)
+		SELECT
+			r.district,
+			ROUND(t.median_price, 0)                              AS medianSalePrice,
+			ROUND(r.median_rent,  0)                              AS medianAnnualRent,
+			ROUND(r.median_rent / t.median_price * 100, 2)        AS grossYieldPct,
+			ROUND(t.median_price / r.median_rent, 1)              AS priceToRentYears
+		FROM rental_agg r
+		JOIN tx_agg t ON LOWER(TRIM(r.district)) = LOWER(TRIM(t.district))
+		WHERE t.median_price > 0 AND r.median_rent > 0
+		ORDER BY grossYieldPct DESC
+		LIMIT ${limit}
+	`);
 }

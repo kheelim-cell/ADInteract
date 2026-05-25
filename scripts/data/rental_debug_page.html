@@ -1,0 +1,804 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map</title>
+    <link rel="icon" href="/adrec-assets/images/favicon.svg" type="image/svg+xml">
+
+                 <link rel="stylesheet" href="/adrec-assets/css/app.css?v=0.1">
+        <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-507HZKY9Q6&amp;cx=c&amp;gtm=4e65k1"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-T93NJJW5"></script><script src="/adrec-assets/js/tailwind-3.4.16.js"></script>
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Google Tag Manager -->
+    <script>
+    (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-T93NJJW5');</script>
+    <!-- End Google Tag Manager -->
+    <script>
+        <!-- darkmode flickering fixes start -->
+        (function () {
+            const theme = localStorage.getItem("adrec_theme") || "light";
+            if (theme === "dark") {
+                document.documentElement.classList.add("dark");
+            }
+        })();
+
+
+
+        // font size flicker issues fixed by applying font size changes before content is rendered
+
+        (function () {
+            try {
+
+                const level = parseInt(localStorage.getItem("fontLevel"), 10) || 0;
+                if (level === 0) return;
+
+                const px = level * 2;
+
+                document.documentElement.style.visibility = "hidden";
+
+                window.addEventListener("DOMContentLoaded", function () {
+
+                    document.querySelectorAll(
+                        'h1,h2,h3,h4,h5,h6,p,a,span,li,button,label,input,textarea,select,option,table,th,td,tr,thead,tbody'
+                    ).forEach(function (el) {
+
+                        let original = el.getAttribute("data-original-font-size");
+
+                        // If original not stored yet → store TRUE original
+                        if (!original) {
+                            original = window.getComputedStyle(el).fontSize;
+                            el.setAttribute("data-original-font-size", original);
+                        }
+
+                        const base = parseFloat(original);
+
+                        if (!isNaN(base)) {
+                            el.style.fontSize = (base + px) + "px";
+                        }
+
+                    });
+
+                    document.documentElement.style.visibility = "visible";
+
+                });
+
+            } catch (e) { }
+        })();
+
+
+        // font size flicker issues fixed by applying font size changes before content is rendered
+    </script>
+      <!-- darkmode flickering fixes end -->
+    <script src="/adrec-assets/js/tailwind-config.js"></script>
+    <script src="/adrec-assets/js/font-accessibility.js"></script>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.invisible{visibility:hidden}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.left-10{left:2.5rem}.right-0{right:0px}.right-10{right:2.5rem}.right-8{right:2rem}.right-\[-40px\]{right:-40px}.top-0{top:0px}.top-1\/2{top:50%}.top-20{top:5rem}.top-\[-2px\]{top:-2px}.top-full{top:100%}.z-10{z-index:10}.z-30{z-index:30}.z-40{z-index:40}.z-50{z-index:50}.z-\[9998\]{z-index:9998}.float-right{float:right}.mx-4{margin-left:1rem;margin-right:1rem}.mx-auto{margin-left:auto;margin-right:auto}.my-4{margin-top:1rem;margin-bottom:1rem}.my-\[16px\]{margin-top:16px;margin-bottom:16px}.mb-10{margin-bottom:2.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.ml-1\.5{margin-left:0.375rem}.ml-2{margin-left:0.5rem}.ml-auto{margin-left:auto}.mr-1{margin-right:0.25rem}.mr-2{margin-right:0.5rem}.mr-4{margin-right:1rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.mb-2{margin-bottom:0.5rem}.mb-\[20px\]{margin-bottom:20px}.mt-6{margin-top:1.5rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.hidden{display:none}.aspect-auto{aspect-ratio:auto}.aspect-square{aspect-ratio:1 / 1}.h-2{height:0.5rem}.h-6{height:1.5rem}.h-\[100dvh\]{height:100dvh}.h-\[10px\]{height:10px}.h-\[12px\]{height:12px}.h-\[1px\]{height:1px}.h-\[20px\]{height:20px}.h-\[24px\]{height:24px}.h-\[29px\]{height:29px}.h-auto{height:auto}.h-full{height:100%}.h-\[4px\]{height:4px}.h-\[18px\]{height:18px}.min-h-\[32px\]{min-height:32px}.min-h-\[400px\]{min-height:400px}.min-h-\[700px\]{min-height:700px}.min-h-\[750px\]{min-height:750px}.w-2{width:0.5rem}.w-3\/4{width:75%}.w-4{width:1rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-\[10px\]{width:10px}.w-\[128px\]{width:128px}.w-\[12px\]{width:12px}.w-\[153px\]{width:153px}.w-\[20px\]{width:20px}.w-\[211px\]{width:211px}.w-\[24px\]{width:24px}.w-\[29px\]{width:29px}.w-full{width:100%}.w-svw{width:100svw}.w-\[179px\]{width:179px}.w-\[4px\]{width:4px}.w-\[18px\]{width:18px}.min-w-\[128px\]{min-width:128px}.min-w-\[20px\]{min-width:20px}.min-w-\[32px\]{min-width:32px}.flex-1{flex:1 1 0%}.origin-top{transform-origin:top}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-x-full{--tw-translate-x:100%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-2{--tw-translate-y:0.5rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-125{--tw-scale-x:1.25;--tw-scale-y:1.25;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.flex-nowrap{flex-wrap:nowrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-start{justify-content:flex-start}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.divide-y > :not([hidden]) ~ :not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse))}.divide-\[\#CED1D6\] > :not([hidden]) ~ :not([hidden]){--tw-divide-opacity:1;border-color:rgb(206 209 214 / var(--tw-divide-opacity, 1))}.overflow-hidden{overflow:hidden}.overflow-visible{overflow:visible}.overflow-y-scroll{overflow-y:scroll}.whitespace-nowrap{white-space:nowrap}.rounded{border-radius:0.25rem}.rounded-\[4px\]{border-radius:4px}.rounded-\[6px\]{border-radius:6px}.rounded-\[8px\]{border-radius:8px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-\[\#CED1D6\]{--tw-border-opacity:1;border-color:rgb(206 209 214 / var(--tw-border-opacity, 1))}.border-\[\#C9D8CD\]{--tw-border-opacity:1;border-color:rgb(201 216 205 / var(--tw-border-opacity, 1))}.bg-\[\#F8F8F8\]{--tw-bg-opacity:1;background-color:rgb(248 248 248 / var(--tw-bg-opacity, 1))}.bg-\[\#f6f6ef\]{--tw-bg-opacity:1;background-color:rgb(246 246 239 / var(--tw-bg-opacity, 1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-\[\#6C7281\]{--tw-bg-opacity:1;background-color:rgb(108 114 129 / var(--tw-bg-opacity, 1))}.bg-\[\#DCE6D8\]{--tw-bg-opacity:1;background-color:rgb(220 230 216 / var(--tw-bg-opacity, 1))}.bg-cover{background-size:cover}.bg-center{background-position:center}.object-contain{object-fit:contain}.p-1{padding:0.25rem}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-4{padding-left:1rem;padding-right:1rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-2{padding-bottom:0.5rem}.pb-20{padding-bottom:5rem}.pb-5{padding-bottom:1.25rem}.pb-\[21px\]{padding-bottom:21px}.pb-\[env\(safe-area-inset-bottom\)\]{padding-bottom:env(safe-area-inset-bottom)}.pt-6{padding-top:1.5rem}.pb-4{padding-bottom:1rem}.text-center{text-align:center}.align-sub{vertical-align:sub}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[12px\]{font-size:12px}.text-\[24px\]{font-size:24px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-normal{font-weight:400}.uppercase{text-transform:uppercase}.\!leading-\[19\.6px\]{line-height:19.6px !important}.leading-\[150\%\]{line-height:150%}.text-\[\#130F26\]{--tw-text-opacity:1;color:rgb(19 15 38 / var(--tw-text-opacity, 1))}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.opacity-0{opacity:0}.shadow-\[0_1px_16px_0_rgba\(0\2c 0\2c 0\2c 0\.08\)\]{--tw-shadow:0 1px 16px 0 rgba(0,0,0,0.08);--tw-shadow-colored:0 1px 16px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.\!outline-none{outline:2px solid transparent !important;outline-offset:2px !important}.outline-none{outline:2px solid transparent;outline-offset:2px}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-100{transition-duration:100ms}.duration-150{transition-duration:150ms}.duration-200{transition-duration:200ms}.duration-300{transition-duration:300ms}.ease-in-out{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}.placeholder\:text-\[\#8C9099\]::placeholder{--tw-text-opacity:1;color:rgb(140 144 153 / var(--tw-text-opacity, 1))}.last\:border-0:last-child{border-width:0px}.hover\:text-\[\#ACA261\]:hover{--tw-text-opacity:1;color:rgb(172 162 97 / var(--tw-text-opacity, 1))}.dark\:divide-darkLightGreen:is(.dark *) > :not([hidden]) ~ :not([hidden]){border-color:#FFFFFF1A}.dark\:border-\[\#2E3A2C\]:is(.dark *){--tw-border-opacity:1;border-color:rgb(46 58 44 / var(--tw-border-opacity, 1))}.dark\:border-darkLightGreen:is(.dark *){border-color:#FFFFFF1A}.dark\:bg-darkBlack:is(.dark *){--tw-bg-opacity:1;background-color:rgb(17 25 31 / var(--tw-bg-opacity, 1))}.dark\:bg-normalBlack:is(.dark *){--tw-bg-opacity:1;background-color:rgb(26 34 44 / var(--tw-bg-opacity, 1))}.dark\:bg-\[\#1A222C\]:is(.dark *){--tw-bg-opacity:1;background-color:rgb(26 34 44 / var(--tw-bg-opacity, 1))}.dark\:bg-white:is(.dark *){--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.dark\:text-\[\#F5F5F5\]:is(.dark *){--tw-text-opacity:1;color:rgb(245 245 245 / var(--tw-text-opacity, 1))}.dark\:text-white:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.dark\:text-\[\#969696\]:is(.dark *){--tw-text-opacity:1;color:rgb(150 150 150 / var(--tw-text-opacity, 1))}.dark\:brightness-0:is(.dark *){--tw-brightness:brightness(0);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.dark\:invert:is(.dark *){--tw-invert:invert(100%);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.dark\:hover\:text-\[\#ACA261\]:hover:is(.dark *){--tw-text-opacity:1;color:rgb(172 162 97 / var(--tw-text-opacity, 1))}@media not all and (min-width: 640px){.max-sm\:left-1\/2{left:50%}.max-sm\:-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.max-sm\:scale-y-0{--tw-scale-y:0;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}}@media (min-width: 640px){.sm\:top-10{top:2.5rem}.sm\:mb-8{margin-bottom:2rem}.sm\:h-\[125px\]{height:125px}.sm\:h-\[40px\]{height:40px}.sm\:w-10{width:2.5rem}.sm\:w-\[43\.28px\]{width:43.28px}.sm\:w-auto{width:auto}.sm\:w-full{width:100%}.sm\:min-w-\[128px\]{min-width:128px}.sm\:max-w-3xl{max-width:48rem}.sm\:max-w-\[100svw\]{max-width:100svw}.sm\:max-w-xl{max-width:36rem}.sm\:scale-x-0{--tw-scale-x:0;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.sm\:gap-3{gap:0.75rem}.sm\:gap-6{gap:1.5rem}.sm\:p-8{padding:2rem}.sm\:px-4{padding-left:1rem;padding-right:1rem}.sm\:pt-10{padding-top:2.5rem}.sm\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 768px){.md\:mb-16{margin-bottom:4rem}.md\:mb-0{margin-bottom:0px}.md\:mr-3{margin-right:0.75rem}.md\:inline-block{display:inline-block}.md\:h-\[257px\]{height:257px}.md\:w-\[24px\]{width:24px}.md\:flex-row{flex-direction:row}.md\:items-start{align-items:flex-start}.md\:items-center{align-items:center}.md\:gap-4{gap:1rem}.md\:gap-8{gap:2rem}.md\:gap-5{gap:1.25rem}.md\:gap-6{gap:1.5rem}.md\:space-y-0 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0px * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0px * var(--tw-space-y-reverse))}.md\:whitespace-nowrap{white-space:nowrap}.md\:rounded-lg{border-radius:0.5rem}.md\:p-8{padding:2rem}.md\:pr-14{padding-right:3.5rem}.md\:pr-3{padding-right:0.75rem}.md\:text-\[40px\]{font-size:40px}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:relative{position:relative}.lg\:my-\[16px\]{margin-top:16px;margin-bottom:16px}.lg\:mb-0{margin-bottom:0px}.lg\:mb-\[40px\]{margin-bottom:40px}.lg\:block{display:block}.lg\:hidden{display:none}.lg\:min-h-\[40px\]{min-height:40px}.lg\:w-\[24px\]{width:24px}.lg\:w-\[70\%\]{width:70%}.lg\:min-w-\[172px\]{min-width:172px}.lg\:min-w-\[179px\]{min-width:179px}.lg\:max-w-2xl{max-width:42rem}.lg\:max-w-\[100svw\]{max-width:100svw}.lg\:flex-row{flex-direction:row}.lg\:items-center{align-items:center}.lg\:justify-between{justify-content:space-between}.lg\:gap-10{gap:2.5rem}.lg\:gap-3{gap:0.75rem}.lg\:border-l{border-left-width:1px}.lg\:border-r{border-right-width:1px}.lg\:border-\[\#CED1D6\]{--tw-border-opacity:1;border-color:rgb(206 209 214 / var(--tw-border-opacity, 1))}.lg\:bg-\[url\(\'\/-\/media\/adrec\/banners\/commonbanner\/common-banner-image\.png\'\)\]{background-image:url('/-/media/adrec/banners/commonbanner/common-banner-image.png')}.lg\:pb-6{padding-bottom:1.5rem}.lg\:pl-10{padding-left:2.5rem}.dark\:lg\:border-darkLightGreen:is(.dark *){border-color:#FFFFFF1A}.dark\:lg\:bg-\[url\(\'\/-\/media\/adrec\/banners\/commonbanner\/dark-common-banner-image\.png\'\)\]:is(.dark *){background-image:url('/-/media/adrec/banners/commonbanner/dark-common-banner-image.png')}}@media (min-width: 1280px){.xl\:w-\[268px\]{width:268px}.xl\:max-w-3xl{max-width:48rem}}@media (min-width: 1536px){.\32xl\:block{display:block}.\32xl\:max-w-\[100svw\]{max-width:100svw}.\32xl\:gap-6{gap:1.5rem}}@media (orientation: portrait){.portrait\:min-h-\[400px\]{min-height:400px}.portrait\:min-h-\[800px\]{min-height:800px}}.ltr\:left-0:where([dir="ltr"], [dir="ltr"] *){left:0px}.ltr\:min-w-\[270px\]:where([dir="ltr"], [dir="ltr"] *){min-width:270px}.ltr\:translate-x-full:where([dir="ltr"], [dir="ltr"] *){--tw-translate-x:100%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@media (min-width: 640px){.sm\:ltr\:-right-4:where([dir="ltr"], [dir="ltr"] *){right:-1rem}.sm\:ltr\:origin-right:where([dir="ltr"], [dir="ltr"] *){transform-origin:right}}.rtl\:left-8:where([dir="rtl"], [dir="rtl"] *){left:2rem}.rtl\:left-\[-40px\]:where([dir="rtl"], [dir="rtl"] *){left:-40px}.rtl\:right-0:where([dir="rtl"], [dir="rtl"] *){right:0px}.rtl\:right-auto:where([dir="rtl"], [dir="rtl"] *){right:auto}.rtl\:float-left:where([dir="rtl"], [dir="rtl"] *){float:left}.rtl\:ml-0:where([dir="rtl"], [dir="rtl"] *){margin-left:0px}.rtl\:mr-1\.5:where([dir="rtl"], [dir="rtl"] *){margin-right:0.375rem}.rtl\:mr-2:where([dir="rtl"], [dir="rtl"] *){margin-right:0.5rem}.rtl\:mr-auto:where([dir="rtl"], [dir="rtl"] *){margin-right:auto}.rtl\:mr-\[12px\]:where([dir="rtl"], [dir="rtl"] *){margin-right:12px}.rtl\:hidden:where([dir="rtl"], [dir="rtl"] *){display:none}.rtl\:min-w-\[294px\]:where([dir="rtl"], [dir="rtl"] *){min-width:294px}.rtl\:-translate-x-full:where([dir="rtl"], [dir="rtl"] *){--tw-translate-x:-100%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rtl\:justify-end:where([dir="rtl"], [dir="rtl"] *){justify-content:flex-end}.rtl\:pl-14:where([dir="rtl"], [dir="rtl"] *){padding-left:3.5rem}.rtl\:pl-3:where([dir="rtl"], [dir="rtl"] *){padding-left:0.75rem}.rtl\:pr-0:where([dir="rtl"], [dir="rtl"] *){padding-right:0px}.rtl\:text-right:where([dir="rtl"], [dir="rtl"] *){text-align:right}@media (min-width: 640px){.sm\:rtl\:-left-4:where([dir="rtl"], [dir="rtl"] *){left:-1rem}.sm\:rtl\:origin-left:where([dir="rtl"], [dir="rtl"] *){transform-origin:left}}@media (min-width: 768px){.rtl\:md\:ml-3:where([dir="rtl"], [dir="rtl"] *){margin-left:0.75rem}.rtl\:md\:mr-0:where([dir="rtl"], [dir="rtl"] *){margin-right:0px}.rtl\:md\:pr-0:where([dir="rtl"], [dir="rtl"] *){padding-right:0px}}@media (min-width: 1024px){.rtl\:lg\:w-\[60\%\]:where([dir="rtl"], [dir="rtl"] *){width:60%}.rtl\:lg\:border-l:where([dir="rtl"], [dir="rtl"] *){border-left-width:1px}.rtl\:lg\:border-l-0:where([dir="rtl"], [dir="rtl"] *){border-left-width:0px}.rtl\:lg\:border-r:where([dir="rtl"], [dir="rtl"] *){border-right-width:1px}.rtl\:lg\:border-r-0:where([dir="rtl"], [dir="rtl"] *){border-right-width:0px}.rtl\:lg\:pl-0:where([dir="rtl"], [dir="rtl"] *){padding-left:0px}.rtl\:lg\:pr-10:where([dir="rtl"], [dir="rtl"] *){padding-right:2.5rem}}.\[\&\.active\]\:font-\[700\].active{font-weight:700}.\[\&\.open\]\:translate-x-0.open{--tw-translate-x:0px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.\[\&\.open\]\:opacity-100.open{opacity:1}</style></head>
+<body>
+    
+
+
+<header class="relative z-30 inner_header bg-white dark:bg-darkBlack" id="">
+    <div class="container mx-auto py-4 overflow-visible lg:relative" data-original-font-size="16px">
+        <div class="flex items-center justify-between gap-4 sm:gap-6 lg:gap-10" data-original-font-size="16px">
+            <div class="w-full sm:w-auto" data-original-font-size="16px">
+                    <a href="/en/" class="w-full" data-original-font-size="16px">
+                        <img src="/-/media/adrec-tailwind/global/logo-dark.svg" alt="Abu Dhabi Real Estate Centre" width="179" height="56" class="logo min-w-[128px] w-[128px] sm:min-w-[128px] lg:min-w-[179px]  h-auto dark:brightness-0 dark:invert">
+                    </a>
+            </div>
+                <div class="w-full sm:w-auto nav-menu-wrapper" data-original-font-size="16px">
+                    <ul class="nav-menu flex flex-nowrap gap-3 2xl:gap-6 lg:gap-3 whitespace-nowrap text-sm font-normal blackText dark:text-white">
+<li class="relative group has-submenu" data-original-font-size="14px">
+
+                                    <a href="/en/" target="" class="blackText dark:text-white font-normal [&amp;.active]:font-[700] hover:text-[#ACA261] dark:hover:text-[#ACA261] active" data-original-font-size="14px">
+                                        Home
+                                    </a>
+                            </li>
+<li class="relative group has-submenu" data-original-font-size="14px">
+
+                                    <a href="/en/services" target="" class="blackText dark:text-white font-normal [&amp;.active]:font-[700] hover:text-[#ACA261] dark:hover:text-[#ACA261] " data-original-font-size="14px">
+                                        Services
+                                    </a>
+                            </li>
+<li class="relative group has-submenu" data-original-font-size="14px">
+
+                                    <span class="flex items-center gap-1 cursor-pointer blackText dark:text-white font-normal" data-original-font-size="14px">
+                                        <a href="/en/property_and_index" target="" class="flex items-center gap-1 blackText dark:text-white font-normal [&amp;.active]:font-[700] hover:text-[#ACA261] dark:hover:text-[#ACA261] active" data-original-font-size="14px">
+                                            Market Data
+
+                                        </a>
+                                        <!-- ARROW (controls submenu only) -->
+                                        <button type="button" class="menu-arrow flex items-center justify-center p-1 min-w-[20px]" data-original-font-size="14px">
+                                            <img src="/adrec-assets/images/project-listing/red-drop-down.svg" alt="dropdown" class="w-2 h-2 transition-transform duration-200 dark:brightness-0 dark:invert">
+                                        </button>
+                                    </span>
+                                    <ul class="submenu
+                                            absolute ltr:left-0 rtl:right-0 top-full mt-3 ltr:min-w-[270px] rtl:min-w-[294px]
+                                            bg-white dark:bg-darkBlack
+                                            rounded-[6px] shadow-[0_1px_16px_0_rgba(0,0,0,0.08)]
+                                            opacity-0 invisible translate-y-2
+                                            transition-all duration-200 z-50 border-[#CED1D6] border dark:border-darkLightGreen">
+
+                                            <li class="mx-4 border-[#CED1D6] border-b last:border-0 rtl:text-right dark:border-darkLightGreen" data-original-font-size="14px">
+                                                <a href="/en/property_and_index/interactive-map" target="" class="block py-4 text-sm font-normal blackText dark:text-white transition-colors duration-150 hover:text-[#ACA261] dark:hover:text-[#ACA261]" data-original-font-size="14px">
+                                                        <img src="/-/media/adrec/navigation/interactive-map.svg" alt="" class="inline-block mr-1 dark:brightness-0 dark:invert"> Interactive Map                                                </a>
+                                            </li>
+                                            <li class="mx-4 border-[#CED1D6] border-b last:border-0 rtl:text-right dark:border-darkLightGreen" data-original-font-size="14px">
+                                                <a href="/en/property_and_index/adrec-dashboard" target="" class="block py-4 text-sm font-normal blackText dark:text-white transition-colors duration-150 hover:text-[#ACA261] dark:hover:text-[#ACA261]" data-original-font-size="14px">
+                                                        <img src="/-/media/adrec/navigation/adrec-dash.svg" alt="" class="inline-block mr-1 dark:brightness-0 dark:invert"> ADREC Dashboards                                                </a>
+                                            </li>
+                                            <li class="mx-4 border-[#CED1D6] border-b last:border-0 rtl:text-right dark:border-darkLightGreen" data-original-font-size="14px">
+                                                <a href="/en/property_and_index/quanta-advanced-reports" target="" class="block py-4 text-sm font-normal blackText dark:text-white transition-colors duration-150 hover:text-[#ACA261] dark:hover:text-[#ACA261]" data-original-font-size="14px">
+                                                        <img src="/-/media/adrec/navigation/quanta-reports.svg" alt="" class="inline-block mr-1 dark:brightness-0 dark:invert"> Quanta Advanced Reports                                                </a>
+                                            </li>
+                                            <li class="mx-4 border-[#CED1D6] border-b last:border-0 rtl:text-right dark:border-darkLightGreen" data-original-font-size="14px">
+                                                <a href="/en/market_reports" target="" class="block py-4 text-sm font-normal blackText dark:text-white transition-colors duration-150 hover:text-[#ACA261] dark:hover:text-[#ACA261]" data-original-font-size="14px">
+                                                        <img src="/-/media/adrec/navigation/market-reports.svg" alt="" class="inline-block mr-1 dark:brightness-0 dark:invert"> Market Reports                                                </a>
+                                            </li>
+                                            <li class="mx-4 border-[#CED1D6] border-b last:border-0 rtl:text-right dark:border-darkLightGreen" data-original-font-size="14px">
+                                                <a href="/en/mortgage-calculator" target="" class="block py-4 text-sm font-normal blackText dark:text-white transition-colors duration-150 hover:text-[#ACA261] dark:hover:text-[#ACA261]" data-original-font-size="14px">
+                                                        <img src="/-/media/adrec/navigation/mortgage-calculator.svg" alt="" class="inline-block mr-1 dark:brightness-0 dark:invert"> Mortgage Calculator                                                </a>
+                                            </li>
+                                    </ul>
+                            </li>
+<li class="relative group has-submenu" data-original-font-size="14px">
+
+                                    <a href="/en/rules_and_regulations" target="" class="blackText dark:text-white font-normal [&amp;.active]:font-[700] hover:text-[#ACA261] dark:hover:text-[#ACA261] " data-original-font-size="14px">
+                                        Rules and Regulations
+                                    </a>
+                            </li>
+<li class="relative group has-submenu" data-original-font-size="14px">
+
+                                    <a href="/en/media" target="" class="blackText dark:text-white font-normal [&amp;.active]:font-[700] hover:text-[#ACA261] dark:hover:text-[#ACA261] " data-original-font-size="14px">
+                                        Media Centre
+                                    </a>
+                            </li>
+<li class="relative group has-submenu" data-original-font-size="14px">
+
+                                    <a href="/en/directory" target="" class="blackText dark:text-white font-normal [&amp;.active]:font-[700] hover:text-[#ACA261] dark:hover:text-[#ACA261] " data-original-font-size="14px">
+                                        Directory
+                                    </a>
+                            </li>
+<li class="relative group has-submenu" data-original-font-size="14px">
+
+                                    <a href="/en/contact_us" target="" class="blackText dark:text-white font-normal [&amp;.active]:font-[700] hover:text-[#ACA261] dark:hover:text-[#ACA261] " data-original-font-size="14px">
+                                        Contact Us
+                                    </a>
+                            </li>
+                    </ul>
+                </div>
+
+            <div class="w-full flex items-center justify-end gap-3 sm:gap-3 md:gap-4 items-center right-nav-wrapper" data-original-font-size="16px">
+                <div class="squareBorder text-sm whitepsace-nowrap  p-2 min-w-[32px] lg:min-w-[172px] justify-center min-h-[32px] lg:min-h-[40px] flex  blackText" data-original-font-size="14px">
+                    <a href="https://adrec.gov.ae/en/verify-document" target="_blank" class="blackText dark:text-white flex  items-center  !leading-[19.6px]" data-original-font-size="14px">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="18" viewBox="0 0 14 18" fill="none" class="blackText dark:text-white">
+                            <path d="M6.08125 9.23125L4.85625 8.00625C4.68125 7.83125 4.47708 7.74375 4.24375 7.74375C4.01042 7.74375 3.80625 7.83125 3.63125 8.00625C3.45625 8.18125 3.36875 8.38906 3.36875 8.62969C3.36875 8.87031 3.45625 9.07812 3.63125 9.25313L5.46875 11.1125C5.64375 11.2875 5.84792 11.375 6.08125 11.375C6.31458 11.375 6.51875 11.2875 6.69375 11.1125L10.4125 7.39375C10.5875 7.21875 10.675 7.01094 10.675 6.77031C10.675 6.52969 10.5875 6.32188 10.4125 6.14687C10.2375 5.97187 10.0297 5.88438 9.78906 5.88438C9.54844 5.88438 9.34062 5.97187 9.16562 6.14687L6.08125 9.23125ZM7 17.2812C6.89792 17.2812 6.80312 17.274 6.71562 17.2594C6.62812 17.2448 6.54063 17.2229 6.45312 17.1938C4.48438 16.5375 2.91667 15.3234 1.75 13.5516C0.583333 11.7797 0 9.87292 0 7.83125V3.69687C0 3.33229 0.105729 3.00417 0.317187 2.7125C0.528646 2.42083 0.802083 2.20937 1.1375 2.07812L6.3875 0.109375C6.59167 0.0364583 6.79583 0 7 0C7.20417 0 7.40833 0.0364583 7.6125 0.109375L12.8625 2.07812C13.1979 2.20937 13.4714 2.42083 13.6828 2.7125C13.8943 3.00417 14 3.33229 14 3.69687V7.83125C14 9.87292 13.4167 11.7797 12.25 13.5516C11.0833 15.3234 9.51562 16.5375 7.54688 17.1938C7.45937 17.2229 7.37187 17.2448 7.28437 17.2594C7.19688 17.274 7.10208 17.2812 7 17.2812ZM7 15.5312C8.51667 15.05 9.77083 14.0875 10.7625 12.6438C11.7542 11.2 12.25 9.59583 12.25 7.83125V3.69687L7 1.72812L1.75 3.69687V7.83125C1.75 9.59583 2.24583 11.2 3.2375 12.6438C4.22917 14.0875 5.48333 15.05 7 15.5312Z" fill="currentColor"></path>
+                        </svg>
+                        <span class="lg:block hidden whitespace-nowrap ml-1.5 rtl:ml-0 rtl:mr-1.5 blackText dark:text-white dark:text-white" data-original-font-size="14px">  Verify Document</span>
+                    </a>
+                </div>
+                <div x-data="{ toggle: 0 }" data-original-font-size="16px">
+
+                    <form method="get" action="/en/search">
+                        <div class="search-bg-overlay" data-original-font-size="16px">
+                            <div class="dark:text-white header_search_box rounded-[4px] dark:bg-darkBlack opacity-0 p-4 sm:px-4 text-base font-normal sm:h-[125px] z-40 bg-[#f6f6ef] w-svw sm:w-full !outline-none absolute top-20 sm:top-10 xs:top-[calc(100%_+_115%)] max-sm:left-1/2 max-sm:-translate-x-1/2 top-1/2 -translate-y-1/2 transition-all ease-in-out duration-300 sm:ltr:-right-4 sm:rtl:-left-4 origin-top sm:ltr:origin-right sm:rtl:origin-left transform flex items-center max-sm:scale-y-0 sm:scale-x-0" :class="toggle === 0 ? 'max-sm:scale-y-0 sm:scale-x-0' : 'max-sm:scale-y-100 sm:scale-x-100'" data-original-font-size="16px">
+                                <!-- Left Search Icon -->
+                                <svg id="leftSearchIcon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none" class="mr-2 transition-all duration-300">
+                                    <path d="M7.4375 13.5625C9.12917 13.5625 10.5729 12.9668 11.7688 11.7755C12.9646 10.5842 13.5625 9.13821 13.5625 7.4375C13.5625 5.74583 12.9646 4.30208 11.7688 3.10625C10.5729 1.91042 9.12917 1.3125 7.4375 1.3125C5.73679 1.3125 4.29078 1.91042 3.09947 3.10625C1.90816 4.30208 1.3125 5.74583 1.3125 7.4375C1.3125 9.13821 1.90816 10.5842 3.09947 11.7755C4.29078 12.9668 5.73679 13.5625 7.4375 13.5625ZM7.4375 14.875C6.40544 14.875 5.43849 14.6798 4.53666 14.2894C3.63468 13.899 2.84827 13.3684 2.17744 12.6976C1.5066 12.0267 0.97599 11.2403 0.585594 10.3383C0.195198 9.43651 0 8.46956 0 7.4375C0 6.41448 0.195198 5.45198 0.585594 4.55C0.97599 3.64802 1.5066 2.85943 2.17744 2.18422C2.84827 1.50886 3.63468 0.97599 4.53666 0.585594C5.43849 0.195198 6.40544 0 7.4375 0C8.46052 0 9.42302 0.195198 10.325 0.585594C11.227 0.97599 12.0156 1.50886 12.6908 2.18422C13.3661 2.85943 13.899 3.64802 14.2894 4.55C14.6798 5.45198 14.875 6.41448 14.875 7.4375C14.875 8.34838 14.7205 9.20821 14.4115 10.017C14.1023 10.8258 13.6752 11.5589 13.13 12.2163L16.625 15.7113L15.6977 16.625L12.203 13.1434C11.5456 13.6886 10.8124 14.1135 10.0037 14.418C9.19486 14.7227 8.33948 14.875 7.4375 14.875Z" fill="currentColor"></path>
+                                </svg>
+
+                                <!-- Search Input -->
+                                <input type="text" id="searchInput" name="q" autocomplete="off" placeholder="Search..." class="dark:text-white opacity-0 text-[#130F26] placeholder:text-[#8C9099] w-full bg-transparent outline-none text-sm sm:text-base font-normal" data-original-font-size="16px" style="">
+
+                                <!-- Submit (Right) Icon -->
+                                <button id="rightSubmitBtn" type="submit" class="blackText items-center flex justify-center bg-pistaGreen  rounded-[4px] p-2 ml-2 rtl:ml-0 rtl:mr-2 transition w-[29px] h-[29px] sm:w-[43.28px] sm:h-[40px] hidden" data-original-font-size="16px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                                        <path d="M7.4375 13.5625C9.12917 13.5625 10.5729 12.9668 11.7688 11.7755C12.9646 10.5842 13.5625 9.13821 13.5625 7.4375C13.5625 5.74583 12.9646 4.30208 11.7688 3.10625C10.5729 1.91042 9.12917 1.3125 7.4375 1.3125C5.73679 1.3125 4.29078 1.91042 3.09947 3.10625C1.90816 4.30208 1.3125 5.74583 1.3125 7.4375C1.3125 9.13821 1.90816 10.5842 3.09947 11.7755C4.29078 12.9668 5.73679 13.5625 7.4375 13.5625ZM7.4375 14.875C6.40544 14.875 5.43849 14.6798 4.53666 14.2894C3.63468 13.899 2.84827 13.3684 2.17744 12.6976C1.5066 12.0267 0.97599 11.2403 0.585594 10.3383C0.195198 9.43651 0 8.46956 0 7.4375C0 6.41448 0.195198 5.45198 0.585594 4.55C0.97599 3.64802 1.5066 2.85943 2.17744 2.18422C2.84827 1.50886 3.63468 0.97599 4.53666 0.585594C5.43849 0.195198 6.40544 0 7.4375 0C8.46052 0 9.42302 0.195198 10.325 0.585594C11.227 0.97599 12.0156 1.50886 12.6908 2.18422C13.3661 2.85943 13.899 3.64802 14.2894 4.55C14.6798 5.45198 14.875 6.41448 14.875 7.4375C14.875 8.34838 14.7205 9.20821 14.4115 10.017C14.1023 10.8258 13.6752 11.5589 13.13 12.2163L16.625 15.7113L15.6977 16.625L12.203 13.1434C11.5456 13.6886 10.8124 14.1135 10.0037 14.418C9.19486 14.7227 8.33948 14.875 7.4375 14.875Z" fill="#130F26"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="search_btn" @click="toggle === 0 ? toggle = 1 : toggle = 0" class="blackText dark:text-white squareBorder w-8 sm:w-10 aspect-square h-auto" data-original-font-size="16px">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none" class="blackText dark:text-white">
+                            <path d="M7.4375 13.5625C9.12917 13.5625 10.5729 12.9668 11.7688 11.7755C12.9646 10.5842 13.5625 9.13821 13.5625 7.4375C13.5625 5.74583 12.9646 4.30208 11.7688 3.10625C10.5729 1.91042 9.12917 1.3125 7.4375 1.3125C5.73679 1.3125 4.29078 1.91042 3.09947 3.10625C1.90816 4.30208 1.3125 5.74583 1.3125 7.4375C1.3125 9.13821 1.90816 10.5842 3.09947 11.7755C4.29078 12.9668 5.73679 13.5625 7.4375 13.5625ZM7.4375 14.875C6.40544 14.875 5.43849 14.6798 4.53666 14.2894C3.63468 13.899 2.84827 13.3684 2.17744 12.6976C1.5066 12.0267 0.97599 11.2403 0.585594 10.3383C0.195198 9.43651 0 8.46956 0 7.4375C0 6.41448 0.195198 5.45198 0.585594 4.55C0.97599 3.64802 1.5066 2.85943 2.17744 2.18422C2.84827 1.50886 3.63468 0.97599 4.53666 0.585594C5.43849 0.195198 6.40544 0 7.4375 0C8.46052 0 9.42302 0.195198 10.325 0.585594C11.227 0.97599 12.0156 1.50886 12.6908 2.18422C13.3661 2.85943 13.899 3.64802 14.2894 4.55C14.6798 5.45198 14.875 6.41448 14.875 7.4375C14.875 8.34838 14.7205 9.20821 14.4115 10.017C14.1023 10.8258 13.6752 11.5589 13.13 12.2163L16.625 15.7113L15.6977 16.625L12.203 13.1434C11.5456 13.6886 10.8124 14.1135 10.0037 14.418C9.19486 14.7227 8.33948 14.875 7.4375 14.875Z" fill="currentColor"></path>
+                        </svg>
+                        <div class="cross_icon absolute right-8 rtl:left-8 rtl:right-auto flex items-center gap-2 cursor-pointer opacity-0" data-original-font-size="16px">
+                            <!-- X icon --> <svg width="12" height="12" viewBox="0 0 35 34" fill="none" class="dark:text-white text-black h-[12px] w-[12px] transition-all ease-in-out duration-100 opacity-0" :class="toggle === 1 ? 'opacity-100' : 'opacity-0'" xmlns="http://www.w3.org/2000/svg">
+                                <line stroke="currentColor" y1="-1" x2="45.6201" y2="-1" transform="matrix(0.707107 -0.707107 0.707109 0.707105 1.74219 33.9814)" stroke-width="2"></line>
+                                <line stroke="currentColor" y1="-1" x2="45.6201" y2="-1" transform="matrix(0.707107 0.707107 -0.707105 0.707109 0.871094 1.72461)" stroke-width="2"></line>
+                            </svg> <!-- Close text -->
+                            <span class="dark:text-white text-[12px] font-bold text-black transition-opacity duration-200 opacity-0" :class="toggle === 1 ? 'opacity-100' : 'opacity-0'" data-original-font-size="12px">Close</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="2xl:block hidden" data-original-font-size="16px">
+                    <div id="theme-toggle" class="squareBorder  bg-transparent text-black dark:text-white p-3 rounded-full transition-colors duration-300 cursor-pointer" data-original-font-size="16px">
+                        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" class="blackText dark:text-white">
+    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+      <path d="M18.375 11.1912C18.2374 12.6807 17.6784 14.1001 16.7635 15.2834C15.8486 16.4668 14.6156 17.3651 13.2088 17.8732C11.802 18.3814 10.2795 18.4784 8.8196 18.1528C7.35968 17.8273 6.02266 17.0927 4.96498 16.0351C3.90731 14.9774 3.17273 13.6404 2.8472 12.1804C2.52168 10.7205 2.61866 9.19807 3.12681 7.79126C3.63496 6.38445 4.53326 5.15145 5.7166 4.23653C6.89993 3.32162 8.31936 2.76264 9.80879 2.625C8.93677 3.80473 8.51715 5.25827 8.62625 6.72124C8.73535 8.18421 9.36592 9.55943 10.4033 10.5968C11.4406 11.6341 12.8158 12.2647 14.2788 12.3738C15.7418 12.4829 17.1953 12.0633 18.375 11.1912Z" stroke="#130F26" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg></svg>
+                    </div>
+                </div>
+                <!-- Font Size Button -->
+                <div class="inline-block 2xl:block hidden relative" data-original-font-size="16px">
+                    <!-- Toggle Button -->
+                    <button id="fontSizeToggle" class="blackText dark:text-white squareBorder p-2 rounded-md transition-all dark:text-white" data-original-font-size="16px">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="12" viewBox="0 0 17 12" fill="none" class="blackText dark:text-white">
+                            <path d="M2.52 8.2L1.72 10.425C1.65333 10.6083 1.545 10.75 1.395 10.85C1.245 10.95 1.07833 11 0.895 11C0.578333 11 0.3325 10.8708 0.1575 10.6125C-0.0175 10.3542 -0.0466667 10.0833 0.07 9.8L3.52 0.6C3.58667 0.416667 3.69917 0.270833 3.8575 0.1625C4.01583 0.0541667 4.18667 0 4.37 0H5.07C5.25333 0 5.42833 0.0541667 5.595 0.1625C5.76167 0.270833 5.87833 0.416667 5.945 0.6L9.395 9.825C9.51167 10.1083 9.47833 10.375 9.295 10.625C9.11167 10.875 8.87 11 8.57 11C8.38667 11 8.22 10.9458 8.07 10.8375C7.92 10.7292 7.81167 10.5833 7.745 10.4L6.97 8.2H2.52ZM3.095 6.6H6.37L4.77 2.05H4.67L3.095 6.6ZM12.97 11.25C12.12 11.25 11.445 11.0208 10.945 10.5625C10.445 10.1042 10.195 9.5 10.195 8.75C10.195 8.01667 10.4825 7.4125 11.0575 6.9375C11.6325 6.4625 12.37 6.225 13.27 6.225C13.6533 6.225 14.0283 6.25833 14.395 6.325C14.7617 6.39167 15.0783 6.48333 15.345 6.6V6.3C15.345 5.81667 15.1742 5.425 14.8325 5.125C14.4908 4.825 14.0367 4.675 13.47 4.675C13.22 4.675 12.9742 4.7125 12.7325 4.7875C12.4908 4.8625 12.27 4.975 12.07 5.125C11.8533 5.29167 11.6492 5.35 11.4575 5.3C11.2658 5.25 11.1117 5.15833 10.995 5.025C10.8783 4.89167 10.82 4.73333 10.82 4.55C10.82 4.36667 10.9117 4.20833 11.095 4.075C11.4283 3.80833 11.8033 3.6125 12.22 3.4875C12.6367 3.3625 13.0617 3.3 13.495 3.3C14.645 3.3 15.5033 3.57083 16.07 4.1125C16.6367 4.65417 16.92 5.46667 16.92 6.55V10.225C16.92 10.4417 16.8408 10.625 16.6825 10.775C16.5242 10.925 16.3367 11 16.12 11C15.9033 11 15.72 10.9208 15.57 10.7625C15.42 10.6042 15.345 10.4167 15.345 10.2V10.075H15.245C15.0117 10.4583 14.695 10.75 14.295 10.95C13.895 11.15 13.4533 11.25 12.97 11.25ZM13.27 9.9C13.8533 9.9 14.3492 9.7 14.7575 9.3C15.1658 8.9 15.37 8.43333 15.37 7.9C15.1367 7.76667 14.8575 7.6625 14.5325 7.5875C14.2075 7.5125 13.8867 7.475 13.57 7.475C13.0367 7.475 12.62 7.59167 12.32 7.825C12.02 8.05833 11.87 8.36667 11.87 8.75C11.87 9.08333 12.0033 9.35833 12.27 9.575C12.5367 9.79167 12.87 9.9 13.27 9.9Z" fill="currentColor"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Dropdown -->
+                    <div id="fontSizeDropdown" class="hidden absolute right-[-40px] rtl:right-auto rtl:left-[-40px] mt-3 bg-white dark:bg-darkBlack shadow-lg rounded-lg border border-[#CED1D6] dark:border-[#2E3A2C] p-6 w-[211px] z-50 transition-all" data-original-font-size="16px">
+
+                        <h3 class="blackText font-semiBold text-lg mb-4 pb-2 dark:text-white" data-original-font-size="18px">
+                            Text size
+                        </h3>
+
+                        <!-- Dots + Line -->
+                        <div class="flex items-center justify-between relative" data-original-font-size="16px">
+                            <!-- Small A -->
+                            <span class="blackText dark:text-white font-semiBold text-lg" data-original-font-size="18px">A</span>
+
+                            <!-- Line -->
+                            <div class="absolute left-10 right-10 top-1/2 h-[1px] bg-coolGray" data-original-font-size="16px"></div>
+
+                            <!-- Dots -->
+                            <div class="flex justify-between w-full px-4 relative z-10 items-center" data-original-font-size="16px">
+                                <button class="resetFont dot-btn w-[10px] h-[10px] rounded-full transition-all bg-pistaGreen scale-125 shadow-md w-[18px] h-[18px]" data-font-handler-attached="1" style="cursor: pointer;" data-original-font-size="16px"></button>
+                                <button class="decreaseFont dot-btn w-[10px] h-[10px] rounded-full bg-coolGray transition-all" data-font-handler-attached="1" style="cursor: pointer;" data-original-font-size="16px"></button>
+
+                                <button class="increaseFont dot-btn w-[10px] h-[10px] rounded-full bg-coolGray transition-all" data-font-handler-attached="1" style="cursor: pointer;" data-original-font-size="16px"></button>
+                            </div>
+
+                            <!-- Big A -->
+                            <span class="blackText dark:text-white font-semiBold text-2xl" data-original-font-size="24px">A</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                    <a href="https://adrec.gov.ae/ar/property_and_index/interactive-map" class="blackText dark:text-white lang_icon squareBorder uppercase text-ecru text-sm w-9 aspect-square flex justify-center items-center cursor-pointer rtl:hidden" data-original-font-size="14px">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none" class="blackText dark:text-white">
+                            <path d="M8.3125 16.625C7.17281 16.625 6.09729 16.4065 5.08594 15.9696C4.07458 15.5327 3.19258 14.9379 2.43994 14.1851C1.68715 13.4324 1.09229 12.5504 0.655375 11.5391C0.218458 10.5277 0 9.45219 0 8.3125C0 7.16377 0.218458 6.08599 0.655375 5.07916C1.09229 4.07232 1.68715 3.19258 2.43994 2.43994C3.19258 1.68715 4.07458 1.09229 5.08594 0.655375C6.09729 0.218459 7.17281 0 8.3125 0C9.46123 0 10.539 0.218459 11.5458 0.655375C12.5527 1.09229 13.4324 1.68715 14.1851 2.43994C14.9379 3.19258 15.5327 4.07232 15.9696 5.07916C16.4065 6.08599 16.625 7.16377 16.625 8.3125C16.625 9.45219 16.4065 10.5277 15.9696 11.5391C15.5327 12.5504 14.9379 13.4324 14.1851 14.1851C13.4324 14.9379 12.5527 15.5327 11.5458 15.9696C10.539 16.4065 9.46123 16.625 8.3125 16.625ZM8.3125 15.2939C8.75904 14.7017 9.13485 14.1043 9.43994 13.5019C9.74502 12.8995 9.99352 12.241 10.1854 11.5264H6.43956C6.64271 12.2634 6.89405 12.9332 7.19359 13.5356C7.49299 14.138 7.86596 14.7241 8.3125 15.2939ZM6.61806 15.0533C6.28265 14.572 5.98143 14.0249 5.71441 13.412C5.44739 12.7989 5.23986 12.1704 5.09184 11.5264H2.12363C2.58577 12.4351 3.20556 13.1985 3.983 13.8167C4.76044 14.4347 5.63879 14.8469 6.61806 15.0533ZM10.0069 15.0533C10.9862 14.8469 11.8646 14.4347 12.642 13.8167C13.4194 13.1985 14.0392 12.4351 14.5014 11.5264H11.5332C11.357 12.1759 11.1354 12.8072 10.8684 13.4203C10.6015 14.0334 10.3144 14.5777 10.0069 15.0533ZM1.57325 10.2139H4.82606C4.77108 9.88867 4.7312 9.5698 4.70641 9.25728C4.68176 8.94491 4.66944 8.62998 4.66944 8.3125C4.66944 7.99502 4.68176 7.68009 4.70641 7.36772C4.7312 7.0552 4.77108 6.73633 4.82606 6.41113H1.57325C1.4891 6.70833 1.42465 7.01735 1.37988 7.33819C1.33496 7.65902 1.3125 7.98379 1.3125 8.3125C1.3125 8.64121 1.33496 8.96598 1.37988 9.28681C1.42465 9.60765 1.4891 9.91667 1.57325 10.2139ZM6.13834 10.2139H10.4867C10.5415 9.88867 10.5813 9.57265 10.6061 9.26581C10.6307 8.95898 10.6431 8.64121 10.6431 8.3125C10.6431 7.98379 10.6307 7.66602 10.6061 7.35919C10.5813 7.05235 10.5415 6.73633 10.4867 6.41113H6.13834C6.08351 6.73633 6.0437 7.05235 6.01891 7.35919C5.99426 7.66602 5.98194 7.98379 5.98194 8.3125C5.98194 8.64121 5.99426 8.95898 6.01891 9.26581C6.0437 9.57265 6.08351 9.88867 6.13834 10.2139ZM11.7989 10.2139H15.0518C15.1359 9.91667 15.2004 9.60765 15.2451 9.28681C15.29 8.96598 15.3125 8.64121 15.3125 8.3125C15.3125 7.98379 15.29 7.65902 15.2451 7.33819C15.2004 7.01735 15.1359 6.70833 15.0518 6.41113H11.7989C11.8539 6.73633 11.8938 7.0552 11.9186 7.36772C11.9432 7.68009 11.9556 7.99502 11.9556 8.3125C11.9556 8.62998 11.9432 8.94491 11.9186 9.25728C11.8938 9.5698 11.8539 9.88867 11.7989 10.2139ZM11.5332 5.09863H14.5014C14.0337 4.17871 13.4181 3.41527 12.6547 2.80831C11.8912 2.2015 11.0087 1.78646 10.0069 1.56319C10.3424 2.07244 10.6407 2.62945 10.9021 3.23422C11.1635 3.83884 11.3739 4.46031 11.5332 5.09863ZM6.43956 5.09863H10.1854C9.98229 4.36713 9.72679 3.69316 9.41894 3.07672C9.11094 2.46028 8.74212 1.87841 8.3125 1.33109C7.88287 1.87841 7.51406 2.46028 7.20606 3.07672C6.89821 3.69316 6.64271 4.36713 6.43956 5.09863ZM2.12363 5.09863H5.09184C5.25109 4.46031 5.46146 3.83884 5.72294 3.23422C5.98427 2.62945 6.28265 2.07244 6.61806 1.56319C5.61065 1.78646 4.72668 2.20296 3.96616 2.81269C3.20549 3.42227 2.59131 4.18425 2.12363 5.09863Z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                <div class="squareBorder openMenuborder" data-original-font-size="16px">
+                    <svg width="45" height="34" viewBox="0 0 45 34" class="blackText dark:text-white w-4 aspect-auto cursor-pointer open-menu" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line stroke="currentColor" y1="-1" x2="45" y2="-1" transform="matrix(1 2.83549e-06 -2.69538e-09 1 0 34)" stroke-width="2"></line>
+                        <line stroke="currentColor" y1="-1" x2="45" y2="-1" transform="matrix(1 3.07178e-06 -2.48805e-09 1 0 18)" stroke-width="2"></line>
+                        <line stroke="currentColor" y1="-1" x2="45" y2="-1" transform="matrix(1 2.49583e-06 -3.0622e-09 1 0 2)" stroke-width="2"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="mobile_menu fixed h-[100dvh] pb-[env(safe-area-inset-bottom)] inset-0 z-[9998] bg-white dark:bg-darkBlack  flex items-start justify-end transition-opacity duration-200 ease-in-out opacity-0 [&amp;.open]:opacity-100 hidden">
+        <div class="menu-container sm:max-w-[100svw] lg:max-w-[100svw] 2xl:max-w-[100svw] h-full flex-1 dark:bg-darkBlack bg-white p-6  transition-transform duration-300 ease-in-out ltr:translate-x-full rtl:-translate-x-full [&amp;.open]:translate-x-0" data-original-font-size="16px">
+            <div class="w-full flex items-center justify-start gap-6 md:gap-8" data-original-font-size="16px">
+                <img src="/-/media/ADREC-Tailwind/Global/logo-dark.svg" alt="logo" class="w-[153px] dark:brightness-0 dark:invert">
+                
+                <div class="ml-auto rtl:ml-0 rtl:mr-auto" data-original-font-size="16px">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" class="w-4 aspect-auto blackText dark:text-white cursor-pointer close-menu">
+                    <path d="M7.51739 9.23333L2.05072 14.7C1.80628 14.9444 1.5285 15.0611 1.21739 15.05C0.90628 15.0389 0.628503 14.9111 0.384058 14.6667C0.139614 14.4222 0.0173913 14.1389 0.0173913 13.8167C0.0173913 13.4944 0.139614 13.2111 0.384058 12.9667L5.81739 7.53333L0.350725 2.06667C0.10628 1.82222 -0.0103865 1.53889 0.000724638 1.21667C0.0118358 0.894445 0.139614 0.611111 0.384058 0.366667C0.628503 0.122222 0.911836 0 1.23406 0C1.55628 0 1.83961 0.122222 2.08406 0.366667L7.51739 5.83333L12.9841 0.366667C13.2285 0.122222 13.5118 0 13.8341 0C14.1563 0 14.4396 0.122222 14.6841 0.366667C14.9285 0.611111 15.0507 0.894445 15.0507 1.21667C15.0507 1.53889 14.9285 1.82222 14.6841 2.06667L9.21739 7.53333L14.6841 13C14.9285 13.2444 15.0507 13.5222 15.0507 13.8333C15.0507 14.1444 14.9285 14.4222 14.6841 14.6667C14.4396 14.9111 14.1563 15.0333 13.8341 15.0333C13.5118 15.0333 13.2285 14.9111 12.9841 14.6667L7.51739 9.23333Z" fill="currentColor"></path>
+                    </svg>
+              
+                </div>
+
+            </div>
+                <ul class="flex flex-col gap-5 mt-8 mb-6 overflow-y-scroll">
+
+                        <li class="border-b border-[#CED1D6] pb-[21px] relative" data-original-font-size="16px">
+
+
+                            <!-- MAIN ROW -->
+                            <div class="flex items-center justify-between" data-original-font-size="16px">
+                                <a href="/en/" target="" class="flex items-center gap-3 text-base font-normal blackText dark:text-white" data-original-font-size="16px">
+                <img src="/-/media/adrec/home-page-redesign/home.svg" alt="Home" class="w-[20px] h-[20px] dark:brightness-0 dark:invert">
+                                    Home
+                                </a>
+
+                            </div>
+
+                        </li>
+                        <li class="border-b border-[#CED1D6] pb-[21px] relative" data-original-font-size="16px">
+
+
+                            <!-- MAIN ROW -->
+                            <div class="flex items-center justify-between" data-original-font-size="16px">
+                                <a href="/en/services" target="" class="flex items-center gap-3 text-base font-normal blackText dark:text-white" data-original-font-size="16px">
+                <img src="/-/media/adrec/home-page-redesign/services.svg" alt="Services" class="w-[20px] h-[20px] dark:brightness-0 dark:invert">
+                                    Services
+                                </a>
+
+                            </div>
+
+                        </li>
+                        <li class="border-b border-[#CED1D6] pb-[21px] relative" data-original-font-size="16px">
+
+
+                            <!-- MAIN ROW -->
+                            <div class="flex items-center justify-between" data-original-font-size="16px">
+                                <a href="/en/property_and_index" target="" class="flex items-center gap-3 text-base font-normal blackText dark:text-white" data-original-font-size="16px">
+                                    Market Data
+                                </a>
+
+                                    <button type="button" class="mobile-submenu-arrow" data-original-font-size="16px">
+                                        <img src="/adrec-assets/images/newsandevents/thin-right-black-arrow.svg" class="dark:brightness-0 dark:invert flip-images-in-arabic" alt="arrow">
+                                    </button>
+                            </div>
+
+                                <!-- SLIDE SUBMENU -->
+                                <div class="mobile-submenu-slide fixed inset-0 z-50
+                                    h-full dark:bg-darkBlack bg-white
+                                    ltr:translate-x-full rtl:-translate-x-full
+                                    transition-transform duration-300
+                                    p-6 min-h-[750px]" data-original-font-size="16px">
+
+                                    <!-- BACK -->
+                                    <button class="submenu-back dark:text-white blackText text-base font-medium flex gap-3 items-center" data-original-font-size="16px">
+                                        <span class="flip-images-in-arabic" data-original-font-size="16px">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none" class="blackText dark:text-white">
+                                                <path d="M2.37505 5.57499L6.27505 9.47499C6.45838 9.65833 6.55005 9.89166 6.55005 10.175C6.55005 10.4583 6.45838 10.6917 6.27505 10.875C6.09172 11.0583 5.85838 11.15 5.57505 11.15C5.29172 11.15 5.05838 11.0583 4.87505 10.875L0.275049 6.27499C0.175049 6.17499 0.104216 6.06666 0.0625486 5.94999C0.0208821 5.83333 4.86374e-05 5.70833 4.86374e-05 5.57499C4.86374e-05 5.44166 0.0208821 5.31666 0.0625486 5.19999C0.104216 5.08333 0.175049 4.97499 0.275049 4.87499L4.87505 0.274994C5.05838 0.0916605 5.29172 -6.67572e-06 5.57505 -6.67572e-06C5.85838 -6.67572e-06 6.09172 0.0916605 6.27505 0.274994C6.45838 0.458327 6.55005 0.691661 6.55005 0.974994C6.55005 1.25833 6.45838 1.49166 6.27505 1.67499L2.37505 5.57499Z" fill="currentColor"></path>
+                                            </svg>
+                                        </span>
+                                         Back
+                                    </button>
+
+                                    <!-- MOBILE SUBMENU ITEMS (ADDED – SAME AS DESKTOP) -->
+                                    <ul class="flex flex-col divide-y divide-[#CED1D6] dark:divide-darkLightGreen mt-4 h-full">
+                                            <li class="py-5 flex items-center gap-3" data-original-font-size="16px">
+                                                    <img src="/-/media/adrec/navigation/interactive-map.svg" alt="" class="w-[20px] h-[20px] dark:brightness-0 dark:invert">
+ <a href="/en/property_and_index/interactive-map" target="" class="text-base font-medium blackText dark:text-white" data-original-font-size="16px">
+                                                        Interactive Map
+                                                    </a>
+                                                </li>
+                                            <li class="py-5 flex items-center gap-3" data-original-font-size="16px">
+                                                    <img src="/-/media/adrec/navigation/adrec-dash.svg" alt="" class="w-[20px] h-[20px] dark:brightness-0 dark:invert">
+ <a href="/en/property_and_index/adrec-dashboard" target="" class="text-base font-medium blackText dark:text-white" data-original-font-size="16px">
+                                                        ADREC Dashboards
+                                                    </a>
+                                                </li>
+                                            <li class="py-5 flex items-center gap-3" data-original-font-size="16px">
+                                                    <img src="/-/media/adrec/navigation/quanta-reports.svg" alt="" class="w-[20px] h-[20px] dark:brightness-0 dark:invert">
+ <a href="/en/property_and_index/quanta-advanced-reports" target="" class="text-base font-medium blackText dark:text-white" data-original-font-size="16px">
+                                                        Quanta Advanced Reports
+                                                    </a>
+                                                </li>
+                                            <li class="py-5 flex items-center gap-3" data-original-font-size="16px">
+                                                    <img src="/-/media/adrec/navigation/market-reports.svg" alt="" class="w-[20px] h-[20px] dark:brightness-0 dark:invert">
+ <a href="/en/market_reports" target="" class="text-base font-medium blackText dark:text-white" data-original-font-size="16px">
+                                                        Market Reports
+                                                    </a>
+                                                </li>
+                                            <li class="py-5 flex items-center gap-3" data-original-font-size="16px">
+                                                    <img src="/-/media/adrec/navigation/mortgage-calculator.svg" alt="" class="w-[20px] h-[20px] dark:brightness-0 dark:invert">
+ <a href="/en/mortgage-calculator" target="" class="text-base font-medium blackText dark:text-white" data-original-font-size="16px">
+                                                        Mortgage Calculator
+                                                    </a>
+                                                </li>
+                                    </ul>
+
+                                </div>
+                        </li>
+                        <li class="border-b border-[#CED1D6] pb-[21px] relative" data-original-font-size="16px">
+
+
+                            <!-- MAIN ROW -->
+                            <div class="flex items-center justify-between" data-original-font-size="16px">
+                                <a href="/en/rules_and_regulations" target="" class="flex items-center gap-3 text-base font-normal blackText dark:text-white" data-original-font-size="16px">
+                <img src="/-/media/adrec/home-page-redesign/rulesandregulation.svg" alt="RulesandRegulation" class="w-[20px] h-[20px] dark:brightness-0 dark:invert">
+                                    Rules and Regulations
+                                </a>
+
+                            </div>
+
+                        </li>
+                        <li class="border-b border-[#CED1D6] pb-[21px] relative" data-original-font-size="16px">
+
+
+                            <!-- MAIN ROW -->
+                            <div class="flex items-center justify-between" data-original-font-size="16px">
+                                <a href="/en/media" target="" class="flex items-center gap-3 text-base font-normal blackText dark:text-white" data-original-font-size="16px">
+                                    Media Centre
+                                </a>
+
+                            </div>
+
+                        </li>
+                        <li class="border-b border-[#CED1D6] pb-[21px] relative" data-original-font-size="16px">
+
+
+                            <!-- MAIN ROW -->
+                            <div class="flex items-center justify-between" data-original-font-size="16px">
+                                <a href="/en/directory" target="" class="flex items-center gap-3 text-base font-normal blackText dark:text-white" data-original-font-size="16px">
+                                    Directory
+                                </a>
+
+                            </div>
+
+                        </li>
+                        <li class="border-b border-[#CED1D6] pb-[21px] relative" data-original-font-size="16px">
+
+
+                            <!-- MAIN ROW -->
+                            <div class="flex items-center justify-between" data-original-font-size="16px">
+                                <a href="/en/contact_us" target="" class="flex items-center gap-3 text-base font-normal blackText dark:text-white" data-original-font-size="16px">
+                <img src="/-/media/adrec/home-page-redesign/contactus.svg" alt="contactus" class="w-[20px] h-[20px] dark:brightness-0 dark:invert">
+                                    Contact Us
+                                </a>
+
+                            </div>
+
+                        </li>
+                </ul>
+
+
+
+
+            <ul id="fontSizeToggleMb" class="border-b border-[#CED1D6] pb-5">
+                <li class="dark:text-white blackText font-semiBold text-base flex items-center justify-between" data-original-font-size="16px">
+                    <span class="flex gap-3" data-original-font-size="16px"> <img src="/-/media/ADREC/Home-Page-Redesign/font-size-mb.svg" alt="font size" class="dark:text-white inline-block w-[24px] h-[24px] object-contain align-sub dark:brightness-0 dark:invert relative top-[-2px]"> <span data-original-font-size="16px">   Font Size</span> </span>
+                    <span class="float-right rtl:float-left flip-images-in-arabic" data-original-font-size="16px">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="blackText dark:text-white">
+                            <path d="M12.6008 11.9998L8.70078 8.0998C8.51745 7.91647 8.42578 7.68314 8.42578 7.3998C8.42578 7.11647 8.51745 6.88314 8.70078 6.6998C8.88411 6.51647 9.11745 6.4248 9.40078 6.4248C9.68411 6.4248 9.91745 6.51647 10.1008 6.6998L14.7008 11.2998C14.8008 11.3998 14.8716 11.5081 14.9133 11.6248C14.9549 11.7415 14.9758 11.8665 14.9758 11.9998C14.9758 12.1331 14.9549 12.2581 14.9133 12.3748C14.8716 12.4915 14.8008 12.5998 14.7008 12.6998L10.1008 17.2998C9.91745 17.4831 9.68411 17.5748 9.40078 17.5748C9.11745 17.5748 8.88411 17.4831 8.70078 17.2998C8.51745 17.1165 8.42578 16.8831 8.42578 16.5998C8.42578 16.3165 8.51745 16.0831 8.70078 15.8998L12.6008 11.9998Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                </li>
+            </ul>
+            <!-- Mobile Toggle -->
+
+            <div class="mobile-dark-toggle" data-original-font-size="16px">
+                <div class="toggle-label" data-original-font-size="16px">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" class="text-[#130F26] dark:text-white"> <path d="M10.5 0.875V2.625M10.5 18.375V20.125M3.6925 3.6925L4.935 4.935M16.065 16.065L17.3075 17.3075M0.875 10.5H2.625M18.375 10.5H20.125M3.6925 17.3075L4.935 16.065M16.065 4.935L17.3075 3.6925M14.875 10.5C14.875 12.9162 12.9162 14.875 10.5 14.875C8.08375 14.875 6.125 12.9162 6.125 10.5C6.125 8.08375 8.08375 6.125 10.5 6.125C12.9162 6.125 14.875 8.08375 14.875 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg>
+                    <span data-original-font-size="16px">Dark Mode</span>
+                </div>
+                <label class="theme-toggle-switch" data-original-font-size="16px">
+                    <input type="checkbox" id="theme-toggle-mobile" data-original-font-size="16px" style="">
+                    <span class="theme-switch" data-original-font-size="16px"></span>
+                </label>
+            </div>
+
+            <!-- Dropdown -->
+            <div id="fontsizeMobile" class="fixed top-0 right-0 w-full h-full dark:bg-darkBlack bg-white portrait:min-h-[800px] min-h-[700px] pb-20 transform translate-x-full transition-transform duration-300 z-50 p-6" data-original-font-size="16px">
+                <button id="closeFontSizeSlide" class="dark:text-white blackText text-base font-medium flex gap-3 items-center" data-original-font-size="16px">
+                    <span class="flip-images-in-arabic" data-original-font-size="16px">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none" class="blackText dark:text-white">
+                            <path d="M2.37505 5.57499L6.27505 9.47499C6.45838 9.65833 6.55005 9.89166 6.55005 10.175C6.55005 10.4583 6.45838 10.6917 6.27505 10.875C6.09172 11.0583 5.85838 11.15 5.57505 11.15C5.29172 11.15 5.05838 11.0583 4.87505 10.875L0.275049 6.27499C0.175049 6.17499 0.104216 6.06666 0.0625486 5.94999C0.0208821 5.83333 4.86374e-05 5.70833 4.86374e-05 5.57499C4.86374e-05 5.44166 0.0208821 5.31666 0.0625486 5.19999C0.104216 5.08333 0.175049 4.97499 0.275049 4.87499L4.87505 0.274994C5.05838 0.0916605 5.29172 -6.67572e-06 5.57505 -6.67572e-06C5.85838 -6.67572e-06 6.09172 0.0916605 6.27505 0.274994C6.45838 0.458327 6.55005 0.691661 6.55005 0.974994C6.55005 1.25833 6.45838 1.49166 6.27505 1.67499L2.37505 5.57499Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <span data-original-font-size="16px"> Back</span>
+                </button>
+                <h3 class="dark:text-white blackText font-bold text-2xl my-4 py-2 " data-original-font-size="24px">
+                     Font Size
+                 </h3>
+                <div class="dark:text-white portrait:min-h-[400px] min-h-[400px] flex flex-col justify-center items-center text-center mb-4 rounded-[8px] dark:bg-normalBlack bg-[#F8F8F8] allow-font-resize" data-original-font-size="16px">
+                    <p data-original-font-size="16px">Main text will look like this:</p><p data-original-font-size="16px">
+                    </p><p data-original-font-size="16px">“Hello ADREC”</p>
+
+                </div>
+                <div class="rounded-[8px] rounded-[8px] bg-[#F8F8F8] p-4 dark:bg-normalBlack" data-original-font-size="16px">
+                    <!-- Dots + Line -->
+                    <div class="flex items-center justify-between relative" data-original-font-size="16px">
+                        <!-- Small A -->
+                        <span class="dark:text-white blackText font-semiBold text-lg" data-original-font-size="18px">A</span>
+
+                        <!-- Line -->
+                        <div class="absolute left-10 right-10 top-1/2 h-[1px] bg-coolGray" data-original-font-size="16px"></div>
+
+                        <!-- Dots -->
+                        <div class="flex justify-between w-full px-4 relative z-10 items-center" data-original-font-size="16px">
+                            <button class="resetFont dot-btn w-[10px] h-[10px] rounded-full transition-all bg-pistaGreen scale-125 shadow-md w-[18px] h-[18px]" data-font-handler-attached="1" style="cursor: pointer;" data-original-font-size="16px"></button>
+                            <button class="dot-btn decreaseFont w-[10px] h-[10px] rounded-full bg-coolGray transition-all" data-font-handler-attached="1" style="cursor: pointer;" data-original-font-size="16px"></button>
+                            <button class="increaseFont dot-btn w-[10px] h-[10px] rounded-full bg-coolGray transition-all" data-font-handler-attached="1" style="cursor: pointer;" data-original-font-size="16px"></button>
+                        </div>
+
+                        <!-- Big A -->
+                        <span class="dark:text-white blackText font-semiBold text-2xl" data-original-font-size="24px">A</span>
+                    </div>
+                    <div data-original-font-size="16px">
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+    </div></nav>
+
+</header>
+
+
+    
+
+    <section>
+        <div class="container mb-full-width-container mx-auto" data-original-font-size="16px">
+            <div class="lg:bg-[url('/-/media/adrec/banners/commonbanner/common-banner-image.png')] dark:lg:bg-[url('/-/media/adrec/banners/commonbanner/dark-common-banner-image.png')] offWhiteGreen dark:bg-normalBlack bg-cover bg-center md:h-[257px] w-full mb-6 sm:mb-8 flex items-center md:rounded-lg p-4 sm:p-8 flip-images-in-arabic rtl:justify-end" data-original-font-size="16px">
+                <div class="mr-4 gap-5 items-center flip-images-in-arabic" data-original-font-size="16px">
+                    
+                    <a href="/en/property_and_index" data-original-font-size="16px">
+                            <span class="blackText dark:text-white text-sm flex items-center gap-2 whitespace-nowrap leading-[150%]" data-original-font-size="14px">
+                               <span class="flip-images-in-arabic dark:brightness-0 dark:invert" data-original-font-size="14px"> <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
+  <path d="M2.07813 4.87813L5.49063 8.29063C5.65104 8.45104 5.73125 8.65521 5.73125 8.90313C5.73125 9.15104 5.65104 9.35521 5.49063 9.51563C5.33021 9.67604 5.12604 9.75625 4.87813 9.75625C4.63021 9.75625 4.42604 9.67604 4.26563 9.51563L0.240625 5.49063C0.153125 5.40313 0.0911458 5.30833 0.0546875 5.20625C0.0182292 5.10417 0 4.99479 0 4.87813C0 4.76146 0.0182292 4.65208 0.0546875 4.55C0.0911458 4.44792 0.153125 4.35313 0.240625 4.26563L4.26563 0.240625C4.42604 0.0802083 4.63021 0 4.87813 0C5.12604 0 5.33021 0.0802083 5.49063 0.240625C5.65104 0.401042 5.73125 0.605208 5.73125 0.853125C5.73125 1.10104 5.65104 1.30521 5.49063 1.46563L2.07813 4.87813Z" fill="#130F26"></path>
+</svg></span>
+                                Back to Market Data
+                            </span>
+                    </a>
+
+                    
+                        <h1 class="blackText font-bold md:text-[40px] leading-[150%] text-[24px]  dark:text-white my-[16px] lg:my-[16px]" data-original-font-size="40px">
+                            Interactive Map
+                        </h1>
+                                            <p class="sm:max-w-3xl text-base leading-[150%] blackText dark:text-[#F5F5F5] mb-3 lg:mb-0" data-original-font-size="16px">
+                               </p><p class="md:pr-14  rtl:md:pr-0 rtl:pl-14  sm:max-w-xl lg:max-w-2xl xl:max-w-3xl text-base leading-[150%] blackText dark:text-[#F5F5F5] mb-3 lg:mb-0" data-original-font-size="16px">
+                       Explore Abu Dhabi’s real estate landscape like never before with our interactive visualization tool. Navigate geographic data, access detailed property information, and uncover market trends in real time.</p>
+                        <p data-original-font-size="16px"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="relative overflow-hidden">
+    <div class="pt-6 sm:pt-10 relative z-10" data-original-font-size="16px">
+        <div class="container mx-auto" data-original-font-size="16px">
+
+            <!-- TAB CONTENT -->
+            <div class="relative" id="reportContainer_0" data-report="" data-original-font-size="16px">
+
+                   <!-- Loader -->
+                <div id="propertyIframeLoader" class="absolute inset-0 z-10 flex items-center justify-center bg-gray-200 dark:bg-darkBlack hidden" data-original-font-size="16px">
+                    <div class="content-loader w-3/4 h-6 rounded mb-4" data-original-font-size="16px"></div>
+                </div>
+
+                    <!-- Light Mode Iframe -->
+                    <iframe src="https://gis.adres.ae/interactivemap" width="100%" height="843" frameborder="0" allowfullscreen="" class="block" id="interactiveMapIframe">
+                    </iframe>
+                    <!-- Dark Mode Iframe -->
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Tooltip Description (FIXED FOR DARK MODE) -->
+<div class="container mx-auto" data-original-font-size="16px">
+    <div class="blackText dark:text-white mb-10 md:mb-16" data-original-font-size="16px">
+         <p class="text-sm blackText dark:text-white leading-[150%]" data-original-font-size="14px">Disclaimer <br> The rental index is provided as a general guide to rental prices across the Emirate of Abu Dhabi and is based on aggregate data. It is intended for informational purposes only and should not be used as a legal reference for determining the exact rental value of any residential unit. The prices shown represent the average rental value for the area where the unit is located and are subject to change depending on the property</p>
+    </div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const loader = document.getElementById("propertyIframeLoader");
+    const iframeLight = document.getElementById("propertyIframeLight");
+    const iframeDark = document.getElementById("propertyIframeDark");
+
+    if (!loader) return;
+
+    // Detect which iframe is active (light or dark)
+    const iframe = document.documentElement.classList.contains("dark")
+        ? iframeDark
+        : iframeLight;
+
+    if (!iframe) {
+        loader.classList.add("hidden");
+        return;
+    }
+
+    iframe.onload = function () {
+        iframe.style.opacity = "1";
+        loader.style.opacity = "0";
+
+        setTimeout(() => {
+            loader.classList.add("hidden");
+        }, 300);
+    };
+});
+</script>
+
+    
+
+<!-- FOOTER START -->
+<footer class="relative  overflow-hidden mb-[20px] lg:mb-[40px]">
+    <div class="container  mx-auto relative z-10" data-original-font-size="16px">
+        <div class="bg-[#DCE6D8] dark:bg-[#1A222C] px-4 py-6 md:p-8  rounded-lg" data-original-font-size="16px">
+
+            <!-- TOP ROW: Logo on left, navigation centered -->
+            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center pb-4 lg:pb-6" data-original-font-size="16px">
+
+                <!-- Left: Logo -->
+                <div class="flex flex-col items-start mb-2 lg:mb-0 lg:w-[70%] rtl:lg:w-[60%]" data-original-font-size="16px">
+                        <a href="/en/" aria-label="Home" data-original-font-size="16px">
+                            <img src="/-/media/adrec-tailwind/global/logo-dark.svg" alt="Abu Dhabi Real Estate Centre" class="w-[179px] lg:[200px] xl:w-[268px] h-auto dark:brightness-0 dark:invert">
+                        </a>
+
+                    <div class="flex md:items-center  space-x-4 lg:hidden mb-6 mt-6" data-original-font-size="16px">
+                        <!-- Social icons under logo -->
+                        <ul class="flex gap-5 items-center mt-3">
+                                <li data-original-font-size="16px">
+                                    <a href="https://www.facebook.com/ADRealEstateCentre/" target="_blank" aria-label="Facebook" data-original-font-size="16px">
+                                        <span class="theme-aware-icon" data-original-font-size="16px"><svg class="w-[24px] md:w-[24px] lg:w-[24px] aspect-square  transition-opacity ease-in-out duration-300 hover:text-[#ACA261] dark:text-[#969696] dark:hover:text-[#ACA261]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 0C10.7453 0 0 10.7453 0 24C0 35.255 7.74912 44.6995 18.2026 47.2934V31.3344H13.2538V24H18.2026V20.8397C18.2026 12.671 21.8995 8.8848 29.9194 8.8848C31.44 8.8848 34.0637 9.18336 35.137 9.48096V16.129C34.5706 16.0694 33.5866 16.0397 32.3645 16.0397C28.4294 16.0397 26.9088 17.5306 26.9088 21.4061V24H34.7482L33.4013 31.3344H26.9088V47.8243C38.7926 46.3891 48.001 36.2707 48.001 24C48 10.7453 37.2547 0 24 0Z" fill="currentColor"></path>
+</svg></span>
+                                    </a>
+                                </li>
+                                                            <li data-original-font-size="16px">
+                                    <a href="https://x.com/i/flow/login?redirect_after_login=%2Fadrec_ae" target="_blank" aria-label="Twitter" data-original-font-size="16px">
+                                        <span class="theme-aware-icon" data-original-font-size="16px"><svg class="w-[24px] md:w-[24px] lg:w-[24px] aspect-square  transition-opacity ease-in-out duration-300 hover:text-[#ACA261] dark:text-[#969696] dark:hover:text-[#ACA261]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.6526 3.80786H43.3995L28.6594 20.6548L46 43.5798H32.4225L21.7881 29.6759L9.61989 43.5798H2.86886L18.6349 25.5601L2 3.80786H15.9222L25.5348 16.5165L36.6526 3.80786ZM34.2846 39.5414H38.0232L13.8908 7.63413H9.87892L34.2846 39.5414Z" fill="currentColor"></path>
+</svg></span>
+                                    </a>
+                                </li>
+                                                            <li data-original-font-size="16px">
+                                    <a href="https://www.linkedin.com/company/abu-dhabi-real-estate-centre" target="_blank" aria-label="LinkedIn" data-original-font-size="16px">
+                                        <span class="theme-aware-icon" data-original-font-size="16px"><svg class="w-[24px] md:w-[24px] lg:w-[24px] aspect-square  transition-opacity ease-in-out duration-300 hover:text-[#ACA261]  dark:text-[#969696] dark:hover:text-[#ACA261]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M44.4469 0H3.54375C1.58437 0 0 1.54688 0 3.45938V44.5312C0 46.4437 1.58437 48 3.54375 48H44.4469C46.4062 48 48 46.4438 48 44.5406V3.45938C48 1.54688 46.4062 0 44.4469 0ZM14.2406 40.9031H7.11563V17.9906H14.2406V40.9031ZM10.6781 14.8688C8.39062 14.8688 6.54375 13.0219 6.54375 10.7437C6.54375 8.46562 8.39062 6.61875 10.6781 6.61875C12.9563 6.61875 14.8031 8.46562 14.8031 10.7437C14.8031 13.0125 12.9563 14.8688 10.6781 14.8688ZM40.9031 40.9031H33.7875V29.7656C33.7875 27.1125 33.7406 23.6906 30.0844 23.6906C26.3812 23.6906 25.8187 26.5875 25.8187 29.5781V40.9031H18.7125V17.9906H25.5375V21.1219H25.6312C26.5781 19.3219 28.9031 17.4188 32.3625 17.4188C39.5719 17.4188 40.9031 22.1625 40.9031 28.3313V40.9031Z" fill="currentColor"></path>
+</svg></span>
+                                    </a>
+                                </li>
+                                                            <li data-original-font-size="16px">
+                                    <a href="https://www.instagram.com/adrec.ae/" target="_blank" aria-label="Instagram" data-original-font-size="16px">
+                                        <span class="theme-aware-icon" data-original-font-size="16px"><svg class="w-[24px] md:w-[24px] lg:w-[24px] aspect-square  transition-opacity ease-in-out duration-300 hover:text-[#ACA261] dark:text-[#969696] dark:hover:text-[#ACA261]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4.32187C30.4125 4.32187 31.1719 4.35 33.6938 4.4625C36.0375 4.56562 37.3031 4.95938 38.1469 5.2875C39.2625 5.71875 40.0688 6.24375 40.9031 7.07812C41.7469 7.92188 42.2625 8.71875 42.6938 9.83438C43.0219 10.6781 43.4156 11.9531 43.5188 14.2875C43.6313 16.8187 43.6594 17.5781 43.6594 23.9813C43.6594 30.3938 43.6313 31.1531 43.5188 33.675C43.4156 36.0188 43.0219 37.2844 42.6938 38.1281C42.2625 39.2438 41.7375 40.05 40.9031 40.8844C40.0594 41.7281 39.2625 42.2438 38.1469 42.675C37.3031 43.0031 36.0281 43.3969 33.6938 43.5C31.1625 43.6125 30.4031 43.6406 24 43.6406C17.5875 43.6406 16.8281 43.6125 14.3063 43.5C11.9625 43.3969 10.6969 43.0031 9.85313 42.675C8.7375 42.2438 7.93125 41.7188 7.09688 40.8844C6.25313 40.0406 5.7375 39.2438 5.30625 38.1281C4.97813 37.2844 4.58438 36.0094 4.48125 33.675C4.36875 31.1438 4.34063 30.3844 4.34063 23.9813C4.34063 17.5688 4.36875 16.8094 4.48125 14.2875C4.58438 11.9437 4.97813 10.6781 5.30625 9.83438C5.7375 8.71875 6.2625 7.9125 7.09688 7.07812C7.94063 6.23438 8.7375 5.71875 9.85313 5.2875C10.6969 4.95938 11.9719 4.56562 14.3063 4.4625C16.8281 4.35 17.5875 4.32187 24 4.32187ZM24 0C17.8404 0 16.6688 0.028125 14.1094 0.140625C11.5594 0.253125 9.80625 0.665625 8.2875 1.25625C6.70312 1.875 5.3625 2.69062 4.03125 4.03125C2.69063 5.3625 1.875 6.70313 1.25625 8.27813C0.665625 9.80625 0.253125 11.55 0.140625 14.1C0.028125 16.6687 0 17.8404 0 24C0 30.5156 0.028125 31.3312 0.140625 33.8906C0.253125 36.4406 0.665625 38.1938 1.25625 39.7125C1.875 41.2969 2.69063 42.6375 4.03125 43.9688C5.3625 45.3 6.70313 46.125 8.27813 46.7344C9.80625 47.325 11.55 47.7375 14.1 47.85C16.6594 47.9625 17.475 47.9906 23.9906 47.9906C30.5063 47.9906 31.3219 47.9625 33.8813 47.85C36.4313 47.7375 38.1844 47.325 39.7031 46.7344C41.2781 46.125 42.6188 45.3 43.95 43.9688C45.2812 42.6375 46.1063 41.2969 46.7156 39.7219C47.3063 38.1938 47.7188 36.45 47.8313 33.9C47.9438 31.3406 47.9719 30.525 47.9719 24.0094C47.9719 17.4938 47.9438 16.6781 47.8313 14.1188C47.7188 11.5688 47.3063 9.81563 46.7156 8.29688C46.125 6.70312 45.3094 5.3625 43.9688 4.03125C42.6375 2.7 41.2969 1.875 39.7219 1.26562C38.1938 0.675 36.45 0.2625 33.9 0.15C31.3313 0.028125 30.5156 0 24 0Z" fill="currentColor"></path>
+<path d="M24 11.6719C17.1938 11.6719 11.6719 17.1938 11.6719 24C11.6719 30.8062 17.1938 36.3281 24 36.3281C30.8062 36.3281 36.3281 30.8062 36.3281 24C36.3281 17.1938 30.8062 11.6719 24 11.6719ZM24 31.9969C19.5844 31.9969 16.0031 28.4156 16.0031 24C16.0031 19.5844 19.5844 16.0031 24 16.0031C28.4156 16.0031 31.9969 19.5844 31.9969 24C31.9969 28.4156 28.4156 31.9969 24 31.9969Z" fill="currentColor"></path>
+<path d="M39.6937 11.1843C39.6937 12.778 38.4 14.0624 36.8156 14.0624C35.2219 14.0624 33.9375 12.7687 33.9375 11.1843C33.9375 9.59053 35.2313 8.30615 36.8156 8.30615C38.4 8.30615 39.6937 9.5999 39.6937 11.1843Z" fill="currentColor"></path>
+</svg></span>
+                                    </a>
+                                </li>
+                                                            <li data-original-font-size="16px">
+                                    <a href="https://youtube.com/@adrecuae?si=48krb5uLYe04qeAv" target="_blank" aria-label="YouTube" data-original-font-size="16px">
+                                        <span class="theme-aware-icon" data-original-font-size="16px"><svg class="w-[24px] md:w-[24px] lg:w-[24px] aspect-square  transition-opacity ease-in-out duration-300 hover:text-[#ACA261] dark:text-[#969696] dark:hover:text-[#ACA261] " viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M47.5219 14.4001C47.5219 14.4001 47.0531 11.0907 45.6094 9.6376C43.7812 7.7251 41.7375 7.71572 40.8 7.60322C34.0875 7.11572 24.0094 7.11572 24.0094 7.11572H23.9906C23.9906 7.11572 13.9125 7.11572 7.2 7.60322C6.2625 7.71572 4.21875 7.7251 2.39062 9.6376C0.946875 11.0907 0.4875 14.4001 0.4875 14.4001C0.4875 14.4001 0 18.2907 0 22.172V25.8095C0 29.6907 0.478125 33.5813 0.478125 33.5813C0.478125 33.5813 0.946875 36.8907 2.38125 38.3438C4.20937 40.2563 6.60938 40.1907 7.67813 40.397C11.5219 40.7626 24 40.8751 24 40.8751C24 40.8751 34.0875 40.8563 40.8 40.3782C41.7375 40.2657 43.7812 40.2563 45.6094 38.3438C47.0531 36.8907 47.5219 33.5813 47.5219 33.5813C47.5219 33.5813 48 29.7001 48 25.8095V22.172C48 18.2907 47.5219 14.4001 47.5219 14.4001ZM19.0406 30.2251V16.7345L32.0062 23.5032L19.0406 30.2251Z" fill="currentColor"></path>
+</svg></span>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+                <!-- Center: Main navigation -->
+                <div class="flex flex-col md:flex-row md:items-start gap-3 md:gap-6 blackText dark:text-[#F5F5F5] font-base lg:border-[#CED1D6] dark:lg:border-darkLightGreen lg:border-l rtl:lg:border-r rtl:lg:border-l-0  rtl:lg:pr-10  rtl:lg:pl-0  lg:pl-10" data-original-font-size="16px">
+                    <nav aria-label="Footer main navigation">
+                        <ul class="flex flex-wrap gap-3 md:gap-5">
+                                        <li data-original-font-size="16px">
+                                            <a href="/en/" target="" class="hover:text-[#ACA261]" data-original-font-size="16px">Home</a>
+                                        </li>
+                                        <li data-original-font-size="16px">
+                                            <a href="/en/services" target="" class="hover:text-[#ACA261]" data-original-font-size="16px">Services</a>
+                                        </li>
+                                        <li data-original-font-size="16px">
+                                            <a href="/en/property_and_index" target="" class="hover:text-[#ACA261]" data-original-font-size="16px">Market Data</a>
+                                        </li>
+                                        <li data-original-font-size="16px">
+                                            <a href="/en/rules_and_regulations" target="" class="hover:text-[#ACA261]" data-original-font-size="16px">Rules &amp; Regulations</a>
+                                        </li>
+                                        <li data-original-font-size="16px">
+                                            <a href="/en/media" target="" class="hover:text-[#ACA261]" data-original-font-size="16px">Media Centre</a>
+                                        </li>
+                                        <li data-original-font-size="16px">
+                                            <a href="/en/directory" target="" class="hover:text-[#ACA261]" data-original-font-size="16px">Directory</a>
+                                        </li>
+                                        <li data-original-font-size="16px">
+                                            <a href="/en/apisubscription" target="" class="hover:text-[#ACA261]" data-original-font-size="16px">ADREC APIs</a>
+                                        </li>
+                                        <li data-original-font-size="16px">
+                                            <a href="/en/contact_us" target="" class="hover:text-[#ACA261]" data-original-font-size="16px">Contact Us</a>
+                                        </li>
+                                        <li data-original-font-size="16px">
+                                            <a href="/en/about_the_centre" target="" class="hover:text-[#ACA261]" data-original-font-size="16px">About Us</a>
+                                        </li>
+                                        <li data-original-font-size="16px">
+                                            <a href="/en/faqs" target="" class="hover:text-[#ACA261]" data-original-font-size="16px">FAQs</a>
+                                        </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="border-t border-[#C9D8CD] dark:border-darkLightGreen my-4" data-original-font-size="16px"></div>
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between blackText text-sm leading-[150%] md:text-base text-gray-700 space-y-4 md:space-y-0" data-original-font-size="16px">
+                <div class="flex md:items-center space-x-4 lg:block hidden" data-original-font-size="16px">
+                    <!-- Social icons under logo -->
+                    <ul class="flex gap-6 items-center mt-3">
+                            <li data-original-font-size="16px">
+                                <a href="https://www.facebook.com/ADRealEstateCentre/" target="_blank" aria-label="Facebook" data-original-font-size="16px">
+                                    <span class="theme-aware-icon" data-original-font-size="16px"><svg class="w-[24px] md:w-[24px] lg:w-[24px] aspect-square  transition-opacity ease-in-out duration-300 hover:text-[#ACA261] dark:text-[#969696] dark:hover:text-[#ACA261]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 0C10.7453 0 0 10.7453 0 24C0 35.255 7.74912 44.6995 18.2026 47.2934V31.3344H13.2538V24H18.2026V20.8397C18.2026 12.671 21.8995 8.8848 29.9194 8.8848C31.44 8.8848 34.0637 9.18336 35.137 9.48096V16.129C34.5706 16.0694 33.5866 16.0397 32.3645 16.0397C28.4294 16.0397 26.9088 17.5306 26.9088 21.4061V24H34.7482L33.4013 31.3344H26.9088V47.8243C38.7926 46.3891 48.001 36.2707 48.001 24C48 10.7453 37.2547 0 24 0Z" fill="currentColor"></path>
+</svg></span>
+                                </a>
+                            </li>
+                                                    <li data-original-font-size="16px">
+                                <a href="https://x.com/i/flow/login?redirect_after_login=%2Fadrec_ae" target="_blank" aria-label="Twitter" data-original-font-size="16px">
+                                    <span class="theme-aware-icon" data-original-font-size="16px"><svg class="w-[24px] md:w-[24px] lg:w-[24px] aspect-square  transition-opacity ease-in-out duration-300 hover:text-[#ACA261] dark:text-[#969696] dark:hover:text-[#ACA261]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.6526 3.80786H43.3995L28.6594 20.6548L46 43.5798H32.4225L21.7881 29.6759L9.61989 43.5798H2.86886L18.6349 25.5601L2 3.80786H15.9222L25.5348 16.5165L36.6526 3.80786ZM34.2846 39.5414H38.0232L13.8908 7.63413H9.87892L34.2846 39.5414Z" fill="currentColor"></path>
+</svg></span>
+                                </a>
+                            </li>
+                                                    <li data-original-font-size="16px">
+                                <a href="https://www.linkedin.com/company/abu-dhabi-real-estate-centre" target="_blank" aria-label="LinkedIn" data-original-font-size="16px">
+                                    <span class="theme-aware-icon" data-original-font-size="16px"><svg class="w-[24px] md:w-[24px] lg:w-[24px] aspect-square  transition-opacity ease-in-out duration-300 hover:text-[#ACA261]  dark:text-[#969696] dark:hover:text-[#ACA261]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M44.4469 0H3.54375C1.58437 0 0 1.54688 0 3.45938V44.5312C0 46.4437 1.58437 48 3.54375 48H44.4469C46.4062 48 48 46.4438 48 44.5406V3.45938C48 1.54688 46.4062 0 44.4469 0ZM14.2406 40.9031H7.11563V17.9906H14.2406V40.9031ZM10.6781 14.8688C8.39062 14.8688 6.54375 13.0219 6.54375 10.7437C6.54375 8.46562 8.39062 6.61875 10.6781 6.61875C12.9563 6.61875 14.8031 8.46562 14.8031 10.7437C14.8031 13.0125 12.9563 14.8688 10.6781 14.8688ZM40.9031 40.9031H33.7875V29.7656C33.7875 27.1125 33.7406 23.6906 30.0844 23.6906C26.3812 23.6906 25.8187 26.5875 25.8187 29.5781V40.9031H18.7125V17.9906H25.5375V21.1219H25.6312C26.5781 19.3219 28.9031 17.4188 32.3625 17.4188C39.5719 17.4188 40.9031 22.1625 40.9031 28.3313V40.9031Z" fill="currentColor"></path>
+</svg></span>
+                                </a>
+                            </li>
+                                                    <li data-original-font-size="16px">
+                                <a href="https://www.instagram.com/adrec.ae/" target="_blank" aria-label="Instagram" data-original-font-size="16px">
+                                    <span class="theme-aware-icon" data-original-font-size="16px"><svg class="w-[24px] md:w-[24px] lg:w-[24px] aspect-square  transition-opacity ease-in-out duration-300 hover:text-[#ACA261] dark:text-[#969696] dark:hover:text-[#ACA261]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4.32187C30.4125 4.32187 31.1719 4.35 33.6938 4.4625C36.0375 4.56562 37.3031 4.95938 38.1469 5.2875C39.2625 5.71875 40.0688 6.24375 40.9031 7.07812C41.7469 7.92188 42.2625 8.71875 42.6938 9.83438C43.0219 10.6781 43.4156 11.9531 43.5188 14.2875C43.6313 16.8187 43.6594 17.5781 43.6594 23.9813C43.6594 30.3938 43.6313 31.1531 43.5188 33.675C43.4156 36.0188 43.0219 37.2844 42.6938 38.1281C42.2625 39.2438 41.7375 40.05 40.9031 40.8844C40.0594 41.7281 39.2625 42.2438 38.1469 42.675C37.3031 43.0031 36.0281 43.3969 33.6938 43.5C31.1625 43.6125 30.4031 43.6406 24 43.6406C17.5875 43.6406 16.8281 43.6125 14.3063 43.5C11.9625 43.3969 10.6969 43.0031 9.85313 42.675C8.7375 42.2438 7.93125 41.7188 7.09688 40.8844C6.25313 40.0406 5.7375 39.2438 5.30625 38.1281C4.97813 37.2844 4.58438 36.0094 4.48125 33.675C4.36875 31.1438 4.34063 30.3844 4.34063 23.9813C4.34063 17.5688 4.36875 16.8094 4.48125 14.2875C4.58438 11.9437 4.97813 10.6781 5.30625 9.83438C5.7375 8.71875 6.2625 7.9125 7.09688 7.07812C7.94063 6.23438 8.7375 5.71875 9.85313 5.2875C10.6969 4.95938 11.9719 4.56562 14.3063 4.4625C16.8281 4.35 17.5875 4.32187 24 4.32187ZM24 0C17.8404 0 16.6688 0.028125 14.1094 0.140625C11.5594 0.253125 9.80625 0.665625 8.2875 1.25625C6.70312 1.875 5.3625 2.69062 4.03125 4.03125C2.69063 5.3625 1.875 6.70313 1.25625 8.27813C0.665625 9.80625 0.253125 11.55 0.140625 14.1C0.028125 16.6687 0 17.8404 0 24C0 30.5156 0.028125 31.3312 0.140625 33.8906C0.253125 36.4406 0.665625 38.1938 1.25625 39.7125C1.875 41.2969 2.69063 42.6375 4.03125 43.9688C5.3625 45.3 6.70313 46.125 8.27813 46.7344C9.80625 47.325 11.55 47.7375 14.1 47.85C16.6594 47.9625 17.475 47.9906 23.9906 47.9906C30.5063 47.9906 31.3219 47.9625 33.8813 47.85C36.4313 47.7375 38.1844 47.325 39.7031 46.7344C41.2781 46.125 42.6188 45.3 43.95 43.9688C45.2812 42.6375 46.1063 41.2969 46.7156 39.7219C47.3063 38.1938 47.7188 36.45 47.8313 33.9C47.9438 31.3406 47.9719 30.525 47.9719 24.0094C47.9719 17.4938 47.9438 16.6781 47.8313 14.1188C47.7188 11.5688 47.3063 9.81563 46.7156 8.29688C46.125 6.70312 45.3094 5.3625 43.9688 4.03125C42.6375 2.7 41.2969 1.875 39.7219 1.26562C38.1938 0.675 36.45 0.2625 33.9 0.15C31.3313 0.028125 30.5156 0 24 0Z" fill="currentColor"></path>
+<path d="M24 11.6719C17.1938 11.6719 11.6719 17.1938 11.6719 24C11.6719 30.8062 17.1938 36.3281 24 36.3281C30.8062 36.3281 36.3281 30.8062 36.3281 24C36.3281 17.1938 30.8062 11.6719 24 11.6719ZM24 31.9969C19.5844 31.9969 16.0031 28.4156 16.0031 24C16.0031 19.5844 19.5844 16.0031 24 16.0031C28.4156 16.0031 31.9969 19.5844 31.9969 24C31.9969 28.4156 28.4156 31.9969 24 31.9969Z" fill="currentColor"></path>
+<path d="M39.6937 11.1843C39.6937 12.778 38.4 14.0624 36.8156 14.0624C35.2219 14.0624 33.9375 12.7687 33.9375 11.1843C33.9375 9.59053 35.2313 8.30615 36.8156 8.30615C38.4 8.30615 39.6937 9.5999 39.6937 11.1843Z" fill="currentColor"></path>
+</svg></span>
+                                </a>
+                            </li>
+                                                    <li data-original-font-size="16px">
+                                <a href="https://youtube.com/@adrecuae?si=48krb5uLYe04qeAv" target="_blank" aria-label="YouTube" data-original-font-size="16px">
+                                    <span class="theme-aware-icon" data-original-font-size="16px"><svg class="w-[24px] md:w-[24px] lg:w-[24px] aspect-square  transition-opacity ease-in-out duration-300 hover:text-[#ACA261] dark:text-[#969696] dark:hover:text-[#ACA261] " viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M47.5219 14.4001C47.5219 14.4001 47.0531 11.0907 45.6094 9.6376C43.7812 7.7251 41.7375 7.71572 40.8 7.60322C34.0875 7.11572 24.0094 7.11572 24.0094 7.11572H23.9906C23.9906 7.11572 13.9125 7.11572 7.2 7.60322C6.2625 7.71572 4.21875 7.7251 2.39062 9.6376C0.946875 11.0907 0.4875 14.4001 0.4875 14.4001C0.4875 14.4001 0 18.2907 0 22.172V25.8095C0 29.6907 0.478125 33.5813 0.478125 33.5813C0.478125 33.5813 0.946875 36.8907 2.38125 38.3438C4.20937 40.2563 6.60938 40.1907 7.67813 40.397C11.5219 40.7626 24 40.8751 24 40.8751C24 40.8751 34.0875 40.8563 40.8 40.3782C41.7375 40.2657 43.7812 40.2563 45.6094 38.3438C47.0531 36.8907 47.5219 33.5813 47.5219 33.5813C47.5219 33.5813 48 29.7001 48 25.8095V22.172C48 18.2907 47.5219 14.4001 47.5219 14.4001ZM19.0406 30.2251V16.7345L32.0062 23.5032L19.0406 30.2251Z" fill="currentColor"></path>
+</svg></span>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+                <div class="flex items-center text-sm flex-wrap" data-original-font-size="14px">
+                    
+                        <span class="md:whitespace-nowrap border-[#CED1D6] dark:border-darkLightGreen lg:border-r rtl:lg:border-r-0 rtl:lg:border-l md:pr-3 md:mr-3 mb-6 md:mb-0 rtl:md:mr-0 rtl:md:ml-3 rtl:pr-0 rtl:pl-3 block md:inline-block blackText leading-[150%] dark:text-white" data-original-font-size="14px">© 2026 Abu Dhabi Real Estate Centre.</span>
+                                            <ul class="flex items-center gap-2 whitespace-nowrap rtl:mr-[12px]">
+                                <li class="flex items-center gap-2 blackText  dark:text-[#F5F5F5] leading-[150%] hover:text-[#ACA261] dark:hover:text-[#ACA261]" data-original-font-size="14px">
+                                    <a href="/en/privacy_policy" target="" data-original-font-size="14px">
+                                        Privacy Policy
+                                    </a>
+
+                                    
+                                        <span class="w-[4px] h-[4px] bg-[#6C7281] rounded-full dark:bg-white" data-original-font-size="14px"></span>
+                                </li>
+                                <li class="flex items-center gap-2 blackText  dark:text-[#F5F5F5] leading-[150%] hover:text-[#ACA261] dark:hover:text-[#ACA261]" data-original-font-size="14px">
+                                    <a href="/en/terms_and_conditions" target="" data-original-font-size="14px">
+                                        Terms and Conditions
+                                    </a>
+
+                                    
+                                </li>
+                        </ul>
+
+                </div>
+            </div>
+
+            
+                <script src="/adrec-assets/js/adrec-chatbot.js" defer=""></script>
+        </div>
+    </div>
+</footer>
+<!-- FOOTER END -->
+
+
+    <!-- App JS -->
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src=https://www.googletagmanager.com/ns.html?id =GTM-T93NJJW5
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+                                               
+        <script src="/adrec-assets/js/jquery-3.7.1.min.js"></script>
+        <script type="text/javascript" src="/adrec-assets/js/app.js?v=0.1"></script>
+
+    <!-- <script type="text/javascript" src="~/adrec-assets/js/tabs-group.js?v=0.1"></script> -->
+    <script src="/adrec-assets/js/dark-light-mode-switcher.js"></script>
+
+    
+
+<div id="adrec-chatbot-widget" style="color-scheme: initial; forced-color-adjust: initial; mask: initial; math-depth: initial; position: fixed; position-anchor: initial; appearance: initial; color: initial; font: initial; font-palette: initial; font-synthesis: initial; inset-area: initial; text-orientation: initial; text-rendering: initial; text-spacing-trim: initial; -webkit-font-smoothing: initial; -webkit-locale: initial; -webkit-text-orientation: initial; -webkit-writing-mode: initial; writing-mode: initial; zoom: initial; accent-color: initial; place-content: initial; place-items: initial; place-self: initial; alignment-baseline: initial; anchor-name: initial; animation-composition: initial; animation: initial; app-region: initial; aspect-ratio: initial; backdrop-filter: initial; backface-visibility: initial; background: initial; background-blend-mode: initial; baseline-shift: initial; baseline-source: initial; block-size: initial; border-block: initial; border: initial; border-radius: initial; border-collapse: initial; border-end-end-radius: initial; border-end-start-radius: initial; border-inline: initial; border-start-end-radius: initial; border-start-start-radius: initial; inset: auto 16px 16px auto; box-shadow: initial; box-sizing: initial; break-after: initial; break-before: initial; break-inside: initial; buffered-rendering: initial; caption-side: initial; caret-color: initial; clear: initial; clip: initial; clip-path: initial; clip-rule: initial; color-interpolation: initial; color-interpolation-filters: initial; color-rendering: initial; columns: initial; column-fill: initial; gap: initial; column-rule: initial; column-span: initial; contain: initial; contain-intrinsic-block-size: initial; contain-intrinsic-size: initial; contain-intrinsic-inline-size: initial; container: initial; content: initial; content-visibility: initial; counter-increment: initial; counter-reset: initial; counter-set: initial; cursor: initial; cx: initial; cy: initial; d: initial; display: initial; dominant-baseline: initial; empty-cells: initial; field-sizing: initial; fill: initial; fill-opacity: initial; fill-rule: initial; filter: initial; flex: initial; flex-flow: initial; float: initial; flood-color: initial; flood-opacity: initial; grid: initial; grid-area: initial; height: initial; hyphenate-character: initial; hyphenate-limit-chars: initial; hyphens: initial; image-orientation: initial; image-rendering: initial; initial-letter: initial; inline-size: initial; inset-block: initial; inset-inline: initial; isolation: initial; letter-spacing: initial; lighting-color: initial; line-break: initial; list-style: initial; margin-block: initial; margin: initial; margin-inline: initial; marker: initial; mask-type: initial; math-shift: initial; math-style: initial; max-block-size: initial; max-height: initial; max-inline-size: initial; max-width: initial; min-block-size: initial; min-height: initial; min-inline-size: initial; min-width: initial; mix-blend-mode: initial; object-fit: initial; object-position: initial; object-view-box: initial; offset: initial; opacity: initial; order: initial; orphans: initial; outline: initial; outline-offset: initial; overflow-anchor: initial; overflow-clip-margin: initial; overflow-wrap: initial; overflow: initial; overlay: initial; overscroll-behavior-block: initial; overscroll-behavior-inline: initial; overscroll-behavior: initial; padding-block: initial; padding: initial; padding-inline: initial; page: initial; page-orientation: initial; paint-order: initial; perspective: initial; perspective-origin: initial; pointer-events: initial; position-try: initial; position-visibility: initial; quotes: initial; r: initial; resize: initial; rotate: initial; ruby-position: initial; rx: initial; ry: initial; scale: initial; scroll-behavior: initial; scroll-margin-block: initial; scroll-margin: initial; scroll-margin-inline: initial; scroll-padding-block: initial; scroll-padding: initial; scroll-padding-inline: initial; scroll-snap-align: initial; scroll-snap-stop: initial; scroll-snap-type: initial; scroll-timeline: initial; scrollbar-color: initial; scrollbar-gutter: initial; scrollbar-width: initial; shape-image-threshold: initial; shape-margin: initial; shape-outside: initial; shape-rendering: initial; size: initial; speak: initial; stop-color: initial; stop-opacity: initial; stroke: initial; stroke-dasharray: initial; stroke-dashoffset: initial; stroke-linecap: initial; stroke-linejoin: initial; stroke-miterlimit: initial; stroke-opacity: initial; stroke-width: initial; tab-size: initial; table-layout: initial; text-align: initial; text-align-last: initial; text-anchor: initial; text-combine-upright: initial; text-decoration: initial; text-decoration-skip-ink: initial; text-emphasis: initial; text-emphasis-position: initial; text-indent: initial; text-overflow: initial; text-shadow: initial; text-size-adjust: initial; text-transform: initial; text-underline-offset: initial; text-underline-position: initial; white-space: initial; timeline-scope: initial; touch-action: initial; transform: initial; transform-box: initial; transform-origin: initial; transform-style: initial; transition: initial; translate: initial; user-select: initial; vector-effect: initial; vertical-align: initial; view-timeline: initial; view-transition-class: initial; view-transition-name: initial; visibility: initial; border-spacing: initial; -webkit-box-align: initial; -webkit-box-decoration-break: initial; -webkit-box-direction: initial; -webkit-box-flex: initial; -webkit-box-ordinal-group: initial; -webkit-box-orient: initial; -webkit-box-pack: initial; -webkit-box-reflect: initial; -webkit-line-break: initial; -webkit-line-clamp: initial; -webkit-mask-box-image: initial; -webkit-print-color-adjust: initial; -webkit-rtl-ordering: initial; -webkit-ruby-position: initial; -webkit-tap-highlight-color: initial; -webkit-text-combine: initial; -webkit-text-decorations-in-effect: initial; -webkit-text-fill-color: initial; -webkit-text-security: initial; -webkit-text-stroke: initial; -webkit-user-drag: initial; widows: initial; width: initial; will-change: initial; word-break: initial; word-spacing: initial; x: initial; y: initial; z-index: 2147483000;" data-original-font-size="16px"></div></body></html>

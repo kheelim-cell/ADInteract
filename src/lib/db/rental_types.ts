@@ -69,6 +69,23 @@ export interface RentalProjectRow {
 	yoy_change: number | null;        // (current - prev) / prev * 100
 }
 
+/** New contract vs renewal rent comparison by bed size */
+export interface NewVsRenewRow {
+	layout: string;
+	newRent: number | null;
+	renewRent: number | null;
+	gapPct: number | null; // (new - renew) / renew * 100
+}
+
+/** Gross rental yield by district (cross-references transactions + rental) */
+export interface PriceToRentRow {
+	district: string;
+	medianSalePrice: number;
+	medianAnnualRent: number;
+	grossYieldPct: number;    // annual_rent / sale_price × 100
+	priceToRentYears: number; // sale_price / annual_rent
+}
+
 export interface RentalMetadata {
 	lastUpdated: string;
 	rowCount: number;

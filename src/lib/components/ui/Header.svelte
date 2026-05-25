@@ -29,12 +29,34 @@
 
     <!-- Left: Logo + brand -->
     <div class="flex items-center gap-4 min-w-0">
-      <!-- Logo mark: stylised AD skyline -->
-      <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-white/8 border border-brand-500/30 shadow-inner">
-        <svg class="h-5 w-5 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <!-- Skyline silhouette -->
-          <path d="M2 20h20" stroke-linecap="round"/>
-          <path d="M4 20V12l3-3 3 3v-2l2-2 2 2V9l3-4 1 4v11" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Logo mark: Abu Dhabi emirate outline -->
+      <div class="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-white/8 border border-brand-500/30 shadow-inner">
+        <svg class="h-7 w-7 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round">
+          <!--
+            Abu Dhabi emirate outline (clockwise from NW coast):
+            - NW: where Gulf coast meets western Saudi border
+            - N coast sweeps east (Gulf of Arabia)
+            - Abu Dhabi city peninsula juts north (centre-north)
+            - NE: short diagonal Dubai border
+            - E/SE: Oman & Saudi border going south
+            - S: long Saudi Arabia border going west
+            - W: Saudi border going north back to coast
+          -->
+          <path d="
+            M 1.5,10
+            Q 5,7 9,6
+            L 10.5,6
+            L 12,3.5
+            L 13.5,6
+            Q 17,6 20,7
+            L 22.5,9.5
+            L 22,15.5
+            L 19.5,21
+            L 11.5,22.5
+            L 4,20.5
+            L 1.5,14
+            Z
+          "/>
         </svg>
       </div>
 

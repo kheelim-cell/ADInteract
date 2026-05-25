@@ -72,15 +72,15 @@
             type: 'boxplot',
             data: boxData,
             itemStyle: {
-              color: '#e0effe',
-              borderColor: '#0c93e9',
+              color: '#fdf8ec',
+              borderColor: '#C5A028',
               borderWidth: 1.5
             },
             boxWidth: ['30%', '50%'],
             emphasis: {
               itemStyle: {
-                color: '#bae0fd',
-                borderColor: '#0074c7',
+                color: '#faf0ca',
+                borderColor: '#0A1628',
                 borderWidth: 2
               }
             }

@@ -78,8 +78,8 @@
             barMaxWidth: 22,
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                { offset: 0, color: '#0c93e9' },
-                { offset: 1, color: '#36adf8' }
+                { offset: 0, color: '#0A1628' },
+                { offset: 1, color: '#C5A028' }
               ]),
               borderRadius: [0, 4, 4, 0]
             },

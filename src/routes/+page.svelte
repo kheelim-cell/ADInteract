@@ -92,7 +92,7 @@
     {/if}
   </div>
 
-  <!-- Charts Grid -->
+  <!-- Charts Grid: Price Trend + Volume -->
   <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Price Trend -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
@@ -117,7 +117,15 @@
         <VolumeChart data={chartData} />
       {/if}
     </div>
+  </div>
 
+  <!-- Transaction Table -->
+  <div class="mt-8">
+    <TransactionTable {transactions} {totalCount} {loading} />
+  </div>
+
+  <!-- Secondary Charts: Top Areas + Price Distribution (below table) -->
+  <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Top Areas -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
       <h3 class="text-sm font-semibold text-gray-700 mb-3">Top Areas by Volume</h3>
@@ -141,10 +149,5 @@
         <PriceDistributionChart data={priceDistribution} />
       {/if}
     </div>
-  </div>
-
-  <!-- Transaction Table -->
-  <div class="mt-8">
-    <TransactionTable {transactions} {totalCount} {loading} />
   </div>
 </div>

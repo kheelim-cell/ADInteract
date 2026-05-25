@@ -40,29 +40,35 @@
     const prev = $prevDateRange;
     if (!ready) return;
 
+    // Show loading immediately, but debounce the actual queries 200ms
+    // so rapid filter changes (typing, multi-select) don't each fire 6 queries
     loading = true;
     chartsLoading = true;
 
-    Promise.all([
-      queryStats(f, range.start, range.end, prev.start, prev.end),
-      queryChartData(f, range.start, range.end),
-      queryTopDistricts(f, range.start, range.end),
-      queryPriceDistribution(f, range.start, range.end),
-      queryTransactions(f, range.start, range.end),
-      queryTransactionCount(f, range.start, range.end)
-    ])
-      .then(([s, c, d, p, t, cnt]) => {
-        stats = s;
-        chartData = c;
-        topDistricts = d;
-        priceDistribution = p;
-        transactions = t;
-        totalCount = cnt;
-      })
-      .finally(() => {
-        loading = false;
-        chartsLoading = false;
-      });
+    const timer = setTimeout(() => {
+      Promise.all([
+        queryStats(f, range.start, range.end, prev.start, prev.end),
+        queryChartData(f, range.start, range.end),
+        queryTopDistricts(f, range.start, range.end),
+        queryPriceDistribution(f, range.start, range.end),
+        queryTransactions(f, range.start, range.end),
+        queryTransactionCount(f, range.start, range.end)
+      ])
+        .then(([s, c, d, p, t, cnt]) => {
+          stats = s;
+          chartData = c;
+          topDistricts = d;
+          priceDistribution = p;
+          transactions = t;
+          totalCount = cnt;
+        })
+        .finally(() => {
+          loading = false;
+          chartsLoading = false;
+        });
+    }, 200);
+
+    return () => clearTimeout(timer);
   });
 </script>
 

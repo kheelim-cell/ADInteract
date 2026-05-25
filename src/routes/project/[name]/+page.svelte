@@ -49,25 +49,29 @@
 
     loading = true;
 
-    Promise.all([
-      queryStats(f, range.start, range.end, prev.start, prev.end),
-      queryChartData(f, range.start, range.end),
-      queryTopDistricts(f, range.start, range.end),
-      queryPriceDistribution(f, range.start, range.end),
-      queryTransactions(f, range.start, range.end),
-      queryTransactionCount(f, range.start, range.end)
-    ])
-      .then(([s, c, d, p, t, cnt]) => {
-        stats = s;
-        chartData = c;
-        topDistricts = d;
-        priceDistribution = p;
-        transactions = t;
-        totalCount = cnt;
-      })
-      .finally(() => {
-        loading = false;
-      });
+    const timer = setTimeout(() => {
+      Promise.all([
+        queryStats(f, range.start, range.end, prev.start, prev.end),
+        queryChartData(f, range.start, range.end),
+        queryTopDistricts(f, range.start, range.end),
+        queryPriceDistribution(f, range.start, range.end),
+        queryTransactions(f, range.start, range.end),
+        queryTransactionCount(f, range.start, range.end)
+      ])
+        .then(([s, c, d, p, t, cnt]) => {
+          stats = s;
+          chartData = c;
+          topDistricts = d;
+          priceDistribution = p;
+          transactions = t;
+          totalCount = cnt;
+        })
+        .finally(() => {
+          loading = false;
+        });
+    }, 200);
+
+    return () => clearTimeout(timer);
   });
 </script>
 

@@ -18,7 +18,7 @@ export interface Transaction {
 export interface FilterState {
 	district: string | null;
 	project: string | null;
-	dateRange: '1m' | '3m' | '6m' | '12m' | '3y' | 'custom';
+	dateRange: '1m' | '3m' | '6m' | '12m' | '3y' | 'ytd' | 'custom';
 	customDateStart: string | null;
 	customDateEnd: string | null;
 	saleType: 'all' | 'off-plan' | 'ready';

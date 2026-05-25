@@ -57,6 +57,9 @@ export const dateRangeMs = derived(filters, ($f) => {
 		case '3y':
 			start = new Date(now.getFullYear() - 3, now.getMonth(), now.getDate());
 			break;
+		case 'ytd':
+			start = new Date(now.getFullYear(), 0, 1); // Jan 1 of current year
+			break;
 		case 'custom':
 			start = $f.customDateStart ? new Date($f.customDateStart) : new Date(2019, 0, 1);
 			return {

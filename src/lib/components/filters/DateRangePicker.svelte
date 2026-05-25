@@ -6,14 +6,15 @@
   let customEnd = $state($filters.customDateEnd || '');
 
   const presets = [
-    { label: '1M', value: '1m' as const },
-    { label: '3M', value: '3m' as const },
-    { label: '6M', value: '6m' as const },
+    { label: '1M',  value: '1m'  as const },
+    { label: '3M',  value: '3m'  as const },
+    { label: '6M',  value: '6m'  as const },
     { label: '12M', value: '12m' as const },
-    { label: '3Y', value: '3y' as const }
+    { label: 'YTD', value: 'ytd' as const },
+    { label: '3Y',  value: '3y'  as const }
   ];
 
-  function selectPreset(value: '1m' | '3m' | '6m' | '12m' | '3y') {
+  function selectPreset(value: '1m' | '3m' | '6m' | '12m' | 'ytd' | '3y') {
     showCustom = false;
     updateFilter({ dateRange: value, customDateStart: null, customDateEnd: null });
   }

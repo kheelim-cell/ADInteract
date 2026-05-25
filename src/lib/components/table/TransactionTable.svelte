@@ -25,9 +25,8 @@
     { key: 'price_aed', label: 'PRICE (AED)', sortable: true, align: 'right', width: 'w-[160px]' },
     { key: 'property_type', label: 'TYPE', sortable: true, align: 'center', width: 'w-[100px]' },
     { key: 'layout', label: 'BEDS', sortable: true, align: 'center', width: 'w-[90px]' },
-    { key: 'area_sqft', label: 'AREA (SQFT)', subLabel: 'BUILT-UP', sortable: true, align: 'right', width: 'w-[110px]' },
-    { key: 'land_area_sqft', label: '', subLabel: 'PLOT', sortable: true, align: 'right', width: 'w-[100px]' },
-    { key: 'sale_sequence', label: 'SEQUENCE', sortable: true, align: 'center', width: 'w-[100px]' },
+    { key: 'area_sqft', label: 'AREA (SQFT)', sortable: true, align: 'right', width: 'w-[110px]' },
+    { key: 'sale_type', label: 'SALE SCENARIO', sortable: true, align: 'center', width: 'w-[130px]' },
   ];
 
   let currentPage = $derived($filters.page);
@@ -171,19 +170,6 @@
           {/each}
           <th class="px-4 py-3 w-[80px]"></th>
         </tr>
-        <!-- Area sub-header row -->
-        <tr class="border-b border-gray-100 bg-gray-50/40">
-          {#each columns as col}
-            <th class="px-4 py-1 text-[10px] font-medium tracking-wider text-gray-300 uppercase
-                       {col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'}
-                       {col.width || ''}">
-              {#if col.subLabel && col.label}
-                {col.subLabel}
-              {/if}
-            </th>
-          {/each}
-          <th class="px-4 py-1 w-[80px]"></th>
-        </tr>
       </thead>
       <tbody class="divide-y divide-gray-50">
         {#if loading}
@@ -258,14 +244,20 @@
                 <span class="text-sm text-gray-700 tabular-nums">{row.area_sqft ? formatArea(row.area_sqft) : '-'}</span>
               </td>
 
-              <!-- Plot Area -->
-              <td class="px-4 py-4 text-right align-top whitespace-nowrap">
-                <span class="text-sm text-gray-700 tabular-nums">{row.land_area_sqft ? formatArea(row.land_area_sqft) : '-'}</span>
-              </td>
-
-              <!-- Sequence -->
+              <!-- Sale Scenario -->
               <td class="px-4 py-4 text-center align-top">
-                <span class="text-sm text-gray-700">{formatSaleSequence(row.sale_sequence)}</span>
+                {#if row.sale_type}
+                  <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium
+                    {row.sale_type === 'off-plan' ? 'bg-brand-50 text-brand-700 border border-brand-200' :
+                     row.sale_type === 'ready' ? 'bg-navy/5 text-navy border border-navy/20' :
+                     'bg-gray-100 text-gray-600 border border-gray-200'}">
+                    {row.sale_type === 'off-plan' ? 'Off-plan' :
+                     row.sale_type === 'ready' ? 'Ready' :
+                     row.sale_type.charAt(0).toUpperCase() + row.sale_type.slice(1)}
+                  </span>
+                {:else}
+                  <span class="text-gray-400">-</span>
+                {/if}
               </td>
 
               <!-- View Button -->

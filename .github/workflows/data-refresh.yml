@@ -12,10 +12,10 @@ permissions:
 
 jobs:
   # ───────────────────────────────────────────────────────────────────────
-  # Job 1: Download from ADREC → update Google Sheet → generate Parquet
+  # Job 1: Download from Google Sheet → generate Parquet → commit
   # ───────────────────────────────────────────────────────────────────────
   refresh-data:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,11 +29,10 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r scripts/requirements.txt
 
-      - name: Install Playwright (Chromium)
-        run: playwright install chromium --with-deps
-
-      - name: Fetch ADREC export
-        run: python scripts/fetch_adrec.py
+      - name: Fetch from Google Sheet
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        run: python scripts/fetch_sheets.py
 
       # Upload raw CSV as a downloadable artifact (useful for debugging)
       - name: Save raw CSV artifact
@@ -43,11 +42,6 @@ jobs:
           name: adrec-raw-${{ github.run_id }}
           path: scripts/data/adrec_raw.csv
           retention-days: 7
-
-      - name: Update Google Sheet
-        env:
-          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
-        run: python scripts/update_sheets.py
 
       - name: Transform → Parquet + meta.json
         run: python scripts/transform.py

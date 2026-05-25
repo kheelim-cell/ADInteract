@@ -1,8 +1,51 @@
 <script lang="ts">
-  import { filters, updateFilter } from '$lib/stores/filters';
+  import { filters, updateFilter, dateRangeMs } from '$lib/stores/filters';
   import type { Transaction } from '$lib/db/types';
   import { formatDate, formatNumber, formatCurrency, formatArea, formatRate } from '$lib/utils/format';
+  import { exportTransactions } from '$lib/db/queries';
   import { base } from '$app/paths';
+
+  let exporting = $state(false);
+
+  async function handleExport() {
+    exporting = true;
+    try {
+      const range = $dateRangeMs;
+      const rows = await exportTransactions($filters, range.start, range.end);
+
+      const headers = [
+        'Date', 'District', 'Community', 'Project',
+        'Property Type', 'Layout', 'Area (sqft)',
+        'Price (AED)', 'Rate (AED/sqft)', 'Sale Type', 'Sale Sequence'
+      ];
+
+      const escape = (v: unknown) => {
+        const s = v == null ? '' : String(v);
+        return s.includes(',') || s.includes('"') || s.includes('\n')
+          ? `"${s.replace(/"/g, '""')}"`
+          : s;
+      };
+
+      const csvRows = [
+        headers.join(','),
+        ...rows.map((r) => [
+          r.sale_date, r.district, r.community, r.project_name,
+          r.property_type, r.layout, r.area_sqft ?? '',
+          r.price_aed, r.rate_per_sqft ?? '', r.sale_type, r.sale_sequence
+        ].map(escape).join(','))
+      ];
+
+      const blob = new Blob([csvRows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `adinteract-${range.start}-to-${range.end}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } finally {
+      exporting = false;
+    }
+  }
 
   let {
     transactions = [] as Transaction[],
@@ -117,9 +160,30 @@
       </select>
     </div>
     {#if totalCount > 0}
-      <span class="text-sm text-gray-500">
-        {totalCount.toLocaleString()} transactions
-      </span>
+      <div class="flex items-center gap-3">
+        <span class="text-sm text-gray-500">
+          {totalCount.toLocaleString()} transactions
+        </span>
+        <button
+          type="button"
+          onclick={handleExport}
+          disabled={exporting || loading}
+          class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-600 shadow-sm transition-colors hover:border-brand-300 hover:text-brand-700 hover:bg-brand-50 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {#if exporting}
+            <svg class="h-3.5 w-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
+            </svg>
+            Exporting...
+          {:else}
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            Export CSV
+          {/if}
+        </button>
+      </div>
     {/if}
   </div>
 

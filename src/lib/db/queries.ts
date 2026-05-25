@@ -150,22 +150,42 @@ export async function queryPriceDistribution(
 	dateEnd: string
 ): Promise<PriceDistributionPoint[]> {
 	const where = buildWhere(f, dateStart, dateEnd);
+	// Tukey IQR method: whiskers capped at Q1 − 1.5×IQR and Q3 + 1.5×IQR
+	// so individual outliers don't collapse the visible box
 	return query<PriceDistributionPoint>(`
+		WITH base AS (
+			SELECT layout, rate_per_sqft
+			FROM transactions
+			WHERE ${where}
+				AND rate_per_sqft IS NOT NULL AND rate_per_sqft > 0
+				AND layout != 'unclassified'
+		),
+		pcts AS (
+			SELECT
+				layout,
+				COUNT(*) AS count,
+				PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY rate_per_sqft) AS q1,
+				PERCENTILE_CONT(0.5)  WITHIN GROUP (ORDER BY rate_per_sqft) AS median,
+				PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY rate_per_sqft) AS q3
+			FROM base
+			GROUP BY layout
+			HAVING COUNT(*) >= 5
+		)
 		SELECT
-			layout,
-			MIN(rate_per_sqft) AS min,
-			PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY rate_per_sqft) AS q1,
-			PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft) AS median,
-			PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY rate_per_sqft) AS q3,
-			MAX(rate_per_sqft) AS max,
-			COUNT(*) AS count
-		FROM transactions
-		WHERE ${where} AND rate_per_sqft IS NOT NULL AND rate_per_sqft > 0
-			AND layout != 'unclassified'
-		GROUP BY layout
-		HAVING COUNT(*) >= 5
+			p.layout,
+			GREATEST(MIN(b.rate_per_sqft), p.q1 - 1.5 * (p.q3 - p.q1)) AS min,
+			p.q1,
+			p.median,
+			p.q3,
+			LEAST(MAX(b.rate_per_sqft),   p.q3 + 1.5 * (p.q3 - p.q1)) AS max,
+			p.count
+		FROM pcts p
+		JOIN base b ON b.layout = p.layout
+			AND b.rate_per_sqft >= p.q1 - 1.5 * (p.q3 - p.q1)
+			AND b.rate_per_sqft <= p.q3 + 1.5 * (p.q3 - p.q1)
+		GROUP BY p.layout, p.q1, p.median, p.q3, p.count
 		ORDER BY
-			CASE layout
+			CASE p.layout
 				WHEN 'studio' THEN 1
 				WHEN '1 bed' THEN 2
 				WHEN '2 beds' THEN 3
@@ -208,6 +228,33 @@ export async function queryTransactions(
 		ORDER BY ${orderCol} ${orderDir}
 		LIMIT ${f.pageSize}
 		OFFSET ${offset}
+	`);
+}
+
+export async function exportTransactions(
+	f: FilterState,
+	dateStart: string,
+	dateEnd: string
+): Promise<Transaction[]> {
+	const where = buildWhere(f, dateStart, dateEnd);
+	const orderCol = f.sortColumn || 'sale_date';
+	const orderDir = f.sortDirection || 'desc';
+	return query<Transaction>(`
+		SELECT
+			CAST(sale_date AS VARCHAR) AS sale_date,
+			district,
+			community,
+			project_name,
+			property_type,
+			layout,
+			ROUND(area_sqft, 0) AS area_sqft,
+			price_aed,
+			ROUND(rate_per_sqft, 0) AS rate_per_sqft,
+			sale_type,
+			sale_sequence
+		FROM transactions
+		WHERE ${where}
+		ORDER BY ${orderCol} ${orderDir}
 	`);
 }
 

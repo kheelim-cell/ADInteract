@@ -47,18 +47,22 @@
 
 <div class="sticky top-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
   <div class="px-4 sm:px-6 py-3">
-    <!-- Row 1: Search + Filters -->
+    <!-- Single row: all filters -->
     <div class="flex flex-wrap items-center gap-2">
       <DistrictSearch searchType="district" />
 
-      <div class="hidden sm:block h-5 w-px bg-gray-200"></div>
+      <div class="h-5 w-px bg-gray-200"></div>
 
       <SaleTypeToggle />
 
-      <div class="hidden sm:block h-5 w-px bg-gray-200"></div>
+      <div class="h-5 w-px bg-gray-200"></div>
 
       <PropertyTypeFilter />
       <LayoutFilter />
+
+      <div class="h-5 w-px bg-gray-200"></div>
+
+      <DateRangePicker />
 
       {#if hasActiveFilters}
         <button
@@ -74,12 +78,7 @@
       {/if}
     </div>
 
-    <!-- Row 2: Date range pills -->
-    <div class="mt-2 pt-2 border-t border-gray-100">
-      <DateRangePicker />
-    </div>
-
-    <!-- Row 3: Active filter tags -->
+    <!-- Active filter tags -->
     {#if activeFilterTags().length > 0}
       <div class="mt-2 pt-2 border-t border-gray-100 flex flex-wrap items-center gap-1.5">
         <span class="text-[10px] font-medium uppercase tracking-wider text-gray-400 mr-1">Active:</span>

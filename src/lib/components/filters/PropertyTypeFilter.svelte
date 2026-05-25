@@ -5,7 +5,13 @@
   let open = $state(false);
   let el = $state<HTMLDivElement>();
 
-  let options = $derived($metadata?.propertyTypes ?? []);
+  const ALLOWED = ['Apartment', 'Duplex', 'Townhouse', 'Attached Villa', 'Villa', 'Office', 'Retail'];
+  let options = $derived(
+    ($metadata?.propertyTypes ?? []).filter(t => ALLOWED.some(a => t.toLowerCase().includes(a.toLowerCase())))
+      .length > 0
+      ? ($metadata?.propertyTypes ?? []).filter(t => ALLOWED.some(a => t.toLowerCase().includes(a.toLowerCase())))
+      : ALLOWED
+  );
   let selected = $derived($filters.propertyTypes);
   let count = $derived(selected.length);
 

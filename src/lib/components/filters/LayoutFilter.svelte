@@ -5,7 +5,15 @@
   let open = $state(false);
   let el = $state<HTMLDivElement>();
 
-  let options = $derived($metadata?.layouts ?? []);
+  const LAYOUT_OPTIONS = [
+    { label: 'Studio',  value: 'studio' },
+    { label: '1 Bed',   value: '1 bed' },
+    { label: '2 Beds',  value: '2 beds' },
+    { label: '3 Beds',  value: '3 beds' },
+    { label: '4 Beds',  value: '4 beds' },
+    { label: '5 Beds',  value: '5 beds' },
+    { label: '6+ Beds', value: '6+ beds' },
+  ];
   let selected = $derived($filters.layouts);
   let count = $derived(selected.length);
 
@@ -73,15 +81,15 @@
         </div>
       {/if}
       <div class="max-h-60 overflow-y-auto py-1">
-        {#each options as option}
+        {#each LAYOUT_OPTIONS as option}
           <label class="flex items-center gap-2.5 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer transition-colors">
             <input
               type="checkbox"
-              checked={selected.includes(option)}
-              onchange={() => toggle(option)}
+              checked={selected.includes(option.value)}
+              onchange={() => toggle(option.value)}
               class="h-3.5 w-3.5 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
             />
-            <span class="truncate text-xs">{option}</span>
+            <span class="truncate text-xs">{option.label}</span>
           </label>
         {/each}
       </div>

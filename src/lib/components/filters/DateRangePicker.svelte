@@ -37,7 +37,6 @@
 </script>
 
 <div class="flex items-center gap-1 flex-wrap">
-  <span class="text-[10px] font-medium uppercase tracking-wider text-gray-400 mr-1">Period:</span>
   <div class="inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5">
     {#each presets as preset}
       <button

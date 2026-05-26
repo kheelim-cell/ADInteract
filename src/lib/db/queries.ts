@@ -31,6 +31,8 @@ function buildWhere(f: FilterState, dateStart: string, dateEnd: string): string 
 	if (f.project) clauses.push(`project_name = '${esc(f.project)}'`);
 	if (f.saleType === 'off-plan') clauses.push(`sale_type = 'off-plan'`);
 	if (f.saleType === 'ready') clauses.push(`sale_type = 'ready'`);
+	if (f.saleSequence === 'primary') clauses.push(`sale_sequence = 'primary'`);
+	if (f.saleSequence === 'secondary') clauses.push(`sale_sequence = 'secondary'`);
 	if (f.propertyTypes.length > 0) {
 		clauses.push(`property_type IN (${f.propertyTypes.map((t) => `'${esc(t)}'`).join(',')})`);
 	}

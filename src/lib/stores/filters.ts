@@ -13,6 +13,7 @@ function parseUrlFilters(): FilterState {
 		customDateStart: params.get('from') || null,
 		customDateEnd: params.get('to') || null,
 		saleType: (params.get('type') as FilterState['saleType']) || 'all',
+		saleSequence: (params.get('seq') as FilterState['saleSequence']) || 'all',
 		propertyTypes: params.get('propType')?.split(',').filter(Boolean) || [],
 		layouts: params.get('layout')?.split(',').filter(Boolean) || [],
 		sortColumn: params.get('sort') || 'sale_date',
@@ -96,6 +97,7 @@ if (browser) {
 		if ($f.customDateStart) params.set('from', $f.customDateStart);
 		if ($f.customDateEnd) params.set('to', $f.customDateEnd);
 		if ($f.saleType !== 'all') params.set('type', $f.saleType);
+		if ($f.saleSequence !== 'all') params.set('seq', $f.saleSequence);
 		if ($f.propertyTypes.length) params.set('propType', $f.propertyTypes.join(','));
 		if ($f.layouts.length) params.set('layout', $f.layouts.join(','));
 		if ($f.sortColumn !== 'sale_date') params.set('sort', $f.sortColumn);

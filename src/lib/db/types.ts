@@ -22,6 +22,7 @@ export interface FilterState {
 	customDateStart: string | null;
 	customDateEnd: string | null;
 	saleType: 'all' | 'off-plan' | 'ready';
+	saleSequence: 'all' | 'primary' | 'secondary';
 	propertyTypes: string[];
 	layouts: string[];
 	sortColumn: string;
@@ -114,6 +115,7 @@ export const DEFAULT_FILTERS: FilterState = {
 	customDateStart: null,
 	customDateEnd: null,
 	saleType: 'all',
+	saleSequence: 'all',
 	propertyTypes: [],
 	layouts: [],
 	sortColumn: 'sale_date',

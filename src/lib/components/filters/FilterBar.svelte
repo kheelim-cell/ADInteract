@@ -5,6 +5,7 @@
   import DistrictSearch from './DistrictSearch.svelte';
   import DateRangePicker from './DateRangePicker.svelte';
   import SaleTypeToggle from './SaleTypeToggle.svelte';
+  import SaleSequenceToggle from './SaleSequenceToggle.svelte';
   import PropertyTypeFilter from './PropertyTypeFilter.svelte';
   import LayoutFilter from './LayoutFilter.svelte';
 
@@ -44,10 +45,11 @@
 
   // ── Derived ───────────────────────────────────────────────────────
   let hasActiveFilters = $derived(
-    $filters.district !== null ||
-    $filters.project  !== null ||
-    $filters.dateRange !== DEFAULT_FILTERS.dateRange ||
-    $filters.saleType  !== DEFAULT_FILTERS.saleType  ||
+    $filters.district      !== null ||
+    $filters.project       !== null ||
+    $filters.dateRange     !== DEFAULT_FILTERS.dateRange  ||
+    $filters.saleType      !== DEFAULT_FILTERS.saleType   ||
+    $filters.saleSequence  !== DEFAULT_FILTERS.saleSequence ||
     $filters.propertyTypes.length > 0 ||
     $filters.layouts.length > 0
   );
@@ -65,6 +67,7 @@
       <div class="hidden sm:block h-5 w-px bg-gray-200"></div>
 
       <SaleTypeToggle />
+      <SaleSequenceToggle />
 
       <div class="hidden sm:block h-5 w-px bg-gray-200"></div>
 

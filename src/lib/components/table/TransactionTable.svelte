@@ -69,7 +69,8 @@
     { key: 'property_type', label: 'TYPE', sortable: true, align: 'center', width: 'w-[100px]' },
     { key: 'layout', label: 'BEDS', sortable: true, align: 'center', width: 'w-[90px]' },
     { key: 'area_sqft', label: 'AREA (SQFT)', sortable: true, align: 'right', width: 'w-[110px]' },
-    { key: 'sale_type', label: 'SALE SCENARIO', sortable: true, align: 'center', width: 'w-[130px]' },
+    { key: 'sale_type',     label: 'SALE SCENARIO', sortable: true, align: 'center', width: 'w-[130px]' },
+    { key: 'sale_sequence', label: 'SEQUENCE',      sortable: true, align: 'center', width: 'w-[110px]' },
   ];
 
   let currentPage = $derived($filters.page);
@@ -295,6 +296,16 @@
                 </span>
               {/if}
 
+              {#if row.sale_sequence}
+                <span class="text-gray-200">·</span>
+                <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium
+                  {row.sale_sequence === 'primary'
+                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                    : 'bg-purple-50 text-purple-700 border border-purple-200'}">
+                  {row.sale_sequence.charAt(0).toUpperCase() + row.sale_sequence.slice(1)}
+                </span>
+              {/if}
+
               {#if row.project_name && row.project_name.toLowerCase() !== 'private'}
                 <a
                   href="{base}/project/{encodeURIComponent(row.project_name)}"
@@ -450,6 +461,22 @@
                     {row.sale_type === 'off-plan' ? 'Off-plan' :
                      row.sale_type === 'ready' ? 'Ready' :
                      row.sale_type.charAt(0).toUpperCase() + row.sale_type.slice(1)}
+                  </span>
+                {:else}
+                  <span class="text-gray-400">-</span>
+                {/if}
+              </td>
+
+              <!-- Sale Sequence -->
+              <td class="px-4 py-4 text-center align-top">
+                {#if row.sale_sequence}
+                  <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium
+                    {row.sale_sequence === 'primary'
+                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                      : row.sale_sequence === 'secondary'
+                        ? 'bg-purple-50 text-purple-700 border border-purple-200'
+                        : 'bg-gray-100 text-gray-600 border border-gray-200'}">
+                    {row.sale_sequence.charAt(0).toUpperCase() + row.sale_sequence.slice(1)}
                   </span>
                 {:else}
                   <span class="text-gray-400">-</span>

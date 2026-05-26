@@ -320,8 +320,9 @@ export async function queryRentalNewVsRenew(
 		`layout IN ('studio', '1 bed', '2 beds', '3 beds')`,
 		`rent_type IN ('New', 'Renew')`
 	];
-	if (f.district)  clauses.push(`district  = '${esc(f.district)}'`);
-	if (f.community) clauses.push(`community = '${esc(f.community)}'`);
+	if (f.district)  clauses.push(`district      = '${esc(f.district)}'`);
+	if (f.community) clauses.push(`community     = '${esc(f.community)}'`);
+	if (f.project)   clauses.push(`project_name  = '${esc(f.project)}'`);
 
 	const where = clauses.join(' AND ');
 

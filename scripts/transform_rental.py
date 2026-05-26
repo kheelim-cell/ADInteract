@@ -59,7 +59,9 @@ def normalise_str(s) -> str | None:
     if s is None:
         return None
     v = str(s).strip()
-    return v if v else None
+    if not v:
+        return None
+    return v.title()  # "AL REEM ISLAND" → "Al Reem Island"
 
 
 def normalise_layout(s) -> str | None:

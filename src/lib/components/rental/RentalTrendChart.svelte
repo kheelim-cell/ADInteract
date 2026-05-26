@@ -32,13 +32,14 @@
 
     chart.setOption({
       animation: true,
+      textStyle: { fontFamily: 'Montserrat, system-ui, sans-serif' },
       grid: { top: 16, right: 24, bottom: 40, left: 72, containLabel: false },
       tooltip: {
         trigger: 'axis',
         backgroundColor: '#fff',
         borderColor: '#e5e7eb',
         borderWidth: 1,
-        textStyle: { color: '#111827', fontSize: 12 },
+        textStyle: { color: '#111827', fontSize: 12, fontFamily: 'Montserrat, system-ui, sans-serif' },
         formatter: (params: echarts.TooltipComponentFormatterCallbackParams) => {
           const p = Array.isArray(params) ? params[0] : params;
           return `<b>${p.name}</b><br/>Median: <b>${formatRent(p.value as number)}</b>`;
@@ -47,7 +48,7 @@
       xAxis: {
         type: 'category',
         data: years,
-        axisLabel: { fontSize: 11, color: '#6b7280' },
+        axisLabel: { fontSize: 11, color: '#6b7280', fontFamily: 'Montserrat, system-ui, sans-serif' },
         axisLine: { lineStyle: { color: '#e5e7eb' } },
         axisTick: { show: false }
       },
@@ -56,6 +57,7 @@
         axisLabel: {
           fontSize: 10,
           color: '#6b7280',
+          fontFamily: 'Montserrat, system-ui, sans-serif',
           formatter: (v: number) => {
             if (v >= 1_000_000) return `${(v / 1_000_000).toFixed(1)}M`;
             if (v >= 1_000)     return `${(v / 1_000).toFixed(0)}K`;
@@ -86,7 +88,7 @@
 </script>
 
 {#if data.length === 0}
-  <div class="h-52 flex items-center justify-center text-gray-400 text-sm">No trend data</div>
+  <div class="flex items-center justify-center text-gray-400 text-sm" style="height:280px">No trend data</div>
 {:else}
-  <div bind:this={chartEl} class="h-52 w-full"></div>
+  <div bind:this={chartEl} class="w-full" style="height:280px"></div>
 {/if}

@@ -18,14 +18,14 @@
     sub="in selected filters"
   />
   <RentalStatCard
-    label="Median Annual Rent"
-    value={fmt(stats.medianRent)}
-    sub="50th percentile"
-  />
-  <RentalStatCard
     label="Lower Band (25th %ile)"
     value={fmt(stats.lowerRent)}
     sub="25th percentile"
+  />
+  <RentalStatCard
+    label="Median Annual Rent"
+    value={fmt(stats.medianRent)}
+    sub="50th percentile"
   />
   <RentalStatCard
     label="Upper Band (75th %ile)"

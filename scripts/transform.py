@@ -186,6 +186,14 @@ def transform():
     for col in ("district", "community", "project_name", "asset_class"):
         out[col] = out[col].astype(str).str.strip().replace({"nan": "", "None": ""})
 
+    # Title-case display strings: "AL REEM ISLAND" → "Al Reem Island"
+    # Applied after strip/replace so empty strings are skipped cleanly.
+    def _title(v: str) -> str:
+        return v.title() if v else v
+
+    for col in ("district", "community", "project_name"):
+        out[col] = out[col].apply(_title)
+
     # ── Build final DataFrame ──────────────────────────────────────────────
     final = pd.DataFrame({
         "sale_date":      pd.to_datetime(out["sale_date"]),

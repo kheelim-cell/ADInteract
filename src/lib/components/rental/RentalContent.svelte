@@ -132,7 +132,7 @@
       <h3 class="text-sm font-semibold text-navy mb-1">Median Rent Trend</h3>
       <p class="text-xs text-gray-400 mb-4">Year-on-year median across selected filters</p>
       {#if chartsLoading && trendData.length === 0}
-        <div class="h-52 flex items-center justify-center">
+        <div class="flex items-center justify-center" style="height:280px">
           <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>
         </div>
       {:else}
@@ -144,7 +144,7 @@
       <h3 class="text-sm font-semibold text-navy mb-1">New Contract vs Renewal</h3>
       <p class="text-xs text-gray-400 mb-4">Annual rent (AED) — how much more new tenants pay vs renewals</p>
       {#if chartsLoading && newVsRenewData.length === 0}
-        <div class="h-52 flex items-center justify-center">
+        <div class="flex items-center justify-center" style="height:280px">
           <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>
         </div>
       {:else}

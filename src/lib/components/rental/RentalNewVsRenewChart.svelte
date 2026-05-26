@@ -32,13 +32,17 @@
 
     chart.setOption({
       animation: true,
-      grid: { top: 8, right: 100, bottom: 8, left: 70, containLabel: false },
+      textStyle: { fontFamily: 'Montserrat, system-ui, sans-serif' },
+      grid: { top: 8, right: 110, bottom: 56, left: 70, containLabel: false },
       legend: {
         data: ['New contract', 'Renewal'],
-        top: 'bottom',
-        textStyle: { fontSize: 11, color: '#6b7280' },
+        bottom: 8,
+        left: 'center',
+        itemGap: 36,
         icon: 'roundRect',
-        itemWidth: 12, itemHeight: 8
+        itemWidth: 14,
+        itemHeight: 9,
+        textStyle: { fontSize: 11, color: '#6b7280', fontFamily: 'Montserrat, system-ui, sans-serif' }
       },
       tooltip: {
         trigger: 'axis',
@@ -46,7 +50,7 @@
         backgroundColor: '#fff',
         borderColor: '#e5e7eb',
         borderWidth: 1,
-        textStyle: { color: '#111827', fontSize: 12 },
+        textStyle: { color: '#111827', fontSize: 12, fontFamily: 'Montserrat, system-ui, sans-serif' },
         formatter: (params: echarts.TooltipComponentFormatterCallbackParams) => {
           const arr  = Array.isArray(params) ? params : [params];
           const label = arr[0]?.axisValue ?? '';
@@ -69,6 +73,7 @@
         type: 'value',
         axisLabel: {
           fontSize: 10, color: '#6b7280',
+          fontFamily: 'Montserrat, system-ui, sans-serif',
           formatter: (v: number) => v >= 1_000_000 ? `${(v/1_000_000).toFixed(1)}M` : `${Math.round(v/1_000)}K`
         },
         splitLine: { lineStyle: { color: '#f3f4f6' } }
@@ -76,7 +81,7 @@
       yAxis: {
         type: 'category',
         data: [...layouts].reverse(),
-        axisLabel: { fontSize: 11, color: '#374151' },
+        axisLabel: { fontSize: 11, color: '#374151', fontFamily: 'Montserrat, system-ui, sans-serif' },
         axisLine: { show: false },
         axisTick: { show: false }
       },
@@ -90,7 +95,8 @@
           label: {
             show: true, position: 'right',
             formatter: (p: { value: number }) => fmtK(p.value),
-            fontSize: 10, color: '#374151'
+            fontSize: 10, color: '#374151',
+            fontFamily: 'Montserrat, system-ui, sans-serif'
           }
         },
         {
@@ -109,5 +115,5 @@
 {#if data.length === 0}
   <div class="h-56 flex items-center justify-center text-gray-400 text-sm">No data</div>
 {:else}
-  <div bind:this={chartEl} class="w-full" style="height: {Math.max(200, data.length * 50 + 40)}px"></div>
+  <div bind:this={chartEl} class="w-full" style="height: {Math.max(240, data.length * 52 + 72)}px"></div>
 {/if}

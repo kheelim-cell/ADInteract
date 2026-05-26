@@ -26,10 +26,16 @@ export interface RentalFilterState {
 }
 
 export interface RentalStatsResult {
-	projectCount: number;
-	medianRent: number;
-	lowerRent: number;
-	upperRent: number;
+	projectCount:   number;
+	medianRent:     number;
+	lowerRent:      number;
+	upperRent:      number;
+	// Prior-year values for YoY growth badges (null when no prior year data)
+	prevMedianRent: number | null;
+	prevLowerRent:  number | null;
+	prevUpperRent:  number | null;
+	resolvedYear:   number;
+	prevYear:       number;
 }
 
 /** One row in the layout breakdown table/chart */

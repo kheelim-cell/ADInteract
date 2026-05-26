@@ -70,28 +70,38 @@ export async function queryRentalStats(
 	f: RentalFilterState,
 	latestYear: number
 ): Promise<RentalStatsResult> {
-	const where = buildRentalWhere(f, latestYear);
+	const resolvedYear = f.year ?? latestYear;
+	const prevYear     = resolvedYear - 1;
+	const where        = buildRentalWhere(f, latestYear);
+	const prevWhere    = buildRentalWhere(f, latestYear, prevYear);
 
-	const [row] = await query<{
-		project_count: number;
-		median_rent: number;
-		lower_rent: number;
-		upper_rent: number;
-	}>(`
+	type StatsRow = { project_count: number; median_rent: number; lower_rent: number; upper_rent: number };
+
+	const statsSQL = (w: string) => `
 		SELECT
 			COUNT(DISTINCT project_name) AS project_count,
-			PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS median_rent,
+			PERCENTILE_CONT(0.5)  WITHIN GROUP (ORDER BY median_rent) AS median_rent,
 			PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY median_rent) AS lower_rent,
 			PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY median_rent) AS upper_rent
 		FROM rental
-		WHERE ${where}
-	`);
+		WHERE ${w}
+	`;
+
+	const [[row], [prevRow]] = await Promise.all([
+		query<StatsRow>(statsSQL(where)),
+		query<StatsRow>(statsSQL(prevWhere))
+	]);
 
 	return {
-		projectCount: row?.project_count ?? 0,
-		medianRent:   row?.median_rent   ?? 0,
-		lowerRent:    row?.lower_rent    ?? 0,
-		upperRent:    row?.upper_rent    ?? 0
+		projectCount:   row?.project_count ?? 0,
+		medianRent:     row?.median_rent   ?? 0,
+		lowerRent:      row?.lower_rent    ?? 0,
+		upperRent:      row?.upper_rent    ?? 0,
+		prevMedianRent: prevRow?.median_rent ?? null,
+		prevLowerRent:  prevRow?.lower_rent  ?? null,
+		prevUpperRent:  prevRow?.upper_rent  ?? null,
+		resolvedYear,
+		prevYear
 	};
 }
 

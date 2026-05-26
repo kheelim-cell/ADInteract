@@ -9,6 +9,8 @@
     if (n >= 1_000)     return `AED ${Math.round(n).toLocaleString('en-US')}`;
     return `AED ${n.toLocaleString('en-US')}`;
   }
+
+  let compLabel = $derived(`vs. ${stats.prevYear}`);
 </script>
 
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
@@ -20,16 +22,22 @@
   <RentalStatCard
     label="Lower Band (25th %ile)"
     value={fmt(stats.lowerRent)}
-    sub="25th percentile"
+    currentRaw={stats.lowerRent}
+    previousRaw={stats.prevLowerRent ?? 0}
+    comparisonLabel={compLabel}
   />
   <RentalStatCard
     label="Median Annual Rent"
     value={fmt(stats.medianRent)}
-    sub="50th percentile"
+    currentRaw={stats.medianRent}
+    previousRaw={stats.prevMedianRent ?? 0}
+    comparisonLabel={compLabel}
   />
   <RentalStatCard
     label="Upper Band (75th %ile)"
     value={fmt(stats.upperRent)}
-    sub="75th percentile"
+    currentRaw={stats.upperRent}
+    previousRaw={stats.prevUpperRent ?? 0}
+    comparisonLabel={compLabel}
   />
 </div>

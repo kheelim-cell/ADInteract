@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { RentalProjectRow } from '$lib/db/rental_types';
+  import { resetRentalFilters } from '$lib/stores/rental_filters';
 
   let {
     rows,
@@ -111,8 +112,25 @@
           {/each}
         {:else if rows.length === 0}
           <tr>
-            <td colspan={HEADERS.length} class="px-4 py-12 text-center text-gray-400 text-sm">
-              No projects match the selected filters.
+            <td colspan={HEADERS.length} class="px-4 py-16 text-center">
+              <div class="flex flex-col items-center gap-3">
+                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+                  <svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 15.803 7.5 7.5 0 0 0 15.803 15.803z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-700">No projects match these filters</p>
+                  <p class="mt-1 text-xs text-gray-400">Try a different district, community, or layout</p>
+                </div>
+                <button
+                  type="button"
+                  onclick={resetRentalFilters}
+                  class="mt-1 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold bg-brand-600 text-white hover:bg-brand-700 transition-colors"
+                >
+                  Clear all filters
+                </button>
+              </div>
             </td>
           </tr>
         {:else}
@@ -158,7 +176,24 @@
         </div>
       {/each}
     {:else if rows.length === 0}
-      <div class="px-4 py-12 text-center text-gray-400 text-sm">No projects match the selected filters.</div>
+      <div class="px-4 py-16 flex flex-col items-center gap-3 text-center">
+        <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+          <svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 15.803 7.5 7.5 0 0 0 15.803 15.803z" />
+          </svg>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-gray-700">No projects match these filters</p>
+          <p class="mt-1 text-xs text-gray-400">Try a different district, community, or layout</p>
+        </div>
+        <button
+          type="button"
+          onclick={resetRentalFilters}
+          class="mt-1 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold bg-brand-600 text-white hover:bg-brand-700 transition-colors"
+        >
+          Clear all filters
+        </button>
+      </div>
     {:else}
       <div class="divide-y divide-gray-50">
         {#each rows as row}

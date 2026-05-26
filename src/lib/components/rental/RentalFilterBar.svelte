@@ -9,6 +9,11 @@
   let districtOpen  = $state(false);
   let districtEl    = $state<HTMLDivElement>();
 
+  // Community autocomplete
+  let communityQuery = $state('');
+  let communityOpen  = $state(false);
+  let communityEl    = $state<HTMLDivElement>();
+
   // Project autocomplete
   let projectQuery = $state('');
   let projectOpen  = $state(false);
@@ -20,14 +25,23 @@
   let shareEl       = $state<HTMLDivElement>();
 
   $effect(() => {
-    districtQuery = $rentalFilters.district ?? '';
-    projectQuery  = $rentalFilters.project  ?? '';
+    districtQuery  = $rentalFilters.district  ?? '';
+    communityQuery = $rentalFilters.community ?? '';
+    projectQuery   = $rentalFilters.project   ?? '';
   });
 
   let districtMatches = $derived(
     districtQuery.length >= 1
       ? ($rentalMetadata?.districts ?? [])
           .filter((d) => d.toLowerCase().includes(districtQuery.toLowerCase()))
+          .slice(0, 8)
+      : []
+  );
+
+  let communityMatches = $derived(
+    communityQuery.length >= 1
+      ? ($rentalMetadata?.communities ?? [])
+          .filter((c) => c.toLowerCase().includes(communityQuery.toLowerCase()))
           .slice(0, 8)
       : []
   );
@@ -41,13 +55,14 @@
   );
 
   function handleClickOutside(e: MouseEvent) {
-    if (districtEl && !districtEl.contains(e.target as Node)) districtOpen  = false;
-    if (projectEl  && !projectEl.contains(e.target as Node))  projectOpen   = false;
-    if (shareEl    && !shareEl.contains(e.target as Node))    shareMenuOpen = false;
+    if (districtEl  && !districtEl.contains(e.target as Node))  districtOpen  = false;
+    if (communityEl && !communityEl.contains(e.target as Node)) communityOpen = false;
+    if (projectEl   && !projectEl.contains(e.target as Node))   projectOpen   = false;
+    if (shareEl     && !shareEl.contains(e.target as Node))     shareMenuOpen = false;
   }
 
   $effect(() => {
-    if (districtOpen || projectOpen || shareMenuOpen) {
+    if (districtOpen || communityOpen || projectOpen || shareMenuOpen) {
       document.addEventListener('click', handleClickOutside);
       return () => document.removeEventListener('click', handleClickOutside);
     }
@@ -62,6 +77,17 @@
   function clearDistrict() {
     districtQuery = '';
     updateRentalFilter({ district: null, community: null });
+  }
+
+  function selectCommunity(c: string) {
+    communityQuery = c;
+    communityOpen  = false;
+    updateRentalFilter({ community: c });
+  }
+
+  function clearCommunity() {
+    communityQuery = '';
+    updateRentalFilter({ community: null });
   }
 
   function selectProject(p: string) {
@@ -93,11 +119,12 @@
   }
 
   let hasActiveFilters = $derived(
-    $rentalFilters.district !== null ||
-    $rentalFilters.project  !== null ||
-    $rentalFilters.typology !== null ||
-    $rentalFilters.layout   !== null ||
-    $rentalFilters.rentType !== DEFAULT_RENTAL_FILTERS.rentType
+    $rentalFilters.district  !== null ||
+    $rentalFilters.community !== null ||
+    $rentalFilters.project   !== null ||
+    $rentalFilters.typology  !== null ||
+    $rentalFilters.layout    !== null ||
+    $rentalFilters.rentType  !== DEFAULT_RENTAL_FILTERS.rentType
   );
 
   const years = $derived($rentalMetadata?.years ?? []);
@@ -156,6 +183,43 @@
                 class="flex w-full items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition-colors text-left"
               >
                 {d}
+              </button>
+            {/each}
+          </div>
+        {/if}
+      </div>
+
+      <!-- Community search -->
+      <div class="relative" bind:this={communityEl}>
+        <div class="flex items-center rounded-xl border border-gray-200 bg-white px-3 py-2 gap-2 text-sm w-40 sm:w-48">
+          <svg class="h-3.5 w-3.5 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Community"
+            bind:value={communityQuery}
+            oninput={() => { communityOpen = communityQuery.length >= 1; }}
+            onfocus={() => { if (communityQuery.length >= 1) communityOpen = true; }}
+            class="flex-1 min-w-0 bg-transparent text-xs font-medium text-gray-700 placeholder-gray-400 outline-none"
+          />
+          {#if $rentalFilters.community}
+            <button onclick={clearCommunity} class="text-gray-400 hover:text-gray-600">
+              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          {/if}
+        </div>
+        {#if communityOpen && communityMatches.length > 0}
+          <div class="absolute top-full left-0 z-30 mt-1 w-64 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
+            {#each communityMatches as c}
+              <button
+                type="button"
+                onclick={() => selectCommunity(c)}
+                class="flex w-full items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition-colors text-left"
+              >
+                {c}
               </button>
             {/each}
           </div>

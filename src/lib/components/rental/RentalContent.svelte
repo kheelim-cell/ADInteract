@@ -1,6 +1,7 @@
 <script lang="ts">
   import { rentalFilters } from '$lib/stores/rental_filters';
   import { dbReady, rentalMetadata } from '$lib/stores/db';
+  import { browser } from '$app/environment';
   import {
     queryRentalStats,
     queryRentalTrend,
@@ -28,11 +29,39 @@
   let loading = $state(false);
   let chartsLoading = $state(false);
 
-  // Table state
-  let tablePage    = $state(1);
-  let tableSortCol = $state('median_rent');
-  let tableSortDir = $state<'asc' | 'desc'>('desc');
+  // Table state — initialise from URL params if available
+  function readUrlTableState(): { col: string; dir: 'asc' | 'desc'; pg: number } {
+    if (!browser) return { col: 'median_rent', dir: 'desc', pg: 1 };
+    const p = new URLSearchParams(window.location.search);
+    const SAFE_COLS = new Set(['project_name','district','median_rent','lower_rent','upper_rent','yoy_change']);
+    const col = p.get('rsort') ?? 'median_rent';
+    const dir = p.get('rdir') === 'asc' ? 'asc' : 'desc';
+    const pg  = Math.max(1, parseInt(p.get('rpage') ?? '1', 10) || 1);
+    return { col: SAFE_COLS.has(col) ? col : 'median_rent', dir, pg };
+  }
+
+  const _init = readUrlTableState();
+  let tablePage    = $state(_init.pg);
+  let tableSortCol = $state(_init.col);
+  let tableSortDir = $state<'asc' | 'desc'>(_init.dir);
   const PAGE_SIZE = 50;
+
+  // Sync table sort/page back to URL without navigation
+  $effect(() => {
+    const col = tableSortCol;
+    const dir = tableSortDir;
+    const pg  = tablePage;
+    if (!browser) return;
+    const url = new URL(window.location.href);
+    url.searchParams.set('rsort', col);
+    url.searchParams.set('rdir',  dir);
+    if (pg === 1) {
+      url.searchParams.delete('rpage');
+    } else {
+      url.searchParams.set('rpage', String(pg));
+    }
+    window.history.replaceState({}, '', url.toString());
+  });
 
   function handleSort(col: string) {
     if (tableSortCol === col) {

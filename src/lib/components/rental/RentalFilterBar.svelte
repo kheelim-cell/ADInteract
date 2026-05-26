@@ -221,39 +221,38 @@
         </select>
       {/if}
 
-      <!-- Year pills + Clear all — anchored to far right as a group -->
-      <div class="ml-auto flex items-center gap-2">
-        {#if years.length > 0}
-          <div class="inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5">
-            {#each years as yr}
-              <button
-                type="button"
-                onclick={() => updateRentalFilter({ year: yr })}
-                class="rounded-full px-3 py-1 text-xs font-semibold transition-all whitespace-nowrap
-                       {resolvedYear === yr
-                         ? 'bg-brand-600 text-white shadow-sm'
-                         : 'text-gray-900 hover:bg-white'}"
-              >
-                {yr}
-              </button>
-            {/each}
-          </div>
-        {/if}
+      <!-- Clear all — rightmost in the filter row -->
+      {#if hasActiveFilters}
+        <button
+          type="button"
+          onclick={resetRentalFilters}
+          class="ml-auto inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 border border-gray-200 hover:border-red-200 transition-colors whitespace-nowrap"
+        >
+          <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          Clear all
+        </button>
+      {/if}
+    </div>
 
-        {#if hasActiveFilters}
+    <!-- Row 2: year pills — always left-aligned on their own line -->
+    {#if years.length > 0}
+      <div class="flex items-center gap-1 mt-2">
+        {#each years as yr}
           <button
             type="button"
-            onclick={resetRentalFilters}
-            class="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 border border-gray-200 hover:border-red-200 transition-colors whitespace-nowrap"
+            onclick={() => updateRentalFilter({ year: yr })}
+            class="rounded-full px-3 py-1 text-xs font-semibold border transition-all whitespace-nowrap
+                   {resolvedYear === yr
+                     ? 'bg-brand-600 border-brand-600 text-white shadow-sm'
+                     : 'border-gray-200 bg-gray-50 text-gray-900 hover:bg-white'}"
           >
-            <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            Clear all
+            {yr}
           </button>
-        {/if}
+        {/each}
       </div>
-    </div>
+    {/if}
 
   </div>
 </div>

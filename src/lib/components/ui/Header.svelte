@@ -73,12 +73,12 @@
       </div>
     </div>
 
-    <!-- Centre: Sales / Rental nav tabs (only shown when rental data available) -->
+    <!-- Centre: Sales / Rental nav tabs (always visible when rental data available) -->
     {#if hasRental}
-      <nav class="hidden sm:flex items-center rounded-full bg-white/8 border border-white/15 p-0.5 gap-0.5">
+      <nav class="flex items-center rounded-full bg-white/8 border border-white/15 p-0.5 gap-0.5">
         <a
           href="{base}/"
-          class="rounded-full px-4 py-1.5 text-xs font-semibold transition-colors
+          class="rounded-full px-3 sm:px-4 py-1.5 text-xs font-semibold transition-colors whitespace-nowrap
                  {!isRentalPage
                    ? 'bg-brand-500 text-white shadow-sm'
                    : 'text-white/60 hover:text-white hover:bg-white/10'}"
@@ -87,12 +87,13 @@
         </a>
         <a
           href="{base}/rental"
-          class="rounded-full px-4 py-1.5 text-xs font-semibold transition-colors
+          class="rounded-full px-3 sm:px-4 py-1.5 text-xs font-semibold transition-colors whitespace-nowrap
                  {isRentalPage
                    ? 'bg-brand-500 text-white shadow-sm'
                    : 'text-white/60 hover:text-white hover:bg-white/10'}"
         >
-          Rental Index
+          <span class="sm:hidden">Rental</span>
+          <span class="hidden sm:inline">Rental Index</span>
         </a>
       </nav>
     {/if}

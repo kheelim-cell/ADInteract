@@ -255,8 +255,12 @@ export async function queryRentalProjects(
 
 	const [countRow] = await query<{ total: number }>(`
 		SELECT COUNT(*) AS total
-		FROM rental
-		WHERE ${where}
+		FROM (
+			SELECT project_name, district, community, typology, layout
+			FROM rental
+			WHERE ${where}
+			GROUP BY project_name, district, community, typology, layout
+		)
 	`);
 	const total = countRow?.total ?? 0;
 
@@ -268,16 +272,20 @@ export async function queryRentalProjects(
 				community,
 				typology,
 				layout,
-				lower_rent,
-				median_rent,
-				upper_rent
+				PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY lower_rent)  AS lower_rent,
+				PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS median_rent,
+				PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY upper_rent)  AS upper_rent
 			FROM rental
 			WHERE ${where}
+			GROUP BY project_name, district, community, typology, layout
 		),
 		prev AS (
-			SELECT project_name, median_rent AS prev_median
+			SELECT
+				project_name,
+				PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS prev_median
 			FROM rental
 			WHERE ${prevWhere}
+			GROUP BY project_name
 		)
 		SELECT
 			c.project_name,

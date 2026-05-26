@@ -120,8 +120,8 @@
                   </svg>
                 </div>
                 <div>
-                  <p class="text-sm font-semibold text-gray-700">No projects match these filters</p>
-                  <p class="mt-1 text-xs text-gray-400">Try a different district, community, or layout</p>
+                  <p class="text-sm font-semibold text-gray-700">No rental listings match these filters</p>
+                  <p class="mt-1 text-xs text-gray-400">Try broadening the year range or removing a filter</p>
                 </div>
                 <button
                   type="button"
@@ -183,8 +183,8 @@
           </svg>
         </div>
         <div>
-          <p class="text-sm font-semibold text-gray-700">No projects match these filters</p>
-          <p class="mt-1 text-xs text-gray-400">Try a different district, community, or layout</p>
+          <p class="text-sm font-semibold text-gray-700">No rental listings match these filters</p>
+          <p class="mt-1 text-xs text-gray-400">Try broadening the year range or removing a filter</p>
         </div>
         <button
           type="button"

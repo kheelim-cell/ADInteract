@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { filters, updateFilter, dateRangeMs } from '$lib/stores/filters';
+  import { filters, updateFilter, resetFilters, dateRangeMs } from '$lib/stores/filters';
   import type { Transaction } from '$lib/db/types';
   import { formatDate, formatNumber, formatCurrency, formatArea, formatRate } from '$lib/utils/format';
   import { exportTransactions } from '$lib/db/queries';
@@ -220,12 +220,23 @@
       </div>
     {:else if transactions.length === 0}
       <div class="px-4 py-16 text-center">
-        <div class="flex flex-col items-center gap-2">
-          <svg class="h-10 w-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-          </svg>
-          <p class="text-sm text-gray-500 font-medium">No transactions found</p>
-          <p class="text-xs text-gray-400">Try adjusting your filters</p>
+        <div class="flex flex-col items-center gap-3">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+            <svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 15.803 7.5 7.5 0 0 0 15.803 15.803z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-gray-700">No transactions match these filters</p>
+            <p class="mt-1 text-xs text-gray-400">Try broadening the date range or removing a filter</p>
+          </div>
+          <button
+            type="button"
+            onclick={resetFilters}
+            class="mt-1 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold bg-brand-600 text-white hover:bg-brand-700 transition-colors"
+          >
+            Clear all filters
+          </button>
         </div>
       </div>
     {:else}
@@ -360,12 +371,23 @@
         {:else if transactions.length === 0}
           <tr>
             <td colspan={columns.length + 1} class="px-4 py-16 text-center">
-              <div class="flex flex-col items-center gap-2">
-                <svg class="h-10 w-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-                </svg>
-                <p class="text-sm text-gray-500 font-medium">No transactions found</p>
-                <p class="text-xs text-gray-400">Try adjusting your filters</p>
+              <div class="flex flex-col items-center gap-3">
+                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+                  <svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 15.803 7.5 7.5 0 0 0 15.803 15.803z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-700">No transactions match these filters</p>
+                  <p class="mt-1 text-xs text-gray-400">Try broadening the date range or removing a filter</p>
+                </div>
+                <button
+                  type="button"
+                  onclick={resetFilters}
+                  class="mt-1 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold bg-brand-600 text-white hover:bg-brand-700 transition-colors"
+                >
+                  Clear all filters
+                </button>
               </div>
             </td>
           </tr>

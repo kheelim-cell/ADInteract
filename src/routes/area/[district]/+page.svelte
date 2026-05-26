@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
+  import { base } from '$app/paths';
   import { updateFilter } from '$lib/stores/filters';
   import DashboardContent from '$lib/components/DashboardContent.svelte';
 
@@ -18,7 +19,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
   <!-- Breadcrumb -->
   <nav class="flex items-center gap-2 text-sm text-gray-500 mb-4">
-    <a href="/" class="hover:text-brand-600 transition-colors">Overview</a>
+    <a href="{base}/" class="hover:text-brand-600 transition-colors">Overview</a>
     <svg class="h-4 w-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
     </svg>
@@ -31,7 +32,7 @@
       <p class="text-sm text-gray-400 mt-0.5">District analytics</p>
     </div>
     <a
-      href="/"
+      href="{base}/"
       class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-brand-600 transition-colors bg-white border border-gray-200 rounded-lg px-3 py-2 hover:border-brand-300 shadow-sm"
     >
       <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">

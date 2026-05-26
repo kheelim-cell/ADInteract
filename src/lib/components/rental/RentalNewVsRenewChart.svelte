@@ -52,20 +52,23 @@
         borderWidth: 1,
         textStyle: { color: '#111827', fontSize: 12, fontFamily: 'Montserrat, system-ui, sans-serif' },
         formatter: (params: echarts.TooltipComponentFormatterCallbackParams) => {
-          const arr  = Array.isArray(params) ? params : [params];
+          const arr   = Array.isArray(params) ? params : [params];
           const label = arr[0]?.axisValue ?? '';
           const idx   = layouts.indexOf(label as string);
           const gap   = gaps[idx];
           const newV  = arr.find((p) => p.seriesName === 'New contract')?.value as number ?? 0;
           const renV  = arr.find((p) => p.seriesName === 'Renewal')?.value as number ?? 0;
-          const gapLine = gap !== null
-            ? `<br/><span style="color:#059669;font-weight:600">New is ${gap > 0 ? '+' : ''}${gap}% vs Renewal</span>`
+          const delta = newV - renV;
+          const dir   = delta >= 0 ? 'more' : 'less';
+          const sign  = gap !== null && gap >= 0 ? '+' : '';
+          const deltaLine = gap !== null
+            ? `<br/><span style="color:#059669;font-weight:600">New pays ${fmtK(Math.abs(delta))} ${dir}/yr &nbsp;·&nbsp; ${sign}${gap.toFixed(1)}%</span>`
             : '';
           return (
             `<b>${label}</b><br/>` +
             `New:     <b>${fmtK(newV)}</b><br/>` +
             `Renewal: <b>${fmtK(renV)}</b>` +
-            gapLine
+            deltaLine
           );
         }
       },
@@ -105,7 +108,12 @@
           data: [...renRents].reverse(),
           barMaxWidth: 18,
           itemStyle: { color: '#C8A951', borderRadius: [0, 4, 4, 0] },
-          label: { show: false }
+          label: {
+            show: true, position: 'right',
+            formatter: (p: { value: number }) => fmtK(p.value),
+            fontSize: 10, color: '#6b7280',
+            fontFamily: 'Montserrat, system-ui, sans-serif'
+          }
         }
       ]
     });

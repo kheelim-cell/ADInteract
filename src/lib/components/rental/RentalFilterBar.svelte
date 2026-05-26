@@ -229,34 +229,40 @@
       {/if}
     </div>
 
-    <!-- Row 2: year pills + Clear all + Share -->
+    <!-- Row 2: year pills + Clear all + Share (never wraps — pills scroll, actions pinned right) -->
     {#if years.length > 0}
-      <div class="flex items-center gap-1 mt-2 flex-wrap">
-        {#each years as yr}
-          <button
-            type="button"
-            onclick={() => updateRentalFilter({ year: yr })}
-            class="rounded-full px-3 py-1 text-xs font-semibold border transition-all whitespace-nowrap
-                   {resolvedYear === yr
-                     ? 'bg-brand-600 border-brand-600 text-white shadow-sm'
-                     : 'border-gray-200 bg-gray-50 text-gray-900 hover:bg-white'}"
-          >
-            {yr}
-          </button>
-        {/each}
+      <div class="flex items-center gap-2 mt-2">
+        <!-- Scrollable year pills -->
+        <div class="flex-1 min-w-0 overflow-x-auto scrollbar-none">
+          <div class="inline-flex items-center gap-1 min-w-max">
+            {#each years as yr}
+              <button
+                type="button"
+                onclick={() => updateRentalFilter({ year: yr })}
+                class="rounded-full px-3 py-1 text-xs font-semibold border transition-all whitespace-nowrap
+                       {resolvedYear === yr
+                         ? 'bg-brand-600 border-brand-600 text-white shadow-sm'
+                         : 'border-gray-200 bg-gray-50 text-gray-900 hover:bg-white'}"
+              >
+                {yr}
+              </button>
+            {/each}
+          </div>
+        </div>
 
-        <!-- Clear all + Share grouped at far right -->
-        <div class="ml-auto flex items-center gap-2">
+        <!-- Clear all + Share pinned at right -->
+        <div class="flex-shrink-0 flex items-center gap-1.5">
           {#if hasActiveFilters}
             <button
               type="button"
               onclick={resetRentalFilters}
-              class="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 border border-gray-200 hover:border-red-200 transition-colors whitespace-nowrap"
+              title="Clear all filters"
+              class="inline-flex items-center gap-1 rounded-full px-2 sm:px-3 py-1.5 text-xs font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 border border-gray-200 hover:border-red-200 transition-colors"
             >
-              <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="h-3 w-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
-              Clear all
+              <span class="hidden sm:inline whitespace-nowrap">Clear all</span>
             </button>
           {/if}
 
@@ -265,21 +271,22 @@
             <button
               type="button"
               onclick={() => (shareMenuOpen = !shareMenuOpen)}
-              class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium border transition-colors
+              title="Share"
+              class="inline-flex items-center gap-1.5 rounded-full px-2 sm:px-3 py-1.5 text-xs font-medium border transition-colors
                      {copied
                        ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
                        : 'border-gray-200 bg-white text-gray-600 hover:border-brand-300 hover:text-brand-700 hover:bg-brand-50'}"
             >
               {#if copied}
-                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <svg class="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                Copied!
+                <span class="hidden sm:inline">Copied!</span>
               {:else}
-                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <svg class="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
                 </svg>
-                Share
+                <span class="hidden sm:inline">Share</span>
               {/if}
             </button>
             {#if shareMenuOpen}

@@ -39,7 +39,7 @@
 
 <div class="flex flex-col sm:flex-row sm:items-center gap-2">
   <!-- Preset pill — horizontally scrollable on mobile so it never wraps -->
-  <div class="overflow-x-auto scrollbar-none -mx-4 sm:mx-0 px-4 sm:px-0">
+  <div class="overflow-x-auto scrollbar-none">
     <div class="inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5 min-w-max">
       {#each presets as preset}
         <button

@@ -5,7 +5,7 @@
   import DistrictSearch from './DistrictSearch.svelte';
   import DateRangePicker from './DateRangePicker.svelte';
   import SaleTypeToggle from './SaleTypeToggle.svelte';
-  import SaleSequenceToggle from './SaleSequenceToggle.svelte';
+  import OtherFilters from './OtherFilters.svelte';
   import PropertyTypeFilter from './PropertyTypeFilter.svelte';
   import LayoutFilter from './LayoutFilter.svelte';
 
@@ -51,7 +51,9 @@
     $filters.saleType      !== DEFAULT_FILTERS.saleType   ||
     $filters.saleSequence  !== DEFAULT_FILTERS.saleSequence ||
     $filters.propertyTypes.length > 0 ||
-    $filters.layouts.length > 0
+    $filters.layouts.length > 0 ||
+    $filters.areaSqftMin   !== null ||
+    $filters.areaSqftMax   !== null
   );
 </script>
 
@@ -67,12 +69,12 @@
       <div class="hidden sm:block h-5 w-px bg-gray-200"></div>
 
       <SaleTypeToggle />
-      <SaleSequenceToggle />
 
       <div class="hidden sm:block h-5 w-px bg-gray-200"></div>
 
       <PropertyTypeFilter />
       <LayoutFilter />
+      <OtherFilters />
     </div>
 
     <!-- Row 2: date range + clear + share (never wraps — pills scroll, actions pinned right) -->

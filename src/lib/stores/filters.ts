@@ -16,6 +16,8 @@ function parseUrlFilters(): FilterState {
 		saleSequence: (params.get('seq') as FilterState['saleSequence']) || 'all',
 		propertyTypes: params.get('propType')?.split(',').filter(Boolean) || [],
 		layouts: params.get('layout')?.split(',').filter(Boolean) || [],
+		areaSqftMin: params.get('amin') ? Number(params.get('amin')) : null,
+		areaSqftMax: params.get('amax') ? Number(params.get('amax')) : null,
 		sortColumn: params.get('sort') || 'sale_date',
 		sortDirection: (params.get('dir') as 'asc' | 'desc') || 'desc',
 		page: parseInt(params.get('page') || '1', 10),
@@ -100,6 +102,8 @@ if (browser) {
 		if ($f.saleSequence !== 'all') params.set('seq', $f.saleSequence);
 		if ($f.propertyTypes.length) params.set('propType', $f.propertyTypes.join(','));
 		if ($f.layouts.length) params.set('layout', $f.layouts.join(','));
+		if ($f.areaSqftMin != null) params.set('amin', String($f.areaSqftMin));
+		if ($f.areaSqftMax != null) params.set('amax', String($f.areaSqftMax));
 		if ($f.sortColumn !== 'sale_date') params.set('sort', $f.sortColumn);
 		if ($f.sortDirection !== 'desc') params.set('dir', $f.sortDirection);
 		if ($f.page > 1) params.set('page', String($f.page));

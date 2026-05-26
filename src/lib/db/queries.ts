@@ -39,6 +39,8 @@ function buildWhere(f: FilterState, dateStart: string, dateEnd: string): string 
 	if (f.layouts.length > 0) {
 		clauses.push(`layout IN (${f.layouts.map((l) => `'${esc(l)}'`).join(',')})`);
 	}
+	if (f.areaSqftMin != null) clauses.push(`area_sqft >= ${f.areaSqftMin}`);
+	if (f.areaSqftMax != null) clauses.push(`area_sqft <= ${f.areaSqftMax}`);
 	return clauses.join(' AND ');
 }
 

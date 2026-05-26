@@ -25,6 +25,8 @@ export interface FilterState {
 	saleSequence: 'all' | 'primary' | 'secondary';
 	propertyTypes: string[];
 	layouts: string[];
+	areaSqftMin: number | null;
+	areaSqftMax: number | null;
 	sortColumn: string;
 	sortDirection: 'asc' | 'desc';
 	page: number;
@@ -118,6 +120,8 @@ export const DEFAULT_FILTERS: FilterState = {
 	saleSequence: 'all',
 	propertyTypes: [],
 	layouts: [],
+	areaSqftMin: null,
+	areaSqftMax: null,
 	sortColumn: 'sale_date',
 	sortDirection: 'desc',
 	page: 1,

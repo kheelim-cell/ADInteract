@@ -75,21 +75,21 @@
 
     <!-- Centre: Sales / Rental nav tabs (always visible when rental data available) -->
     {#if hasRental}
-      <nav class="flex items-center rounded-full bg-white/10 border border-white/25 p-1 gap-1">
+      <nav class="flex items-center rounded-full bg-white/10 border border-white/25 p-0.5 sm:p-1 gap-0.5 sm:gap-1">
         <a
           href="{base}/"
-          class="rounded-full px-5 sm:px-7 py-2 text-sm font-bold transition-colors whitespace-nowrap tracking-wide
+          class="rounded-full px-3 sm:px-7 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold sm:font-bold transition-colors whitespace-nowrap sm:tracking-wide
                  {!isRentalPage
-                   ? 'bg-brand-500 text-white shadow-md'
+                   ? 'bg-brand-500 text-white shadow-sm sm:shadow-md'
                    : 'text-white/60 hover:text-white hover:bg-white/10'}"
         >
           Sales
         </a>
         <a
           href="{base}/rental"
-          class="rounded-full px-5 sm:px-7 py-2 text-sm font-bold transition-colors whitespace-nowrap tracking-wide
+          class="rounded-full px-3 sm:px-7 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold sm:font-bold transition-colors whitespace-nowrap sm:tracking-wide
                  {isRentalPage
-                   ? 'bg-brand-500 text-white shadow-md'
+                   ? 'bg-brand-500 text-white shadow-sm sm:shadow-md'
                    : 'text-white/60 hover:text-white hover:bg-white/10'}"
         >
           Rental

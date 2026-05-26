@@ -30,14 +30,14 @@
 <div class="h-0.5 w-full bg-gradient-to-r from-transparent via-brand-500 to-transparent"></div>
 
 <header class="bg-gradient-to-b from-[#1e4d3a] to-navy border-b border-white/5">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3 sm:gap-6">
 
     <!-- Left: Logo + brand -->
-    <div class="flex items-center gap-4 min-w-0">
+    <div class="flex items-center gap-2 sm:gap-4 min-w-0">
 
       <!-- Skyline silhouette icon -->
-      <div class="flex-shrink-0 flex items-center justify-center w-12 h-11 rounded-xl bg-white/8 border border-brand-500/30 shadow-inner">
-        <svg class="w-10 h-8 text-brand-400" viewBox="0 0 80 40" fill="currentColor">
+      <div class="flex-shrink-0 flex items-center justify-center w-9 h-8 sm:w-12 sm:h-11 rounded-xl bg-white/8 border border-brand-500/30 shadow-inner">
+        <svg class="w-7 h-5 sm:w-10 sm:h-8 text-brand-400" viewBox="0 0 80 40" fill="currentColor">
           <path d="
             M 0,38
             L 0,30 L 5,30 L 5,26 L 10,26 L 10,30
@@ -92,8 +92,7 @@
                    ? 'bg-brand-500 text-white shadow-sm'
                    : 'text-white/60 hover:text-white hover:bg-white/10'}"
         >
-          <span class="sm:hidden">Rental</span>
-          <span class="hidden sm:inline">Rental Index</span>
+          Rental
         </a>
       </nav>
     {/if}

@@ -89,6 +89,10 @@
   const layouts = $derived(
     ($rentalMetadata?.layouts ?? []).filter((l) => l !== 'all beds')
   );
+
+  function capLayout(l: string): string {
+    return l.charAt(0).toUpperCase() + l.slice(1);
+  }
 </script>
 
 <div class="sticky top-0 z-10 bg-white/98 backdrop-blur-md border-b border-gray-200/80 shadow-sm">
@@ -232,7 +236,7 @@
         >
           <option value="">All beds</option>
           {#each layouts as l}
-            <option value={l}>{l}</option>
+            <option value={l}>{capLayout(l)}</option>
           {/each}
         </select>
       {/if}

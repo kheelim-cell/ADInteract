@@ -221,22 +221,9 @@
         </select>
       {/if}
 
-      <!-- Clear all — rightmost in the filter row -->
-      {#if hasActiveFilters}
-        <button
-          type="button"
-          onclick={resetRentalFilters}
-          class="ml-auto inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 border border-gray-200 hover:border-red-200 transition-colors whitespace-nowrap"
-        >
-          <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-          Clear all
-        </button>
-      {/if}
     </div>
 
-    <!-- Row 2: year pills — always left-aligned on their own line -->
+    <!-- Row 2: year pills left-aligned + Clear all far right -->
     {#if years.length > 0}
       <div class="flex items-center gap-1 mt-2">
         {#each years as yr}
@@ -251,6 +238,19 @@
             {yr}
           </button>
         {/each}
+
+        {#if hasActiveFilters}
+          <button
+            type="button"
+            onclick={resetRentalFilters}
+            class="ml-auto inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 border border-gray-200 hover:border-red-200 transition-colors whitespace-nowrap"
+          >
+            <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            Clear all
+          </button>
+        {/if}
       </div>
     {/if}
 

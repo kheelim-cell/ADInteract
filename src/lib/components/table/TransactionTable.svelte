@@ -4,6 +4,8 @@
   import { formatDate, formatNumber, formatCurrency, formatArea, formatRate } from '$lib/utils/format';
   import { exportTransactions } from '$lib/db/queries';
   import { base } from '$app/paths';
+  import { isAuthenticated, openSignIn } from '$lib/stores/auth';
+  import { supabaseEnabled } from '$lib/supabase';
 
   let exporting = $state(false);
 
@@ -154,6 +156,8 @@
   });
 
   const skeletonRows = Array.from({ length: 10 });
+
+  let locked = $derived(supabaseEnabled && !$isAuthenticated);
 </script>
 
 <div class="rounded-2xl bg-white shadow-sm border border-white/80 overflow-hidden">
@@ -201,8 +205,27 @@
     {/if}
   </div>
 
+  <!-- ─── DATA ROWS (gated when not signed in) ──────────────────────────── -->
+  <div class="relative">
+    <!-- Blur + wash overlay -->
+    {#if locked}
+      <div class="absolute inset-0 bg-white/50 z-[5]"></div>
+      <div class="absolute inset-0 flex items-center justify-center z-10">
+        <button
+          type="button"
+          onclick={openSignIn}
+          class="inline-flex items-center gap-2 rounded-full bg-[#1e4d3a] px-5 py-2.5 text-sm font-semibold text-white shadow-lg hover:bg-[#174033] transition-colors"
+        >
+          <svg class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+          </svg>
+          Sign In to view transactions
+        </button>
+      </div>
+    {/if}
+
   <!-- ─── MOBILE CARD VIEW (< md) ─────────────────────────────────────────── -->
-  <div class="block md:hidden">
+  <div class={`block md:hidden${locked ? ' blur-md pointer-events-none select-none' : ''}`}>
     {#if loading}
       <div class="divide-y divide-gray-50">
         {#each skeletonRows as _}
@@ -322,7 +345,7 @@
   </div>
 
   <!-- ─── DESKTOP TABLE VIEW (md+) ────────────────────────────────────────── -->
-  <div class="hidden md:block overflow-x-auto">
+  <div class={`hidden md:block overflow-x-auto${locked ? ' blur-md pointer-events-none select-none' : ''}`}>
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b border-gray-200 bg-gray-50/60">
@@ -504,6 +527,8 @@
       </tbody>
     </table>
   </div>
+
+  </div><!-- end gated data rows -->
 
   <!-- Pagination -->
   {#if totalCount > 0}

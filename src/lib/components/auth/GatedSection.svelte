@@ -10,11 +10,16 @@
 
 <div class="relative">
   <!-- Blurred content layer -->
-  <div class={locked ? 'blur-sm pointer-events-none select-none' : ''}>
+  <div class={locked ? 'blur-md pointer-events-none select-none' : ''}>
     {@render children()}
   </div>
 
-  <!-- Overlay CTA (only when locked) -->
+  <!-- White wash overlay (makes blurred text truly unreadable) -->
+  {#if locked}
+    <div class="absolute inset-0 bg-white/50 z-[5] rounded-inherit"></div>
+  {/if}
+
+  <!-- Sign-in CTA (only when locked) -->
   {#if locked}
     <div class="absolute inset-0 flex items-center justify-center z-10">
       <button

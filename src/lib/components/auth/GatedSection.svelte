@@ -1,25 +1,28 @@
 <script lang="ts">
+  import { setContext } from 'svelte';
   import { isAuthenticated, openSignIn } from '$lib/stores/auth';
   import { supabaseEnabled } from '$lib/supabase';
 
   let { children }: { children: import('svelte').Snippet } = $props();
 
-  // If Supabase is not configured, never gate — show everything
   let locked = $derived(supabaseEnabled && !$isAuthenticated);
+
+  // Share locked state with descendant components (StatCard, chart wrappers, etc.)
+  setContext('gated-locked', { get: () => locked });
 </script>
 
 <div class="relative">
-  <!-- Blurred content layer -->
-  <div class={locked ? 'blur-md pointer-events-none select-none' : ''}>
+  <!-- Content: only block interaction when locked, no parent-level blur -->
+  <div class={locked ? 'pointer-events-none select-none' : ''}>
     {@render children()}
   </div>
 
-  <!-- White wash overlay (makes blurred text truly unreadable) -->
+  <!-- Light wash so blurred values lose contrast -->
   {#if locked}
-    <div class="absolute inset-0 bg-white/50 z-[5] rounded-inherit"></div>
+    <div class="absolute inset-0 bg-white/25 z-[5]"></div>
   {/if}
 
-  <!-- Sign-in CTA (only when locked) -->
+  <!-- Sign-in CTA -->
   {#if locked}
     <div class="absolute inset-0 flex items-center justify-center z-10">
       <button

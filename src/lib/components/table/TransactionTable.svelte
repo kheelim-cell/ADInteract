@@ -225,7 +225,7 @@
     {/if}
 
   <!-- ─── MOBILE CARD VIEW (< md) ─────────────────────────────────────────── -->
-  <div class={`block md:hidden${locked ? ' blur-md pointer-events-none select-none' : ''}`}>
+  <div class={`block md:hidden${locked ? ' blur-sm pointer-events-none select-none' : ''}`}>
     {#if loading}
       <div class="divide-y divide-gray-50">
         {#each skeletonRows as _}
@@ -345,7 +345,7 @@
   </div>
 
   <!-- ─── DESKTOP TABLE VIEW (md+) ────────────────────────────────────────── -->
-  <div class={`hidden md:block overflow-x-auto${locked ? ' blur-md pointer-events-none select-none' : ''}`}>
+  <div class={`hidden md:block overflow-x-auto${locked ? ' blur-sm pointer-events-none select-none' : ''}`}>
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b border-gray-200 bg-gray-50/60">

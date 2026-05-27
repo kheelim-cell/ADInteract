@@ -16,6 +16,7 @@
   import FilterBar from '$lib/components/filters/FilterBar.svelte';
   import StatsGrid from '$lib/components/stats/StatsGrid.svelte';
   import GatedSection from '$lib/components/auth/GatedSection.svelte';
+  import GatedBlur from '$lib/components/auth/GatedBlur.svelte';
   import PriceTrendChart from '$lib/components/charts/PriceTrendChart.svelte';
   import VolumeChart from '$lib/components/charts/VolumeChart.svelte';
   import TopAreasChart from '$lib/components/charts/TopAreasChart.svelte';
@@ -179,7 +180,7 @@
           <p class="text-sm text-gray-400">No data for current filters</p>
         </div>
       {:else}
-        <PriceTrendChart data={chartData} />
+        <GatedBlur><PriceTrendChart data={chartData} /></GatedBlur>
       {/if}
     </div>
 
@@ -197,7 +198,7 @@
           <p class="text-sm text-gray-400">No data for current filters</p>
         </div>
       {:else}
-        <VolumeChart data={chartData} />
+        <GatedBlur><VolumeChart data={chartData} /></GatedBlur>
       {/if}
     </div>
   </div>
@@ -251,7 +252,7 @@
             <p class="text-sm text-gray-400">No data for current filters</p>
           </div>
         {:else}
-          <TopAreasChart data={topAreas} clickable={topAreasClickable} />
+          <GatedBlur><TopAreasChart data={topAreas} clickable={topAreasClickable} /></GatedBlur>
         {/if}
       </div>
 
@@ -269,7 +270,7 @@
             <p class="text-sm text-gray-400">No data for current filters</p>
           </div>
         {:else}
-          <PriceDistributionChart data={priceDistribution} />
+          <GatedBlur><PriceDistributionChart data={priceDistribution} /></GatedBlur>
         {/if}
       </div>
     {/if}

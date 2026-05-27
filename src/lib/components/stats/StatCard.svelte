@@ -1,6 +1,10 @@
 <script lang="ts">
   import { growthPercent, formatPercent } from '$lib/utils/format';
   import { filters } from '$lib/stores/filters';
+  import { getContext } from 'svelte';
+
+  const gatedCtx = getContext<{ get: () => boolean } | undefined>('gated-locked');
+  let locked = $derived(gatedCtx?.get() ?? false);
 
   let {
     label,
@@ -41,13 +45,14 @@
 </script>
 
 <div class="stat-card flex flex-col gap-3">
-  <!-- Label -->
+  <!-- Label: always readable -->
   <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider sm:tracking-widest text-navy/40">{label}</span>
 
-  <!-- Value -->
-  <p class="text-2xl sm:text-3xl font-bold text-navy leading-none">{value}</p>
+  <!-- Value: blurred when locked -->
+  <p class="text-2xl sm:text-3xl font-bold text-navy leading-none {locked ? 'blur-sm' : ''}">{value}</p>
 
-  <!-- Growth badge -->
+  <!-- Growth badge: blurred when locked -->
+  <div class={locked ? 'blur-sm' : ''}>
   {#if showComparison && growth !== null}
     {#if isFlat}
       <span class="inline-flex items-center gap-1 self-start px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-50 text-gray-500 ring-1 ring-gray-200">
@@ -93,4 +98,5 @@
   {:else}
     <span class="text-xs text-navy/30 font-medium">No prior period data</span>
   {/if}
+  </div><!-- end blurred growth wrapper -->
 </div>

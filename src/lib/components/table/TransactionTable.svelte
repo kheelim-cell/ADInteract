@@ -304,7 +304,7 @@
 
               {#if row.area_sqft}
                 <span class="text-gray-200">·</span>
-                <span class="text-xs text-gray-500">{formatArea(row.area_sqft)} sqft</span>
+                <span class="text-xs text-gray-500">{formatArea(row.area_sqft)}</span>
               {/if}
 
               {#if row.sale_type}

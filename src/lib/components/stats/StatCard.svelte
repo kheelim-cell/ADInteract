@@ -49,10 +49,10 @@
   <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider sm:tracking-widest text-navy/40">{label}</span>
 
   <!-- Value -->
-  <p class="text-2xl sm:text-3xl font-bold text-navy leading-none">{value}</p>
+  <p class={`text-2xl sm:text-3xl font-bold text-navy leading-none${locked ? ' blur-[4px]' : ''}`}>{value}</p>
 
   <!-- Growth badge -->
-  <div>
+  <div class={locked ? 'blur-[3px]' : ''}>
   {#if showComparison && growth !== null}
     {#if isFlat}
       <span class="inline-flex items-center gap-1 self-start px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-50 text-gray-500 ring-1 ring-gray-200">

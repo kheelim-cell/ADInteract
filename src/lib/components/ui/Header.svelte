@@ -117,57 +117,43 @@
       </nav>
     {/if}
 
-    <!-- Right: Sign In button or user avatar -->
-    {#if supabaseEnabled}
+    <!-- Right: user avatar (only when signed in) -->
+    {#if supabaseEnabled && $isAuthenticated && $user}
       <div class="flex-shrink-0 relative">
-        {#if $isAuthenticated && $user}
-          <!-- Avatar + dropdown -->
-          <button
-            type="button"
-            onclick={() => (avatarMenuOpen = !avatarMenuOpen)}
-            class="flex items-center gap-2 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 px-2 py-1.5 transition-colors"
-          >
-            <span class="flex items-center justify-center w-7 h-7 rounded-full bg-brand-500 text-white text-xs font-bold">
-              {getInitials($user)}
-            </span>
-            <span class="hidden sm:block text-xs font-semibold text-white/80 max-w-[120px] truncate">
-              {getDisplayName($user)}
-            </span>
-          </button>
+        <button
+          type="button"
+          onclick={() => (avatarMenuOpen = !avatarMenuOpen)}
+          class="flex items-center gap-2 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 px-2 py-1.5 transition-colors"
+        >
+          <span class="flex items-center justify-center w-7 h-7 rounded-full bg-brand-500 text-white text-xs font-bold">
+            {getInitials($user)}
+          </span>
+          <span class="hidden sm:block text-xs font-semibold text-white/80 max-w-[120px] truncate">
+            {getDisplayName($user)}
+          </span>
+        </button>
 
-          {#if avatarMenuOpen}
-            <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
-            <div
-              class="absolute right-0 z-30 mt-2 w-44 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden"
-              onclick={() => (avatarMenuOpen = false)}
-            >
-              <div class="px-4 py-3 border-b border-gray-100">
-                <p class="text-xs text-gray-400">Signed in as</p>
-                <p class="text-sm font-semibold text-gray-900 truncate">{getDisplayName($user)}</p>
-              </div>
-              <button
-                type="button"
-                onclick={signOut}
-                class="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors"
-              >
-                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-                </svg>
-                Sign out
-              </button>
-            </div>
-          {/if}
-        {:else}
-          <button
-            type="button"
-            onclick={openSignIn}
-            class="inline-flex items-center gap-2 rounded-full bg-brand-500 hover:bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors shadow-sm"
+        {#if avatarMenuOpen}
+          <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
+          <div
+            class="absolute right-0 z-30 mt-2 w-44 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden"
+            onclick={() => (avatarMenuOpen = false)}
           >
-            <svg class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-            </svg>
-            <span class="hidden sm:inline">Sign In</span>
-          </button>
+            <div class="px-4 py-3 border-b border-gray-100">
+              <p class="text-xs text-gray-400">Signed in as</p>
+              <p class="text-sm font-semibold text-gray-900 truncate">{getDisplayName($user)}</p>
+            </div>
+            <button
+              type="button"
+              onclick={signOut}
+              class="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors"
+            >
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+              </svg>
+              Sign out
+            </button>
+          </div>
         {/if}
       </div>
     {/if}

@@ -110,6 +110,8 @@ jobs:
         run: npm run build
         env:
           BASE_PATH: ${{ vars.BASE_PATH || '/ADInteract' }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v4

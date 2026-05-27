@@ -4,8 +4,10 @@
   import Header from '$lib/components/ui/Header.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import LoadingSpinner from '$lib/components/ui/LoadingSpinner.svelte';
+  import SignInModal from '$lib/components/auth/SignInModal.svelte';
   import { initDuckDB, loadData, loadRentalData } from '$lib/db/duckdb';
   import { dbReady, dbError, dbLoading, metadata, rentalMetadata } from '$lib/stores/db';
+  import { showSignInModal } from '$lib/stores/auth';
   import { base } from '$app/paths';
   import type { Metadata } from '$lib/db/types';
   import type { RentalMetadata } from '$lib/db/rental_types';
@@ -52,6 +54,10 @@
 
 <div class="min-h-screen flex flex-col bg-[#FAFAF6]">
   <Header lastUpdated={$metadata?.lastUpdated ?? ''} />
+
+  {#if $showSignInModal}
+    <SignInModal />
+  {/if}
 
   <main class="flex-1">
     {#if $dbLoading}

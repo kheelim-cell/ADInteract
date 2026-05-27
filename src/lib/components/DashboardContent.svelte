@@ -15,6 +15,7 @@
   import { resetFilters } from '$lib/stores/filters';
   import FilterBar from '$lib/components/filters/FilterBar.svelte';
   import StatsGrid from '$lib/components/stats/StatsGrid.svelte';
+  import GatedSection from '$lib/components/auth/GatedSection.svelte';
   import PriceTrendChart from '$lib/components/charts/PriceTrendChart.svelte';
   import VolumeChart from '$lib/components/charts/VolumeChart.svelte';
   import TopAreasChart from '$lib/components/charts/TopAreasChart.svelte';
@@ -122,21 +123,23 @@
   <!-- Filters -->
   <FilterBar />
 
-  <!-- Stats -->
+  <!-- Stats (gated) -->
   <div class="mt-6">
-    {#if loading && !stats}
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        {#each Array(4) as _}
-          <div class="stat-card animate-pulse">
-            <div class="h-3 w-20 bg-gray-200 rounded mb-3"></div>
-            <div class="h-7 w-28 bg-gray-200 rounded mb-2"></div>
-            <div class="h-3 w-16 bg-gray-200 rounded"></div>
-          </div>
-        {/each}
-      </div>
-    {:else if stats}
-      <StatsGrid {stats} />
-    {/if}
+    <GatedSection>
+      {#if loading && !stats}
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          {#each Array(4) as _}
+            <div class="stat-card animate-pulse">
+              <div class="h-3 w-20 bg-gray-200 rounded mb-3"></div>
+              <div class="h-7 w-28 bg-gray-200 rounded mb-2"></div>
+              <div class="h-3 w-16 bg-gray-200 rounded"></div>
+            </div>
+          {/each}
+        </div>
+      {:else if stats}
+        <StatsGrid {stats} />
+      {/if}
+    </GatedSection>
   </div>
 
   <!-- Zero-result empty state banner -->
@@ -159,7 +162,8 @@
     </div>
   {/if}
 
-  <!-- Primary charts: Price Trend + Volume -->
+  <!-- Primary charts: Price Trend + Volume (gated) -->
+  <GatedSection>
   <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
     <div class="chart-card">
       <h3 class="text-sm font-semibold text-navy mb-4">Median Price Trend</h3>
@@ -197,13 +201,15 @@
       {/if}
     </div>
   </div>
+  </GatedSection>
 
-  <!-- Transaction Table -->
+  <!-- Transaction Table (always visible — teaser) -->
   <div class="mt-8">
     <TransactionTable {transactions} {totalCount} {loading} />
   </div>
 
-  <!-- Bottom charts -->
+  <!-- Bottom charts (gated) -->
+  <GatedSection>
   <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
     {#if isProjectPage}
       <!-- Project page: Comparable Projects + Layout Breakdown -->
@@ -268,4 +274,5 @@
       </div>
     {/if}
   </div>
+  </GatedSection>
 </div>

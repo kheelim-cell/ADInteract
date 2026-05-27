@@ -54,7 +54,7 @@
   </div>
 {:else if info}
   <div class="mx-4 sm:mx-6 mb-6 rounded-2xl bg-white border border-gray-200 shadow-sm p-5">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-5 divide-gray-100 lg:divide-x">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-6 divide-gray-100 lg:divide-x">
 
       <!-- Col 1: Location -->
       <div class="lg:pr-5">
@@ -94,7 +94,7 @@
       </div>
 
       <!-- Col 3: Off-plan / Ready split -->
-      <div class="lg:px-5">
+      <div class="lg:px-5 sm:col-span-1 border-t sm:border-t-0 border-gray-100 pt-4 sm:pt-0">
         <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Sale Type Mix</p>
         {#if info.totalCount > 0}
           {@const offPct = Math.round((info.offPlanCount / info.totalCount) * 100)}
@@ -131,7 +131,7 @@
       </div>
 
       <!-- Col 4: vs District benchmark -->
-      <div class="lg:pl-5">
+      <div class="lg:pl-5 border-t sm:border-t-0 border-gray-100 pt-4 sm:pt-0">
         <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">vs {info.district}</p>
         {#if info.projectMedianRate && info.districtMedianRate}
           {@const diff = (info.projectMedianRate - info.districtMedianRate) / info.districtMedianRate}

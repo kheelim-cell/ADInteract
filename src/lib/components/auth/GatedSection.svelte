@@ -19,7 +19,7 @@
 
   <!-- Light wash so blurred values lose contrast -->
   {#if locked}
-    <div class="absolute inset-0 bg-white/25 z-[5]"></div>
+    <div class="absolute inset-0 bg-white/15 z-[5]"></div>
   {/if}
 
   <!-- Sign-in CTA -->

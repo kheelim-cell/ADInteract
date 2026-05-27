@@ -7,7 +7,7 @@
   let locked = $derived(gatedCtx?.get() ?? false);
 </script>
 
-<!-- Blur wrapper: apply blur-sm to charts/canvases when the parent GatedSection is locked -->
-<div class={locked ? 'blur-sm' : ''}>
+<!-- Blur wrapper: apply blur-[2px] to charts/canvases when the parent GatedSection is locked -->
+<div>
   {@render children()}
 </div>

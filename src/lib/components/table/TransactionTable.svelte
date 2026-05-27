@@ -209,7 +209,7 @@
   <div class="relative">
     <!-- Blur + wash overlay -->
     {#if locked}
-      <div class="absolute inset-0 bg-white/50 z-[5]"></div>
+      <div class="absolute inset-0 bg-white/15 z-[5]"></div>
       <div class="absolute inset-0 flex items-center justify-center z-10">
         <button
           type="button"
@@ -225,7 +225,7 @@
     {/if}
 
   <!-- ─── MOBILE CARD VIEW (< md) ─────────────────────────────────────────── -->
-  <div class={`block md:hidden${locked ? ' blur-sm pointer-events-none select-none' : ''}`}>
+  <div class={`block md:hidden${locked ? ' pointer-events-none select-none' : ''}`}>
     {#if loading}
       <div class="divide-y divide-gray-50">
         {#each skeletonRows as _}
@@ -345,7 +345,7 @@
   </div>
 
   <!-- ─── DESKTOP TABLE VIEW (md+) ────────────────────────────────────────── -->
-  <div class={`hidden md:block overflow-x-auto${locked ? ' blur-sm pointer-events-none select-none' : ''}`}>
+  <div class={`hidden md:block overflow-x-auto${locked ? ' pointer-events-none select-none' : ''}`}>
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b border-gray-200 bg-gray-50/60">

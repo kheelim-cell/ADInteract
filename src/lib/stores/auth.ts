@@ -1,6 +1,7 @@
 import { writable, derived, get } from 'svelte/store';
 import type { User } from '@supabase/supabase-js';
 import { browser } from '$app/environment';
+import { base } from '$app/paths';
 import { supabase, supabaseEnabled } from '$lib/supabase';
 
 // ── Core auth state ───────────────────────────────────────────────────────────
@@ -18,7 +19,7 @@ export async function signInWithGoogle() {
 	if (!supabase) return;
 	const redirectTo =
 		typeof window !== 'undefined'
-			? window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/') + '/'
+			? `${window.location.origin}${base}/`
 			: '/';
 	const { error } = await supabase.auth.signInWithOAuth({
 		provider: 'google',

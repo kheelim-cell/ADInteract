@@ -1,5 +1,29 @@
 import { query } from './duckdb';
 
+function esc(s: string): string {
+	return s.replace(/'/g, "''");
+}
+
+export interface InvestorFilterState {
+	district?: string | null;
+	propertyType?: string | null;  // applies to transactions.property_type
+	layout?: string | null;        // applies to both tables
+}
+
+/** Extra AND clauses for the transactions table (sales queries) */
+function salesExtra(f?: InvestorFilterState): string {
+	const parts: string[] = [];
+	if (f?.district)     parts.push(`district = '${esc(f.district)}'`);
+	if (f?.propertyType) parts.push(`property_type = '${esc(f.propertyType)}'`);
+	if (f?.layout)       parts.push(`layout = '${esc(f.layout)}'`);
+	return parts.length ? ' AND ' + parts.join(' AND ') : '';
+}
+
+/** layout condition for rental queries (override 'all beds' when user picks a layout) */
+function rentalLayoutCond(f?: InvestorFilterState): string {
+	return f?.layout ? `layout = '${esc(f.layout)}'` : `layout = 'all beds'`;
+}
+
 export interface GrowthRow {
 	name: string;
 	district?: string;
@@ -23,8 +47,10 @@ export interface YieldRow {
 export async function queryTopDistrictsByGrowth(
 	currentYear: number,
 	prevYear: number,
-	limit = 5
+	limit = 5,
+	filters?: InvestorFilterState
 ): Promise<GrowthRow[]> {
+	const extra = salesExtra({ ...filters, district: null }); // district filter n/a — we're ranking districts
 	const rows = await query<{
 		district: string;
 		current_rate: number;
@@ -39,6 +65,7 @@ export async function queryTopDistrictsByGrowth(
 			FROM transactions
 			WHERE YEAR(sale_date) = ${currentYear}
 			  AND rate_per_sqft IS NOT NULL AND rate_per_sqft > 0
+			  ${extra}
 			GROUP BY district
 			HAVING COUNT(*) >= 10
 		),
@@ -48,6 +75,7 @@ export async function queryTopDistrictsByGrowth(
 			FROM transactions
 			WHERE YEAR(sale_date) = ${prevYear}
 			  AND rate_per_sqft IS NOT NULL AND rate_per_sqft > 0
+			  ${extra}
 			GROUP BY district
 			HAVING COUNT(*) >= 10
 		)
@@ -76,8 +104,10 @@ export async function queryTopDistrictsByGrowth(
 export async function queryTopProjectsByGrowth(
 	currentYear: number,
 	prevYear: number,
-	limit = 5
+	limit = 5,
+	filters?: InvestorFilterState
 ): Promise<GrowthRow[]> {
+	const extra = salesExtra(filters);
 	const rows = await query<{
 		project_name: string;
 		district: string;
@@ -95,6 +125,7 @@ export async function queryTopProjectsByGrowth(
 			  AND rate_per_sqft IS NOT NULL AND rate_per_sqft > 0
 			  AND project_name IS NOT NULL AND project_name != ''
 			  AND LOWER(project_name) != 'private'
+			  ${extra}
 			GROUP BY project_name, district
 			HAVING COUNT(*) >= 5
 		),
@@ -106,6 +137,7 @@ export async function queryTopProjectsByGrowth(
 			  AND rate_per_sqft IS NOT NULL AND rate_per_sqft > 0
 			  AND project_name IS NOT NULL AND project_name != ''
 			  AND LOWER(project_name) != 'private'
+			  ${extra}
 			GROUP BY project_name
 			HAVING COUNT(*) >= 5
 		)
@@ -135,9 +167,12 @@ export async function queryTopProjectsByGrowth(
 /** Top N projects by YoY median annual rent growth (uses rental pre-aggregated table) */
 export async function queryTopRentalProjectsByGrowth(
 	currentYear: number,
-	limit = 5
+	limit = 5,
+	filters?: InvestorFilterState
 ): Promise<GrowthRow[]> {
 	const prevYear = currentYear - 1;
+	const districtClause = filters?.district ? ` AND district = '${esc(filters.district)}'` : '';
+	const layoutCond = rentalLayoutCond(filters);
 	const rows = await query<{
 		project_name: string;
 		district: string;
@@ -155,11 +190,12 @@ export async function queryTopRentalProjectsByGrowth(
 			FROM rental
 			WHERE year = ${currentYear}
 			  AND typology != 'All property types'
-			  AND layout = 'all beds'
+			  AND ${layoutCond}
 			  AND rent_type = 'All types'
 			  AND median_rent > 0
 			  AND project_name IS NOT NULL AND project_name != ''
 			  AND LOWER(project_name) != 'private'
+			  ${districtClause}
 			GROUP BY project_name
 		),
 		prv AS (
@@ -168,11 +204,12 @@ export async function queryTopRentalProjectsByGrowth(
 			FROM rental
 			WHERE year = ${prevYear}
 			  AND typology != 'All property types'
-			  AND layout = 'all beds'
+			  AND ${layoutCond}
 			  AND rent_type = 'All types'
 			  AND median_rent > 0
 			  AND project_name IS NOT NULL AND project_name != ''
 			  AND LOWER(project_name) != 'private'
+			  ${districtClause}
 			GROUP BY project_name
 		)
 		SELECT c.project_name,
@@ -209,7 +246,8 @@ export async function queryTopRentalProjectsByGrowth(
 export async function queryRentalYieldByCommunity(
 	salesYear: number,
 	rentalYear: number,
-	minSaleCount = 5
+	minSaleCount = 5,
+	filters?: InvestorFilterState
 ): Promise<YieldRow[]> {
 	const rows = await query<{
 		community: string;
@@ -229,6 +267,7 @@ export async function queryRentalYieldByCommunity(
 			WHERE YEAR(sale_date) = ${salesYear}
 			  AND price_aed IS NOT NULL AND price_aed > 0
 			  AND community IS NOT NULL AND community != ''
+			  ${filters?.district ? `AND district = '${esc(filters.district)}'` : ''}
 			GROUP BY community, district
 			HAVING COUNT(*) >= ${minSaleCount}
 		),

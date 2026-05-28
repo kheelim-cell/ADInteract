@@ -293,22 +293,33 @@
               </div>
             </div>
 
-            <!-- Bottom row: meta chips -->
-            <div class="mt-2 flex items-center gap-x-2 gap-y-1 flex-wrap">
-              <span class="text-xs text-gray-400">{formatDate(row.sale_date)}</span>
+            <!-- Meta row 1: date · layout · size -->
+            <div class="mt-2 flex items-center gap-x-2 text-xs text-gray-400">
+              <span>{formatDate(row.sale_date)}</span>
 
               {#if row.layout && row.layout !== 'unclassified'}
                 <span class="text-gray-200">·</span>
-                <span class="text-xs text-gray-600">{formatLayout(row.layout)}</span>
+                <span class="text-gray-600">{formatLayout(row.layout)}</span>
               {/if}
 
               {#if row.area_sqft}
                 <span class="text-gray-200">·</span>
-                <span class="text-xs text-gray-500">{formatArea(row.area_sqft)}</span>
+                <span class="text-gray-500">{formatArea(row.area_sqft)}</span>
+              {/if}
+            </div>
+
+            <!-- Meta row 2: sequence + sale-type badges + explore -->
+            <div class="mt-1.5 flex items-center gap-2">
+              {#if row.sale_sequence}
+                <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium
+                  {row.sale_sequence === 'primary'
+                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                    : 'bg-purple-50 text-purple-700 border border-purple-200'}">
+                  {row.sale_sequence.charAt(0).toUpperCase() + row.sale_sequence.slice(1)}
+                </span>
               {/if}
 
               {#if row.sale_type}
-                <span class="text-gray-200">·</span>
                 <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium
                   {row.sale_type === 'off-plan' ? 'bg-brand-50 text-brand-700 border border-brand-200' :
                    row.sale_type === 'ready' ? 'bg-navy/5 text-navy border border-navy/20' :
@@ -316,16 +327,6 @@
                   {row.sale_type === 'off-plan' ? 'Off-plan' :
                    row.sale_type === 'ready' ? 'Ready' :
                    row.sale_type.charAt(0).toUpperCase() + row.sale_type.slice(1)}
-                </span>
-              {/if}
-
-              {#if row.sale_sequence}
-                <span class="text-gray-200">·</span>
-                <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium
-                  {row.sale_sequence === 'primary'
-                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                    : 'bg-purple-50 text-purple-700 border border-purple-200'}">
-                  {row.sale_sequence.charAt(0).toUpperCase() + row.sale_sequence.slice(1)}
                 </span>
               {/if}
 

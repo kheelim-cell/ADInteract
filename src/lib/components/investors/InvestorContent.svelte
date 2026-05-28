@@ -216,38 +216,40 @@
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Year-on-Year Price Growth ({prevSalesYear} → {salesYear})
     </h3>
-    <GatedBlur>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+    <GatedSection>
+      <GatedBlur>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
 
-      <GrowthLeaderboard
-        title="Top Districts · Sale Rate Growth"
-        subtitle="Median AED/sqft · min 10 transactions each year"
-        rows={districtRows}
-        loading={loadingSales}
-        valueLabel="/sqft"
-        linkPrefix="area"
-      />
+          <GrowthLeaderboard
+            title="Top Districts · Sale Rate Growth"
+            subtitle="Median AED/sqft · min 10 transactions each year"
+            rows={districtRows}
+            loading={loadingSales}
+            valueLabel="/sqft"
+            linkPrefix="area"
+          />
 
-      <GrowthLeaderboard
-        title="Top Projects · Sale Rate Growth"
-        subtitle="Median AED/sqft · min 5 transactions each year"
-        rows={salesProjectRows}
-        loading={loadingSales}
-        valueLabel="/sqft"
-        linkPrefix="project"
-      />
+          <GrowthLeaderboard
+            title="Top Projects · Sale Rate Growth"
+            subtitle="Median AED/sqft · min 5 transactions each year"
+            rows={salesProjectRows}
+            loading={loadingSales}
+            valueLabel="/sqft"
+            linkPrefix="project"
+          />
 
-      <GrowthLeaderboard
-        title="Top Projects · Rental Growth"
-        subtitle="Median annual rent · {rentalYear - 1} → {rentalYear}"
-        rows={rentalProjectRows}
-        loading={loadingRental}
-        valueLabel="/yr"
-        linkPrefix="project"
-      />
+          <GrowthLeaderboard
+            title="Top Projects · Rental Growth"
+            subtitle="Median annual rent · {rentalYear - 1} → {rentalYear}"
+            rows={rentalProjectRows}
+            loading={loadingRental}
+            valueLabel="/yr"
+            linkPrefix="project"
+          />
 
-    </div>
-    </GatedBlur>
+        </div>
+      </GatedBlur>
+    </GatedSection>
   </section>
 
   <!-- Section 2: Gross Rental Yield table -->
@@ -255,9 +257,11 @@
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Gross Rental Yield by Community ({rentalYear} rents ÷ {salesYear} sale prices)
     </h3>
-    <GatedBlur>
-      <YieldTable rows={yieldRows} loading={loadingYield} />
-    </GatedBlur>
+    <GatedSection>
+      <GatedBlur>
+        <YieldTable rows={yieldRows} loading={loadingYield} />
+      </GatedBlur>
+    </GatedSection>
   </section>
 
   <!-- Section 3: Service Charges -->
@@ -265,10 +269,11 @@
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Annual Service Charges · ADREC Registered Projects
     </h3>
-    <GatedBlur>
-      <ServiceChargeTable district={filterDistrict} />
-    </GatedBlur>
+    <GatedSection>
+      <GatedBlur>
+        <ServiceChargeTable district={filterDistrict} />
+      </GatedBlur>
+    </GatedSection>
   </section>
 
 </div>
-</GatedSection>

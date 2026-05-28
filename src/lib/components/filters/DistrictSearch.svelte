@@ -1,6 +1,11 @@
 <script lang="ts">
   import { filters, updateFilter } from '$lib/stores/filters';
-  import { metadata } from '$lib/stores/db';
+  import { metadata, salesDistrictCounts } from '$lib/stores/db';
+
+  function fmtCount(n: number): string {
+    if (n >= 1000) return `${(n / 1000).toFixed(1).replace(/\.0$/, '')}K`;
+    return String(n);
+  }
 
   let { searchType = 'district' as 'district' | 'project' } = $props();
 
@@ -128,6 +133,7 @@
     {:else if open && filtered().length > 0}
       <div class="absolute z-20 mt-1.5 w-full max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
         {#each filtered() as item}
+          {@const cnt = searchType === 'district' ? ($salesDistrictCounts[item] ?? 0) : 0}
           <button
             type="button"
             onclick={() => select(item)}
@@ -137,7 +143,10 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            <span class="truncate">{item}</span>
+            <span class="flex-1 truncate">{item}</span>
+            {#if searchType === 'district' && cnt > 0}
+              <span class="text-gray-400 tabular-nums flex-shrink-0">{fmtCount(cnt)}</span>
+            {/if}
           </button>
         {/each}
       </div>

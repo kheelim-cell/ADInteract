@@ -9,6 +9,8 @@
     queryRentalProjects
   } from '$lib/db/rental_queries';
   import { resetRentalFilters, updateRentalFilter } from '$lib/stores/rental_filters';
+  import { rentalDistrictCounts } from '$lib/stores/db';
+  import { queryAllRentalDistrictCounts } from '$lib/db/rental_queries';
   import RentalFilterBar from './RentalFilterBar.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
   import RentalStatsGrid from './RentalStatsGrid.svelte';
@@ -33,6 +35,16 @@
 
   // True once a query resolves with zero results
   let noResults = $derived(!loading && !chartsLoading && totalProjects === 0 && stats !== null);
+
+  // Load rental district project counts once when DB + rental metadata are ready (non-blocking)
+  $effect(() => {
+    const meta = $rentalMetadata;
+    if (!$dbReady || !meta) return;
+    const latestYear = meta.latestYear ?? new Date().getFullYear();
+    queryAllRentalDistrictCounts(latestYear)
+      .then((counts) => rentalDistrictCounts.set(counts))
+      .catch(() => {});
+  });
 
   // Table state — initialise from URL params if available
   function readUrlTableState(): { col: string; dir: 'asc' | 'desc'; pg: number } {
@@ -156,7 +168,7 @@
 
   <!-- Zero-result empty state banner -->
   {#if noResults}
-    <div class="mt-6 rounded-2xl border border-dashed border-gray-200 bg-white px-6 py-10 text-center">
+    <div class="mt-6 rounded-2xl border border-dashed border-gray-200 bg-white px-6 py-8 text-center">
       <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
         <svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 15.803 7.5 7.5 0 0 0 15.803 15.803z" />
@@ -171,6 +183,13 @@
       >
         Clear all filters
       </button>
+      <div class="mt-5 flex justify-center">
+        <PopularAreaChips
+          activeDistrict={$rentalFilters.district}
+          alwaysShow={true}
+          onSelect={(d) => updateRentalFilter({ district: d })}
+        />
+      </div>
     </div>
   {/if}
 

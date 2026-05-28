@@ -1,6 +1,10 @@
 <script lang="ts">
   import { rentalFilters, updateRentalFilter, resetRentalFilters } from '$lib/stores/rental_filters';
-  import { rentalMetadata } from '$lib/stores/db';
+  import { rentalMetadata, rentalDistrictCounts } from '$lib/stores/db';
+
+  function fmtProjectCount(n: number): string {
+    return n === 1 ? '1 project' : `${n} projects`;
+  }
   import { DEFAULT_RENTAL_FILTERS } from '$lib/db/rental_types';
   import { browser } from '$app/environment';
 
@@ -144,9 +148,13 @@
         {#if districtOpen && districtMatches().length > 0}
           <div class="absolute top-full left-0 z-30 mt-1 w-64 max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
             {#each districtMatches() as d}
+              {@const cnt = $rentalDistrictCounts[d] ?? 0}
               <button type="button" onclick={() => selectDistrict(d)}
-                class="flex w-full items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition-colors text-left">
-                {d}
+                class="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition-colors text-left">
+                <span class="flex-1">{d}</span>
+                {#if cnt > 0}
+                  <span class="text-xs text-gray-400 flex-shrink-0 tabular-nums">{fmtProjectCount(cnt)}</span>
+                {/if}
               </button>
             {/each}
           </div>

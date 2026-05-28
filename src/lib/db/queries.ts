@@ -409,6 +409,22 @@ export async function queryLayoutSummary(
 	`);
 }
 
+/** All-time transaction count per district — used to show data richness in dropdowns */
+export async function queryAllDistrictCounts(): Promise<Record<string, number>> {
+	const rows = await query<{ district: string; cnt: number }>(`
+		SELECT district, COUNT(*) AS cnt
+		FROM transactions
+		WHERE district IS NOT NULL AND district != ''
+			AND ${PROPERTY_TYPE_FILTER}
+		GROUP BY district
+	`);
+	const counts: Record<string, number> = {};
+	for (const row of rows) {
+		counts[row.district] = Number(row.cnt);
+	}
+	return counts;
+}
+
 export async function queryComparableProjects(
 	projectName: string,
 	dateStart: string,

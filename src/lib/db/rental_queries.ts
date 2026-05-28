@@ -392,6 +392,23 @@ export async function queryRentalNewVsRenew(
 		}));
 }
 
+/** Distinct project count per district (latest year) — used to show data richness in dropdowns */
+export async function queryAllRentalDistrictCounts(latestYear: number): Promise<Record<string, number>> {
+	const rows = await query<{ district: string; cnt: number }>(`
+		SELECT district, COUNT(DISTINCT project_name) AS cnt
+		FROM rental
+		WHERE year = ${latestYear}
+			AND district IS NOT NULL AND district != ''
+			AND typology = 'All property types'
+		GROUP BY district
+	`);
+	const counts: Record<string, number> = {};
+	for (const row of rows) {
+		counts[row.district] = Number(row.cnt);
+	}
+	return counts;
+}
+
 // ─── Price-to-Rent yield (cross-table) ────────────────────────────────────────
 
 export async function queryPriceToRent(

@@ -10,14 +10,16 @@
 
   let {
     activeDistrict = null,
+    alwaysShow = false,
     onSelect,
   }: {
     activeDistrict: string | null;
+    alwaysShow?: boolean;
     onSelect: (district: string) => void;
   } = $props();
 </script>
 
-{#if !activeDistrict}
+{#if alwaysShow || !activeDistrict}
   <div class="flex flex-wrap items-center gap-2 mt-3">
     <span class="text-xs font-medium text-gray-400 shrink-0">Popular:</span>
     {#each POPULAR_DISTRICTS as district}

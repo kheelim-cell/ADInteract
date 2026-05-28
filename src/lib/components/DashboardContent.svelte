@@ -13,6 +13,8 @@
     queryTransactionCount
   } from '$lib/db/queries';
   import { resetFilters, updateFilter } from '$lib/stores/filters';
+  import { salesDistrictCounts } from '$lib/stores/db';
+  import { queryAllDistrictCounts } from '$lib/db/queries';
   import FilterBar from '$lib/components/filters/FilterBar.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
   import StatsGrid from '$lib/components/stats/StatsGrid.svelte';
@@ -63,6 +65,14 @@
 
   // True once a query has resolved with zero results (not during initial load)
   let noResults = $derived(!loading && !chartsLoading && totalCount === 0 && stats !== null);
+
+  // Load district counts once when DB is ready (non-blocking)
+  $effect(() => {
+    if (!$dbReady) return;
+    queryAllDistrictCounts()
+      .then((counts) => salesDistrictCounts.set(counts))
+      .catch(() => {});
+  });
 
   $effect(() => {
     const ready = $dbReady;
@@ -147,7 +157,7 @@
 
   <!-- Zero-result empty state banner -->
   {#if noResults}
-    <div class="mt-6 rounded-2xl border border-dashed border-gray-200 bg-white px-6 py-10 text-center">
+    <div class="mt-6 rounded-2xl border border-dashed border-gray-200 bg-white px-6 py-8 text-center">
       <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
         <svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 15.803 7.5 7.5 0 0 0 15.803 15.803z" />
@@ -162,6 +172,13 @@
       >
         Clear all filters
       </button>
+      <div class="mt-5 flex justify-center">
+        <PopularAreaChips
+          activeDistrict={$filters.district}
+          alwaysShow={true}
+          onSelect={(d) => updateFilter({ district: d })}
+        />
+      </div>
     </div>
   {/if}
 

@@ -65,13 +65,14 @@
   }
 
   const HEADERS: { label: string; col: string; align: string }[] = [
-    { label: 'Project',    col: 'project_name', align: 'left'  },
-    { label: 'District',   col: 'district',     align: 'left'  },
-    { label: 'Layout',     col: 'layout',       align: 'left'  },
-    { label: 'Lower',      col: 'lower_rent',   align: 'right' },
-    { label: 'Median',     col: 'median_rent',  align: 'right' },
-    { label: 'Upper',      col: 'upper_rent',   align: 'right' },
-    { label: 'YoY',        col: 'yoy_change',   align: 'right' }
+    { label: 'Project',       col: 'project_name', align: 'left'  },
+    { label: 'District',      col: 'district',     align: 'left'  },
+    { label: 'Property Type', col: 'typology',     align: 'left'  },
+    { label: 'Layout',        col: 'layout',       align: 'left'  },
+    { label: 'Lower',         col: 'lower_rent',   align: 'right' },
+    { label: 'Median',        col: 'median_rent',  align: 'right' },
+    { label: 'Upper',         col: 'upper_rent',   align: 'right' },
+    { label: 'YoY',           col: 'yoy_change',   align: 'right' }
   ];
 
   // Mobile page numbers
@@ -167,6 +168,7 @@
             <tr class="hover:bg-gray-50 transition-colors">
               <td class="px-4 py-3 font-medium text-gray-900 max-w-[220px] truncate">{row.project_name}</td>
               <td class="px-4 py-3 text-gray-600 whitespace-nowrap">{row.district}</td>
+              <td class="px-4 py-3 text-gray-500 whitespace-nowrap capitalize">{row.typology || '—'}</td>
               <td class="px-4 py-3 text-gray-500 whitespace-nowrap capitalize">{row.layout}</td>
               <td class="px-4 py-3 text-right text-gray-600 whitespace-nowrap">{fmt(row.lower_rent)}</td>
               <td class="px-4 py-3 text-right font-semibold text-gray-900 whitespace-nowrap">{fmt(row.median_rent)}</td>
@@ -230,7 +232,9 @@
             <div class="flex items-start justify-between gap-3">
               <div class="min-w-0 flex-1">
                 <p class="text-sm font-semibold text-gray-900 truncate">{row.project_name}</p>
-                <p class="text-xs text-gray-400 mt-0.5">{row.district} · <span class="capitalize">{row.layout}</span></p>
+                <p class="text-xs text-gray-400 mt-0.5">
+                  {row.district}{row.typology ? ` · ${row.typology}` : ''} · <span class="capitalize">{row.layout}</span>
+                </p>
               </div>
               <div class="text-right flex-shrink-0">
                 <p class="text-sm font-bold text-gray-900">{fmt(row.median_rent)}</p>

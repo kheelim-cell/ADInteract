@@ -20,11 +20,15 @@ function esc(s: string): string {
  * Build a WHERE clause for the rental table.
  * `yearOverride` lets trend queries pin to a specific year while ignoring
  * the filter's year field (they iterate all years themselves).
+ * `forProjectTable` — when true, fetches real per-typology rows
+ * (Apartment / Villa / Townhouse) instead of the "All property types"
+ * aggregate sentinel, so the project table shows actual property types.
  */
 function buildRentalWhere(
 	f: RentalFilterState,
 	latestYear: number,
-	yearOverride?: number | null
+	yearOverride?: number | null,
+	forProjectTable = false
 ): string {
 	const clauses: string[] = [];
 
@@ -36,12 +40,15 @@ function buildRentalWhere(
 		clauses.push(`year = ${resolvedYear}`);
 	}
 
-	// Exclude summary rows when a specific layout / typology is requested
-	// (summary rows have layout = "all beds" / typology = "All property types")
+	// Typology filtering
 	if (f.typology && f.typology !== 'All property types') {
+		// Specific typology selected — always filter to it
 		clauses.push(`typology = '${esc(f.typology)}'`);
+	} else if (forProjectTable) {
+		// Project table: show real property types, not the aggregate sentinel
+		clauses.push(`typology != 'All property types'`);
 	} else {
-		// Default: show only "All property types" aggregates to avoid double-counting
+		// Stats / charts: use aggregate rows to avoid double-counting
 		clauses.push(`typology = 'All property types'`);
 	}
 
@@ -237,12 +244,16 @@ export async function queryRentalProjects(
 	const resolvedYear = f.year ?? latestYear;
 	const prevYear = resolvedYear - 1;
 
-	const where = buildRentalWhere(f, latestYear);
+	// Use forProjectTable=true so we get real typologies (Apartment/Villa)
+	// instead of the "All property types" aggregate sentinel
+	const where = buildRentalWhere(f, latestYear, undefined, true);
 
-	// Previous-year median for YoY calc
+	// Previous-year WHERE — same typology logic for like-for-like YoY
 	const prevClauses: string[] = [
 		`year = ${prevYear}`,
-		`typology = '${esc(f.typology || 'All property types')}'`,
+		f.typology && f.typology !== 'All property types'
+			? `typology = '${esc(f.typology)}'`
+			: `typology != 'All property types'`,
 		`layout   = '${esc(f.layout   || 'all beds')}'`,
 		`rent_type = '${esc(f.rentType || 'All types')}'`
 	];
@@ -292,10 +303,11 @@ export async function queryRentalProjects(
 		prev AS (
 			SELECT
 				project_name,
+				typology,
 				PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS prev_median
 			FROM rental
 			WHERE ${prevWhere}
-			GROUP BY project_name
+			GROUP BY project_name, typology
 		)
 		SELECT
 			c.project_name,
@@ -313,7 +325,7 @@ export async function queryRentalProjects(
 				ELSE NULL
 			END AS yoy_change
 		FROM current c
-		LEFT JOIN prev p ON c.project_name = p.project_name
+		LEFT JOIN prev p ON c.project_name = p.project_name AND c.typology = p.typology
 		ORDER BY ${orderByCol} ${direction} NULLS LAST
 		LIMIT ${pageSize} OFFSET ${offset}
 	`);

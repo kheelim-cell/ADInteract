@@ -93,6 +93,7 @@
                   href={googleSearchUrl(row.community, row.district)}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Search Google to find the exact location of this community"
                   class="font-medium text-gray-900 hover:text-brand-600 hover:underline"
                 >
                   {row.community}
@@ -167,6 +168,7 @@
                   href={googleSearchUrl(row.community, row.district)}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Search Google to find the exact location of this community"
                   class="text-xs text-gray-500 hover:text-brand-600 hover:underline mt-0.5 block"
                 >
                   {row.community} ↗

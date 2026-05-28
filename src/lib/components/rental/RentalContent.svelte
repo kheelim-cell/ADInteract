@@ -8,8 +8,9 @@
     queryRentalNewVsRenew,
     queryRentalProjects
   } from '$lib/db/rental_queries';
-  import { resetRentalFilters } from '$lib/stores/rental_filters';
+  import { resetRentalFilters, updateRentalFilter } from '$lib/stores/rental_filters';
   import RentalFilterBar from './RentalFilterBar.svelte';
+  import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
   import RentalStatsGrid from './RentalStatsGrid.svelte';
   import RentalTrendChart from './RentalTrendChart.svelte';
   import RentalNewVsRenewChart from './RentalNewVsRenewChart.svelte';
@@ -134,6 +135,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
 
   <RentalFilterBar />
+  <PopularAreaChips activeDistrict={$rentalFilters.district} onSelect={(d) => updateRentalFilter({ district: d })} />
 
   <!-- Stats -->
   <div class="mt-6">

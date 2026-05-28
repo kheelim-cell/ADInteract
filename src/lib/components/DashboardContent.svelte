@@ -12,8 +12,9 @@
     queryTransactions,
     queryTransactionCount
   } from '$lib/db/queries';
-  import { resetFilters } from '$lib/stores/filters';
+  import { resetFilters, updateFilter } from '$lib/stores/filters';
   import FilterBar from '$lib/components/filters/FilterBar.svelte';
+  import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
   import StatsGrid from '$lib/components/stats/StatsGrid.svelte';
   import GatedSection from '$lib/components/auth/GatedSection.svelte';
   import GatedBlur from '$lib/components/auth/GatedBlur.svelte';
@@ -123,6 +124,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
   <!-- Filters -->
   <FilterBar />
+  <PopularAreaChips activeDistrict={$filters.district} onSelect={(d) => updateFilter({ district: d })} />
 
   <!-- Stats (gated) -->
   <div class="mt-6">

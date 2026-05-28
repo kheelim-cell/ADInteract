@@ -11,6 +11,7 @@
   } from '$lib/db/investor_queries';
   import GrowthLeaderboard from '$lib/components/investors/GrowthLeaderboard.svelte';
   import YieldTable from '$lib/components/investors/YieldTable.svelte';
+  import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
 
   // ── Year derivation ────────────────────────────────────────────────────────
   const thisCalendarYear = new Date().getFullYear();
@@ -158,6 +159,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-10">
 
   <!-- ── Filter bar ──────────────────────────────────────────────────────────── -->
+  <div>
   <div class="flex flex-wrap items-center gap-3">
     <!-- District -->
     <select bind:value={filterDistrict} class={sel}>
@@ -196,6 +198,8 @@
         Clear filters
       </button>
     {/if}
+  </div>
+  <PopularAreaChips activeDistrict={filterDistrict || null} onSelect={(d) => { filterDistrict = d; }} />
   </div>
 
   <!-- Section 1: Growth leaderboards (3-col grid on lg) -->

@@ -79,6 +79,10 @@
   });
 
   // ── Formatting ─────────────────────────────────────────────────────────────
+  function toTitleCase(str: string): string {
+    return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  }
+
   function fmtFee(n: number | null): string {
     if (n === null || n === undefined) return '—';
     return n.toFixed(2);
@@ -238,8 +242,8 @@
             {#each visibleRows as project}
               <tr class="hover:bg-gray-50/80 transition-colors">
                 <td class="px-5 py-3.5">
-                  <p class="font-medium text-gray-900 text-sm truncate" title={project.project_name}>
-                    {project.project_name}
+                  <p class="font-medium text-gray-900 text-sm truncate" title={toTitleCase(project.project_name)}>
+                    {toTitleCase(project.project_name)}
                   </p>
                   {#if project.project_number}
                     <p class="text-xs text-gray-400 tabular-nums mt-0.5">#{project.project_number}</p>
@@ -316,8 +320,8 @@
             <div class="px-4 py-4">
               <div class="flex items-start justify-between gap-3">
                 <div class="min-w-0">
-                  <p class="text-sm font-semibold text-gray-900 truncate" title={project.project_name}>
-                    {project.project_name}
+                  <p class="text-sm font-semibold text-gray-900 truncate" title={toTitleCase(project.project_name)}>
+                    {toTitleCase(project.project_name)}
                   </p>
                   <a
                     href="{base}/area/{encodeURIComponent(project.district)}"

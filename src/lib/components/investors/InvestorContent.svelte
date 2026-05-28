@@ -81,7 +81,7 @@
     const ry = rentalYear;
     loadingYield = true;
 
-    queryRentalYieldByCommunity(sy, ry, 5)
+    queryRentalYieldByCommunity(sy, sy, 5)
       .then(rows => { yieldRows = rows; })
       .catch(() => { yieldRows = []; })
       .finally(() => { loadingYield = false; });
@@ -170,7 +170,7 @@
   <!-- Section 2: Gross Rental Yield table -->
   <section>
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
-      Gross Rental Yield by Community ({salesYear} sales × {rentalYear} rents)
+      Gross Rental Yield by Community ({salesYear} rents ÷ {salesYear} sale prices)
     </h3>
     <YieldTable rows={yieldRows} loading={loadingYield} />
   </section>

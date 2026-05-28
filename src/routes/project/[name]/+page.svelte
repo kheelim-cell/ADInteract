@@ -42,10 +42,10 @@
       Back
     </a>
   </div>
-</div>
 
-<!-- Identity strip: location, types, off-plan split, vs district benchmark -->
-<ProjectHero {projectName} />
+  <!-- Identity strip: location, types, off-plan split, vs district benchmark -->
+  <ProjectHero {projectName} />
+</div>
 
 <DashboardContent
   topAreasLabel="Top Districts by Volume"

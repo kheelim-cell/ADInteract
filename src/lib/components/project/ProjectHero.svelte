@@ -41,7 +41,7 @@
 </script>
 
 {#if loading}
-  <div class="mx-4 sm:mx-6 mb-6 rounded-2xl bg-white border border-gray-200 shadow-sm p-5 animate-pulse">
+  <div class="mb-6 rounded-2xl bg-white border border-gray-200 shadow-sm p-5 animate-pulse">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
       {#each Array(4) as _}
         <div>
@@ -53,7 +53,7 @@
     </div>
   </div>
 {:else if info}
-  <div class="mx-4 sm:mx-6 mb-6 rounded-2xl bg-white border border-gray-200 shadow-sm p-5">
+  <div class="mb-6 rounded-2xl bg-white border border-gray-200 shadow-sm p-5">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-6 divide-gray-100 lg:divide-x">
 
       <!-- Col 1: Location -->

@@ -22,11 +22,10 @@
 
   // ── Filters ────────────────────────────────────────────────────────────────
   let filterDistrict = $state('');
-  let filterCategory = $state('');
   let searchQuery    = $state('');
 
   // ── Sort ───────────────────────────────────────────────────────────────────
-  let sortCol: 'project_name' | 'district' | 'developer_name' | 'sc_avg' | 'sc_min' | 'sc_max' = $state('sc_avg');
+  let sortCol: 'project_name' | 'district' | 'developer_name' | 'sc_avg' = $state('sc_avg');
   let sortDir = $state<'asc' | 'desc'>('desc');
 
   function setSort(col: typeof sortCol) {
@@ -43,18 +42,11 @@
     [...new Set(projects.map(p => p.district))].filter(Boolean).sort()
   );
 
-  let categories = $derived(
-    [...new Set(projects.map(p => p.category))].filter(Boolean).sort()
-  );
-
   let filtered = $derived(() => {
     let rows = projects;
 
     if (filterDistrict) {
       rows = rows.filter(p => p.district === filterDistrict);
-    }
-    if (filterCategory) {
-      rows = rows.filter(p => p.category === filterCategory);
     }
     if (searchQuery.trim().length >= 2) {
       const q = searchQuery.trim().toLowerCase();
@@ -69,12 +61,10 @@
     rows = [...rows].sort((a, b) => {
       let av: string | number | null;
       let bv: string | number | null;
-      if (sortCol === 'project_name') { av = a.project_name; bv = b.project_name; }
-      else if (sortCol === 'district') { av = a.district; bv = b.district; }
+      if (sortCol === 'project_name')   { av = a.project_name;   bv = b.project_name; }
+      else if (sortCol === 'district')  { av = a.district;        bv = b.district; }
       else if (sortCol === 'developer_name') { av = a.developer_name; bv = b.developer_name; }
-      else if (sortCol === 'sc_min') { av = a.sc_min; bv = b.sc_min; }
-      else if (sortCol === 'sc_max') { av = a.sc_max; bv = b.sc_max; }
-      else { av = a.sc_avg; bv = b.sc_avg; }
+      else                              { av = a.sc_avg;          bv = b.sc_avg; }
 
       if (av === null && bv === null) return 0;
       if (av === null) return 1;
@@ -94,13 +84,6 @@
     return n.toFixed(2);
   }
 
-  function fmtRange(min: number | null, max: number | null): string {
-    if (min === null && max === null) return '—';
-    if (min === max || max === null) return fmtFee(min);
-    if (min === null) return fmtFee(max);
-    return `${fmtFee(min)} – ${fmtFee(max)}`;
-  }
-
   function feeBadge(fee: number | null): string {
     if (fee === null) return 'bg-gray-100 text-gray-400';
     if (fee >= 20) return 'bg-red-100 text-red-700';
@@ -114,11 +97,10 @@
     return sortDir === 'asc' ? '↑' : '↓';
   }
 
-  let hasFilter = $derived(!!(filterDistrict || filterCategory || searchQuery.trim()));
+  let hasFilter = $derived(!!(filterDistrict || searchQuery.trim()));
 
   function resetFilters() {
     filterDistrict = '';
-    filterCategory = '';
     searchQuery    = '';
   }
 
@@ -137,8 +119,8 @@
     }
   });
 
-  const thClass = 'px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400 cursor-pointer select-none hover:text-gray-600 transition-colors whitespace-nowrap';
-  const thRClass = 'px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400 cursor-pointer select-none hover:text-gray-600 transition-colors whitespace-nowrap';
+  const thClass  = 'px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400 cursor-pointer select-none hover:text-gray-600 transition-colors whitespace-nowrap';
+  const thRClass = 'px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400 cursor-pointer select-none hover:text-gray-600 transition-colors whitespace-nowrap';
 </script>
 
 <div class="rounded-2xl bg-white shadow-sm ring-1 ring-black/5 overflow-hidden">
@@ -178,17 +160,6 @@
           {/each}
         </select>
 
-        <!-- Category filter -->
-        <select
-          bind:value={filterCategory}
-          class="text-xs font-medium text-gray-700 border border-gray-200 rounded-lg px-3 py-1.5 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500"
-        >
-          <option value="">All Categories</option>
-          {#each categories as c}
-            <option value={c}>{c}</option>
-          {/each}
-        </select>
-
         {#if hasFilter}
           <button
             type="button"
@@ -211,11 +182,16 @@
 
   <!-- Desktop table -->
   {:else}
-    <div class="hidden md:block overflow-x-auto">
-      <table class="w-full text-sm">
+    <div class="hidden md:block">
+      <table class="w-full text-sm table-fixed">
+        <colgroup>
+          <col class="w-[40%]" />
+          <col class="w-[22%]" />
+          <col class="w-[28%]" />
+          <col class="w-[10%]" />
+        </colgroup>
         <thead>
           <tr class="bg-gray-50 border-b border-gray-100">
-            <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400 w-8">#</th>
             <th class={thClass} onclick={() => setSort('project_name')}>
               Project {sortIcon('project_name')}
             </th>
@@ -225,15 +201,8 @@
             <th class={thClass} onclick={() => setSort('developer_name')}>
               Developer {sortIcon('developer_name')}
             </th>
-            <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">Category</th>
             <th class={thRClass} onclick={() => setSort('sc_avg')}>
-              Avg Fee (AED/sqft) {sortIcon('sc_avg')}
-            </th>
-            <th class={thRClass} onclick={() => setSort('sc_min')}>
-              Min {sortIcon('sc_min')}
-            </th>
-            <th class={thRClass} onclick={() => setSort('sc_max')}>
-              Max {sortIcon('sc_max')}
+              AED/sqft {sortIcon('sc_avg')}
             </th>
           </tr>
         </thead>
@@ -242,50 +211,49 @@
           {#if loading}
             {#each Array(8) as _}
               <tr class="animate-pulse">
-                {#each Array(8) as _}
-                  <td class="px-4 py-3.5"><div class="h-3.5 rounded bg-gray-100 w-20"></div></td>
+                {#each Array(4) as _}
+                  <td class="px-5 py-3.5"><div class="h-3.5 rounded bg-gray-100 w-20"></div></td>
                 {/each}
               </tr>
             {/each}
 
           {:else if filtered().length === 0}
             <tr>
-              <td colspan="8" class="px-5 py-16 text-center text-sm text-gray-400">
+              <td colspan="4" class="px-5 py-16 text-center text-sm text-gray-400">
                 No projects match the current filters.
               </td>
             </tr>
 
           {:else}
-            {#each filtered() as project, i}
+            {#each filtered() as project}
               <tr class="hover:bg-gray-50/80 transition-colors">
-                <td class="px-4 py-3.5 text-xs text-gray-400 tabular-nums">{i + 1}</td>
-                <td class="px-4 py-3.5">
-                  <span class="font-medium text-gray-900 text-sm">{project.project_name}</span>
+                <td class="px-5 py-3.5">
+                  <p class="font-medium text-gray-900 text-sm truncate" title={project.project_name}>
+                    {project.project_name}
+                  </p>
                   {#if project.project_number}
-                    <span class="ml-1.5 text-xs text-gray-400 tabular-nums">#{project.project_number}</span>
+                    <p class="text-xs text-gray-400 tabular-nums mt-0.5">#{project.project_number}</p>
                   {/if}
                 </td>
-                <td class="px-4 py-3.5 whitespace-nowrap">
+                <td class="px-5 py-3.5">
                   <a
                     href="{base}/area/{encodeURIComponent(project.district)}"
-                    class="text-brand-600 hover:text-brand-700 hover:underline text-sm"
+                    class="text-brand-600 hover:text-brand-700 hover:underline text-sm truncate block"
+                    title={project.district}
                   >
                     {project.district}
                   </a>
                 </td>
-                <td class="px-4 py-3.5 text-sm text-gray-600 whitespace-nowrap">{project.developer_name}</td>
-                <td class="px-4 py-3.5">
-                  <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-600">
-                    {project.category.charAt(0) + project.category.slice(1).toLowerCase()}
-                  </span>
+                <td class="px-5 py-3.5">
+                  <p class="text-sm text-gray-600 truncate" title={project.developer_name}>
+                    {project.developer_name}
+                  </p>
                 </td>
-                <td class="px-4 py-3.5 text-right whitespace-nowrap">
+                <td class="px-5 py-3.5 text-right">
                   <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold tabular-nums {feeBadge(project.sc_avg)}">
                     {fmtFee(project.sc_avg)}
                   </span>
                 </td>
-                <td class="px-4 py-3.5 text-right text-xs text-gray-500 tabular-nums">{fmtFee(project.sc_min)}</td>
-                <td class="px-4 py-3.5 text-right text-xs text-gray-500 tabular-nums">{fmtFee(project.sc_max)}</td>
               </tr>
             {/each}
           {/if}
@@ -319,35 +287,30 @@
 
       {:else}
         <div class="divide-y divide-gray-50">
-          {#each filtered() as project, i}
+          {#each filtered() as project}
             <div class="px-4 py-4">
               <div class="flex items-start justify-between gap-3">
                 <div class="min-w-0">
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs text-gray-300 tabular-nums font-semibold">#{i + 1}</span>
-                    <span class="text-sm font-semibold text-gray-900 truncate">{project.project_name}</span>
-                  </div>
+                  <p class="text-sm font-semibold text-gray-900 truncate" title={project.project_name}>
+                    {project.project_name}
+                  </p>
                   <a
                     href="{base}/area/{encodeURIComponent(project.district)}"
                     class="text-xs text-brand-600 hover:underline mt-0.5 block"
                   >
                     {project.district}
                   </a>
-                  <p class="text-xs text-gray-400 mt-0.5 truncate">{project.developer_name}</p>
+                  <p class="text-xs text-gray-400 mt-0.5 truncate" title={project.developer_name}>
+                    {project.developer_name}
+                  </p>
                 </div>
                 <div class="flex-shrink-0 text-right">
                   <span class="inline-flex items-center rounded-full px-3 py-1.5 text-sm font-bold tabular-nums {feeBadge(project.sc_avg)}">
                     {fmtFee(project.sc_avg)}
                   </span>
-                  <p class="text-xs text-gray-400 mt-1 tabular-nums">AED/sqft</p>
+                  <p class="text-xs text-gray-400 mt-1">AED/sqft</p>
                 </div>
               </div>
-
-              {#if project.sc_min !== project.sc_max && project.sc_min !== null && project.sc_max !== null}
-                <div class="mt-2 text-xs text-gray-400">
-                  Range: <span class="text-gray-600 tabular-nums">{fmtFee(project.sc_min)} – {fmtFee(project.sc_max)}</span>
-                </div>
-              {/if}
             </div>
           {/each}
         </div>

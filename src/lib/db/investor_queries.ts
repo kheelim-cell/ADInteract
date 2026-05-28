@@ -94,6 +94,7 @@ export async function queryTopProjectsByGrowth(
 			WHERE YEAR(sale_date) = ${currentYear}
 			  AND rate_per_sqft IS NOT NULL AND rate_per_sqft > 0
 			  AND project_name IS NOT NULL AND project_name != ''
+			  AND LOWER(project_name) != 'private'
 			GROUP BY project_name, district
 			HAVING COUNT(*) >= 5
 		),
@@ -104,6 +105,7 @@ export async function queryTopProjectsByGrowth(
 			WHERE YEAR(sale_date) = ${prevYear}
 			  AND rate_per_sqft IS NOT NULL AND rate_per_sqft > 0
 			  AND project_name IS NOT NULL AND project_name != ''
+			  AND LOWER(project_name) != 'private'
 			GROUP BY project_name
 			HAVING COUNT(*) >= 5
 		)
@@ -151,6 +153,8 @@ export async function queryTopRentalProjectsByGrowth(
 			  AND layout = 'all beds'
 			  AND rent_type = 'All types'
 			  AND median_rent > 0
+			  AND project_name IS NOT NULL AND project_name != ''
+			  AND LOWER(project_name) != 'private'
 		),
 		prv AS (
 			SELECT project_name, median_rent AS prev_rent
@@ -160,6 +164,8 @@ export async function queryTopRentalProjectsByGrowth(
 			  AND layout = 'all beds'
 			  AND rent_type = 'All types'
 			  AND median_rent > 0
+			  AND project_name IS NOT NULL AND project_name != ''
+			  AND LOWER(project_name) != 'private'
 		)
 		SELECT c.project_name,
 		       c.district,

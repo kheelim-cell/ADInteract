@@ -15,14 +15,15 @@
     primary_fee: number | null;
   }
 
+  let { district = '' }: { district?: string } = $props();
+
   let projects: Project[] = $state([]);
   let loading = $state(true);
   let error = $state<string | null>(null);
   let lastUpdated = $state('');
 
   // ── Filters ────────────────────────────────────────────────────────────────
-  let filterDistrict = $state('');
-  let searchQuery    = $state('');
+  let searchQuery = $state('');
 
   // ── Sort ───────────────────────────────────────────────────────────────────
   let sortCol: 'project_name' | 'district' | 'developer_name' | 'sc_avg' = $state('sc_avg');
@@ -38,15 +39,11 @@
   }
 
   // ── Derived ────────────────────────────────────────────────────────────────
-  let districts = $derived(
-    [...new Set(projects.map(p => p.district))].filter(Boolean).sort()
-  );
-
   let filtered = $derived(() => {
     let rows = projects;
 
-    if (filterDistrict) {
-      rows = rows.filter(p => p.district === filterDistrict);
+    if (district) {
+      rows = rows.filter(p => p.district === district);
     }
     if (searchQuery.trim().length >= 2) {
       const q = searchQuery.trim().toLowerCase();
@@ -101,11 +98,10 @@
     return sortDir === 'asc' ? '↑' : '↓';
   }
 
-  let hasFilter = $derived(!!(filterDistrict || searchQuery.trim()));
+  let hasFilter = $derived(!!searchQuery.trim());
 
   function resetFilters() {
-    filterDistrict = '';
-    searchQuery    = '';
+    searchQuery = '';
   }
 
   const INITIAL_LIMIT = 10;
@@ -114,7 +110,7 @@
 
   // Collapse when filters change
   $effect(() => {
-    filterDistrict; searchQuery;
+    district; searchQuery;
     expanded = false;
   });
 
@@ -162,17 +158,6 @@
             class="pl-8 pr-3 py-1.5 text-xs border border-gray-200 rounded-lg bg-gray-50 focus:bg-white focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100 min-w-[180px]"
           />
         </div>
-
-        <!-- District filter -->
-        <select
-          bind:value={filterDistrict}
-          class="text-xs font-medium text-gray-700 border border-gray-200 rounded-lg px-3 py-1.5 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500"
-        >
-          <option value="">All Districts</option>
-          {#each districts as d}
-            <option value={d}>{d}</option>
-          {/each}
-        </select>
 
         {#if hasFilter}
           <button

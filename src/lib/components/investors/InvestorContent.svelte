@@ -258,7 +258,7 @@
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Annual Service Charges · ADREC Registered Projects
     </h3>
-    <ServiceChargeTable />
+    <ServiceChargeTable district={filterDistrict} />
   </section>
 
 </div>

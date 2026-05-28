@@ -453,7 +453,7 @@
 
               <!-- Type -->
               <td class="px-4 py-4 text-center align-top">
-                <span class="text-sm text-gray-700">{row.property_type}</span>
+                <span class="text-sm text-gray-700">{row.property_type ? row.property_type.charAt(0).toUpperCase() + row.property_type.slice(1) : ''}</span>
               </td>
 
               <!-- Beds / Layout -->

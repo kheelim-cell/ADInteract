@@ -264,6 +264,7 @@
 
           {:else}
             {#each visibleRows as project}
+              {@const pt = propTypeMap.get(project.project_name.toLowerCase().trim())}
               <tr class="hover:bg-gray-50/80 transition-colors">
                 <td class="px-5 py-3.5">
                   <p class="font-medium text-gray-900 text-sm truncate" title={toTitleCase(project.project_name)}>
@@ -288,7 +289,6 @@
                   </p>
                 </td>
                 <td class="px-5 py-3.5">
-                  {@const pt = propTypeMap.get(project.project_name.toLowerCase().trim())}
                   {#if pt}
                     <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-600 whitespace-nowrap">
                       {pt}
@@ -326,7 +326,7 @@
       {:else if !loading && filtered().length > 0}
         <div class="px-5 py-3 border-t border-gray-50 text-xs text-gray-400">
           {filtered().length} project{filtered().length === 1 ? '' : 's'}
-          {#if filterDistrict || searchQuery.trim()} matching filters{/if}
+          {#if district || searchQuery.trim()} matching filters{/if}
         </div>
       {/if}
     </div>
@@ -351,6 +351,7 @@
       {:else}
         <div class="divide-y divide-gray-50">
           {#each visibleRows as project}
+            {@const pt = propTypeMap.get(project.project_name.toLowerCase().trim())}
             <div class="px-4 py-4">
               <div class="flex items-start justify-between gap-3">
                 <div class="min-w-0">
@@ -366,7 +367,6 @@
                   <p class="text-xs text-gray-400 mt-0.5 truncate" title={project.developer_name}>
                     {project.developer_name}
                   </p>
-                  {@const pt = propTypeMap.get(project.project_name.toLowerCase().trim())}
                   {#if pt}
                     <span class="inline-flex items-center rounded-full px-1.5 py-0.5 text-[10px] font-medium bg-gray-100 text-gray-500 mt-1">
                       {pt}

@@ -15,6 +15,10 @@
     return `AED ${Math.round(n).toLocaleString()}`;
   }
 
+  function googleSearchUrl(community: string, district: string): string {
+    return `https://www.google.com/search?q=${encodeURIComponent(community + ' ' + district)}`;
+  }
+
   // Colour-code gross yield
   function yieldBadge(pct: number): string {
     if (pct >= 8) return 'bg-emerald-100 text-emerald-800';
@@ -45,8 +49,8 @@
       <thead>
         <tr class="bg-gray-50 border-b border-gray-100">
           <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">#</th>
-          <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">Community</th>
           <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">District</th>
+          <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">Community ↗</th>
           <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">Median Sale Price</th>
           <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">Median Annual Rent</th>
           <th class="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-400 w-44">Gross Yield</th>
@@ -76,13 +80,22 @@
           {#each rows as row, i}
             <tr class="hover:bg-gray-50/80 transition-colors">
               <td class="px-5 py-3.5 text-xs text-gray-400 tabular-nums">{i + 1}</td>
-              <td class="px-5 py-3.5 font-medium text-gray-900 whitespace-nowrap">{row.community}</td>
               <td class="px-5 py-3.5 whitespace-nowrap">
                 <a
                   href="{base}/area/{encodeURIComponent(row.district)}"
                   class="text-brand-600 hover:text-brand-700 hover:underline text-sm"
                 >
                   {row.district}
+                </a>
+              </td>
+              <td class="px-5 py-3.5 whitespace-nowrap">
+                <a
+                  href={googleSearchUrl(row.community, row.district)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-medium text-gray-900 hover:text-brand-600 hover:underline"
+                >
+                  {row.community}
                 </a>
               </td>
               <td class="px-5 py-3.5 text-right text-gray-700 whitespace-nowrap tabular-nums">
@@ -138,18 +151,25 @@
       <div class="divide-y divide-gray-50">
         {#each rows as row, i}
           <div class="px-4 py-4">
-            <!-- Community + yield -->
+            <!-- District + Community + yield -->
             <div class="flex items-start justify-between gap-3">
               <div class="min-w-0">
                 <div class="flex items-center gap-2">
                   <span class="text-xs text-gray-300 tabular-nums font-semibold">#{i + 1}</span>
-                  <p class="text-sm font-semibold text-gray-900 truncate">{row.community}</p>
+                  <a
+                    href="{base}/area/{encodeURIComponent(row.district)}"
+                    class="text-sm font-semibold text-brand-600 hover:underline truncate"
+                  >
+                    {row.district}
+                  </a>
                 </div>
                 <a
-                  href="{base}/area/{encodeURIComponent(row.district)}"
-                  class="text-xs text-brand-600 hover:underline mt-0.5 block"
+                  href={googleSearchUrl(row.community, row.district)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs text-gray-500 hover:text-brand-600 hover:underline mt-0.5 block"
                 >
-                  {row.district}
+                  {row.community} ↗
                 </a>
               </div>
               <span class="flex-shrink-0 inline-flex items-center rounded-full px-3 py-1.5 text-sm font-bold tabular-nums {yieldBadge(row.grossYieldPct)}">

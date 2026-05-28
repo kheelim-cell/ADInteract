@@ -13,6 +13,8 @@
   import YieldTable from '$lib/components/investors/YieldTable.svelte';
   import ServiceChargeTable from '$lib/components/investors/ServiceChargeTable.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
+  import GatedSection from '$lib/components/auth/GatedSection.svelte';
+  import GatedBlur from '$lib/components/auth/GatedBlur.svelte';
 
   // ── Year derivation ────────────────────────────────────────────────────────
   const thisCalendarYear = new Date().getFullYear();
@@ -162,6 +164,7 @@
 </div>
 
 <!-- ── Content ─────────────────────────────────────────────────────────────── -->
+<GatedSection>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-10">
 
   <!-- ── Filter bar ──────────────────────────────────────────────────────────── -->
@@ -213,6 +216,7 @@
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Year-on-Year Price Growth ({prevSalesYear} → {salesYear})
     </h3>
+    <GatedBlur>
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
 
       <GrowthLeaderboard
@@ -243,6 +247,7 @@
       />
 
     </div>
+    </GatedBlur>
   </section>
 
   <!-- Section 2: Gross Rental Yield table -->
@@ -250,7 +255,9 @@
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Gross Rental Yield by Community ({rentalYear} rents ÷ {salesYear} sale prices)
     </h3>
-    <YieldTable rows={yieldRows} loading={loadingYield} />
+    <GatedBlur>
+      <YieldTable rows={yieldRows} loading={loadingYield} />
+    </GatedBlur>
   </section>
 
   <!-- Section 3: Service Charges -->
@@ -258,7 +265,10 @@
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Annual Service Charges · ADREC Registered Projects
     </h3>
-    <ServiceChargeTable district={filterDistrict} />
+    <GatedBlur>
+      <ServiceChargeTable district={filterDistrict} />
+    </GatedBlur>
   </section>
 
 </div>
+</GatedSection>

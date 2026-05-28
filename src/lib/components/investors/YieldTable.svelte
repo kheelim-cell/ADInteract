@@ -90,6 +90,7 @@
 
         {:else}
           {#each rows as row, i}
+            {@const key = row.community + ', ' + row.district}
             <tr class="hover:bg-gray-50/80 transition-colors">
               <td class="px-5 py-3.5 text-xs text-gray-400 tabular-nums">{i + 1}</td>
               <td class="px-5 py-3.5 whitespace-nowrap">
@@ -133,7 +134,6 @@
               <td class="px-5 py-3.5 text-right text-xs text-gray-500 tabular-nums">{row.saleCount.toLocaleString()}</td>
               <td class="px-5 py-3.5 text-right text-xs text-gray-500 tabular-nums">{row.projectCount}</td>
               <td class="px-3 py-3.5">
-                {@const key = row.community + ', ' + row.district}
                 <button
                   type="button"
                   onclick={() => copyLabel(row.community, row.district)}

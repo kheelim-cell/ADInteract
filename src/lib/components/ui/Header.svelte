@@ -25,8 +25,9 @@
       'User';
   }
 
-  let isRentalPage = $derived($page.url.pathname.includes('/rental'));
-  let hasRental    = $derived($rentalMetadata !== null);
+  let isRentalPage   = $derived($page.url.pathname.includes('/rental'));
+  let isInvestorPage = $derived($page.url.pathname.includes('/investors'));
+  let hasRental      = $derived($rentalMetadata !== null);
 
   function formatUpdated(ts: string): string {
     if (!ts) return '';
@@ -81,22 +82,29 @@
         </div>
       </div>
 
-      <!-- Centre: Sales / Rental tabs — desktop only -->
+      <!-- Centre: Sales / Rental / Investors tabs — desktop only -->
       {#if hasRental}
         <nav class="hidden sm:flex items-center rounded-full bg-white/10 border border-white/25 p-1 gap-1">
           <a
             href="{base}/"
-            class="rounded-full px-7 py-2 text-sm font-bold transition-colors whitespace-nowrap tracking-wide
-                   {!isRentalPage ? 'bg-brand-500 text-white shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'}"
+            class="rounded-full px-6 py-2 text-sm font-bold transition-colors whitespace-nowrap tracking-wide
+                   {!isRentalPage && !isInvestorPage ? 'bg-brand-500 text-white shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
             Sales
           </a>
           <a
             href="{base}/rental"
-            class="rounded-full px-7 py-2 text-sm font-bold transition-colors whitespace-nowrap tracking-wide
+            class="rounded-full px-6 py-2 text-sm font-bold transition-colors whitespace-nowrap tracking-wide
                    {isRentalPage ? 'bg-brand-500 text-white shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
             Rental
+          </a>
+          <a
+            href="{base}/investors"
+            class="rounded-full px-6 py-2 text-sm font-bold transition-colors whitespace-nowrap tracking-wide
+                   {isInvestorPage ? 'bg-emerald-600 text-white shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'}"
+          >
+            Investors
           </a>
         </nav>
       {/if}
@@ -172,23 +180,30 @@
       </div>
     </div>
 
-    <!-- Mobile-only second row: Sales / Rental tabs centred -->
+    <!-- Mobile-only second row: Sales / Rental / Investors tabs centred -->
     {#if hasRental}
       <div class="sm:hidden flex justify-center pb-3">
         <nav class="flex items-center rounded-full bg-white/10 border border-white/25 p-0.5 gap-0.5">
           <a
             href="{base}/"
-            class="rounded-full px-6 py-1.5 text-xs font-semibold transition-colors whitespace-nowrap
-                   {!isRentalPage ? 'bg-brand-500 text-white shadow-sm' : 'text-white/60 hover:text-white hover:bg-white/10'}"
+            class="rounded-full px-5 py-1.5 text-xs font-semibold transition-colors whitespace-nowrap
+                   {!isRentalPage && !isInvestorPage ? 'bg-brand-500 text-white shadow-sm' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
             Sales
           </a>
           <a
             href="{base}/rental"
-            class="rounded-full px-6 py-1.5 text-xs font-semibold transition-colors whitespace-nowrap
+            class="rounded-full px-5 py-1.5 text-xs font-semibold transition-colors whitespace-nowrap
                    {isRentalPage ? 'bg-brand-500 text-white shadow-sm' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
             Rental
+          </a>
+          <a
+            href="{base}/investors"
+            class="rounded-full px-5 py-1.5 text-xs font-semibold transition-colors whitespace-nowrap
+                   {isInvestorPage ? 'bg-emerald-600 text-white shadow-sm' : 'text-white/60 hover:text-white hover:bg-white/10'}"
+          >
+            Investors
           </a>
         </nav>
       </div>

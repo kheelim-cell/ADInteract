@@ -25,21 +25,20 @@
   });
 
   // ── Match lists ───────────────────────────────────────────────────
-  let districtMatches = $derived(
-    districtQuery.length >= 1
-      ? ($rentalMetadata?.districts ?? [])
-          .filter((d) => d.toLowerCase().includes(districtQuery.toLowerCase()))
-          .slice(0, 8)
-      : []
-  );
+  // District: show all on focus (17 options), filter as user types
+  let districtMatches = $derived(() => {
+    const all = $rentalMetadata?.districts ?? [];
+    const q = districtQuery.trim().toLowerCase();
+    return q.length === 0 ? all : all.filter((d) => d.toLowerCase().includes(q));
+  });
 
-  let projectMatches = $derived(
-    projectQuery.length >= 1
-      ? ($rentalMetadata?.projects ?? [])
-          .filter((p) => p.toLowerCase().includes(projectQuery.toLowerCase()))
-          .slice(0, 8)
-      : []
-  );
+  // Project: require ≥2 chars before showing results (80+ options)
+  const PROJECT_MIN = 2;
+  let projectMatches = $derived(() => {
+    const q = projectQuery.trim().toLowerCase();
+    if (q.length < PROJECT_MIN) return [];
+    return ($rentalMetadata?.projects ?? []).filter((p) => p.toLowerCase().includes(q));
+  });
 
   // ── Click-outside handler ─────────────────────────────────────────
   function handleClickOutside(e: MouseEvent) {
@@ -130,8 +129,8 @@
             type="text"
             placeholder="District"
             bind:value={districtQuery}
-            oninput={() => { districtOpen = districtQuery.length >= 1; }}
-            onfocus={() => { if (districtQuery.length >= 1) districtOpen = true; }}
+            oninput={() => { districtOpen = true; }}
+            onfocus={() => { districtOpen = true; }}
             class="flex-1 min-w-0 bg-transparent text-xs font-medium text-gray-700 placeholder-gray-400 outline-none"
           />
           {#if $rentalFilters.district}
@@ -142,9 +141,9 @@
             </button>
           {/if}
         </div>
-        {#if districtOpen && districtMatches.length > 0}
-          <div class="absolute top-full left-0 z-30 mt-1 w-64 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
-            {#each districtMatches as d}
+        {#if districtOpen && districtMatches().length > 0}
+          <div class="absolute top-full left-0 z-30 mt-1 w-64 max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
+            {#each districtMatches() as d}
               <button type="button" onclick={() => selectDistrict(d)}
                 class="flex w-full items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition-colors text-left">
                 {d}
@@ -164,8 +163,8 @@
             type="text"
             placeholder="Project"
             bind:value={projectQuery}
-            oninput={() => { projectOpen = projectQuery.length >= 1; }}
-            onfocus={() => { if (projectQuery.length >= 1) projectOpen = true; }}
+            oninput={() => { projectOpen = true; }}
+            onfocus={() => { projectOpen = true; }}
             class="flex-1 min-w-0 bg-transparent text-xs font-medium text-gray-700 placeholder-gray-400 outline-none"
           />
           {#if $rentalFilters.project}
@@ -176,14 +175,22 @@
             </button>
           {/if}
         </div>
-        {#if projectOpen && projectMatches.length > 0}
-          <div class="absolute top-full left-0 z-30 mt-1 w-72 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
-            {#each projectMatches as p}
+        {#if projectOpen && projectQuery.trim().length < PROJECT_MIN}
+          <div class="absolute top-full left-0 z-30 mt-1 w-72 rounded-xl border border-gray-200 bg-white shadow-lg px-4 py-3">
+            <p class="text-xs text-gray-400 text-center">Type at least {PROJECT_MIN} characters to search projects</p>
+          </div>
+        {:else if projectOpen && projectMatches().length > 0}
+          <div class="absolute top-full left-0 z-30 mt-1 w-72 max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
+            {#each projectMatches() as p}
               <button type="button" onclick={() => selectProject(p)}
                 class="flex w-full items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition-colors text-left">
                 {p}
               </button>
             {/each}
+          </div>
+        {:else if projectOpen && projectQuery.trim().length >= PROJECT_MIN}
+          <div class="absolute top-full left-0 z-30 mt-1 w-72 rounded-xl border border-gray-200 bg-white shadow-lg px-4 py-3">
+            <p class="text-xs text-gray-400 text-center">No results for "{projectQuery.trim()}"</p>
           </div>
         {/if}
       </div>

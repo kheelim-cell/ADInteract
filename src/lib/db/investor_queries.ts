@@ -235,13 +235,10 @@ export async function queryTopRentalProjectsByGrowth(
 
 /**
  * Gross rental yield by community.
- * yield = median annual rent (rental table) / median sale price (transactions) × 100
+ * yield = median annual rent (rental table, rentalYear) / median sale price (transactions, salesYear) × 100
  *
- * Both salesYear and rentalYear should be the same year (e.g. 2025).
- *
- * Join strategy: the rental table's community field is unreliable (often empty).
- * Instead we bridge via project_name — both tables share this key — to map
- * rental projects to their transaction community, then aggregate rent per community.
+ * Join strategy: bridge rental → community via project_name in transactions.
+ * Only transactions from salesYear are used for the mapping to keep the join small.
  */
 export async function queryRentalYieldByCommunity(
 	salesYear: number,
@@ -249,6 +246,7 @@ export async function queryRentalYieldByCommunity(
 	minSaleCount = 5,
 	filters?: InvestorFilterState
 ): Promise<YieldRow[]> {
+	const districtClause = filters?.district ? `AND district = '${esc(filters.district)}'` : '';
 	const rows = await query<{
 		community: string;
 		district: string;
@@ -259,7 +257,6 @@ export async function queryRentalYieldByCommunity(
 		project_count: number;
 	}>(`
 		WITH sales AS (
-			-- Median sale price per community, from transaction data
 			SELECT community, district,
 			       PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY price_aed) AS median_sale_price,
 			       COUNT(*) AS sale_count
@@ -267,34 +264,29 @@ export async function queryRentalYieldByCommunity(
 			WHERE YEAR(sale_date) = ${salesYear}
 			  AND price_aed IS NOT NULL AND price_aed > 0
 			  AND community IS NOT NULL AND community != ''
-			  ${filters?.district ? `AND district = '${esc(filters.district)}'` : ''}
+			  ${districtClause}
 			GROUP BY community, district
 			HAVING COUNT(*) >= ${minSaleCount}
 		),
-		-- Map rental project_name → community via the transactions table
-		-- (rental table's community field is often empty; project_name is reliable)
-		project_to_community AS (
-			SELECT DISTINCT
-			       LOWER(TRIM(project_name)) AS proj_key,
-			       community
+		proj_map AS (
+			SELECT DISTINCT LOWER(TRIM(project_name)) AS proj_key, community
 			FROM transactions
-			WHERE community IS NOT NULL AND community != ''
+			WHERE YEAR(sale_date) = ${salesYear}
+			  AND community IS NOT NULL AND community != ''
 			  AND project_name IS NOT NULL AND project_name != ''
 		),
 		rents AS (
-			-- Aggregate median rent per community, bridged through project_name
-			SELECT pc.community,
+			SELECT pm.community,
 			       PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY r.median_rent) AS median_annual_rent,
 			       COUNT(DISTINCT r.project_name) AS project_count
 			FROM rental r
-			JOIN project_to_community pc
-			  ON LOWER(TRIM(r.project_name)) = pc.proj_key
+			JOIN proj_map pm ON LOWER(TRIM(r.project_name)) = pm.proj_key
 			WHERE r.year = ${rentalYear}
 			  AND r.typology = 'All property types'
 			  AND r.layout = 'all beds'
 			  AND r.rent_type = 'All types'
 			  AND r.median_rent > 0
-			GROUP BY pc.community
+			GROUP BY pm.community
 		)
 		SELECT s.community,
 		       s.district,
@@ -309,5 +301,13 @@ export async function queryRentalYieldByCommunity(
 		ORDER BY gross_yield_pct DESC
 	`);
 
-	return rows;
+	return rows.map(r => ({
+		community: r.community,
+		district: r.district,
+		medianSalePrice: r.median_sale_price,
+		medianAnnualRent: r.median_annual_rent,
+		grossYieldPct: r.gross_yield_pct,
+		saleCount: r.sale_count,
+		projectCount: r.project_count,
+	}));
 }

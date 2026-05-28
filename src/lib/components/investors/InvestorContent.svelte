@@ -50,9 +50,12 @@
   }
 
   // ── Filter options from metadata ────────────────────────────────────────────
-  let districts     = $derived($metadata?.districts     ?? []);
-  let propertyTypes = $derived($metadata?.propertyTypes ?? []);
-  let layouts       = $derived($metadata?.layouts       ?? []);
+  const EXCLUDED_PROP_TYPES = new Set(['office', 'retail']);
+  const ALLOWED_LAYOUTS     = new Set(['studio', '1 bed', '2 beds', '3 beds', '4 beds', '5 beds', '5+ beds', '6+ beds']);
+
+  let districts     = $derived($metadata?.districts ?? []);
+  let propertyTypes = $derived(($metadata?.propertyTypes ?? []).filter(pt => !EXCLUDED_PROP_TYPES.has(pt.toLowerCase())));
+  let layouts       = $derived(($metadata?.layouts ?? []).filter(l => ALLOWED_LAYOUTS.has(l.toLowerCase())));
 
   // ── Query state ────────────────────────────────────────────────────────────
   let districtRows      = $state<GrowthRow[]>([]);
@@ -101,10 +104,11 @@
   // ── Yield query ────────────────────────────────────────────────────────────
   $effect(() => {
     const sy = salesYear;
+    const ry = rentalYear;
     const f  = filters;
     loadingYield = true;
 
-    queryRentalYieldByCommunity(sy, sy, 5, f)
+    queryRentalYieldByCommunity(sy, ry, 5, f)
       .then(rows => { yieldRows = rows; })
       .catch(() => { yieldRows = []; })
       .finally(() => { loadingYield = false; });
@@ -234,7 +238,7 @@
   <!-- Section 2: Gross Rental Yield table -->
   <section>
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
-      Gross Rental Yield by Community ({salesYear} rents ÷ {salesYear} sale prices)
+      Gross Rental Yield by Community ({rentalYear} rents ÷ {salesYear} sale prices)
     </h3>
     <YieldTable rows={yieldRows} loading={loadingYield} />
   </section>

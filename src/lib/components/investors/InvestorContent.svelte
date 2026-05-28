@@ -53,11 +53,16 @@
 
   // ── Filter options from metadata ────────────────────────────────────────────
   const EXCLUDED_PROP_TYPES = new Set(['office', 'retail']);
-  const ALLOWED_LAYOUTS     = new Set(['studio', '1 bed', '2 beds', '3 beds', '4 beds', '5 beds', '5+ beds', '6+ beds']);
+  const LAYOUT_ORDER = ['studio', '1 bed', '2 beds', '3 beds', '4 beds', '5 beds', '5+ beds', '6+ beds'];
+  const LAYOUT_DISPLAY: Record<string, string> = { studio: 'Studio' };
 
   let districts     = $derived($metadata?.districts ?? []);
   let propertyTypes = $derived(($metadata?.propertyTypes ?? []).filter(pt => !EXCLUDED_PROP_TYPES.has(pt.toLowerCase())));
-  let layouts       = $derived(($metadata?.layouts ?? []).filter(l => ALLOWED_LAYOUTS.has(l.toLowerCase())));
+  let layouts       = $derived(
+    ($metadata?.layouts ?? [])
+      .filter(l => LAYOUT_ORDER.includes(l.toLowerCase()))
+      .sort((a, b) => LAYOUT_ORDER.indexOf(a.toLowerCase()) - LAYOUT_ORDER.indexOf(b.toLowerCase()))
+  );
 
   // ── Query state ────────────────────────────────────────────────────────────
   let districtRows      = $state<GrowthRow[]>([]);
@@ -182,7 +187,7 @@
     <select bind:value={filterLayout} class={sel}>
       <option value="">All Layouts</option>
       {#each layouts as l}
-        <option value={l}>{l}</option>
+        <option value={l}>{LAYOUT_DISPLAY[l.toLowerCase()] ?? l}</option>
       {/each}
     </select>
 

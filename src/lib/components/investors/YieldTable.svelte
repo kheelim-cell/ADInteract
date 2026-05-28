@@ -31,6 +31,10 @@
   function yieldBar(pct: number): number {
     return Math.min(100, Math.round((pct / 12) * 100));
   }
+
+  const INITIAL_LIMIT = 5;
+  let expanded = $state(false);
+  let visibleRows = $derived(expanded ? rows : rows.slice(0, INITIAL_LIMIT));
 </script>
 
 <div class="rounded-2xl bg-white shadow-sm ring-1 ring-black/5 overflow-hidden">
@@ -77,7 +81,7 @@
           </tr>
 
         {:else}
-          {#each rows as row, i}
+          {#each visibleRows as row, i}
             <tr class="hover:bg-gray-50/80 transition-colors">
               <td class="px-5 py-3.5 text-xs text-gray-400 tabular-nums">{i + 1}</td>
               <td class="px-5 py-3.5 whitespace-nowrap">
@@ -126,6 +130,22 @@
 
       </tbody>
     </table>
+
+    {#if !loading && rows.length > INITIAL_LIMIT}
+      <button
+        type="button"
+        onclick={() => (expanded = !expanded)}
+        class="w-full py-3 border-t border-gray-100 text-xs font-semibold text-brand-600 hover:text-brand-700 hover:bg-gray-50 transition-colors flex items-center justify-center gap-1.5"
+      >
+        {#if expanded}
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" /></svg>
+          Show fewer
+        {:else}
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+          Show all {rows.length} communities
+        {/if}
+      </button>
+    {/if}
   </div>
 
   <!-- ─── Mobile cards ──────────────────────────────────────────────────── -->
@@ -150,7 +170,7 @@
 
     {:else}
       <div class="divide-y divide-gray-50">
-        {#each rows as row, i}
+        {#each visibleRows as row, i}
           <div class="px-4 py-4">
             <!-- District + Community + yield -->
             <div class="flex items-start justify-between gap-3">
@@ -198,6 +218,22 @@
           </div>
         {/each}
       </div>
+
+      {#if !loading && rows.length > INITIAL_LIMIT}
+        <button
+          type="button"
+          onclick={() => (expanded = !expanded)}
+          class="w-full py-3 border-t border-gray-100 text-xs font-semibold text-brand-600 hover:text-brand-700 hover:bg-gray-50 transition-colors flex items-center justify-center gap-1.5"
+        >
+          {#if expanded}
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" /></svg>
+            Show fewer
+          {:else}
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+            Show all {rows.length} communities
+          {/if}
+        </button>
+      {/if}
     {/if}
   </div>
 

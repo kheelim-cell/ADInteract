@@ -246,7 +246,10 @@ export async function queryRentalYieldByCommunity(
 	minSaleCount = 5,
 	filters?: InvestorFilterState
 ): Promise<YieldRow[]> {
-	const districtClause = filters?.district ? `AND district = '${esc(filters.district)}'` : '';
+	const districtClause  = filters?.district     ? `AND district      = '${esc(filters.district)}'`     : '';
+	const layoutSalesCond = filters?.layout        ? `AND layout        = '${esc(filters.layout)}'`        : '';
+	const propTypeCond    = filters?.propertyType  ? `AND property_type = '${esc(filters.propertyType)}'`  : '';
+	const rentalLayout    = rentalLayoutCond(filters);   // 'all beds' or specific layout
 	const rows = await query<{
 		community: string;
 		district: string;
@@ -265,6 +268,8 @@ export async function queryRentalYieldByCommunity(
 			  AND price_aed IS NOT NULL AND price_aed > 0
 			  AND community IS NOT NULL AND community != ''
 			  ${districtClause}
+			  ${layoutSalesCond}
+			  ${propTypeCond}
 			GROUP BY community, district
 			HAVING COUNT(*) >= ${minSaleCount}
 		),
@@ -283,7 +288,7 @@ export async function queryRentalYieldByCommunity(
 			JOIN proj_map pm ON LOWER(TRIM(r.project_name)) = pm.proj_key
 			WHERE r.year = ${rentalYear}
 			  AND r.typology = 'All property types'
-			  AND r.layout = 'all beds'
+			  AND r.${rentalLayout}
 			  AND r.rent_type = 'All types'
 			  AND r.median_rent > 0
 			GROUP BY pm.community

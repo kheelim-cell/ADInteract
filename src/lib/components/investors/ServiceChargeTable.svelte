@@ -1,8 +1,6 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import { onMount } from 'svelte';
-  import { query } from '$lib/db/duckdb';
-  import { dbReady } from '$lib/stores/db';
 
   interface Project {
     project_name: string;
@@ -24,40 +22,11 @@
   let error = $state<string | null>(null);
   let lastUpdated = $state('');
 
-  // ── Property type lookup from transactions table ───────────────────────────
-  let propTypeMap = $state<Map<string, string>>(new Map());
-
-  $effect(() => {
-    if (!$dbReady || projects.length === 0) return;
-    query<{ proj_key: string; property_type: string }>(`
-      WITH ranked AS (
-        SELECT LOWER(TRIM(project_name)) AS proj_key,
-               property_type,
-               COUNT(*) AS cnt,
-               ROW_NUMBER() OVER (
-                 PARTITION BY LOWER(TRIM(project_name))
-                 ORDER BY COUNT(*) DESC
-               ) AS rn
-        FROM transactions
-        WHERE project_name IS NOT NULL AND project_name != ''
-          AND property_type IS NOT NULL AND property_type != ''
-        GROUP BY LOWER(TRIM(project_name)), property_type
-      )
-      SELECT proj_key, property_type FROM ranked WHERE rn = 1
-    `)
-    .then(rows => {
-      const m = new Map<string, string>();
-      for (const r of rows) m.set(r.proj_key, r.property_type);
-      propTypeMap = m;
-    })
-    .catch(() => {});
-  });
-
   // ── Filters ────────────────────────────────────────────────────────────────
   let searchQuery = $state('');
 
   // ── Sort ───────────────────────────────────────────────────────────────────
-  let sortCol: 'project_name' | 'district' | 'developer_name' | 'sc_avg' | 'property_type' = $state('sc_avg');
+  let sortCol: 'project_name' | 'district' | 'developer_name' | 'sc_avg' = $state('sc_avg');
   let sortDir = $state<'asc' | 'desc'>('desc');
 
   function setSort(col: typeof sortCol) {
@@ -92,10 +61,6 @@
       if (sortCol === 'project_name')        { av = a.project_name;   bv = b.project_name; }
       else if (sortCol === 'district')       { av = a.district;        bv = b.district; }
       else if (sortCol === 'developer_name') { av = a.developer_name;  bv = b.developer_name; }
-      else if (sortCol === 'property_type')  {
-        av = propTypeMap.get(a.project_name.toLowerCase().trim()) ?? '';
-        bv = propTypeMap.get(b.project_name.toLowerCase().trim()) ?? '';
-      }
       else                                   { av = a.sc_avg;          bv = b.sc_avg; }
 
       if (av === null && bv === null) return 0;
@@ -219,11 +184,10 @@
     <div class="hidden md:block">
       <table class="w-full text-sm table-fixed">
         <colgroup>
-          <col class="w-[35%]" />
-          <col class="w-[18%]" />
-          <col class="w-[25%]" />
+          <col class="w-[38%]" />
+          <col class="w-[20%]" />
+          <col class="w-[30%]" />
           <col class="w-[12%]" />
-          <col class="w-[10%]" />
         </colgroup>
         <thead>
           <tr class="bg-gray-50 border-b border-gray-100">
@@ -235,9 +199,6 @@
             </th>
             <th class={thClass} onclick={() => setSort('developer_name')}>
               Developer {sortIcon('developer_name')}
-            </th>
-            <th class={thClass} onclick={() => setSort('property_type')}>
-              Type {sortIcon('property_type')}
             </th>
             <th class={thRClass} onclick={() => setSort('sc_avg')}>
               AED/sqft {sortIcon('sc_avg')}
@@ -257,14 +218,13 @@
 
           {:else if filtered().length === 0}
             <tr>
-              <td colspan="5" class="px-5 py-16 text-center text-sm text-gray-400">
+              <td colspan="4" class="px-5 py-16 text-center text-sm text-gray-400">
                 No projects match the current filters.
               </td>
             </tr>
 
           {:else}
             {#each visibleRows as project}
-              {@const pt = propTypeMap.get(project.project_name.toLowerCase().trim())}
               <tr class="hover:bg-gray-50/80 transition-colors">
                 <td class="px-5 py-3.5">
                   <p class="font-medium text-gray-900 text-sm truncate" title={toTitleCase(project.project_name)}>
@@ -287,15 +247,6 @@
                   <p class="text-sm text-gray-600 truncate" title={project.developer_name}>
                     {project.developer_name}
                   </p>
-                </td>
-                <td class="px-5 py-3.5">
-                  {#if pt}
-                    <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-600 whitespace-nowrap">
-                      {pt}
-                    </span>
-                  {:else}
-                    <span class="text-xs text-gray-300">—</span>
-                  {/if}
                 </td>
                 <td class="px-5 py-3.5 text-right">
                   <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold tabular-nums {feeBadge(project.sc_avg)}">
@@ -351,7 +302,6 @@
       {:else}
         <div class="divide-y divide-gray-50">
           {#each visibleRows as project}
-            {@const pt = propTypeMap.get(project.project_name.toLowerCase().trim())}
             <div class="px-4 py-4">
               <div class="flex items-start justify-between gap-3">
                 <div class="min-w-0">
@@ -367,11 +317,6 @@
                   <p class="text-xs text-gray-400 mt-0.5 truncate" title={project.developer_name}>
                     {project.developer_name}
                   </p>
-                  {#if pt}
-                    <span class="inline-flex items-center rounded-full px-1.5 py-0.5 text-[10px] font-medium bg-gray-100 text-gray-500 mt-1">
-                      {pt}
-                    </span>
-                  {/if}
                 </div>
                 <div class="flex-shrink-0 text-right">
                   <span class="inline-flex items-center rounded-full px-3 py-1.5 text-sm font-bold tabular-nums {feeBadge(project.sc_avg)}">

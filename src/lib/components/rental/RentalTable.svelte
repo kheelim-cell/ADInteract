@@ -11,6 +11,7 @@
     sortCol,
     sortDir,
     onSort,
+    onSortFull,
     onPage
   }: {
     rows: RentalProjectRow[];
@@ -21,8 +22,24 @@
     sortCol: string;
     sortDir: 'asc' | 'desc';
     onSort: (col: string) => void;
+    onSortFull: (col: string, dir: 'asc' | 'desc') => void;
     onPage: (p: number) => void;
   } = $props();
+
+  const mobileSortOptions = [
+    { value: 'median_rent:desc', label: 'Median AED (high → low)' },
+    { value: 'median_rent:asc',  label: 'Median AED (low → high)' },
+    { value: 'yoy_change:desc',  label: 'YoY Growth (high → low)' },
+    { value: 'yoy_change:asc',   label: 'YoY Growth (low → high)' },
+  ];
+
+  let mobileSortValue = $derived(`${sortCol}:${sortDir}`);
+
+  function handleMobileSortChange(e: Event) {
+    const val = (e.target as HTMLSelectElement).value;
+    const [col, dir] = val.split(':') as [string, 'asc' | 'desc'];
+    onSortFull(col, dir);
+  }
 
   function fmt(n: number | null): string {
     if (n === null || n === undefined) return '—';
@@ -80,6 +97,18 @@
           Showing {showing.from}–{showing.to} of {total.toLocaleString('en-US')} projects
         </p>
       {/if}
+    </div>
+    <!-- Mobile sort dropdown (hidden on md+, desktop sorts via column headers) -->
+    <div class="flex md:hidden items-center gap-2 flex-shrink-0">
+      <select
+        value={mobileSortValue}
+        onchange={handleMobileSortChange}
+        class="text-xs font-medium text-gray-700 border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500"
+      >
+        {#each mobileSortOptions as opt}
+          <option value={opt.value}>{opt.label}</option>
+        {/each}
+      </select>
     </div>
   </div>
 

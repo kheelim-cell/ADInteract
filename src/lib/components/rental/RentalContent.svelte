@@ -77,6 +77,12 @@
     tablePage = 1;
   }
 
+  function handleSortFull(col: string, dir: 'asc' | 'desc') {
+    tableSortCol = col;
+    tableSortDir = dir;
+    tablePage = 1;
+  }
+
   // Effect 1: stats + charts — re-runs when filters change
   $effect(() => {
     const f    = $rentalFilters;
@@ -218,6 +224,7 @@
       sortCol={tableSortCol}
       sortDir={tableSortDir}
       onSort={handleSort}
+      onSortFull={handleSortFull}
       onPage={(p) => (tablePage = p)}
     />
   </div>

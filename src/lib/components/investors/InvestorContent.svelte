@@ -11,6 +11,7 @@
   } from '$lib/db/investor_queries';
   import GrowthLeaderboard from '$lib/components/investors/GrowthLeaderboard.svelte';
   import YieldTable from '$lib/components/investors/YieldTable.svelte';
+  import ServiceChargeTable from '$lib/components/investors/ServiceChargeTable.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
 
   // ── Year derivation ────────────────────────────────────────────────────────
@@ -245,6 +246,14 @@
       Gross Rental Yield by Community ({rentalYear} rents ÷ {salesYear} sale prices)
     </h3>
     <YieldTable rows={yieldRows} loading={loadingYield} />
+  </section>
+
+  <!-- Section 3: Service Charges -->
+  <section>
+    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+      Annual Service Charges · ADREC Registered Projects
+    </h3>
+    <ServiceChargeTable />
   </section>
 
 </div>

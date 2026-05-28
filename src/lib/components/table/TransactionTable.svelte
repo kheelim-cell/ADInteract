@@ -277,9 +277,6 @@
                   <p class="text-xs text-gray-400 mt-0.5 truncate">
                     <a href="{base}/area/{encodeURIComponent(row.district)}"
                        class="text-brand-600 hover:underline">{row.district}</a>
-                    {#if row.community && row.community !== row.district}
-                      <span class="text-gray-300 mx-1">›</span>{row.community}
-                    {/if}
                   </p>
                 {/if}
               </div>
@@ -440,13 +437,7 @@
                   {row.project_name || 'Private'}
                 </div>
                 <div class="text-xs text-gray-400 mt-0.5">
-                  {#if row.community && row.district}
-                    <a href="{base}/area/{encodeURIComponent(row.district)}" class="text-brand-600 hover:text-brand-700 hover:underline">{row.district}</a>
-                    {#if row.community !== row.district}
-                      <span class="text-gray-300 mx-1">&rsaquo;</span>
-                      <span>{row.community}</span>
-                    {/if}
-                  {:else if row.district}
+                  {#if row.district}
                     <a href="{base}/area/{encodeURIComponent(row.district)}" class="text-brand-600 hover:text-brand-700 hover:underline">{row.district}</a>
                   {/if}
                 </div>

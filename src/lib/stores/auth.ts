@@ -51,15 +51,16 @@ async function upsertProfile(u: User, profile?: PendingProfile) {
 	try {
 		await supabase.from('profiles').upsert(
 			{
-				user_id:         u.id,
-				provider:        'google',
+				id:              u.id,
+				auth_method:     'google',
 				email:           u.email ?? null,
-				display_name:    profile?.name     ?? u.user_metadata?.full_name ?? u.email ?? null,
+				full_name:       profile?.name     ?? u.user_metadata?.full_name ?? u.email ?? null,
 				identity:        profile?.identity ?? null,
 				whatsapp_number: profile?.whatsapp ?? null,
+				avatar_url:      u.user_metadata?.avatar_url ?? null,
 				last_login_at:   new Date().toISOString()
 			},
-			{ onConflict: 'user_id' }
+			{ onConflict: 'id' }
 		);
 	} catch {
 		/* silently fail — auth still works */

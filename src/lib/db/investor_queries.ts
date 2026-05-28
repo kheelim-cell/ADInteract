@@ -146,26 +146,34 @@ export async function queryTopRentalProjectsByGrowth(
 		yoy_pct: number;
 	}>(`
 		WITH cur AS (
-			SELECT project_name, district, median_rent AS current_rent
+			-- Use real per-typology rows (not the aggregate sentinel) for accuracy.
+			-- Median of medians across typologies gives a figure consistent with
+			-- what users see in the Rental tab.
+			SELECT project_name,
+			       ANY_VALUE(district) AS district,
+			       PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS current_rent
 			FROM rental
 			WHERE year = ${currentYear}
-			  AND typology = 'All property types'
+			  AND typology != 'All property types'
 			  AND layout = 'all beds'
 			  AND rent_type = 'All types'
 			  AND median_rent > 0
 			  AND project_name IS NOT NULL AND project_name != ''
 			  AND LOWER(project_name) != 'private'
+			GROUP BY project_name
 		),
 		prv AS (
-			SELECT project_name, median_rent AS prev_rent
+			SELECT project_name,
+			       PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS prev_rent
 			FROM rental
 			WHERE year = ${prevYear}
-			  AND typology = 'All property types'
+			  AND typology != 'All property types'
 			  AND layout = 'all beds'
 			  AND rent_type = 'All types'
 			  AND median_rent > 0
 			  AND project_name IS NOT NULL AND project_name != ''
 			  AND LOWER(project_name) != 'private'
+			GROUP BY project_name
 		)
 		SELECT c.project_name,
 		       c.district,

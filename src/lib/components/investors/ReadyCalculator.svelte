@@ -59,7 +59,7 @@
   });
 
   // ── Shared class strings ─────────────────────────────────────────────────────
-  const inp = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
+  const inp = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
   const sel = 'w-full bg-[#0a1a10] border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
 
   // ── Mortgage LTV matrix ──────────────────────────────────────────────────────
@@ -468,12 +468,12 @@
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Annual Interest Rate (%)</span>
             <input type="number" bind:value={interestRate} min="0" max="20" step="0.05"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Term Length (years)</span>
             <input type="number" bind:value={termYears} min="5" max="25" step="1"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
           </label>
         </div>
 
@@ -505,29 +505,29 @@
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Comparable Area PSF (AED, last 6 mths)</span>
             <input type="number" bind:value={comparablePsf} min="0" step="50"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Time of Resale (years)</span>
             <input type="number" bind:value={yearsToResale} min="0" max="30" step="1"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
           </label>
         </div>
         <div class="grid grid-cols-3 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Annual Appreciation (%)</span>
             <input type="number" bind:value={annualAppPct} min="0" max="50" step="0.5"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Other Factors (%)</span>
             <input type="number" bind:value={otherAppPct} min="0" max="20" step="0.5"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Refurb / Capex (AED)</span>
             <input type="number" bind:value={additionalCapex} min="0" step="5000"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
           </label>
         </div>
         <p class="text-[11px] text-white/30 pl-0.5">

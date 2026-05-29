@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { metadata } from '$lib/stores/db';
+
   // ── Helpers ─────────────────────────────────────────────────────────────────
   function fmtAed(v: number): string {
     if (!isFinite(v)) return '—';
@@ -8,66 +10,77 @@
     if (!isFinite(v)) return '—';
     return v.toFixed(dp) + '%';
   }
-  function fmtNum(v: number): string {
-    if (!isFinite(v)) return '—';
-    return Math.round(v).toLocaleString('en-AE');
-  }
 
-  // ── Inputs ──────────────────────────────────────────────────────────────────
-  let cost              = $state(1_000_000);   // purchase price AED
-  let internalArea      = $state(900);          // sqft
-  let balconyArea       = $state(45);           // sqft
-  let adminFee          = $state(4_000);        // developer admin AED
+  // ── District & Layout options from metadata ──────────────────────────────────
+  const LAYOUT_ORDER = ['studio', '1 bed', '2 beds', '3 beds', '4 beds', '5 beds', '5+ beds', '6+ beds'];
+  const LAYOUT_DISPLAY: Record<string, string> = { studio: 'Studio' };
 
-  // Rental inputs
-  let comparableRent    = $state(50_000);       // AED/year
+  let districts = $derived($metadata?.districts ?? []);
+  let layouts = $derived(
+    ($metadata?.layouts ?? [])
+      .filter((l: string) => LAYOUT_ORDER.includes(l.toLowerCase()))
+      .sort((a: string, b: string) => LAYOUT_ORDER.indexOf(a.toLowerCase()) - LAYOUT_ORDER.indexOf(b.toLowerCase()))
+  );
+
+  // ── Unit inputs ──────────────────────────────────────────────────────────────
+  let district = $state('');
+  let layout   = $state('');
+  let cost     = $state(1_000_000);   // purchase price AED
+  let size     = $state(945);         // total sqft
+
+  const adminFee = 4_000;             // hardcoded
+
+  // ── Rental inputs ────────────────────────────────────────────────────────────
+  let comparableRent    = $state(50_000);
   let yearsTillHandover = $state(2);
-  let rentalAppPct      = $state(15);           // % appreciation over construction
-  let furnishedPremium  = $state(10_000);       // AED annual premium
-  let mgmtFeePct        = $state(8);            // % of gross rental
-  let utilitiesMonthly  = $state(0);            // AED/month
-  let serviceChargePsf  = $state(15);           // AED/sqft/year
-  let furnitureCost     = $state(0);            // one-time AED
+  let rentalAppPct      = $state(15);
+  let furnishedPremium  = $state(10_000);
+  let mgmtFeePct        = $state(8);
+  let utilitiesMonthly  = $state(0);
+  let serviceChargePsf  = $state(15);
 
-  // Capital gains inputs
-  let readyUnitPsf      = $state(1_137);        // AED/sqft comparable ready unit
-  let yearsToResale     = $state(5);
-  let annualAppPct      = $state(12);           // % annual price appreciation
-  let otherAppPct       = $state(0);            // % additional appreciation
-  let resaleBrokerPct   = $state(2);            // %
+  // ── Capital gains inputs ─────────────────────────────────────────────────────
+  let yearsToResale   = $state(5);
+  let annualAppPct    = $state(12);
+  let otherAppPct     = $state(0);
+  let resaleBrokerPct = $state(2);
 
-  // ── Derived: purchase costs ─────────────────────────────────────────────────
-  let totalArea = $derived(internalArea + balconyArea);
-  let dldFee    = $derived(cost * 0.04 + 580);
+  // ── Derived: unit ────────────────────────────────────────────────────────────
+  let pricePerSqft     = $derived(size > 0 ? cost / size : 0);
+  let dldFee           = $derived(cost * 0.04 + 580);
   let totalPurchaseCost = $derived(cost + dldFee + adminFee);
 
-  // ── Derived: rental ─────────────────────────────────────────────────────────
-  let grossRental = $derived(
+  // ── Derived: rental ──────────────────────────────────────────────────────────
+  let grossRental   = $derived(
     comparableRent * Math.pow(1 + rentalAppPct / 100, yearsTillHandover) + furnishedPremium
   );
   let mgmtFee       = $derived(grossRental * mgmtFeePct / 100);
   let utilities     = $derived(utilitiesMonthly * 12);
-  let serviceCharge = $derived((internalArea + balconyArea * 0.25) * serviceChargePsf * 1.05);
+  let serviceCharge = $derived(size * serviceChargePsf * 1.05);
   let netRental     = $derived(grossRental - mgmtFee - utilities - serviceCharge);
 
-  let grossYield    = $derived(cost > 0 ? (grossRental / cost) * 100 : 0);
-  let netYield      = $derived(totalPurchaseCost > 0 ? (netRental / totalPurchaseCost) * 100 : 0);
-  let paybackYears  = $derived(netYield > 0 ? (100 / netYield) : 0);
+  let grossYield      = $derived(cost > 0 ? (grossRental / cost) * 100 : 0);
+  let netYield        = $derived(totalPurchaseCost > 0 ? (netRental / totalPurchaseCost) * 100 : 0);
+  let paybackYears    = $derived(netYield > 0 ? 100 / netYield : 0);
   let rentalObjective = $derived(netYield >= 7);
 
-  // ── Derived: capital gains ───────────────────────────────────────────────────
-  let totalAppRate    = $derived((annualAppPct + otherAppPct) / 100);
-  let sellingPrice    = $derived(cost * Math.pow(1 + totalAppRate, yearsToResale));
-  let resaleBrokerFee = $derived(sellingPrice * resaleBrokerPct / 100);
-  let totalAllInCost  = $derived(totalPurchaseCost + resaleBrokerFee);
-  let netProfit       = $derived(sellingPrice - totalAllInCost);
-  let netProfitPct    = $derived(totalAllInCost > 0 ? (netProfit / totalAllInCost) * 100 : 0);
+  // ── Derived: capital gains ────────────────────────────────────────────────────
+  let totalAppRate     = $derived((annualAppPct + otherAppPct) / 100);
+  let sellingPrice     = $derived(cost * Math.pow(1 + totalAppRate, yearsToResale));
+  let resaleBrokerFee  = $derived(sellingPrice * resaleBrokerPct / 100);
+  let totalAllInCost   = $derived(totalPurchaseCost + resaleBrokerFee);
+  let netProfit        = $derived(sellingPrice - totalAllInCost);
+  let netProfitPct     = $derived(totalAllInCost > 0 ? (netProfit / totalAllInCost) * 100 : 0);
   let netProfitPerYear = $derived(
     yearsToResale > 0 && totalAllInCost > 0
       ? (Math.pow(sellingPrice / totalAllInCost, 1 / yearsToResale) - 1) * 100
       : 0
   );
   let capitalObjective = $derived(netProfitPerYear >= 7);
+
+  // ── Shared input class ───────────────────────────────────────────────────────
+  const inp = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
+  const sel = 'w-full bg-[#0a1a10] border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
@@ -91,115 +104,133 @@
     <!-- ── LEFT: Inputs ──────────────────────────────────────────────────────── -->
     <div class="space-y-5">
 
-      <!-- Unit details -->
+      <!-- ── Unit Details ───────────────────────────────────────────────────── -->
       <fieldset class="space-y-3">
         <legend class="text-[10px] font-bold text-amber-400/80 uppercase tracking-widest">Unit Details</legend>
+
+        <!-- District + Layout dropdowns (header row) -->
         <div class="grid grid-cols-2 gap-3">
-          <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Purchase Price (AED)</span>
-            <input type="number" bind:value={cost} min="0" step="10000"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-white/25 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
-          </label>
-          <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Developer Admin Fee (AED)</span>
-            <input type="number" bind:value={adminFee} min="0" step="500"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-white/25 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
-          </label>
-        </div>
-        <div class="grid grid-cols-3 gap-3">
-          <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Internal Area (sqft)</span>
-            <input type="number" bind:value={internalArea} min="0" step="10"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
-          </label>
-          <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Balcony (sqft)</span>
-            <input type="number" bind:value={balconyArea} min="0" step="5"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
-          </label>
           <div class="space-y-1">
-            <span class="text-[11px] text-white/50">Total Area</span>
-            <div class="w-full bg-white/3 border border-white/6 rounded-lg px-3 py-2 text-sm text-white/60 tabular-nums">{totalArea.toLocaleString('en-AE')} sqft</div>
+            <span class="text-[11px] text-white/50">District</span>
+            <div class="relative">
+              <select bind:value={district} class={sel}>
+                <option value="">All Districts</option>
+                {#each districts as d}
+                  <option value={d}>{d}</option>
+                {/each}
+              </select>
+              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+          </div>
+          <div class="space-y-1">
+            <span class="text-[11px] text-white/50">Layout</span>
+            <div class="relative">
+              <select bind:value={layout} class={sel}>
+                <option value="">Select Layout</option>
+                {#each layouts as l}
+                  <option value={l}>{LAYOUT_DISPLAY[l.toLowerCase()] ?? l}</option>
+                {/each}
+              </select>
+              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
           </div>
         </div>
-        <!-- DLD info line -->
-        <p class="text-[11px] text-white/30 pl-0.5">DLD fee (4% + AED 580) = <span class="text-amber-400/70">{fmtAed(dldFee)}</span> · Total acquisition cost = <span class="text-amber-400/70">{fmtAed(totalPurchaseCost)}</span></p>
+
+        <!-- Price + Size -->
+        <div class="grid grid-cols-2 gap-3">
+          <label class="space-y-1">
+            <span class="text-[11px] text-white/50">Price (AED)</span>
+            <input type="number" bind:value={cost} min="0" step="10000" class={inp} />
+          </label>
+          <label class="space-y-1">
+            <span class="text-[11px] text-white/50">Size (sqft)</span>
+            <input type="number" bind:value={size} min="0" step="10" class={inp} />
+          </label>
+        </div>
+
+        <!-- AED/sqft + acquisition cost info row -->
+        <div class="grid grid-cols-2 gap-3">
+          <div class="rounded-lg bg-amber-500/8 border border-amber-500/20 px-3 py-2.5">
+            <p class="text-[10px] text-amber-400/70 uppercase tracking-wider">Price per sqft</p>
+            <p class="text-base font-black text-amber-400 tabular-nums mt-0.5">
+              {size > 0 ? Math.round(pricePerSqft).toLocaleString('en-AE') : '—'} <span class="text-xs font-semibold text-amber-400/60">AED/sqft</span>
+            </p>
+          </div>
+          <div class="rounded-lg bg-white/3 border border-white/8 px-3 py-2.5">
+            <p class="text-[10px] text-white/35 uppercase tracking-wider">Total Acquisition Cost</p>
+            <p class="text-sm font-bold text-white/70 tabular-nums mt-0.5">{fmtAed(totalPurchaseCost)}</p>
+            <p class="text-[9px] text-white/25 mt-0.5">Price + DLD (4% + 580) + Admin (4,000)</p>
+          </div>
+        </div>
       </fieldset>
 
-      <!-- Rental inputs -->
+      <!-- ── Rental Analysis ────────────────────────────────────────────────── -->
       <fieldset class="space-y-3">
         <legend class="text-[10px] font-bold text-emerald-400/80 uppercase tracking-widest">Rental Analysis (at Handover)</legend>
         <div class="grid grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Comparable Rent today (AED/yr)</span>
-            <input type="number" bind:value={comparableRent} min="0" step="1000"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={comparableRent} min="0" step="1000" class={inp} />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Years till Handover</span>
-            <input type="number" bind:value={yearsTillHandover} min="0" max="10" step="0.5"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={yearsTillHandover} min="0" max="10" step="0.5" class={inp} />
           </label>
         </div>
         <div class="grid grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Rental Appreciation over Build (%)</span>
-            <input type="number" bind:value={rentalAppPct} min="0" max="100" step="1"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={rentalAppPct} min="0" max="100" step="1" class={inp} />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Furnished Premium (AED/yr)</span>
-            <input type="number" bind:value={furnishedPremium} min="0" step="1000"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={furnishedPremium} min="0" step="1000" class={inp} />
           </label>
         </div>
         <div class="grid grid-cols-3 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Management Fee (%)</span>
-            <input type="number" bind:value={mgmtFeePct} min="0" max="30" step="0.5"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={mgmtFeePct} min="0" max="30" step="0.5" class={inp} />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Utilities (AED/mth)</span>
-            <input type="number" bind:value={utilitiesMonthly} min="0" step="100"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={utilitiesMonthly} min="0" step="100" class={inp} />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Service Charge (AED/sqft)</span>
-            <input type="number" bind:value={serviceChargePsf} min="0" step="0.5"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={serviceChargePsf} min="0" step="0.5" class={inp} />
           </label>
         </div>
         <p class="text-[11px] text-white/30 pl-0.5">
-          Service charge = (internal + 25% balcony) × {serviceChargePsf} psf + 5% VAT = <span class="text-amber-400/70">{fmtAed(serviceCharge)}/yr</span>
+          Service charge = {size.toLocaleString('en-AE')} sqft × {serviceChargePsf} + 5% VAT = <span class="text-amber-400/70">{fmtAed(serviceCharge)}/yr</span>
         </p>
       </fieldset>
 
-      <!-- Capital gains inputs -->
+      <!-- ── Capital Gains ──────────────────────────────────────────────────── -->
       <fieldset class="space-y-3">
         <legend class="text-[10px] font-bold text-blue-400/80 uppercase tracking-widest">Capital Gains Estimation</legend>
         <div class="grid grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Time of Resale (years from today)</span>
-            <input type="number" bind:value={yearsToResale} min="0" max="30" step="1"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={yearsToResale} min="0" max="30" step="1" class={inp} />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Expected Annual Appreciation (%)</span>
-            <input type="number" bind:value={annualAppPct} min="0" max="50" step="0.5"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={annualAppPct} min="0" max="50" step="0.5" class={inp} />
           </label>
         </div>
         <div class="grid grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Other Appreciation Factors (%)</span>
-            <input type="number" bind:value={otherAppPct} min="0" max="20" step="0.5"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={otherAppPct} min="0" max="20" step="0.5" class={inp} />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Resale Broker Fee (%)</span>
-            <input type="number" bind:value={resaleBrokerPct} min="0" max="5" step="0.25"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={resaleBrokerPct} min="0" max="5" step="0.25" class={inp} />
           </label>
         </div>
       </fieldset>
@@ -218,17 +249,16 @@
           </span>
         </div>
 
-        <!-- Revenue build-up -->
         <div class="space-y-1.5 text-xs">
           <div class="flex justify-between text-white/60">
             <span>Comparable rent × (1 + {rentalAppPct}%)^{yearsTillHandover}yr</span>
-            <span class="tabular-nums text-white/80">{fmtAed(comparableRent * Math.pow(1 + rentalAppPct/100, yearsTillHandover))}</span>
+            <span class="tabular-nums text-white/80">{fmtAed(comparableRent * Math.pow(1 + rentalAppPct / 100, yearsTillHandover))}</span>
           </div>
           {#if furnishedPremium > 0}
-          <div class="flex justify-between text-white/60">
-            <span>Furnished premium</span>
-            <span class="tabular-nums text-white/80">+ {fmtAed(furnishedPremium)}</span>
-          </div>
+            <div class="flex justify-between text-white/60">
+              <span>Furnished premium</span>
+              <span class="tabular-nums text-white/80">+ {fmtAed(furnishedPremium)}</span>
+            </div>
           {/if}
           <div class="flex justify-between font-semibold text-white border-t border-white/10 pt-1.5">
             <span>Gross Rental Revenue</span>
@@ -236,19 +266,18 @@
           </div>
         </div>
 
-        <!-- Deductions -->
         <div class="space-y-1.5 text-xs border-t border-white/8 pt-2">
           {#if mgmtFee > 0}
-          <div class="flex justify-between text-white/55">
-            <span>Management fee ({mgmtFeePct}%)</span>
-            <span class="tabular-nums text-red-400/80">− {fmtAed(mgmtFee)}</span>
-          </div>
+            <div class="flex justify-between text-white/55">
+              <span>Management fee ({mgmtFeePct}%)</span>
+              <span class="tabular-nums text-red-400/80">− {fmtAed(mgmtFee)}</span>
+            </div>
           {/if}
           {#if utilities > 0}
-          <div class="flex justify-between text-white/55">
-            <span>Utilities</span>
-            <span class="tabular-nums text-red-400/80">− {fmtAed(utilities)}</span>
-          </div>
+            <div class="flex justify-between text-white/55">
+              <span>Utilities</span>
+              <span class="tabular-nums text-red-400/80">− {fmtAed(utilities)}</span>
+            </div>
           {/if}
           <div class="flex justify-between text-white/55">
             <span>Service charge + VAT</span>
@@ -260,7 +289,6 @@
           </div>
         </div>
 
-        <!-- Yield metrics -->
         <div class="grid grid-cols-3 gap-2 pt-1">
           <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
             <p class="text-[10px] text-white/40 uppercase tracking-wide">Gross Yield</p>
@@ -287,7 +315,6 @@
           </span>
         </div>
 
-        <!-- Selling price -->
         <div class="space-y-1.5 text-xs">
           <div class="flex justify-between text-white/60">
             <span>Potential selling price (after {yearsToResale}yr @ {annualAppPct + otherAppPct}%/yr)</span>
@@ -295,7 +322,6 @@
           </div>
         </div>
 
-        <!-- Cost deductions -->
         <div class="space-y-1.5 text-xs border-t border-white/8 pt-2">
           <div class="flex justify-between text-white/55">
             <span>Original purchase price</span>
@@ -315,7 +341,6 @@
           </div>
         </div>
 
-        <!-- Return metrics -->
         <div class="grid grid-cols-3 gap-2 pt-1">
           <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
             <p class="text-[10px] text-white/40 uppercase tracking-wide">Total Return</p>
@@ -329,7 +354,7 @@
           <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
             <p class="text-[10px] text-white/40 uppercase tracking-wide">Net Profit</p>
             <p class="text-base font-black tabular-nums {netProfit >= 0 ? 'text-emerald-400' : 'text-red-400'} leading-tight">
-              {netProfit >= 0 ? '+' : ''}{Math.abs(netProfit) >= 1_000_000 ? (netProfit/1_000_000).toFixed(2) + 'M' : Math.round(netProfit/1000) + 'K'}
+              {netProfit >= 0 ? '+' : ''}{Math.abs(netProfit) >= 1_000_000 ? (netProfit / 1_000_000).toFixed(2) + 'M' : Math.round(netProfit / 1000) + 'K'}
             </p>
             <p class="text-[9px] text-white/25 mt-0.5">AED</p>
           </div>
@@ -338,7 +363,7 @@
 
       <!-- Disclaimer -->
       <p class="text-[10px] text-white/20 leading-relaxed px-0.5">
-        Indicative estimates only. Assumes {annualAppPct + otherAppPct}%/yr compound appreciation on purchase price, DLD 4% + AED 580 registration, and service charge at 105% of {serviceChargePsf} AED/sqft on (internal + 25% balcony). Cross-verify rental comparables on ADInteract · Sales and rental data.
+        Indicative estimates only. Assumes {annualAppPct + otherAppPct}%/yr compound appreciation on purchase price, DLD 4% + AED 580, admin AED 4,000. Service charge applied on full unit size + 5% VAT. Cross-verify rental comparables on ADInteract Sales and Rental data.
       </p>
 
     </div><!-- end right -->

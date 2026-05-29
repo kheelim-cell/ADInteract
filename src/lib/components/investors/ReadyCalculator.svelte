@@ -88,7 +88,8 @@
   let comparablePsf   = $state(1_250);
   let yearsToResale   = $state(5);
   let annualAppPct    = $state(4);
-  let otherAppPct     = $state(0);
+  let otherFactorType = $state<'standard' | 'furnished' | 'branded'>('standard');
+  let otherAppPct     = $derived(otherFactorType === 'furnished' ? 5 : otherFactorType === 'branded' ? 10 : 0);
   let additionalCapex = $state(0);
 
   // ── Derived: unit ─────────────────────────────────────────────────────────────
@@ -258,6 +259,98 @@
         medianRentLoading = false;
       })
       .catch(() => { medianRentLoading = false; });
+  });
+
+  // ── Auto-populate comparable PSF (last 6 months, ready only) ─────────────────
+  let psf6mLoading = $state(false);
+  let psf6mSource  = $state('');
+
+  $effect(() => {
+    if (!$dbReady) return;
+    const d = district;
+    const l = layout;
+    const p = project && project !== 'other' ? project : '';
+
+    let filterClause: string;
+    let source: string;
+    if (p) {
+      filterClause = `AND LOWER(TRIM(project_name)) = '${p.replace(/'/g, "''").toLowerCase().trim()}'`;
+      source = toTitleCase(p);
+    } else {
+      const parts: string[] = [];
+      if (d) parts.push(`district = '${d.replace(/'/g, "''")}'`);
+      if (l) parts.push(`LOWER(TRIM(layout)) = '${l.replace(/'/g, "''").toLowerCase()}'`);
+      filterClause = parts.length ? 'AND ' + parts.join(' AND ') : '';
+      source = [d, l].filter(Boolean).join(' · ') || 'Abu Dhabi · all ready';
+    }
+
+    psf6mLoading = true;
+    query<{ median_psf: number }>(`
+      SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft) AS median_psf
+      FROM transactions
+      WHERE LOWER(TRIM(sale_type)) = 'ready'
+        AND rate_per_sqft > 0
+        AND sale_date >= (CURRENT_DATE - INTERVAL '6 months')
+        ${filterClause}
+    `).then(rows => {
+      const val = rows[0]?.median_psf;
+      if (val && val > 0) { comparablePsf = Math.round(val); psf6mSource = source; }
+      psf6mLoading = false;
+    }).catch(() => { psf6mLoading = false; });
+  });
+
+  // ── Auto-populate YoY appreciation (last 12 vs prior 12 months, ready only) ──
+  let yoyLoading = $state(false);
+  let yoySource  = $state('');
+
+  $effect(() => {
+    if (!$dbReady) return;
+    const d = district;
+    const l = layout;
+    const p = project && project !== 'other' ? project : '';
+
+    let filterClause: string;
+    let source: string;
+    if (p) {
+      filterClause = `AND LOWER(TRIM(project_name)) = '${p.replace(/'/g, "''").toLowerCase().trim()}'`;
+      source = toTitleCase(p);
+    } else {
+      const parts: string[] = [];
+      if (d) parts.push(`district = '${d.replace(/'/g, "''")}'`);
+      if (l) parts.push(`LOWER(TRIM(layout)) = '${l.replace(/'/g, "''").toLowerCase()}'`);
+      filterClause = parts.length ? 'AND ' + parts.join(' AND ') : '';
+      source = [d, l].filter(Boolean).join(' · ') || 'Abu Dhabi · all ready';
+    }
+
+    const baseWhere = `LOWER(TRIM(sale_type)) = 'ready' AND rate_per_sqft > 0`;
+
+    yoyLoading = true;
+    Promise.all([
+      query<{ median_psf: number }>(`
+        SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft) AS median_psf
+        FROM transactions
+        WHERE ${baseWhere}
+          AND sale_date >= (CURRENT_DATE - INTERVAL '12 months')
+          ${filterClause}
+      `),
+      query<{ median_psf: number }>(`
+        SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft) AS median_psf
+        FROM transactions
+        WHERE ${baseWhere}
+          AND sale_date >= (CURRENT_DATE - INTERVAL '24 months')
+          AND sale_date <  (CURRENT_DATE - INTERVAL '12 months')
+          ${filterClause}
+      `),
+    ]).then(([currRows, prevRows]) => {
+      const curr = currRows[0]?.median_psf;
+      const prev = prevRows[0]?.median_psf;
+      if (curr && prev && prev > 0) {
+        const rawYoy = ((curr - prev) / prev) * 100;
+        annualAppPct = Math.max(0, parseFloat((rawYoy * 0.5).toFixed(1)));
+        yoySource    = source;
+      }
+      yoyLoading = false;
+    }).catch(() => { yoyLoading = false; });
   });
 </script>
 
@@ -513,6 +606,11 @@
             <span class="text-[11px] text-white/50">Comparable Area PSF (AED, last 6 mths)</span>
             <input type="number" bind:value={comparablePsf} min="0" step="50"
               class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            {#if psf6mLoading}
+              <p class="text-[10px] text-white/30 pl-0.5">Loading median PSF…</p>
+            {:else if psf6mSource}
+              <p class="text-[10px] text-amber-400/60 pl-0.5">↳ Median ready PSF · {psf6mSource}</p>
+            {/if}
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Time of Resale (years)</span>
@@ -525,12 +623,25 @@
             <span class="text-[11px] text-white/50">Annual Appreciation (%)</span>
             <input type="number" bind:value={annualAppPct} min="0" max="50" step="0.5"
               class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            {#if yoyLoading}
+              <p class="text-[10px] text-white/30 pl-0.5">Loading YoY data…</p>
+            {:else if yoySource}
+              <p class="text-[10px] text-amber-400/60 pl-0.5">↳ YoY ready · {yoySource} · 50% haircut</p>
+            {/if}
           </label>
-          <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Other Factors (%)</span>
-            <input type="number" bind:value={otherAppPct} min="0" max="20" step="0.5"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
-          </label>
+          <div class="space-y-1">
+            <span class="text-[11px] text-white/50">Finish / Branding</span>
+            <div class="relative">
+              <select bind:value={otherFactorType} class={sel}>
+                <option value="standard">Standard (0%)</option>
+                <option value="furnished">Furnished (+5%)</option>
+                <option value="branded">Branded Residence (+10%)</option>
+              </select>
+              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+          </div>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Refurb / Capex (AED)</span>
             <input type="number" bind:value={additionalCapex} min="0" step="5000"

@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { metadata } from '$lib/stores/db';
+  import { metadata, dbReady } from '$lib/stores/db';
+  import { query } from '$lib/db/duckdb';
+  import { base } from '$app/paths';
+  import { onMount } from 'svelte';
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
   function fmtAed(v: number): string {
@@ -10,114 +13,118 @@
     if (!isFinite(v) || isNaN(v)) return '—';
     return v.toFixed(dp) + '%';
   }
+  function toTitleCase(str: string): string {
+    return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  }
 
-  // ── District & Layout options from metadata ──────────────────────────────────
+  // ── Constants ─────────────────────────────────────────────────────────────────
   const LAYOUT_ORDER = ['studio', '1 bed', '2 beds', '3 beds', '4 beds', '5 beds', '5+ beds', '6+ beds'];
   const LAYOUT_DISPLAY: Record<string, string> = { studio: 'Studio' };
-
   const PINNED_DISTRICTS = [
-    'Al Reem Island',
-    'Yas Island',
-    'Al Saadiyat Island',
-    'Al Rahah',
-    'Khalifa City',
-    'Al Reef',
-    'Fahid Island',
-    'Al Hidayriyyat',
+    'Al Reem Island', 'Yas Island', 'Al Saadiyat Island', 'Al Rahah',
+    'Khalifa City', 'Al Reef', 'Fahid Island', 'Al Hidayriyyat',
   ];
 
-  let districts = $derived.by(() => {
-    const all: string[] = $metadata?.districts ?? [];
-    const pinnedFound  = PINNED_DISTRICTS.filter(p => all.some(d => d.toLowerCase() === p.toLowerCase()));
-    const pinnedSet    = new Set(pinnedFound.map(p => p.toLowerCase()));
-    const rest         = all.filter(d => !pinnedSet.has(d.toLowerCase())).sort();
-    return [...pinnedFound, ...rest];
-  });
+  // ── Loaded data ───────────────────────────────────────────────────────────────
+  interface ProjectInfo { project_name: string; district: string; sc_avg: number | null; }
+  let readyDistricts   = $state<string[]>([]);
+  let allProjects      = $state<ProjectInfo[]>([]);
+  let scLookup         = $state<Record<string, number>>({});  // normalised name → sc_avg
+  let loadingDistricts = $state(true);
+
+  // ── Derived: layouts ─────────────────────────────────────────────────────────
   let layouts = $derived(
     ($metadata?.layouts ?? [])
       .filter((l: string) => LAYOUT_ORDER.includes(l.toLowerCase()))
       .sort((a: string, b: string) => LAYOUT_ORDER.indexOf(a.toLowerCase()) - LAYOUT_ORDER.indexOf(b.toLowerCase()))
   );
 
-  // ── Shared input / select class ───────────────────────────────────────────
+  // ── Derived: ready districts (pinned first) ──────────────────────────────────
+  let pinnedCount = $derived.by(() =>
+    PINNED_DISTRICTS.filter(p => readyDistricts.some(d => d.toLowerCase() === p.toLowerCase())).length
+  );
+  let districts = $derived.by(() => {
+    const pinnedFound = PINNED_DISTRICTS.filter(p => readyDistricts.some(d => d.toLowerCase() === p.toLowerCase()));
+    const pinnedSet   = new Set(pinnedFound.map(p => p.toLowerCase()));
+    const rest        = readyDistricts.filter(d => !pinnedSet.has(d.toLowerCase())).sort();
+    return [...pinnedFound, ...rest];
+  });
+
+  // ── Derived: projects filtered by selected district ───────────────────────────
+  let filteredProjects = $derived.by(() => {
+    const list = district
+      ? allProjects.filter(p => p.district.toLowerCase() === district.toLowerCase())
+      : allProjects;
+    return [...list].sort((a, b) => a.project_name.localeCompare(b.project_name));
+  });
+
+  // ── Shared class strings ─────────────────────────────────────────────────────
   const inp = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
   const sel = 'w-full bg-[#0a1a10] border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
 
   // ── Mortgage LTV matrix ──────────────────────────────────────────────────────
-  // Key: `${mortgageType}|${residency}` → [ltv_below5m, ltv_above5m]
   const LTV_MATRIX: Record<string, [number, number]> = {
-    'none|uae_national':      [0, 0],
-    'none|uae_resident':      [0, 0],
-    'none|non_resident':      [0, 0],
-    '1st|uae_national':       [0.85, 0.75],
-    '1st|uae_resident':       [0.80, 0.70],
-    '1st|non_resident':       [0.50, 0.50],
-    '2nd|uae_national':       [0.65, 0.65],
-    '2nd|uae_resident':       [0.60, 0.60],
-    '2nd|non_resident':       [0.50, 0.50],
+    'none|uae_national': [0, 0], 'none|uae_resident': [0, 0], 'none|non_resident': [0, 0],
+    '1st|uae_national':  [0.85, 0.75], '1st|uae_resident': [0.80, 0.70], '1st|non_resident': [0.50, 0.50],
+    '2nd|uae_national':  [0.65, 0.65], '2nd|uae_resident': [0.60, 0.60], '2nd|non_resident': [0.50, 0.50],
   };
 
-  // ── Inputs ──────────────────────────────────────────────────────────────────
+  // ── Inputs ────────────────────────────────────────────────────────────────────
   let district         = $state('');
   let layout           = $state('');
-  let price            = $state(600_000);   // property price AED
-  let livingArea       = $state(413);       // sqft
-  let balconyArea      = $state(45);        // sqft
-  let serviceChargePsf = $state(16);        // AED/sqft/year
-  let annualRent       = $state(50_000);    // AED/year
+  let project          = $state('');
+  let tenancyStatus    = $state<'tenanted' | 'vacant'>('vacant');
+  let price            = $state(600_000);
+  let livingArea       = $state(413);
+  let balconyArea      = $state(45);
+  let serviceChargePsf = $state(16);
+  let annualRent       = $state(50_000);
 
-  // Mortgage settings
   let mortgageType = $state<'none' | '1st' | '2nd'>('1st');
   let residency    = $state<'uae_national' | 'uae_resident' | 'non_resident'>('uae_resident');
-  let interestRate = $state(4.35);          // % annual
+  let interestRate = $state(4.35);
   let termYears    = $state(25);
 
-  // Capital gains
-  let comparablePsf     = $state(1_250);   // AED/sqft comparable units last 6 months
-  let yearsToResale     = $state(5);
-  let annualAppPct      = $state(4);        // %
-  let otherAppPct       = $state(0);        // %
-  let additionalCapex   = $state(0);        // AED refurb/maintenance
+  let comparablePsf   = $state(1_250);
+  let yearsToResale   = $state(5);
+  let annualAppPct    = $state(4);
+  let otherAppPct     = $state(0);
+  let additionalCapex = $state(0);
 
-  // ── Derived: unit ────────────────────────────────────────────────────────────
-  let pricePerSqft = $derived(livingArea > 0 ? price / livingArea : 0);
+  // ── Derived: unit ─────────────────────────────────────────────────────────────
+  let pricePerSqft  = $derived(livingArea > 0 ? price / livingArea : 0);
+  let effectiveRent = $derived(tenancyStatus === 'tenanted' ? annualRent : 0);
 
   // ── Derived: LTV & mortgage ──────────────────────────────────────────────────
-  let ltvKey    = $derived(`${mortgageType}|${residency}`);
-  let ltvRates  = $derived(LTV_MATRIX[ltvKey] ?? [0, 0]);
-  let ltv       = $derived(price >= 5_000_000 ? ltvRates[1] : ltvRates[0]);
-  let mortgageAmount = $derived(price * ltv);
-  let downpayment    = $derived(price - mortgageAmount);
-
-  // Purchase costs: Abu Dhabi 2% DARI/DMT + AED 1,000 title deed + 2% agency + 5% VAT
-  let registrationFee  = $derived(price * 0.02 + 1_000); // DARI/DMT + title deed
-  let agencyFee        = $derived(price * 0.02 * 1.05);  // 2% + 5% VAT
-  let purchasingFees   = $derived(registrationFee + agencyFee);
-  let mortgageAdminFee = $derived(mortgageType !== 'none' ? 9_400 : 0);
-  let equityInjection  = $derived(downpayment + purchasingFees + mortgageAdminFee);
-
-  // Mortgage EMI (monthly)
-  let monthlyRate = $derived(interestRate / 100 / 12);
-  let nPayments   = $derived(termYears * 12);
+  let ltvKey               = $derived(`${mortgageType}|${residency}`);
+  let ltvRates             = $derived(LTV_MATRIX[ltvKey] ?? [0, 0]);
+  let ltv                  = $derived(price >= 5_000_000 ? ltvRates[1] : ltvRates[0]);
+  let mortgageAmount       = $derived(price * ltv);
+  let downpayment          = $derived(price - mortgageAmount);
+  let registrationFee      = $derived(price * 0.02 + 1_000);
+  let agencyFee            = $derived(price * 0.02 * 1.05);
+  let purchasingFees       = $derived(registrationFee + agencyFee);
+  let mortgageAdminFee     = $derived(mortgageType !== 'none' ? 9_400 : 0);
+  let equityInjection      = $derived(downpayment + purchasingFees + mortgageAdminFee);
+  let monthlyRate          = $derived(interestRate / 100 / 12);
+  let nPayments            = $derived(termYears * 12);
   let emi = $derived(
     mortgageType !== 'none' && mortgageAmount > 0 && monthlyRate > 0
       ? mortgageAmount * monthlyRate / (1 - Math.pow(1 + monthlyRate, -nPayments))
       : 0
   );
-  let lifeInsurance     = $derived(mortgageAmount * 0.000171);  // 0.0171% of loan/mth
-  let propertyInsurance = $derived(price * 0.0001);            // 0.01% of price/mth
+  let lifeInsurance        = $derived(mortgageAmount * 0.000171);
+  let propertyInsurance    = $derived(price * 0.0001);
   let totalMonthlyMortgage = $derived(emi + lifeInsurance + propertyInsurance);
-  let annualMortgage = $derived(totalMonthlyMortgage * 12);
+  let annualMortgage       = $derived(totalMonthlyMortgage * 12);
+  let mortgageEligible     = $derived(mortgageType === 'none' || mortgageAmount >= 250_000);
 
-  // Mortgage eligibility check (most banks min AED 250k)
-  let mortgageEligible = $derived(mortgageType === 'none' || mortgageAmount >= 250_000);
-
-  // ── Derived: rental ─────────────────────────────────────────────────────────
-  let serviceCharge = $derived((livingArea + balconyArea * 0.25) * serviceChargePsf * 1.05);
-  let netAnnualRental = $derived(annualRent - serviceCharge - annualMortgage);
+  // ── Derived: rental (uses effectiveRent) ─────────────────────────────────────
+  let serviceCharge      = $derived((livingArea + balconyArea * 0.25) * serviceChargePsf * 1.05);
+  let netAnnualRental    = $derived(effectiveRent - serviceCharge - annualMortgage);
   let monthlyNetCashflow = $derived(netAnnualRental / 12);
-  let netYield = $derived(equityInjection > 0 ? (netAnnualRental / equityInjection) * 100 : 0);
-  let rentalObjective = $derived(netYield >= 7);
+  let netYield           = $derived(equityInjection > 0 ? (netAnnualRental / equityInjection) * 100 : 0);
+  let rentalObjective    = $derived(netYield >= 7);
 
   // ── Derived: capital gains ───────────────────────────────────────────────────
   let totalAppRate    = $derived((annualAppPct + otherAppPct) / 100);
@@ -126,14 +133,80 @@
   let netProfit = $derived(
     sellingPrice - price - purchasingFees - mortgageAdminFee - resaleBrokerFee - additionalCapex
   );
-  let totalEquityBase = $derived(equityInjection + additionalCapex);
-  let netProfitPct    = $derived(totalEquityBase > 0 ? (netProfit / totalEquityBase) * 100 : 0);
+  let totalEquityBase  = $derived(equityInjection + additionalCapex);
+  let netProfitPct     = $derived(totalEquityBase > 0 ? (netProfit / totalEquityBase) * 100 : 0);
   let netProfitPerYear = $derived(
     yearsToResale > 0 && totalEquityBase > 0
       ? (Math.pow(1 + netProfitPct / 100, 1 / yearsToResale) - 1) * 100
       : 0
   );
   let capitalObjective = $derived(netProfitPerYear >= 7);
+
+  // ── Load service_charges.json (static) ───────────────────────────────────────
+  onMount(async () => {
+    try {
+      const res = await fetch(`${base}/data/service_charges.json`);
+      if (res.ok) {
+        const json = await res.json();
+        const scProjects: ProjectInfo[] = (json.projects ?? []).map(
+          (p: { project_name: string; district: string; sc_avg: number | null }) => ({
+            project_name: p.project_name,
+            district:     p.district ?? '',
+            sc_avg:       p.sc_avg ?? null,
+          })
+        );
+        const lookup: Record<string, number> = {};
+        for (const p of scProjects) {
+          if (p.sc_avg != null) lookup[p.project_name.toLowerCase().trim()] = p.sc_avg;
+        }
+        scLookup    = lookup;
+        allProjects = scProjects;
+      }
+    } catch { /* ignore */ }
+  });
+
+  // ── Query ready districts + rental projects once DB is ready ──────────────────
+  $effect(() => {
+    if (!$dbReady) return;
+
+    query<{ district: string }>(`
+      SELECT DISTINCT district FROM transactions
+      WHERE LOWER(TRIM(sale_type)) = 'ready'
+        AND district IS NOT NULL AND district != ''
+      ORDER BY district
+    `).then(rows => {
+      readyDistricts   = rows.map(r => r.district);
+      loadingDistricts = false;
+    }).catch(() => { loadingDistricts = false; });
+
+    query<{ project_name: string; district: string }>(`
+      SELECT project_name, ANY_VALUE(district) AS district
+      FROM rental
+      WHERE project_name IS NOT NULL AND TRIM(project_name) != ''
+        AND LOWER(project_name) != 'private'
+      GROUP BY project_name
+      ORDER BY project_name
+    `).then(rows => {
+      const existingKeys = new Set(allProjects.map(p => p.project_name.toLowerCase().trim()));
+      const extra = rows
+        .filter(r => !existingKeys.has(r.project_name.toLowerCase().trim()))
+        .map(r => ({ project_name: r.project_name, district: r.district ?? '', sc_avg: null as number | null }));
+      if (extra.length) allProjects = [...allProjects, ...extra];
+    }).catch(() => {});
+  });
+
+  // ── Auto-populate service charge when project is selected ─────────────────────
+  $effect(() => {
+    if (!project || project === 'other') return;
+    const sc = scLookup[project.toLowerCase().trim()];
+    if (sc != null) serviceChargePsf = sc;
+  });
+
+  // ── Reset project when district changes ───────────────────────────────────────
+  $effect(() => {
+    void district;
+    project = '';
+  });
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
@@ -157,27 +230,29 @@
     <!-- ── LEFT: Inputs ──────────────────────────────────────────────────────── -->
     <div class="space-y-5">
 
-      <!-- Property details -->
+      <!-- Unit details -->
       <fieldset class="space-y-3">
         <legend class="text-[10px] font-bold text-amber-400/80 uppercase tracking-widest">Unit Details</legend>
 
-        <!-- District + Layout dropdowns -->
+        <!-- District + Layout -->
         <div class="grid grid-cols-2 gap-3">
           <div class="space-y-1">
             <span class="text-[11px] text-white/50">District</span>
             <div class="relative">
               <select bind:value={district} class={sel}>
-                <option value="">All Districts</option>
-                <optgroup label="── Popular ──">
-                  {#each districts.slice(0, PINNED_DISTRICTS.length) as d}
-                    <option value={d}>{d}</option>
-                  {/each}
-                </optgroup>
-                <optgroup label="── All Districts ──">
-                  {#each districts.slice(PINNED_DISTRICTS.length) as d}
-                    <option value={d}>{d}</option>
-                  {/each}
-                </optgroup>
+                <option value="">{loadingDistricts ? 'Loading…' : 'All Districts'}</option>
+                {#if districts.length > 0}
+                  <optgroup label="── Popular ──">
+                    {#each districts.slice(0, pinnedCount) as d}
+                      <option value={d}>{d}</option>
+                    {/each}
+                  </optgroup>
+                  <optgroup label="── All Districts ──">
+                    {#each districts.slice(pinnedCount) as d}
+                      <option value={d}>{d}</option>
+                    {/each}
+                  </optgroup>
+                {/if}
               </select>
               <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -200,17 +275,62 @@
           </div>
         </div>
 
-        <!-- Price + Annual Rent -->
-        <div class="grid grid-cols-2 gap-3">
-          <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Listing Price (AED)</span>
-            <input type="number" bind:value={price} min="0" step="10000" class={inp} />
-          </label>
-          <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Annual Rent (AED/yr)</span>
-            <input type="number" bind:value={annualRent} min="0" step="1000" class={inp} />
-          </label>
+        <!-- Project -->
+        <div class="space-y-1">
+          <span class="text-[11px] text-white/50">Project</span>
+          <div class="relative">
+            <select bind:value={project} class={sel}>
+              <option value="">Select Project (optional)</option>
+              {#if filteredProjects.some(p => p.sc_avg != null)}
+                <optgroup label="── Service Charge Available ──">
+                  {#each filteredProjects.filter(p => p.sc_avg != null) as p}
+                    <option value={p.project_name}>{toTitleCase(p.project_name)}</option>
+                  {/each}
+                </optgroup>
+              {/if}
+              {#if filteredProjects.some(p => p.sc_avg == null)}
+                <optgroup label="── Rental Data Only ──">
+                  {#each filteredProjects.filter(p => p.sc_avg == null) as p}
+                    <option value={p.project_name}>{toTitleCase(p.project_name)}</option>
+                  {/each}
+                </optgroup>
+              {/if}
+              <option value="other">Other / Not Listed</option>
+            </select>
+            <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </div>
+          {#if project && project !== 'other' && scLookup[project.toLowerCase().trim()] != null}
+            <p class="text-[10px] text-emerald-400/60 pl-0.5">✓ Service charge auto-populated from ADREC data</p>
+          {/if}
         </div>
+
+        <!-- Tenancy Status -->
+        <div class="space-y-2">
+          <span class="text-[11px] text-white/50">Tenancy Status</span>
+          <div class="flex gap-2">
+            {#each ([['tenanted', 'Tenanted'], ['vacant', 'Vacant']] as const) as [val, label]}
+              <button
+                type="button"
+                onclick={() => { tenancyStatus = val; }}
+                class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all {tenancyStatus === val ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300' : 'bg-white/3 border-white/10 text-white/40 hover:border-white/20'}"
+              >{label}</button>
+            {/each}
+          </div>
+          {#if tenancyStatus === 'tenanted'}
+            <label class="space-y-1 block">
+              <span class="text-[11px] text-white/50">Annual Rent (AED/yr)</span>
+              <input type="number" bind:value={annualRent} min="0" step="1000" class={inp} />
+            </label>
+          {/if}
+        </div>
+
+        <!-- Listing Price -->
+        <label class="space-y-1 block">
+          <span class="text-[11px] text-white/50">Listing Price (AED)</span>
+          <input type="number" bind:value={price} min="0" step="10000" class={inp} />
+        </label>
 
         <!-- Size inputs -->
         <div class="grid grid-cols-3 gap-3">
@@ -370,8 +490,8 @@
 
         <div class="space-y-1.5 text-xs">
           <div class="flex justify-between text-white/60">
-            <span>Annual rent</span>
-            <span class="tabular-nums text-white/80">{fmtAed(annualRent)}</span>
+            <span>{tenancyStatus === 'tenanted' ? 'Annual rent' : 'Vacant — no rental income'}</span>
+            <span class="tabular-nums {tenancyStatus === 'tenanted' ? 'text-white/80' : 'text-white/30'}">{fmtAed(effectiveRent)}</span>
           </div>
           <div class="flex justify-between text-white/60">
             <span>Service charge + VAT</span>
@@ -393,7 +513,7 @@
         <div class="grid grid-cols-3 gap-2 pt-1">
           <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
             <p class="text-[10px] text-white/40 uppercase tracking-wide">Gross Yield</p>
-            <p class="text-lg font-black tabular-nums {price > 0 && (annualRent/price*100) >= 7 ? 'text-emerald-400' : 'text-amber-400'}">{price > 0 ? fmtPct(annualRent / price * 100) : '—'}</p>
+            <p class="text-lg font-black tabular-nums {price > 0 && (effectiveRent/price*100) >= 7 ? 'text-emerald-400' : 'text-amber-400'}">{price > 0 ? fmtPct(effectiveRent / price * 100) : '—'}</p>
           </div>
           <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
             <p class="text-[10px] text-white/40 uppercase tracking-wide">Net Yield</p>

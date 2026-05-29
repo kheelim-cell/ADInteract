@@ -117,7 +117,7 @@
     </div>
   </div>
 
-  <div class="p-5 grid grid-cols-1 xl:grid-cols-2 gap-6">
+  <div class="p-5 grid grid-cols-1 xl:grid-cols-[5fr_7fr] gap-6">
 
     <!-- ── LEFT: Inputs ──────────────────────────────────────────────────────── -->
     <div class="space-y-5">

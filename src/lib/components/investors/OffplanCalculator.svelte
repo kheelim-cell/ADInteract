@@ -39,7 +39,7 @@
 
   // ── Shared class strings ─────────────────────────────────────────────────────
   const inp = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
-  const sel = 'w-full bg-[#0a1a10] border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
+  const sel = 'w-full bg-[#130c00] border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
 
   // ── Unit inputs ──────────────────────────────────────────────────────────────
   let district = $state('');
@@ -86,8 +86,7 @@
   let rentalObjective = $derived(netYield >= 7);
 
   // ── Derived: capital gains ────────────────────────────────────────────────────
-  let totalAppRate     = $derived((annualAppPct + otherAppPct) / 100);
-  let sellingPrice     = $derived(cost * Math.pow(1 + totalAppRate, yearsToResale));
+  let sellingPrice     = $derived(cost * Math.pow(1 + annualAppPct / 100, yearsToResale) * (1 + otherAppPct / 100));
   let resaleBrokerFee  = $derived(sellingPrice * resaleBrokerPct / 100);
   let totalAllInCost   = $derived(totalPurchaseCost + resaleBrokerFee);
   let netProfit        = $derived(sellingPrice - totalAllInCost);
@@ -184,10 +183,10 @@
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<div class="rounded-2xl border border-white/8 bg-[#0e1e15] overflow-hidden">
+<div class="rounded-2xl border border-amber-700/25 bg-[#1c1200] overflow-hidden">
 
   <!-- Header -->
-  <div class="px-5 py-4 border-b border-white/8 flex items-center gap-3">
+  <div class="px-5 py-4 border-b border-amber-700/25 flex items-center gap-3">
     <div class="w-8 h-8 rounded-lg bg-amber-500/15 flex items-center justify-center flex-shrink-0">
       <svg class="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21" />
@@ -370,7 +369,7 @@
         </div>
 
         <p class="text-[11px] text-white/30 pl-0.5">
-          Selling price: {fmtAed(cost)} × (1 + {annualAppPct + otherAppPct}%)^{yearsToResale} = <span class="text-amber-400/70">{fmtAed(sellingPrice)}</span>
+          Selling price: {fmtAed(cost)} × (1 + {annualAppPct}%)^{yearsToResale}{otherAppPct > 0 ? ` × (1 + ${otherAppPct}%)` : ''} = <span class="text-amber-400/70">{fmtAed(sellingPrice)}</span>
         </p>
       </fieldset>
 
@@ -473,7 +472,7 @@
           </div>
           <div class="px-3.5 py-3 space-y-1.5 text-xs">
             <div class="flex justify-between text-gray-500">
-              <span>Potential selling price (@ {annualAppPct + otherAppPct}%/yr)</span>
+              <span>Potential selling price (@ {annualAppPct}%/yr{otherAppPct > 0 ? ` + ${otherAppPct}% finish` : ''})</span>
               <span class="tabular-nums text-gray-700 font-medium">{fmtAed(sellingPrice)}</span>
             </div>
             <div class="flex justify-between text-gray-500">
@@ -507,7 +506,7 @@
 
         <!-- Disclaimer -->
         <p class="text-[10px] text-gray-400 leading-relaxed px-0.5">
-          Indicative estimates only. Abu Dhabi registration fee: 2% DARI/DMT + AED 1,000 title deed. Developer registration fee: AED 2,000 (&lt; AED 500K) / AED 4,000 (≥ AED 500K). Handover/admin fee up to AED 5,000. Assumes {annualAppPct + otherAppPct}%/yr compound appreciation. Service charge on full unit size + 5% VAT. Cross-verify rental comparables on ADInteract Sales and Rental data.
+          Indicative estimates only. Abu Dhabi registration fee: 2% DARI/DMT + AED 1,000 title deed. Developer registration fee: AED 2,000 (&lt; AED 500K) / AED 4,000 (≥ AED 500K). Handover/admin fee up to AED 5,000. Assumes {annualAppPct}%/yr compound appreciation{otherAppPct > 0 ? ` + ${otherAppPct}% finish premium applied at resale` : ''}. Service charge on full unit size + 5% VAT. Cross-verify rental comparables on ADInteract Sales and Rental data.
         </p>
 
       </div><!-- end inner padding -->

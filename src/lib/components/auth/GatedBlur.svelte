@@ -8,6 +8,6 @@
 </script>
 
 <!-- Blur wrapper: apply blur-[2px] to charts/canvases when the parent GatedSection is locked -->
-<div class={locked ? 'blur-[3px]' : ''}>
+<div class="h-full {locked ? 'blur-[3px]' : ''}">
   {@render children()}
 </div>

@@ -35,9 +35,9 @@
   setContext('gated-locked', { get: () => locked });
 </script>
 
-<div class="relative">
+<div class="relative h-full">
   <!-- Content: block pointer events when locked -->
-  <div class={locked ? 'pointer-events-none select-none' : ''}>
+  <div class="h-full {locked ? 'pointer-events-none select-none' : ''}">
     {@render children()}
   </div>
 

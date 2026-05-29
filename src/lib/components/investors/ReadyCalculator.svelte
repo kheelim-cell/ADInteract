@@ -656,115 +656,131 @@
     </div><!-- end left -->
 
     <!-- ── RIGHT: Results ────────────────────────────────────────────────────── -->
-    <div class="space-y-4">
+    <div class="rounded-xl border border-amber-500/25 bg-gradient-to-b from-[#1c1400] to-[#100d00] overflow-hidden">
 
-      <!-- Rental ROI Card -->
-      <div class="rounded-xl border border-emerald-500/20 bg-emerald-950/30 p-4 space-y-3">
-        <div class="flex items-center justify-between">
-          <h5 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Rental ROI</h5>
-          <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide {rentalObjective ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/15 text-red-400'}">
-            {rentalObjective ? '✓ 7%+ Target Met' : '✗ Below 7% Target'}
+      <!-- Results header bar -->
+      <div class="px-4 py-3 border-b border-amber-500/20 flex items-center justify-between bg-amber-500/8">
+        <div class="flex items-center gap-2">
+          <svg class="w-3.5 h-3.5 text-amber-400/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+          </svg>
+          <span class="text-[10px] font-bold text-amber-400/80 uppercase tracking-widest">Estimated Returns</span>
+        </div>
+        <div class="flex gap-1.5">
+          <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide {rentalObjective ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/25' : 'bg-red-500/10 text-red-400 border border-red-500/20'}">
+            {rentalObjective ? '✓ Yield 7%+' : '✗ Yield <7%'}
           </span>
-        </div>
-
-        <div class="space-y-1.5 text-xs">
-          <div class="flex justify-between text-white/60">
-            <span>{tenancyStatus === 'tenanted' ? 'Annual rent' : 'Est. market rent (vacant)'}</span>
-            <span class="tabular-nums text-white/80">{fmtAed(effectiveRent)}</span>
-          </div>
-          <div class="flex justify-between text-white/60">
-            <span>Service charge + VAT</span>
-            <span class="tabular-nums text-red-400/80">− {fmtAed(serviceCharge)}</span>
-          </div>
-          {#if mortgageType !== 'none'}
-          <div class="flex justify-between text-white/60">
-            <span>Annual mortgage payments</span>
-            <span class="tabular-nums text-red-400/80">− {fmtAed(annualMortgage)}</span>
-          </div>
-          {/if}
-          <div class="flex justify-between font-bold text-white border-t border-white/10 pt-1.5">
-            <span>Net Annual Revenue</span>
-            <span class="tabular-nums {netAnnualRental >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtAed(netAnnualRental)}</span>
-          </div>
-        </div>
-
-        <!-- Metrics grid -->
-        <div class="grid grid-cols-3 gap-2 pt-1">
-          <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
-            <p class="text-[10px] text-white/40 uppercase tracking-wide">Gross Yield</p>
-            <p class="text-lg font-black tabular-nums {price > 0 && (effectiveRent/price*100) >= 7 ? 'text-emerald-400' : 'text-amber-400'}">{price > 0 ? fmtPct(effectiveRent / price * 100) : '—'}</p>
-          </div>
-          <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
-            <p class="text-[10px] text-white/40 uppercase tracking-wide">Net Yield</p>
-            <p class="text-lg font-black tabular-nums {netYield >= 7 ? 'text-emerald-400' : netYield >= 5 ? 'text-amber-400' : 'text-red-400'}">{fmtPct(netYield)}</p>
-            <p class="text-[9px] text-white/25 mt-0.5">on equity injected</p>
-          </div>
-          <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
-            <p class="text-[10px] text-white/40 uppercase tracking-wide">Mthly Cashflow</p>
-            <p class="text-base font-black tabular-nums {monthlyNetCashflow >= 0 ? 'text-emerald-400' : 'text-red-400'} leading-tight">{fmtAed(monthlyNetCashflow)}</p>
-          </div>
+          <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide {capitalObjective ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/25' : 'bg-red-500/10 text-red-400 border border-red-500/20'}">
+            {capitalObjective ? '✓ CAGR 7%+' : '✗ CAGR <7%'}
+          </span>
         </div>
       </div>
 
-      <!-- Capital Gains Card -->
-      <div class="rounded-xl border border-blue-500/20 bg-blue-950/20 p-4 space-y-3">
-        <div class="flex items-center justify-between">
-          <h5 class="text-xs font-bold text-blue-300 uppercase tracking-wider">Capital Gains · {yearsToResale}yr Horizon</h5>
-          <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide {capitalObjective ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/15 text-red-400'}">
-            {capitalObjective ? '✓ 7%/yr Target Met' : '✗ Below 7%/yr Target'}
-          </span>
-        </div>
+      <div class="p-4 space-y-4">
 
-        <div class="space-y-1.5 text-xs">
-          <div class="flex justify-between text-white/60">
-            <span>Potential selling price</span>
-            <span class="tabular-nums text-white/80 font-semibold">{fmtAed(sellingPrice)}</span>
+        <!-- KPI hero strip -->
+        <div class="grid grid-cols-3 divide-x divide-amber-500/15 rounded-xl border border-amber-500/20 bg-black/30 overflow-hidden">
+          <div class="px-3 py-3.5 text-center">
+            <p class="text-[10px] text-amber-400/50 uppercase tracking-wider font-semibold">Gross Yield</p>
+            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {price > 0 && (effectiveRent/price*100) >= 7 ? 'text-emerald-400' : 'text-amber-400'}">{price > 0 ? fmtPct(effectiveRent / price * 100) : '—'}</p>
+            <p class="text-[9px] text-amber-400/30 mt-1">on listing price</p>
           </div>
-          <div class="flex justify-between text-white/55">
-            <span>Total purchase cost (price + fees)</span>
-            <span class="tabular-nums text-red-400/80">− {fmtAed(price + purchasingFees + mortgageAdminFee)}</span>
+          <div class="px-3 py-3.5 text-center">
+            <p class="text-[10px] text-amber-400/50 uppercase tracking-wider font-semibold">Net Yield</p>
+            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netYield >= 7 ? 'text-emerald-400' : netYield >= 5 ? 'text-amber-400' : 'text-red-400'}">{fmtPct(netYield, 2)}</p>
+            <p class="text-[9px] text-amber-400/30 mt-1">on equity injected</p>
           </div>
-          <div class="flex justify-between text-white/55">
-            <span>Resale broker fee (2%)</span>
-            <span class="tabular-nums text-red-400/80">− {fmtAed(resaleBrokerFee)}</span>
-          </div>
-          {#if additionalCapex > 0}
-          <div class="flex justify-between text-white/55">
-            <span>Additional capex / refurb</span>
-            <span class="tabular-nums text-red-400/80">− {fmtAed(additionalCapex)}</span>
-          </div>
-          {/if}
-          <div class="flex justify-between font-bold text-white border-t border-white/10 pt-1.5">
-            <span>Net Profit</span>
-            <span class="tabular-nums {netProfit >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtAed(netProfit)}</span>
+          <div class="px-3 py-3.5 text-center">
+            <p class="text-[10px] text-amber-400/50 uppercase tracking-wider font-semibold">Cap. CAGR</p>
+            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netProfitPerYear >= 7 ? 'text-emerald-400' : netProfitPerYear >= 5 ? 'text-amber-400' : 'text-red-400'}">{fmtPct(netProfitPerYear)}</p>
+            <p class="text-[9px] text-amber-400/30 mt-1">{yearsToResale}yr horizon</p>
           </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-2 pt-1">
-          <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
-            <p class="text-[10px] text-white/40 uppercase tracking-wide">Total Return</p>
-            <p class="text-lg font-black tabular-nums {netProfitPct >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtPct(netProfitPct)}</p>
-            <p class="text-[9px] text-white/25 mt-0.5">on equity + capex</p>
+        <!-- Rental ROI breakdown -->
+        <div class="rounded-xl border border-amber-500/20 bg-black/25 overflow-hidden">
+          <div class="px-3.5 py-2.5 border-b border-amber-500/15 bg-amber-500/5">
+            <h5 class="text-[10px] font-bold text-amber-400/70 uppercase tracking-widest">Rental Income</h5>
           </div>
-          <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
-            <p class="text-[10px] text-white/40 uppercase tracking-wide">Per Year (CAGR)</p>
-            <p class="text-lg font-black tabular-nums {netProfitPerYear >= 7 ? 'text-emerald-400' : netProfitPerYear >= 5 ? 'text-amber-400' : 'text-red-400'}">{fmtPct(netProfitPerYear)}</p>
+          <div class="px-3.5 py-3 space-y-1.5 text-xs">
+            <div class="flex justify-between text-amber-100/50">
+              <span>{tenancyStatus === 'tenanted' ? 'Annual rent' : 'Est. market rent (vacant)'}</span>
+              <span class="tabular-nums text-amber-100/80">{fmtAed(effectiveRent)}</span>
+            </div>
+            <div class="flex justify-between text-amber-100/50">
+              <span>Service charge + VAT</span>
+              <span class="tabular-nums text-red-400/80">− {fmtAed(serviceCharge)}</span>
+            </div>
+            {#if mortgageType !== 'none'}
+            <div class="flex justify-between text-amber-100/50">
+              <span>Annual mortgage payments</span>
+              <span class="tabular-nums text-red-400/80">− {fmtAed(annualMortgage)}</span>
+            </div>
+            {/if}
+            <div class="flex justify-between font-bold text-amber-100/90 border-t border-amber-500/15 pt-1.5">
+              <span>Net Annual Revenue</span>
+              <span class="tabular-nums {netAnnualRental >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtAed(netAnnualRental)}</span>
+            </div>
           </div>
-          <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
-            <p class="text-[10px] text-white/40 uppercase tracking-wide">Net Profit</p>
-            <p class="text-base font-black tabular-nums {netProfit >= 0 ? 'text-emerald-400' : 'text-red-400'} leading-tight">
-              {netProfit >= 0 ? '+' : ''}{Math.abs(netProfit) >= 1_000_000 ? (netProfit / 1_000_000).toFixed(2) + 'M' : (Math.round(Math.abs(netProfit) / 1000)) + 'K' }
-            </p>
-            <p class="text-[9px] text-white/25 mt-0.5">AED</p>
+          <!-- Monthly cashflow callout -->
+          <div class="mx-3.5 mb-3.5 rounded-lg border px-3.5 py-2.5 flex items-center justify-between {monthlyNetCashflow >= 0 ? 'bg-emerald-500/10 border-emerald-500/25' : 'bg-red-500/10 border-red-500/25'}">
+            <span class="text-xs font-semibold {monthlyNetCashflow >= 0 ? 'text-emerald-300/80' : 'text-red-300/80'}">Monthly net cashflow</span>
+            <span class="text-xl font-black tabular-nums {monthlyNetCashflow >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtAed(monthlyNetCashflow)}</span>
           </div>
         </div>
-      </div>
 
-      <!-- Disclaimer -->
-      <p class="text-[10px] text-white/20 leading-relaxed px-0.5">
-        Indicative estimates only. Mortgage rates sourced from current UAE market benchmarks; actual rates vary by bank and applicant profile. LTV ratios per CBUAE guidelines. Abu Dhabi registration fee: 2% DARI/DMT + AED 1,000 title deed. Agency fee: 2% + 5% VAT. Mortgage admin est. AED 9,400. Selling price based on comparable area PSF appreciation — verify with ADInteract Sales data.
-      </p>
+        <!-- Capital Gains breakdown -->
+        <div class="rounded-xl border border-amber-500/20 bg-black/25 overflow-hidden">
+          <div class="px-3.5 py-2.5 border-b border-amber-500/15 bg-amber-500/5">
+            <h5 class="text-[10px] font-bold text-amber-400/70 uppercase tracking-widest">Capital Gains · {yearsToResale}yr Horizon</h5>
+          </div>
+          <div class="px-3.5 py-3 space-y-1.5 text-xs">
+            <div class="flex justify-between text-amber-100/50">
+              <span>Potential selling price</span>
+              <span class="tabular-nums text-amber-100/80 font-semibold">{fmtAed(sellingPrice)}</span>
+            </div>
+            <div class="flex justify-between text-amber-100/50">
+              <span>Total purchase cost (price + fees)</span>
+              <span class="tabular-nums text-red-400/80">− {fmtAed(price + purchasingFees + mortgageAdminFee)}</span>
+            </div>
+            <div class="flex justify-between text-amber-100/50">
+              <span>Resale broker fee (2%)</span>
+              <span class="tabular-nums text-red-400/80">− {fmtAed(resaleBrokerFee)}</span>
+            </div>
+            {#if additionalCapex > 0}
+            <div class="flex justify-between text-amber-100/50">
+              <span>Additional capex / refurb</span>
+              <span class="tabular-nums text-red-400/80">− {fmtAed(additionalCapex)}</span>
+            </div>
+            {/if}
+            <div class="flex justify-between font-bold text-amber-100/90 border-t border-amber-500/15 pt-1.5">
+              <span>Net Profit</span>
+              <span class="tabular-nums {netProfit >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtAed(netProfit)}</span>
+            </div>
+          </div>
+          <!-- Total return + net profit callout row -->
+          <div class="grid grid-cols-2 gap-2 mx-3.5 mb-3.5">
+            <div class="rounded-lg bg-amber-500/8 border border-amber-500/20 px-3 py-2.5 text-center">
+              <p class="text-[10px] text-amber-400/50 uppercase tracking-wider font-semibold">Total Return</p>
+              <p class="text-xl font-black tabular-nums mt-1 {netProfitPct >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtPct(netProfitPct)}</p>
+              <p class="text-[9px] text-amber-400/30 mt-0.5">on equity + capex</p>
+            </div>
+            <div class="rounded-lg bg-amber-500/8 border border-amber-500/20 px-3 py-2.5 text-center">
+              <p class="text-[10px] text-amber-400/50 uppercase tracking-wider font-semibold">Net Profit</p>
+              <p class="text-xl font-black tabular-nums mt-1 {netProfit >= 0 ? 'text-emerald-400' : 'text-red-400'}">
+                {netProfit >= 0 ? '+' : ''}{Math.abs(netProfit) >= 1_000_000 ? (netProfit / 1_000_000).toFixed(2) + 'M' : Math.round(Math.abs(netProfit) / 1000) + 'K'}
+              </p>
+              <p class="text-[9px] text-amber-400/30 mt-0.5">AED</p>
+            </div>
+          </div>
+        </div>
 
+        <!-- Disclaimer -->
+        <p class="text-[10px] text-amber-400/20 leading-relaxed px-0.5">
+          Indicative estimates only. Mortgage rates sourced from current UAE market benchmarks; actual rates vary by bank and applicant profile. LTV ratios per CBUAE guidelines. Abu Dhabi registration fee: 2% DARI/DMT + AED 1,000 title deed. Agency fee: 2% + 5% VAT. Mortgage admin est. AED 9,400. Selling price based on comparable area PSF appreciation — verify with ADInteract Sales data.
+        </p>
+
+      </div><!-- end inner padding -->
     </div><!-- end right -->
 
   </div><!-- end grid -->

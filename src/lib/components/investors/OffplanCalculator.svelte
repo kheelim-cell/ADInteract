@@ -47,8 +47,8 @@
 
   // ── Derived: unit ────────────────────────────────────────────────────────────
   let pricePerSqft     = $derived(size > 0 ? cost / size : 0);
-  let dldFee           = $derived(cost * 0.04 + 580);
-  let totalPurchaseCost = $derived(cost + dldFee + adminFee);
+  let registrationFee   = $derived(cost * 0.02 + 1_000); // Abu Dhabi: 2% DARI/DMT + AED 1,000 title deed
+  let totalPurchaseCost = $derived(cost + registrationFee + adminFee);
 
   // ── Derived: rental ──────────────────────────────────────────────────────────
   let grossRental   = $derived(
@@ -68,7 +68,7 @@
   let totalAppRate     = $derived((annualAppPct + otherAppPct) / 100);
   let sellingPrice     = $derived(cost * Math.pow(1 + totalAppRate, yearsToResale));
   let resaleBrokerFee  = $derived(sellingPrice * resaleBrokerPct / 100);
-  let totalAllInCost   = $derived(totalPurchaseCost + resaleBrokerFee);
+  let totalAllInCost   = $derived(totalPurchaseCost + resaleBrokerFee); // totalPurchaseCost already includes registrationFee + adminFee
   let netProfit        = $derived(sellingPrice - totalAllInCost);
   let netProfitPct     = $derived(totalAllInCost > 0 ? (netProfit / totalAllInCost) * 100 : 0);
   let netProfitPerYear = $derived(
@@ -163,7 +163,7 @@
           <div class="rounded-lg bg-white/3 border border-white/8 px-3 py-2.5">
             <p class="text-[10px] text-white/35 uppercase tracking-wider">Total Acquisition Cost</p>
             <p class="text-sm font-bold text-white/70 tabular-nums mt-0.5">{fmtAed(totalPurchaseCost)}</p>
-            <p class="text-[9px] text-white/25 mt-0.5">Price + DLD (4% + 580) + Admin (4,000)</p>
+            <p class="text-[9px] text-white/25 mt-0.5">Price + DARI/DMT (2% + 1,000) + Admin (4,000)</p>
           </div>
         </div>
       </fieldset>
@@ -206,7 +206,7 @@
           </label>
         </div>
         <p class="text-[11px] text-white/30 pl-0.5">
-          Service charge = {size.toLocaleString('en-AE')} sqft × {serviceChargePsf} + 5% VAT = <span class="text-amber-400/70">{fmtAed(serviceCharge)}/yr</span>
+          Service charge = {size.toLocaleString('en-AE')} sqft × AED {serviceChargePsf} + 5% VAT = <span class="text-amber-400/70">{fmtAed(serviceCharge)}/yr</span>
         </p>
       </fieldset>
 
@@ -328,8 +328,8 @@
             <span class="tabular-nums text-red-400/80">− {fmtAed(cost)}</span>
           </div>
           <div class="flex justify-between text-white/55">
-            <span>DLD + admin fees at purchase</span>
-            <span class="tabular-nums text-red-400/80">− {fmtAed(dldFee + adminFee)}</span>
+            <span>DARI/DMT reg. + admin fees at purchase</span>
+            <span class="tabular-nums text-red-400/80">− {fmtAed(registrationFee + adminFee)}</span>
           </div>
           <div class="flex justify-between text-white/55">
             <span>Resale broker fee ({resaleBrokerPct}%)</span>
@@ -363,7 +363,7 @@
 
       <!-- Disclaimer -->
       <p class="text-[10px] text-white/20 leading-relaxed px-0.5">
-        Indicative estimates only. Assumes {annualAppPct + otherAppPct}%/yr compound appreciation on purchase price, DLD 4% + AED 580, admin AED 4,000. Service charge applied on full unit size + 5% VAT. Cross-verify rental comparables on ADInteract Sales and Rental data.
+        Indicative estimates only. Abu Dhabi registration fee: 2% DARI/DMT + AED 1,000 title deed. Off-plan registration via DARI/Tamleek (Oqood equivalent). Admin AED 4,000. Assumes {annualAppPct + otherAppPct}%/yr compound appreciation. Service charge on full unit size + 5% VAT. Cross-verify rental comparables on ADInteract Sales and Rental data.
       </p>
 
     </div><!-- end right -->

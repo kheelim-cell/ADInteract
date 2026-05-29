@@ -26,13 +26,13 @@
     'Al Hidayriyyat',
   ];
 
-  let districts = $derived(() => {
+  let districts = $derived.by(() => {
     const all: string[] = $metadata?.districts ?? [];
     const pinnedFound  = PINNED_DISTRICTS.filter(p => all.some(d => d.toLowerCase() === p.toLowerCase()));
     const pinnedSet    = new Set(pinnedFound.map(p => p.toLowerCase()));
     const rest         = all.filter(d => !pinnedSet.has(d.toLowerCase())).sort();
     return [...pinnedFound, ...rest];
-  })();
+  });
   let layouts = $derived(
     ($metadata?.layouts ?? [])
       .filter((l: string) => LAYOUT_ORDER.includes(l.toLowerCase()))

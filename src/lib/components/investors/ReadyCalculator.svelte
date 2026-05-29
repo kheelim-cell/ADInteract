@@ -128,8 +128,7 @@
   let rentalObjective    = $derived(netYield >= 7);
 
   // ── Derived: capital gains ───────────────────────────────────────────────────
-  let totalAppRate    = $derived((annualAppPct + otherAppPct) / 100);
-  let sellingPrice    = $derived(comparablePsf * livingArea * Math.pow(1 + totalAppRate, yearsToResale));
+  let sellingPrice    = $derived(comparablePsf * livingArea * Math.pow(1 + annualAppPct / 100, yearsToResale) * (1 + otherAppPct / 100));
   let resaleBrokerFee = $derived(sellingPrice * 0.02);
   let netProfit = $derived(
     sellingPrice - price - purchasingFees - mortgageAdminFee - resaleBrokerFee - additionalCapex
@@ -650,7 +649,7 @@
           </label>
         </div>
         <p class="text-[11px] text-white/30 pl-0.5">
-          Selling price based on: {comparablePsf.toLocaleString('en-AE')} AED/sqft × {livingArea} sqft living × (1 + {annualAppPct + otherAppPct}%)^{yearsToResale} = <span class="text-amber-400/70">{fmtAed(sellingPrice)}</span>
+          Selling price based on: {comparablePsf.toLocaleString('en-AE')} AED/sqft × {livingArea} sqft living × (1 + {annualAppPct}%)^{yearsToResale}{otherAppPct > 0 ? ` × (1 + ${otherAppPct}%)` : ''} = <span class="text-amber-400/70">{fmtAed(sellingPrice)}</span>
         </p>
       </fieldset>
 

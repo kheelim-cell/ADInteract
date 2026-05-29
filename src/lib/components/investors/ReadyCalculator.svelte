@@ -60,7 +60,7 @@
 
   // ── Shared class strings ─────────────────────────────────────────────────────
   const inp = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
-  const sel = 'w-full bg-[#0a1a10] border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
+  const sel = 'w-full bg-[#0a1a10] border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
 
   // ── Mortgage LTV matrix ──────────────────────────────────────────────────────
   const LTV_MATRIX: Record<string, [number, number]> = {
@@ -327,65 +327,72 @@
           </div>
         </div>
 
-        <!-- Project -->
-        <div class="space-y-1">
-          <span class="text-[11px] text-white/50">Project</span>
-          <div class="relative">
-            <select bind:value={project} class={sel}>
-              <option value="">Select Project (optional)</option>
-              {#if filteredProjects.some(p => p.sc_avg != null)}
-                <optgroup label="── Service Charge Available ──">
-                  {#each filteredProjects.filter(p => p.sc_avg != null) as p}
-                    <option value={p.project_name}>{toTitleCase(p.project_name)}</option>
-                  {/each}
-                </optgroup>
-              {/if}
-              {#if filteredProjects.some(p => p.sc_avg == null)}
-                <optgroup label="── Rental Data Only ──">
-                  {#each filteredProjects.filter(p => p.sc_avg == null) as p}
-                    <option value={p.project_name}>{toTitleCase(p.project_name)}</option>
-                  {/each}
-                </optgroup>
-              {/if}
-              <option value="other">Other / Not Listed</option>
-            </select>
-            <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-            </svg>
+        <!-- Project + Tenancy Status (same row) -->
+        <div class="flex items-end gap-3">
+
+          <!-- Project (takes most width) -->
+          <div class="flex-1 min-w-0 space-y-1">
+            <span class="text-[11px] text-white/50">Project</span>
+            <div class="relative">
+              <select bind:value={project} class={sel}>
+                <option value="">Select Project (optional)</option>
+                {#if filteredProjects.some(p => p.sc_avg != null)}
+                  <optgroup label="── Service Charge Available ──">
+                    {#each filteredProjects.filter(p => p.sc_avg != null) as p}
+                      <option value={p.project_name}>{toTitleCase(p.project_name)}</option>
+                    {/each}
+                  </optgroup>
+                {/if}
+                {#if filteredProjects.some(p => p.sc_avg == null)}
+                  <optgroup label="── Rental Data Only ──">
+                    {#each filteredProjects.filter(p => p.sc_avg == null) as p}
+                      <option value={p.project_name}>{toTitleCase(p.project_name)}</option>
+                    {/each}
+                  </optgroup>
+                {/if}
+                <option value="other">Other / Not Listed</option>
+              </select>
+              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+            {#if project && project !== 'other' && scLookup[project.toLowerCase().trim()] != null}
+              <p class="text-[10px] text-emerald-400/60 pl-0.5">✓ Service charge auto-populated from ADREC data</p>
+            {/if}
           </div>
-          {#if project && project !== 'other' && scLookup[project.toLowerCase().trim()] != null}
-            <p class="text-[10px] text-emerald-400/60 pl-0.5">✓ Service charge auto-populated from ADREC data</p>
-          {/if}
+
+          <!-- Tenancy Status (shrink-0, aligned to bottom of project) -->
+          <div class="shrink-0 space-y-1">
+            <span class="text-[11px] text-white/50">Tenancy</span>
+            <div class="flex gap-2">
+              {#each ([['tenanted', 'Tenanted'], ['vacant', 'Vacant']] as const) as [val, label]}
+                <button
+                  type="button"
+                  onclick={() => { tenancyStatus = val; }}
+                  class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all {tenancyStatus === val ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300' : 'bg-white/3 border-white/10 text-white/40 hover:border-white/20'}"
+                >{label}</button>
+              {/each}
+            </div>
+          </div>
+
         </div>
 
-        <!-- Tenancy Status -->
-        <div class="space-y-2">
-          <span class="text-[11px] text-white/50">Tenancy Status</span>
-          <div class="flex gap-2">
-            {#each ([['tenanted', 'Tenanted'], ['vacant', 'Vacant']] as const) as [val, label]}
-              <button
-                type="button"
-                onclick={() => { tenancyStatus = val; }}
-                class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all {tenancyStatus === val ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300' : 'bg-white/3 border-white/10 text-white/40 hover:border-white/20'}"
-              >{label}</button>
-            {/each}
-          </div>
-          <label class="space-y-1 block">
-            <span class="text-[11px] text-white/50">
-              {tenancyStatus === 'tenanted' ? 'Annual Rent (AED/yr)' : 'Est. Annual Rent (AED/yr)'}
-            </span>
-            <input type="number" bind:value={annualRent} min="0" step="1000" class={inp} />
-            {#if tenancyStatus === 'vacant'}
-              {#if medianRentLoading}
-                <p class="text-[10px] text-white/30 pl-0.5">Loading 2025 median rent…</p>
-              {:else if rentSource === 'project' && project && project !== 'other'}
-                <p class="text-[10px] text-emerald-400/60 pl-0.5">↳ 2025 median market rent · {toTitleCase(project)} · {layout || 'all layouts'}</p>
-              {:else}
-                <p class="text-[10px] text-amber-400/60 pl-0.5">↳ 2025 median market rent · {district || 'Abu Dhabi'} · {layout || 'all layouts'}</p>
-              {/if}
+        <!-- Annual Rent (full width, below project+tenancy row) -->
+        <label class="space-y-1 block">
+          <span class="text-[11px] text-white/50">
+            {tenancyStatus === 'tenanted' ? 'Annual Rent (AED/yr)' : 'Est. Annual Rent (AED/yr)'}
+          </span>
+          <input type="number" bind:value={annualRent} min="0" step="1000" class={inp} />
+          {#if tenancyStatus === 'vacant'}
+            {#if medianRentLoading}
+              <p class="text-[10px] text-white/30 pl-0.5">Loading 2025 median rent…</p>
+            {:else if rentSource === 'project' && project && project !== 'other'}
+              <p class="text-[10px] text-emerald-400/60 pl-0.5">↳ 2025 median market rent · {toTitleCase(project)} · {layout || 'all layouts'}</p>
+            {:else}
+              <p class="text-[10px] text-amber-400/60 pl-0.5">↳ 2025 median market rent · {district || 'Abu Dhabi'} · {layout || 'all layouts'}</p>
             {/if}
-          </label>
-        </div>
+          {/if}
+        </label>
 
         <!-- Listing Price -->
         <label class="space-y-1 block">

@@ -18,6 +18,8 @@
   import RentalNewVsRenewChart from './RentalNewVsRenewChart.svelte';
 
   import RentalTable from './RentalTable.svelte';
+  import GatedSection from '$lib/components/auth/GatedSection.svelte';
+  import GatedBlur from '$lib/components/auth/GatedBlur.svelte';
   import type {
     RentalStatsResult,
     RentalTrendPoint,
@@ -151,19 +153,23 @@
 
   <!-- Stats -->
   <div class="mt-6">
-    {#if loading && !stats}
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        {#each Array(4) as _}
-          <div class="stat-card animate-pulse">
-            <div class="h-3 w-20 bg-gray-200 rounded mb-3"></div>
-            <div class="h-7 w-28 bg-gray-200 rounded mb-2"></div>
-            <div class="h-3 w-16 bg-gray-200 rounded"></div>
+    <GatedSection>
+      <GatedBlur>
+        {#if loading && !stats}
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            {#each Array(4) as _}
+              <div class="stat-card animate-pulse">
+                <div class="h-3 w-20 bg-gray-200 rounded mb-3"></div>
+                <div class="h-7 w-28 bg-gray-200 rounded mb-2"></div>
+                <div class="h-3 w-16 bg-gray-200 rounded"></div>
+              </div>
+            {/each}
           </div>
-        {/each}
-      </div>
-    {:else if stats}
-      <RentalStatsGrid {stats} />
-    {/if}
+        {:else if stats}
+          <RentalStatsGrid {stats} />
+        {/if}
+      </GatedBlur>
+    </GatedSection>
   </div>
 
   <!-- Zero-result empty state banner -->
@@ -194,60 +200,68 @@
   {/if}
 
   <!-- Row 1: Trend + New vs Renewal -->
-  <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <div class="chart-card">
-      <h3 class="text-sm font-semibold text-navy mb-1">Median Rent Trend</h3>
-      <p class="text-xs text-gray-400 mb-4">Year-on-year median across selected filters</p>
-      {#if chartsLoading && trendData.length === 0}
-        <div class="flex items-center justify-center" style="height:280px">
-          <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>
+  <GatedSection>
+    <GatedBlur>
+      <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="chart-card">
+          <h3 class="text-sm font-semibold text-navy mb-1">Median Rent Trend</h3>
+          <p class="text-xs text-gray-400 mb-4">Year-on-year median across selected filters</p>
+          {#if chartsLoading && trendData.length === 0}
+            <div class="flex items-center justify-center" style="height:280px">
+              <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>
+            </div>
+          {:else if noResults}
+            <div class="flex flex-col items-center justify-center gap-2 text-center" style="height:280px">
+              <svg class="h-8 w-8 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+              </svg>
+              <p class="text-sm text-gray-400">No data for current filters</p>
+            </div>
+          {:else}
+            <RentalTrendChart data={trendData} />
+          {/if}
         </div>
-      {:else if noResults}
-        <div class="flex flex-col items-center justify-center gap-2 text-center" style="height:280px">
-          <svg class="h-8 w-8 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
-          </svg>
-          <p class="text-sm text-gray-400">No data for current filters</p>
-        </div>
-      {:else}
-        <RentalTrendChart data={trendData} />
-      {/if}
-    </div>
 
-    <div class="chart-card">
-      <h3 class="text-sm font-semibold text-navy mb-1">New Contract vs Renewal</h3>
-      <p class="text-xs text-gray-400 mb-4">Annual rent (AED) — how much more new tenants pay vs renewals</p>
-      {#if chartsLoading && newVsRenewData.length === 0}
-        <div class="flex items-center justify-center" style="height:280px">
-          <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>
+        <div class="chart-card">
+          <h3 class="text-sm font-semibold text-navy mb-1">New Contract vs Renewal</h3>
+          <p class="text-xs text-gray-400 mb-4">Annual rent (AED) — how much more new tenants pay vs renewals</p>
+          {#if chartsLoading && newVsRenewData.length === 0}
+            <div class="flex items-center justify-center" style="height:280px">
+              <div class="animate-pulse text-gray-400 text-sm">Loading chart...</div>
+            </div>
+          {:else if noResults}
+            <div class="flex flex-col items-center justify-center gap-2 text-center" style="height:280px">
+              <svg class="h-8 w-8 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+              </svg>
+              <p class="text-sm text-gray-400">No data for current filters</p>
+            </div>
+          {:else}
+            <RentalNewVsRenewChart data={newVsRenewData} />
+          {/if}
         </div>
-      {:else if noResults}
-        <div class="flex flex-col items-center justify-center gap-2 text-center" style="height:280px">
-          <svg class="h-8 w-8 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
-          </svg>
-          <p class="text-sm text-gray-400">No data for current filters</p>
-        </div>
-      {:else}
-        <RentalNewVsRenewChart data={newVsRenewData} />
-      {/if}
-    </div>
-  </div>
+      </div>
+    </GatedBlur>
+  </GatedSection>
 
   <!-- Project table -->
-  <div class="mt-8">
-    <RentalTable
-      rows={projectRows}
-      total={totalProjects}
-      {loading}
-      page={tablePage}
-      pageSize={PAGE_SIZE}
-      sortCol={tableSortCol}
-      sortDir={tableSortDir}
-      onSort={handleSort}
-      onSortFull={handleSortFull}
-      onPage={(p) => (tablePage = p)}
-    />
-  </div>
+  <GatedSection>
+    <GatedBlur>
+      <div class="mt-8">
+        <RentalTable
+          rows={projectRows}
+          total={totalProjects}
+          {loading}
+          page={tablePage}
+          pageSize={PAGE_SIZE}
+          sortCol={tableSortCol}
+          sortDir={tableSortDir}
+          onSort={handleSort}
+          onSortFull={handleSortFull}
+          onPage={(p) => (tablePage = p)}
+        />
+      </div>
+    </GatedBlur>
+  </GatedSection>
 
 </div>

@@ -687,7 +687,7 @@
           </div>
           <div class="px-3 py-4 text-center">
             <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Net Yield</p>
-            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netYield >= 7 ? 'text-emerald-600' : netYield >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netYield, 2)}</p>
+            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netYield >= 7 ? 'text-emerald-600' : netYield >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netYield)}</p>
             <p class="text-[9px] text-gray-500 mt-1">on equity injected</p>
           </div>
           <div class="px-3 py-4 text-center">

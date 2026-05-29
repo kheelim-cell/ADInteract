@@ -24,9 +24,14 @@ jobs:
       - name: Build site
         run: npm run build
         env:
-          BASE_PATH: /ADInteract
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          # Set to 'true' to require Pro subscription on the Investor page.
+          # Set to 'false' (or leave unset) to open the Investor page to all visitors.
+          # After changing: Actions → Deploy → Run workflow to rebuild.
+          VITE_INVESTOR_PRO_GATED: ${{ secrets.VITE_INVESTOR_PRO_GATED }}
+          # Full URL of your Stan Store checkout page, e.g. https://stan.store/khee/p/adinteract-pro
+          VITE_STAN_STORE_URL: ${{ secrets.VITE_STAN_STORE_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: build

@@ -217,7 +217,7 @@
     </h3>
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
 
-      <GatedSection>
+      <GatedSection proOnly={true}>
         <GatedBlur>
           <GrowthLeaderboard
             title="Top Districts · Sale Rate Growth"
@@ -230,7 +230,7 @@
         </GatedBlur>
       </GatedSection>
 
-      <GatedSection>
+      <GatedSection proOnly={true}>
         <GatedBlur>
           <GrowthLeaderboard
             title="Top Projects · Sale Rate Growth"
@@ -243,7 +243,7 @@
         </GatedBlur>
       </GatedSection>
 
-      <GatedSection>
+      <GatedSection proOnly={true}>
         <GatedBlur>
           <GrowthLeaderboard
             title="Top Projects · Rental Growth"
@@ -264,7 +264,7 @@
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Gross Rental Yield by Community ({rentalYear} rents ÷ {salesYear} sale prices)
     </h3>
-    <GatedSection>
+    <GatedSection proOnly={true}>
       <GatedBlur>
         <YieldTable rows={yieldRows} loading={loadingYield} />
       </GatedBlur>
@@ -276,7 +276,7 @@
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Annual Service Charges · ADREC Registered Projects
     </h3>
-    <GatedSection>
+    <GatedSection proOnly={true}>
       <GatedBlur>
         <ServiceChargeTable district={filterDistrict} />
       </GatedBlur>

@@ -9,6 +9,27 @@ export const user            = writable<User | null>(null);
 export const authLoading     = writable(true);
 export const isAuthenticated = derived(user, ($u) => $u !== null);
 
+// ── Pro subscription status ───────────────────────────────────────────────────
+/**
+ * True once confirmed the signed-in user has an active Pro subscription (is_pro = true in profiles).
+ * Resets to false on sign-out or when no user is signed in.
+ */
+export const isPro = writable<boolean>(false);
+
+async function fetchProStatus(userId: string): Promise<void> {
+	if (!supabase) return;
+	try {
+		const { data } = await supabase
+			.from('profiles')
+			.select('is_pro')
+			.eq('id', userId)
+			.single();
+		isPro.set(data?.is_pro ?? false);
+	} catch {
+		isPro.set(false);
+	}
+}
+
 // ── Modal visibility ──────────────────────────────────────────────────────────
 export const showSignInModal = writable(false);
 export const openSignIn      = () => showSignInModal.set(true);
@@ -43,6 +64,7 @@ export async function signOut() {
 	if (!supabase) return;
 	await supabase.auth.signOut();
 	user.set(null);
+	isPro.set(false);
 }
 
 // ── Profile upsert (best-effort) ──────────────────────────────────────────────
@@ -70,8 +92,11 @@ async function upsertProfile(u: User, profile?: PendingProfile) {
 // ── Initialize on browser ─────────────────────────────────────────────────────
 if (browser && supabaseEnabled && supabase) {
 	supabase.auth.getSession().then(({ data: { session } }) => {
-		user.set(session?.user ?? null);
+		const u = session?.user ?? null;
+		user.set(u);
 		authLoading.set(false);
+		// Fetch pro status for users who are already signed in (e.g. page refresh)
+		if (u) fetchProStatus(u.id);
 	});
 
 	supabase.auth.onAuthStateChange((_event, session) => {
@@ -91,7 +116,12 @@ if (browser && supabaseEnabled && supabase) {
 			} catch { /* ignore */ }
 
 			upsertProfile(u, pending);
+			fetchProStatus(u.id);
 			closeSignIn();
+		}
+
+		if (_event === 'SIGNED_OUT') {
+			isPro.set(false);
 		}
 	});
 } else if (browser) {

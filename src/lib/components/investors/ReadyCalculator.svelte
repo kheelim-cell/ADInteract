@@ -142,6 +142,7 @@
       : 0
   );
   let capitalObjective = $derived(netProfitPerYear >= 7);
+  let totalRoiPa      = $derived(netYield + netProfitPerYear);
 
   // ── Load service_charges.json (static) ───────────────────────────────────────
   onMount(async () => {
@@ -681,19 +682,19 @@
         <!-- KPI hero strip -->
         <div class="grid grid-cols-3 divide-x divide-amber-200 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white overflow-hidden shadow-sm">
           <div class="px-3 py-4 text-center">
-            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Gross Yield</p>
-            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {price > 0 && (effectiveRent/price*100) >= 7 ? 'text-emerald-600' : 'text-amber-600'}">{price > 0 ? fmtPct(effectiveRent / price * 100) : '—'}</p>
-            <p class="text-[9px] text-gray-500 mt-1">on listing price</p>
-          </div>
-          <div class="px-3 py-4 text-center">
-            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Net Yield</p>
+            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Net Rental Yield p.a</p>
             <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netYield >= 7 ? 'text-emerald-600' : netYield >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netYield)}</p>
             <p class="text-[9px] text-gray-500 mt-1">on equity injected</p>
           </div>
           <div class="px-3 py-4 text-center">
-            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Cap. CAGR</p>
+            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Capital Gain p.a</p>
             <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netProfitPerYear >= 7 ? 'text-emerald-600' : netProfitPerYear >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netProfitPerYear)}</p>
             <p class="text-[9px] text-gray-500 mt-1">{yearsToResale}yr horizon</p>
+          </div>
+          <div class="px-3 py-4 text-center">
+            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Total ROI p.a</p>
+            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {totalRoiPa >= 14 ? 'text-emerald-600' : totalRoiPa >= 7 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(totalRoiPa)}</p>
+            <p class="text-[9px] text-gray-500 mt-1">yield + capital gain</p>
           </div>
         </div>
 

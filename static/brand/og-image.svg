@@ -53,7 +53,7 @@
 
   <!-- Subtitle -->
   <text x="600" y="430" text-anchor="middle" font-family="Manrope,system-ui,-apple-system,sans-serif"
-        font-size="20" fill="rgba(255,255,255,0.34)" font-weight="600" letter-spacing="6">ABU DHABI PROPERTY TRANSACTIONS</text>
+        font-size="20" fill="rgba(200,169,81,0.75)" font-weight="600" letter-spacing="6">ABU DHABI PROPERTY TRANSACTIONS</text>
 
   <!-- URL -->
   <text x="600" y="578" text-anchor="middle" font-family="Manrope,system-ui,sans-serif"

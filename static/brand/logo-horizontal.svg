@@ -34,5 +34,5 @@
 
   <!-- Subtitle -->
   <text x="202" y="154" font-family="Manrope,system-ui,-apple-system,sans-serif"
-        font-size="13.5" fill="rgba(255,255,255,0.30)" font-weight="600" letter-spacing="5">ABU DHABI PROPERTY TRANSACTIONS</text>
+        font-size="13.5" fill="rgba(200,169,81,0.75)" font-weight="600" letter-spacing="5">ABU DHABI PROPERTY TRANSACTIONS</text>
 </svg>

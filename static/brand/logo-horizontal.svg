@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
   <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,600;0,800;1,300&amp;display=swap');</style>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#1e4d3a"/>
       <stop offset="100%" stop-color="#0d2318"/>
@@ -28,11 +29,11 @@
        L72,31 L80,31 L80,38 Z"/>
 
   <!-- "ADINTERACT" main text -->
-  <text x="200" y="122" font-family="Manrope,system-ui,-apple-system,sans-serif" font-size="76" fill="#dfb83c">
+  <text x="200" y="122" font-family="Montserrat,system-ui,-apple-system,sans-serif" font-size="76" fill="#dfb83c">
     <tspan font-weight="800" letter-spacing="-2">AD</tspan><tspan font-weight="300" font-style="italic" letter-spacing="-1">INTERACT</tspan>
   </text>
 
   <!-- Subtitle -->
-  <text x="202" y="154" font-family="Manrope,system-ui,-apple-system,sans-serif"
+  <text x="202" y="154" font-family="Montserrat,system-ui,-apple-system,sans-serif"
         font-size="13.5" fill="rgba(200,169,81,0.75)" font-weight="600" letter-spacing="5">ABU DHABI PROPERTY TRANSACTIONS</text>
 </svg>

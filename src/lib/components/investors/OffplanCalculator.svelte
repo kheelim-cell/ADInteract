@@ -39,7 +39,7 @@
 
   // ── Shared class strings ─────────────────────────────────────────────────────
   const inp = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
-  const sel = 'w-full bg-[#131100] border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
+  const sel = 'w-full bg-[#1c1600] border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
 
   // ── Unit inputs ──────────────────────────────────────────────────────────────
   let district = $state('');
@@ -183,7 +183,7 @@
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<div class="rounded-2xl border border-amber-600/30 bg-[#1c1800] overflow-hidden">
+<div class="rounded-2xl border border-amber-500/35 bg-[#2a2200] overflow-hidden">
 
   <!-- Header -->
   <div class="px-5 py-4 border-b border-amber-700/25 flex items-center gap-3">

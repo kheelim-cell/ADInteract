@@ -39,7 +39,7 @@
 
   // ── Shared class strings ─────────────────────────────────────────────────────
   const inp = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
-  const sel = 'w-full bg-[#1c1600] border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
+  const sel = 'w-full bg-[#141414] border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
 
   // ── Unit inputs ──────────────────────────────────────────────────────────────
   let district = $state('');
@@ -183,10 +183,10 @@
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<div class="rounded-2xl border border-amber-500/35 bg-[#2a2200] overflow-hidden">
+<div class="rounded-2xl border border-white/10 bg-[#1e1e1e] overflow-hidden">
 
   <!-- Header -->
-  <div class="px-5 py-4 border-b border-amber-700/25 flex items-center gap-3">
+  <div class="px-5 py-4 border-b border-white/8 flex items-center gap-3">
     <div class="w-8 h-8 rounded-lg bg-amber-500/15 flex items-center justify-center flex-shrink-0">
       <svg class="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21" />

@@ -208,8 +208,9 @@
     project = '';
   });
 
-  // ── Auto-populate median market rent when Vacant + district/layout changes ─────
+  // ── Auto-populate median market rent when Vacant + project/district/layout changes ─────
   let medianRentLoading = $state(false);
+  let rentSource = $state<'project' | 'district'>('district');
 
   $effect(() => {
     if (tenancyStatus !== 'vacant') return;
@@ -217,24 +218,46 @@
 
     const d  = district;
     const l  = layout;
-    const rentalLayout = l ? l : 'all beds';
+    const p  = project && project !== 'other' ? project : '';
+    const rentalLayout   = l ? l : 'all beds';
+    const layoutFilter   = `LOWER(layout) = '${rentalLayout.replace(/'/g, "''").toLowerCase()}'`;
+    const baseWhere      = `year = 2025 AND ${layoutFilter} AND typology = 'All property types' AND rent_type = 'All types' AND median_rent > 0`;
     const districtClause = d ? `AND district = '${d.replace(/'/g, "''")}'` : '';
 
     medianRentLoading = true;
-    query<{ median_rent: number }>(`
+
+    // Try project-level first (only if a real project is selected)
+    const tryProject = p
+      ? query<{ median_rent: number }>(`
+          SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS median_rent
+          FROM rental
+          WHERE ${baseWhere}
+            AND LOWER(TRIM(project_name)) = '${p.replace(/'/g, "''").toLowerCase().trim()}'
+        `)
+      : Promise.resolve<{ median_rent: number }[]>([]);
+
+    // District/layout fallback
+    const tryDistrict = query<{ median_rent: number }>(`
       SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS median_rent
       FROM rental
-      WHERE year = 2025
-        AND LOWER(layout) = '${rentalLayout.replace(/'/g, "''").toLowerCase()}'
-        AND typology = 'All property types'
-        AND rent_type = 'All types'
-        AND median_rent > 0
+      WHERE ${baseWhere}
         ${districtClause}
-    `).then(rows => {
-      const val = rows[0]?.median_rent;
-      if (val && val > 0) annualRent = Math.round(val);
-      medianRentLoading = false;
-    }).catch(() => { medianRentLoading = false; });
+    `);
+
+    Promise.all([tryProject, tryDistrict])
+      .then(([projRows, distRows]) => {
+        const projVal = projRows[0]?.median_rent;
+        const distVal = distRows[0]?.median_rent;
+        if (projVal && projVal > 0) {
+          annualRent = Math.round(projVal);
+          rentSource = 'project';
+        } else if (distVal && distVal > 0) {
+          annualRent = Math.round(distVal);
+          rentSource = 'district';
+        }
+        medianRentLoading = false;
+      })
+      .catch(() => { medianRentLoading = false; });
   });
 </script>
 
@@ -355,6 +378,8 @@
             {#if tenancyStatus === 'vacant'}
               {#if medianRentLoading}
                 <p class="text-[10px] text-white/30 pl-0.5">Loading 2025 median rent…</p>
+              {:else if rentSource === 'project' && project && project !== 'other'}
+                <p class="text-[10px] text-emerald-400/60 pl-0.5">↳ 2025 median market rent · {toTitleCase(project)} · {layout || 'all layouts'}</p>
               {:else}
                 <p class="text-[10px] text-amber-400/60 pl-0.5">↳ 2025 median market rent · {district || 'Abu Dhabi'} · {layout || 'all layouts'}</p>
               {/if}

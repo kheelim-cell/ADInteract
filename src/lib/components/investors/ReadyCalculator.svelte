@@ -93,7 +93,7 @@
 
   // ── Derived: unit ─────────────────────────────────────────────────────────────
   let pricePerSqft  = $derived(livingArea > 0 ? price / livingArea : 0);
-  let effectiveRent = $derived(tenancyStatus === 'tenanted' ? annualRent : 0);
+  let effectiveRent = $derived(annualRent);   // always use annualRent; vacant uses market median
 
   // ── Derived: LTV & mortgage ──────────────────────────────────────────────────
   let ltvKey               = $derived(`${mortgageType}|${residency}`);
@@ -207,6 +207,35 @@
     void district;
     project = '';
   });
+
+  // ── Auto-populate median market rent when Vacant + district/layout changes ─────
+  let medianRentLoading = $state(false);
+
+  $effect(() => {
+    if (tenancyStatus !== 'vacant') return;
+    if (!$dbReady) return;
+
+    const d  = district;
+    const l  = layout;
+    const rentalLayout = l ? l : 'all beds';
+    const districtClause = d ? `AND district = '${d.replace(/'/g, "''")}'` : '';
+
+    medianRentLoading = true;
+    query<{ median_rent: number }>(`
+      SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS median_rent
+      FROM rental
+      WHERE year = 2025
+        AND LOWER(layout) = '${rentalLayout.replace(/'/g, "''").toLowerCase()}'
+        AND typology = 'All property types'
+        AND rent_type = 'All types'
+        AND median_rent > 0
+        ${districtClause}
+    `).then(rows => {
+      const val = rows[0]?.median_rent;
+      if (val && val > 0) annualRent = Math.round(val);
+      medianRentLoading = false;
+    }).catch(() => { medianRentLoading = false; });
+  });
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
@@ -318,12 +347,19 @@
               >{label}</button>
             {/each}
           </div>
-          {#if tenancyStatus === 'tenanted'}
-            <label class="space-y-1 block">
-              <span class="text-[11px] text-white/50">Annual Rent (AED/yr)</span>
-              <input type="number" bind:value={annualRent} min="0" step="1000" class={inp} />
-            </label>
-          {/if}
+          <label class="space-y-1 block">
+            <span class="text-[11px] text-white/50">
+              {tenancyStatus === 'tenanted' ? 'Annual Rent (AED/yr)' : 'Est. Annual Rent (AED/yr)'}
+            </span>
+            <input type="number" bind:value={annualRent} min="0" step="1000" class={inp} />
+            {#if tenancyStatus === 'vacant'}
+              {#if medianRentLoading}
+                <p class="text-[10px] text-white/30 pl-0.5">Loading 2025 median rent…</p>
+              {:else}
+                <p class="text-[10px] text-amber-400/60 pl-0.5">↳ 2025 median market rent · {district || 'Abu Dhabi'} · {layout || 'all layouts'}</p>
+              {/if}
+            {/if}
+          </label>
         </div>
 
         <!-- Listing Price -->
@@ -490,8 +526,8 @@
 
         <div class="space-y-1.5 text-xs">
           <div class="flex justify-between text-white/60">
-            <span>{tenancyStatus === 'tenanted' ? 'Annual rent' : 'Vacant — no rental income'}</span>
-            <span class="tabular-nums {tenancyStatus === 'tenanted' ? 'text-white/80' : 'text-white/30'}">{fmtAed(effectiveRent)}</span>
+            <span>{tenancyStatus === 'tenanted' ? 'Annual rent' : 'Est. market rent (vacant)'}</span>
+            <span class="tabular-nums text-white/80">{fmtAed(effectiveRent)}</span>
           </div>
           <div class="flex justify-between text-white/60">
             <span>Service charge + VAT</span>

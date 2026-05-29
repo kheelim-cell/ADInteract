@@ -215,10 +215,10 @@
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Year-on-Year Price Growth ({prevSalesYear} → {salesYear})
     </h3>
-    <GatedSection>
-      <GatedBlur>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
 
+      <GatedSection>
+        <GatedBlur>
           <GrowthLeaderboard
             title="Top Districts · Sale Rate Growth"
             subtitle="Median AED/sqft · min 10 transactions each year"
@@ -227,7 +227,11 @@
             valueLabel="/sqft"
             linkPrefix="area"
           />
+        </GatedBlur>
+      </GatedSection>
 
+      <GatedSection>
+        <GatedBlur>
           <GrowthLeaderboard
             title="Top Projects · Sale Rate Growth"
             subtitle="Median AED/sqft · min 5 transactions each year"
@@ -236,7 +240,11 @@
             valueLabel="/sqft"
             linkPrefix="project"
           />
+        </GatedBlur>
+      </GatedSection>
 
+      <GatedSection>
+        <GatedBlur>
           <GrowthLeaderboard
             title="Top Projects · Rental Growth"
             subtitle="Median annual rent · {rentalYear - 1} → {rentalYear}"
@@ -245,10 +253,10 @@
             valueLabel="/yr"
             linkPrefix="project"
           />
+        </GatedBlur>
+      </GatedSection>
 
-        </div>
-      </GatedBlur>
-    </GatedSection>
+    </div>
   </section>
 
   <!-- Section 2: Gross Rental Yield table -->

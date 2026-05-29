@@ -377,28 +377,28 @@
 
         </div>
 
-        <!-- Annual Rent (full width, below project+tenancy row) -->
-        <label class="space-y-1 block">
-          <span class="text-[11px] text-white/50">
-            {tenancyStatus === 'tenanted' ? 'Annual Rent (AED/yr)' : 'Est. Annual Rent (AED/yr)'}
-          </span>
-          <input type="number" bind:value={annualRent} min="0" step="1000" class={inp} />
-          {#if tenancyStatus === 'vacant'}
-            {#if medianRentLoading}
-              <p class="text-[10px] text-white/30 pl-0.5">Loading 2025 median rent…</p>
-            {:else if rentSource === 'project' && project && project !== 'other'}
-              <p class="text-[10px] text-emerald-400/60 pl-0.5">↳ 2025 median market rent · {toTitleCase(project)} · {layout || 'all layouts'}</p>
-            {:else}
-              <p class="text-[10px] text-amber-400/60 pl-0.5">↳ 2025 median market rent · {district || 'Abu Dhabi'} · {layout || 'all layouts'}</p>
+        <!-- Annual Rent + Listing Price (same row) -->
+        <div class="grid grid-cols-2 gap-3">
+          <label class="space-y-1 block">
+            <span class="text-[11px] text-white/50">
+              {tenancyStatus === 'tenanted' ? 'Annual Rent (AED/yr)' : 'Est. Annual Rent (AED/yr)'}
+            </span>
+            <input type="number" bind:value={annualRent} min="0" step="1000" class={inp} />
+            {#if tenancyStatus === 'vacant'}
+              {#if medianRentLoading}
+                <p class="text-[10px] text-white/30 pl-0.5">Loading 2025 median rent…</p>
+              {:else if rentSource === 'project' && project && project !== 'other'}
+                <p class="text-[10px] text-emerald-400/60 pl-0.5">↳ 2025 median · {toTitleCase(project)} · {layout || 'all'}</p>
+              {:else}
+                <p class="text-[10px] text-amber-400/60 pl-0.5">↳ 2025 median · {district || 'Abu Dhabi'} · {layout || 'all'}</p>
+              {/if}
             {/if}
-          {/if}
-        </label>
-
-        <!-- Listing Price -->
-        <label class="space-y-1 block">
-          <span class="text-[11px] text-white/50">Listing Price (AED)</span>
-          <input type="number" bind:value={price} min="0" step="10000" class={inp} />
-        </label>
+          </label>
+          <label class="space-y-1 block">
+            <span class="text-[11px] text-white/50">Listing Price (AED)</span>
+            <input type="number" bind:value={price} min="0" step="10000" class={inp} />
+          </label>
+        </div>
 
         <!-- Size inputs -->
         <div class="grid grid-cols-3 gap-3">

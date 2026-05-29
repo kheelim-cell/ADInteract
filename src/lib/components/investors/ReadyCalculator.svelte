@@ -656,127 +656,127 @@
     </div><!-- end left -->
 
     <!-- ── RIGHT: Results ────────────────────────────────────────────────────── -->
-    <div class="rounded-xl border border-amber-500/25 bg-gradient-to-b from-[#1c1400] to-[#100d00] overflow-hidden">
+    <div class="rounded-xl border border-amber-300/60 bg-white overflow-hidden shadow-lg shadow-amber-900/10">
 
       <!-- Results header bar -->
-      <div class="px-4 py-3 border-b border-amber-500/20 flex items-center justify-between bg-amber-500/8">
+      <div class="px-4 py-3 border-b border-amber-200 flex items-center justify-between bg-gradient-to-r from-amber-50 to-amber-100/60">
         <div class="flex items-center gap-2">
-          <svg class="w-3.5 h-3.5 text-amber-400/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <svg class="w-3.5 h-3.5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
           </svg>
-          <span class="text-[10px] font-bold text-amber-400/80 uppercase tracking-widest">Estimated Returns</span>
+          <span class="text-[10px] font-bold text-amber-700 uppercase tracking-widest">Estimated Returns</span>
         </div>
         <div class="flex gap-1.5">
-          <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide {rentalObjective ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/25' : 'bg-red-500/10 text-red-400 border border-red-500/20'}">
+          <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide border {rentalObjective ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-red-50 text-red-600 border-red-200'}">
             {rentalObjective ? '✓ Yield 7%+' : '✗ Yield <7%'}
           </span>
-          <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide {capitalObjective ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/25' : 'bg-red-500/10 text-red-400 border border-red-500/20'}">
+          <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide border {capitalObjective ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-red-50 text-red-600 border-red-200'}">
             {capitalObjective ? '✓ CAGR 7%+' : '✗ CAGR <7%'}
           </span>
         </div>
       </div>
 
-      <div class="p-4 space-y-4">
+      <div class="p-4 space-y-4 bg-gradient-to-b from-white to-amber-50/40">
 
         <!-- KPI hero strip -->
-        <div class="grid grid-cols-3 divide-x divide-amber-500/15 rounded-xl border border-amber-500/20 bg-black/30 overflow-hidden">
-          <div class="px-3 py-3.5 text-center">
-            <p class="text-[10px] text-amber-400/50 uppercase tracking-wider font-semibold">Gross Yield</p>
-            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {price > 0 && (effectiveRent/price*100) >= 7 ? 'text-emerald-400' : 'text-amber-400'}">{price > 0 ? fmtPct(effectiveRent / price * 100) : '—'}</p>
-            <p class="text-[9px] text-amber-400/30 mt-1">on listing price</p>
+        <div class="grid grid-cols-3 divide-x divide-amber-200 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white overflow-hidden shadow-sm">
+          <div class="px-3 py-4 text-center">
+            <p class="text-[10px] font-bold text-amber-600/70 uppercase tracking-wider">Gross Yield</p>
+            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {price > 0 && (effectiveRent/price*100) >= 7 ? 'text-emerald-600' : 'text-amber-600'}">{price > 0 ? fmtPct(effectiveRent / price * 100) : '—'}</p>
+            <p class="text-[9px] text-amber-500/60 mt-1">on listing price</p>
           </div>
-          <div class="px-3 py-3.5 text-center">
-            <p class="text-[10px] text-amber-400/50 uppercase tracking-wider font-semibold">Net Yield</p>
-            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netYield >= 7 ? 'text-emerald-400' : netYield >= 5 ? 'text-amber-400' : 'text-red-400'}">{fmtPct(netYield, 2)}</p>
-            <p class="text-[9px] text-amber-400/30 mt-1">on equity injected</p>
+          <div class="px-3 py-4 text-center">
+            <p class="text-[10px] font-bold text-amber-600/70 uppercase tracking-wider">Net Yield</p>
+            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netYield >= 7 ? 'text-emerald-600' : netYield >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netYield, 2)}</p>
+            <p class="text-[9px] text-amber-500/60 mt-1">on equity injected</p>
           </div>
-          <div class="px-3 py-3.5 text-center">
-            <p class="text-[10px] text-amber-400/50 uppercase tracking-wider font-semibold">Cap. CAGR</p>
-            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netProfitPerYear >= 7 ? 'text-emerald-400' : netProfitPerYear >= 5 ? 'text-amber-400' : 'text-red-400'}">{fmtPct(netProfitPerYear)}</p>
-            <p class="text-[9px] text-amber-400/30 mt-1">{yearsToResale}yr horizon</p>
+          <div class="px-3 py-4 text-center">
+            <p class="text-[10px] font-bold text-amber-600/70 uppercase tracking-wider">Cap. CAGR</p>
+            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netProfitPerYear >= 7 ? 'text-emerald-600' : netProfitPerYear >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netProfitPerYear)}</p>
+            <p class="text-[9px] text-amber-500/60 mt-1">{yearsToResale}yr horizon</p>
           </div>
         </div>
 
         <!-- Rental ROI breakdown -->
-        <div class="rounded-xl border border-amber-500/20 bg-black/25 overflow-hidden">
-          <div class="px-3.5 py-2.5 border-b border-amber-500/15 bg-amber-500/5">
-            <h5 class="text-[10px] font-bold text-amber-400/70 uppercase tracking-widest">Rental Income</h5>
+        <div class="rounded-xl border border-amber-200 bg-white overflow-hidden shadow-sm">
+          <div class="px-3.5 py-2.5 border-b border-amber-100 bg-amber-50">
+            <h5 class="text-[10px] font-bold text-amber-700 uppercase tracking-widest">Rental Income</h5>
           </div>
           <div class="px-3.5 py-3 space-y-1.5 text-xs">
-            <div class="flex justify-between text-amber-100/50">
+            <div class="flex justify-between text-gray-500">
               <span>{tenancyStatus === 'tenanted' ? 'Annual rent' : 'Est. market rent (vacant)'}</span>
-              <span class="tabular-nums text-amber-100/80">{fmtAed(effectiveRent)}</span>
+              <span class="tabular-nums text-gray-700 font-medium">{fmtAed(effectiveRent)}</span>
             </div>
-            <div class="flex justify-between text-amber-100/50">
+            <div class="flex justify-between text-gray-500">
               <span>Service charge + VAT</span>
-              <span class="tabular-nums text-red-400/80">− {fmtAed(serviceCharge)}</span>
+              <span class="tabular-nums text-red-500">− {fmtAed(serviceCharge)}</span>
             </div>
             {#if mortgageType !== 'none'}
-            <div class="flex justify-between text-amber-100/50">
+            <div class="flex justify-between text-gray-500">
               <span>Annual mortgage payments</span>
-              <span class="tabular-nums text-red-400/80">− {fmtAed(annualMortgage)}</span>
+              <span class="tabular-nums text-red-500">− {fmtAed(annualMortgage)}</span>
             </div>
             {/if}
-            <div class="flex justify-between font-bold text-amber-100/90 border-t border-amber-500/15 pt-1.5">
+            <div class="flex justify-between font-bold text-gray-800 border-t border-amber-100 pt-1.5">
               <span>Net Annual Revenue</span>
-              <span class="tabular-nums {netAnnualRental >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtAed(netAnnualRental)}</span>
+              <span class="tabular-nums {netAnnualRental >= 0 ? 'text-emerald-600' : 'text-red-600'}">{fmtAed(netAnnualRental)}</span>
             </div>
           </div>
           <!-- Monthly cashflow callout -->
-          <div class="mx-3.5 mb-3.5 rounded-lg border px-3.5 py-2.5 flex items-center justify-between {monthlyNetCashflow >= 0 ? 'bg-emerald-500/10 border-emerald-500/25' : 'bg-red-500/10 border-red-500/25'}">
-            <span class="text-xs font-semibold {monthlyNetCashflow >= 0 ? 'text-emerald-300/80' : 'text-red-300/80'}">Monthly net cashflow</span>
-            <span class="text-xl font-black tabular-nums {monthlyNetCashflow >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtAed(monthlyNetCashflow)}</span>
+          <div class="mx-3.5 mb-3.5 rounded-lg border px-3.5 py-2.5 flex items-center justify-between {monthlyNetCashflow >= 0 ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200'}">
+            <span class="text-xs font-semibold {monthlyNetCashflow >= 0 ? 'text-emerald-700' : 'text-red-700'}">Monthly net cashflow</span>
+            <span class="text-xl font-black tabular-nums {monthlyNetCashflow >= 0 ? 'text-emerald-600' : 'text-red-600'}">{fmtAed(monthlyNetCashflow)}</span>
           </div>
         </div>
 
         <!-- Capital Gains breakdown -->
-        <div class="rounded-xl border border-amber-500/20 bg-black/25 overflow-hidden">
-          <div class="px-3.5 py-2.5 border-b border-amber-500/15 bg-amber-500/5">
-            <h5 class="text-[10px] font-bold text-amber-400/70 uppercase tracking-widest">Capital Gains · {yearsToResale}yr Horizon</h5>
+        <div class="rounded-xl border border-amber-200 bg-white overflow-hidden shadow-sm">
+          <div class="px-3.5 py-2.5 border-b border-amber-100 bg-amber-50">
+            <h5 class="text-[10px] font-bold text-amber-700 uppercase tracking-widest">Capital Gains · {yearsToResale}yr Horizon</h5>
           </div>
           <div class="px-3.5 py-3 space-y-1.5 text-xs">
-            <div class="flex justify-between text-amber-100/50">
+            <div class="flex justify-between text-gray-500">
               <span>Potential selling price</span>
-              <span class="tabular-nums text-amber-100/80 font-semibold">{fmtAed(sellingPrice)}</span>
+              <span class="tabular-nums text-gray-700 font-medium">{fmtAed(sellingPrice)}</span>
             </div>
-            <div class="flex justify-between text-amber-100/50">
+            <div class="flex justify-between text-gray-500">
               <span>Total purchase cost (price + fees)</span>
-              <span class="tabular-nums text-red-400/80">− {fmtAed(price + purchasingFees + mortgageAdminFee)}</span>
+              <span class="tabular-nums text-red-500">− {fmtAed(price + purchasingFees + mortgageAdminFee)}</span>
             </div>
-            <div class="flex justify-between text-amber-100/50">
+            <div class="flex justify-between text-gray-500">
               <span>Resale broker fee (2%)</span>
-              <span class="tabular-nums text-red-400/80">− {fmtAed(resaleBrokerFee)}</span>
+              <span class="tabular-nums text-red-500">− {fmtAed(resaleBrokerFee)}</span>
             </div>
             {#if additionalCapex > 0}
-            <div class="flex justify-between text-amber-100/50">
+            <div class="flex justify-between text-gray-500">
               <span>Additional capex / refurb</span>
-              <span class="tabular-nums text-red-400/80">− {fmtAed(additionalCapex)}</span>
+              <span class="tabular-nums text-red-500">− {fmtAed(additionalCapex)}</span>
             </div>
             {/if}
-            <div class="flex justify-between font-bold text-amber-100/90 border-t border-amber-500/15 pt-1.5">
+            <div class="flex justify-between font-bold text-gray-800 border-t border-amber-100 pt-1.5">
               <span>Net Profit</span>
-              <span class="tabular-nums {netProfit >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtAed(netProfit)}</span>
+              <span class="tabular-nums {netProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}">{fmtAed(netProfit)}</span>
             </div>
           </div>
           <!-- Total return + net profit callout row -->
           <div class="grid grid-cols-2 gap-2 mx-3.5 mb-3.5">
-            <div class="rounded-lg bg-amber-500/8 border border-amber-500/20 px-3 py-2.5 text-center">
-              <p class="text-[10px] text-amber-400/50 uppercase tracking-wider font-semibold">Total Return</p>
-              <p class="text-xl font-black tabular-nums mt-1 {netProfitPct >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtPct(netProfitPct)}</p>
-              <p class="text-[9px] text-amber-400/30 mt-0.5">on equity + capex</p>
+            <div class="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2.5 text-center">
+              <p class="text-[10px] font-bold text-amber-600/70 uppercase tracking-wider">Total Return</p>
+              <p class="text-xl font-black tabular-nums mt-1 {netProfitPct >= 0 ? 'text-emerald-600' : 'text-red-600'}">{fmtPct(netProfitPct)}</p>
+              <p class="text-[9px] text-amber-500/60 mt-0.5">on equity + capex</p>
             </div>
-            <div class="rounded-lg bg-amber-500/8 border border-amber-500/20 px-3 py-2.5 text-center">
-              <p class="text-[10px] text-amber-400/50 uppercase tracking-wider font-semibold">Net Profit</p>
-              <p class="text-xl font-black tabular-nums mt-1 {netProfit >= 0 ? 'text-emerald-400' : 'text-red-400'}">
+            <div class="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2.5 text-center">
+              <p class="text-[10px] font-bold text-amber-600/70 uppercase tracking-wider">Net Profit</p>
+              <p class="text-xl font-black tabular-nums mt-1 {netProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}">
                 {netProfit >= 0 ? '+' : ''}{Math.abs(netProfit) >= 1_000_000 ? (netProfit / 1_000_000).toFixed(2) + 'M' : Math.round(Math.abs(netProfit) / 1000) + 'K'}
               </p>
-              <p class="text-[9px] text-amber-400/30 mt-0.5">AED</p>
+              <p class="text-[9px] text-amber-500/60 mt-0.5">AED</p>
             </div>
           </div>
         </div>
 
         <!-- Disclaimer -->
-        <p class="text-[10px] text-amber-400/20 leading-relaxed px-0.5">
+        <p class="text-[10px] text-amber-700/40 leading-relaxed px-0.5">
           Indicative estimates only. Mortgage rates sourced from current UAE market benchmarks; actual rates vary by bank and applicant profile. LTV ratios per CBUAE guidelines. Abu Dhabi registration fee: 2% DARI/DMT + AED 1,000 title deed. Agency fee: 2% + 5% VAT. Mortgage admin est. AED 9,400. Selling price based on comparable area PSF appreciation — verify with ADInteract Sales data.
         </p>
 

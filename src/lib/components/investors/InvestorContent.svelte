@@ -130,6 +130,40 @@
 
   // ── Calculator tab ─────────────────────────────────────────────────────────
   let calcTab = $state<'offplan' | 'ready'>('offplan');
+
+  // ── Nav strip ─────────────────────────────────────────────────────────────
+  const NAV_ITEMS = [
+    {
+      id: 'section-calculators',
+      label: 'Calculators',
+      description: 'Model net yield, capital gain CAGR, and total ROI before you commit — for both ready and off-plan properties. Auto-populated with live ADREC rent and appreciation data.',
+      iconPath: 'M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V13.5Zm0 2.25h.008v.008H8.25v-.008Zm2.25-4.5h.008v.008H10.5v-.008Zm0 2.25h.008v.008H10.5V13.5Zm0 2.25h.008v.008H10.5v-.008Zm2.25-4.5h.008v.008H12.75v-.008Zm0 2.25h.008v.008H12.75V13.5Zm0 2.25h.008v.008H12.75v-.008ZM6.75 6.75h10.5v10.5H6.75V6.75ZM6 3.75A2.25 2.25 0 0 1 8.25 1.5h7.5A2.25 2.25 0 0 1 18 3.75v.75H6v-.75Z',
+    },
+    {
+      id: 'section-growth',
+      label: 'Price Growth',
+      description: 'Year-on-year appreciation leaders ranked by median AED/sqft across districts, sale projects, and rental projects — sourced directly from ADREC registered transactions.',
+      iconPath: 'M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941',
+    },
+    {
+      id: 'section-yield',
+      label: 'Rental Yield',
+      description: 'Gross rental yield benchmarks by community: registered rents divided by sale prices. Use this to shortlist high-yield areas before running a detailed calculator scenario.',
+      iconPath: 'M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z',
+    },
+    {
+      id: 'section-charges',
+      label: 'Service Charges',
+      description: 'Annual ADREC-registered service charge rates by project in AED/sqft. This recurring cost directly erodes net rental yield and must be verified before any purchase decision.',
+      iconPath: 'M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z',
+    },
+  ];
+
+  let hoveredNav = $state<string | null>(null);
+
+  function scrollToSection(id: string) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 </script>
 
 <!-- ── Hero ────────────────────────────────────────────────────────────────── -->
@@ -168,55 +202,135 @@
   </div>
 </div>
 
+<!-- ── Nav strip (section contents) ────────────────────────────────────────── -->
+<div class="bg-[#071913] border-b border-white/8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+    <!-- Tab buttons -->
+    <div class="flex gap-0.5 pt-3 overflow-x-auto scrollbar-none">
+      {#each NAV_ITEMS as item}
+        <button
+          type="button"
+          onclick={() => scrollToSection(item.id)}
+          onmouseenter={() => { hoveredNav = item.id; }}
+          onmouseleave={() => { hoveredNav = null; }}
+          class="flex-shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-t-lg text-xs font-semibold border-b-2 transition-all duration-150
+            {hoveredNav === item.id
+              ? 'text-emerald-300 border-emerald-400 bg-emerald-500/8'
+              : 'text-white/40 border-transparent hover:text-white/65 hover:bg-white/4'}"
+        >
+          <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d={item.iconPath} />
+          </svg>
+          {item.label}
+          <!-- Arrow indicator -->
+          <svg class="w-3 h-3 flex-shrink-0 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+        </button>
+      {/each}
+    </div>
+
+    <!-- Description strip -->
+    <div class="h-9 flex items-center">
+      {#if hoveredNav}
+        {@const item = NAV_ITEMS.find(n => n.id === hoveredNav)}
+        {#if item}
+          <p class="text-[11px] leading-snug text-white/50">
+            <span class="font-semibold text-emerald-400">{item.label}:</span>
+            {' '}{item.description}
+          </p>
+        {/if}
+      {:else}
+        <p class="text-[11px] text-white/20">Hover a section to learn more · click to jump there</p>
+      {/if}
+    </div>
+
+  </div>
+</div>
+
 <!-- ── Content ─────────────────────────────────────────────────────────────── -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-10">
 
   <!-- ── Filter bar ──────────────────────────────────────────────────────────── -->
   <div>
-  <div class="flex flex-wrap items-center gap-3">
-    <!-- District -->
-    <select bind:value={filterDistrict} class={sel}>
-      <option value="">All Districts</option>
-      {#each districts as d}
-        <option value={d}>{d}</option>
-      {/each}
-    </select>
+    <div class="flex flex-wrap items-center gap-3">
+      <select bind:value={filterDistrict} class={sel}>
+        <option value="">All Districts</option>
+        {#each districts as d}
+          <option value={d}>{d}</option>
+        {/each}
+      </select>
 
-    <!-- Property Type -->
-    <select bind:value={filterPropertyType} class={sel}>
-      <option value="">All Property Types</option>
-      {#each propertyTypes as pt}
-        <option value={pt}>{pt}</option>
-      {/each}
-    </select>
+      <select bind:value={filterPropertyType} class={sel}>
+        <option value="">All Property Types</option>
+        {#each propertyTypes as pt}
+          <option value={pt}>{pt}</option>
+        {/each}
+      </select>
 
-    <!-- Layout -->
-    <select bind:value={filterLayout} class={sel}>
-      <option value="">All Layouts</option>
-      {#each layouts as l}
-        <option value={l}>{LAYOUT_DISPLAY[l.toLowerCase()] ?? l}</option>
-      {/each}
-    </select>
+      <select bind:value={filterLayout} class={sel}>
+        <option value="">All Layouts</option>
+        {#each layouts as l}
+          <option value={l}>{LAYOUT_DISPLAY[l.toLowerCase()] ?? l}</option>
+        {/each}
+      </select>
 
-    <!-- Reset -->
-    {#if hasFilter}
-      <button
-        type="button"
-        onclick={resetFilters}
-        class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-semibold text-gray-500 hover:text-gray-800 hover:border-gray-300 transition-colors"
-      >
-        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-        </svg>
-        Clear filters
-      </button>
-    {/if}
-  </div>
-  <PopularAreaChips activeDistrict={filterDistrict || null} onSelect={(d) => { filterDistrict = d; }} />
+      {#if hasFilter}
+        <button
+          type="button"
+          onclick={resetFilters}
+          class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-semibold text-gray-500 hover:text-gray-800 hover:border-gray-300 transition-colors"
+        >
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+          Clear filters
+        </button>
+      {/if}
+    </div>
+    <PopularAreaChips activeDistrict={filterDistrict || null} onSelect={(d) => { filterDistrict = d; }} />
   </div>
 
-  <!-- Section 1: Growth leaderboards (3-col grid on lg) -->
-  <section>
+  <!-- ── Section: Investment Calculators ─────────────────────────────────────── -->
+  <section id="section-calculators" class="scroll-mt-8">
+    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+      Investment Return Calculators
+    </h3>
+    <GatedSection proOnly={true}>
+      <div class="flex gap-2 mb-4">
+        <button
+          type="button"
+          onclick={() => { calcTab = 'offplan'; }}
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all {calcTab === 'offplan' ? 'bg-amber-500/15 border-amber-500/40 text-amber-300' : 'bg-white/3 border-white/10 text-white/40 hover:border-white/20 hover:text-white/60'}"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+          </svg>
+          Offplan
+        </button>
+        <button
+          type="button"
+          onclick={() => { calcTab = 'ready'; }}
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all {calcTab === 'ready' ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300' : 'bg-white/3 border-white/10 text-white/40 hover:border-white/20 hover:text-white/60'}"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+          </svg>
+          Ready Property
+        </button>
+      </div>
+
+      {#if calcTab === 'offplan'}
+        <OffplanCalculator />
+      {:else}
+        <ReadyCalculator />
+      {/if}
+    </GatedSection>
+  </section>
+
+  <!-- ── Section: Year-on-Year Price Growth ──────────────────────────────────── -->
+  <section id="section-growth" class="scroll-mt-8">
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Year-on-Year Price Growth ({prevSalesYear} → {salesYear})
     </h3>
@@ -264,8 +378,8 @@
     </div>
   </section>
 
-  <!-- Section 2: Gross Rental Yield table -->
-  <section>
+  <!-- ── Section: Gross Rental Yield ─────────────────────────────────────────── -->
+  <section id="section-yield" class="scroll-mt-8">
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Gross Rental Yield by Community ({rentalYear} rents ÷ {salesYear} sale prices)
     </h3>
@@ -276,8 +390,8 @@
     </GatedSection>
   </section>
 
-  <!-- Section 3: Service Charges -->
-  <section>
+  <!-- ── Section: Service Charges ────────────────────────────────────────────── -->
+  <section id="section-charges" class="scroll-mt-8">
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
       Annual Service Charges · ADREC Registered Projects
     </h3>
@@ -285,44 +399,6 @@
       <GatedBlur>
         <ServiceChargeTable district={filterDistrict} />
       </GatedBlur>
-    </GatedSection>
-  </section>
-
-  <!-- Section 4: Investment Calculators -->
-  <section>
-    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
-      Investment Return Calculators
-    </h3>
-    <GatedSection proOnly={true}>
-      <!-- Tab switcher -->
-      <div class="flex gap-2 mb-4">
-        <button
-          type="button"
-          onclick={() => { calcTab = 'offplan'; }}
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all {calcTab === 'offplan' ? 'bg-amber-500/15 border-amber-500/40 text-amber-300' : 'bg-white/3 border-white/10 text-white/40 hover:border-white/20 hover:text-white/60'}"
-        >
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-          </svg>
-          Offplan
-        </button>
-        <button
-          type="button"
-          onclick={() => { calcTab = 'ready'; }}
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all {calcTab === 'ready' ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300' : 'bg-white/3 border-white/10 text-white/40 hover:border-white/20 hover:text-white/60'}"
-        >
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-          </svg>
-          Ready Property
-        </button>
-      </div>
-
-      {#if calcTab === 'offplan'}
-        <OffplanCalculator />
-      {:else}
-        <ReadyCalculator />
-      {/if}
     </GatedSection>
   </section>
 

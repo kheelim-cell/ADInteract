@@ -135,7 +135,7 @@
   const NAV_ITEMS = [
     {
       id: 'section-calculators',
-      label: 'Calculators',
+      label: 'Investment ROI Calculator',
       description: 'Model net yield, capital gain CAGR, and total ROI before you commit — for both ready and off-plan properties. Auto-populated with live ADREC rent and appreciation data.',
       iconPath: 'M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V13.5Zm0 2.25h.008v.008H8.25v-.008Zm2.25-4.5h.008v.008H10.5v-.008Zm0 2.25h.008v.008H10.5V13.5Zm0 2.25h.008v.008H10.5v-.008Zm2.25-4.5h.008v.008H12.75v-.008Zm0 2.25h.008v.008H12.75V13.5Zm0 2.25h.008v.008H12.75v-.008ZM6.75 6.75h10.5v10.5H6.75V6.75ZM6 3.75A2.25 2.25 0 0 1 8.25 1.5h7.5A2.25 2.25 0 0 1 18 3.75v.75H6v-.75Z',
     },
@@ -168,36 +168,20 @@
 
 <!-- ── Hero ────────────────────────────────────────────────────────────────── -->
 <div class="bg-gradient-to-b from-[#0a2318] to-[#0e2d45] border-b border-white/5">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-      <div>
-        <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/25 px-3 py-1 text-xs font-bold text-emerald-400 tracking-wider uppercase mb-3">
-          <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
-          </svg>
-          Investor Intelligence
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
-          Abu Dhabi Property Investment Insights
-        </h2>
-        <p class="text-sm text-white/45 mt-1.5 max-w-xl">
-          Year-on-year price growth, rental returns, and yield benchmarks sourced from ADREC transaction data.
-        </p>
-      </div>
-
-      <!-- Year comparison pill -->
-      {#if salesYear}
-        <div class="flex-shrink-0 flex items-center gap-2 rounded-2xl bg-white/6 border border-white/12 px-4 py-2.5">
-          <div class="text-center">
-            <p class="text-[10px] font-semibold text-white/35 uppercase tracking-wider">Comparison</p>
-            <p class="text-base font-black text-white/70 tabular-nums leading-none mt-0.5">
-              {prevSalesYear}
-              <span class="text-white/30 font-light mx-1">→</span>
-              <span class="text-emerald-400">{salesYear}</span>
-            </p>
-          </div>
-        </div>
-      {/if}
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5">
+    <div class="flex items-center gap-3">
+      <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/25 px-2.5 py-0.5 text-[10px] font-bold text-emerald-400 tracking-wider uppercase flex-shrink-0">
+        <svg class="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+        </svg>
+        Investor Intelligence
+      </span>
+      <h2 class="text-base sm:text-lg font-bold text-white leading-tight">
+        Abu Dhabi Property Investment Insights
+      </h2>
+      <p class="hidden sm:block text-xs text-white/40 border-l border-white/10 pl-3 ml-1">
+        ADREC transaction data · {prevSalesYear}–{salesYear}
+      </p>
     </div>
   </div>
 </div>
@@ -214,7 +198,7 @@
           onclick={() => scrollToSection(item.id)}
           onmouseenter={() => { hoveredNav = item.id; }}
           onmouseleave={() => { hoveredNav = null; }}
-          class="flex-shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-t-lg text-xs font-semibold border-b-2 transition-all duration-150
+          class="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-t-lg text-sm font-semibold border-b-2 transition-all duration-150
             {hoveredNav === item.id
               ? 'text-emerald-300 border-emerald-400 bg-emerald-500/8'
               : 'text-white/40 border-transparent hover:text-white/65 hover:bg-white/4'}"
@@ -251,6 +235,43 @@
 
 <!-- ── Content ─────────────────────────────────────────────────────────────── -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-10">
+
+  <!-- ── Section: Investment Calculators ─────────────────────────────────────── -->
+  <section id="section-calculators" class="scroll-mt-8">
+    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+      Investment Return Calculators
+    </h3>
+    <GatedSection proOnly={true}>
+      <div class="flex gap-2 mb-4">
+        <button
+          type="button"
+          onclick={() => { calcTab = 'offplan'; }}
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all {calcTab === 'offplan' ? 'bg-amber-500/15 border-amber-500/40 text-amber-300' : 'bg-white/10 border-white/25 text-white/65 hover:border-white/40 hover:text-white/85'}"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+          </svg>
+          Offplan Property
+        </button>
+        <button
+          type="button"
+          onclick={() => { calcTab = 'ready'; }}
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all {calcTab === 'ready' ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300' : 'bg-white/10 border-white/25 text-white/65 hover:border-white/40 hover:text-white/85'}"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+          </svg>
+          Ready Property
+        </button>
+      </div>
+
+      {#if calcTab === 'offplan'}
+        <OffplanCalculator />
+      {:else}
+        <ReadyCalculator />
+      {/if}
+    </GatedSection>
+  </section>
 
   <!-- ── Filter bar ──────────────────────────────────────────────────────────── -->
   <div>
@@ -291,43 +312,6 @@
     </div>
     <PopularAreaChips activeDistrict={filterDistrict || null} onSelect={(d) => { filterDistrict = d; }} />
   </div>
-
-  <!-- ── Section: Investment Calculators ─────────────────────────────────────── -->
-  <section id="section-calculators" class="scroll-mt-8">
-    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
-      Investment Return Calculators
-    </h3>
-    <GatedSection proOnly={true}>
-      <div class="flex gap-2 mb-4">
-        <button
-          type="button"
-          onclick={() => { calcTab = 'offplan'; }}
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all {calcTab === 'offplan' ? 'bg-amber-500/15 border-amber-500/40 text-amber-300' : 'bg-white/3 border-white/10 text-white/40 hover:border-white/20 hover:text-white/60'}"
-        >
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-          </svg>
-          Offplan
-        </button>
-        <button
-          type="button"
-          onclick={() => { calcTab = 'ready'; }}
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all {calcTab === 'ready' ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300' : 'bg-white/3 border-white/10 text-white/40 hover:border-white/20 hover:text-white/60'}"
-        >
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-          </svg>
-          Ready Property
-        </button>
-      </div>
-
-      {#if calcTab === 'offplan'}
-        <OffplanCalculator />
-      {:else}
-        <ReadyCalculator />
-      {/if}
-    </GatedSection>
-  </section>
 
   <!-- ── Section: Year-on-Year Price Growth ──────────────────────────────────── -->
   <section id="section-growth" class="scroll-mt-8">

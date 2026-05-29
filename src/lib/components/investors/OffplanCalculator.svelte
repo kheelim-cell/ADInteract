@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { metadata } from '$lib/stores/db';
+  import { metadata, dbReady } from '$lib/stores/db';
+  import { query } from '$lib/db/duckdb';
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
   function fmtAed(v: number): string {
@@ -11,26 +12,23 @@
     return v.toFixed(dp) + '%';
   }
 
-  // ── District & Layout options from metadata ──────────────────────────────────
+  // ── Constants ────────────────────────────────────────────────────────────────
   const LAYOUT_ORDER = ['studio', '1 bed', '2 beds', '3 beds', '4 beds', '5 beds', '5+ beds', '6+ beds'];
   const LAYOUT_DISPLAY: Record<string, string> = { studio: 'Studio' };
-
   const PINNED_DISTRICTS = [
-    'Al Reem Island',
-    'Yas Island',
-    'Al Saadiyat Island',
-    'Al Rahah',
-    'Khalifa City',
-    'Al Reef',
-    'Fahid Island',
-    'Al Hidayriyyat',
+    'Al Reem Island', 'Yas Island', 'Al Saadiyat Island', 'Al Rahah',
+    'Khalifa City', 'Al Reef', 'Fahid Island', 'Al Hidayriyyat',
   ];
 
+  // ── Derived: districts + layouts ─────────────────────────────────────────────
+  let pinnedCount = $derived.by(() =>
+    PINNED_DISTRICTS.filter(p => ($metadata?.districts ?? []).some((d: string) => d.toLowerCase() === p.toLowerCase())).length
+  );
   let districts = $derived.by(() => {
     const all: string[] = $metadata?.districts ?? [];
-    const pinnedFound  = PINNED_DISTRICTS.filter(p => all.some(d => d.toLowerCase() === p.toLowerCase()));
-    const pinnedSet    = new Set(pinnedFound.map(p => p.toLowerCase()));
-    const rest         = all.filter(d => !pinnedSet.has(d.toLowerCase())).sort();
+    const pinnedFound = PINNED_DISTRICTS.filter(p => all.some(d => d.toLowerCase() === p.toLowerCase()));
+    const pinnedSet   = new Set(pinnedFound.map(p => p.toLowerCase()));
+    const rest        = all.filter(d => !pinnedSet.has(d.toLowerCase())).sort();
     return [...pinnedFound, ...rest];
   });
   let layouts = $derived(
@@ -39,37 +37,42 @@
       .sort((a: string, b: string) => LAYOUT_ORDER.indexOf(a.toLowerCase()) - LAYOUT_ORDER.indexOf(b.toLowerCase()))
   );
 
+  // ── Shared class strings ─────────────────────────────────────────────────────
+  const inp = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
+  const sel = 'w-full bg-[#0a1a10] border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
+
   // ── Unit inputs ──────────────────────────────────────────────────────────────
   let district = $state('');
   let layout   = $state('');
-  let cost     = $state(1_000_000);   // purchase price AED
-  let size     = $state(945);         // total sqft
+  let cost     = $state(1_000_000);
+  let size     = $state(945);
 
-  const handoverAdminFee = 5_000;     // up to AED 5,000
+  const handoverAdminFee = 5_000;
 
-  // ── Rental inputs ────────────────────────────────────────────────────────────
+  // ── Rental inputs (defaults 0 as requested) ──────────────────────────────────
   let comparableRent    = $state(50_000);
   let yearsTillHandover = $state(2);
   let rentalAppPct      = $state(15);
-  let furnishedPremium  = $state(10_000);
-  let mgmtFeePct        = $state(8);
+  let furnishedPremium  = $state(0);
+  let mgmtFeePct        = $state(0);
   let utilitiesMonthly  = $state(0);
   let serviceChargePsf  = $state(15);
 
   // ── Capital gains inputs ─────────────────────────────────────────────────────
   let yearsToResale   = $state(5);
   let annualAppPct    = $state(12);
-  let otherAppPct     = $state(0);
+  let otherFactorType = $state<'standard' | 'furnished' | 'branded'>('standard');
+  let otherAppPct     = $derived(otherFactorType === 'furnished' ? 5 : otherFactorType === 'branded' ? 10 : 0);
   let resaleBrokerPct = $state(2);
 
   // ── Derived: unit ────────────────────────────────────────────────────────────
-  let pricePerSqft      = $derived(size > 0 ? cost / size : 0);
-  let registrationFee   = $derived(cost * 0.02 + 1_000);              // Abu Dhabi: 2% DARI/DMT + AED 1,000 title deed
-  let devRegistrationFee = $derived(cost < 500_000 ? 2_000 : 4_000); // Developer registration fee
-  let totalPurchaseCost = $derived(cost + registrationFee + devRegistrationFee + handoverAdminFee);
+  let pricePerSqft       = $derived(size > 0 ? cost / size : 0);
+  let registrationFee    = $derived(cost * 0.02 + 1_000);
+  let devRegistrationFee = $derived(cost < 500_000 ? 2_000 : 4_000);
+  let totalPurchaseCost  = $derived(cost + registrationFee + devRegistrationFee + handoverAdminFee);
 
   // ── Derived: rental ──────────────────────────────────────────────────────────
-  let grossRental   = $derived(
+  let grossRental = $derived(
     comparableRent * Math.pow(1 + rentalAppPct / 100, yearsTillHandover) + furnishedPremium
   );
   let mgmtFee       = $derived(grossRental * mgmtFeePct / 100);
@@ -86,7 +89,7 @@
   let totalAppRate     = $derived((annualAppPct + otherAppPct) / 100);
   let sellingPrice     = $derived(cost * Math.pow(1 + totalAppRate, yearsToResale));
   let resaleBrokerFee  = $derived(sellingPrice * resaleBrokerPct / 100);
-  let totalAllInCost   = $derived(totalPurchaseCost + resaleBrokerFee); // includes DARI/DMT + devRegistrationFee + handoverAdminFee
+  let totalAllInCost   = $derived(totalPurchaseCost + resaleBrokerFee);
   let netProfit        = $derived(sellingPrice - totalAllInCost);
   let netProfitPct     = $derived(totalAllInCost > 0 ? (netProfit / totalAllInCost) * 100 : 0);
   let netProfitPerYear = $derived(
@@ -95,10 +98,89 @@
       : 0
   );
   let capitalObjective = $derived(netProfitPerYear >= 7);
+  let totalRoiPa       = $derived(netYield + netProfitPerYear);
 
-  // ── Shared input class ───────────────────────────────────────────────────────
-  const inp = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
-  const sel = 'w-full bg-[#0a1a10] border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
+  // ── Auto-populate: comparable rent (2025 median, district + layout) ───────────
+  let rentLoading = $state(false);
+  let rentSource  = $state('');
+
+  $effect(() => {
+    if (!$dbReady) return;
+    const d = district;
+    const l = layout;
+    const rentalLayout = l ? l : 'all beds';
+    const layoutFilter = `LOWER(layout) = '${rentalLayout.replace(/'/g, "''").toLowerCase()}'`;
+    const baseWhere    = `year = 2025 AND ${layoutFilter} AND typology = 'All property types' AND rent_type = 'All types' AND median_rent > 0`;
+    const distClause   = d ? `AND district = '${d.replace(/'/g, "''")}'` : '';
+    rentLoading = true;
+    query<{ median_rent: number }>(`
+      SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS median_rent
+      FROM rental WHERE ${baseWhere} ${distClause}
+    `).then(rows => {
+      const val = rows[0]?.median_rent;
+      if (val && val > 0) {
+        comparableRent = Math.round(val);
+        rentSource = [d, l].filter(Boolean).join(' · ') || 'Abu Dhabi · all';
+      }
+      rentLoading = false;
+    }).catch(() => { rentLoading = false; });
+  });
+
+  // ── Auto-populate: rental YoY appreciation (2024→2025 median, 50% haircut) ───
+  let rentalYoyLoading = $state(false);
+  let rentalYoySource  = $state('');
+
+  $effect(() => {
+    if (!$dbReady) return;
+    const d = district;
+    const l = layout;
+    const rentalLayout = l ? l : 'all beds';
+    const layoutFilter = `LOWER(layout) = '${rentalLayout.replace(/'/g, "''").toLowerCase()}'`;
+    const baseWhere    = `typology = 'All property types' AND rent_type = 'All types' AND median_rent > 0 AND ${layoutFilter}`;
+    const distClause   = d ? `AND district = '${d.replace(/'/g, "''")}'` : '';
+    rentalYoyLoading = true;
+    Promise.all([
+      query<{ median_rent: number }>(`SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS median_rent FROM rental WHERE ${baseWhere} AND year = 2025 ${distClause}`),
+      query<{ median_rent: number }>(`SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS median_rent FROM rental WHERE ${baseWhere} AND year = 2024 ${distClause}`),
+    ]).then(([curr, prev]) => {
+      const c = curr[0]?.median_rent;
+      const p = prev[0]?.median_rent;
+      if (c && p && p > 0) {
+        rentalAppPct    = Math.max(0, parseFloat(((c - p) / p * 100 * 0.5).toFixed(1)));
+        rentalYoySource = [d, l].filter(Boolean).join(' · ') || 'Abu Dhabi · all';
+      }
+      rentalYoyLoading = false;
+    }).catch(() => { rentalYoyLoading = false; });
+  });
+
+  // ── Auto-populate: capital gains YoY (off-plan PSF, last 12 vs prior 12, 50% haircut) ──
+  let capYoyLoading = $state(false);
+  let capYoySource  = $state('');
+
+  $effect(() => {
+    if (!$dbReady) return;
+    const d = district;
+    const l = layout;
+    const parts: string[] = [];
+    if (d) parts.push(`district = '${d.replace(/'/g, "''")}'`);
+    if (l) parts.push(`LOWER(TRIM(layout)) = '${l.replace(/'/g, "''").toLowerCase()}'`);
+    const filterClause = parts.length ? 'AND ' + parts.join(' AND ') : '';
+    const source       = [d, l].filter(Boolean).join(' · ') || 'Abu Dhabi · all off-plan';
+    const baseWhere    = `LOWER(TRIM(sale_type)) = 'off-plan' AND rate_per_sqft > 0`;
+    capYoyLoading = true;
+    Promise.all([
+      query<{ median_psf: number }>(`SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft) AS median_psf FROM transactions WHERE ${baseWhere} AND sale_date >= (CURRENT_DATE - INTERVAL '12 months') ${filterClause}`),
+      query<{ median_psf: number }>(`SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft) AS median_psf FROM transactions WHERE ${baseWhere} AND sale_date >= (CURRENT_DATE - INTERVAL '24 months') AND sale_date < (CURRENT_DATE - INTERVAL '12 months') ${filterClause}`),
+    ]).then(([currRows, prevRows]) => {
+      const curr = currRows[0]?.median_psf;
+      const prev = prevRows[0]?.median_psf;
+      if (curr && prev && prev > 0) {
+        annualAppPct = Math.max(0, parseFloat(((curr - prev) / prev * 100 * 0.5).toFixed(1)));
+        capYoySource = source;
+      }
+      capYoyLoading = false;
+    }).catch(() => { capYoyLoading = false; });
+  });
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
@@ -117,32 +199,33 @@
     </div>
   </div>
 
-  <div class="p-5 grid grid-cols-1 xl:grid-cols-[5fr_7fr] gap-6">
+  <div class="p-5 grid grid-cols-1 xl:grid-cols-2 gap-6">
 
     <!-- ── LEFT: Inputs ──────────────────────────────────────────────────────── -->
     <div class="space-y-5">
 
-      <!-- ── Unit Details ───────────────────────────────────────────────────── -->
+      <!-- Unit Details -->
       <fieldset class="space-y-3">
         <legend class="text-[10px] font-bold text-amber-400/80 uppercase tracking-widest">Unit Details</legend>
 
-        <!-- District + Layout dropdowns (header row) -->
         <div class="grid grid-cols-2 gap-3">
           <div class="space-y-1">
             <span class="text-[11px] text-white/50">District</span>
             <div class="relative">
               <select bind:value={district} class={sel}>
                 <option value="">All Districts</option>
-                <optgroup label="── Popular ──">
-                  {#each districts.slice(0, PINNED_DISTRICTS.length) as d}
-                    <option value={d}>{d}</option>
-                  {/each}
-                </optgroup>
-                <optgroup label="── All Districts ──">
-                  {#each districts.slice(PINNED_DISTRICTS.length) as d}
-                    <option value={d}>{d}</option>
-                  {/each}
-                </optgroup>
+                {#if districts.length > 0}
+                  <optgroup label="── Popular ──">
+                    {#each districts.slice(0, pinnedCount) as d}
+                      <option value={d}>{d}</option>
+                    {/each}
+                  </optgroup>
+                  <optgroup label="── All Districts ──">
+                    {#each districts.slice(pinnedCount) as d}
+                      <option value={d}>{d}</option>
+                    {/each}
+                  </optgroup>
+                {/if}
               </select>
               <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -165,7 +248,6 @@
           </div>
         </div>
 
-        <!-- Price + Size -->
         <div class="grid grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Price (AED)</span>
@@ -177,7 +259,6 @@
           </label>
         </div>
 
-        <!-- AED/sqft + acquisition cost info row -->
         <div class="grid grid-cols-2 gap-3">
           <div class="rounded-lg bg-amber-500/8 border border-amber-500/20 px-3 py-2.5">
             <p class="text-[10px] text-amber-400/70 uppercase tracking-wider">Price per sqft</p>
@@ -193,29 +274,42 @@
         </div>
       </fieldset>
 
-      <!-- ── Rental Analysis ────────────────────────────────────────────────── -->
+      <!-- Rental Analysis -->
       <fieldset class="space-y-3">
         <legend class="text-[10px] font-bold text-emerald-400/80 uppercase tracking-widest">Rental Analysis (at Handover)</legend>
+
         <div class="grid grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Comparable Rent today (AED/yr)</span>
             <input type="number" bind:value={comparableRent} min="0" step="1000" class={inp} />
+            {#if rentLoading}
+              <p class="text-[10px] text-white/30 pl-0.5">Loading 2025 median rent…</p>
+            {:else if rentSource}
+              <p class="text-[10px] text-emerald-400/60 pl-0.5">↳ 2025 median · {rentSource}</p>
+            {/if}
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Years till Handover</span>
             <input type="number" bind:value={yearsTillHandover} min="0" max="10" step="0.5" class={inp} />
           </label>
         </div>
+
         <div class="grid grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Rental Appreciation over Build (%)</span>
-            <input type="number" bind:value={rentalAppPct} min="0" max="100" step="1" class={inp} />
+            <input type="number" bind:value={rentalAppPct} min="0" max="100" step="0.5" class={inp} />
+            {#if rentalYoyLoading}
+              <p class="text-[10px] text-white/30 pl-0.5">Loading rental YoY…</p>
+            {:else if rentalYoySource}
+              <p class="text-[10px] text-amber-400/60 pl-0.5">↳ 2024→2025 YoY · {rentalYoySource} · 50% haircut</p>
+            {/if}
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Furnished Premium (AED/yr)</span>
             <input type="number" bind:value={furnishedPremium} min="0" step="1000" class={inp} />
           </label>
         </div>
+
         <div class="grid grid-cols-3 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Management Fee (%)</span>
@@ -235,162 +329,188 @@
         </p>
       </fieldset>
 
-      <!-- ── Capital Gains ──────────────────────────────────────────────────── -->
+      <!-- Capital Gains -->
       <fieldset class="space-y-3">
         <legend class="text-[10px] font-bold text-blue-400/80 uppercase tracking-widest">Capital Gains Estimation</legend>
+
         <div class="grid grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Time of Resale (years from today)</span>
             <input type="number" bind:value={yearsToResale} min="0" max="30" step="1" class={inp} />
           </label>
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Expected Annual Appreciation (%)</span>
+            <span class="text-[11px] text-white/50">Annual Appreciation (%)</span>
             <input type="number" bind:value={annualAppPct} min="0" max="50" step="0.5" class={inp} />
+            {#if capYoyLoading}
+              <p class="text-[10px] text-white/30 pl-0.5">Loading off-plan YoY…</p>
+            {:else if capYoySource}
+              <p class="text-[10px] text-amber-400/60 pl-0.5">↳ YoY off-plan · {capYoySource} · 50% haircut</p>
+            {/if}
           </label>
         </div>
+
         <div class="grid grid-cols-2 gap-3">
-          <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Other Appreciation Factors (%)</span>
-            <input type="number" bind:value={otherAppPct} min="0" max="20" step="0.5" class={inp} />
-          </label>
+          <div class="space-y-1">
+            <span class="text-[11px] text-white/50">Finish / Branding</span>
+            <div class="relative">
+              <select bind:value={otherFactorType} class={sel}>
+                <option value="standard">Standard (0%)</option>
+                <option value="furnished">Furnished (+5%)</option>
+                <option value="branded">Branded Residence (+10%)</option>
+              </select>
+              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+          </div>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Resale Broker Fee (%)</span>
             <input type="number" bind:value={resaleBrokerPct} min="0" max="5" step="0.25" class={inp} />
           </label>
         </div>
+
+        <p class="text-[11px] text-white/30 pl-0.5">
+          Selling price: {fmtAed(cost)} × (1 + {annualAppPct + otherAppPct}%)^{yearsToResale} = <span class="text-amber-400/70">{fmtAed(sellingPrice)}</span>
+        </p>
       </fieldset>
 
     </div><!-- end left -->
 
     <!-- ── RIGHT: Results ────────────────────────────────────────────────────── -->
-    <div class="space-y-4">
+    <div class="rounded-xl border border-amber-300/60 bg-white overflow-hidden shadow-lg shadow-amber-900/10">
 
-      <!-- Rental Yield Card -->
-      <div class="rounded-xl border border-emerald-500/20 bg-emerald-950/30 p-4 space-y-3">
-        <div class="flex items-center justify-between">
-          <h5 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Rental Yield at Handover</h5>
-          <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide {rentalObjective ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/15 text-red-400'}">
-            {rentalObjective ? '✓ 7%+ Target Met' : '✗ Below 7% Target'}
+      <!-- Results header bar -->
+      <div class="px-4 py-3 border-b border-amber-200 flex items-center justify-between bg-gradient-to-r from-amber-50 to-amber-100/60">
+        <div class="flex items-center gap-2">
+          <svg class="w-3.5 h-3.5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+          </svg>
+          <span class="text-[10px] font-bold text-gray-900 uppercase tracking-widest">Estimated Returns</span>
+        </div>
+        <div class="flex gap-1.5">
+          <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide border {rentalObjective ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-red-50 text-red-600 border-red-200'}">
+            {rentalObjective ? '✓ Yield 7%+' : '✗ Yield <7%'}
           </span>
-        </div>
-
-        <div class="space-y-1.5 text-xs">
-          <div class="flex justify-between text-white/60">
-            <span>Comparable rent × (1 + {rentalAppPct}%)^{yearsTillHandover}yr</span>
-            <span class="tabular-nums text-white/80">{fmtAed(comparableRent * Math.pow(1 + rentalAppPct / 100, yearsTillHandover))}</span>
-          </div>
-          {#if furnishedPremium > 0}
-            <div class="flex justify-between text-white/60">
-              <span>Furnished premium</span>
-              <span class="tabular-nums text-white/80">+ {fmtAed(furnishedPremium)}</span>
-            </div>
-          {/if}
-          <div class="flex justify-between font-semibold text-white border-t border-white/10 pt-1.5">
-            <span>Gross Rental Revenue</span>
-            <span class="tabular-nums">{fmtAed(grossRental)}</span>
-          </div>
-        </div>
-
-        <div class="space-y-1.5 text-xs border-t border-white/8 pt-2">
-          {#if mgmtFee > 0}
-            <div class="flex justify-between text-white/55">
-              <span>Management fee ({mgmtFeePct}%)</span>
-              <span class="tabular-nums text-red-400/80">− {fmtAed(mgmtFee)}</span>
-            </div>
-          {/if}
-          {#if utilities > 0}
-            <div class="flex justify-between text-white/55">
-              <span>Utilities</span>
-              <span class="tabular-nums text-red-400/80">− {fmtAed(utilities)}</span>
-            </div>
-          {/if}
-          <div class="flex justify-between text-white/55">
-            <span>Service charge + VAT</span>
-            <span class="tabular-nums text-red-400/80">− {fmtAed(serviceCharge)}</span>
-          </div>
-          <div class="flex justify-between font-bold text-white border-t border-white/10 pt-1.5">
-            <span>Net Rental Revenue</span>
-            <span class="tabular-nums {netRental >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtAed(netRental)}</span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-3 gap-2 pt-1">
-          <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
-            <p class="text-[10px] text-white/40 uppercase tracking-wide">Gross Yield</p>
-            <p class="text-lg font-black tabular-nums {grossYield >= 7 ? 'text-emerald-400' : 'text-amber-400'}">{fmtPct(grossYield)}</p>
-          </div>
-          <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
-            <p class="text-[10px] text-white/40 uppercase tracking-wide">Net Yield</p>
-            <p class="text-lg font-black tabular-nums {netYield >= 7 ? 'text-emerald-400' : netYield >= 5 ? 'text-amber-400' : 'text-red-400'}">{fmtPct(netYield)}</p>
-            <p class="text-[9px] text-white/25 mt-0.5">on total cost</p>
-          </div>
-          <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
-            <p class="text-[10px] text-white/40 uppercase tracking-wide">Payback</p>
-            <p class="text-lg font-black tabular-nums text-white/80">{netYield > 0 ? paybackYears.toFixed(1) : '∞'} yrs</p>
-          </div>
+          <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide border {capitalObjective ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-red-50 text-red-600 border-red-200'}">
+            {capitalObjective ? '✓ CAGR 7%+' : '✗ CAGR <7%'}
+          </span>
         </div>
       </div>
 
-      <!-- Capital Gains Card -->
-      <div class="rounded-xl border border-blue-500/20 bg-blue-950/20 p-4 space-y-3">
-        <div class="flex items-center justify-between">
-          <h5 class="text-xs font-bold text-blue-300 uppercase tracking-wider">Capital Gains · {yearsToResale}yr Horizon</h5>
-          <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide {capitalObjective ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/15 text-red-400'}">
-            {capitalObjective ? '✓ 7%/yr Target Met' : '✗ Below 7%/yr Target'}
-          </span>
-        </div>
+      <div class="p-4 space-y-4 bg-gradient-to-b from-white to-amber-50/40">
 
-        <div class="space-y-1.5 text-xs">
-          <div class="flex justify-between text-white/60">
-            <span>Potential selling price (after {yearsToResale}yr @ {annualAppPct + otherAppPct}%/yr)</span>
-            <span class="tabular-nums text-white/80 font-semibold">{fmtAed(sellingPrice)}</span>
+        <!-- KPI hero strip -->
+        <div class="grid grid-cols-3 divide-x divide-amber-200 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white overflow-hidden shadow-sm">
+          <div class="px-3 py-4 text-center">
+            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Net Rental Yield p.a</p>
+            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netYield >= 7 ? 'text-emerald-600' : netYield >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netYield)}</p>
+            <p class="text-[9px] text-gray-500 mt-1">on total cost</p>
           </div>
-        </div>
-
-        <div class="space-y-1.5 text-xs border-t border-white/8 pt-2">
-          <div class="flex justify-between text-white/55">
-            <span>Original purchase price</span>
-            <span class="tabular-nums text-red-400/80">− {fmtAed(cost)}</span>
+          <div class="px-3 py-4 text-center">
+            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Capital Gain p.a</p>
+            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netProfitPerYear >= 7 ? 'text-emerald-600' : netProfitPerYear >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netProfitPerYear)}</p>
+            <p class="text-[9px] text-gray-500 mt-1">{yearsToResale}yr horizon</p>
           </div>
-          <div class="flex justify-between text-white/55">
-            <span>DARI/DMT + dev. reg. + admin at purchase</span>
-            <span class="tabular-nums text-red-400/80">− {fmtAed(registrationFee + devRegistrationFee + handoverAdminFee)}</span>
-          </div>
-          <div class="flex justify-between text-white/55">
-            <span>Resale broker fee ({resaleBrokerPct}%)</span>
-            <span class="tabular-nums text-red-400/80">− {fmtAed(resaleBrokerFee)}</span>
-          </div>
-          <div class="flex justify-between font-bold text-white border-t border-white/10 pt-1.5">
-            <span>Net Profit</span>
-            <span class="tabular-nums {netProfit >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtAed(netProfit)}</span>
+          <div class="px-3 py-4 text-center">
+            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Total ROI p.a</p>
+            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {totalRoiPa >= 14 ? 'text-emerald-600' : totalRoiPa >= 7 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(totalRoiPa)}</p>
+            <p class="text-[9px] text-gray-500 mt-1">yield + capital gain</p>
           </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-2 pt-1">
-          <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
-            <p class="text-[10px] text-white/40 uppercase tracking-wide">Total Return</p>
-            <p class="text-lg font-black tabular-nums {netProfitPct >= 0 ? 'text-emerald-400' : 'text-red-400'}">{fmtPct(netProfitPct)}</p>
-            <p class="text-[9px] text-white/25 mt-0.5">on all-in cost</p>
+        <!-- Rental breakdown -->
+        <div class="rounded-xl border border-amber-200 bg-white overflow-hidden shadow-sm">
+          <div class="px-3.5 py-2.5 border-b border-amber-100 bg-amber-50">
+            <h5 class="text-[10px] font-bold text-gray-900 uppercase tracking-widest">Rental Income at Handover</h5>
           </div>
-          <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
-            <p class="text-[10px] text-white/40 uppercase tracking-wide">Per Year (CAGR)</p>
-            <p class="text-lg font-black tabular-nums {netProfitPerYear >= 7 ? 'text-emerald-400' : netProfitPerYear >= 5 ? 'text-amber-400' : 'text-red-400'}">{fmtPct(netProfitPerYear)}</p>
+          <div class="px-3.5 py-3 space-y-1.5 text-xs">
+            <div class="flex justify-between text-gray-500">
+              <span>Comparable rent × (1 + {rentalAppPct}%)^{yearsTillHandover}yr</span>
+              <span class="tabular-nums text-gray-700 font-medium">{fmtAed(comparableRent * Math.pow(1 + rentalAppPct / 100, yearsTillHandover))}</span>
+            </div>
+            {#if furnishedPremium > 0}
+              <div class="flex justify-between text-gray-500">
+                <span>Furnished premium</span>
+                <span class="tabular-nums text-gray-700">+ {fmtAed(furnishedPremium)}</span>
+              </div>
+            {/if}
+            <div class="flex justify-between font-semibold text-gray-800 border-t border-amber-100 pt-1.5">
+              <span>Gross Rental Revenue</span>
+              <span class="tabular-nums">{fmtAed(grossRental)}</span>
+            </div>
+            {#if mgmtFee > 0}
+              <div class="flex justify-between text-gray-500">
+                <span>Management fee ({mgmtFeePct}%)</span>
+                <span class="tabular-nums text-red-500">− {fmtAed(mgmtFee)}</span>
+              </div>
+            {/if}
+            {#if utilities > 0}
+              <div class="flex justify-between text-gray-500">
+                <span>Utilities</span>
+                <span class="tabular-nums text-red-500">− {fmtAed(utilities)}</span>
+              </div>
+            {/if}
+            <div class="flex justify-between text-gray-500">
+              <span>Service charge + VAT</span>
+              <span class="tabular-nums text-red-500">− {fmtAed(serviceCharge)}</span>
+            </div>
+            <div class="flex justify-between font-bold text-gray-800 border-t border-amber-100 pt-1.5">
+              <span>Net Annual Revenue</span>
+              <span class="tabular-nums {netRental >= 0 ? 'text-emerald-600' : 'text-red-600'}">{fmtAed(netRental)}</span>
+            </div>
           </div>
-          <div class="rounded-lg bg-white/5 px-3 py-2.5 text-center">
-            <p class="text-[10px] text-white/40 uppercase tracking-wide">Net Profit</p>
-            <p class="text-base font-black tabular-nums {netProfit >= 0 ? 'text-emerald-400' : 'text-red-400'} leading-tight">
-              {netProfit >= 0 ? '+' : ''}{Math.abs(netProfit) >= 1_000_000 ? (netProfit / 1_000_000).toFixed(2) + 'M' : Math.round(netProfit / 1000) + 'K'}
-            </p>
-            <p class="text-[9px] text-white/25 mt-0.5">AED</p>
+          <!-- Monthly cashflow callout -->
+          <div class="mx-3.5 mb-3.5 rounded-lg border px-3.5 py-2.5 flex items-center justify-between {netRental >= 0 ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200'}">
+            <span class="text-xs font-semibold {netRental >= 0 ? 'text-emerald-700' : 'text-red-700'}">Monthly net cashflow</span>
+            <span class="text-xl font-black tabular-nums {netRental >= 0 ? 'text-emerald-600' : 'text-red-600'}">{fmtAed(netRental / 12)}</span>
           </div>
         </div>
-      </div>
 
-      <!-- Disclaimer -->
-      <p class="text-[10px] text-white/20 leading-relaxed px-0.5">
-        Indicative estimates only. Abu Dhabi registration fee: 2% DARI/DMT + AED 1,000 title deed. Developer registration fee: AED 2,000 (&lt; AED 500K) / AED 4,000 (≥ AED 500K). Handover/admin fee up to AED 5,000. Off-plan registration via DARI/Tamleek. Assumes {annualAppPct + otherAppPct}%/yr compound appreciation. Service charge on full unit size + 5% VAT. Cross-verify rental comparables on ADInteract Sales and Rental data.
-      </p>
+        <!-- Capital Gains breakdown -->
+        <div class="rounded-xl border border-amber-200 bg-white overflow-hidden shadow-sm">
+          <div class="px-3.5 py-2.5 border-b border-amber-100 bg-amber-50">
+            <h5 class="text-[10px] font-bold text-gray-900 uppercase tracking-widest">Capital Gains · {yearsToResale}yr Horizon</h5>
+          </div>
+          <div class="px-3.5 py-3 space-y-1.5 text-xs">
+            <div class="flex justify-between text-gray-500">
+              <span>Potential selling price (@ {annualAppPct + otherAppPct}%/yr)</span>
+              <span class="tabular-nums text-gray-700 font-medium">{fmtAed(sellingPrice)}</span>
+            </div>
+            <div class="flex justify-between text-gray-500">
+              <span>Total purchase cost (price + fees)</span>
+              <span class="tabular-nums text-red-500">− {fmtAed(cost + registrationFee + devRegistrationFee + handoverAdminFee)}</span>
+            </div>
+            <div class="flex justify-between text-gray-500">
+              <span>Resale broker fee ({resaleBrokerPct}%)</span>
+              <span class="tabular-nums text-red-500">− {fmtAed(resaleBrokerFee)}</span>
+            </div>
+            <div class="flex justify-between font-bold text-gray-800 border-t border-amber-100 pt-1.5">
+              <span>Net Profit</span>
+              <span class="tabular-nums {netProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}">{fmtAed(netProfit)}</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 mx-3.5 mb-3.5">
+            <div class="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2.5 text-center">
+              <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Total Return</p>
+              <p class="text-xl font-black tabular-nums mt-1 {netProfitPct >= 0 ? 'text-emerald-600' : 'text-red-600'}">{fmtPct(netProfitPct)}</p>
+              <p class="text-[9px] text-gray-500 mt-0.5">on all-in cost</p>
+            </div>
+            <div class="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2.5 text-center">
+              <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Net Profit</p>
+              <p class="text-xl font-black tabular-nums mt-1 {netProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}">
+                {netProfit >= 0 ? '+' : ''}{Math.abs(netProfit) >= 1_000_000 ? (netProfit / 1_000_000).toFixed(2) + 'M' : Math.round(Math.abs(netProfit) / 1000) + 'K'}
+              </p>
+              <p class="text-[9px] text-gray-500 mt-0.5">AED</p>
+            </div>
+          </div>
+        </div>
 
+        <!-- Disclaimer -->
+        <p class="text-[10px] text-gray-400 leading-relaxed px-0.5">
+          Indicative estimates only. Abu Dhabi registration fee: 2% DARI/DMT + AED 1,000 title deed. Developer registration fee: AED 2,000 (&lt; AED 500K) / AED 4,000 (≥ AED 500K). Handover/admin fee up to AED 5,000. Assumes {annualAppPct + otherAppPct}%/yr compound appreciation. Service charge on full unit size + 5% VAT. Cross-verify rental comparables on ADInteract Sales and Rental data.
+        </p>
+
+      </div><!-- end inner padding -->
     </div><!-- end right -->
 
   </div><!-- end grid -->

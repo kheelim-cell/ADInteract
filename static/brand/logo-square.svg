@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e4d3a"/>
+      <stop offset="100%" stop-color="#0d2318"/>
+    </linearGradient>
+    <linearGradient id="gl" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="50%" stop-color="#C8A951" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="500" height="500" fill="url(#bg)"/>
+  <!-- Gold accent line top -->
+  <rect width="500" height="2.5" fill="url(#gl)"/>
+
+  <!-- Icon box: x=150, y=70, w=200, h=200 (centered at 250) -->
+  <rect x="150" y="70" width="200" height="200" rx="28" fill="rgba(255,255,255,0.06)" stroke="#C8A951" stroke-width="1.5" stroke-opacity="0.35"/>
+
+  <!-- Skyline: scale=2.2 → 176×83.6 | center in 200×200 box at (150,70) -->
+  <!-- x: 150+(200-176)/2=162 | y: 70+(200-84)/2=128 -->
+  <path transform="translate(162,128) scale(2.2)" fill="#dfb83c"
+    d="M0,38 L0,30 L5,30 L5,26 L10,26 L10,30 L11,30 L11,25 Q15.5,18 20,25 L20,30 L21,30
+       L21,21 L23,21 L23,13 L25,3 L27,13 L27,21 L29,21 L29,17 L31,17 L31,7 L32,7 L32,2
+       L32.5,0 L33,2 L33,7 L34,7 L34,17 L35,17 L35,21 L37,21 L37,13 L39.5,7 L42,13 L42,21
+       L44,21 L44,16 L47,13 L50,16 L50,21 L52,21 L52,27 L57,27 L57,23 L64,23 L64,27 L72,27
+       L72,31 L80,31 L80,38 Z"/>
+
+  <!-- "ADINTERACT" centered -->
+  <text x="250" y="348" text-anchor="middle" font-family="Manrope,system-ui,-apple-system,sans-serif"
+        font-size="62" fill="#dfb83c">
+    <tspan font-weight="800" letter-spacing="-1">AD</tspan><tspan font-weight="300" font-style="italic" letter-spacing="-1">INTERACT</tspan>
+  </text>
+
+  <!-- Subtitle centered -->
+  <text x="250" y="376" text-anchor="middle" font-family="Manrope,system-ui,-apple-system,sans-serif"
+        font-size="11" fill="rgba(255,255,255,0.28)" font-weight="600" letter-spacing="3.5">ABU DHABI PROPERTY TRANSACTIONS</text>
+
+  <!-- URL -->
+  <text x="250" y="460" text-anchor="middle" font-family="Manrope,system-ui,-apple-system,sans-serif"
+        font-size="13.5" fill="rgba(255,255,255,0.20)" font-weight="500" letter-spacing="1.5">adinteract.co</text>
+</svg>

@@ -15,7 +15,24 @@
   const LAYOUT_ORDER = ['studio', '1 bed', '2 beds', '3 beds', '4 beds', '5 beds', '5+ beds', '6+ beds'];
   const LAYOUT_DISPLAY: Record<string, string> = { studio: 'Studio' };
 
-  let districts = $derived($metadata?.districts ?? []);
+  const PINNED_DISTRICTS = [
+    'Al Reem Island',
+    'Yas Island',
+    'Al Saadiyat Island',
+    'Al Rahah',
+    'Khalifa City',
+    'Al Reef',
+    'Fahid Island',
+    'Al Hidayriyyat',
+  ];
+
+  let districts = $derived(() => {
+    const all: string[] = $metadata?.districts ?? [];
+    const pinnedFound  = PINNED_DISTRICTS.filter(p => all.some(d => d.toLowerCase() === p.toLowerCase()));
+    const pinnedSet    = new Set(pinnedFound.map(p => p.toLowerCase()));
+    const rest         = all.filter(d => !pinnedSet.has(d.toLowerCase())).sort();
+    return [...pinnedFound, ...rest];
+  })();
   let layouts = $derived(
     ($metadata?.layouts ?? [])
       .filter((l: string) => LAYOUT_ORDER.includes(l.toLowerCase()))
@@ -115,9 +132,16 @@
             <div class="relative">
               <select bind:value={district} class={sel}>
                 <option value="">All Districts</option>
-                {#each districts as d}
-                  <option value={d}>{d}</option>
-                {/each}
+                <optgroup label="── Popular ──">
+                  {#each districts.slice(0, PINNED_DISTRICTS.length) as d}
+                    <option value={d}>{d}</option>
+                  {/each}
+                </optgroup>
+                <optgroup label="── All Districts ──">
+                  {#each districts.slice(PINNED_DISTRICTS.length) as d}
+                    <option value={d}>{d}</option>
+                  {/each}
+                </optgroup>
               </select>
               <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />

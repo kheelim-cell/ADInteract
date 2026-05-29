@@ -377,8 +377,12 @@
 
         </div>
 
-        <!-- Annual Rent + Listing Price (same row) -->
+        <!-- Listing Price + Annual Rent (same row) -->
         <div class="grid grid-cols-2 gap-3">
+          <label class="space-y-1 block">
+            <span class="text-[11px] text-white/50">Listing Price (AED)</span>
+            <input type="number" bind:value={price} min="0" step="10000" class={inp} />
+          </label>
           <label class="space-y-1 block">
             <span class="text-[11px] text-white/50">
               {tenancyStatus === 'tenanted' ? 'Annual Rent (AED/yr)' : 'Est. Annual Rent (AED/yr)'}
@@ -393,10 +397,6 @@
                 <p class="text-[10px] text-amber-400/60 pl-0.5">↳ 2025 median · {district || 'Abu Dhabi'} · {layout || 'all'}</p>
               {/if}
             {/if}
-          </label>
-          <label class="space-y-1 block">
-            <span class="text-[11px] text-white/50">Listing Price (AED)</span>
-            <input type="number" bind:value={price} min="0" step="10000" class={inp} />
           </label>
         </div>
 

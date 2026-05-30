@@ -222,21 +222,22 @@
     </div>
 
     <div class="rounded-xl border border-gray-200 overflow-hidden shadow-sm">
-      <table class="w-full text-sm">
+      <div class="overflow-x-auto">
+      <table class="w-full table-fixed text-sm min-w-[480px]">
         <!-- Table header -->
         <thead>
           <tr class="bg-gray-800 text-white">
-            <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider w-[28%]">Fee Category</th>
-            <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider w-[24%]">Line Item</th>
-            <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider w-[24%]">
-              <span class="inline-flex items-center gap-1.5">
-                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+            <th class="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[26%]">Fee Category</th>
+            <th class="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[22%]">Line Item</th>
+            <th class="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[26%]">
+              <span class="inline-flex items-center gap-1">
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0"></span>
                 Abu Dhabi
               </span>
             </th>
-            <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider w-[24%]">
-              <span class="inline-flex items-center gap-1.5">
-                <span class="inline-block w-2 h-2 rounded-full bg-sky-400"></span>
+            <th class="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[26%]">
+              <span class="inline-flex items-center gap-1">
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>
                 Dubai
               </span>
             </th>
@@ -247,7 +248,7 @@
           {#each TABLE_SECTIONS as section, si}
             <!-- Category header row -->
             <tr class="bg-gray-50">
-              <td colspan="4" class="px-4 py-2.5 text-xs font-bold text-gray-600 uppercase tracking-wider border-t-2 border-gray-200">
+              <td colspan="4" class="px-2 sm:px-4 py-2 text-[10px] sm:text-xs font-bold text-gray-600 uppercase tracking-wider border-t-2 border-gray-200">
                 {section.category}
               </td>
             </tr>
@@ -255,32 +256,33 @@
             <!-- Data rows -->
             {#each section.rows as row, ri}
               <tr class="{ri % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'} hover:bg-emerald-50/30 transition-colors">
-                <td class="px-4 py-2.5 text-xs text-gray-400"></td>
-                <td class="px-4 py-2.5 text-xs text-gray-600 font-medium">{row.item}</td>
-                <td class="px-4 py-2.5 text-xs text-gray-800">{row.abu_dhabi}</td>
-                <td class="px-4 py-2.5 text-xs text-gray-500">{row.dubai}</td>
+                <td class="px-2 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs text-gray-400"></td>
+                <td class="px-2 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs text-gray-600 font-medium">{row.item}</td>
+                <td class="px-2 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs text-gray-800">{row.abu_dhabi}</td>
+                <td class="px-2 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs text-gray-500">{row.dubai}</td>
               </tr>
             {/each}
           {/each}
 
           <!-- Total row -->
           <tr class="bg-emerald-50 border-t-2 border-emerald-200">
-            <td class="px-4 py-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Total Closing Costs</td>
-            <td class="px-4 py-3 text-xs text-gray-500">excl. down payment</td>
-            <td class="px-4 py-3 text-sm font-bold text-emerald-700">~4–7% of purchase price</td>
-            <td class="px-4 py-3 text-sm font-semibold text-gray-600">~7–9% of purchase price</td>
+            <td class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-xs font-bold text-gray-700 uppercase tracking-wider">Total Closing Costs</td>
+            <td class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-xs text-gray-500">excl. down payment</td>
+            <td class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-sm font-bold text-emerald-700">~4–7% of purchase price</td>
+            <td class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-sm font-semibold text-gray-600">~7–9% of purchase price</td>
           </tr>
 
           <!-- Net delta row -->
           <tr class="bg-emerald-100/60">
-            <td class="px-4 py-3 text-xs font-bold text-gray-700 uppercase tracking-wider">Net Delta</td>
-            <td class="px-4 py-3"></td>
-            <td colspan="2" class="px-4 py-3 text-sm font-bold text-emerald-700">
+            <td class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-xs font-bold text-gray-700 uppercase tracking-wider">Net Delta</td>
+            <td class="px-2 sm:px-4 py-2 sm:py-3"></td>
+            <td colspan="2" class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-sm font-bold text-emerald-700">
               Abu Dhabi saves ~2–3 percentage points vs Dubai
             </td>
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </section>
 

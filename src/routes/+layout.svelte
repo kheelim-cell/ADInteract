@@ -9,6 +9,7 @@
   import { dbReady, dbError, dbLoading, metadata, rentalMetadata } from '$lib/stores/db';
   import { showSignInModal } from '$lib/stores/auth';
   import { base } from '$app/paths';
+  import { page } from '$app/stores';
   import type { Metadata } from '$lib/db/types';
   import type { RentalMetadata } from '$lib/db/rental_types';
 

@@ -40,6 +40,35 @@
     });
   }
 
+  // Render a PDF to a JPEG image client-side using PDF.js so the payload
+  // sent to the server is always small (a JPEG, not the raw PDF bytes).
+  async function pdfToJpegBase64(file: File): Promise<string> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const pdfjs: any = await import(/* @vite-ignore */ 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.3.136/build/pdf.min.mjs');
+    pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.3.136/build/pdf.worker.min.mjs';
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+    const pageCount = Math.min(pdf.numPages, 2);
+    const canvases: HTMLCanvasElement[] = [];
+    for (let p = 1; p <= pageCount; p++) {
+      const page = await pdf.getPage(p);
+      const viewport = page.getViewport({ scale: 1.5 });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      await page.render({ canvasContext: canvas.getContext('2d')!, viewport }).promise;
+      canvases.push(canvas);
+    }
+    const totalH = canvases.reduce((s, c) => s + c.height, 0);
+    const merged = document.createElement('canvas');
+    merged.width = canvases[0].width;
+    merged.height = totalH;
+    const ctx = merged.getContext('2d')!;
+    let y = 0;
+    for (const c of canvases) { ctx.drawImage(c, 0, y); y += c.height; }
+    return merged.toDataURL('image/jpeg', 0.85).split(',')[1];
+  }
+
   async function toBase64Compressed(file: File): Promise<string> {
     if (file.type === 'application/pdf') return toBase64(file);
     const TARGET = 1.5 * 1024 * 1024;
@@ -67,11 +96,18 @@
   }
 
   async function extractOne(file: File): Promise<ReadyExtractionData> {
-    const base64Data = await toBase64Compressed(file);
+    let base64Data: string;
+    let mediaType = file.type;
+    if (file.type === 'application/pdf') {
+      base64Data = await pdfToJpegBase64(file);
+      mediaType = 'image/jpeg';
+    } else {
+      base64Data = await toBase64Compressed(file);
+    }
     const res = await fetch('/api/extract-ready-property', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ fileData: base64Data, mediaType: file.type }),
+      body: JSON.stringify({ fileData: base64Data, mediaType }),
     });
     if (!res.ok) {
       const txt = await res.text().catch(() => res.statusText);

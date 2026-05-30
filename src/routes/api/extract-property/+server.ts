@@ -1,9 +1,8 @@
 import { json, error } from '@sveltejs/kit';
-import { ANTHROPIC_API_KEY } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import type { RequestHandler } from './$types';
 
 export const prerender = false;
-export const config = { runtime: 'edge' }; // 25 MB body limit for large PDFs
 
 const TODAY = new Date().toISOString().split('T')[0]; // e.g. "2026-05-30"
 
@@ -32,7 +31,7 @@ Rules:
 Return ONLY the JSON object. No markdown code fences. No explanation.`;
 
 export const POST: RequestHandler = async ({ request }) => {
-	const apiKey = ANTHROPIC_API_KEY;
+	const apiKey = env.ANTHROPIC_API_KEY;
 	if (!apiKey) {
 		throw error(
 			500,

@@ -53,6 +53,7 @@
   let hoveredNav = $state<string | null>(null);
 
   let currentPath = $derived($page.url.pathname);
+  let activeNavItem = $derived(NAV_ITEMS.find(n => currentPath === n.href || currentPath.startsWith(n.href + '/')));
 </script>
 
 <!-- ── Hero ────────────────────────────────────────────────────────────────── -->
@@ -96,7 +97,6 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
         </svg>
       </div>
-      {@const activeNavItem = NAV_ITEMS.find(n => currentPath === n.href || currentPath.startsWith(n.href + '/'))}
       {#if activeNavItem}
         <p class="mt-2 text-[11px] leading-snug text-white/40 px-1">
           {activeNavItem.description}

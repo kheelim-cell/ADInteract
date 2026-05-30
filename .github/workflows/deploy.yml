@@ -1,39 +1,9 @@
-name: Deploy
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+# GitHub Pages deployment — DISABLED after migrating to Vercel.
+# Vercel auto-deploys from the main branch. This file is kept for reference only.
+# To re-enable, uncomment the triggers and update the adapter in svelte.config.js.
 
-permissions:
-  pages: write
-  id-token: write
-
-jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - name: Build site
-        run: npm run build
-        env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-          # Set to 'true' to require Pro subscription on the Investor page.
-          # Set to 'false' (or leave unset) to open the Investor page to all visitors.
-          # After changing: Actions → Deploy → Run workflow to rebuild.
-          VITE_INVESTOR_PRO_GATED: ${{ secrets.VITE_INVESTOR_PRO_GATED }}
-          # Full URL of your Stan Store checkout page, e.g. https://stan.store/khee/p/adinteract-pro
-          VITE_STAN_STORE_URL: ${{ secrets.VITE_STAN_STORE_URL }}
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: build
-      - id: deployment
-        uses: actions/deploy-pages@v4
+# name: Deploy
+# on:
+#   push:
+#     branches: [main]
+#   workflow_dispatch:

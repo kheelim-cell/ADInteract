@@ -1,8 +1,8 @@
 <script lang="ts">
   import { page } from '$app/stores';
 
-  // Replace this after deploying your Google Apps Script Web App
-  const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+  // Formspree endpoint — replace XXXXXXXX with your form ID from formspree.io
+  const APPS_SCRIPT_URL = 'https://formspree.io/f/XXXXXXXX';
 
   type FeedbackType = 'bug' | 'feedback' | 'other';
 
@@ -34,19 +34,20 @@
     error = '';
 
     try {
-      await fetch(APPS_SCRIPT_URL, {
+      const body: Record<string, string> = {
+        type: feedbackType,
+        message: message.trim(),
+        page: $page.url.href,
+        userAgent: navigator.userAgent,
+      };
+      if (email.trim()) body.email = email.trim();
+
+      const res = await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors', // Apps Script requires no-cors
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: feedbackType,
-          message: message.trim(),
-          email: email.trim(),
-          page: $page.url.href,
-          userAgent: navigator.userAgent,
-        }),
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(body),
       });
-      // no-cors means we can't read the response — assume success
+      if (!res.ok) throw new Error(`${res.status}`);
       submitted = true;
     } catch {
       error = 'Failed to send. Please try again.';

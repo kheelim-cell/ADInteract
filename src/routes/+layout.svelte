@@ -5,7 +5,6 @@
   import Footer from '$lib/components/ui/Footer.svelte';
   import LoadingSpinner from '$lib/components/ui/LoadingSpinner.svelte';
   import SignInModal from '$lib/components/auth/SignInModal.svelte';
-  import FeedbackWidget from '$lib/components/ui/FeedbackWidget.svelte';
   import { initDuckDB, loadData, loadRentalData } from '$lib/db/duckdb';
   import { dbReady, dbError, dbLoading, metadata, rentalMetadata } from '$lib/stores/db';
   import { showSignInModal } from '$lib/stores/auth';
@@ -97,5 +96,4 @@
   </main>
 
   <Footer />
-  <FeedbackWidget />
 </div>

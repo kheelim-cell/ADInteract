@@ -7,8 +7,8 @@
  *
  * Logic:
  *   • Project selected  → leaderboard = Price by Layout
- *   • District selected → leaderboard = Top Projects in that District
- *   • No filter         → leaderboard = Top Areas by Volume
+ *   • District selected → leaderboard = Top 5 Projects in that District
+ *   • No filter         → leaderboard = Top 5 Areas by Volume
  */
 
 import type { StatsResult, DistrictSummary, LayoutSummaryRow, FilterState } from '$lib/db/types';
@@ -51,6 +51,36 @@ function scopeLabel(f: FilterState): string {
 	return 'Abu Dhabi Property Market';
 }
 
+/**
+ * Build the PDF filename / <title> tag.
+ * Format: ADInteract - [District] - [Project] - [Status] - [PropertyType] - [Layout] - [Timeframe]
+ * Only active (non-default) filters are included; hyphens separate each field.
+ */
+function buildFilename(f: FilterState, dateStart: string, dateEnd: string): string {
+	const parts: string[] = ['ADInteract'];
+
+	if (f.district) parts.push(f.district);
+	if (f.project)  parts.push(f.project);
+	if (f.saleType !== 'all') parts.push(f.saleType === 'off-plan' ? 'Off-Plan' : 'Ready');
+	if (f.propertyTypes.length) {
+		parts.push(f.propertyTypes.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join('+'));
+	}
+	if (f.layouts.length) {
+		// Remove spaces: "1 bed" → "1bed", "2 beds" → "2beds"
+		parts.push(f.layouts.map(l => l.replace(/\s+/g, '')).join('+'));
+	}
+
+	const timeMap: Record<string, string> = {
+		'1m': '1M', '3m': '3M', '6m': '6M', '12m': '12M', '3y': '3Y', 'ytd': 'YTD'
+	};
+	parts.push(f.dateRange && timeMap[f.dateRange]
+		? timeMap[f.dateRange]
+		: `${fmtDateShort(dateStart)} to ${fmtDateShort(dateEnd)}`
+	);
+
+	return parts.join(' - ');
+}
+
 function growthBadge(current: number, previous: number): string {
 	const pct = growthPercent(current, previous);
 	if (pct == null) return '';
@@ -62,6 +92,36 @@ function rankSpan(i: number): string {
 	const cls = i === 0 ? ' r1' : i === 1 ? ' r2' : i === 2 ? ' r3' : '';
 	return `<span class="rnk${cls}">${i + 1}</span>`;
 }
+
+// Official logo embedded inline for print-window compatibility
+// (relative URLs don't resolve in window.open blank windows)
+const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" style="height:72px;width:288px;flex-shrink:0;display:block">
+  <defs>
+    <linearGradient id="logobg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e4d3a"/>
+      <stop offset="100%" stop-color="#0d2318"/>
+    </linearGradient>
+    <linearGradient id="logogl" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="50%" stop-color="#C8A951" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="200" fill="url(#logobg)"/>
+  <rect width="800" height="2.5" fill="url(#logogl)"/>
+  <rect x="24" y="24" width="152" height="152" rx="22" fill="rgba(255,255,255,0.06)" stroke="#C8A951" stroke-width="1.5" stroke-opacity="0.32"/>
+  <path transform="translate(32,68) scale(1.7)" fill="#dfb83c"
+    d="M0,38 L0,30 L5,30 L5,26 L10,26 L10,30 L11,30 L11,25 Q15.5,18 20,25 L20,30 L21,30
+       L21,21 L23,21 L23,13 L25,3 L27,13 L27,21 L29,21 L29,17 L31,17 L31,7 L32,7 L32,2
+       L32.5,0 L33,2 L33,7 L34,7 L34,17 L35,17 L35,21 L37,21 L37,13 L39.5,7 L42,13 L42,21
+       L44,21 L44,16 L47,13 L50,16 L50,21 L52,21 L52,27 L57,27 L57,23 L64,23 L64,27 L72,27
+       L72,31 L80,31 L80,38 Z"/>
+  <text x="200" y="122" font-family="Montserrat,system-ui,-apple-system,sans-serif" font-size="76" fill="#dfb83c">
+    <tspan font-weight="800" letter-spacing="-2">AD</tspan><tspan font-weight="300" font-style="italic" letter-spacing="-1">INTERACT</tspan>
+  </text>
+  <text x="202" y="154" font-family="Montserrat,system-ui,-apple-system,sans-serif"
+        font-size="13.5" fill="rgba(200,169,81,0.75)" font-weight="600" letter-spacing="5">ABU DHABI PROPERTY TRANSACTIONS</text>
+</svg>`;
 
 // ─── main export ─────────────────────────────────────────────────────────────
 
@@ -98,8 +158,8 @@ export async function exportMarketReportPdf(opts: {
 			)
 			.join('');
 	} else if (f.district) {
-		// District view: top projects within that district
-		const projects = await queryTopProjects(f, dateStart, dateEnd, 10);
+		// District view: top 5 projects within that district
+		const projects = await queryTopProjects(f, dateStart, dateEnd, 5);
 		leaderLabel = `Top Projects — ${f.district}`;
 		leaderHead = `<th>#</th><th>Project</th><th class="r">Transactions</th><th class="r">Median Price</th><th class="r">Median AED/sqft</th>`;
 		leaderBody = projects
@@ -112,8 +172,8 @@ export async function exportMarketReportPdf(opts: {
 			)
 			.join('');
 	} else {
-		// All Abu Dhabi: top areas by volume
-		const areas = topAreas.length > 0 ? topAreas : await queryTopDistricts(f, dateStart, dateEnd, 10);
+		// All Abu Dhabi: top 5 areas by volume
+		const areas = (topAreas.length > 0 ? topAreas : await queryTopDistricts(f, dateStart, dateEnd, 5)).slice(0, 5);
 		leaderLabel = 'Top Areas by Transaction Volume';
 		leaderHead = `<th>#</th><th>Area</th><th class="r">Transactions</th><th class="r">Median Price</th><th class="r">Median AED/sqft</th>`;
 		leaderBody = areas
@@ -172,40 +232,44 @@ export async function exportMarketReportPdf(opts: {
 		.join('');
 
 	// ── Build HTML ──
-	const scope = scopeLabel(f);
-	const period = periodLabel(f, dateStart, dateEnd);
+	const scope    = scopeLabel(f);
+	const period   = periodLabel(f, dateStart, dateEnd);
+	const filename = buildFilename(f, dateStart, dateEnd);
 	const generated = new Date().toLocaleDateString('en-GB', {
 		day: 'numeric',
 		month: 'long',
 		year: 'numeric'
 	});
 
-	// Filters summary line (only show non-default filters)
+	// Filters summary chips (shown in sub-header, only non-default filters)
 	const filterChips: string[] = [];
 	if (f.saleType !== 'all') filterChips.push(f.saleType === 'off-plan' ? 'Off-Plan' : 'Ready');
 	if (f.saleSequence !== 'all') filterChips.push(f.saleSequence === 'primary' ? 'Primary' : 'Secondary');
 	if (f.propertyTypes.length) filterChips.push(...f.propertyTypes.map((t) => t.charAt(0).toUpperCase() + t.slice(1)));
 	if (f.layouts.length) filterChips.push(...f.layouts);
-	const filtersLine = filterChips.length ? `<span style="margin-left:8px">${filterChips.map((c) => `<span class="fchip">${c}</span>`).join(' ')}</span>` : '';
+	const filtersLine = filterChips.length
+		? `<span style="margin-left:8px">${filterChips.map((c) => `<span class="fchip">${c}</span>`).join(' ')}</span>`
+		: '';
 
 	const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>ADInteract — ${scope}</title>
+<title>${filename}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#111827;background:#fff;font-size:10.5px;line-height:1.45}
+body{font-family:'Montserrat',sans-serif;color:#111827;background:#fff;font-size:10.5px;line-height:1.45}
 .pg{max-width:830px;margin:0 auto;padding:22px 26px}
 
 /* ── Header ── */
-.hdr{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:14px;border-bottom:2.5px solid #1e3a5f;margin-bottom:16px}
-.brand{font-size:18px;font-weight:900;color:#1e3a5f;letter-spacing:-0.4px}
-.brand em{font-style:normal;color:#e85d04}
-.rptitle{font-size:13px;font-weight:700;color:#111827;margin-top:3px}
-.rpscope{font-size:9.5px;color:#6b7280;margin-top:2px}
-.hdright{text-align:right}
-.gen{font-size:9px;color:#9ca3af}
+.hdr{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:2px solid #C8A951;margin-bottom:16px;gap:16px}
+.hdright{text-align:right;flex-shrink:0}
+.rptitle{font-size:14px;font-weight:800;color:#111827}
+.rpscope{font-size:9.5px;color:#6b7280;margin-top:3px}
+.gen{font-size:9px;color:#9ca3af;margin-top:4px}
 .fchip{display:inline-block;padding:1px 6px;border-radius:8px;font-size:8px;font-weight:600;background:#eff6ff;color:#1d4ed8;margin-left:3px}
 
 /* ── Stats ── */
@@ -218,20 +282,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,san
 
 /* ── Section ── */
 .sec{margin-bottom:16px}
-.stitle{font-size:9.5px;font-weight:800;color:#1e3a5f;text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px;padding-bottom:4px;border-bottom:1px solid #e5e7eb}
+.stitle{font-size:9.5px;font-weight:800;color:#1e4d3a;text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px;padding-bottom:4px;border-bottom:1px solid #e5e7eb}
 
 /* ── Tables ── */
 table{width:100%;border-collapse:collapse}
 thead tr{background:#f3f4f6}
-th{padding:5px 6px;font-size:8px;font-weight:700;text-transform:uppercase;color:#6b7280;letter-spacing:.4px;text-align:left}
-td{padding:4px 6px;border-bottom:1px solid #f3f4f6;color:#374151;vertical-align:middle}
+th{padding:5px 6px;font-size:8px;font-weight:700;text-transform:uppercase;color:#6b7280;letter-spacing:.4px;text-align:left;font-family:'Montserrat',sans-serif}
+td{padding:4px 6px;border-bottom:1px solid #f3f4f6;color:#374151;vertical-align:middle;font-family:'Montserrat',sans-serif}
 tr:nth-child(even) td{background:#fafafa}
 tr:last-child td{border-bottom:none}
 .r{text-align:right}.c{text-align:center}
 
 /* ── Rank circles ── */
 .rnk{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:#d1d5db;color:#374151;font-size:7.5px;font-weight:700}
-.r1{background:#e85d04;color:#fff}
+.r1{background:#C8A951;color:#fff}
 .r2{background:#71717a;color:#fff}
 .r3{background:#78350f;color:#fff}
 
@@ -258,16 +322,13 @@ tr:last-child td{border-bottom:none}
 <body>
 <div class="pg">
 
-<!-- Header -->
+<!-- Header: official logo + report context -->
 <div class="hdr">
-  <div>
-    <div class="brand">AD<em>Interact</em></div>
+  ${LOGO_SVG}
+  <div class="hdright">
     <div class="rptitle">${scope}</div>
     <div class="rpscope">${period} &nbsp;·&nbsp; ADREC Transaction Data${filtersLine}</div>
-  </div>
-  <div class="hdright">
-    <div class="gen">Generated ${generated}</div>
-    <div class="gen" style="margin-top:2px">adinteract.co</div>
+    <div class="gen">Generated ${generated} &nbsp;·&nbsp; adinteract.co</div>
   </div>
 </div>
 
@@ -338,7 +399,6 @@ tr:last-child td{border-bottom:none}
 
 	const win = window.open('', '_blank', 'width=980,height=760,scrollbars=yes');
 	if (!win) {
-		// Fallback: create a blob and force-download as HTML (printable)
 		alert('Please allow pop-ups for adinteract.co to open the PDF report.');
 		return;
 	}

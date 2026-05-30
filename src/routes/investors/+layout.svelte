@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { base } from '$app/paths';
+  import { goto } from '$app/navigation';
   import { metadata } from '$lib/stores/db';
 
   let { children } = $props();
@@ -78,8 +79,27 @@
 <div class="bg-[#071913] border-b border-white/8">
   <div class="max-w-[1400px] mx-auto px-4 sm:px-8">
 
-    <!-- Tab buttons -->
-    <div class="flex gap-0.5 pt-3 overflow-x-auto scrollbar-none">
+    <!-- Mobile nav dropdown (hidden on sm+) -->
+    <div class="block sm:hidden py-3">
+      <div class="relative">
+        <select
+          onchange={(e) => goto((e.currentTarget as HTMLSelectElement).value)}
+          class="w-full bg-[#0a1a10] border border-white/15 rounded-lg px-3 py-2.5 text-sm font-semibold text-white appearance-none cursor-pointer focus:outline-none focus:border-emerald-500/40"
+        >
+          {#each NAV_ITEMS as item}
+            <option value={item.href} selected={currentPath === item.href || currentPath.startsWith(item.href + '/')}>
+              {item.label}
+            </option>
+          {/each}
+        </select>
+        <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Tab buttons (desktop: sm+) -->
+    <div class="hidden sm:flex gap-0.5 pt-3 overflow-x-auto scrollbar-none">
       {#each NAV_ITEMS as item}
         {@const isActive = currentPath === item.href || currentPath.startsWith(item.href + '/')}
         <a
@@ -102,8 +122,8 @@
       {/each}
     </div>
 
-    <!-- Description strip -->
-    <div class="h-9 flex items-center">
+    <!-- Description strip (desktop: sm+) -->
+    <div class="hidden sm:flex h-9 items-center">
       {#if hoveredNav}
         {@const item = NAV_ITEMS.find(n => n.href === hoveredNav)}
         {#if item}

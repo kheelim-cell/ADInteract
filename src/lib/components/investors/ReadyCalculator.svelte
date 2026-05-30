@@ -380,7 +380,7 @@
         <legend class="text-[10px] font-bold text-amber-400/80 uppercase tracking-widest">Unit Details</legend>
 
         <!-- District + Layout -->
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="space-y-1">
             <span class="text-[11px] text-white/50">District</span>
             <div class="relative">
@@ -471,7 +471,7 @@
         </div>
 
         <!-- Listing Price + Annual Rent (same row) -->
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <label class="space-y-1 block">
             <span class="text-[11px] text-white/50">Listing Price (AED)</span>
             <input type="number" bind:value={price} min="0" step="10000" class={inp} />
@@ -494,7 +494,7 @@
         </div>
 
         <!-- Size inputs -->
-        <div class="grid grid-cols-3 gap-3">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Living Area (sqft)</span>
             <input type="number" bind:value={livingArea} min="0" step="10" class={inp} />
@@ -510,7 +510,7 @@
         </div>
 
         <!-- AED/sqft + Total Acquisition Cost -->
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="rounded-lg bg-amber-500/8 border border-amber-500/20 px-3 py-2.5">
             <p class="text-[10px] text-amber-400/70 uppercase tracking-wider">Price per sqft</p>
             <p class="text-base font-black text-amber-400 tabular-nums mt-0.5">
@@ -564,7 +564,7 @@
         </p>
         {/if}
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Annual Interest Rate (%)</span>
             <input type="number" bind:value={interestRate} min="0" max="20" step="0.05"
@@ -601,7 +601,7 @@
       <!-- Capital gains inputs -->
       <fieldset class="space-y-3">
         <legend class="text-[10px] font-bold text-blue-400/80 uppercase tracking-widest">Capital Gains Estimation</legend>
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Comparable Area PSF (AED, last 6 mths)</span>
             <input type="number" bind:value={comparablePsf} min="0" step="50"
@@ -618,7 +618,7 @@
               class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
           </label>
         </div>
-        <div class="grid grid-cols-3 gap-3">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Annual Appreciation (%)</span>
             <input type="number" bind:value={annualAppPct} min="0" max="50" step="0.5"
@@ -682,17 +682,17 @@
         <div class="grid grid-cols-3 divide-x divide-amber-200 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white overflow-hidden shadow-sm">
           <div class="px-3 py-4 text-center">
             <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Net Rental Yield p.a</p>
-            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netYield >= 7 ? 'text-emerald-600' : netYield >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netYield)}</p>
+            <p class="text-xl sm:text-3xl font-black tabular-nums mt-1.5 leading-none {netYield >= 7 ? 'text-emerald-600' : netYield >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netYield)}</p>
             <p class="text-[9px] text-gray-500 mt-1">on equity injected</p>
           </div>
           <div class="px-3 py-4 text-center">
             <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Capital Gain p.a</p>
-            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {netProfitPerYear >= 7 ? 'text-emerald-600' : netProfitPerYear >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netProfitPerYear)}</p>
+            <p class="text-xl sm:text-3xl font-black tabular-nums mt-1.5 leading-none {netProfitPerYear >= 7 ? 'text-emerald-600' : netProfitPerYear >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netProfitPerYear)}</p>
             <p class="text-[9px] text-gray-500 mt-1">{yearsToResale}yr horizon</p>
           </div>
           <div class="px-3 py-4 text-center">
             <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Total ROI p.a</p>
-            <p class="text-3xl font-black tabular-nums mt-1.5 leading-none {totalRoiPa >= 14 ? 'text-emerald-600' : totalRoiPa >= 7 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(totalRoiPa)}</p>
+            <p class="text-xl sm:text-3xl font-black tabular-nums mt-1.5 leading-none {totalRoiPa >= 14 ? 'text-emerald-600' : totalRoiPa >= 7 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(totalRoiPa)}</p>
             <p class="text-[9px] text-gray-500 mt-1">yield + capital gain</p>
           </div>
         </div>
@@ -739,13 +739,13 @@
               <span>Potential selling price</span>
               <span class="tabular-nums text-gray-700 font-medium">{fmtAed(sellingPrice)}</span>
             </div>
-            <div class="flex justify-between text-gray-500">
-              <span>Total purchase cost (price + fees)</span>
-              <span class="tabular-nums text-red-500">− {fmtAed(price + purchasingFees + mortgageAdminFee)}</span>
+            <div class="flex justify-between gap-2 text-gray-500">
+              <span class="min-w-0">Total purchase cost (price + fees)</span>
+              <span class="tabular-nums text-red-500 flex-shrink-0">− {fmtAed(price + purchasingFees + mortgageAdminFee)}</span>
             </div>
-            <div class="flex justify-between text-gray-500">
-              <span>Resale broker fee (2%)</span>
-              <span class="tabular-nums text-red-500">− {fmtAed(resaleBrokerFee)}</span>
+            <div class="flex justify-between gap-2 text-gray-500">
+              <span class="min-w-0">Resale broker fee (2%)</span>
+              <span class="tabular-nums text-red-500 flex-shrink-0">− {fmtAed(resaleBrokerFee)}</span>
             </div>
             {#if additionalCapex > 0}
             <div class="flex justify-between text-gray-500">

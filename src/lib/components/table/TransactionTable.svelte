@@ -121,6 +121,10 @@
     return layout.charAt(0).toUpperCase() + layout.slice(1);
   }
 
+  function mapsUrl(projectName: string): string {
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(projectName + ' Abu Dhabi')}`;
+  }
+
   let paginationPages = $derived(() => {
     const pages: (number | '...')[] = [];
     const total = totalPages;
@@ -299,9 +303,17 @@
             <!-- Top row: project name + price -->
             <div class="flex items-start justify-between gap-3">
               <div class="min-w-0 flex-1">
-                <p class="text-sm font-semibold text-gray-900 truncate leading-snug">
-                  {row.project_name || 'Private'}
-                </p>
+                {#if row.project_name && row.project_name.toLowerCase() !== 'private'}
+                  <a
+                    href={mapsUrl(row.project_name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open in Google Maps"
+                    class="text-sm font-semibold text-gray-900 truncate leading-snug hover:text-brand-700 hover:underline block"
+                  >{row.project_name}</a>
+                {:else}
+                  <p class="text-sm font-semibold text-gray-900 truncate leading-snug">Private</p>
+                {/if}
                 {#if row.district}
                   <p class="text-xs text-gray-400 mt-0.5 truncate">
                     <a href="{base}/area/{encodeURIComponent(row.district)}"
@@ -460,10 +472,26 @@
                 <div class="text-sm">{formatDate(row.sale_date)}</div>
               </td>
 
-              <!-- Location: Project + Community > District -->
+              <!-- Location: Project (→ Google Maps) + District (→ area page) -->
               <td class="px-4 py-4 align-top">
                 <div class="text-sm font-medium text-gray-900">
-                  {row.project_name || 'Private'}
+                  {#if row.project_name && row.project_name.toLowerCase() !== 'private'}
+                    <a
+                      href={mapsUrl(row.project_name)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="View on Google Maps"
+                      class="inline-flex items-center gap-1 hover:text-brand-700 hover:underline group"
+                    >
+                      {row.project_name}
+                      <svg class="h-3 w-3 text-gray-300 group-hover:text-brand-500 flex-shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                      </svg>
+                    </a>
+                  {:else}
+                    Private
+                  {/if}
                 </div>
                 <div class="text-xs text-gray-400 mt-0.5">
                   {#if row.district}

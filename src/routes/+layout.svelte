@@ -14,6 +14,9 @@
 
   let { children } = $props();
 
+  const SITE_URL = 'https://adinteract.co';
+  let canonicalUrl = $derived(`${SITE_URL}${$page.url.pathname}`);
+
   onMount(async () => {
     try {
       await initDuckDB();
@@ -51,6 +54,11 @@
     }
   });
 </script>
+
+<svelte:head>
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:url" content={canonicalUrl} />
+</svelte:head>
 
 <div class="min-h-screen flex flex-col bg-[#FAFAF6]">
   <Header lastUpdated={$metadata?.lastUpdated ?? ''} />

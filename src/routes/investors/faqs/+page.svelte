@@ -61,6 +61,39 @@
     },
   ];
 
+  // ── JSON-LD schema (FAQ rich results) ─────────────────────────────────────
+  const faqSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a
+          ? f.a
+          : (f.intro ?? '') + (f.bullets ? ' ' + f.bullets.map(b => `${b.label}: ${b.text}`).join(' ') : '')
+      }
+    }))
+  });
+
+  // ── FAQ structured data (Google rich results) ─────────────────────────────
+  const faqSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map(faq => {
+      const parts: string[] = [];
+      if (faq.intro) parts.push(faq.intro);
+      if (faq.a)     parts.push(faq.a);
+      if (faq.bullets) parts.push(faq.bullets.map(b => `${b.label}: ${b.text}`).join(' '));
+      return {
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: parts.join(' ') },
+      };
+    }),
+  });
+
   // ── Accordion state ────────────────────────────────────────────────────────
   let openIds = $state<Set<number>>(new Set());
 
@@ -137,8 +170,12 @@
 </script>
 
 <svelte:head>
-  <title>Investor FAQs — ADInteract</title>
-  <meta name="description" content="Key Abu Dhabi property investment questions answered: foreign ownership, transaction costs, Golden Visa, escrow protection, taxes, and Abu Dhabi vs Dubai cost comparison." />
+  <title>Abu Dhabi Property Investment FAQs 2025 — Ownership, Taxes, Golden Visa | ADInteract</title>
+  <meta name="description" content="Expert answers: Can foreigners own 100% freehold in Abu Dhabi? Golden Visa through property, transaction costs, escrow protection, 0% capital gains tax, and Abu Dhabi vs Dubai cost comparison." />
+  <meta property="og:title" content="Abu Dhabi Property Investment FAQs 2025 | ADInteract" />
+  <meta property="og:description" content="Foreign ownership rules, Golden Visa eligibility, transaction costs, escrow protection, and a full Abu Dhabi vs Dubai cost comparison — answered with ADREC data." />
+
+  {@html `<script type="application/ld+json">${faqSchema}</script>`}
 </svelte:head>
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8 space-y-12">

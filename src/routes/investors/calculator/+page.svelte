@@ -7,8 +7,23 @@
 </script>
 
 <svelte:head>
-  <title>Investment ROI Calculator — ADInteract</title>
-  <meta name="description" content="Model net yield, capital gain CAGR and total ROI for Abu Dhabi off-plan and ready properties using live ADREC transaction data." />
+  <title>Abu Dhabi Property ROI Calculator — Net Yield & Capital Gain | ADInteract</title>
+  <meta name="description" content="Calculate net rental yield, capital gain CAGR, and total ROI for Abu Dhabi off-plan and ready properties. Auto-populated with live ADREC rent and price data. Free to use." />
+  <meta property="og:title" content="Abu Dhabi Property ROI Calculator — Net Yield & Capital Gain | ADInteract" />
+  <meta property="og:description" content="Model your Abu Dhabi property investment return. Off-plan and ready property scenarios — net yield, capital gain CAGR, total ROI — powered by live ADREC data." />
+
+  {@html `<script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Abu Dhabi Property ROI",
+    "description": "Model net rental yield, capital gain CAGR, and total return on investment for Abu Dhabi off-plan and ready properties using live ADREC transaction data.",
+    "step": [
+      { "@type": "HowToStep", "name": "Select property type", "text": "Choose between off-plan (under construction) or ready (completed) property to match your investment scenario." },
+      { "@type": "HowToStep", "name": "Enter purchase details", "text": "Input the property price, size in sqft, and select the district and layout. The calculator auto-populates comparable rent and price appreciation from ADREC data." },
+      { "@type": "HowToStep", "name": "Set your holding period", "text": "Choose how many years you plan to hold the property before resale." },
+      { "@type": "HowToStep", "name": "Review your returns", "text": "The calculator outputs net rental yield %, capital gain CAGR %, and total ROI — accounting for all transaction costs, service charges, and financing." }
+    ]
+  })}</script>`}
 </svelte:head>
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8">

@@ -104,8 +104,10 @@
 </script>
 
 <svelte:head>
-  <title>Price Growth — ADInteract Investor Intelligence</title>
-  <meta name="description" content="Year-on-year Abu Dhabi property price appreciation leaders ranked by median AED/sqft from ADREC transaction data." />
+  <title>Abu Dhabi Property Price Growth 2025 — Best Appreciating Areas | ADInteract</title>
+  <meta name="description" content="Which Abu Dhabi districts and projects grew the most in value? Year-on-year price appreciation ranked by median AED/sqft — sourced from ADREC registered transactions." />
+  <meta property="og:title" content="Abu Dhabi Property Price Growth 2025 — Best Appreciating Areas | ADInteract" />
+  <meta property="og:description" content="Ranked year-on-year price appreciation by district and project in Abu Dhabi. Median AED/sqft growth from ADREC transaction data." />
 </svelte:head>
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8 space-y-6">

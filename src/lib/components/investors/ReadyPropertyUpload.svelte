@@ -27,7 +27,7 @@
   let totalFiles  = $state(0);
 
   const MAX_IMG_MB  = 20;
-  const MAX_PDF_MB  = 3;
+  const MAX_PDF_MB  = 20;
   const MAX_FILES   = 5;
   const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'application/pdf'];
 
@@ -191,7 +191,7 @@
           <p class="text-xs font-semibold text-white/80">
             {isDragging ? 'Drop to scan…' : 'AI Listing Scanner — screenshot from Bayut or PropertyFinder'}
           </p>
-          <p class="text-[11px] text-white/30 mt-0.5">JPEG · PNG · WebP (max {MAX_IMG_MB} MB) · PDF (max {MAX_PDF_MB} MB) · up to {MAX_FILES} files</p>
+          <p class="text-[11px] text-white/30 mt-0.5">JPEG · PNG · WebP · PDF · up to {MAX_FILES} files · max {MAX_IMG_MB} MB each</p>
         </div>
       </div>
 

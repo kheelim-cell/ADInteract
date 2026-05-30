@@ -3,6 +3,8 @@
   import { base } from '$app/paths';
   import { goto } from '$app/navigation';
   import { metadata } from '$lib/stores/db';
+  import { isPro, isAuthenticated, openSignIn } from '$lib/stores/auth';
+  import { supabaseEnabled, investorProGated, stanStoreUrl } from '$lib/supabase';
 
   let { children } = $props();
 
@@ -54,6 +56,14 @@
 
   let currentPath = $derived($page.url.pathname);
   let activeNavItem = $derived(NAV_ITEMS.find(n => currentPath === n.href || currentPath.startsWith(n.href + '/')));
+
+  // ── Single binary Pro gate for all /investors pages ────────────────────────
+  // supabase off → open (dev/preview). gating off → open (promo mode). Pro → open. Otherwise → locked.
+  let proLocked = $derived(
+    supabaseEnabled && investorProGated && !$isPro
+  );
+  let needsSignIn = $derived(proLocked && !$isAuthenticated);
+  let needsUpgrade = $derived(proLocked && $isAuthenticated && !$isPro);
 </script>
 
 <!-- ── Hero ────────────────────────────────────────────────────────────────── -->
@@ -147,4 +157,72 @@
 </div>
 
 <!-- ── Page content ─────────────────────────────────────────────────────────── -->
-{@render children()}
+{#if proLocked}
+  <!-- Single upgrade wall — replaces all page content when not Pro -->
+  <div class="flex flex-col items-center justify-center min-h-[60vh] px-4 py-16 text-center">
+    <div class="max-w-md w-full">
+
+      <!-- Icon -->
+      <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-50 border border-amber-200">
+        <svg class="h-8 w-8 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+        </svg>
+      </div>
+
+      <!-- Heading -->
+      <h2 class="text-xl font-bold text-gray-900 mb-2">Investor Intelligence · Pro</h2>
+      <p class="text-sm text-gray-500 mb-8 leading-relaxed">
+        Price growth rankings, rental yield benchmarks, service charge data, and the ROI calculator — all powered by live ADREC transaction data.
+      </p>
+
+      <!-- What's included -->
+      <ul class="text-left space-y-2.5 mb-8">
+        {#each [
+          'Year-on-year price appreciation by district & project',
+          'Gross rental yield % by community',
+          'Annual service charges by project (AED/sqft)',
+          'Investment ROI & net yield calculator',
+          'All filters: district, property type, layout',
+        ] as feature}
+          <li class="flex items-start gap-2.5 text-sm text-gray-700">
+            <svg class="h-4 w-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+            {feature}
+          </li>
+        {/each}
+      </ul>
+
+      <!-- CTA -->
+      {#if needsUpgrade}
+        <a
+          href={stanStoreUrl || '#'}
+          target={stanStoreUrl ? '_blank' : undefined}
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full bg-amber-500 px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-amber-600 transition-colors w-full justify-center"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+          </svg>
+          Upgrade to Pro
+        </a>
+      {:else}
+        <!-- Not signed in -->
+        <button
+          type="button"
+          onclick={openSignIn}
+          class="inline-flex items-center gap-2 rounded-full bg-[#0a2318] px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-[#143524] transition-colors w-full justify-center"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25z" />
+          </svg>
+          Sign in to continue
+        </button>
+        <p class="mt-3 text-xs text-gray-400">Then upgrade to Pro to unlock all Investor Intelligence features.</p>
+      {/if}
+
+    </div>
+  </div>
+{:else}
+  {@render children()}
+{/if}

@@ -7,8 +7,6 @@
   } from '$lib/db/investor_queries';
   import YieldTable from '$lib/components/investors/YieldTable.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
-  import GatedSection from '$lib/components/auth/GatedSection.svelte';
-  import GatedBlur from '$lib/components/auth/GatedBlur.svelte';
 
   const thisCalendarYear = new Date().getFullYear();
 
@@ -131,10 +129,6 @@
   </h3>
 
   <!-- ── Yield table ─────────────────────────────────────────────────────── -->
-  <GatedSection proOnly={true}>
-    <GatedBlur>
-      <YieldTable rows={yieldRows} loading={loadingYield} />
-    </GatedBlur>
-  </GatedSection>
+  <YieldTable rows={yieldRows} loading={loadingYield} />
 
 </div>

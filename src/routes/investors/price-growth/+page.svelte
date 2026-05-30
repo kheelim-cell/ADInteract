@@ -9,8 +9,6 @@
   } from '$lib/db/investor_queries';
   import GrowthLeaderboard from '$lib/components/investors/GrowthLeaderboard.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
-  import GatedSection from '$lib/components/auth/GatedSection.svelte';
-  import GatedBlur from '$lib/components/auth/GatedBlur.svelte';
 
   const thisCalendarYear = new Date().getFullYear();
 
@@ -159,44 +157,32 @@
 
   <!-- ── Leaderboards ────────────────────────────────────────────────────── -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-    <GatedSection proOnly={true}>
-      <GatedBlur>
-        <GrowthLeaderboard
-          title="Top Districts · Sale Rate Growth"
-          subtitle="Median AED/sqft · min 10 transactions each year"
-          rows={districtRows}
-          loading={loadingSales}
-          valueLabel="/sqft"
-          linkPrefix="area"
-        />
-      </GatedBlur>
-    </GatedSection>
+    <GrowthLeaderboard
+      title="Top Districts · Sale Rate Growth"
+      subtitle="Median AED/sqft · min 10 transactions each year"
+      rows={districtRows}
+      loading={loadingSales}
+      valueLabel="/sqft"
+      linkPrefix="area"
+    />
 
-    <GatedSection proOnly={true}>
-      <GatedBlur>
-        <GrowthLeaderboard
-          title="Top Projects · Sale Rate Growth"
-          subtitle="Median AED/sqft · min 5 transactions each year"
-          rows={salesProjectRows}
-          loading={loadingSales}
-          valueLabel="/sqft"
-          linkPrefix="project"
-        />
-      </GatedBlur>
-    </GatedSection>
+    <GrowthLeaderboard
+      title="Top Projects · Sale Rate Growth"
+      subtitle="Median AED/sqft · min 5 transactions each year"
+      rows={salesProjectRows}
+      loading={loadingSales}
+      valueLabel="/sqft"
+      linkPrefix="project"
+    />
 
-    <GatedSection proOnly={true}>
-      <GatedBlur>
-        <GrowthLeaderboard
-          title="Top Projects · Rental Growth"
-          subtitle="Median annual rent · {rentalYear - 1} → {rentalYear}"
-          rows={rentalProjectRows}
-          loading={loadingRental}
-          valueLabel="/yr"
-          linkPrefix="project"
-        />
-      </GatedBlur>
-    </GatedSection>
+    <GrowthLeaderboard
+      title="Top Projects · Rental Growth"
+      subtitle="Median annual rent · {rentalYear - 1} → {rentalYear}"
+      rows={rentalProjectRows}
+      loading={loadingRental}
+      valueLabel="/yr"
+      linkPrefix="project"
+    />
   </div>
 
 </div>

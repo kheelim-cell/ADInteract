@@ -2,8 +2,6 @@
   import { metadata } from '$lib/stores/db';
   import ServiceChargeTable from '$lib/components/investors/ServiceChargeTable.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
-  import GatedSection from '$lib/components/auth/GatedSection.svelte';
-  import GatedBlur from '$lib/components/auth/GatedBlur.svelte';
 
   let filterDistrict = $state('');
   let searchQuery    = $state('');
@@ -67,10 +65,6 @@
   </h3>
 
   <!-- ── Service charge table ────────────────────────────────────────────── -->
-  <GatedSection proOnly={true}>
-    <GatedBlur>
-      <ServiceChargeTable district={filterDistrict} {searchQuery} />
-    </GatedBlur>
-  </GatedSection>
+  <ServiceChargeTable district={filterDistrict} {searchQuery} />
 
 </div>

@@ -26,7 +26,8 @@
   let currentFile = $state(0);   // 1-based, which file is being processed now
   let totalFiles  = $state(0);
 
-  const MAX_MB      = 20;
+  const MAX_IMG_MB  = 20;
+  const MAX_PDF_MB  = 3;   // Vercel serverless body limit is 4.5 MB; base64 adds ~33% overhead
   const MAX_FILES   = 5;
   const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'application/pdf'];
 
@@ -39,8 +40,35 @@
     });
   }
 
+  // Compress images client-side to stay well under Vercel's 4.5 MB limit
+  async function toBase64Compressed(file: File): Promise<string> {
+    if (file.type === 'application/pdf') return toBase64(file);
+    const TARGET = 1.5 * 1024 * 1024;
+    if (file.size <= TARGET) return toBase64(file);
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        const canvas = document.createElement('canvas');
+        let { width, height } = img;
+        const maxDim = 2048;
+        if (width > maxDim || height > maxDim) {
+          const ratio = Math.min(maxDim / width, maxDim / height);
+          width = Math.round(width * ratio);
+          height = Math.round(height * ratio);
+        }
+        canvas.width = width; canvas.height = height;
+        canvas.getContext('2d')!.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', 0.85).split(',')[1]);
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); toBase64(file).then(resolve).catch(reject); };
+      img.src = url;
+    });
+  }
+
   async function extractOne(file: File): Promise<ExtractionData> {
-    const base64Data = await toBase64(file);
+    const base64Data = await toBase64Compressed(file);
     const res = await fetch('/api/extract-property', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
@@ -78,9 +106,13 @@
     currentFile = 0;
 
     for (const file of files) {
-      if (file.size > MAX_MB * 1024 * 1024) {
+      const isPdf = file.type === 'application/pdf';
+      const maxMb = isPdf ? MAX_PDF_MB : MAX_IMG_MB;
+      if (file.size > maxMb * 1024 * 1024) {
         status   = 'error';
-        errorMsg = `"${file.name}" is too large (${(file.size / 1024 / 1024).toFixed(1)} MB). Max ${MAX_MB} MB.`;
+        errorMsg = isPdf
+          ? `"${file.name}" is ${(file.size / 1024 / 1024).toFixed(1)} MB. PDFs must be under ${MAX_PDF_MB} MB — compress it at smallpdf.com or take a screenshot instead.`
+          : `"${file.name}" is too large (${(file.size / 1024 / 1024).toFixed(1)} MB). Max ${MAX_IMG_MB} MB.`;
         return;
       }
       if (!ALLOWED_TYPES.includes(file.type)) {
@@ -160,7 +192,7 @@
           <p class="text-xs font-semibold text-white/80">
             {isDragging ? 'Drop to scan…' : 'AI Property Scanner — drop screenshot or PDF'}
           </p>
-          <p class="text-[11px] text-white/30 mt-0.5">JPEG · PNG · WebP · PDF · up to {MAX_FILES} files · max {MAX_MB} MB each</p>
+          <p class="text-[11px] text-white/30 mt-0.5">JPEG · PNG · WebP (max {MAX_IMG_MB} MB) · PDF (max {MAX_PDF_MB} MB) · up to {MAX_FILES} files</p>
         </div>
       </div>
 

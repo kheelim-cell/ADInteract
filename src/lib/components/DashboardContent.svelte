@@ -15,6 +15,7 @@
   import { resetFilters, updateFilter } from '$lib/stores/filters';
   import { salesDistrictCounts } from '$lib/stores/db';
   import { queryAllDistrictCounts } from '$lib/db/queries';
+  import { exportMarketReportPdf } from '$lib/utils/exportPdf';
   import FilterBar from '$lib/components/filters/FilterBar.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
   import StatsGrid from '$lib/components/stats/StatsGrid.svelte';
@@ -62,6 +63,24 @@
   let totalCount        = $state(0);
   let loading           = $state(false);
   let chartsLoading     = $state(false);
+  let exportingPdf      = $state(false);
+
+  async function handleExportPdf() {
+    if (!stats || exportingPdf) return;
+    exportingPdf = true;
+    try {
+      await exportMarketReportPdf({
+        filters:       $filters,
+        dateStart:     $dateRangeMs.start,
+        dateEnd:       $dateRangeMs.end,
+        stats,
+        topAreas,
+        layoutSummary,
+      });
+    } finally {
+      exportingPdf = false;
+    }
+  }
 
   // True once a query has resolved with zero results (not during initial load)
   let noResults = $derived(!loading && !chartsLoading && totalCount === 0 && stats !== null);
@@ -225,7 +244,13 @@
 
   <!-- Transaction Table (always visible — teaser) -->
   <div class="mt-8">
-    <TransactionTable {transactions} {totalCount} {loading} />
+    <TransactionTable
+      {transactions}
+      {totalCount}
+      {loading}
+      onExportPdf={handleExportPdf}
+      {exportingPdf}
+    />
   </div>
 
   <!-- Bottom charts (gated) -->

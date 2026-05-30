@@ -3,6 +3,7 @@
   import { query } from '$lib/db/duckdb';
   import { base } from '$app/paths';
   import { onMount } from 'svelte';
+  import ReadyPropertyUpload, { type ReadyExtractionData } from '$lib/components/investors/ReadyPropertyUpload.svelte';
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
   function fmtAed(v: number): string {
@@ -59,8 +60,11 @@
   });
 
   // ── Shared class strings ─────────────────────────────────────────────────────
-  const inp = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
-  const sel = 'w-full bg-[#0a1a10] border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
+  const inp       = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
+  const sel       = 'w-full bg-[#0a1a10] border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
+  // White background = field requires manual input (not auto-populated from ADREC or filter dropdowns)
+  const inpManual = 'w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-400/30';
+  const selManual = 'w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-400/30 appearance-none cursor-pointer';
 
   // ── Mortgage LTV matrix ──────────────────────────────────────────────────────
   const LTV_MATRIX: Record<string, [number, number]> = {
@@ -299,6 +303,64 @@
     }).catch(() => { psf6mLoading = false; });
   });
 
+  // ── AI Listing Scanner ────────────────────────────────────────────────────────
+  let scannedFields = $state<Set<string>>(new Set());
+
+  function handleReadyExtraction(data: ReadyExtractionData) {
+    const filled = new Set<string>();
+
+    // District — case-insensitive match
+    if (data.district) {
+      const lc    = data.district.toLowerCase();
+      const match = (districts as string[]).find(d => d.toLowerCase() === lc)
+        ?? (districts as string[]).find(d => d.toLowerCase().includes(lc) || lc.includes(d.toLowerCase()));
+      if (match) { district = match; filled.add('district'); }
+    }
+
+    // Layout — normalise and match
+    if (data.layout) {
+      const lc    = data.layout.toLowerCase().trim();
+      const match = (layouts as string[]).find(l => l.toLowerCase() === lc)
+        ?? (layouts as string[]).find(l => l.toLowerCase().includes(lc) || lc.includes(l.toLowerCase()));
+      if (match) { layout = match; filled.add('layout'); }
+    }
+
+    // Project — fuzzy match against loaded project list
+    if (data.project) {
+      const lc    = data.project.toLowerCase().trim();
+      const match = allProjects.find(p => p.project_name.toLowerCase().trim() === lc)
+        ?? allProjects.find(p => p.project_name.toLowerCase().includes(lc) || lc.includes(p.project_name.toLowerCase().trim()));
+      if (match) { project = match.project_name; filled.add('project'); }
+    }
+
+    if (data.price        && data.price        > 0) { price            = data.price;                        filled.add('price'); }
+    if (data.livingArea   && data.livingArea   > 0) { livingArea       = Math.round(data.livingArea);       filled.add('livingArea'); }
+    if (data.balconyArea  != null && data.balconyArea >= 0) { balconyArea = Math.round(data.balconyArea);   filled.add('balconyArea'); }
+    if (data.serviceChargePsf && data.serviceChargePsf > 0) { serviceChargePsf = data.serviceChargePsf;    filled.add('serviceChargePsf'); }
+    if (data.annualRent   && data.annualRent   > 0) {
+      annualRent    = data.annualRent;
+      tenancyStatus = 'tenanted';
+      filled.add('annualRent');
+    }
+
+    scannedFields = filled;
+  }
+
+  const ALL_SCANNER_FIELDS: [string, string][] = [
+    ['district',         'District'],
+    ['layout',           'Layout'],
+    ['project',          'Project'],
+    ['price',            'Price (AED)'],
+    ['livingArea',       'Living Area (sqft)'],
+    ['balconyArea',      'Balcony (sqft)'],
+    ['serviceChargePsf', 'Service Charge'],
+  ];
+
+  let missingAfterScan = $derived.by(() => {
+    if (scannedFields.size === 0) return [];
+    return ALL_SCANNER_FIELDS.filter(([key]) => !scannedFields.has(key)).map(([, label]) => label);
+  });
+
   // ── Auto-populate YoY appreciation (last 12 vs prior 12 months, ready only) ──
   let yoyLoading = $state(false);
   let yoySource  = $state('');
@@ -346,13 +408,21 @@
       const prev = prevRows[0]?.median_psf;
       if (curr && prev && prev > 0) {
         const rawYoy = ((curr - prev) / prev) * 100;
-        annualAppPct = Math.max(0, parseFloat((rawYoy * 0.5).toFixed(1)));
+        annualAppPct = Math.min(10, Math.max(0, parseFloat((rawYoy * 0.5).toFixed(1))));
         yoySource    = source;
       }
       yoyLoading = false;
     }).catch(() => { yoyLoading = false; });
   });
 </script>
+
+{#snippet scannedBadge(field: string)}
+  {#if scannedFields.has(field)}
+    <span class="ml-1 inline-flex items-center gap-0.5 text-[9px] font-bold text-emerald-400 bg-emerald-400/10 border border-emerald-400/25 rounded px-1.5 py-0.5 leading-none">
+      ✓ AI
+    </span>
+  {/if}
+{/snippet}
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <div class="rounded-2xl border border-white/8 bg-[#0e1e15] overflow-hidden">
@@ -370,6 +440,20 @@
     </div>
   </div>
 
+  <!-- ── AI Listing Scanner ─────────────────────────────────────────────────── -->
+  <div class="px-5 py-4 border-b border-white/8 space-y-2">
+    <ReadyPropertyUpload onExtracted={handleReadyExtraction} />
+
+    {#if missingAfterScan.length > 0}
+      <div class="flex items-center gap-1.5 flex-wrap">
+        <span class="text-[10px] text-white/30">Still needs manual input:</span>
+        {#each missingAfterScan as field}
+          <span class="text-[10px] bg-emerald-500/10 border border-emerald-500/20 text-emerald-400/70 rounded px-1.5 py-0.5 leading-none">{field}</span>
+        {/each}
+      </div>
+    {/if}
+  </div>
+
   <div class="p-5 grid grid-cols-1 xl:grid-cols-2 gap-6">
 
     <!-- ── LEFT: Inputs ──────────────────────────────────────────────────────── -->
@@ -382,7 +466,10 @@
         <!-- District + Layout -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="space-y-1">
-            <span class="text-[11px] text-white/50">District</span>
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">District</span>
+              {@render scannedBadge('district')}
+            </div>
             <div class="relative">
               <select bind:value={district} class={sel}>
                 <option value="">{loadingDistricts ? 'Loading…' : 'All Districts'}</option>
@@ -405,7 +492,10 @@
             </div>
           </div>
           <div class="space-y-1">
-            <span class="text-[11px] text-white/50">Layout</span>
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">Layout</span>
+              {@render scannedBadge('layout')}
+            </div>
             <div class="relative">
               <select bind:value={layout} class={sel}>
                 <option value="">Select Layout</option>
@@ -425,7 +515,10 @@
 
           <!-- Project (takes most width) -->
           <div class="flex-1 min-w-0 space-y-1">
-            <span class="text-[11px] text-white/50">Project</span>
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">Project</span>
+              {@render scannedBadge('project')}
+            </div>
             <div class="relative">
               <select bind:value={project} class={sel}>
                 <option value="">Select Project (optional)</option>
@@ -473,14 +566,21 @@
         <!-- Listing Price + Annual Rent (same row) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <label class="space-y-1 block">
-            <span class="text-[11px] text-white/50">Listing Price (AED)</span>
-            <input type="number" bind:value={price} min="0" step="10000" class={inp} />
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">Listing Price (AED)</span>
+              {@render scannedBadge('price')}
+            </div>
+            <input type="number" bind:value={price} min="0" step="10000" class={scannedFields.has('price') ? inp : inpManual} />
           </label>
           <label class="space-y-1 block">
-            <span class="text-[11px] text-white/50">
-              {tenancyStatus === 'tenanted' ? 'Annual Rent (AED/yr)' : 'Est. Annual Rent (AED/yr)'}
-            </span>
-            <input type="number" bind:value={annualRent} min="0" step="1000" class={inp} />
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">
+                {tenancyStatus === 'tenanted' ? 'Annual Rent (AED/yr)' : 'Est. Annual Rent (AED/yr)'}
+              </span>
+              {@render scannedBadge('annualRent')}
+            </div>
+            <input type="number" bind:value={annualRent} min="0" step="1000"
+              class={scannedFields.has('annualRent') ? inp : tenancyStatus === 'tenanted' ? inpManual : inp} />
             {#if tenancyStatus === 'vacant'}
               {#if medianRentLoading}
                 <p class="text-[10px] text-white/30 pl-0.5">Loading 2025 median rent…</p>
@@ -496,16 +596,25 @@
         <!-- Size inputs -->
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Living Area (sqft)</span>
-            <input type="number" bind:value={livingArea} min="0" step="10" class={inp} />
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">Living Area (sqft)</span>
+              {@render scannedBadge('livingArea')}
+            </div>
+            <input type="number" bind:value={livingArea} min="0" step="10" class={scannedFields.has('livingArea') ? inp : inpManual} />
           </label>
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Balcony (sqft)</span>
-            <input type="number" bind:value={balconyArea} min="0" step="5" class={inp} />
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">Balcony (sqft)</span>
+              {@render scannedBadge('balconyArea')}
+            </div>
+            <input type="number" bind:value={balconyArea} min="0" step="5" class={scannedFields.has('balconyArea') ? inp : inpManual} />
           </label>
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Service Charge (AED/sqft)</span>
-            <input type="number" bind:value={serviceChargePsf} min="0" step="0.5" class={inp} />
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">Service Charge (AED/sqft)</span>
+              {@render scannedBadge('serviceChargePsf')}
+            </div>
+            <input type="number" bind:value={serviceChargePsf} min="0" step="0.5" class={scannedFields.has('serviceChargePsf') ? inp : inpManual} />
           </label>
         </div>
 
@@ -567,13 +676,11 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Annual Interest Rate (%)</span>
-            <input type="number" bind:value={interestRate} min="0" max="20" step="0.05"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={interestRate} min="0" max="20" step="0.05" class={inpManual} />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Term Length (years)</span>
-            <input type="number" bind:value={termYears} min="5" max="25" step="1"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={termYears} min="5" max="25" step="1" class={inpManual} />
           </label>
         </div>
 
@@ -604,8 +711,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Comparable Area PSF (AED, last 6 mths)</span>
-            <input type="number" bind:value={comparablePsf} min="0" step="50"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={comparablePsf} min="0" step="50" class={inp} />
             {#if psf6mLoading}
               <p class="text-[10px] text-white/30 pl-0.5">Loading median PSF…</p>
             {:else if psf6mSource}
@@ -614,15 +720,13 @@
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Time of Resale (years)</span>
-            <input type="number" bind:value={yearsToResale} min="0" max="30" step="1"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={yearsToResale} min="0" max="5" step="1" class={inpManual} />
           </label>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Annual Appreciation (%)</span>
-            <input type="number" bind:value={annualAppPct} min="0" max="50" step="0.5"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={annualAppPct} min="0" max="10" step="0.5" class={inp} />
             {#if yoyLoading}
               <p class="text-[10px] text-white/30 pl-0.5">Loading YoY data…</p>
             {:else if yoySource}
@@ -632,20 +736,19 @@
           <div class="space-y-1">
             <span class="text-[11px] text-white/50">Finish / Branding</span>
             <div class="relative">
-              <select bind:value={otherFactorType} class={sel}>
+              <select bind:value={otherFactorType} class={selManual}>
                 <option value="standard">Standard (0%)</option>
                 <option value="furnished">Furnished (+5%)</option>
                 <option value="branded">Branded Residence (+10%)</option>
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
           </div>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Refurb / Capex (AED)</span>
-            <input type="number" bind:value={additionalCapex} min="0" step="5000"
-              class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30" />
+            <input type="number" bind:value={additionalCapex} min="0" step="5000" class={inpManual} />
           </label>
         </div>
         <p class="text-[11px] text-white/30 pl-0.5">

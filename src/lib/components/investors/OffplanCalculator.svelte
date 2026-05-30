@@ -1,6 +1,7 @@
 <script lang="ts">
   import { metadata, dbReady } from '$lib/stores/db';
   import { query } from '$lib/db/duckdb';
+  import PropertyUpload, { type ExtractionData } from '$lib/components/investors/PropertyUpload.svelte';
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
   function fmtAed(v: number): string {
@@ -38,8 +39,11 @@
   );
 
   // ── Shared class strings ─────────────────────────────────────────────────────
-  const inp = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
-  const sel = 'w-full bg-[#141414] border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
+  const inp       = 'w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30';
+  const sel       = 'w-full bg-[#141414] border border-white/10 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 appearance-none cursor-pointer';
+  // White background = field requires manual input (not auto-populated from ADREC or filter dropdowns)
+  const inpManual = 'w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-400/30';
+  const selManual = 'w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-900 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-400/30 appearance-none cursor-pointer';
 
   // ── Unit inputs ──────────────────────────────────────────────────────────────
   let district = $state('');
@@ -64,6 +68,52 @@
   let otherFactorType = $state<'standard' | 'furnished' | 'branded'>('standard');
   let otherAppPct     = $derived(otherFactorType === 'furnished' ? 5 : otherFactorType === 'branded' ? 10 : 0);
   let resaleBrokerPct = $state(2);
+
+  // ── AI Property Scanner ──────────────────────────────────────────────────────
+  let scannedFields = $state<Set<string>>(new Set());
+  let scannedMeta   = $state<{ projectName: string | null; developer: string | null } | null>(null);
+
+  function handleExtraction(data: ExtractionData) {
+    const filled = new Set<string>();
+
+    // District — case-insensitive match against available districts
+    if (data.district) {
+      const lc    = data.district.toLowerCase();
+      const match = (districts as string[]).find(d => d.toLowerCase() === lc)
+        ?? (districts as string[]).find(d => d.toLowerCase().includes(lc) || lc.includes(d.toLowerCase()));
+      if (match) { district = match; filled.add('district'); }
+    }
+
+    // Layout — normalise and match
+    if (data.layout) {
+      const lc    = data.layout.toLowerCase().trim();
+      const match = (layouts as string[]).find(l => l.toLowerCase() === lc)
+        ?? (layouts as string[]).find(l => l.toLowerCase().includes(lc) || lc.includes(l.toLowerCase()));
+      if (match) { layout = match; filled.add('layout'); }
+    }
+
+    if (data.cost   && data.cost   > 0) { cost              = data.cost;                                     filled.add('cost'); }
+    if (data.size   && data.size   > 0) { size              = Math.round(data.size);                         filled.add('size'); }
+    if (data.yearsTillHandover != null) { yearsTillHandover = Math.max(0, Math.round(data.yearsTillHandover * 2) / 2); filled.add('yearsTillHandover'); }
+    if (data.serviceChargePsf  > 0)    { serviceChargePsf  = data.serviceChargePsf;                         filled.add('serviceChargePsf'); }
+
+    scannedMeta   = { projectName: data.projectName, developer: data.developer };
+    scannedFields = filled;
+  }
+
+  // Fields that the scanner couldn't fill — shown as a prompt to the user
+  const ALL_SCANNER_FIELDS: [string, string][] = [
+    ['district',         'District'],
+    ['layout',           'Layout'],
+    ['cost',             'Price (AED)'],
+    ['size',             'Size (sqft)'],
+    ['yearsTillHandover','Years till Handover'],
+  ];
+
+  let missingAfterScan = $derived.by(() => {
+    if (scannedFields.size === 0) return [];
+    return ALL_SCANNER_FIELDS.filter(([key]) => !scannedFields.has(key)).map(([, label]) => label);
+  });
 
   // ── Derived: unit ────────────────────────────────────────────────────────────
   let pricePerSqft       = $derived(size > 0 ? cost / size : 0);
@@ -145,7 +195,7 @@
       const c = curr[0]?.median_rent;
       const p = prev[0]?.median_rent;
       if (c && p && p > 0) {
-        rentalAppPct    = Math.max(0, parseFloat(((c - p) / p * 100 * 0.5).toFixed(1)));
+        rentalAppPct    = Math.min(10, Math.max(0, parseFloat(((c - p) / p * 100 * 0.5).toFixed(1))));
         rentalYoySource = [d, l].filter(Boolean).join(' · ') || 'Abu Dhabi · all';
       }
       rentalYoyLoading = false;
@@ -174,13 +224,21 @@
       const curr = currRows[0]?.median_psf;
       const prev = prevRows[0]?.median_psf;
       if (curr && prev && prev > 0) {
-        annualAppPct = Math.max(0, parseFloat(((curr - prev) / prev * 100 * 0.5).toFixed(1)));
+        annualAppPct = Math.min(10, Math.max(0, parseFloat(((curr - prev) / prev * 100 * 0.5).toFixed(1))));
         capYoySource = source;
       }
       capYoyLoading = false;
     }).catch(() => { capYoyLoading = false; });
   });
 </script>
+
+{#snippet scannedBadge(field: string)}
+  {#if scannedFields.has(field)}
+    <span class="ml-1 inline-flex items-center gap-0.5 text-[9px] font-bold text-emerald-400 bg-emerald-400/10 border border-emerald-400/25 rounded px-1.5 py-0.5 leading-none">
+      ✓ AI
+    </span>
+  {/if}
+{/snippet}
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <div class="rounded-2xl border border-white/10 bg-[#1e1e1e] overflow-hidden">
@@ -198,6 +256,34 @@
     </div>
   </div>
 
+  <!-- ── AI Property Scanner ──────────────────────────────────────────────── -->
+  <div class="px-5 py-4 border-b border-white/8 space-y-2">
+    <PropertyUpload onExtracted={handleExtraction} />
+
+    <!-- Project info extracted -->
+    {#if scannedMeta?.projectName || scannedMeta?.developer}
+      <div class="flex items-center gap-1.5 text-xs flex-wrap">
+        {#if scannedMeta.projectName}
+          <span class="font-semibold text-amber-400/80">{scannedMeta.projectName}</span>
+        {/if}
+        {#if scannedMeta.developer}
+          <span class="text-white/30">by</span>
+          <span class="text-white/50">{scannedMeta.developer}</span>
+        {/if}
+      </div>
+    {/if}
+
+    <!-- Missing fields prompt -->
+    {#if missingAfterScan.length > 0}
+      <div class="flex items-center gap-1.5 flex-wrap">
+        <span class="text-[10px] text-white/30">Still needs manual input:</span>
+        {#each missingAfterScan as field}
+          <span class="text-[10px] bg-amber-500/10 border border-amber-500/20 text-amber-400/70 rounded px-1.5 py-0.5 leading-none">{field}</span>
+        {/each}
+      </div>
+    {/if}
+  </div>
+
   <div class="p-5 grid grid-cols-1 xl:grid-cols-2 gap-6">
 
     <!-- ── LEFT: Inputs ──────────────────────────────────────────────────────── -->
@@ -209,7 +295,10 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="space-y-1">
-            <span class="text-[11px] text-white/50">District</span>
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">District</span>
+              {@render scannedBadge('district')}
+            </div>
             <div class="relative">
               <select bind:value={district} class={sel}>
                 <option value="">All Districts</option>
@@ -232,7 +321,10 @@
             </div>
           </div>
           <div class="space-y-1">
-            <span class="text-[11px] text-white/50">Layout</span>
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">Layout</span>
+              {@render scannedBadge('layout')}
+            </div>
             <div class="relative">
               <select bind:value={layout} class={sel}>
                 <option value="">Select Layout</option>
@@ -249,12 +341,18 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Price (AED)</span>
-            <input type="number" bind:value={cost} min="0" step="10000" class={inp} />
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">Price (AED)</span>
+              {@render scannedBadge('cost')}
+            </div>
+            <input type="number" bind:value={cost} min="0" step="10000" class={scannedFields.has('cost') ? inp : inpManual} />
           </label>
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Size (sqft)</span>
-            <input type="number" bind:value={size} min="0" step="10" class={inp} />
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">Size (sqft)</span>
+              {@render scannedBadge('size')}
+            </div>
+            <input type="number" bind:value={size} min="0" step="10" class={scannedFields.has('size') ? inp : inpManual} />
           </label>
         </div>
 
@@ -277,7 +375,7 @@
       <fieldset class="space-y-3">
         <legend class="text-[10px] font-bold text-emerald-400/80 uppercase tracking-widest">Rental Analysis (at Handover)</legend>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Comparable Rent today (AED/yr)</span>
             <input type="number" bind:value={comparableRent} min="0" step="1000" class={inp} />
@@ -288,15 +386,18 @@
             {/if}
           </label>
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Years till Handover</span>
-            <input type="number" bind:value={yearsTillHandover} min="0" max="10" step="0.5" class={inp} />
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">Years till Handover</span>
+              {@render scannedBadge('yearsTillHandover')}
+            </div>
+            <input type="number" bind:value={yearsTillHandover} min="0" max="10" step="0.5" class={scannedFields.has('yearsTillHandover') ? inp : inpManual} />
           </label>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Rental Appreciation over Build (%)</span>
-            <input type="number" bind:value={rentalAppPct} min="0" max="100" step="0.5" class={inp} />
+            <input type="number" bind:value={rentalAppPct} min="0" max="10" step="0.5" class={inp} />
             {#if rentalYoyLoading}
               <p class="text-[10px] text-white/30 pl-0.5">Loading rental YoY…</p>
             {:else if rentalYoySource}
@@ -305,22 +406,25 @@
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Furnished Premium (AED/yr)</span>
-            <input type="number" bind:value={furnishedPremium} min="0" step="1000" class={inp} />
+            <input type="number" bind:value={furnishedPremium} min="0" step="1000" class={inpManual} />
           </label>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 items-end">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Management Fee (%)</span>
-            <input type="number" bind:value={mgmtFeePct} min="0" max="30" step="0.5" class={inp} />
+            <input type="number" bind:value={mgmtFeePct} min="0" max="30" step="0.5" class={inpManual} />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Utilities (AED/mth)</span>
-            <input type="number" bind:value={utilitiesMonthly} min="0" step="100" class={inp} />
+            <input type="number" bind:value={utilitiesMonthly} min="0" step="100" class={inpManual} />
           </label>
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Service Charge (AED/sqft)</span>
-            <input type="number" bind:value={serviceChargePsf} min="0" step="0.5" class={inp} />
+            <div class="flex items-center gap-1">
+              <span class="text-[11px] text-white/50">Service Charge (AED/sqft)</span>
+              {@render scannedBadge('serviceChargePsf')}
+            </div>
+            <input type="number" bind:value={serviceChargePsf} min="0" step="0.5" class={scannedFields.has('serviceChargePsf') ? inp : inpManual} />
           </label>
         </div>
         <p class="text-[11px] text-white/30 pl-0.5">
@@ -335,11 +439,11 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Time of Resale (years from today)</span>
-            <input type="number" bind:value={yearsToResale} min="0" max="30" step="1" class={inp} />
+            <input type="number" bind:value={yearsToResale} min="0" max="5" step="1" class={inpManual} />
           </label>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Annual Appreciation (%)</span>
-            <input type="number" bind:value={annualAppPct} min="0" max="50" step="0.5" class={inp} />
+            <input type="number" bind:value={annualAppPct} min="0" max="10" step="0.5" class={inp} />
             {#if capYoyLoading}
               <p class="text-[10px] text-white/30 pl-0.5">Loading off-plan YoY…</p>
             {:else if capYoySource}
@@ -352,19 +456,19 @@
           <div class="space-y-1">
             <span class="text-[11px] text-white/50">Finish / Branding</span>
             <div class="relative">
-              <select bind:value={otherFactorType} class={sel}>
+              <select bind:value={otherFactorType} class={selManual}>
                 <option value="standard">Standard (0%)</option>
                 <option value="furnished">Furnished (+5%)</option>
                 <option value="branded">Branded Residence (+10%)</option>
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
           </div>
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Resale Broker Fee (%)</span>
-            <input type="number" bind:value={resaleBrokerPct} min="0" max="5" step="0.25" class={inp} />
+            <input type="number" bind:value={resaleBrokerPct} min="0" max="5" step="0.25" class={inpManual} />
           </label>
         </div>
 

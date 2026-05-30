@@ -10,7 +10,7 @@ const config = {
 			assets: 'build',
 			fallback: '404.html',
 			precompress: false,
-			strict: true
+			strict: false   // false = allow dev-only API routes (e.g. /api/extract-property)
 		}),
 		paths: {
 			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH ?? ''

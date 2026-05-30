@@ -77,23 +77,6 @@
     }))
   });
 
-  // ── FAQ structured data (Google rich results) ─────────────────────────────
-  const faqSchema = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQS.map(faq => {
-      const parts: string[] = [];
-      if (faq.intro) parts.push(faq.intro);
-      if (faq.a)     parts.push(faq.a);
-      if (faq.bullets) parts.push(faq.bullets.map(b => `${b.label}: ${b.text}`).join(' '));
-      return {
-        '@type': 'Question',
-        name: faq.q,
-        acceptedAnswer: { '@type': 'Answer', text: parts.join(' ') },
-      };
-    }),
-  });
-
   // ── Accordion state ────────────────────────────────────────────────────────
   let openIds = $state<Set<number>>(new Set());
 

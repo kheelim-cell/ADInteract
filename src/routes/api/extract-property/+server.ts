@@ -1,10 +1,10 @@
 import { json, error } from '@sveltejs/kit';
-import { env } from '$env/dynamic/private';
+import { ANTHROPIC_API_KEY } from '$env/static/private';
 import type { RequestHandler } from './$types';
 
-// This route is intentionally NOT prerendered — it only works in `npm run dev`.
-// For the static production build it is simply absent (strict: false silences the warning).
 export const prerender = false;
+// Edge runtime: 25 MB request limit (vs 4.5 MB for serverless) — needed for large PDFs
+export const config = { runtime: 'edge' };
 
 const TODAY = new Date().toISOString().split('T')[0]; // e.g. "2026-05-30"
 
@@ -33,7 +33,7 @@ Rules:
 Return ONLY the JSON object. No markdown code fences. No explanation.`;
 
 export const POST: RequestHandler = async ({ request }) => {
-	const apiKey = env.ANTHROPIC_API_KEY;
+	const apiKey = ANTHROPIC_API_KEY;
 	if (!apiKey) {
 		throw error(
 			500,

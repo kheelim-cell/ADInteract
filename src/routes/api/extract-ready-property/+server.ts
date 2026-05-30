@@ -1,9 +1,10 @@
 import { json, error } from '@sveltejs/kit';
-import { env } from '$env/dynamic/private';
+import { ANTHROPIC_API_KEY } from '$env/static/private';
 import type { RequestHandler } from './$types';
 
-// Dev-only route — absent in static production build
 export const prerender = false;
+// Edge runtime: 25 MB request limit (vs 4.5 MB for serverless) — needed for large PDFs
+export const config = { runtime: 'edge' };
 
 const PROMPT = `You are a property data extraction assistant specialised in Abu Dhabi real estate.
 Extract fields from the ready property listing image or PDF provided (e.g. a screenshot from Bayut, PropertyFinder, or similar portal).
@@ -32,7 +33,7 @@ Rules:
 Return ONLY the JSON object. No markdown code fences. No explanation.`;
 
 export const POST: RequestHandler = async ({ request }) => {
-	const apiKey = env.ANTHROPIC_API_KEY;
+	const apiKey = ANTHROPIC_API_KEY;
 	if (!apiKey) {
 		throw error(
 			500,

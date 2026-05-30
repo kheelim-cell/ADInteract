@@ -14,6 +14,7 @@
   <meta name="description" content="Abu Dhabi rental price benchmarks by district, project, and layout. Median, lower, and upper annual rents for apartments and villas — sourced from ADREC registered contracts." />
   <meta property="og:title" content="Abu Dhabi Rental Prices 2025 — Median Rents by Area & Project | ADInteract" />
   <meta property="og:description" content="Find median rental prices across all Abu Dhabi districts and projects. Studio to 4-bed apartments and villas — registered ADREC contract data." />
+  <meta property="og:url" content="https://adinteract.co/rental" />
 </svelte:head>
 
 {#if !$rentalMetadata}

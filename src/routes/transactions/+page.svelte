@@ -42,8 +42,11 @@
 </script>
 
 <svelte:head>
-  <title>Transaction Explorer - ADInteract</title>
-  <meta name="description" content="Browse and filter Abu Dhabi real estate transactions" />
+  <title>Abu Dhabi Property Transaction Explorer — Search 96K+ Sales | ADInteract</title>
+  <meta name="description" content="Search and filter every Abu Dhabi property sale registered with ADREC. Sort by district, project, layout, price, and date — 96,000+ transactions with median AED/sqft data." />
+  <meta property="og:title" content="Abu Dhabi Property Transaction Explorer — Search 96K+ Sales | ADInteract" />
+  <meta property="og:description" content="Explore every Abu Dhabi property transaction registered with ADREC. Filter by district, project, layout, price range, and sale type — live data updated daily." />
+  <meta property="og:url" content="https://adinteract.co/transactions" />
 </svelte:head>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">

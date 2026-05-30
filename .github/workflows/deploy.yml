@@ -1,9 +1,10 @@
-# GitHub Pages deployment — DISABLED after migrating to Vercel.
-# Vercel auto-deploys from the main branch. This file is kept for reference only.
-# To re-enable, uncomment the triggers and update the adapter in svelte.config.js.
-
-# name: Deploy
-# on:
-#   push:
-#     branches: [main]
-#   workflow_dispatch:
+# Deployment is handled by Vercel (auto-deploys on push to main).
+# This workflow is kept as a no-op placeholder to avoid GitHub Actions errors.
+name: Deploy (Disabled — Vercel handles this)
+on:
+  workflow_dispatch:
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deployment is handled by Vercel. Nothing to do here."

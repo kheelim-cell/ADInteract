@@ -62,7 +62,7 @@
   ];
 
   // ── Accordion state ────────────────────────────────────────────────────────
-  let openIds = $state<Set<number>>(new Set([1]));
+  let openIds = $state<Set<number>>(new Set());
 
   function toggle(id: number) {
     const next = new Set(openIds);

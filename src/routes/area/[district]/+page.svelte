@@ -31,6 +31,17 @@
       ? `${fmtNum(summary.tx_count_12m)} ADREC-verified property transactions in ${districtName}. Median AED ${fmtNum(summary.median_psf)}/sqft. View off-plan and ready sales data, price trends, and top projects.`
       : `Property transaction data for ${districtName}, Abu Dhabi. ADREC-sourced price trends, median AED/sqft, and top projects.`}
   />
+  <!-- Open Graph — district-specific, overrides global layout defaults -->
+  <meta property="og:title" content="{districtName} Property Prices — AED/sqft & Transactions | ADInteract" />
+  <meta
+    property="og:description"
+    content={summary
+      ? `${fmtNum(summary.tx_count_12m)} ADREC-verified transactions in ${districtName}. Median AED ${fmtNum(summary.median_psf)}/sqft. Off-plan and ready sales data, price trends, top projects.`
+      : `Property transaction data for ${districtName}, Abu Dhabi. ADREC-sourced price trends, median AED/sqft, and top projects.`}
+  />
+  <meta property="og:url" content="https://www.adinteract.co{base}/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://adinteract.co/brand/og-image.png" />
   <!-- Canonical is the clean slug URL — tells Google this is the authoritative page -->
   <link rel="canonical" href="https://www.adinteract.co{base}/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
 </svelte:head>

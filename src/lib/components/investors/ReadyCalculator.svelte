@@ -95,12 +95,15 @@
   let annualAppPct    = $state(4);
   let otherFactorType = $state<'standard' | 'furnished' | 'branded'>('standard');
   let otherAppPct     = $derived(otherFactorType === 'furnished' ? 5 : otherFactorType === 'branded' ? 10 : 0);
+  let furnishingType  = $state<'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality'>('none');
+  let furnishingPct   = $derived(furnishingType === 'basic_airbnb' ? 10 : furnishingType === 'highend_airbnb' ? 20 : furnishingType === 'branded_hospitality' ? 25 : 0);
   let additionalCapex = $state(0);
 
   // ── Derived: unit ─────────────────────────────────────────────────────────────
   let totalArea     = $derived(livingArea + balconyArea);
   let pricePerSqft  = $derived(totalArea > 0 ? price / totalArea : 0);
-  let effectiveRent = $derived(annualRent);   // always use annualRent; vacant uses market median
+  // effectiveRent applies the furnishing premium on top of the base annual rent
+  let effectiveRent = $derived(annualRent * (1 + furnishingPct / 100));
 
   // ── Derived: LTV & mortgage ──────────────────────────────────────────────────
   let ltvKey               = $derived(`${mortgageType}|${residency}`);
@@ -387,6 +390,7 @@
       yearsToResale,
       annualAppPct,
       otherFactorType,
+      furnishingType,
       additionalCapex,
       // pre-computed outputs
       pricePerSqft,
@@ -642,6 +646,22 @@
           </label>
         </div>
 
+        <!-- Furnishing -->
+        <div class="space-y-1">
+          <span class="text-[11px] text-white/50">Furnishing</span>
+          <div class="relative">
+            <select bind:value={furnishingType} class={selManual}>
+              <option value="none">No furnishing (+0%)</option>
+              <option value="basic_airbnb">Basic AirBnB (+10%)</option>
+              <option value="highend_airbnb">High-end AirBnB (+20%)</option>
+              <option value="branded_hospitality">Branded hospitality (+25%)</option>
+            </select>
+            <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </div>
+        </div>
+
         <!-- Size inputs -->
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
           <label class="space-y-1">
@@ -857,8 +877,14 @@
           <div class="px-3.5 py-3 space-y-1.5 text-xs">
             <div class="flex justify-between text-gray-500">
               <span>{tenancyStatus === 'tenanted' ? 'Annual rent' : 'Est. market rent (vacant)'}</span>
-              <span class="tabular-nums text-gray-700 font-medium">{fmtAed(effectiveRent)}</span>
+              <span class="tabular-nums text-gray-700 font-medium">{fmtAed(annualRent)}</span>
             </div>
+            {#if furnishingPct > 0}
+              <div class="flex justify-between text-gray-500">
+                <span>Furnishing premium (+{furnishingPct}%)</span>
+                <span class="tabular-nums text-emerald-600">+ {fmtAed(annualRent * furnishingPct / 100)}</span>
+              </div>
+            {/if}
             <div class="flex justify-between text-gray-500">
               <span>Service charge + VAT</span>
               <span class="tabular-nums text-red-500">− {fmtAed(serviceCharge)}</span>

@@ -54,6 +54,20 @@
       : 'Deal Analysis | ADInteract'
   );
 
+  // ── Furnishing label / pct ──────────────────────────────────────────────────
+  function furnishingLabel(t: string | undefined): string {
+    if (t === 'basic_airbnb')        return 'Basic AirBnB';
+    if (t === 'highend_airbnb')      return 'High-end AirBnB';
+    if (t === 'branded_hospitality') return 'Branded hospitality';
+    return 'None';
+  }
+  function furnishingPctVal(t: string | undefined): number {
+    if (t === 'basic_airbnb')        return 10;
+    if (t === 'highend_airbnb')      return 20;
+    if (t === 'branded_hospitality') return 25;
+    return 0;
+  }
+
   // ── Mortgage type label ─────────────────────────────────────────────────────
   function mtLabel(t: string | undefined): string {
     if (t === '1st') return '1st property';
@@ -252,6 +266,12 @@
               <span class="text-gray-500 min-w-0">Rental appreciation rate</span>
               <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{fmtPct(op.rentalAppPct)} p.a.</span>
             </div>
+            {#if furnishingPctVal(op.furnishingType) > 0}
+              <div class="flex justify-between py-2 gap-2">
+                <span class="text-gray-500 min-w-0">Furnishing premium · {furnishingLabel(op.furnishingType)}</span>
+                <span class="tabular-nums text-emerald-600 flex-shrink-0 text-right">+{fmtPct(furnishingPctVal(op.furnishingType), 0)}</span>
+              </div>
+            {/if}
             <div class="flex justify-between py-2 gap-2 font-semibold">
               <span class="text-gray-800 min-w-0">Gross rental at handover</span>
               <span class="tabular-nums text-emerald-700 flex-shrink-0 text-right">{fmtAed(op.grossRental)}</span>
@@ -277,6 +297,12 @@
               <span class="text-gray-500 min-w-0">Annual rent</span>
               <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{fmtAed(rd.annualRent)}</span>
             </div>
+            {#if furnishingPctVal(rd.furnishingType) > 0}
+              <div class="flex justify-between py-2 gap-2">
+                <span class="text-gray-500 min-w-0">Furnishing premium · {furnishingLabel(rd.furnishingType)}</span>
+                <span class="tabular-nums text-emerald-600 flex-shrink-0 text-right">+{fmtPct(furnishingPctVal(rd.furnishingType), 0)}</span>
+              </div>
+            {/if}
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Service charge</span>
               <span class="tabular-nums text-red-500 flex-shrink-0 text-right">− {fmtAed(rd.serviceCharge)}</span>

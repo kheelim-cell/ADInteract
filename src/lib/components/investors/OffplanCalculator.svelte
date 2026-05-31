@@ -59,7 +59,8 @@
   let comparableRent    = $state(50_000);
   let yearsTillHandover = $state(2);
   let rentalAppPct      = $state(15);
-  let furnishedPremium  = $state(0);
+  let furnishingType    = $state<'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality'>('none');
+  let furnishingPct     = $derived(furnishingType === 'basic_airbnb' ? 10 : furnishingType === 'highend_airbnb' ? 20 : furnishingType === 'branded_hospitality' ? 25 : 0);
   let mgmtFeePct        = $state(0);
   let utilitiesMonthly  = $state(0);
   let serviceChargePsf  = $state(15);
@@ -124,9 +125,8 @@
   let totalPurchaseCost  = $derived(cost + registrationFee + devRegistrationFee + handoverAdminFee);
 
   // ── Derived: rental ──────────────────────────────────────────────────────────
-  let grossRental = $derived(
-    comparableRent * Math.pow(1 + rentalAppPct / 100, yearsTillHandover) + furnishedPremium
-  );
+  let baseRentalAfterGrowth = $derived(comparableRent * Math.pow(1 + rentalAppPct / 100, yearsTillHandover));
+  let grossRental = $derived(baseRentalAfterGrowth * (1 + furnishingPct / 100));
   let mgmtFee       = $derived(grossRental * mgmtFeePct / 100);
   let utilities     = $derived(utilitiesMonthly * 12);
   let serviceCharge = $derived(size * serviceChargePsf * 1.05);
@@ -220,7 +220,7 @@
       comparableRent,
       yearsTillHandover,
       rentalAppPct,
-      furnishedPremium,
+      furnishingType,
       mgmtFeePct,
       utilitiesMonthly,
       serviceChargePsf,
@@ -452,10 +452,20 @@
               <p class="text-[10px] text-amber-400/60 pl-0.5">↳ 2024→2025 YoY · {rentalYoySource} · 50% haircut</p>
             {/if}
           </label>
-          <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Furnished Premium (AED/yr)</span>
-            <input type="number" bind:value={furnishedPremium} min="0" step="1000" class={inpManual} />
-          </label>
+          <div class="space-y-1">
+            <span class="text-[11px] text-white/50">Furnishing</span>
+            <div class="relative">
+              <select bind:value={furnishingType} class={selManual}>
+                <option value="none">No furnishing (+0%)</option>
+                <option value="basic_airbnb">Basic AirBnB (+10%)</option>
+                <option value="highend_airbnb">High-end AirBnB (+20%)</option>
+                <option value="branded_hospitality">Branded hospitality (+25%)</option>
+              </select>
+              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+          </div>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 items-end">
@@ -577,12 +587,12 @@
           <div class="px-3.5 py-3 space-y-1.5 text-xs">
             <div class="flex justify-between text-gray-500">
               <span>Comparable rent × (1 + {rentalAppPct}%)^{yearsTillHandover}yr</span>
-              <span class="tabular-nums text-gray-700 font-medium">{fmtAed(comparableRent * Math.pow(1 + rentalAppPct / 100, yearsTillHandover))}</span>
+              <span class="tabular-nums text-gray-700 font-medium">{fmtAed(baseRentalAfterGrowth)}</span>
             </div>
-            {#if furnishedPremium > 0}
+            {#if furnishingPct > 0}
               <div class="flex justify-between text-gray-500">
-                <span>Furnished premium</span>
-                <span class="tabular-nums text-gray-700">+ {fmtAed(furnishedPremium)}</span>
+                <span>Furnishing premium (+{furnishingPct}%)</span>
+                <span class="tabular-nums text-emerald-600">+ {fmtAed(baseRentalAfterGrowth * furnishingPct / 100)}</span>
               </div>
             {/if}
             <div class="flex justify-between font-semibold text-gray-800 border-t border-amber-100 pt-1.5">

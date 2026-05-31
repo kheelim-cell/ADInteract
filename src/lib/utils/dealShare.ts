@@ -32,7 +32,7 @@ export interface OffplanDealSnapshot {
 	serviceChargePsf: number;
 	yearsToResale: number;
 	annualAppPct: number;
-	otherFactorType: 'standard' | 'furnished' | 'branded';
+	otherFactorType: 'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality';
 	resaleBrokerPct: number;
 	// Pre-computed outputs (avoids re-implementing math in deal page)
 	pricePerSqft: number;
@@ -73,7 +73,7 @@ export interface ReadyDealSnapshot {
 	comparablePsf: number;
 	yearsToResale: number;
 	annualAppPct: number;
-	otherFactorType: 'standard' | 'furnished' | 'branded';
+	otherFactorType: 'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality';
 	furnishingType: 'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality';
 	additionalCapex: number;
 	// Pre-computed outputs

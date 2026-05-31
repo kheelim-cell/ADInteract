@@ -154,7 +154,7 @@
 
             <!-- ROI % — colour banded -->
             <td class="{TD} text-right whitespace-nowrap">
-              <span class="inline-block rounded-full px-2 py-0.5 text-xs {roiClass(row.roiPct)}">
+              <span class="inline-block rounded-full px-2 py-0.5 text-sm {roiClass(row.roiPct)}">
                 +{row.roiPct.toFixed(1)}%
               </span>
             </td>
@@ -170,7 +170,7 @@
             </td>
 
             <!-- Entry window: "Apr 2022 – Mar 2024" -->
-            <td class="{TD} whitespace-nowrap text-xs text-gray-400">
+            <td class="{TD} whitespace-nowrap text-gray-400">
               {fmtDate(row.earliestOffplan)} – {fmtDate(row.latestOffplan)}
             </td>
           </tr>

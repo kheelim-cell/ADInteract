@@ -299,13 +299,13 @@
     <!-- Skeleton -->
     <div class="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden">
       <div class="overflow-x-auto">
-        <table class="w-full min-w-[480px]">
+        <table class="w-full">
           <thead class="bg-gray-50 border-b border-gray-100">
             <tr>
-              <th class="px-4 py-3 w-44"></th>
+              <th class="px-2 sm:px-4 py-3 w-28 sm:w-44"></th>
               {#each selectedDistricts as d}
-                <th class="px-4 py-3 text-right">
-                  <div class="ml-auto h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
+                <th class="px-2 sm:px-4 py-3 text-right">
+                  <div class="ml-auto h-4 w-16 sm:w-24 bg-gray-200 rounded animate-pulse"></div>
                 </th>
               {/each}
             </tr>
@@ -313,13 +313,12 @@
           <tbody class="divide-y divide-gray-50">
             {#each Array(7) as _}
               <tr>
-                <td class="px-4 py-3.5">
-                  <div class="h-3 w-32 bg-gray-100 rounded animate-pulse mb-1.5"></div>
-                  <div class="h-2.5 w-20 bg-gray-50 rounded animate-pulse"></div>
+                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5">
+                  <div class="h-3 w-20 sm:w-32 bg-gray-100 rounded animate-pulse mb-1.5"></div>
                 </td>
                 {#each selectedDistricts as __}
-                  <td class="px-4 py-3.5 text-right">
-                    <div class="ml-auto h-4 w-20 bg-gray-100 rounded animate-pulse"></div>
+                  <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-right">
+                    <div class="ml-auto h-4 w-16 sm:w-20 bg-gray-100 rounded animate-pulse"></div>
                   </td>
                 {/each}
               </tr>
@@ -342,25 +341,25 @@
     <!-- ── Comparison table ───────────────────────────────────────────────── -->
     <div class="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden">
       <div class="overflow-x-auto">
-        <table class="w-full min-w-[500px]">
+        <table class="w-full">
 
           <!-- Header: district names as columns -->
           <thead class="bg-gray-50 border-b border-gray-100">
             <tr>
-              <th class="px-4 py-3 text-left text-[10px] font-bold text-gray-400 uppercase tracking-widest w-44 sm:w-52">
+              <th class="px-2 sm:px-4 py-3 text-left text-[10px] font-bold text-gray-400 uppercase tracking-widest w-28 sm:w-52">
                 Metric
               </th>
               {#each selectedDistricts as d, i}
                 {@const row = rowByDistrict.get(d)}
                 {@const colors = ['text-sky-700', 'text-violet-700', 'text-amber-700']}
-                <th class="px-4 py-3 text-right">
-                  <span class="block text-sm font-bold {colors[i]}">{d}</span>
+                <th class="px-2 sm:px-4 py-3 text-right">
+                  <span class="block text-xs sm:text-sm font-bold {colors[i]} leading-tight">{d}</span>
                   {#if row}
-                    <span class="block text-[10px] font-normal text-gray-400 mt-0.5">
+                    <span class="hidden sm:block text-[10px] font-normal text-gray-400 mt-0.5">
                       {fmtCount(row.txCount)} sales · 12 months
                     </span>
                   {:else}
-                    <span class="block text-[10px] font-normal text-gray-400 mt-0.5">No data</span>
+                    <span class="hidden sm:block text-[10px] font-normal text-gray-400 mt-0.5">No data</span>
                   {/if}
                 </th>
               {/each}
@@ -371,13 +370,13 @@
 
             <!-- 1. Median Sale Price (AED) — informational, no winner -->
             <tr class="hover:bg-gray-50/50 transition-colors">
-              <td class="px-4 py-3.5 text-xs">
+              <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
                 <span class="font-semibold text-gray-700">Median Sale Price</span>
-                <span class="block text-[10px] text-gray-400 mt-0.5">AED · rolling 12 months</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">AED · rolling 12 months</span>
               </td>
               {#each selectedDistricts as d}
                 {@const row = rowByDistrict.get(d)}
-                <td class="px-4 py-3.5 text-right tabular-nums text-sm font-medium text-gray-800">
+                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-right tabular-nums text-xs sm:text-sm font-medium text-gray-800">
                   {fmtAed(row?.medianPrice ?? null)}
                 </td>
               {/each}
@@ -385,13 +384,13 @@
 
             <!-- 2. Median AED/sqft — informational, no winner -->
             <tr class="hover:bg-gray-50/50 transition-colors">
-              <td class="px-4 py-3.5 text-xs">
+              <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
                 <span class="font-semibold text-gray-700">Median AED/sqft</span>
-                <span class="block text-[10px] text-gray-400 mt-0.5">Rolling 12 months</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">Rolling 12 months</span>
               </td>
               {#each selectedDistricts as d}
                 {@const row = rowByDistrict.get(d)}
-                <td class="px-4 py-3.5 text-right tabular-nums text-sm font-medium text-gray-800">
+                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-right tabular-nums text-xs sm:text-sm font-medium text-gray-800">
                   {fmtPsf(row?.medianPsf ?? null)}
                 </td>
               {/each}
@@ -399,95 +398,111 @@
 
             <!-- 3. YoY Price Growth — highest wins -->
             <tr class="hover:bg-gray-50/50 transition-colors">
-              <td class="px-4 py-3.5 text-xs">
+              <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
                 <span class="font-semibold text-gray-700">YoY Price Growth</span>
-                <span class="block text-[10px] text-gray-400 mt-0.5">AED/sqft · vs prior 12 months</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">AED/sqft · vs prior 12 months</span>
               </td>
               {#each selectedDistricts as d, i}
                 {@const row = rowByDistrict.get(d)}
                 {@const v = row?.yoyPct ?? null}
                 {@const isWinner = yoyWinners.has(i)}
-                <td class="px-4 py-3.5 text-right tabular-nums text-sm font-medium
-                  {isWinner ? 'text-emerald-700 font-semibold' : v !== null && v < 0 ? 'text-red-500' : 'text-gray-800'}">
-                  {fmtPct(v)}
-                  {#if isWinner}
-                    <span class="ml-1 inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">↑ best</span>
-                  {/if}
+                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5">
+                  <div class="flex flex-col items-end sm:flex-row sm:items-center sm:justify-end gap-0.5 sm:gap-0">
+                    <span class="tabular-nums text-xs sm:text-sm font-medium sm:mr-1
+                      {isWinner ? 'text-emerald-700 font-semibold' : v !== null && v < 0 ? 'text-red-500' : 'text-gray-800'}">
+                      {fmtPct(v)}
+                    </span>
+                    {#if isWinner}
+                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">↑ best</span>
+                    {/if}
+                  </div>
                 </td>
               {/each}
             </tr>
 
             <!-- 4. Gross Rental Yield — highest wins -->
             <tr class="hover:bg-gray-50/50 transition-colors">
-              <td class="px-4 py-3.5 text-xs">
+              <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
                 <span class="font-semibold text-gray-700">Gross Rental Yield</span>
-                <span class="block text-[10px] text-gray-400 mt-0.5">ADREC rent ÷ sale price · {rentalYear}</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">ADREC rent ÷ sale price · {rentalYear}</span>
               </td>
               {#each selectedDistricts as d, i}
                 {@const row = rowByDistrict.get(d)}
                 {@const v = row?.grossYieldPct ?? null}
                 {@const isWinner = yieldWinners.has(i)}
-                <td class="px-4 py-3.5 text-right tabular-nums text-sm font-medium
-                  {isWinner ? 'text-emerald-700 font-semibold' : 'text-gray-800'}">
-                  {v !== null ? v.toFixed(2) + '%' : '—'}
-                  {#if isWinner}
-                    <span class="ml-1 inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">↑ best</span>
-                  {/if}
+                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5">
+                  <div class="flex flex-col items-end sm:flex-row sm:items-center sm:justify-end gap-0.5 sm:gap-0">
+                    <span class="tabular-nums text-xs sm:text-sm font-medium sm:mr-1
+                      {isWinner ? 'text-emerald-700 font-semibold' : 'text-gray-800'}">
+                      {v !== null ? v.toFixed(2) + '%' : '—'}
+                    </span>
+                    {#if isWinner}
+                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">↑ best</span>
+                    {/if}
+                  </div>
                 </td>
               {/each}
             </tr>
 
             <!-- 5. Median Service Charge — lowest wins -->
             <tr class="hover:bg-gray-50/50 transition-colors">
-              <td class="px-4 py-3.5 text-xs">
+              <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
                 <span class="font-semibold text-gray-700">Service Charge</span>
-                <span class="block text-[10px] text-gray-400 mt-0.5">Median AED/sqft/yr across projects</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">Median AED/sqft/yr across projects</span>
               </td>
               {#each selectedDistricts as d, i}
                 {@const sc = districtMedianSc(d)}
                 {@const isWinner = scWinners.has(i)}
-                <td class="px-4 py-3.5 text-right tabular-nums text-sm font-medium
-                  {isWinner ? 'text-emerald-700 font-semibold' : 'text-gray-800'}">
-                  {#if sc !== null}
-                    {fmtSc(sc)}<span class="text-gray-400 text-[10px]"> /sqft</span>
-                  {:else}
-                    —
-                  {/if}
-                  {#if isWinner}
-                    <span class="ml-1 inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">↓ lowest</span>
-                  {/if}
+                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5">
+                  <div class="flex flex-col items-end sm:flex-row sm:items-center sm:justify-end gap-0.5 sm:gap-0">
+                    <span class="tabular-nums text-xs sm:text-sm font-medium sm:mr-1
+                      {isWinner ? 'text-emerald-700 font-semibold' : 'text-gray-800'}">
+                      {#if sc !== null}
+                        {fmtSc(sc)}<span class="text-gray-400 text-[10px]">/sqft</span>
+                      {:else}
+                        —
+                      {/if}
+                    </span>
+                    {#if isWinner}
+                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">↓ lowest</span>
+                    {/if}
+                  </div>
                 </td>
               {/each}
             </tr>
 
             <!-- 6. Transaction Volume — highest wins (liquidity) -->
             <tr class="hover:bg-gray-50/50 transition-colors">
-              <td class="px-4 py-3.5 text-xs">
+              <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
                 <span class="font-semibold text-gray-700">Transaction Volume</span>
-                <span class="block text-[10px] text-gray-400 mt-0.5">Sales count · rolling 12 months</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">Sales count · rolling 12 months</span>
               </td>
               {#each selectedDistricts as d, i}
                 {@const row = rowByDistrict.get(d)}
                 {@const isWinner = volWinners.has(i)}
-                <td class="px-4 py-3.5 text-right tabular-nums text-sm font-medium
-                  {isWinner ? 'text-emerald-700 font-semibold' : 'text-gray-800'}">
-                  {row ? fmtCount(row.txCount) + ' sales' : '—'}
-                  {#if isWinner}
-                    <span class="ml-1 inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">↑ most liquid</span>
-                  {/if}
+                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5">
+                  <div class="flex flex-col items-end sm:flex-row sm:items-center sm:justify-end gap-0.5 sm:gap-0">
+                    <span class="tabular-nums text-xs sm:text-sm font-medium sm:mr-1
+                      {isWinner ? 'text-emerald-700 font-semibold' : 'text-gray-800'}">
+                      {row ? fmtCount(row.txCount) + ' sales' : '—'}
+                    </span>
+                    {#if isWinner}
+                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">↑ most liquid</span>
+                    {/if}
+                  </div>
                 </td>
               {/each}
             </tr>
 
             <!-- 7. Supply Pipeline — informational only -->
             <tr class="hover:bg-gray-50/50 transition-colors">
-              <td class="px-4 py-3.5 text-xs">
+              <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
                 <span class="font-semibold text-gray-700">Supply Pipeline</span>
-                <span class="block text-[10px] text-gray-400 mt-0.5">Off-plan primary registrations · 3 yrs</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">Off-plan primary registrations · 3 yrs</span>
               </td>
               {#each selectedDistricts as d}
                 {@const row = rowByDistrict.get(d)}
-                <td class="px-4 py-3.5 text-right tabular-nums text-sm font-medium text-gray-800">
+                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-right tabular-nums text-xs sm:text-sm font-medium text-gray-800">
                   {row ? fmtCount(row.pipelineCount) + ' units' : '—'}
                 </td>
               {/each}

@@ -354,7 +354,7 @@
         <div class="px-4 py-3 divide-y divide-gray-50 text-sm">
           <div class="flex justify-between py-2 gap-2">
             <span class="text-gray-500 min-w-0">Appreciation rate</span>
-            <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{fmtPct(deal.annualAppPct)} p.a.{furnishingPctVal(deal.otherFactorType) > 0 ? ` + ${furnishingLabel(deal.otherFactorType)} premium` : ''}</span>
+            <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{fmtPct(deal.annualAppPct)} p.a.{deal.otherFactorType === 'yes' ? ' + furnished/branded (+10%)' : ''}</span>
           </div>
           <div class="flex justify-between py-2 gap-2 font-semibold">
             <span class="text-gray-800 min-w-0">Projected selling price</span>

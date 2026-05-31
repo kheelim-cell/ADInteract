@@ -93,8 +93,8 @@
   let comparablePsf   = $state(1_250);
   let yearsToResale   = $state(5);
   let annualAppPct    = $state(4);
-  let otherFactorType = $state<'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality'>('none');
-  let otherAppPct     = $derived(otherFactorType === 'basic_airbnb' ? 10 : otherFactorType === 'highend_airbnb' ? 20 : otherFactorType === 'branded_hospitality' ? 25 : 0);
+  let otherFactorType = $state<'no' | 'yes'>('no');
+  let otherAppPct     = $derived(otherFactorType === 'yes' ? 10 : 0);
   let furnishingType  = $state<'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality'>('none');
   let furnishingPct   = $derived(furnishingType === 'basic_airbnb' ? 10 : furnishingType === 'highend_airbnb' ? 20 : furnishingType === 'branded_hospitality' ? 25 : 0);
   let maidsRoom       = $state<'no' | 'yes'>('no');
@@ -833,10 +833,8 @@
             <span class="text-[11px] text-white/50">Furnishing / Branding</span>
             <div class="relative">
               <select bind:value={otherFactorType} class={selManual}>
-                <option value="none">No furnishing (+0%)</option>
-                <option value="basic_airbnb">Basic AirBnB (+10%)</option>
-                <option value="highend_airbnb">High-end AirBnB (+20%)</option>
-                <option value="branded_hospitality">Branded hospitality (+25%)</option>
+                <option value="no">No (+0%)</option>
+                <option value="yes">Yes, furnished/branded (+10%)</option>
               </select>
               <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />

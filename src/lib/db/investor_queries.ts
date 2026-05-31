@@ -369,6 +369,147 @@ export async function queryFlipScanner(
 	}));
 }
 
+// ─── District Side-by-Side Comparison ──────────────────────────────────────
+
+export interface DistrictComparisonData {
+	district: string;
+	medianPrice: number | null;       // AED, rolling 12 months
+	medianPsf: number | null;         // AED/sqft, rolling 12 months
+	prevPsf: number | null;           // AED/sqft, prior 12 months (for YoY)
+	yoyPct: number | null;            // median AED/sqft YoY growth %
+	medianAnnualRent: number | null;  // AED, latest rental year
+	grossYieldPct: number | null;     // medianAnnualRent / medianPrice × 100
+	txCount: number;                  // sales volume, rolling 12 months
+	pipelineCount: number;            // off-plan primary registrations, last 3 years
+}
+
+/**
+ * Compare 2–3 districts across 7 investment metrics.
+ * Uses rolling date windows (not calendar years) for most-current data.
+ *
+ * @param districts  Array of 2–3 district name strings (must match DB values)
+ * @param layout     DB layout value: 'studio' | '1 bed' | '2 beds' | '3 beds'
+ * @param rentalYear Latest available year in the rental table
+ */
+export async function queryDistrictComparison(
+	districts: string[],
+	layout: string,
+	rentalYear: number
+): Promise<DistrictComparisonData[]> {
+	if (districts.length === 0) return [];
+
+	function subtractDays(d: Date, days: number): string {
+		const r = new Date(d);
+		r.setDate(r.getDate() - days);
+		return r.toISOString().slice(0, 10);
+	}
+
+	const now    = new Date();
+	const today  = now.toISOString().slice(0, 10);
+	const d365   = subtractDays(now, 365);   // current window start
+	const d730   = subtractDays(now, 730);   // prior window start
+	const d1095  = subtractDays(now, 1095);  // 3-year pipeline start
+
+	const distList         = districts.map(d => `'${esc(d)}'`).join(', ');
+	const layoutCond       = `layout = '${esc(layout)}'`;
+	const rentalLayoutSQL  = `layout = '${esc(layout)}'`;
+
+	const rows = await query<{
+		district: string;
+		median_price: number | null;
+		median_psf: number | null;
+		prev_psf: number | null;
+		yoy_pct: number | null;
+		median_annual_rent: number | null;
+		gross_yield_pct: number | null;
+		tx_count: number;
+		pipeline_count: number;
+	}>(`
+		WITH
+		cur AS (
+			SELECT district,
+			       PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY price_aed)    AS median_price,
+			       PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft) AS median_psf,
+			       COUNT(*) AS tx_count
+			FROM transactions
+			WHERE sale_date >= '${d365}' AND sale_date <= '${today}'
+			  AND price_aed > 0 AND rate_per_sqft > 0
+			  AND ${layoutCond}
+			  AND district IN (${distList})
+			GROUP BY district
+		),
+		prv AS (
+			SELECT district,
+			       PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft) AS prev_psf
+			FROM transactions
+			WHERE sale_date >= '${d730}' AND sale_date < '${d365}'
+			  AND rate_per_sqft > 0
+			  AND ${layoutCond}
+			  AND district IN (${distList})
+			GROUP BY district
+		),
+		rents AS (
+			SELECT district,
+			       PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY median_rent) AS median_annual_rent
+			FROM rental
+			WHERE year = ${rentalYear}
+			  AND typology = 'All property types'
+			  AND ${rentalLayoutSQL}
+			  AND rent_type = 'All types'
+			  AND median_rent > 0
+			  AND district IN (${distList})
+			GROUP BY district
+		),
+		pipeline AS (
+			SELECT district, COUNT(*) AS pipeline_count
+			FROM transactions
+			WHERE sale_type = 'off-plan'
+			  AND sale_sequence = 'primary'
+			  AND sale_date >= '${d1095}'
+			  AND sale_date <= '${today}'
+			  AND district IN (${distList})
+			GROUP BY district
+		)
+		SELECT
+			c.district,
+			ROUND(c.median_price, 0)  AS median_price,
+			ROUND(c.median_psf, 0)    AS median_psf,
+			ROUND(p.prev_psf, 0)      AS prev_psf,
+			CASE
+				WHEN p.prev_psf IS NOT NULL AND p.prev_psf > 0
+				THEN ROUND(((c.median_psf - p.prev_psf) / p.prev_psf) * 100, 1)
+				ELSE NULL
+			END AS yoy_pct,
+			ROUND(r.median_annual_rent, 0) AS median_annual_rent,
+			CASE
+				WHEN c.median_price > 0 AND r.median_annual_rent IS NOT NULL
+				THEN ROUND((r.median_annual_rent / c.median_price) * 100, 2)
+				ELSE NULL
+			END AS gross_yield_pct,
+			c.tx_count,
+			COALESCE(pl.pipeline_count, 0) AS pipeline_count
+		FROM cur c
+		LEFT JOIN prv p      ON c.district = p.district
+		LEFT JOIN rents r    ON c.district = r.district
+		LEFT JOIN pipeline pl ON c.district = pl.district
+		ORDER BY c.tx_count DESC
+	`);
+
+	return rows.map(r => ({
+		district:         r.district,
+		medianPrice:      r.median_price,
+		medianPsf:        r.median_psf,
+		prevPsf:          r.prev_psf,
+		yoyPct:           r.yoy_pct,
+		medianAnnualRent: r.median_annual_rent,
+		grossYieldPct:    r.gross_yield_pct,
+		txCount:          Number(r.tx_count),
+		pipelineCount:    Number(r.pipeline_count),
+	}));
+}
+
+// ─── Rental yield by community ─────────────────────────────────────────────
+
 /**
  * Gross rental yield by community.
  * yield = median annual rent (rental table, rentalYear) / median sale price (transactions, salesYear) × 100

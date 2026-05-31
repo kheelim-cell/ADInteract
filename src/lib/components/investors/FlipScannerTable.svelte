@@ -155,7 +155,7 @@
             <!-- ROI % — colour banded -->
             <td class="{TD} text-right whitespace-nowrap">
               <span class="inline-block rounded-full px-2 py-0.5 text-sm {roiClass(row.roiPct)}">
-                +{row.roiPct.toFixed(1)}%
+                +{Math.round(row.roiPct)}%
               </span>
             </td>
 

@@ -2,6 +2,8 @@
   import { metadata, dbReady } from '$lib/stores/db';
   import { query } from '$lib/db/duckdb';
   import PropertyUpload, { type ExtractionData } from '$lib/components/investors/PropertyUpload.svelte';
+  import { base } from '$app/paths';
+  import { buildDealUrl, type OffplanDealSnapshot } from '$lib/utils/dealShare';
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
   function fmtAed(v: number): string {
@@ -201,6 +203,52 @@
       rentalYoyLoading = false;
     }).catch(() => { rentalYoyLoading = false; });
   });
+
+  // ── Share link ───────────────────────────────────────────────────────────────
+  let shareCopied = $state(false);
+
+  function shareAnalysis() {
+    const snapshot: OffplanDealSnapshot = {
+      v: 1,
+      type: 'offplan',
+      projectName:        scannedMeta?.projectName  ?? undefined,
+      developer:          scannedMeta?.developer     ?? undefined,
+      district,
+      layout,
+      cost,
+      size,
+      comparableRent,
+      yearsTillHandover,
+      rentalAppPct,
+      furnishedPremium,
+      mgmtFeePct,
+      utilitiesMonthly,
+      serviceChargePsf,
+      yearsToResale,
+      annualAppPct,
+      otherFactorType,
+      resaleBrokerPct,
+      // pre-computed outputs
+      pricePerSqft,
+      registrationFee,
+      devRegistrationFee,
+      totalPurchaseCost,
+      grossRental,
+      netRental,
+      grossYield,
+      netYield,
+      sellingPrice,
+      netProfit,
+      netProfitPct,
+      netProfitPerYear,
+      totalRoiPa,
+    };
+    const url = buildDealUrl(snapshot, window.location.origin, base);
+    navigator.clipboard.writeText(url).then(() => {
+      shareCopied = true;
+      setTimeout(() => { shareCopied = false; }, 2500);
+    });
+  }
 
   // ── Auto-populate: capital gains YoY (off-plan PSF, last 12 vs prior 12, 50% haircut) ──
   let capYoyLoading = $state(false);
@@ -607,6 +655,25 @@
             </div>
           </div>
         </div>
+
+        <!-- Share button -->
+        <button
+          type="button"
+          onclick={shareAnalysis}
+          class="w-full flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-xs font-semibold text-gray-700 hover:border-amber-400 hover:text-amber-700 transition-colors"
+        >
+          {#if shareCopied}
+            <svg class="h-3.5 w-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+            <span class="text-emerald-600">Link copied!</span>
+          {:else}
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 1 1.242 7.244" />
+            </svg>
+            Share this analysis
+          {/if}
+        </button>
 
         <!-- Disclaimer -->
         <p class="text-[10px] text-gray-400 leading-relaxed px-0.5">

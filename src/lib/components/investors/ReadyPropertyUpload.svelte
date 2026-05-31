@@ -48,11 +48,11 @@
     pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.3.136/build/pdf.worker.min.mjs';
     const arrayBuffer = await file.arrayBuffer();
     const pdf = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
-    const pageCount = Math.min(pdf.numPages, 2);
+    const pageCount = Math.min(pdf.numPages, 32);
     const canvases: HTMLCanvasElement[] = [];
     for (let p = 1; p <= pageCount; p++) {
       const page = await pdf.getPage(p);
-      const viewport = page.getViewport({ scale: 1.5 });
+      const viewport = page.getViewport({ scale: 1.0 });
       const canvas = document.createElement('canvas');
       canvas.width = viewport.width;
       canvas.height = viewport.height;

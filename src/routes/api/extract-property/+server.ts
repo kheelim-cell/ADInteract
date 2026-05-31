@@ -7,7 +7,7 @@ export const prerender = false;
 const TODAY = new Date().toISOString().split('T')[0]; // e.g. "2026-05-30"
 
 const PROMPT = `You are a property data extraction assistant specialised in Abu Dhabi real estate.
-Extract fields from the property listing image or PDF document provided.
+Extract fields from the property listing image or document provided. Scan ALL visible pages/sections thoroughly.
 Return ONLY a valid JSON object with exactly these keys (use null for anything you cannot confidently determine):
 
 {
@@ -22,12 +22,25 @@ Return ONLY a valid JSON object with exactly these keys (use null for anything y
 }
 
 Rules:
+- projectName: full development/tower name (e.g. "Rotana Residences Al Reem Island")
+- developer: developer/builder name (e.g. "Royal Development Holding", "Aldar", "Imkan")
 - district: Abu Dhabi area/district name. Examples: "Al Saadiyat Island", "Yas Island", "Al Reem Island", "Khalifa City", "Al Raha Beach", "Masdar City", "Fahid Island", "Al Hidayriyyat"
-- layout: normalise to lowercase. Examples: "studio", "1 bed", "2 beds", "3 beds", "4 beds", "5 beds". Convert "3BR", "3 Bedroom", "Three Bedroom" → "3 beds"
-- cost: purchase/listing price in AED as a plain number (no commas, no currency symbols). If given in millions (e.g. "AED 13.5M") → 13500000
-- size: internal area in square feet. If given in sqm, multiply by 10.7639 and round to nearest integer
-- yearsTillHandover: today is ${TODAY}. Calculate decimal years from today to the handover/completion date. Examples: "Q2 2028" from May 2026 → 2.1, "Q4 2027" → 1.4, "2026" → 0.5. Round to 1 decimal place.
-- serviceChargePsf: annual service charge per square foot in AED. Only include if explicitly stated (e.g. "AED 18/sqft service charge")
+- layout: normalise to lowercase. Examples: "studio", "1 bed", "2 beds", "3 beds", "4 beds", "5 beds".
+  Convert any of these formats → same output:
+  "2BR", "2B", "2 Bedroom", "Two Bedroom", "2BR-2", "2B/2BR-2" → "2 beds"
+  "1BR", "1B", "1 Bedroom", "One Bedroom", "1BR+S" → "1 bed"
+  "Studio", "STU" → "studio"
+  "3BR", "3B", "3 Bedroom", "Three Bedroom" → "3 beds"
+- cost: the unit purchase/listing/sale price in AED as a plain number (no commas, no currency symbols).
+  Look for labels like "Purchase Price", "Sale Price", "Unit Price", "Listing Price", "Price".
+  If given in millions (e.g. "AED 2.825M") → 2825000
+- size: the TOTAL unit area in square feet, including balcony if a total/gross figure is provided.
+  Priority order: "Total Area" > "Gross Area" > "Net Area" > "Interior Area".
+  If the document shows Interior + Balcony + Total, use the Total figure.
+  If given in SQM, multiply by 10.7639 and round to nearest integer.
+- yearsTillHandover: today is ${TODAY}. Calculate decimal years from today to the handover/completion date.
+  Examples: "Q2 2028" from May 2026 → 2.1, "Q4 2027" → 1.4, "2026" → 0.5. Round to 1 decimal place.
+- serviceChargePsf: annual service charge per square foot in AED. Only include if explicitly stated.
 Return ONLY the JSON object. No markdown code fences. No explanation.`;
 
 export const POST: RequestHandler = async ({ request }) => {

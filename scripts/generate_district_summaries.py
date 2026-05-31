@@ -12,11 +12,20 @@ Run after transform.py in the GitHub Actions data refresh workflow.
 
 import json
 import os
+import re
 
 import pandas as pd
 
 PARQUET = "static/data/transactions.parquet"
 OUTPUT  = "src/lib/data/district_summaries.json"
+
+
+def slugify(name: str) -> str:
+    """'Al Reem Island' → 'al-reem-island', "'Asharij" → 'asharij'"""
+    s = name.lower()
+    s = re.sub(r"[''']", "", s)          # remove apostrophes
+    s = re.sub(r"[^a-z0-9]+", "-", s)   # non-alphanumeric → hyphen
+    return s.strip("-")
 
 # Layouts we actually name in prose (skip commercial + unclassified)
 RESIDENTIAL_LAYOUTS = {"studio", "1 bed", "2 beds", "3 beds", "4 beds", "5 beds", "5+ beds", "6+ beds"}
@@ -80,6 +89,7 @@ def main():
         )
 
         summaries[district] = {
+            "slug":            slugify(district),
             "tx_count_all":    int(len(d_all)),
             "tx_count_12m":    int(len(d_ref)),
             "median_psf":      round(float(psf.median()))          if len(psf)   >= 3 else None,

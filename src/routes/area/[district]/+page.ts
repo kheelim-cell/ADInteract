@@ -1,8 +1,8 @@
 import type { PageLoad, EntryGenerator } from './$types';
 import rawSummaries from '$lib/data/district_summaries.json';
 
-// Cast once so every consumer gets a typed object
-const summaries = rawSummaries as Record<string, {
+type DistrictSummary = {
+  slug:          string;
   tx_count_all:  number;
   tx_count_12m:  number;
   median_psf:    number | null;
@@ -12,19 +12,24 @@ const summaries = rawSummaries as Record<string, {
   top_layouts:   string[];
   is_12m:        boolean;
   last_sale:     string;
-}>;
+};
 
-// Tell the static adapter which /area/[district] pages to generate.
-// Reads from the generated JSON — no manual list to maintain.
+const summaries = rawSummaries as Record<string, DistrictSummary>;
+
+// Build a reverse map: slug → district name (e.g. "al-reem-island" → "Al Reem Island")
+const slugToDistrict: Record<string, string> = {};
+for (const [districtName, s] of Object.entries(summaries)) {
+  slugToDistrict[s.slug] = districtName;
+}
+
+// Generate one prerendered page per district slug  (e.g. /area/al-reem-island)
 export const entries: EntryGenerator = () =>
-  Object.keys(summaries).map(district => ({ district }));
+  Object.values(summaries).map(s => ({ district: s.slug }));
 
 export const prerender = true;
 
 export const load: PageLoad = ({ params }) => {
-  const districtName = decodeURIComponent(params.district);
-  return {
-    districtName,
-    summary: summaries[districtName] ?? null,
-  };
+  const districtName = slugToDistrict[params.district] ?? params.district;
+  const summary      = summaries[districtName] ?? null;
+  return { districtName, summary };
 };

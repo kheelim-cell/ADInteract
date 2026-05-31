@@ -1,22 +1,18 @@
 <script lang="ts">
-  import { page } from '$app/stores';
   import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
   import { base } from '$app/paths';
-  import { updateFilter } from '$lib/stores/filters';
-  import DashboardContent from '$lib/components/DashboardContent.svelte';
 
   let { data } = $props();
+  const { districtName, summary } = data;
 
-  // summary may be null for districts not in the generated JSON
-  const { summary } = data;
-
-  let districtName = $derived(decodeURIComponent($page.params.district));
-
-  // Human-readable period label for prose
   const periodLabel = summary?.is_12m ? 'the past 12 months' : 'the available dataset';
 
+  // Redirect users to the homepage with district filter applied.
+  // Google reads the prerendered HTML above before any JS runs.
+  // Users land here briefly, then get the familiar /?district= interactive view.
   onMount(() => {
-    updateFilter({ district: districtName, project: null });
+    goto(`${base}/?district=${encodeURIComponent(districtName)}`, { replaceState: true });
   });
 
   function fmtNum(n: number | null): string {
@@ -33,14 +29,20 @@
     name="description"
     content={summary
       ? `${fmtNum(summary.tx_count_12m)} ADREC-verified property transactions in ${districtName}. Median AED ${fmtNum(summary.median_psf)}/sqft. View off-plan and ready sales data, price trends, and top projects.`
-      : `Property transaction data for ${districtName}, Abu Dhabi. View ADREC-sourced price trends, median AED/sqft, and top projects.`}
+      : `Property transaction data for ${districtName}, Abu Dhabi. ADREC-sourced price trends, median AED/sqft, and top projects.`}
   />
-  <link rel="canonical" href="https://adinteract.co/area/{encodeURIComponent(districtName)}" />
+  <!-- Canonical is the clean slug URL — tells Google this is the authoritative page -->
+  <link rel="canonical" href="https://www.adinteract.co{base}/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
 </svelte:head>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
+<!-- ── Prose block ────────────────────────────────────────────────────────
+     This HTML is baked in at build time. Google reads it without running JS.
+     Users see it for ~100 ms before the onMount redirect fires.
+──────────────────────────────────────────────────────────────────────── -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-16">
+
   <!-- Breadcrumb -->
-  <nav class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+  <nav class="flex items-center gap-2 text-sm text-gray-500 mb-5">
     <a href="{base}/" class="hover:text-brand-600 transition-colors">Overview</a>
     <svg class="h-4 w-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -48,25 +50,13 @@
     <span class="font-medium text-gray-900">{districtName}</span>
   </nav>
 
-  <div class="flex items-start justify-between mb-4">
-    <div>
-      <h1 class="text-2xl font-bold text-navy">{districtName}</h1>
-      <p class="text-sm text-gray-400 mt-0.5">District analytics · Abu Dhabi property transactions</p>
-    </div>
-    <a
-      href="{base}/"
-      class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-brand-600 transition-colors bg-white border border-gray-200 rounded-lg px-3 py-2 hover:border-brand-300 shadow-sm"
-    >
-      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-      </svg>
-      Back
-    </a>
-  </div>
+  <h1 class="text-3xl font-bold text-navy mb-1">{districtName}</h1>
+  <p class="text-sm text-gray-400 mb-6">
+    Abu Dhabi property transactions · ADREC-verified data · updated daily
+  </p>
 
-  <!-- Static prose block — pre-rendered at build time, visible to Google before JS loads -->
   {#if summary}
-    <div class="rounded-xl border border-gray-100 bg-gray-50 px-5 py-4 mb-6 text-sm text-gray-700 leading-relaxed">
+    <div class="rounded-xl border border-gray-100 bg-gray-50 px-6 py-5 text-sm text-gray-700 leading-relaxed max-w-3xl">
       <p>
         <strong>{districtName}</strong> recorded
         <strong>{fmtNum(summary.tx_count_12m)} ADREC-verified property transactions</strong>
@@ -90,14 +80,26 @@
       </p>
       <p class="mt-2 text-xs text-gray-400">
         Data sourced from the Abu Dhabi Real Estate Centre (ADREC) and refreshed daily.
-        {summary.tx_count_all.toLocaleString('en-AE')} total transactions recorded since 2019.
+        {fmtNum(summary.tx_count_all)} total transactions recorded since 2019.
+        Last transaction: {summary.last_sale}.
       </p>
     </div>
-  {/if}
-</div>
 
-<DashboardContent
-  topAreasLabel="Top Projects by Volume"
-  topAreasClickable={false}
-  useTopProjects={true}
-/>
+    <!-- CTA — visible to users for the ~100 ms before redirect fires -->
+    <p class="mt-5 text-sm text-gray-500">
+      Loading interactive charts…
+      <a
+        href="{base}/?district={encodeURIComponent(districtName)}"
+        class="text-brand-600 underline hover:text-brand-700"
+      >Click here if not redirected</a>
+    </p>
+  {:else}
+    <p class="text-gray-500 text-sm">
+      Loading {districtName} data…
+      <a href="{base}/?district={encodeURIComponent(districtName)}" class="text-brand-600 underline">
+        Go to {districtName} analytics →
+      </a>
+    </p>
+  {/if}
+
+</div>

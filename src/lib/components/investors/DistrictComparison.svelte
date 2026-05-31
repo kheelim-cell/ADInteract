@@ -19,6 +19,11 @@
     { value: '3 beds', label: '3 Beds' },
   ] as const;
 
+  const PINNED_DISTRICTS = [
+    'Al Reem Island', 'Yas Island', 'Al Saadiyat Island', 'Al Rahah',
+    'Khalifa City', 'Al Reef', 'Fahid Island', 'Al Hidayriyyat',
+  ];
+
   // ── State ──────────────────────────────────────────────────────────────────
   let layout    = $state('1 bed');
   let district1 = $state('');
@@ -39,8 +44,16 @@
     return ly >= thisYear ? thisYear - 1 : ly;
   });
 
-  // ── District list for selects ──────────────────────────────────────────────
-  let allDistricts = $derived(($metadata?.districts ?? []).slice().sort());
+  // ── District list for selects (pinned popular areas first, rest alphabetical) ─
+  let pinnedDistricts = $derived.by(() => {
+    const all: string[] = $metadata?.districts ?? [];
+    return PINNED_DISTRICTS.filter(p => all.some(d => d.toLowerCase() === p.toLowerCase()));
+  });
+  let otherDistricts = $derived.by(() => {
+    const all: string[] = $metadata?.districts ?? [];
+    const pinnedSet = new Set(pinnedDistricts.map((p: string) => p.toLowerCase()));
+    return all.filter(d => !pinnedSet.has(d.toLowerCase())).sort();
+  });
 
   // ── Selected districts ─────────────────────────────────────────────────────
   let selectedDistricts = $derived(
@@ -50,7 +63,7 @@
 
   let canCompare = $derived($dbReady && selectedDistricts.length >= 2);
 
-  // ── URL state sync ─────────────────────────────────────────────────────────
+  // ── URL state sync (defaults to top 2 pinned districts when no URL params) ──
   onMount(() => {
     const sp = new URLSearchParams(window.location.search);
     const d1  = sp.get('d1') ?? '';
@@ -59,7 +72,9 @@
     const lay = sp.get('layout') ?? '1 bed';
 
     if (d1) district1 = d1;
+    else    district1 = PINNED_DISTRICTS[0]; // Al Reem Island
     if (d2) district2 = d2;
+    else    district2 = PINNED_DISTRICTS[1]; // Yas Island
     if (d3) { district3 = d3; show3rd = true; }
     if (LAYOUTS.some(l => l.value === lay)) layout = lay;
   });
@@ -218,9 +233,16 @@
         <div class="relative">
           <select bind:value={district1} class="{sel} min-w-[11rem]">
             <option value="">District 1 (required)</option>
-            {#each allDistricts as d}
-              <option value={d} disabled={d === district2 || (show3rd && d === district3)}>{d}</option>
-            {/each}
+            <optgroup label="Popular">
+              {#each pinnedDistricts as d}
+                <option value={d} disabled={d === district2 || (show3rd && d === district3)}>{d}</option>
+              {/each}
+            </optgroup>
+            <optgroup label="All districts">
+              {#each otherDistricts as d}
+                <option value={d} disabled={d === district2 || (show3rd && d === district3)}>{d}</option>
+              {/each}
+            </optgroup>
           </select>
           <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -233,9 +255,16 @@
         <div class="relative">
           <select bind:value={district2} class="{sel} min-w-[11rem]">
             <option value="">District 2 (required)</option>
-            {#each allDistricts as d}
-              <option value={d} disabled={d === district1 || (show3rd && d === district3)}>{d}</option>
-            {/each}
+            <optgroup label="Popular">
+              {#each pinnedDistricts as d}
+                <option value={d} disabled={d === district1 || (show3rd && d === district3)}>{d}</option>
+              {/each}
+            </optgroup>
+            <optgroup label="All districts">
+              {#each otherDistricts as d}
+                <option value={d} disabled={d === district1 || (show3rd && d === district3)}>{d}</option>
+              {/each}
+            </optgroup>
           </select>
           <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -248,9 +277,16 @@
           <div class="relative flex items-center gap-1.5">
             <select bind:value={district3} class="{sel} min-w-[11rem]">
               <option value="">District 3 (optional)</option>
-              {#each allDistricts as d}
-                <option value={d} disabled={d === district1 || d === district2}>{d}</option>
-              {/each}
+              <optgroup label="Popular">
+                {#each pinnedDistricts as d}
+                  <option value={d} disabled={d === district1 || d === district2}>{d}</option>
+                {/each}
+              </optgroup>
+              <optgroup label="All districts">
+                {#each otherDistricts as d}
+                  <option value={d} disabled={d === district1 || d === district2}>{d}</option>
+                {/each}
+              </optgroup>
             </select>
             <svg class="pointer-events-none absolute right-8 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />

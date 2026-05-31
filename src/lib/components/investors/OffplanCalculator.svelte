@@ -61,6 +61,14 @@
   let rentalAppPct      = $state(15);
   let furnishingType    = $state<'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality'>('none');
   let furnishingPct     = $derived(furnishingType === 'basic_airbnb' ? 10 : furnishingType === 'highend_airbnb' ? 20 : furnishingType === 'branded_hospitality' ? 25 : 0);
+  let maidsRoom         = $state<'no' | 'yes'>('no');
+  let maidsPct          = $derived.by(() => {
+    if (maidsRoom !== 'yes') return 0;
+    const l = layout.toLowerCase();
+    if (l === '2 beds') return 10;
+    if (l === '3 beds') return 15;
+    return 0;
+  });
   let mgmtFeePct        = $state(0);
   let utilitiesMonthly  = $state(0);
   let serviceChargePsf  = $state(15);
@@ -126,7 +134,8 @@
 
   // ── Derived: rental ──────────────────────────────────────────────────────────
   let baseRentalAfterGrowth = $derived(comparableRent * Math.pow(1 + rentalAppPct / 100, yearsTillHandover));
-  let grossRental = $derived(baseRentalAfterGrowth * (1 + furnishingPct / 100));
+  let afterFurnishing       = $derived(baseRentalAfterGrowth * (1 + furnishingPct / 100));
+  let grossRental           = $derived(afterFurnishing * (1 + maidsPct / 100));
   let mgmtFee       = $derived(grossRental * mgmtFeePct / 100);
   let utilities     = $derived(utilitiesMonthly * 12);
   let serviceCharge = $derived(size * serviceChargePsf * 1.05);
@@ -221,6 +230,7 @@
       yearsTillHandover,
       rentalAppPct,
       furnishingType,
+      maidsRoom,
       mgmtFeePct,
       utilitiesMonthly,
       serviceChargePsf,
@@ -442,7 +452,7 @@
           </label>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <label class="space-y-1">
             <span class="text-[11px] text-white/50">Rental Appreciation over Build (%)</span>
             <input type="number" bind:value={rentalAppPct} min="0" max="10" step="0.5" class={inp} />
@@ -465,6 +475,21 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
+          </div>
+          <div class="space-y-1">
+            <span class="text-[11px] text-white/50">Maid's Room</span>
+            <div class="relative">
+              <select bind:value={maidsRoom} class={selManual}>
+                <option value="no">No (+0%)</option>
+                <option value="yes">Yes{maidsPct > 0 ? ` (+${maidsPct}%)` : ''}</option>
+              </select>
+              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+            {#if maidsRoom === 'yes' && maidsPct === 0}
+              <p class="text-[10px] text-white/30 pl-0.5">Select 2 or 3 beds for premium</p>
+            {/if}
           </div>
         </div>
 
@@ -594,6 +619,12 @@
               <div class="flex justify-between text-gray-500">
                 <span>Furnishing premium (+{furnishingPct}%)</span>
                 <span class="tabular-nums text-emerald-600">+ {fmtAed(baseRentalAfterGrowth * furnishingPct / 100)}</span>
+              </div>
+            {/if}
+            {#if maidsPct > 0}
+              <div class="flex justify-between text-gray-500">
+                <span>Maid's room premium (+{maidsPct}%)</span>
+                <span class="tabular-nums text-emerald-600">+ {fmtAed(afterFurnishing * maidsPct / 100)}</span>
               </div>
             {/if}
             <div class="flex justify-between font-semibold text-gray-800 border-t border-amber-100 pt-1.5">

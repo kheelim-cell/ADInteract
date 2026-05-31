@@ -97,13 +97,22 @@
   let otherAppPct     = $derived(otherFactorType === 'basic_airbnb' ? 10 : otherFactorType === 'highend_airbnb' ? 20 : otherFactorType === 'branded_hospitality' ? 25 : 0);
   let furnishingType  = $state<'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality'>('none');
   let furnishingPct   = $derived(furnishingType === 'basic_airbnb' ? 10 : furnishingType === 'highend_airbnb' ? 20 : furnishingType === 'branded_hospitality' ? 25 : 0);
+  let maidsRoom       = $state<'no' | 'yes'>('no');
+  let maidsPct        = $derived.by(() => {
+    if (maidsRoom !== 'yes') return 0;
+    const l = layout.toLowerCase();
+    if (l === '2 beds') return 10;
+    if (l === '3 beds') return 15;
+    return 0;
+  });
   let additionalCapex = $state(0);
 
   // ── Derived: unit ─────────────────────────────────────────────────────────────
   let totalArea     = $derived(livingArea + balconyArea);
   let pricePerSqft  = $derived(totalArea > 0 ? price / totalArea : 0);
-  // effectiveRent applies the furnishing premium on top of the base annual rent
-  let effectiveRent = $derived(annualRent * (1 + furnishingPct / 100));
+  // effectiveRent applies furnishing then maid's room premium on top of base annual rent
+  let afterFurnishing = $derived(annualRent * (1 + furnishingPct / 100));
+  let effectiveRent   = $derived(afterFurnishing * (1 + maidsPct / 100));
 
   // ── Derived: LTV & mortgage ──────────────────────────────────────────────────
   let ltvKey               = $derived(`${mortgageType}|${residency}`);
@@ -391,6 +400,7 @@
       annualAppPct,
       otherFactorType,
       furnishingType,
+      maidsRoom,
       additionalCapex,
       // pre-computed outputs
       pricePerSqft,
@@ -646,19 +656,36 @@
           </label>
         </div>
 
-        <!-- Furnishing -->
-        <div class="space-y-1">
-          <span class="text-[11px] text-white/50">Furnishing / Branding</span>
-          <div class="relative">
-            <select bind:value={furnishingType} class={selManual}>
-              <option value="none">No furnishing (+0%)</option>
-              <option value="basic_airbnb">Basic AirBnB (+10%)</option>
-              <option value="highend_airbnb">High-end AirBnB (+20%)</option>
-              <option value="branded_hospitality">Branded hospitality (+25%)</option>
-            </select>
-            <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-            </svg>
+        <!-- Furnishing + Maid's Room -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="space-y-1">
+            <span class="text-[11px] text-white/50">Furnishing / Branding</span>
+            <div class="relative">
+              <select bind:value={furnishingType} class={selManual}>
+                <option value="none">No furnishing (+0%)</option>
+                <option value="basic_airbnb">Basic AirBnB (+10%)</option>
+                <option value="highend_airbnb">High-end AirBnB (+20%)</option>
+                <option value="branded_hospitality">Branded hospitality (+25%)</option>
+              </select>
+              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+          </div>
+          <div class="space-y-1">
+            <span class="text-[11px] text-white/50">Maid's Room</span>
+            <div class="relative">
+              <select bind:value={maidsRoom} class={selManual}>
+                <option value="no">No (+0%)</option>
+                <option value="yes">Yes{maidsPct > 0 ? ` (+${maidsPct}%)` : ''}</option>
+              </select>
+              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
+            {#if maidsRoom === 'yes' && maidsPct === 0}
+              <p class="text-[10px] text-white/30 pl-0.5">Select 2 or 3 beds for premium</p>
+            {/if}
           </div>
         </div>
 
@@ -884,6 +911,12 @@
               <div class="flex justify-between text-gray-500">
                 <span>Furnishing premium (+{furnishingPct}%)</span>
                 <span class="tabular-nums text-emerald-600">+ {fmtAed(annualRent * furnishingPct / 100)}</span>
+              </div>
+            {/if}
+            {#if maidsPct > 0}
+              <div class="flex justify-between text-gray-500">
+                <span>Maid's room premium (+{maidsPct}%)</span>
+                <span class="tabular-nums text-emerald-600">+ {fmtAed(afterFurnishing * maidsPct / 100)}</span>
               </div>
             {/if}
             <div class="flex justify-between text-gray-500">

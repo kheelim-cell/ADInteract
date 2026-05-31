@@ -27,6 +27,7 @@ export interface OffplanDealSnapshot {
 	yearsTillHandover: number;
 	rentalAppPct: number;
 	furnishingType: 'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality';
+	maidsRoom: 'no' | 'yes';
 	mgmtFeePct: number;
 	utilitiesMonthly: number;
 	serviceChargePsf: number;
@@ -75,6 +76,7 @@ export interface ReadyDealSnapshot {
 	annualAppPct: number;
 	otherFactorType: 'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality';
 	furnishingType: 'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality';
+	maidsRoom: 'no' | 'yes';
 	additionalCapex: number;
 	// Pre-computed outputs
 	pricePerSqft: number;

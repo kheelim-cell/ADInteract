@@ -54,6 +54,15 @@
       : 'Deal Analysis | ADInteract'
   );
 
+  // ── Maid's room pct ────────────────────────────────────────────────────────
+  function maidsPctVal(layout: string | undefined, maidsRoom: string | undefined): number {
+    if (maidsRoom !== 'yes') return 0;
+    const l = (layout ?? '').toLowerCase();
+    if (l === '2 beds') return 10;
+    if (l === '3 beds') return 15;
+    return 0;
+  }
+
   // ── Furnishing label / pct ──────────────────────────────────────────────────
   function furnishingLabel(t: string | undefined): string {
     if (t === 'basic_airbnb')        return 'Basic AirBnB';
@@ -272,6 +281,12 @@
                 <span class="tabular-nums text-emerald-600 flex-shrink-0 text-right">+{fmtPct(furnishingPctVal(op.furnishingType), 0)}</span>
               </div>
             {/if}
+            {#if maidsPctVal(op.layout, op.maidsRoom) > 0}
+              <div class="flex justify-between py-2 gap-2">
+                <span class="text-gray-500 min-w-0">Maid's room premium</span>
+                <span class="tabular-nums text-emerald-600 flex-shrink-0 text-right">+{fmtPct(maidsPctVal(op.layout, op.maidsRoom), 0)}</span>
+              </div>
+            {/if}
             <div class="flex justify-between py-2 gap-2 font-semibold">
               <span class="text-gray-800 min-w-0">Gross rental at handover</span>
               <span class="tabular-nums text-emerald-700 flex-shrink-0 text-right">{fmtAed(op.grossRental)}</span>
@@ -301,6 +316,12 @@
               <div class="flex justify-between py-2 gap-2">
                 <span class="text-gray-500 min-w-0">Furnishing premium · {furnishingLabel(rd.furnishingType)}</span>
                 <span class="tabular-nums text-emerald-600 flex-shrink-0 text-right">+{fmtPct(furnishingPctVal(rd.furnishingType), 0)}</span>
+              </div>
+            {/if}
+            {#if maidsPctVal(rd.layout, rd.maidsRoom) > 0}
+              <div class="flex justify-between py-2 gap-2">
+                <span class="text-gray-500 min-w-0">Maid's room premium</span>
+                <span class="tabular-nums text-emerald-600 flex-shrink-0 text-right">+{fmtPct(maidsPctVal(rd.layout, rd.maidsRoom), 0)}</span>
               </div>
             {/if}
             <div class="flex justify-between py-2 gap-2">

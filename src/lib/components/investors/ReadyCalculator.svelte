@@ -97,7 +97,8 @@
   let additionalCapex = $state(0);
 
   // ── Derived: unit ─────────────────────────────────────────────────────────────
-  let pricePerSqft  = $derived(livingArea > 0 ? price / livingArea : 0);
+  let totalArea     = $derived(livingArea + balconyArea);
+  let pricePerSqft  = $derived(totalArea > 0 ? price / totalArea : 0);
   let effectiveRent = $derived(annualRent);   // always use annualRent; vacant uses market median
 
   // ── Derived: LTV & mortgage ──────────────────────────────────────────────────

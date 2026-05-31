@@ -47,6 +47,13 @@
     return 'text-red-600';
   }
 
+  // ── Page title (no control flow inside <title> in Svelte 5) ──────────────────
+  let pageTitle = $derived(
+    deal
+      ? `${deal.projectName ?? (isOffplan ? 'Off-Plan' : 'Ready Property')} Deal Analysis | ADInteract`
+      : 'Deal Analysis | ADInteract'
+  );
+
   // ── Mortgage type label ─────────────────────────────────────────────────────
   function mtLabel(t: string | undefined): string {
     if (t === '1st') return '1st property';
@@ -61,13 +68,7 @@
 </script>
 
 <svelte:head>
-  <title>
-    {#if deal}
-      {deal.projectName ?? (isOffplan ? 'Off-Plan' : 'Ready Property')} Deal Analysis | ADInteract
-    {:else}
-      Deal Analysis | ADInteract
-    {/if}
-  </title>
+  <title>{pageTitle}</title>
   <meta name="robots" content="noindex" />
 </svelte:head>
 

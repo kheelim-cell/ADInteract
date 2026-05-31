@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,600;0,800;1,300&amp;display=swap');</style>
+  </defs>
+
+  <!-- White background -->
+  <rect width="800" height="200" fill="#FFFFFF"/>
+  <!-- Green accent line at top -->
+  <rect width="800" height="2.5" fill="#1B4332"/>
+
+  <!-- Icon container -->
+  <rect x="24" y="24" width="152" height="152" rx="22" fill="#EAF2ED" stroke="#C8A951" stroke-width="1.5" stroke-opacity="0.6"/>
+
+  <!-- Skyline: scale=1.7 | center in box: x=32, y=68 -->
+  <path transform="translate(32,68) scale(1.7)" fill="#C8A951"
+    d="M0,38 L0,30 L5,30 L5,26 L10,26 L10,30 L11,30 L11,25 Q15.5,18 20,25 L20,30 L21,30
+       L21,21 L23,21 L23,13 L25,3 L27,13 L27,21 L29,21 L29,17 L31,17 L31,7 L32,7 L32,2
+       L32.5,0 L33,2 L33,7 L34,7 L34,17 L35,17 L35,21 L37,21 L37,13 L39.5,7 L42,13 L42,21
+       L44,21 L44,16 L47,13 L50,16 L50,21 L52,21 L52,27 L57,27 L57,23 L64,23 L64,27 L72,27
+       L72,31 L80,31 L80,38 Z"/>
+
+  <!-- "ADINTERACT" main text -->
+  <text x="200" y="122" font-family="Montserrat,system-ui,-apple-system,sans-serif" font-size="76" fill="#1B4332">
+    <tspan font-weight="800" letter-spacing="-2">AD</tspan><tspan font-weight="300" font-style="italic" letter-spacing="-1">INTERACT</tspan>
+  </text>
+
+  <!-- Subtitle -->
+  <text x="202" y="154" font-family="Montserrat,system-ui,-apple-system,sans-serif"
+        font-size="13.5" fill="#4A7A6A" font-weight="600" letter-spacing="5">ABU DHABI PROPERTY TRANSACTIONS</text>
+</svg>

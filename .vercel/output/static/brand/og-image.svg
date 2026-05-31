@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;0,800;1,300&amp;display=swap');</style>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a4535"/>
+      <stop offset="100%" stop-color="#091910"/>
+    </linearGradient>
+    <linearGradient id="gl" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="40%" stop-color="#C8A951" stop-opacity="0.75"/>
+      <stop offset="60%" stop-color="#C8A951" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+    <linearGradient id="gb" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="50%" stop-color="#C8A951" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle watermark skyline (very large, very faint) -->
+  <path transform="translate(150,203) scale(11.25)" fill="rgba(255,255,255,0.022)"
+    d="M0,38 L0,30 L5,30 L5,26 L10,26 L10,30 L11,30 L11,25 Q15.5,18 20,25 L20,30 L21,30
+       L21,21 L23,21 L23,13 L25,3 L27,13 L27,21 L29,21 L29,17 L31,17 L31,7 L32,7 L32,2
+       L32.5,0 L33,2 L33,7 L34,7 L34,17 L35,17 L35,21 L37,21 L37,13 L39.5,7 L42,13 L42,21
+       L44,21 L44,16 L47,13 L50,16 L50,21 L52,21 L52,27 L57,27 L57,23 L64,23 L64,27 L72,27
+       L72,31 L80,31 L80,38 Z"/>
+
+  <!-- Gold accent lines -->
+  <rect width="1200" height="4" fill="url(#gl)"/>
+  <rect y="626" width="1200" height="4" fill="url(#gb)"/>
+
+  <!-- Icon box centered: x=500, y=90, w=200, h=200 (centered at x=600) -->
+  <rect x="500" y="90" width="200" height="200" rx="30" fill="rgba(255,255,255,0.07)" stroke="#C8A951" stroke-width="2" stroke-opacity="0.4"/>
+
+  <!-- Skyline: scale=2.2 → 176×83.6 | center in 200×200 at (500,90) -->
+  <path transform="translate(512,148) scale(2.2)" fill="#dfb83c"
+    d="M0,38 L0,30 L5,30 L5,26 L10,26 L10,30 L11,30 L11,25 Q15.5,18 20,25 L20,30 L21,30
+       L21,21 L23,21 L23,13 L25,3 L27,13 L27,21 L29,21 L29,17 L31,17 L31,7 L32,7 L32,2
+       L32.5,0 L33,2 L33,7 L34,7 L34,17 L35,17 L35,21 L37,21 L37,13 L39.5,7 L42,13 L42,21
+       L44,21 L44,16 L47,13 L50,16 L50,21 L52,21 L52,27 L57,27 L57,23 L64,23 L64,27 L72,27
+       L72,31 L80,31 L80,38 Z"/>
+
+  <!-- "ADINTERACT" centered -->
+  <text x="600" y="392" text-anchor="middle" font-family="Montserrat,system-ui,-apple-system,sans-serif"
+        font-size="108" fill="#dfb83c">
+    <tspan font-weight="800" letter-spacing="-3">AD</tspan><tspan font-weight="300" font-style="italic" letter-spacing="-2">INTERACT</tspan>
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="430" text-anchor="middle" font-family="Montserrat,system-ui,-apple-system,sans-serif"
+        font-size="20" fill="rgba(200,169,81,0.75)" font-weight="600" letter-spacing="6">ABU DHABI PROPERTY TRANSACTIONS</text>
+
+  <!-- URL -->
+  <text x="600" y="578" text-anchor="middle" font-family="Montserrat,system-ui,sans-serif"
+        font-size="17" fill="rgba(255,255,255,0.20)" font-weight="500" letter-spacing="2">adinteract.co</text>
+</svg>

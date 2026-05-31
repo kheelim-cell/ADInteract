@@ -23,7 +23,7 @@ import pyarrow.parquet as pq
 # Constants
 # ---------------------------------------------------------------------------
 
-SPREADSHEET_ID = "1ZK7oA_qAwTOdaNhy8vE6Oh7omT6TRAdOI0bXmEtysMg"
+SPREADSHEET_ID = "1c9Xc6qsXfTwmnZ4gGMwvyCQ3bTDXBIO9ZyfnfwMl3tw"
 SHEET_NAME = "AB Sales.csv"
 
 SQM_TO_SQFT = 10.7639

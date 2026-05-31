@@ -10,7 +10,7 @@ than cell-by-cell gspread.get_all_values() for 100K+ row sheets.
 Requires the GOOGLE_CREDENTIALS_JSON environment variable to be set to a
 base64-encoded Google Service Account JSON key.
 
-Sheet  : https://docs.google.com/spreadsheets/d/1ZK7oA_qAwTOdaNhy8vE6Oh7omT6TRAdOI0bXmEtysMg
+Sheet  : https://docs.google.com/spreadsheets/d/1c9Xc6qsXfTwmnZ4gGMwvyCQ3bTDXBIO9ZyfnfwMl3tw
 Tab GID: 39002702
 """
 
@@ -21,7 +21,7 @@ import os
 from google.auth.transport.requests import AuthorizedSession
 from google.oauth2.service_account import Credentials
 
-SHEET_ID      = "1ZK7oA_qAwTOdaNhy8vE6Oh7omT6TRAdOI0bXmEtysMg"
+SHEET_ID      = "1c9Xc6qsXfTwmnZ4gGMwvyCQ3bTDXBIO9ZyfnfwMl3tw"
 WORKSHEET_GID = 39002702
 OUTPUT_CSV    = "scripts/data/adrec_raw.csv"
 

@@ -93,7 +93,7 @@
         </p>
         <p class="mt-0.5 text-xs leading-relaxed text-gray-500">
           This scanner compares the <strong class="text-gray-700">median off-plan price/sqft</strong> registered with ADREC in the selected entry window against the <strong class="text-gray-700">median secondary-market price/sqft</strong> recorded in the last 12 months — for the same project and bedroom type. Projects where secondary prices exceed off-plan entry prices are ranked by ROI %.
-          Results reflect ADREC-registered prices, not asking prices. Transaction costs (4% DLD, agency fees, SPA amendments) are not included in the ROI figure.
+          Results reflect ADREC-registered prices, not asking prices. Transaction costs (2% ADM fee, agency fees) are not included in the ROI figure.
         </p>
       </div>
     </div>

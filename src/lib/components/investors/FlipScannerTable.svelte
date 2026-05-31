@@ -103,10 +103,10 @@
             ROI % {arrow('roiPct')}
           </th>
           <th class="{TH}" onclick={() => toggleSort('offplanCount')}>
-            Off-plan Tx {arrow('offplanCount')}
+            Off-plan Vol {arrow('offplanCount')}
           </th>
           <th class="{TH}" onclick={() => toggleSort('secondaryCount')}>
-            Secondary Tx {arrow('secondaryCount')}
+            Secondary Vol {arrow('secondaryCount')}
           </th>
           <th class={TH}>Entry Window</th>
         </tr>
@@ -186,7 +186,7 @@
       <span class="hidden sm:inline">·</span>
       <span>Exit PSF = median secondary-market rate/sqft (last 12 months)</span>
       <span class="hidden sm:inline">·</span>
-      <span>ROI = price-per-sqft appreciation only — excludes transaction costs, DLD fees, and financing</span>
+      <span>ROI = price-per-sqft appreciation only — excludes ADM fee, agency fees, and financing</span>
     </div>
   {/if}
 </div>

@@ -80,6 +80,13 @@
   let otherAppPct     = $derived(otherFactorType === 'yes' ? 10 : 0);
   let resaleBrokerPct = $state(2);
 
+  // Auto-sync capital gains "furnished/branded" toggle with furnishing selection
+  $effect(() => {
+    otherFactorType = (furnishingType === 'highend_airbnb' || furnishingType === 'branded_hospitality')
+      ? 'yes'
+      : 'no';
+  });
+
   // ── AI Property Scanner ──────────────────────────────────────────────────────
   let scannedFields = $state<Set<string>>(new Set());
   let scannedMeta   = $state<{ projectName: string | null; developer: string | null } | null>(null);

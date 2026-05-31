@@ -233,6 +233,142 @@ export async function queryTopRentalProjectsByGrowth(
 	}));
 }
 
+// ─── Off-Plan Flip Scanner ─────────────────────────────────────────────────
+
+export interface FlipRow {
+	projectName: string;
+	district: string;
+	layout: string;
+	entryPsf: number;       // median off-plan rate/sqft — registered in the entry window
+	exitPsf: number;        // median secondary-market rate/sqft — last 12 months
+	psfGain: number;        // exitPsf − entryPsf
+	roiPct: number;         // gain / entryPsf × 100
+	offplanCount: number;   // # off-plan tx used to compute entryPsf
+	secondaryCount: number; // # secondary tx used to compute exitPsf
+	earliestOffplan: string;
+	latestOffplan: string;
+}
+
+/**
+ * Compare median off-plan entry prices (registered N months ago) against
+ * current secondary-market prices for the same project + layout.
+ *
+ * @param entryStartMonths  How far back the off-plan window starts (default 48 months)
+ * @param entryEndMonths    How recent the off-plan window ends   (default 12 months)
+ *                          i.e. entries between 48 and 12 months ago
+ * @param minOffplanCount   Minimum off-plan tx required (default 3)
+ * @param minSecondaryCount Minimum secondary tx required (default 2)
+ */
+export async function queryFlipScanner(
+	filters?: InvestorFilterState,
+	entryStartMonths = 48,
+	entryEndMonths = 12,
+	minOffplanCount = 3,
+	minSecondaryCount = 2
+): Promise<FlipRow[]> {
+	const now = new Date();
+	function subtractMonths(d: Date, m: number): string {
+		const r = new Date(d.getFullYear(), d.getMonth() - m, d.getDate());
+		return r.toISOString().slice(0, 10);
+	}
+	const windowStart  = subtractMonths(now, entryStartMonths); // e.g. 48 months ago
+	const windowEnd    = subtractMonths(now, entryEndMonths);   // e.g. 12 months ago
+	const exitStart    = subtractMonths(now, 12);               // last 12 months
+	const today        = now.toISOString().slice(0, 10);
+
+	const districtClause = filters?.district ? `AND op.district = '${esc(filters.district)}'` : '';
+	const layoutClause   = filters?.layout   ? `AND op.layout   = '${esc(filters.layout)}'`   : '';
+	const layoutExitClause = filters?.layout ? `AND sx.layout   = '${esc(filters.layout)}'`   : '';
+
+	const rows = await query<{
+		project_name: string;
+		district: string;
+		layout: string;
+		entry_psf: number;
+		exit_psf: number;
+		psf_gain: number;
+		roi_pct: number;
+		offplan_count: number;
+		secondary_count: number;
+		earliest_offplan: string;
+		latest_offplan: string;
+	}>(`
+		WITH offplan_entries AS (
+			SELECT
+				project_name,
+				district,
+				layout,
+				PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY rate_per_sqft) AS entry_psf,
+				COUNT(*)                                                      AS offplan_count,
+				MIN(sale_date::VARCHAR)                                       AS earliest_offplan,
+				MAX(sale_date::VARCHAR)                                       AS latest_offplan
+			FROM transactions op
+			WHERE op.sale_type = 'off-plan'
+			  AND op.sale_date >= '${windowStart}'
+			  AND op.sale_date <  '${windowEnd}'
+			  AND op.rate_per_sqft IS NOT NULL AND op.rate_per_sqft > 0
+			  AND op.project_name  IS NOT NULL AND op.project_name  != ''
+			  AND LOWER(op.project_name) != 'private'
+			  AND op.layout        IS NOT NULL AND op.layout        != ''
+			  ${districtClause}
+			  ${layoutClause}
+			GROUP BY project_name, district, layout
+			HAVING COUNT(*) >= ${minOffplanCount}
+		),
+		secondary_exits AS (
+			SELECT
+				sx.project_name,
+				sx.layout,
+				PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY sx.rate_per_sqft) AS exit_psf,
+				COUNT(*)                                                        AS secondary_count
+			FROM transactions sx
+			WHERE sx.sale_sequence = 'secondary'
+			  AND sx.sale_date >= '${exitStart}'
+			  AND sx.sale_date <= '${today}'
+			  AND sx.rate_per_sqft IS NOT NULL AND sx.rate_per_sqft > 0
+			  AND sx.project_name  IS NOT NULL AND sx.project_name  != ''
+			  AND LOWER(sx.project_name) != 'private'
+			  AND sx.layout        IS NOT NULL AND sx.layout        != ''
+			  ${layoutExitClause}
+			GROUP BY sx.project_name, sx.layout
+			HAVING COUNT(*) >= ${minSecondaryCount}
+		)
+		SELECT
+			o.project_name,
+			o.district,
+			o.layout,
+			ROUND(o.entry_psf, 0)                                   AS entry_psf,
+			ROUND(s.exit_psf,  0)                                   AS exit_psf,
+			ROUND(s.exit_psf - o.entry_psf, 0)                     AS psf_gain,
+			ROUND(((s.exit_psf - o.entry_psf) / o.entry_psf) * 100, 1) AS roi_pct,
+			o.offplan_count,
+			s.secondary_count,
+			o.earliest_offplan,
+			o.latest_offplan
+		FROM offplan_entries o
+		JOIN secondary_exits s
+		  ON LOWER(TRIM(o.project_name)) = LOWER(TRIM(s.project_name))
+		  AND o.layout = s.layout
+		WHERE s.exit_psf > o.entry_psf
+		ORDER BY roi_pct DESC
+		LIMIT 150
+	`);
+
+	return rows.map(r => ({
+		projectName:    r.project_name,
+		district:       r.district,
+		layout:         r.layout,
+		entryPsf:       r.entry_psf,
+		exitPsf:        r.exit_psf,
+		psfGain:        r.psf_gain,
+		roiPct:         r.roi_pct,
+		offplanCount:   r.offplan_count,
+		secondaryCount: r.secondary_count,
+		earliestOffplan: r.earliest_offplan,
+		latestOffplan:   r.latest_offplan,
+	}));
+}
+
 /**
  * Gross rental yield by community.
  * yield = median annual rent (rental table, rentalYear) / median sale price (transactions, salesYear) × 100

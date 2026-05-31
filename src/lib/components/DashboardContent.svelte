@@ -28,6 +28,7 @@
   import LayoutTable from '$lib/components/project/LayoutTable.svelte';
   import ComparableProjects from '$lib/components/project/ComparableProjects.svelte';
   import TransactionTable from '$lib/components/table/TransactionTable.svelte';
+  import AdStrip from '$lib/components/ads/AdStrip.svelte';
   import type {
     StatsResult,
     ChartDataPoint,
@@ -200,6 +201,9 @@
       </div>
     </div>
   {/if}
+
+  <!-- Sponsored ad strip — sales context -->
+  <AdStrip context="sales" />
 
   <!-- Primary charts: Price Trend + Volume (gated) -->
   <GatedSection>

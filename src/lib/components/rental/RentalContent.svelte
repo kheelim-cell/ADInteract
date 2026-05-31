@@ -11,6 +11,7 @@
   import { resetRentalFilters, updateRentalFilter } from '$lib/stores/rental_filters';
   import { rentalDistrictCounts } from '$lib/stores/db';
   import { queryAllRentalDistrictCounts } from '$lib/db/rental_queries';
+  import AdStrip from '$lib/components/ads/AdStrip.svelte';
   import RentalFilterBar from './RentalFilterBar.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
   import RentalStatsGrid from './RentalStatsGrid.svelte';
@@ -198,6 +199,9 @@
       </div>
     </div>
   {/if}
+
+  <!-- Sponsored ad strip — rental context -->
+  <AdStrip context="rental" />
 
   <!-- Row 1: Trend + New vs Renewal -->
   <GatedSection>

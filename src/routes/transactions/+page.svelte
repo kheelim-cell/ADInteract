@@ -8,6 +8,7 @@
   } from '$lib/db/queries';
   import FilterBar from '$lib/components/filters/FilterBar.svelte';
   import TransactionTable from '$lib/components/table/TransactionTable.svelte';
+  import AdStrip from '$lib/components/ads/AdStrip.svelte';
   import { formatCurrencyShort, formatNumber, formatRate } from '$lib/utils/format';
   import type { StatsResult, Transaction } from '$lib/db/types';
 
@@ -105,6 +106,9 @@
       </div>
     {/if}
   </div>
+
+  <!-- Sponsored ad strip — sales context -->
+  <AdStrip context="sales" />
 
   <!-- Full-Width Transaction Table -->
   <div class="mt-6">

@@ -97,6 +97,13 @@
   let otherAppPct     = $derived(otherFactorType === 'yes' ? 10 : 0);
   let furnishingType  = $state<'none' | 'basic_airbnb' | 'highend_airbnb' | 'branded_hospitality'>('none');
   let furnishingPct   = $derived(furnishingType === 'basic_airbnb' ? 10 : furnishingType === 'highend_airbnb' ? 20 : furnishingType === 'branded_hospitality' ? 25 : 0);
+
+  // Auto-sync capital gains "furnished/branded" toggle with furnishing selection
+  $effect(() => {
+    otherFactorType = (furnishingType === 'highend_airbnb' || furnishingType === 'branded_hospitality')
+      ? 'yes'
+      : 'no';
+  });
   let maidsRoom       = $state<'no' | 'yes'>('no');
   let maidsPct        = $derived.by(() => {
     if (maidsRoom !== 'yes') return 0;

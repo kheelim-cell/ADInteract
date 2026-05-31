@@ -138,17 +138,17 @@
             <td class="{TD} capitalize whitespace-nowrap text-gray-600">{row.layout}</td>
 
             <!-- Entry PSF -->
-            <td class="{TD} text-right font-mono text-gray-700 whitespace-nowrap">
+            <td class="{TD} text-right tabular-nums text-gray-700 whitespace-nowrap">
               {fmt(row.entryPsf)}
             </td>
 
             <!-- Exit PSF -->
-            <td class="{TD} text-right font-mono text-gray-700 whitespace-nowrap">
+            <td class="{TD} text-right tabular-nums text-gray-700 whitespace-nowrap">
               {fmt(row.exitPsf)}
             </td>
 
             <!-- PSF Gain -->
-            <td class="{TD} text-right font-mono font-semibold text-emerald-700 whitespace-nowrap">
+            <td class="{TD} text-right tabular-nums font-semibold text-emerald-700 whitespace-nowrap">
               +{fmt(row.psfGain)}
             </td>
 

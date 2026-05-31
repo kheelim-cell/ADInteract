@@ -1,1 +1,0 @@
-import"../chunks/DsnmJJEf.js";import{i as a}from"../chunks/BB5IT4t4.js";import{o as r}from"../chunks/QuEOonFV.js";import{aM as t,aJ as p}from"../chunks/DZw3CzZJ.js";import{g as m}from"../chunks/Cepz4cvy.js";import{d as s}from"../chunks/DLGEyEa8.js";function g(i,o){t(o,!1),r(()=>{m(`${s}/investors/calculator`,{replaceState:!0})}),a(),p()}export{g as component};

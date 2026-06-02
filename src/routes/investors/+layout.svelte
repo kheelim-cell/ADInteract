@@ -72,11 +72,9 @@
   let currentPath = $derived($page.url.pathname);
   let activeNavItem = $derived(NAV_ITEMS.find(n => currentPath === n.href || currentPath.startsWith(n.href + '/')));
 
-  // ── Single binary Pro gate for all /investors pages ────────────────────────
-  // supabase off → open (dev/preview). gating off → open (promo mode). Pro → open. Otherwise → locked.
-  let proLocked = $derived(
-    supabaseEnabled && investorProGated && !$isPro
-  );
+  // ── Pro gate — controlled by VITE_AUTH_GATING_ENABLED GitHub Secret ─────────
+  const gatingEnabled = import.meta.env.VITE_AUTH_GATING_ENABLED === 'true';
+  let proLocked = $derived(gatingEnabled && supabaseEnabled && investorProGated && !$isPro);
   let needsSignIn = $derived(proLocked && !$isAuthenticated);
   let needsUpgrade = $derived(proLocked && $isAuthenticated && !$isPro);
 </script>

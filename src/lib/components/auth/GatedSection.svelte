@@ -15,14 +15,14 @@
   }: { children: import('svelte').Snippet; proOnly?: boolean } = $props();
 
   // ── Lock logic ──────────────────────────────────────────────────────────────
+  // Master toggle: set VITE_AUTH_GATING_ENABLED=true in GitHub Secrets to re-enable all gates.
+  const gatingEnabled = import.meta.env.VITE_AUTH_GATING_ENABLED === 'true';
+
   let locked = $derived(
-    // Supabase not configured → never lock (dev/preview mode)
-    !supabaseEnabled ? false
-    // proOnly + pro gating toggled OFF → completely open (promotional mode)
+    !gatingEnabled ? false
+    : !supabaseEnabled ? false
     : proOnly && !investorProGated ? false
-    // proOnly + pro gating ON → require isPro
     : proOnly && investorProGated ? !$isPro
-    // Standard auth gate → require sign-in
     : !$isAuthenticated
   );
 

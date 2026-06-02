@@ -171,6 +171,23 @@
   </div>
 </div>
 
+<!-- ── Free access banner ───────────────────────────────────────────────────── -->
+{#if !proLocked}
+  <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 border-b border-amber-400/50">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-3 flex items-center justify-center gap-3">
+      <svg class="h-5 w-5 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+      <p class="text-sm sm:text-base font-bold text-white tracking-wide text-center">
+        🎉 Free Access for a Limited Time Only — All Investor Intelligence tools are open to everyone right now.
+      </p>
+      <svg class="h-5 w-5 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+    </div>
+  </div>
+{/if}
+
 <!-- ── Page content ─────────────────────────────────────────────────────────── -->
 {#if proLocked}
   <!-- Single upgrade wall — replaces all page content when not Pro -->

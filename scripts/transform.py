@@ -160,6 +160,12 @@ def transform():
     out = out[out["price_aed"] > 0]
     print(f"  Dropped {before - len(out):,} rows (null date/price). Remaining: {len(out):,}")
 
+    # ── Drop today's provisional/unconfirmed transactions ──────────────────
+    today = datetime.now(timezone.utc).date()
+    before = len(out)
+    out = out[out["sale_date"] < today]
+    print(f"  Dropped {before - len(out):,} rows (today={today}, provisional). Remaining: {len(out):,}")
+
     # ── Normalise property_type & filter to allowed set ───────────────────
     out["property_type"] = out["property_type"].astype(str).str.strip().str.lower()
     before = len(out)

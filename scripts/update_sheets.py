@@ -87,26 +87,79 @@ def update():
 
     print(f"Target sheet: '{ws.title}' (gid={ws.id})")
 
-    # Load CSV
-    df = pd.read_csv(INPUT_CSV, low_memory=False).fillna("")
-    print(f"Uploading {len(df):,} rows × {len(df.columns)} columns…")
+    # Load new CSV from ADREC scrape
+    new_df = pd.read_csv(INPUT_CSV, low_memory=False).fillna("")
+    print(f"New CSV: {len(new_df):,} rows × {len(new_df.columns)} columns")
 
-    # Build as list-of-lists: header + data rows
-    rows = [df.columns.tolist()] + df.astype(str).values.tolist()
+    # Check how many rows already exist in the sheet
+    existing_vals = ws.col_values(1)  # first column — header + data
+    existing_row_count = max(0, len(existing_vals) - 1)  # subtract header
+    print(f"Existing sheet rows: {existing_row_count:,}")
 
-    # Clear existing content first
-    ws.clear()
+    if existing_row_count == 0:
+        # Sheet is empty — do a full upload
+        print("Sheet is empty — doing full upload…")
+        rows = [new_df.columns.tolist()] + new_df.astype(str).values.tolist()
+        total_chunks = math.ceil(len(rows) / CHUNK_SIZE)
+        for i in range(0, len(rows), CHUNK_SIZE):
+            chunk = rows[i : i + CHUNK_SIZE]
+            start_row = i + 1
+            ws.update(f"A{start_row}", chunk, value_input_option="RAW")
+            chunk_num = i // CHUNK_SIZE + 1
+            print(f"  Chunk {chunk_num}/{total_chunks} uploaded")
+        print(f"Full upload complete: {len(new_df):,} rows.")
+        return
 
-    # Upload in chunks (gspread has a 10 MB per-request limit)
-    total_chunks = math.ceil(len(rows) / CHUNK_SIZE)
-    for i in range(0, len(rows), CHUNK_SIZE):
-        chunk = rows[i : i + CHUNK_SIZE]
-        start_row = i + 1
-        ws.update(f"A{start_row}", chunk, value_input_option="RAW")
+    # Sheet has data — find the max date already in the sheet and append only newer rows
+    date_col_candidates = [
+        "Sale Application Date", "Registration Date", "Registration",
+        "Date", "Transaction Date",
+    ]
+    date_col = next((c for c in date_col_candidates if c in new_df.columns), None)
+    if date_col is None:
+        print("Warning: could not identify date column — skipping append to protect existing data.")
+        return
+
+    # Find date column position in the sheet header
+    header_row = ws.row_values(1)
+    try:
+        date_col_idx = header_row.index(date_col) + 1  # 1-based
+    except ValueError:
+        print(f"Warning: date column '{date_col}' not found in sheet header — skipping append.")
+        return
+
+    # Parse existing dates to find the max
+    existing_dates_raw = ws.col_values(date_col_idx)[1:]  # skip header
+    existing_dates = pd.to_datetime(existing_dates_raw, dayfirst=True, errors="coerce").dropna()
+    if len(existing_dates) == 0:
+        print("Warning: no parseable dates in sheet — skipping append.")
+        return
+
+    max_existing_date = existing_dates.max().date()
+    print(f"Max date already in sheet: {max_existing_date}")
+
+    # Keep only rows with a date strictly after the sheet's max date
+    new_df[date_col] = pd.to_datetime(new_df[date_col], dayfirst=True, errors="coerce")
+    truly_new = new_df[new_df[date_col].dt.date > max_existing_date].copy()
+    truly_new[date_col] = truly_new[date_col].dt.strftime("%d/%m/%Y")
+
+    if len(truly_new) == 0:
+        print("No new rows to append — sheet is already up to date.")
+        return
+
+    print(f"Appending {len(truly_new):,} new rows (dates after {max_existing_date})…")
+    append_rows = truly_new.astype(str).values.tolist()
+    next_row = existing_row_count + 2  # +1 for 1-based index, +1 for header row
+
+    total_chunks = math.ceil(len(append_rows) / CHUNK_SIZE)
+    for i in range(0, len(append_rows), CHUNK_SIZE):
+        chunk = append_rows[i : i + CHUNK_SIZE]
+        row_num = next_row + i
+        ws.update(f"A{row_num}", chunk, value_input_option="RAW")
         chunk_num = i // CHUNK_SIZE + 1
-        print(f"  Chunk {chunk_num}/{total_chunks} uploaded (rows {start_row}–{start_row + len(chunk) - 1})")
+        print(f"  Chunk {chunk_num}/{total_chunks} appended (from row {row_num})")
 
-    print("Google Sheet updated successfully.")
+    print(f"Append complete. Sheet now has ~{existing_row_count + len(truly_new):,} rows.")
 
 
 if __name__ == "__main__":

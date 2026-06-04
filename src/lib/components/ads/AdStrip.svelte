@@ -66,6 +66,8 @@
   let { context = 'sales' }: { context?: 'sales' | 'rental' } = $props();
 </script>
 
+<!-- AdStrip hidden — re-enable when advertisers are onboarded -->
+{#if false}
 <div class="mt-6" data-ad-context={context}>
 
   <!-- Label row -->
@@ -137,3 +139,4 @@
   </div>
 
 </div>
+{/if}

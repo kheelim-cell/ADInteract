@@ -179,7 +179,6 @@ async def fetch():
                 if await inputs.count() >= 2:
                     idx = 0 if label == "start" else 1
                     el = inputs.nth(idx)
-                    await el.triple_click()
                     await el.fill(value)
                     await page.keyboard.press("Tab")
                     await page.wait_for_timeout(800)

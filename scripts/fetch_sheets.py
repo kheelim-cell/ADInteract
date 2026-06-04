@@ -41,7 +41,13 @@ def fetch():
             "Add it as a GitHub Actions secret (base64-encoded service account JSON)."
         )
 
-    creds_json = json.loads(base64.b64decode(creds_b64))
+    # Handle raw JSON or base64 with missing padding
+    value = creds_b64.strip()
+    if value.startswith("{"):
+        creds_json = json.loads(value)
+    else:
+        padded = value + "=" * (4 - len(value) % 4)
+        creds_json = json.loads(base64.b64decode(padded).decode("utf-8"))
     scopes = [
         "https://www.googleapis.com/auth/spreadsheets.readonly",
         "https://www.googleapis.com/auth/drive.readonly",

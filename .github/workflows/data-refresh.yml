@@ -82,6 +82,7 @@ jobs:
           git add -f static/data/transactions.parquet static/data/meta.json static/data/rental.parquet static/data/rental_meta.json src/lib/data/district_summaries.json
           git diff --staged --quiet \
             || git commit -m "data: refresh $(date -u +%Y-%m-%d) [skip ci]"
+          git pull --rebase origin main
           git push
 
   # ───────────────────────────────────────────────────────────────────────

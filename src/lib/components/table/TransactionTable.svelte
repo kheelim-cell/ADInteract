@@ -163,7 +163,8 @@
 
   const skeletonRows = Array.from({ length: 10 });
 
-  let locked = $derived(supabaseEnabled && !$isAuthenticated);
+  const gatingEnabled = import.meta.env.VITE_AUTH_GATING_ENABLED === 'true';
+  let locked = $derived(gatingEnabled && supabaseEnabled && !$isAuthenticated);
 </script>
 
 <div class="rounded-2xl bg-white shadow-sm border border-white/80 overflow-hidden">

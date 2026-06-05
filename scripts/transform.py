@@ -154,7 +154,24 @@ def transform():
     ).dt.date
 
     # ── Drop rows with no date / price ─────────────────────────────────────
+    # Google Sheets exports numbers with thousands separators (e.g. "3,314,610")
+    # Strip commas from all numeric columns before parsing.
+    for num_col in ("price_aed", "area_sqm", "land_area_sqm", "sold_share", "rate_aed_sqm"):
+        if num_col in out.columns:
+            out[num_col] = (
+                out[num_col]
+                .astype(str)
+                .str.replace(",", "", regex=False)
+                .str.strip()
+            )
+
     out["price_aed"] = pd.to_numeric(out["price_aed"], errors="coerce")
+
+    # Diagnostic: show breakdown before dropping
+    null_dates  = out["sale_date"].isna().sum()
+    null_prices = out["price_aed"].isna().sum()
+    print(f"  Null dates: {null_dates:,}  |  Null/zero prices: {null_prices:,}")
+
     before = len(out)
     out = out.dropna(subset=["sale_date", "price_aed"])
     out = out[out["price_aed"] > 0]

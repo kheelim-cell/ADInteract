@@ -317,7 +317,7 @@
                 {/if}
                 {#if row.district}
                   <p class="text-xs text-gray-400 mt-0.5 truncate">
-                    <a href="{base}/area/{encodeURIComponent(row.district)}"
+                    <a href="{base}/?district={encodeURIComponent(row.district)}"
                        class="text-brand-600 hover:underline">{row.district}</a>
                   </p>
                 {/if}
@@ -496,7 +496,7 @@
                 </div>
                 <div class="text-xs text-gray-400 mt-0.5">
                   {#if row.district}
-                    <a href="{base}/area/{encodeURIComponent(row.district)}" class="text-brand-600 hover:text-brand-700 hover:underline">{row.district}</a>
+                    <a href="{base}/?district={encodeURIComponent(row.district)}" class="text-brand-600 hover:text-brand-700 hover:underline">{row.district}</a>
                   {/if}
                 </div>
               </td>

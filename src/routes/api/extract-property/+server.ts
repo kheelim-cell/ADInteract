@@ -93,7 +93,7 @@ export const POST: RequestHandler = async ({ request }) => {
 				'content-type': 'application/json'
 			},
 			body: JSON.stringify({
-				model: 'claude-opus-4-8',
+				model: 'claude-opus-4-6',
 				max_tokens: 512,
 				messages: [
 					{

@@ -19,7 +19,7 @@ Transformations applied:
 
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timezone  # timezone kept for meta.json lastUpdated
 
 import pandas as pd
 import pyarrow as pa
@@ -180,11 +180,7 @@ def transform():
     out = out[out["price_aed"] > 0]
     print(f"  Dropped {before - len(out):,} rows (null date/price). Remaining: {len(out):,}")
 
-    # ── Drop today's provisional/unconfirmed transactions ──────────────────
-    today = datetime.now(timezone.utc).date()
-    before = len(out)
-    out = out[out["sale_date"] < today]
-    print(f"  Dropped {before - len(out):,} rows (today={today}, provisional). Remaining: {len(out):,}")
+    # Today's transactions are included — ADREC data is treated as confirmed.
 
     # ── Normalise property_type & filter to allowed set ───────────────────
     out["property_type"] = out["property_type"].astype(str).str.strip().str.lower()

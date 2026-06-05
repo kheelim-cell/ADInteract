@@ -75,11 +75,10 @@ export const POST: RequestHandler = async ({ request }) => {
 			headers: {
 				'x-api-key': apiKey,
 				'anthropic-version': '2023-06-01',
-				'anthropic-beta': 'pdfs-2024-09-25',
 				'content-type': 'application/json'
 			},
 			body: JSON.stringify({
-				model: 'claude-opus-4-5',
+				model: 'claude-opus-4-20250514',
 				max_tokens: 512,
 				messages: [
 					{

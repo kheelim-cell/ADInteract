@@ -1,0 +1,62 @@
+name: One-Time Historical Backfill
+
+on:
+  workflow_dispatch:   # trigger manually from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120   # 8 years × ~10 min each = ~80 min worst case
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Install Playwright (Chromium)
+        run: playwright install chromium --with-deps
+
+      - name: Run year-by-year ADREC backfill → append to Google Sheet
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        run: python scripts/backfill_adrec.py
+
+      - name: Upload batch CSVs as artifact (for inspection / re-run without re-scraping)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: backfill-batches-${{ github.run_id }}
+          path: |
+            scripts/data/backfill_batches/
+            scripts/data/adrec_backfill_merged.csv
+          retention-days: 30
+
+      - name: Download full Google Sheet → adrec_raw.csv
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        run: python scripts/fetch_sheets.py
+
+      - name: Transform → Parquet + meta.json
+        run: python scripts/transform.py
+
+      - name: Commit updated data files
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f static/data/transactions.parquet static/data/meta.json
+          git diff --staged --quiet \
+            || git commit -m "data: backfill $(date -u +%Y-%m-%d) — full historical dataset [skip ci]"
+          git stash --include-untracked || true
+          git pull --rebase origin main
+          git push

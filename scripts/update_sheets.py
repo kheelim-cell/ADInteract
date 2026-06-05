@@ -22,7 +22,8 @@ from google.oauth2.service_account import Credentials
 
 SHEET_ID      = "1c9Xc6qsXfTwmnZ4gGMwvyCQ3bTDXBIO9ZyfnfwMl3tw"
 WORKSHEET_GID = 39002702
-INPUT_CSV     = "scripts/data/adrec_raw.csv"
+# Allow backfill_adrec.py to override the source CSV path via env var
+INPUT_CSV     = os.environ.get("BACKFILL_CSV_OVERRIDE", "scripts/data/adrec_raw.csv")
 CHUNK_SIZE    = 5_000   # rows per gspread batch call
 
 

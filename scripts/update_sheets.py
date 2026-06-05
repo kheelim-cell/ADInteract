@@ -142,7 +142,7 @@ def update():
     # Keep only rows with a date strictly after the sheet's max date
     new_df[date_col] = pd.to_datetime(new_df[date_col], dayfirst=True, errors="coerce")
     truly_new = new_df[new_df[date_col].dt.date > max_existing_date].copy()
-    truly_new[date_col] = truly_new[date_col].dt.strftime("%d/%m/%Y")
+    truly_new[date_col] = truly_new[date_col].dt.strftime("%Y-%m-%d")
 
     if len(truly_new) == 0:
         print("No new rows to append — sheet is already up to date.")

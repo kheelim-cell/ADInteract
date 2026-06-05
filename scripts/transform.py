@@ -149,8 +149,11 @@ def transform():
     out = pd.DataFrame(mapped)
 
     # ── Parse dates ────────────────────────────────────────────────────────
+    # Google Sheets Drive-export emits dates as M/D/YYYY (US locale), so
+    # dayfirst=False is correct.  ADREC exports ISO (YYYY-MM-DD) which is
+    # unambiguous regardless of this flag.
     out["sale_date"] = pd.to_datetime(
-        out["sale_date"], dayfirst=True, errors="coerce"
+        out["sale_date"], dayfirst=False, errors="coerce"
     ).dt.date
 
     # ── Drop rows with no date / price ─────────────────────────────────────

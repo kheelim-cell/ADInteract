@@ -24,7 +24,7 @@ import pyarrow.parquet as pq
 # ---------------------------------------------------------------------------
 
 SPREADSHEET_ID = "1c9Xc6qsXfTwmnZ4gGMwvyCQ3bTDXBIO9ZyfnfwMl3tw"
-SHEET_NAME = "AB Sales.csv"
+SHEET_NAME = "AD Transactions"
 
 SQM_TO_SQFT = 10.7639
 

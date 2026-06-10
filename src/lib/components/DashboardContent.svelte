@@ -177,6 +177,11 @@
     </GatedSection>
   </div>
 
+  <!-- Investor Tools Strip — only on main dashboard, right after stats -->
+  {#if !isProjectPage}
+    <InvestorToolsStrip />
+  {/if}
+
   <!-- Zero-result empty state banner -->
   {#if noResults}
     <div class="mt-6 rounded-2xl border border-dashed border-gray-200 bg-white px-6 py-8 text-center">
@@ -327,9 +332,8 @@
   </div>
   </GatedSection>
 
-  <!-- Investor tools strip — only on main dashboard (not project pages) -->
+  <!-- Email capture — only on main dashboard -->
   {#if !isProjectPage}
-    <InvestorToolsStrip />
     <EmailCapture />
   {/if}
 </div>

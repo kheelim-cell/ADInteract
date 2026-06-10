@@ -85,26 +85,39 @@
 
         <!-- Skeleton stat cards -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
-          {#each ['Total Transactions', 'Median Price', 'Median AED/sqft', 'Total Volume'] as label}
+          {#each ['Transaction Volume', 'Median Price', 'Median AED/sqft', 'Total Value'] as label}
             <div class="stat-card">
-              <p class="text-xs font-semibold text-gray-400 mb-2">{label}</p>
-              <div class="h-7 w-28 bg-gray-100 rounded animate-pulse mb-2"></div>
-              <div class="h-3 w-16 bg-gray-100 rounded animate-pulse"></div>
+              <p class="text-xs font-semibold text-gray-500 mb-2">{label}</p>
+              <div class="h-7 w-28 bg-gray-200 rounded animate-pulse mb-2"></div>
+              <div class="h-3 w-16 bg-gray-200 rounded animate-pulse"></div>
             </div>
           {/each}
         </div>
 
         <!-- Skeleton charts -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {#each [1, 2] as _}
             <div class="chart-card">
-              <div class="h-4 w-32 bg-gray-100 rounded animate-pulse mb-4"></div>
-              <div class="h-56 bg-gray-50 rounded-lg animate-pulse"></div>
+              <div class="h-4 w-32 bg-gray-200 rounded animate-pulse mb-4"></div>
+              <div class="h-56 bg-gray-100 rounded-lg animate-pulse"></div>
             </div>
           {/each}
         </div>
 
-        <div class="flex items-center justify-center gap-3 text-gray-400 text-sm">
+        <!-- Investor tool teasers — visible during load so users know what's here -->
+        <div class="rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-white px-5 py-4 mb-8">
+          <p class="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-3">Investor Tools</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {#each ['ROI Calculator', 'Compare Districts', 'Flip Scanner', 'Rental Yield'] as tool}
+              <div class="rounded-xl border border-emerald-100 bg-white px-4 py-3">
+                <div class="h-3 w-20 bg-emerald-100 rounded animate-pulse mb-2"></div>
+                <p class="text-xs text-gray-400">{tool}</p>
+              </div>
+            {/each}
+          </div>
+        </div>
+
+        <div class="flex items-center justify-center gap-3 text-gray-500 text-sm">
           <LoadingSpinner />
           <span>Loading transaction data…</span>
         </div>

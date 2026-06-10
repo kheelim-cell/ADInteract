@@ -57,12 +57,12 @@
   );
 </script>
 
-<!-- ── Sticky filter bar ─────────────────────────────────────────── -->
-<div class="sticky top-0 z-10 bg-white/98 backdrop-blur-md border-b border-gray-200/80 shadow-sm">
+<!-- ── Filter bar: sticky on sm+ only — on phones a ~200px sticky block eats a quarter of the viewport -->
+<div class="sm:sticky sm:top-0 z-10 bg-white/98 backdrop-blur-md border-b border-gray-200/80 shadow-sm">
   <div class="px-4 sm:px-6 py-3">
 
-    <!-- Row 1: search + toggles (always visible, wraps naturally on mobile) -->
-    <div class="flex flex-wrap items-center gap-2">
+    <!-- Row 1: search + toggles (side-by-side searches on mobile, wraps naturally on larger screens) -->
+    <div class="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center">
       <DistrictSearch searchType="district" />
       <DistrictSearch searchType="project" />
 

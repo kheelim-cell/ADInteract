@@ -83,7 +83,70 @@
       <p class="text-xs text-gray-400">Try broadening the district or layout filter</p>
     </div>
   {:else}
-    <table class="w-full border-collapse text-left">
+    <!-- Mobile: card list (table is unusable at phone width with 10 columns) -->
+    <div class="block md:hidden divide-y divide-gray-100">
+      <!-- Mobile sort control -->
+      <div class="flex items-center gap-2 px-4 py-2.5 bg-gray-50/80 border-b border-gray-100">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Sort by</span>
+        <select
+          bind:value={sortCol}
+          class="rounded-lg border border-gray-200 bg-white px-2 py-1 text-xs font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+        >
+          <option value="roiPct">ROI %</option>
+          <option value="psfGain">PSF Gain</option>
+          <option value="exitPsf">Exit PSF</option>
+          <option value="entryPsf">Entry PSF</option>
+          <option value="offplanCount">Off-plan Volume</option>
+          <option value="secondaryCount">Secondary Volume</option>
+        </select>
+        <button
+          type="button"
+          onclick={() => (sortDir = sortDir === 'desc' ? 'asc' : 'desc')}
+          class="rounded-lg border border-gray-200 bg-white px-2 py-1 text-xs font-medium text-gray-700"
+        >
+          {sortDir === 'desc' ? '↓ High to low' : '↑ Low to high'}
+        </button>
+      </div>
+
+      {#each sorted as row}
+        <div class="px-4 py-3.5">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+              <a
+                href="{base}/project/{projectSlug(row.projectName)}"
+                class="block text-sm font-semibold text-gray-900 hover:text-brand-600 leading-snug"
+              >
+                {row.projectName}
+              </a>
+              <p class="mt-0.5 text-xs text-gray-500 capitalize">{row.district} · {row.layout}</p>
+            </div>
+            <span class="flex-shrink-0 inline-block rounded-full px-2.5 py-1 text-sm {roiClass(row.roiPct)}">
+              +{Math.round(row.roiPct)}%
+            </span>
+          </div>
+          <div class="mt-2.5 grid grid-cols-3 gap-2 text-center">
+            <div class="rounded-lg bg-gray-50 px-2 py-1.5">
+              <p class="text-[10px] font-semibold uppercase tracking-wide text-gray-400">Entry PSF</p>
+              <p class="text-xs font-semibold tabular-nums text-gray-700">{fmt(row.entryPsf)}</p>
+            </div>
+            <div class="rounded-lg bg-gray-50 px-2 py-1.5">
+              <p class="text-[10px] font-semibold uppercase tracking-wide text-gray-400">Exit PSF</p>
+              <p class="text-xs font-semibold tabular-nums text-gray-700">{fmt(row.exitPsf)}</p>
+            </div>
+            <div class="rounded-lg bg-emerald-50 px-2 py-1.5">
+              <p class="text-[10px] font-semibold uppercase tracking-wide text-emerald-600">PSF Gain</p>
+              <p class="text-xs font-bold tabular-nums text-emerald-700">+{fmt(row.psfGain)}</p>
+            </div>
+          </div>
+          <p class="mt-2 text-[10px] text-gray-400">
+            {row.offplanCount} off-plan · {row.secondaryCount} secondary · entry {fmtDate(row.earliestOffplan)} – {fmtDate(row.latestOffplan)}
+          </p>
+        </div>
+      {/each}
+    </div>
+
+    <!-- Desktop: full table -->
+    <table class="hidden md:table w-full border-collapse text-left">
       <thead class="border-b border-gray-100 bg-gray-50/80">
         <tr>
           <th class="{TH} pl-4" style="min-width:180px">Project</th>

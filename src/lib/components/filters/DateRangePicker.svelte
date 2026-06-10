@@ -45,7 +45,7 @@
         <button
           type="button"
           onclick={() => selectPreset(preset.value)}
-          class="rounded-full px-3 py-1 text-xs font-semibold transition-all whitespace-nowrap
+          class="rounded-full px-2.5 sm:px-3 py-1 text-xs font-semibold transition-all whitespace-nowrap
                  {$filters.dateRange === preset.value
                    ? 'bg-brand-600 text-white shadow-sm'
                    : 'text-gray-900 hover:text-gray-900 hover:bg-white'}"
@@ -56,7 +56,7 @@
       <button
         type="button"
         onclick={toggleCustom}
-        class="rounded-full px-3 py-1 text-xs font-semibold transition-all inline-flex items-center gap-1 whitespace-nowrap
+        class="rounded-full px-2.5 sm:px-3 py-1 text-xs font-semibold transition-all inline-flex items-center gap-1 whitespace-nowrap
                {$filters.dateRange === 'custom'
                  ? 'bg-brand-600 text-white shadow-sm'
                  : 'text-gray-900 hover:text-gray-900 hover:bg-white'}"

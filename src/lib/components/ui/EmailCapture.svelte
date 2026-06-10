@@ -61,13 +61,13 @@
         <p class="text-xs text-gray-500">Top transactions, price moves, and yield shifts — every Monday. Free.</p>
       </div>
 
-      <form onsubmit={submit} class="flex gap-2 flex-shrink-0">
+      <form onsubmit={submit} class="flex gap-2 flex-shrink-0 w-full sm:w-auto">
         <input
           type="email"
           bind:value={email}
           placeholder="your@email.com"
           required
-          class="w-52 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+          class="flex-1 min-w-0 sm:flex-none sm:w-52 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
         />
         <button
           type="submit"

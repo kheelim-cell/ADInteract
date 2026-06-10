@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ADInteract.co — Advertiser Media Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1e4d3a;
+    --green-dark: #0F2B1F;
+    --gold: #C8A951;
+    --gold-dark: #a88535;
+    --light: #f5f5f0;
+    --gray: #6b7280;
+    --border: #e5e7eb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--light);
+    color: #111827;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+  }
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, var(--green-dark), var(--green));
+    padding: 36px 48px 30px;
+  }
+  .header img { height: 52px; display: block; margin-bottom: 14px; }
+  .header h1 { color: #fff; font-size: 22px; font-weight: 800; letter-spacing: -0.3px; }
+  .header p  { color: rgba(255,255,255,0.65); font-size: 13px; margin-top: 6px; line-height: 1.5; }
+  .header .tag {
+    display: inline-block; margin-top: 12px;
+    background: var(--gold); color: var(--green-dark);
+    font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+    padding: 5px 14px; border-radius: 999px;
+  }
+  /* ── Sections ── */
+  section { padding: 28px 48px; }
+  section + section { border-top: 1px solid var(--border); }
+  h2 {
+    font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px;
+    color: var(--green); border-left: 4px solid var(--gold); padding-left: 12px;
+    margin-bottom: 18px;
+  }
+  /* ── Stat grid ── */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .stat {
+    background: var(--light); border-radius: 12px; padding: 16px 14px; text-align: center;
+  }
+  .stat .num { font-size: 22px; font-weight: 800; color: var(--green); line-height: 1.1; }
+  .stat .lbl { font-size: 10px; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 6px; line-height: 1.4; }
+  /* ── Audience bullets ── */
+  .aud { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+  .aud div { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.55; color: #374151; }
+  .aud div::before { content: "◆"; color: var(--gold); font-size: 10px; margin-top: 4px; }
+  /* ── Rate table ── */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left; background: var(--green); color: #fff;
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    padding: 10px 14px;
+  }
+  th:last-child, td:last-child { text-align: right; }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  td .sub { font-size: 11px; color: var(--gray); margin-top: 3px; line-height: 1.45; }
+  td.price { font-weight: 800; color: var(--green); white-space: nowrap; }
+  tr:nth-child(even) td { background: #fafaf7; }
+  .note {
+    margin-top: 14px; background: #fdf9ed; border: 1px solid var(--gold);
+    border-radius: 10px; padding: 12px 16px; font-size: 12px; color: #6b5222; line-height: 1.5;
+  }
+  .note strong { color: var(--gold-dark); }
+  /* ── Why section ── */
+  .why { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .why .card {
+    border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+  }
+  .why .card h3 { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+  .why .card p { font-size: 12px; color: var(--gray); line-height: 1.55; }
+  /* ── Footer ── */
+  .footer {
+    background: var(--green-dark); padding: 26px 48px; text-align: center;
+  }
+  .footer p { color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.6; }
+  .footer .cta {
+    display: inline-block; margin-top: 12px; background: var(--gold); color: var(--green-dark);
+    font-weight: 800; font-size: 14px; padding: 11px 30px; border-radius: 8px; text-decoration: none;
+  }
+  .footer .contact { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,0.5); }
+  @media print {
+    body { background: #fff; }
+    .page { max-width: none; }
+    section { padding: 20px 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <img src="https://adinteract.co/brand/logo-horizontal-white.svg" alt="ADInteract">
+    <h1>Advertiser Media Kit — 2026</h1>
+    <p>ADInteract.co is Abu Dhabi's independent property transaction platform — every ADREC-registered
+    sale and rental, updated daily, searched by serious buyers, investors, and brokers.</p>
+    <span class="tag">100% Abu Dhabi property intent</span>
+  </div>
+
+  <!-- Platform stats -->
+  <section>
+    <h2>The Platform</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">97,000+</div><div class="lbl">ADREC transactions Jan 2019 – today</div></div>
+      <div class="stat"><div class="num">Daily</div><div class="lbl">Automated data refresh, 7 days a week</div></div>
+      <div class="stat"><div class="num">5,400+</div><div class="lbl">Email subscribers, weekly digest</div></div>
+      <div class="stat"><div class="num">[X,XXX]</div><div class="lbl">Monthly visitors (Google Analytics)</div></div>
+    </div>
+  </section>
+
+  <!-- Audience -->
+  <section>
+    <h2>Who You Reach</h2>
+    <div class="aud">
+      <div>Active buyers researching specific projects and districts before committing AED 1–5M</div>
+      <div>Investors running ROI, rental yield, and flip analyses — at the moment of financial decision</div>
+      <div>Brokers and agents benchmarking prices for their clients daily</div>
+      <div>New handover owners — the exact audience for snagging, furnishing, and short-let management</div>
+    </div>
+  </section>
+
+  <!-- Why advertise -->
+  <section>
+    <h2>Why ADInteract Works for Advertisers</h2>
+    <div class="why">
+      <div class="card">
+        <h3>Category exclusivity</h3>
+        <p>One advertiser per category, site-wide. Your competitors cannot appear next to you — or at all.</p>
+      </div>
+      <div class="card">
+        <h3>Intent, not impressions</h3>
+        <p>No casual scrollers. Every visitor is actively researching an Abu Dhabi property decision.</p>
+      </div>
+      <div class="card">
+        <h3>One deal pays the year</h3>
+        <p>A single closed lead — one mortgage, one furnishing package, one sale — covers months of placement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rate card -->
+  <section>
+    <h2>Rate Card (AED / month)</h2>
+    <table>
+      <tr><th>Placement</th><th>Where it appears</th><th>Rate</th></tr>
+      <tr>
+        <td><strong>Developer Showcase</strong><div class="sub">Off-plan project promotion to active buyers</div></td>
+        <td>Sales dashboard — highest-traffic page</td>
+        <td class="price">AED 7,500</td>
+      </tr>
+      <tr>
+        <td><strong>Brokerage Slot</strong><div class="sub">Connect agents with serious property seekers</div></td>
+        <td>Sales dashboard + transaction pages</td>
+        <td class="price">AED 5,000</td>
+      </tr>
+      <tr>
+        <td><strong>Mortgage Advisory</strong><div class="sub">Adjacent to the ROI Calculator — the moment of financial decision</div></td>
+        <td>Investor tools + sales dashboard</td>
+        <td class="price">AED 4,000</td>
+      </tr>
+      <tr>
+        <td><strong>Furnishing / Short-let Management</strong><div class="sub">Target rental-yield researchers and new owners</div></td>
+        <td>Rental dashboard + yield pages</td>
+        <td class="price">AED 2,500</td>
+      </tr>
+      <tr>
+        <td><strong>Snagging Inspection</strong><div class="sub">Reach buyers in the weeks around handover</div></td>
+        <td>Sales + project pages</td>
+        <td class="price">AED 2,000</td>
+      </tr>
+      <tr>
+        <td><strong>Weekly Digest Sponsorship</strong><div class="sub">"This week's market digest is brought to you by…"</div></td>
+        <td>Email to 5,400+ subscribers, every Monday</td>
+        <td class="price">AED 1,000 / send</td>
+      </tr>
+      <tr>
+        <td><strong>Project Page Takeover</strong><div class="sub">Exclusive banner on a single project's analytics page</div></td>
+        <td>e.g. Gardenia Bay, Jubail Island, Yas Riva</td>
+        <td class="price">AED 1,500</td>
+      </tr>
+    </table>
+    <div class="note">
+      <strong>Founding Advertiser Offer:</strong> 50% off your first 3 months, locked rate for 12 months,
+      in exchange for a testimonial. Limited to the first advertiser in each category.
+    </div>
+  </section>
+
+  <!-- What's included -->
+  <section>
+    <h2>Every Placement Includes</h2>
+    <div class="aud">
+      <div>Your logo, tagline, and call-to-action button with UTM-tracked link</div>
+      <div>Monthly performance report — impressions, clicks, click-through rate</div>
+      <div>Category exclusivity for the duration of your booking</div>
+      <div>Creative swap anytime — promote different projects or offers month to month</div>
+    </div>
+  </section>
+
+  <!-- Footer / CTA -->
+  <div class="footer">
+    <p>Placements are limited to one advertiser per category.<br>Book a 15-minute call or reply to reserve your slot.</p>
+    <a class="cta" href="mailto:info@notadubaibroker.com?subject=Advertising on ADInteract.co">Reserve Your Category</a>
+    <p class="contact">info@notadubaibroker.com &nbsp;·&nbsp; adinteract.co</p>
+  </div>
+
+</div>
+</body>
+</html>

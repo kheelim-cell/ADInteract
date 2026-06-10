@@ -395,7 +395,7 @@ def build_email(df: pd.DataFrame, week_num: int) -> tuple[str, str]:
       </div>
       <div class="footer">
         <p>ADInteract.co · Abu Dhabi Property Transactions · Powered by ADREC data</p>
-        <p style="margin-top:4px">You're receiving this because you subscribed to ADInteract weekly updates.</p>
+        <p style="margin-top:4px"><a href="mailto:info@notadubaibroker.com?subject=Unsubscribe" style="color:{GRAY};text-decoration:underline;">Unsubscribe</a></p>
       </div>
     </div>
     </div>

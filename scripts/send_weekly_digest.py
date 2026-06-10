@@ -147,9 +147,12 @@ def base_style() -> str:
     <style>
       body {{ margin:0; padding:0; background:{LIGHT}; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }}
       .wrap {{ max-width:620px; margin:0 auto; background:{WHITE}; border-radius:12px; overflow:hidden; }}
-      .header {{ background:{GREEN}; padding:28px 32px; }}
-      .header h1 {{ margin:0; color:{GOLD}; font-size:22px; font-weight:800; letter-spacing:-0.5px; }}
-      .header p  {{ margin:6px 0 0; color:rgba(255,255,255,0.6); font-size:13px; }}
+      .header {{ background:{GREEN}; padding:0; }}
+      .header a.banner {{ display:block; padding:24px 32px 20px; text-decoration:none; }}
+      .header img {{ display:block; height:36px; width:auto; margin-bottom:10px; }}
+      .header p  {{ margin:4px 0 0; color:rgba(255,255,255,0.6); font-size:13px; }}
+      .top-cta {{ background:{GOLD}; text-align:center; padding:11px 20px; }}
+      .top-cta a {{ color:{GREEN}; font-weight:800; font-size:13px; text-decoration:none; letter-spacing:0.2px; }}
       .body {{ padding:28px 32px; }}
       .stat-row {{ display:flex; gap:12px; margin-bottom:20px; }}
       .stat {{ flex:1; background:{LIGHT}; border-radius:10px; padding:14px 16px; }}
@@ -369,11 +372,16 @@ def build_email(df: pd.DataFrame, week_num: int) -> tuple[str, str]:
     <div style="padding:20px 16px;background:{LIGHT}">
     <div class="wrap">
       <div class="header">
-        <h1>ADINTERACT</h1>
-        <p>Abu Dhabi Property Market Weekly — {date_range}</p>
-        <p style="margin-top:4px;color:{GOLD};font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px">
-          This week: {focus_name}
-        </p>
+        <a href="{SITE_URL}" class="banner">
+          <img src="{SITE_URL}/brand/logo-horizontal-white.svg" alt="ADInteract" />
+          <p>Abu Dhabi Property Market Weekly — {date_range}</p>
+          <p style="margin-top:4px;color:{GOLD};font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px">
+            This week: {focus_name}
+          </p>
+        </a>
+        <div class="top-cta">
+          <a href="{cta_links}">View live dashboard on ADInteract.co &rarr;</a>
+        </div>
       </div>
       <div class="body">
         {content}

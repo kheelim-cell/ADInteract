@@ -88,6 +88,12 @@ def update():
 
     print(f"Target sheet: '{ws.title}' (gid={ws.id})")
 
+    # Handle sentinel: fetch_adrec.py writes an empty file when sheet is already
+    # up to date (start_date > today). Nothing to do in that case.
+    if os.path.getsize(INPUT_CSV) == 0:
+        print("CSV is empty (sheet already up to date) — nothing to append.")
+        return
+
     # Load new CSV from ADREC scrape
     new_df = pd.read_csv(INPUT_CSV, low_memory=False).fillna("")
     print(f"New CSV: {len(new_df):,} rows × {len(new_df.columns)} columns")
@@ -105,7 +111,7 @@ def update():
         for i in range(0, len(rows), CHUNK_SIZE):
             chunk = rows[i : i + CHUNK_SIZE]
             start_row = i + 1
-            ws.update(f"A{start_row}", chunk, value_input_option="RAW")
+            ws.update(range_name=f"A{start_row}", values=chunk, value_input_option="RAW")
             chunk_num = i // CHUNK_SIZE + 1
             print(f"  Chunk {chunk_num}/{total_chunks} uploaded")
         print(f"Full upload complete: {len(new_df):,} rows.")
@@ -156,7 +162,7 @@ def update():
     for i in range(0, len(append_rows), CHUNK_SIZE):
         chunk = append_rows[i : i + CHUNK_SIZE]
         row_num = next_row + i
-        ws.update(f"A{row_num}", chunk, value_input_option="RAW")
+        ws.update(range_name=f"A{row_num}", values=chunk, value_input_option="RAW")
         chunk_num = i // CHUNK_SIZE + 1
         print(f"  Chunk {chunk_num}/{total_chunks} appended (from row {row_num})")
 

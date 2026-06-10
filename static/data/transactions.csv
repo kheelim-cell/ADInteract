@@ -114887,3 +114887,448 @@ sale_date,district,community,project_name,asset_class,property_type,layout,area_
 2019-01-02,Zakhir,Um Al Qtta,Private,residential,plot for villa,unclassified,11625.01,11625.01,700000.0,1.0,60.22,court-mandated,secondary
 2019-01-02,Al Reem Island,RS6,"Sun & Sky, Boutik Mall",commercial,office,large (500 to 1000 sqm),6496.98,440579.45,8770950.0,1.0,1350.0,ready,primary
 2019-01-02,Al Layyan,Seih Al Sedeirah 2,Al Ghadeer - Phase 1,residential,apartment,studio,962.94,17492.09,451608.3,1.0,468.99,ready,primary
+2026-06-09,Al Shamkhah,SH35,Al Reeman 2 - Phase 2,residential,villa,unclassified,,11651.38,4669253.65,1.0,,off-plan,secondary
+2026-06-09,Yas Island,YS1,Gardenia Bay,residential,apartment,1 bed,804.92,1053069.58,4300000.0,1.0,5342.15,off-plan,secondary
+2026-06-09,Yas Island,YS1,Gardenia Bay,residential,apartment,2 beds,1293.82,49304.69,1450000.0,1.0,1120.71,off-plan,secondary
+2026-06-09,Yas Island,YS1,Gardenia Bay,residential,apartment,studio,465.32,43511.02,980000.0,1.0,2106.08,off-plan,secondary
+2026-06-09,Yas Island,YN7,Yas Living,residential,apartment,studio,340.03,62794.66,1008369.0,1.0,2965.53,off-plan,primary
+2026-06-09,Yas Island,YS1,Gardenia Bay,residential,apartment,1 bed,804.92,1053069.58,1580000.0,1.0,1962.93,off-plan,secondary
+2026-06-09,Zayed City,MZ12,Bloom Living - Seville,residential,townhouse / attached villa,3 beds,1635.14,1851.82,2600000.0,1.0,1590.08,off-plan,secondary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,1 bed,817.2,113914.35,1118000.0,1.0,1368.09,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,4 beds,7708.24,12566.96,49061777.0,1.0,6364.85,off-plan,primary
+2026-06-09,Al Saadiyat Island,SDN8,Saadiyat Grove - The Arthouse,residential,apartment,1 bed,1506.19,2696290.64,3835000.0,1.0,2546.16,off-plan,secondary
+2026-06-09,Asharij,Shiebat Al Oud,Private,agricultural,plot for farm,unclassified,734800.86,734800.86,6339000.0,1.0,8.63,ready,secondary
+2026-06-09,Al Saadiyat Island,SDN8,Saadiyat Grove - The Heart,residential,apartment,1 bed,737.11,2696290.64,2440000.0,1.0,3310.23,off-plan,secondary
+2026-06-09,Zayed City,MZ12,Bloom Living - Toledo,residential,townhouse / attached villa,3 beds,1628.79,1851.82,3000000.0,1.0,1841.86,off-plan,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,apartment,2 beds,3208.72,162691.61,9775777.0,1.0,3046.63,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,apartment,3 beds,4243.88,162691.61,15585777.0,1.0,3672.53,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,6+ beds,13513.54,23061.55,76734777.0,1.0,5678.36,off-plan,primary
+2026-06-09,Al Faqa',Shibak 1,Arabian Hills Estate (Plots),residential,plot for villa,unclassified,30009.75,30009.75,693005.0,1.0,23.09,off-plan,primary
+2026-06-09,Al Saadiyat Island,SDE3,Saadiyat Lagoons - Wilds - Phase 1,residential,villa,5 beds,6234.56,8525.01,11500000.0,1.0,1844.56,off-plan,secondary
+2026-06-09,Al Saadiyat Island,SDN8,Saadiyat Grove - The Heart,residential,apartment,1 bed,729.04,2696290.64,1556327.0,1.0,2134.76,off-plan,secondary
+2026-06-09,Al Shamkhah,SH36,Nour Watan,residential,apartment,1 bed,809.98,31658.78,1010000.0,1.0,1246.94,off-plan,secondary
+2026-06-09,Al Shamkhah,SH36,Reeman Living,residential,apartment,studio,484.59,109282.43,750000.0,1.0,1547.7,off-plan,secondary
+2026-06-09,Al Saadiyat Island,SDN8,Saadiyat Grove - The Heart,residential,apartment,2 beds,1317.39,2696290.64,2963651.5,1.0,2249.64,off-plan,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,6+ beds,13513.54,31196.47,92723777.0,1.0,6861.55,off-plan,primary
+2026-06-09,Yas Island,YN7,Sama Yas,residential,apartment,1 bed,1009.98,340436.75,2140000.0,1.0,2118.85,off-plan,secondary
+2026-06-09,Yas Island,YN7,The Sustainable City - Yas Island - Phase 1,residential,townhouse / attached villa,4 beds,3311.84,2827.14,4200000.0,1.0,1268.18,off-plan,secondary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,1 bed,786.84,113914.35,1103000.0,1.0,1401.81,off-plan,primary
+2026-06-09,Rimah,Al Howmanah,Private,agricultural,farm,unclassified,360399.38,360399.38,1000000.0,1.0,2.77,ready,secondary
+2026-06-09,Yas Island,YN7,Sama Yas,residential,apartment,2 beds,2386.36,291461.87,4606610.0,1.0,1930.39,off-plan,secondary
+2026-06-09,Al Saadiyat Island,SDN8,Manarat Living II,residential,apartment,1 bed,762.62,57095.6,1750000.0,1.0,2294.72,off-plan,secondary
+2026-06-09,Al Shamkhah,SH35,Al Reeman 2 - Phase 3 - Fay Al Reeman II,residential,villa,unclassified,,6038.55,3557600.0,1.0,,off-plan,secondary
+2026-06-09,Al Saadiyat Island,SDN8,Saadiyat Grove - The Heart,residential,apartment,1 bed,897.49,2696290.64,2300000.0,1.0,2562.7,off-plan,secondary
+2026-06-09,Al Dhahrah,Al Malaleeh,Private,agricultural,farm,unclassified,360472.25,360472.25,350000.0,1.0,0.97,ready,secondary
+2026-06-09,Al Reef,Al Reef,Al Reef Townhouses - Contemporary Village,residential,townhouse / attached villa,5 beds,2942.53,3304.62,2700000.0,1.0,917.58,ready,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,5 beds,9169.34,21315.86,69086777.0,1.0,7534.54,off-plan,primary
+2026-06-09,Al Saadiyat Island,SDN8,Manarat Living III,residential,apartment,2 beds,1184.78,130231.46,2906376.0,1.0,2453.09,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,studio,535.72,113914.35,886000.0,1.0,1653.85,off-plan,primary
+2026-06-09,Al Reef,Al Reef,Al Reef Townhouses - Desert Village,residential,townhouse / attached villa,2 beds,1262.61,1334.51,1400000.0,1.0,1108.81,ready,secondary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,studio,650.03,113914.35,1099000.0,1.0,1690.69,off-plan,primary
+2026-06-09,Khalifa City,SE23,Private,residential,residential complex,unclassified,13492.23,15000.03,10000000.0,1.0,741.17,ready,secondary
+2026-06-09,Al Reef,Al Reef,Al Reef Downtown,residential,apartment,2 beds,1211.8,12414.01,750000.0,1.0,618.91,ready,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,4 beds,7708.24,10798.34,37803777.0,1.0,4904.33,off-plan,primary
+2026-06-09,Al Saadiyat Island,SDN8,Saadiyat Grove - The Heart,residential,apartment,1 bed,978.33,2696290.64,2650000.0,1.0,2708.7,off-plan,secondary
+2026-06-09,Yas Island,YN7,Noya - Phase 4 - Yas Park Gate,residential,townhouse / attached villa,3 beds,1753.87,2815.3,2820000.0,1.0,1607.87,off-plan,secondary
+2026-06-09,Yas Island,YN7,Noya - Phase 4 - Yas Park Gate,residential,villa,4 beds,2505.51,4043.78,4875000.0,1.0,1945.71,off-plan,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,apartment,1 bed,1614.05,162691.61,5319777.0,1.0,3295.92,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,1 bed,786.2,113914.35,1103000.0,1.0,1402.95,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,1 bed,786.95,113914.35,1103000.0,1.0,1401.61,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,1 bed,822.15,113914.35,1165000.0,1.0,1417.02,off-plan,primary
+2026-06-09,Zayed City,MZ12,Bloom Living - Carmona,residential,townhouse / attached villa,3 beds,1630.62,1851.39,2706000.0,1.0,1659.49,off-plan,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,apartment,2 beds,3189.34,162691.61,11946777.0,1.0,3745.85,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,6+ beds,13513.54,25557.37,80692777.0,1.0,5971.25,off-plan,primary
+2026-06-09,Yas Island,YN7,Sama Yas,residential,apartment,2 beds,2413.48,340436.75,5235150.0,1.0,2169.13,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,studio,537.76,113914.35,1046000.0,1.0,1945.11,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,1 bed,738.4,113914.35,1125000.0,1.0,1523.56,off-plan,primary
+2026-06-09,Al Reef,Al Reef,Al Reef Downtown,residential,apartment,1 bed,835.6,16814.4,550000.0,1.0,658.21,ready,secondary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,1 bed,829.57,113914.35,1152000.0,1.0,1388.67,off-plan,primary
+2026-06-09,Yas Island,YS2,Selina Bay,residential,apartment,1 bed,990.49,127154.6,1689888.0,1.0,1706.11,off-plan,primary
+2026-06-09,Al Reef,Al Reef,Al Reef Downtown,residential,apartment,1 bed,949.48,13308.06,600000.0,1.0,631.92,ready,secondary
+2026-06-09,Al Hidayriyyat,Al Hidayriyyat Island,Bashayer Residences - Phases 3 and 4,residential,apartment,2 beds,1534.93,234447.97,3874000.0,1.0,2523.89,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,apartment,3 beds,4650.11,162691.61,16011777.0,1.0,3443.31,off-plan,primary
+2026-06-09,Al Shamkhah,SH36,Reeman Living 2,residential,apartment,studio,484.59,113672.17,740000.0,1.0,1527.06,off-plan,secondary
+2026-06-09,Yas Island,YN7,The Sustainable City - Yas Island - Phase 1,residential,apartment,1 bed,723.12,5328.13,1690000.0,1.0,2337.09,off-plan,secondary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,1 bed,738.4,113914.35,1165000.0,1.0,1577.74,off-plan,primary
+2026-06-09,Al 'Arad,Al Arad 1,Private,agricultural,farm,unclassified,360472.25,360472.25,530000.0,1.0,1.47,ready,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,6+ beds,13513.54,27401.77,79292777.0,1.0,5867.65,off-plan,primary
+2026-06-09,Al Shamkhah,SH35,Al Reeman 2 - Phase 3 - Fay Al Reeman II,residential,villa,unclassified,,5489.59,3715000.0,1.0,,off-plan,secondary
+2026-06-09,Al Rahah,RBW2,Al Zeina,residential,apartment,1 bed,969.18,2242566.64,1650000.0,1.0,1702.47,ready,secondary
+2026-06-09,Bani Yas,EB2_06,Al Sharq Heights,residential,townhouse / attached villa,3 beds,2115.86,2826.6,2675000.0,1.0,1264.26,off-plan,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,6+ beds,13513.54,40628.13,106390777.0,1.0,7872.9,off-plan,primary
+2026-06-09,Yas Island,YN7,Noya - Phase 5 - Yas Park Views,residential,villa,3 beds,2072.7,3747.24,2900007.0,1.0,1399.14,off-plan,secondary
+2026-06-09,Yas Island,YS2,Diva at the Bay 1,residential,apartment,studio,345.74,46098.02,575628.0,1.0,1664.92,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,1 bed,822.15,113914.35,1165000.0,1.0,1417.02,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,apartment,1 bed,1600.27,162691.61,4993777.0,1.0,3120.58,off-plan,primary
+2026-06-09,Al Saadiyat Island,SDN4,Saadiyat Beach District (Plots),residential,villa,5 beds,4864.53,9023.49,14750000.0,1.0,3032.15,ready,secondary
+2026-06-09,Al Hidayriyyat,Al Hidayriyyat Island,Wadeem (Plots),residential,plot for villa,unclassified,8611.12,8611.12,3599900.0,1.0,418.05,off-plan,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,apartment,3 beds,4650.11,162691.61,17395777.0,1.0,3740.94,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,apartment,2 beds,3189.34,162691.61,12169777.0,1.0,3815.77,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,studio,585.66,113914.35,1091500.0,1.0,1863.71,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,5 beds,9169.34,17966.35,62765777.0,1.0,6845.18,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,6+ beds,13513.54,20089.53,69537777.0,1.0,5145.79,off-plan,primary
+2026-06-09,Yas Island,YS1,Gardenia Bay,residential,apartment,studio,482.12,1053069.58,1154000.0,1.0,2393.59,off-plan,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,5 beds,9169.34,17944.71,52296777.0,1.0,5703.44,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,apartment,1 bed,1613.94,162691.61,4857777.0,1.0,3009.89,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,5 beds,9169.34,17963.77,65175777.0,1.0,7108.01,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,apartment,1 bed,1599.73,162691.61,4804777.0,1.0,3003.49,off-plan,primary
+2026-06-09,Zayed City,MZ12,Bloom Living - Granada 1,residential,apartment,1 bed,810.74,165714.65,1100000.0,1.0,1356.79,off-plan,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,5 beds,9169.34,18749.21,54433777.0,1.0,5936.5,off-plan,primary
+2026-06-09,Al Saadiyat Island,SDN8,Saadiyat Grove - The Heart,residential,apartment,2 beds,1295.22,2696290.64,3520000.0,1.0,2717.69,off-plan,secondary
+2026-06-09,Yas Island,YN7,Noya - Phase 4 - Yas Park Gate,residential,townhouse / attached villa,2 beds,1333.86,2291.63,2500000.0,1.0,1874.26,off-plan,secondary
+2026-06-09,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,1 bed,761.33,113914.35,1106500.0,1.0,1453.38,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,apartment,2 beds,3189.24,162691.61,11180777.0,1.0,3505.78,off-plan,primary
+2026-06-09,Al Faqa',Shibak 1,Nakheel Oasis (Plots),residential,plot for villa,unclassified,16996.2,16996.2,968601.0,1.0,56.99,off-plan,secondary
+2026-06-09,Zayed City,MZ12,Bloom Living - Carmona,residential,townhouse / attached villa,2 beds,1342.9,1989.49,2008360.0,1.0,1495.54,off-plan,secondary
+2026-06-09,Al Shamkhah,SH36,Reeman Living,residential,apartment,2 beds,795.24,114769.76,855396.0,1.0,1075.65,off-plan,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,4 beds,7708.24,12567.82,45073777.0,1.0,5847.48,off-plan,primary
+2026-06-09,Al Saadiyat Island,SDE3,Saadiyat Lagoons - Wilds - Phase 1,residential,villa,5 beds,6234.56,8532.54,9170000.0,1.0,1470.83,off-plan,secondary
+2026-06-09,Zayed City,MZ12,Bloom Living - Carmona,residential,townhouse / attached villa,3 beds,1630.62,1851.39,2662000.0,1.0,1632.51,off-plan,secondary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,apartment,1 bed,1815.01,162691.61,5826777.0,1.0,3210.33,off-plan,primary
+2026-06-09,Ghadeer Al Tayr,Al Jarf,SHA Residences,residential,villa,5 beds,9169.34,18002.84,56485777.0,1.0,6160.29,off-plan,primary
+2026-06-09,Yas Island,YS2,Diva at the Bay 1,residential,apartment,1 bed,754.12,46098.02,791500.0,1.0,1049.57,off-plan,primary
+2026-06-09,Zayed City,MZ12,Bloom Living - Carmona,residential,townhouse / attached villa,2 beds,1301.25,1806.83,2100000.0,1.0,1613.83,off-plan,secondary
+2026-06-09,Yas Island,YN7,Yas Riva,residential,villa,6+ beds,7132.7,13568.86,14150000.0,1.0,1983.82,off-plan,secondary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,910.09,55267.89,1507200.0,1.0,1656.1,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,931.94,55267.89,1845200.0,1.0,1979.96,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,444.66,55267.89,971400.0,1.0,2184.59,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,430.88,55267.89,949400.0,1.0,2203.4,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,431.74,55267.89,945400.0,1.0,2189.74,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,928.92,55267.89,1837200.0,1.0,1977.78,off-plan,primary
+2026-06-09,Al Reem Island,RS5,Reflection Tower A,residential,apartment,3 beds,1559.47,28175.8,2500000.0,1.0,1603.11,ready,secondary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,446.27,55267.89,967400.0,1.0,2167.75,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,921.61,55267.89,1795200.0,1.0,1947.9,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,443.26,55267.89,958400.0,1.0,2162.16,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,446.27,55267.89,989400.0,1.0,2217.04,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,444.66,55267.89,960400.0,1.0,2159.85,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,444.66,55267.89,1030400.0,1.0,2317.28,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,452.08,55267.89,1035400.0,1.0,2290.3,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,451.12,55267.89,827952.0,1.0,1835.33,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,408.71,55267.89,766080.0,1.0,1874.39,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,452.08,55267.89,967400.0,1.0,2139.89,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,444.66,55267.89,955400.0,1.0,2148.61,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,444.55,55267.89,900400.0,1.0,2025.42,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,422.27,55267.89,866400.0,1.0,2051.77,off-plan,primary
+2026-06-09,Al Reem Island,RS2,Amaya Towers,residential,apartment,2 beds,1355.18,66004.02,2020000.0,1.0,1490.58,ready,secondary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,946.15,55267.89,1645200.0,1.0,1738.84,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,435.94,55267.89,941400.0,1.0,2159.47,off-plan,primary
+2026-06-09,Al Reem Island,RS2,Seamont Residences by Marriott,residential,apartment,3 beds,2321.67,105719.04,6072100.0,1.0,2615.4,off-plan,primary
+2026-06-09,Al Reem Island,RT2,Muheira A,residential,apartment,3 beds,2991.4,202397.92,4816444.0,1.0,1610.1,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,446.27,55267.89,957400.0,1.0,2145.34,off-plan,primary
+2026-06-09,Al Reem Island,RS2,Seamont Residences by Marriott,residential,apartment,2 beds,1408.56,105719.04,3184000.0,1.0,2260.46,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Waves,residential,apartment,studio,487.17,85510.68,836000.0,1.0,1716.03,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,408.6,55267.89,819264.0,1.0,2005.05,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Waves,residential,apartment,studio,570.59,85510.68,936000.0,1.0,1640.41,off-plan,primary
+2026-06-09,Al Reem Island,RS2,Seamont Residences by Marriott,residential,apartment,1 bed,1019.66,105719.04,2568480.0,1.0,2518.96,off-plan,primary
+2026-06-09,Al Reem Island,RS2,Seamont Residences by Marriott,residential,apartment,3 beds,1878.52,105719.04,5773824.0,1.0,3073.6,off-plan,primary
+2026-06-09,Al Reem Island,RS2,Seamont Residences by Marriott,residential,apartment,2 beds,1435.9,105719.04,4216224.0,1.0,2936.29,off-plan,primary
+2026-06-09,Al Maryah Island,MI5,Vista 1,residential,apartment,studio,524.09,58852.38,960000.0,1.0,1831.75,ready,secondary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,453.59,55267.89,922400.0,1.0,2033.55,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,920.53,55267.89,1827200.0,1.0,1984.94,off-plan,primary
+2026-06-09,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,2 beds,1480.36,69890.22,3235619.0,1.0,2185.7,off-plan,primary
+2026-06-09,Al Reem Island,RT2,Muheira A,residential,apartment,3 beds,2967.5,202397.92,4641444.0,1.0,1564.09,off-plan,primary
+2026-06-09,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,990.6,69890.22,2600000.0,1.0,2624.67,off-plan,primary
+2026-06-09,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,990.6,69890.22,2300000.0,1.0,2321.83,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Elite Tower,residential,apartment,1 bed,938.83,86701.71,1324000.0,1.0,1410.27,off-plan,primary
+2026-06-09,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,978.01,69890.22,2214095.0,1.0,2263.88,off-plan,primary
+2026-06-09,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,990.6,69890.22,2423320.0,1.0,2446.32,off-plan,primary
+2026-06-09,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,3 beds,1950.85,69890.22,4299801.0,1.0,2204.07,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,925.59,55267.89,1837200.0,1.0,1984.9,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,928.92,55267.89,1822200.0,1.0,1961.63,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,431.2,55267.89,881400.0,1.0,2044.06,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,910.09,55267.89,1580000.0,1.0,1736.09,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,408.6,55267.89,825984.0,1.0,2021.5,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Elite Tower,residential,apartment,1 bed,916.01,86701.71,1312960.0,1.0,1433.35,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,422.38,55267.89,880400.0,1.0,2084.38,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Elite Tower,residential,apartment,studio,627.64,86701.71,876860.0,1.0,1397.07,off-plan,primary
+2026-06-09,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,1069.07,69890.22,2614809.0,1.0,2445.87,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,432.82,55267.89,888400.0,1.0,2052.59,off-plan,primary
+2026-06-09,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,990.6,69890.22,2307924.0,1.0,2329.82,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Elite Tower,residential,apartment,studio,631.63,86701.71,951000.0,1.0,1505.63,off-plan,primary
+2026-06-09,Al Reem Island,RT2,Muheira A,residential,apartment,2 beds,1431.49,202397.92,2286000.0,1.0,1596.94,off-plan,primary
+2026-06-09,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,978.01,69890.22,2235591.0,1.0,2285.86,off-plan,primary
+2026-06-09,Al Reem Island,RS3,Radiant Elite Tower,residential,apartment,studio,633.24,86701.71,916000.0,1.0,1446.53,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,922.9,55267.89,1860200.0,1.0,2015.6,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,450.58,55267.89,946400.0,1.0,2100.4,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,453.59,55267.89,915400.0,1.0,2018.12,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,431.2,55267.89,867400.0,1.0,2011.6,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,442.93,55267.89,893400.0,1.0,2017.02,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,927.31,55267.89,1792200.0,1.0,1932.69,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,920.64,55267.89,1782200.0,1.0,1935.83,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,921.61,55267.89,1780200.0,1.0,1931.62,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,927.2,55267.89,1792200.0,1.0,1932.92,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,447.46,55267.89,908400.0,1.0,2030.13,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,932.05,55267.89,1830200.0,1.0,1963.63,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,425.17,55267.89,860400.0,1.0,2023.66,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,408.6,55267.89,805824.0,1.0,1972.16,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,920.53,55267.89,1812200.0,1.0,1968.65,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,422.38,55267.89,838464.0,1.0,1985.09,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,925.59,55267.89,1822200.0,1.0,1968.69,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,423.99,55267.89,797184.0,1.0,1880.2,off-plan,primary
+2026-06-09,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,443.04,55267.89,865000.0,1.0,1952.42,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,918.48,55267.89,2022200.0,1.0,2201.68,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1410.18,55267.89,2669000.0,1.0,1892.67,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1389.3,55267.89,2640000.0,1.0,1900.24,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,923.33,55267.89,2022200.0,1.0,2190.12,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1410.5,55267.89,2644000.0,1.0,1874.51,off-plan,primary
+2026-06-08,Al Reem Island,RT3,Radiant Atrium,residential,apartment,studio,551.87,74573.16,903000.0,1.0,1636.25,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1389.3,55267.89,2665000.0,1.0,1918.23,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1389.3,55267.89,2690000.0,1.0,1936.23,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,431.2,55267.89,874400.0,1.0,2027.83,off-plan,primary
+2026-06-08,Al Reem Island,RS3,Radiant Waves,residential,apartment,studio,559.08,85510.68,923000.0,1.0,1650.93,off-plan,primary
+2026-06-08,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,2 beds,1543.01,69890.22,3274926.0,1.0,2122.43,off-plan,primary
+2026-06-08,Al Reem Island,RR2,Marina Bay by DAMAC,residential,apartment,2 beds,1218.8,56205.21,1100000.0,1.0,902.53,ready,secondary
+2026-06-08,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,3 beds,1950.85,69890.22,4428795.0,1.0,2270.19,off-plan,primary
+2026-06-08,Al Reem Island,RT1,"Marina Square, Paragon Bay Mall",residential,apartment,2 beds,1356.25,1967168.17,1356250.0,1.0,1000.0,ready,secondary
+2026-06-08,Al Maryah Island,MI10,Private,other,other commercial plot,unclassified,26622.14,26622.14,139501440.0,1.0,5240.05,ready,primary
+2026-06-08,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,3 beds,1946.76,69890.22,4419509.0,1.0,2270.19,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,422.38,55267.89,915400.0,1.0,2167.24,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,408.6,55267.89,915400.0,1.0,2240.33,off-plan,primary
+2026-06-08,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,1074.02,69890.22,2360640.0,1.0,2197.95,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,431.2,55267.89,923400.0,1.0,2141.47,off-plan,primary
+2026-06-08,Al Maryah Island,MI10,Private,residential,plot for residential complex,unclassified,24950.72,24950.72,139501440.0,1.0,5591.08,ready,primary
+2026-06-08,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,978.01,69890.22,2445025.0,1.0,2500.0,off-plan,primary
+2026-06-08,Al Reem Island,RS3,Radiant Waves,residential,apartment,studio,569.41,85510.68,940000.0,1.0,1650.83,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,454.34,55267.89,936400.0,1.0,2061.01,off-plan,primary
+2026-06-08,Al Reem Island,RS3,Radiant Waves,residential,apartment,2 beds,1360.02,85510.68,2102000.0,1.0,1545.57,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1884.44,55267.89,2895000.0,1.0,1536.27,off-plan,primary
+2026-06-08,Al Reem Island,RS3,Radiant Waves,residential,apartment,studio,604.18,85510.68,1043000.0,1.0,1726.31,off-plan,primary
+2026-06-08,Al Reem Island,RT3,Radiant Square,residential,apartment,2 beds,1624.27,190187.78,2340000.0,1.0,1440.65,ready,secondary
+2026-06-08,Al Reem Island,RT3,Radiant Square,residential,apartment,3 beds,1629.87,190187.78,2800000.0,1.0,1717.93,ready,secondary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,931.94,55267.89,2032200.0,1.0,2180.61,off-plan,primary
+2026-06-08,Al Reem Island,RS3,Radiant Waves,residential,apartment,studio,605.47,85510.68,1033000.0,1.0,1706.11,off-plan,primary
+2026-06-08,Al Reem Island,RS2,"The Bridges (Towers 1, 2, and 3)",residential,apartment,studio,386.96,173969.92,810000.0,1.0,2093.24,ready,secondary
+2026-06-08,Al Reem Island,RS1,Oceanscape,commercial,retail,line store,540.24,55764.21,575000.0,1.0,1064.34,ready,secondary
+2026-06-08,Al Reem Island,RS3,Radiant Waves,residential,apartment,studio,596.21,85510.68,976080.0,1.0,1637.14,off-plan,primary
+2026-06-08,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1546.88,55267.89,2830000.0,1.0,1829.49,off-plan,primary
+2026-06-08,Al Reem Island,RS4,Pixel,residential,apartment,studio,474.69,255579.76,1100000.0,1.0,2317.3,ready,secondary
+2026-06-08,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,978.01,69890.22,2445025.0,1.0,2500.0,off-plan,primary
+2026-06-08,Al Reem Island,RT3,Radiant Bridges,residential,apartment,1 bed,598.37,101783.55,1048800.0,1.0,1752.76,off-plan,primary
+2026-06-08,Al Reem Island,RS4,Pixel,residential,apartment,2 beds,1253.46,255579.76,2085000.0,1.0,1663.4,ready,secondary
+2026-06-08,Al Reem Island,RS3,Radiant Waves,residential,apartment,studio,538.63,85510.68,938000.0,1.0,1741.46,off-plan,primary
+2026-06-08,Al Reem Island,RS3,Radiant Waves,residential,apartment,2 beds,1066.27,85510.68,3571000.0,1.0,3349.06,off-plan,primary
+2026-06-08,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,977.36,69890.22,2191151.0,1.0,2241.91,off-plan,primary
+2026-06-08,Al Reem Island,RS3,Radiant Waves,residential,apartment,studio,602.35,85510.68,1003000.0,1.0,1665.14,off-plan,primary
+2026-06-08,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,977.36,69890.22,2191151.0,1.0,2241.91,off-plan,primary
+2026-06-08,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,2 beds,1544.4,69890.22,3277896.0,1.0,2122.44,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,2 beds,1755.7,181784.3,2658800.0,1.0,1514.38,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,2 beds,1738.26,181784.3,2962500.0,1.0,1704.29,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,other,other,unclassified,181784.3,181784.3,4680000.0,1.0,25.74,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,4 beds,3299.57,181784.3,4547900.0,1.0,1378.33,off-plan,primary
+2026-06-08,Yas Island,YN7,The Sustainable City - Yas Island - Phase 1,residential,apartment,3 beds,1552.69,4761.41,2950000.0,1.0,1899.93,off-plan,secondary
+2026-06-08,Yas Island,YN7,Yas Living,residential,apartment,2 beds,1524.49,62794.66,3774200.0,1.0,2475.71,off-plan,primary
+2026-06-08,Yas Island,YS1,Gardenia Bay,residential,apartment,3 beds,1665.5,1053069.58,3233122.0,1.0,1941.23,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Living,residential,apartment,1 bed,756.59,119912.43,1756289.0,1.0,2321.32,off-plan,primary
+2026-06-08,Ghayathi,Maraba' Ghayathi,Private,residential,villa,unclassified,8682.48,17403.72,50000.0,1.0,5.76,ready,secondary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,2 beds,2016.29,181784.3,3152500.0,1.0,1563.52,off-plan,primary
+2026-06-08,Al Shamkhah,SH36,Reeman Living,residential,apartment,studio,484.59,109282.43,630200.0,1.0,1300.48,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,5+ beds,3302.9,181784.3,5051600.0,1.0,1529.44,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,5+ beds,3373.73,181784.3,5073500.0,1.0,1503.83,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Living,residential,apartment,2 beds,1113.2,119912.43,2430000.0,1.0,2182.9,off-plan,primary
+2026-06-08,Yas Island,YS1,Gardenia Bay,residential,apartment,studio,505.26,1053069.58,1005161.0,1.0,1989.39,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,2 beds,2745.01,181784.3,2895000.0,1.0,1054.64,off-plan,primary
+2026-06-08,Al Saadiyat Island,SDW4,Nouran Living,residential,apartment,1 bed,760.58,102924.41,1570000.0,1.0,2064.21,off-plan,secondary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,2 beds,1307.49,437817.97,3165138.0,1.0,2420.77,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,2 beds,1307.6,437817.97,3145443.0,1.0,2405.51,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,813.64,437817.97,2153320.0,1.0,2646.53,off-plan,primary
+2026-06-08,Al Shamkhah,SH36,Reeman Living 2,residential,apartment,studio,484.59,108590.1,750000.0,1.0,1547.7,off-plan,secondary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,951.53,437817.97,2136554.0,1.0,2245.39,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,studio,472.54,437817.97,1445108.0,1.0,3058.17,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,837.75,437817.97,2140796.0,1.0,2555.41,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,848.41,437817.97,2226686.0,1.0,2624.54,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,studio,498.37,437817.97,1477529.0,1.0,2964.72,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,952.5,437817.97,2163117.0,1.0,2270.99,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,831.73,437817.97,2256447.0,1.0,2712.96,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,2 beds,1307.6,437817.97,3305528.0,1.0,2527.94,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,studio,481.68,437817.97,1542024.0,1.0,3201.35,off-plan,primary
+2026-06-08,Al Saadiyat Island,SDN8,Saadiyat Grove - The Heart,residential,apartment,2 beds,1427.4,2696290.64,2792467.5,1.0,1956.33,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,2 beds,2240.4,181784.3,3150000.0,1.0,1406.0,off-plan,primary
+2026-06-08,Al Saadiyat Island,SDN3,Four Seasons Private Residences,residential,duplex,4 beds,7946.23,329654.23,56800000.0,1.0,7148.04,off-plan,primary
+2026-06-08,Yas Island,YS1,Gardenia Bay,residential,apartment,studio,463.71,1053069.58,1010434.0,1.0,2179.02,off-plan,primary
+2026-06-08,Al Saadiyat Island,SDE2,Solea,residential,apartment,3 beds,1662.48,265682.55,3892000.0,1.0,2341.08,off-plan,secondary
+2026-06-08,Yas Island,YS1,Gardenia Bay,residential,apartment,studio,502.78,1053069.58,950000.0,1.0,1889.49,off-plan,secondary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,856.16,437817.97,1949226.0,1.0,2276.71,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,899.43,437817.97,1997662.0,1.0,2221.03,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,5+ beds,3406.67,181784.3,5227500.0,1.0,1534.49,off-plan,primary
+2026-06-08,Yas Island,YS1,Gardenia Bay,residential,apartment,1 bed,818.49,1053069.58,1680000.0,1.0,2052.56,off-plan,secondary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,849.16,437817.97,2105486.0,1.0,2479.49,off-plan,primary
+2026-06-08,Al Saadiyat Island,SDN8,Saadiyat Grove - The Heart,residential,apartment,1 bed,956.37,2696290.64,1783250.0,1.0,1864.6,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,837.75,437817.97,2088478.0,1.0,2492.96,off-plan,primary
+2026-06-08,Al Saadiyat Island,SDN8,Louvre Residences,residential,apartment,2 beds,1328.59,2696290.64,5300000.0,1.0,3989.19,off-plan,secondary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,899.32,437817.97,2145543.0,1.0,2385.74,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,4 beds,3311.3,181784.3,4453000.0,1.0,1344.79,off-plan,primary
+2026-06-08,Yas Island,YS1,Gardenia Bay,residential,apartment,1 bed,818.49,1053069.58,1750000.0,1.0,2138.08,off-plan,secondary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,studio,498.37,437817.97,1549022.0,1.0,3108.18,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,studio,481.68,437817.97,1394103.0,1.0,2894.25,off-plan,primary
+2026-06-08,Yas Island,YS1,Gardenia Bay,residential,apartment,studio,502.67,1053069.58,1071234.0,1.0,2131.09,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,901.69,437817.97,1997982.0,1.0,2215.82,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,859.07,437817.97,2010821.0,1.0,2340.7,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,4 beds,3307.32,181784.3,4736000.0,1.0,1431.98,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,1 bed,844.75,437817.97,2174126.0,1.0,2573.69,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,studio,518.07,437817.97,1473227.0,1.0,2843.68,off-plan,primary
+2026-06-08,Al Saadiyat Island,SDN2,Faya Al Saadiyat,residential,villa,6+ beds,19184.39,19142.63,87440079.0,1.0,4557.88,off-plan,primary
+2026-06-08,Mohamed Bin Zayed City,Z36,Private,residential,plot for villa,unclassified,23999.94,23999.94,4200000.0,1.0,175.0,ready,secondary
+2026-06-08,Al Reef,Al Reef,Al Reef Townhouses - Desert Village,residential,townhouse / attached villa,3 beds,1873.99,1364.54,1950000.0,1.0,1040.56,ready,secondary
+2026-06-08,Rabdan,RB15,Mangrove Village,residential,villa,5 beds,4615.67,5889.68,4900000.0,1.0,1061.6,ready,primary
+2026-06-08,Al Aamerah,Al Samar,Private,residential,villa,4 beds,4348.62,19827.1,2430000.0,1.0,558.8,ready,secondary
+2026-06-08,Yas Island,YS3_06,Ansam - Phase 2 - The Golf Collection,residential,apartment,studio,526.03,1422726.12,1500000.0,1.0,2851.55,ready,secondary
+2026-06-08,Khalifa City,SE45_05,"The Gate, Masdar City",residential,apartment,studio,468.98,95654.58,850000.0,1.0,1812.44,ready,secondary
+2026-06-08,Al Rahah,RBW2,Al Zeina,residential,townhouse / attached villa,5 beds,9463.51,2242566.64,10500000.0,1.0,1109.52,ready,secondary
+2026-06-08,Ain Al Faydah,Ain Al Fayda,Ain Al Faydah - Phase 1 (Plots),residential,plot for townhouse / attached villa,unclassified,2723.27,2723.27,700000.0,1.0,257.04,ready,secondary
+2026-06-08,Al Rahah,RBW6,Lamar Residence,residential,duplex,3 beds,3599.99,249999.87,3542000.0,1.0,983.89,ready,primary
+2026-06-08,Yas Island,YN7,Yas Park Place,residential,apartment,studio,481.68,437817.97,1460799.0,1.0,3032.72,off-plan,primary
+2026-06-08,Al Khibeesi,Al Naseriyya,Private,residential,villa,6+ beds,8694.43,18115.64,3600000.0,1.0,414.06,ready,secondary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,2 beds,1852.04,181784.3,2772000.0,1.0,1496.73,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,residential,duplex,4 beds,3270.5,181784.3,4305000.0,1.0,1316.31,off-plan,primary
+2026-06-08,Al Rahah,RBW6,Bab Al Qasr Sea View Residence 51,other,other,unclassified,181784.3,181784.3,4074000.0,1.0,22.41,off-plan,primary
+2026-06-08,Yas Island,YN7,Yas Living,residential,apartment,studio,398.16,62794.66,1097322.0,1.0,2755.98,off-plan,primary
+2026-06-08,Al Faqa',Shibak 1,Arabian Hills Estate (Plots),residential,plot for villa,unclassified,47070.53,47070.53,4000995.0,1.0,85.0,off-plan,secondary
+2026-06-08,Yas Island,YS1,Gardenia Bay,residential,apartment,3 beds,1869.04,1053069.58,3273797.0,1.0,1751.59,off-plan,primary
+2026-06-08,Yas Island,YS3_06,Ansam - Phase 2 - The Golf Collection,residential,duplex,3 beds,2537.27,1422726.12,5021051.0,1.0,1978.92,off-plan,primary
+2026-06-08,Al Faqa',Shibak 1,Arabian Hills Estate (Plots),residential,plot for villa,unclassified,19579.53,19579.53,704869.78,1.0,36.0,off-plan,primary
+2026-06-07,Al Saadiyat Island,SDN1,Mamsha Gardens B,residential,apartment,2 beds,2063.87,322703.34,8500000.0,1.0,4118.48,off-plan,secondary
+2026-06-07,Al Saadiyat Island,SDN8,Saadiyat Grove - The Arthouse,residential,apartment,1 bed,1001.9,2696290.64,3250000.0,1.0,3243.84,off-plan,secondary
+2026-06-05,Al Saadiyat Island,SDN1,Mamsha Gardens B,residential,apartment,3 beds,2923.8,322703.34,9060500.0,1.0,3098.88,off-plan,primary
+2026-06-05,Al Saadiyat Island,SDE3,Saadiyat Lagoons - Phase 2 - Al Sidr,residential,villa,5 beds,6162.66,10883.38,9800000.0,1.0,1590.22,off-plan,secondary
+2026-06-05,Fahid Island,Fahid Island,Fahid Beach Terraces,residential,apartment,1 bed,1122.46,525865.28,4024500.0,1.0,3585.43,off-plan,primary
+2026-06-05,Al Saadiyat Island,SDN8,The Row Saadiyat,residential,apartment,1 bed,958.31,666788.41,3512376.0,1.0,3665.18,off-plan,primary
+2026-06-05,Al Saadiyat Island,SDN8,The Row Saadiyat,residential,apartment,1 bed,953.9,666788.41,3596600.0,1.0,3770.42,off-plan,primary
+2026-06-05,Al Samhah,Al Samhah East Old,Al Reef 2,residential,townhouse / attached villa,3 beds,1689.93,2688.28,2500000.0,1.0,1479.35,ready,secondary
+2026-06-05,Khalifa City,SE45_05,Oasis 1,residential,duplex,1 bed,739.91,90109.02,795000.0,1.0,1074.46,ready,primary
+2026-06-05,Al Bahyah,Ba Al Ghaiylam,Bal Ghaiylam,residential,villa,6+ beds,6319.81,10763.47,3122900.0,1.0,494.14,off-plan,primary
+2026-06-05,Al Shamkhah,SH35,Al Reeman 2 - Phase 3 - Fay Al Reeman II,residential,villa,unclassified,,8072.92,5200000.0,1.0,,off-plan,secondary
+2026-06-05,Al Shamkhah,SH36,Al Reeman 1 - Phase 1 (Plots),residential,villa,unclassified,,5489.59,4400000.0,1.0,,ready,secondary
+2026-06-05,Al Saadiyat Island,SDN1,Mamsha Gardens B,residential,apartment,3 beds,3085.9,322703.34,10912444.0,1.0,3536.23,off-plan,primary
+2026-06-05,Al Rahah,RBW2,Al Muneera (Mainland),residential,apartment,2 beds,1616.52,590004.45,2300000.0,1.0,1422.81,ready,secondary
+2026-06-05,Yas Island,YS3_06,Ansam - Phase 2 - The Golf Collection,residential,apartment,studio,474.69,1332113.78,1300000.0,1.0,2738.63,ready,secondary
+2026-06-05,Al Rahah,RBW6,Lamar Residence,residential,apartment,1 bed,938.5,249987.16,1521000.0,1.0,1620.67,ready,primary
+2026-06-05,Al Layyan,Seih Al Sedeirah 2,Al Ghadeer - Phase 1,residential,townhouse / attached villa,2 beds,1276.92,1248.83,1500000.0,1.0,1174.7,ready,secondary
+2026-06-05,Al Khalidiyah,W17_01,Private,residential,plot for villa,unclassified,16499.98,16499.98,8000000.0,1.0,484.85,ready,secondary
+2026-06-05,Rabdan,RB15,Mangrove Village,residential,villa,5 beds,4579.5,5177.33,9100000.0,1.0,1987.12,ready,primary
+2026-06-05,Al Saadiyat Island,SDN8,The Row Saadiyat,residential,apartment,2 beds,1434.61,666788.41,5852262.0,1.0,4079.34,off-plan,primary
+2026-06-05,Al Danah,E18_03,Private,residential,residential complex,unclassified,7491.57,7500.07,5000.0,0.1111,0.67,ready,secondary
+2026-06-05,Al Saadiyat Island,SDN8,The Row Saadiyat,residential,apartment,1 bed,958.31,666788.41,3675990.0,1.0,3835.91,off-plan,primary
+2026-06-05,Al Tiwayya,Wadi Bin Shami,Private,residential,plot for villa,unclassified,38470.18,38470.18,50000.0,0.3333,1.3,ready,secondary
+2026-06-05,Al Hidayriyyat,Al Hidayriyyat Island,Bashayer Villas - Phase 1,residential,villa,5 beds,6205.28,9900.74,9372000.0,1.0,1510.33,off-plan,secondary
+2026-06-05,Yas Island,YS1,Gardenia Bay,residential,apartment,1 bed,874.03,1053069.58,1560000.0,1.0,1784.84,off-plan,secondary
+2026-06-05,Yas Island,YS3_06,Ansam - Phase 2 - The Golf Collection,residential,apartment,2 beds,1236.13,1332113.78,2071402.0,1.0,1675.72,ready,primary
+2026-06-05,Yas Island,YN7,Noya - Phase 5 - Yas Park Views,residential,villa,4 beds,2504.54,4617.39,4750000.0,1.0,1896.56,off-plan,secondary
+2026-06-05,Al Saadiyat Island,SDN1,Nobu Residences 1,residential,apartment,1 bed,1368.09,152674.94,8250000.0,1.0,6030.31,off-plan,secondary
+2026-06-05,Al Jimi,Shareat Al Jimi,Private,agricultural,plot for farm,unclassified,6767.8,6767.8,5000.0,0.3333,0.74,ready,secondary
+2026-06-05,Yas Island,YS1,Gardenia Bay,residential,apartment,1 bed,856.7,55796.4,1632359.0,1.0,1905.4,off-plan,secondary
+2026-06-05,Al Saadiyat Island,SDN8,The Row Saadiyat,residential,apartment,1 bed,956.59,666788.41,3574895.0,1.0,3737.12,off-plan,primary
+2026-06-05,Yas Island,YS1,Gardenia Bay,residential,apartment,studio,528.51,1053069.58,1180000.0,1.0,2232.69,off-plan,secondary
+2026-06-05,Al Shamkhah,SH36,Reeman Living 2,residential,apartment,studio,280.4,108590.1,520000.0,1.0,1854.49,off-plan,secondary
+2026-06-05,Al Saadiyat Island,SDW4,Nouran Living,residential,apartment,1 bed,842.6,102924.41,1750000.0,1.0,2076.9,off-plan,secondary
+2026-06-05,Yas Island,YN7,Noya - Phase 4 - Yas Park Gate,residential,townhouse / attached villa,2 beds,1333.86,1816.41,3120000.0,1.0,2339.08,off-plan,secondary
+2026-06-05,Al Saadiyat Island,SDN8,The Row Saadiyat,residential,apartment,3 beds,4800.16,666788.41,18720424.0,1.0,3899.96,off-plan,primary
+2026-06-05,Yas Island,YS3_06,Ansam - Phase 2 - The Golf Collection,residential,apartment,2 beds,1236.23,1457708.15,2118446.0,1.0,1713.63,ready,secondary
+2026-06-05,Yas Island,YN7,Noya - Phase 4 - Yas Park Gate,residential,villa,4 beds,2505.51,3901.91,3367543.0,1.0,1344.05,off-plan,secondary
+2026-06-05,Zayed City,MZ12,Bloom Living - Cordoba,residential,villa,3 beds,2728.54,4036.46,3104754.0,1.0,1137.88,ready,secondary
+2026-06-05,Al Samhah,Al Samhah East Old,Al Reef 2,residential,townhouse / attached villa,3 beds,1668.4,2688.28,2400000.0,1.0,1438.5,ready,secondary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,932.05,55267.89,1860200.0,1.0,1995.82,off-plan,primary
+2026-06-05,Al Reem Island,RT1,"Marina Square, Paragon Bay Mall",residential,apartment,5+ beds,2981.6,1967168.17,4084792.0,1.0,1370.0,ready,secondary
+2026-06-05,Al Reem Island,RT3,Radiant Square,residential,apartment,2 beds,1559.37,190187.78,1712060.0,1.0,1097.92,ready,primary
+2026-06-05,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,1069.07,69890.22,2514240.0,1.0,2351.8,off-plan,primary
+2026-06-05,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,954.33,69890.22,2097558.0,1.0,2197.94,off-plan,primary
+2026-06-05,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,1074.02,69890.22,2360640.0,1.0,2197.95,off-plan,primary
+2026-06-05,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,1069.07,69890.22,2589667.0,1.0,2422.35,off-plan,primary
+2026-06-05,Al Reem Island,RS5,Beach Towers,residential,apartment,1 bed,860.68,67791.04,1390000.0,1.0,1615.0,ready,secondary
+2026-06-05,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,3 beds,1946.76,69890.22,4255824.0,1.0,2186.11,off-plan,primary
+2026-06-05,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,2 beds,1534.72,69890.22,3551748.0,1.0,2314.26,off-plan,primary
+2026-06-05,Al Reem Island,RT3,Rixos Residences Al Reem Island,residential,apartment,1 bed,1071.65,69890.22,2595925.0,1.0,2422.36,off-plan,primary
+2026-06-05,Al Reem Island,RT3,Radiant Square,residential,apartment,1 bed,857.13,190187.78,938565.37,1.0,1095.01,ready,secondary
+2026-06-05,Al Reem Island,RT3,Radiant Square,residential,apartment,2 beds,775.22,190187.78,1018325.0,1.0,1313.59,ready,secondary
+2026-06-05,Al Reem Island,RS5,Parkside Residence B,residential,apartment,2 beds,1327.94,14570.77,2250000.0,1.0,1694.35,ready,secondary
+2026-06-05,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,studio,558.43,113914.35,881000.0,1.0,1577.64,off-plan,secondary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,918.48,55267.89,1962200.0,1.0,2136.36,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,917.62,55267.89,2007200.0,1.0,2187.4,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,893.51,55267.89,2005200.0,1.0,2244.18,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,910.09,55267.89,1700200.0,1.0,1868.17,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1412.55,55267.89,2450000.0,1.0,1734.45,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,931.72,55267.89,2017200.0,1.0,2165.03,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,452.84,55267.89,978400.0,1.0,2160.59,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1428.8,55267.89,2410000.0,1.0,1686.73,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1546.88,55267.89,2800000.0,1.0,1810.1,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,921.61,55267.89,1992200.0,1.0,2161.65,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,893.51,55267.89,1990200.0,1.0,2227.4,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,918.81,55267.89,1912512.0,1.0,2081.51,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,929.79,55267.89,2002200.0,1.0,2153.39,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1551.51,55267.89,2835000.0,1.0,1827.25,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1546.88,55267.89,2770000.0,1.0,1790.7,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,917.62,55267.89,1977200.0,1.0,2154.7,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,892.87,55267.89,1975200.0,1.0,2212.19,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,929.79,55267.89,1987200.0,1.0,2137.26,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1880.13,55267.89,2805000.0,1.0,1491.92,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,922.9,55267.89,1940200.0,1.0,2102.29,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,927.31,55267.89,1807200.0,1.0,1948.86,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,432.82,55267.89,916400.0,1.0,2117.28,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,423.88,55267.89,859400.0,1.0,2027.46,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,437.55,55267.89,941400.0,1.0,2151.53,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,949.59,55267.89,1935200.0,1.0,2037.93,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,932.05,55267.89,1875200.0,1.0,2011.91,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,946.15,55267.89,1635200.0,1.0,1728.27,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,949.59,55267.89,1850200.0,1.0,1948.42,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1922.76,55267.89,2820000.0,1.0,1466.64,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,422.38,55267.89,929400.0,1.0,2200.39,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1460.66,55267.89,2430000.0,1.0,1663.63,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,892.87,55267.89,1930200.0,1.0,2161.79,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,851.32,55267.89,1942200.0,1.0,2281.4,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,910.09,55267.89,1685200.0,1.0,1851.68,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,918.48,55267.89,1935200.0,1.0,2106.96,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,929.36,55267.89,1927200.0,1.0,2073.69,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,2 beds,1460.66,55267.89,2430000.0,1.0,1663.63,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,950.02,55267.89,1725200.0,1.0,1815.96,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,453.05,55267.89,971400.0,1.0,2144.13,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,408.6,55267.89,922400.0,1.0,2257.46,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,922.14,55267.89,1902200.0,1.0,2062.81,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,892.87,55267.89,1900200.0,1.0,2128.19,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,422.38,55267.89,908400.0,1.0,2150.67,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,918.16,55267.89,1920200.0,1.0,2091.36,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,946.15,55267.89,1705200.0,1.0,1802.25,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,452.84,55267.89,964400.0,1.0,2129.67,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,422.38,55267.89,922400.0,1.0,2183.82,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,920.42,55267.89,1917200.0,1.0,2082.96,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,910.09,55267.89,1655200.0,1.0,1818.72,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,927.2,55267.89,1897200.0,1.0,2046.16,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,922.9,55267.89,1955200.0,1.0,2118.54,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,925.59,55267.89,1897200.0,1.0,2049.72,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,920.53,55267.89,1887200.0,1.0,2050.12,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,950.02,55267.89,1655200.0,1.0,1742.28,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,442.61,55267.89,941400.0,1.0,2126.93,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,921.61,55267.89,1885200.0,1.0,2045.55,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,932.05,55267.89,1905200.0,1.0,2044.1,off-plan,primary
+2026-06-05,Al Reem Island,RS3,Radiant Waves,residential,apartment,studio,597.29,85510.68,998000.0,1.0,1670.88,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,922.9,55267.89,1950200.0,1.0,2113.12,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,949.48,55267.89,1685200.0,1.0,1774.87,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,432.82,55267.89,909400.0,1.0,2101.1,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,422.38,55267.89,901400.0,1.0,2134.1,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,910.09,55267.89,1645200.0,1.0,1807.73,off-plan,primary
+2026-06-05,Al Reem Island,RS3,Radiant Marina Towers,residential,apartment,1 bed,760.47,113914.35,1100000.0,1.0,1446.47,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,925.59,55267.89,1882200.0,1.0,2033.51,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,920.53,55267.89,1872200.0,1.0,2033.83,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,921.61,55267.89,1870200.0,1.0,2029.27,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,932.05,55267.89,1890200.0,1.0,2028.0,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,928.92,55267.89,1882200.0,1.0,2026.22,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,949.59,55267.89,1675200.0,1.0,1764.13,off-plan,primary
+2026-06-05,Al Reem Island,RT7,Reem Hills - Phase 1A,residential,villa,6+ beds,14180.04,16652.61,15593700.0,1.0,1099.69,off-plan,secondary
+2026-06-05,Al Maryah Island,MI5,Private,other,other,unclassified,32218.29,32218.29,200000000.0,1.0,6207.65,ready,secondary
+2026-06-05,Al Reem Island,RS2,Shams Abu Dhabi (Plots),residential,plot for residential complex,unclassified,64970.15,64970.15,40760000.0,1.0,627.37,ready,secondary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,452.84,55267.89,950400.0,1.0,2098.75,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,432.82,55267.89,866304.0,1.0,2001.53,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,408.6,55267.89,846144.0,1.0,2070.84,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,422.38,55267.89,894400.0,1.0,2117.52,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,949.59,55267.89,1925200.0,1.0,2027.4,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,920.53,55267.89,1857200.0,1.0,2017.53,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,928.92,55267.89,1867200.0,1.0,2010.08,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,949.59,55267.89,1920200.0,1.0,2022.14,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,946.15,55267.89,1665200.0,1.0,1759.97,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,studio,431.2,55267.89,895400.0,1.0,2076.53,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,908.47,55267.89,1590000.0,1.0,1750.2,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,949.59,55267.89,1910200.0,1.0,2011.61,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,921.61,55267.89,1840200.0,1.0,1996.72,off-plan,primary
+2026-06-05,Al Reem Island,RT6,Rotana Residences South,residential,apartment,1 bed,927.2,55267.89,1852200.0,1.0,1997.63,off-plan,primary
+2026-06-05,Al Reem Island,RT1,"Marina Square, Paragon Bay Mall",residential,apartment,1 bed,904.17,1967168.17,1250000.0,1.0,1382.48,ready,secondary
+2026-06-05,Al Saadiyat Island,SDN1,Nobu Residences 1,residential,apartment,3 beds,3235.84,152674.94,30662000.0,1.0,9475.75,off-plan,primary
+2026-06-05,Ramhan Island,Ramhan Island,Ramhan Island - Phase 3,residential,villa,unclassified,,13759.82,27260888.0,1.0,,off-plan,primary
+2026-06-05,Al Saadiyat Island,SDN8,Saadiyat Grove - The Source,residential,apartment,2 beds,1676.48,2696290.64,3978300.0,1.0,2373.01,off-plan,primary

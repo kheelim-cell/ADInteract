@@ -70,9 +70,44 @@
 
   <main class="flex-1">
     {#if $dbLoading}
-      <div class="flex flex-col items-center justify-center min-h-[60vh] gap-4">
-        <LoadingSpinner />
-        <p class="text-gray-500 text-sm">Loading Abu Dhabi real estate data...</p>
+      <!-- Hero renders immediately while DuckDB loads in background — prevents bounce -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+        <!-- Value prop -->
+        <div class="text-center mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold text-navy mb-3">
+            Abu Dhabi Property Transactions — Live ADREC Data
+          </h2>
+          <p class="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto">
+            Search and analyse 97,000+ registered property sales. Filter by district, project,
+            price, and date. Median prices, volumes, and trends updated daily.
+          </p>
+        </div>
+
+        <!-- Skeleton stat cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
+          {#each ['Total Transactions', 'Median Price', 'Median AED/sqft', 'Total Volume'] as label}
+            <div class="stat-card">
+              <p class="text-xs font-semibold text-gray-400 mb-2">{label}</p>
+              <div class="h-7 w-28 bg-gray-100 rounded animate-pulse mb-2"></div>
+              <div class="h-3 w-16 bg-gray-100 rounded animate-pulse"></div>
+            </div>
+          {/each}
+        </div>
+
+        <!-- Skeleton charts -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          {#each [1, 2] as _}
+            <div class="chart-card">
+              <div class="h-4 w-32 bg-gray-100 rounded animate-pulse mb-4"></div>
+              <div class="h-56 bg-gray-50 rounded-lg animate-pulse"></div>
+            </div>
+          {/each}
+        </div>
+
+        <div class="flex items-center justify-center gap-3 text-gray-400 text-sm">
+          <LoadingSpinner />
+          <span>Loading transaction data…</span>
+        </div>
       </div>
     {:else if $dbError}
       <div class="flex flex-col items-center justify-center min-h-[60vh] gap-4 px-4">

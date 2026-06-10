@@ -29,6 +29,8 @@
   import ComparableProjects from '$lib/components/project/ComparableProjects.svelte';
   import TransactionTable from '$lib/components/table/TransactionTable.svelte';
   import AdStrip from '$lib/components/ads/AdStrip.svelte';
+  import InvestorToolsStrip from '$lib/components/ui/InvestorToolsStrip.svelte';
+  import EmailCapture from '$lib/components/ui/EmailCapture.svelte';
   import type {
     StatsResult,
     ChartDataPoint,
@@ -324,4 +326,10 @@
     {/if}
   </div>
   </GatedSection>
+
+  <!-- Investor tools strip — only on main dashboard (not project pages) -->
+  {#if !isProjectPage}
+    <InvestorToolsStrip />
+    <EmailCapture />
+  {/if}
 </div>

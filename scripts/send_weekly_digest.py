@@ -335,7 +335,30 @@ def build_email(df: pd.DataFrame, week_num: int) -> tuple[str, str]:
     focus_name = FOCUS_NAMES[focus_idx]
 
     date_range = f"{week_start.strftime('%d %b')} – {today.strftime('%d %b %Y')}"
-    subject    = f"Abu Dhabi Property Market | {date_range} | {this_w['volume']:,} transactions"
+
+    # Top district by volume (for insight-led subjects)
+    mask_w = (df["sale_date"].dt.date >= week_start) & (df["sale_date"].dt.date <= today)
+    top_district = (
+        df[mask_w].groupby("District")["price_aed"].count()
+        .idxmax() if not df[mask_w].empty else "Abu Dhabi"
+    )
+
+    subject_pool = [
+        # Insight-led
+        f"Why is {top_district} dominating Abu Dhabi deals right now? | ADInteract.co",
+        f"Abu Dhabi's hottest districts right now — ADInteract.co weekly digest",
+        f"Where is Abu Dhabi property money actually going this week? | ADInteract.co",
+        f"The Abu Dhabi projects investors are watching — ADInteract.co",
+        # Insider angle
+        f"What serious Abu Dhabi investors checked this week | ADInteract.co",
+        f"Your Abu Dhabi market edge | ADInteract.co — {week_start.strftime('%d %b')}",
+        # Transaction-led (occasional anchor)
+        f"{this_w['volume']:,} Abu Dhabi deals last week — full breakdown on ADInteract.co",
+        f"This week in Abu Dhabi property: {this_w['volume']:,} transactions, {fmt_aed(this_w['total_value'])} moved | ADInteract.co",
+    ]
+    # Weighted index: 0-3 insight, 4-5 insider, 6-7 transaction — favour first 6
+    weights = [0, 1, 2, 3, 4, 5, 0, 6]  # week mod 8 maps here, transaction slots repeat less
+    subject = subject_pool[weights[week_num % 8]]
 
     # Always include volume stats
     content = section_volume(this_w, prev_w)

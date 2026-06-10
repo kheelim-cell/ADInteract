@@ -81,15 +81,15 @@
 
 <!-- ── Hero ────────────────────────────────────────────────────────────────── -->
 <div class="bg-gradient-to-b from-[#0a2318] to-[#0e2d45] border-b border-white/5">
-  <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-4 sm:py-5">
+  <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-2.5 sm:py-5">
     <div class="flex items-center gap-3">
-      <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/25 px-2.5 py-0.5 text-[10px] font-bold text-emerald-400 tracking-wider uppercase flex-shrink-0">
+      <span class="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/25 px-2.5 py-0.5 text-[10px] font-bold text-emerald-400 tracking-wider uppercase flex-shrink-0">
         <svg class="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
         </svg>
         Investor Intelligence
       </span>
-      <h2 class="text-base sm:text-lg font-bold text-white leading-tight">
+      <h2 class="text-sm sm:text-lg font-bold text-white leading-tight">
         Abu Dhabi Property Investment Insights
       </h2>
       <p class="hidden sm:block text-xs text-white/40 border-l border-white/10 pl-3 ml-1">
@@ -104,11 +104,11 @@
   <div class="max-w-[1400px] mx-auto px-4 sm:px-8">
 
     <!-- Mobile nav dropdown (hidden on sm+) -->
-    <div class="block sm:hidden py-3">
+    <div class="block sm:hidden py-2">
       <div class="relative">
         <select
           onchange={(e) => goto((e.currentTarget as HTMLSelectElement).value)}
-          class="w-full bg-[#0a1a10] border border-white/15 rounded-lg px-3 py-2.5 text-sm font-semibold text-white appearance-none cursor-pointer focus:outline-none focus:border-emerald-500/40"
+          class="w-full bg-[#0a1a10] border border-white/15 rounded-lg px-3 py-2 text-sm font-semibold text-white appearance-none cursor-pointer focus:outline-none focus:border-emerald-500/40"
         >
           {#each NAV_ITEMS as item}
             <option value={item.href} selected={currentPath === item.href || currentPath.startsWith(item.href + '/')}>
@@ -120,11 +120,6 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
         </svg>
       </div>
-      {#if activeNavItem}
-        <p class="mt-2 text-[11px] leading-snug text-white/40 px-1">
-          {activeNavItem.description}
-        </p>
-      {/if}
     </div>
 
     <!-- Tab buttons (desktop: sm+) -->

@@ -144,15 +144,18 @@ def fmt_pct(current: float, prior: float) -> str:
 # ── HTML builders ─────────────────────────────────────────────────────────────
 def base_style() -> str:
     return f"""
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-      body {{ margin:0; padding:0; background:{LIGHT}; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }}
+      body {{ margin:0; padding:0; background:{LIGHT}; font-family:'Montserrat',sans-serif; }}
       .wrap {{ max-width:620px; margin:0 auto; background:{WHITE}; border-radius:12px; overflow:hidden; }}
       .header {{ background:{GREEN}; padding:0; }}
-      .header a.banner {{ display:block; padding:24px 32px 20px; text-decoration:none; }}
-      .header img {{ display:block; height:36px; width:auto; margin-bottom:10px; }}
-      .header p  {{ margin:4px 0 0; color:rgba(255,255,255,0.6); font-size:13px; }}
+      .header a.banner {{ display:block; text-decoration:none; }}
+      .header a.banner img {{ display:block; width:100%; height:auto; }}
+      .header-meta {{ padding:14px 32px 18px; }}
+      .header-meta p {{ margin:0; color:rgba(255,255,255,0.65); font-size:12px; font-family:'Montserrat',sans-serif; }}
+      .header-meta p.focus {{ margin-top:4px; color:{GOLD}; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; }}
       .top-cta {{ background:{GOLD}; text-align:center; padding:11px 20px; }}
-      .top-cta a {{ color:{GREEN}; font-weight:800; font-size:13px; text-decoration:none; letter-spacing:0.2px; }}
+      .top-cta a {{ color:{GREEN}; font-weight:800; font-size:13px; text-decoration:none; letter-spacing:0.2px; font-family:'Montserrat',sans-serif; }}
       .body {{ padding:28px 32px; }}
       .stat-row {{ display:flex; gap:12px; margin-bottom:20px; }}
       .stat {{ flex:1; background:{LIGHT}; border-radius:10px; padding:14px 16px; }}
@@ -160,9 +163,9 @@ def base_style() -> str:
       .stat .value {{ font-size:20px; font-weight:800; color:{GREEN}; line-height:1.1; }}
       .stat .change {{ font-size:12px; margin-top:3px; }}
       h2 {{ font-size:15px; font-weight:700; color:{GREEN}; margin:24px 0 12px; border-left:3px solid {GOLD}; padding-left:10px; }}
-      table {{ width:100%; border-collapse:collapse; font-size:13px; }}
-      th {{ text-align:left; padding:8px 10px; background:{LIGHT}; color:{GRAY}; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; }}
-      td {{ padding:9px 10px; border-bottom:1px solid {BORDER}; color:#111827; }}
+      table {{ width:100%; border-collapse:collapse; font-size:13px; font-family:'Montserrat',sans-serif; }}
+      th {{ text-align:left; padding:8px 10px; background:{LIGHT}; color:{GRAY}; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; font-family:'Montserrat',sans-serif; }}
+      td {{ padding:9px 10px; border-bottom:1px solid {BORDER}; color:#111827; font-family:'Montserrat',sans-serif; }}
       tr:last-child td {{ border-bottom:none; }}
       .cta {{ margin:28px 0 0; background:{GREEN}; border-radius:10px; padding:22px 24px; text-align:center; }}
       .cta p {{ margin:0 0 14px; color:rgba(255,255,255,0.8); font-size:14px; line-height:1.5; }}
@@ -373,12 +376,12 @@ def build_email(df: pd.DataFrame, week_num: int) -> tuple[str, str]:
     <div class="wrap">
       <div class="header">
         <a href="{SITE_URL}" class="banner">
-          <img src="{SITE_URL}/brand/logo-horizontal-white.svg" alt="ADInteract" />
-          <p>Abu Dhabi Property Market Weekly — {date_range}</p>
-          <p style="margin-top:4px;color:{GOLD};font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px">
-            This week: {focus_name}
-          </p>
+          <img src="{SITE_URL}/brand/og-image.png" alt="ADInteract — Abu Dhabi Property Transactions" />
         </a>
+        <div class="header-meta">
+          <p>Abu Dhabi Property Market Weekly — {date_range}</p>
+          <p class="focus">This week: {focus_name}</p>
+        </div>
         <div class="top-cta">
           <a href="{cta_links}">View live dashboard on ADInteract.co &rarr;</a>
         </div>

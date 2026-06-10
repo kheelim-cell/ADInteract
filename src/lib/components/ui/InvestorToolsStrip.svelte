@@ -4,14 +4,14 @@
   let { theme = 'gold' }: { theme?: 'gold' | 'emerald' } = $props();
 
   const t = $derived(theme === 'gold' ? {
-    border:    'border-amber-200',
-    bg:        'from-amber-50 to-white',
-    badge:     'bg-amber-600',
-    label:     'text-amber-900',
-    iconBg:    'bg-amber-50 group-hover:bg-amber-100',
-    iconColor: 'text-amber-600',
-    cardBorder:'border-amber-100 hover:border-amber-400',
-    heading:   'text-amber-900',
+    border:    'border-brand-200',
+    bg:        'from-brand-50 to-white',
+    badge:     'bg-brand-600',
+    label:     'text-brand-900',
+    iconBg:    'bg-brand-50 group-hover:bg-brand-100',
+    iconColor: 'text-brand-600',
+    cardBorder:'border-brand-200 hover:border-brand-400',
+    heading:   'text-brand-900',
   } : {
     border:    'border-emerald-100',
     bg:        'from-emerald-50 to-white',

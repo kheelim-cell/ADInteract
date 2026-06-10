@@ -12,6 +12,7 @@
   import { rentalDistrictCounts } from '$lib/stores/db';
   import { queryAllRentalDistrictCounts } from '$lib/db/rental_queries';
   import AdStrip from '$lib/components/ads/AdStrip.svelte';
+  import InvestorToolsStrip from '$lib/components/ui/InvestorToolsStrip.svelte';
   import RentalFilterBar from './RentalFilterBar.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
   import RentalStatsGrid from './RentalStatsGrid.svelte';
@@ -247,6 +248,8 @@
       </div>
     </GatedBlur>
   </GatedSection>
+
+  <InvestorToolsStrip theme="gold" />
 
   <!-- Project table -->
   <GatedSection>

@@ -49,18 +49,13 @@ jobs:
             scripts/data/debug_page.html
           retention-days: 7
 
-      - name: Append new rows to Google Sheet
-        env:
-          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
-        run: python scripts/update_sheets.py
-
-      - name: Download full Google Sheet → adrec_raw.csv
-        env:
-          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
-        run: python scripts/fetch_sheets.py
-
-      - name: Transform → Parquet + meta.json
+      - name: Transform → Parquet + meta.json (incremental append)
         run: python scripts/transform.py
+
+      - name: Append new rows to Google Sheet (backup — non-critical)
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        run: python scripts/update_sheets.py || echo "⚠️  Sheet update failed — parquet already written, continuing"
 
       - name: Fetch ADREC Rental Index
         run: python scripts/fetch_rental.py

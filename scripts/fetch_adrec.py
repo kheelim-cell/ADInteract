@@ -19,8 +19,7 @@ import csv
 import json
 import os
 import sys
-import tempfile
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from playwright.async_api import async_playwright
@@ -42,81 +41,30 @@ TRANSACTION_COLUMNS = {
 DEFAULT_LOOKBACK_DAYS = 7
 
 
-# ── Credentials helper ───────────────────────────────────────────────────────
-def _get_gspread_client():
-    """Return an authenticated gspread client using env vars."""
-    import base64
-    import gspread
-    from google.oauth2.service_account import Credentials
 
-    scopes = [
-        "https://www.googleapis.com/auth/spreadsheets.readonly",
-        "https://www.googleapis.com/auth/drive.readonly",
-    ]
-
-    creds_file = os.environ.get("GOOGLE_CREDENTIALS_FILE")
-    creds_json = os.environ.get("GOOGLE_CREDENTIALS_JSON")
-
-    if creds_file:
-        creds = Credentials.from_service_account_file(creds_file, scopes=scopes)
-    elif creds_json:
-        if creds_json.strip().startswith("{"):
-            info = json.loads(creds_json)
-        else:
-            padded = creds_json + "=" * (4 - len(creds_json) % 4)
-            info = json.loads(base64.b64decode(padded).decode())
-        tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False)
-        json.dump(info, tmp)
-        tmp.close()
-        creds = Credentials.from_service_account_file(tmp.name, scopes=scopes)
-        os.unlink(tmp.name)
-    else:
-        raise EnvironmentError(
-            "Set GOOGLE_CREDENTIALS_FILE or GOOGLE_CREDENTIALS_JSON"
-        )
-
-    return gspread.authorize(creds)
+META_JSON_PATH = "static/data/meta.json"
 
 
-def get_last_sheet_date() -> date:
+def get_last_parquet_date() -> date:
     """
-    Query the main Google Sheet to find the latest Sale Application Date.
-    Falls back to (today - DEFAULT_LOOKBACK_DAYS) if credentials are
-    unavailable or the sheet can't be read.
+    Read the last transaction date from meta.json (written by transform.py).
+    This is always in sync with the live parquet — no API call needed.
+    Falls back to (today - DEFAULT_LOOKBACK_DAYS) if the file doesn't exist.
     """
-    SHEET_ID = "1c9Xc6qsXfTwmnZ4gGMwvyCQ3bTDXBIO9ZyfnfwMl3tw"
-    GID      = 39002702
-    DATE_COL = "Sale Application Date"
-
     fallback = date.today() - timedelta(days=DEFAULT_LOOKBACK_DAYS)
-
     try:
-        import gspread
-        import pandas as pd
-
-        gc = _get_gspread_client()
-        sh = gc.open_by_key(SHEET_ID)
-        ws = next((s for s in sh.worksheets() if s.id == GID), sh.get_worksheet(0))
-
-        # Read only the header + date column to avoid downloading everything
-        header = ws.row_values(1)
-        if DATE_COL not in header:
-            print(f"  Warning: '{DATE_COL}' not in sheet header — using fallback date")
+        import json
+        with open(META_JSON_PATH) as f:
+            meta = json.load(f)
+        max_date_str = meta.get("dateRange", {}).get("max", "")
+        if not max_date_str:
+            print(f"  Warning: no dateRange.max in meta.json — using fallback {fallback}")
             return fallback
-
-        col_idx = header.index(DATE_COL) + 1  # 1-based
-        date_values = ws.col_values(col_idx)[1:]  # skip header
-
-        parsed = pd.to_datetime(date_values, dayfirst=True, errors="coerce").dropna()
-        if parsed.empty:
-            return fallback
-
-        last = parsed.max().date()
-        print(f"  Last date in sheet: {last}")
+        last = date.fromisoformat(max_date_str)
+        print(f"  Last date in parquet (meta.json): {last}")
         return last
-
     except Exception as exc:
-        print(f"  Warning: could not read sheet ({exc}) — using fallback {fallback}")
+        print(f"  Warning: could not read {META_JSON_PATH} ({exc}) — using fallback {fallback}")
         return fallback
 
 
@@ -370,9 +318,9 @@ async def fetch():
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     today = date.today()
 
-    # Determine the date window: last_sheet_date+1 → today
-    print("[1/5] Checking last date in Google Sheet…")
-    last_date = get_last_sheet_date()
+    # Determine the date window: last_parquet_date+1 → today
+    print("[1/5] Checking last date in local parquet (meta.json)…")
+    last_date = get_last_parquet_date()
     start_date = last_date + timedelta(days=1)
 
     # Safety: if last_date is today or future, nothing to fetch

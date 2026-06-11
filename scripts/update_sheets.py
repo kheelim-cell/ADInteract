@@ -124,23 +124,30 @@ def update():
     ]
     date_col = next((c for c in date_col_candidates if c in new_df.columns), None)
     if date_col is None:
-        print("Warning: could not identify date column — skipping append to protect existing data.")
-        return
+        raise RuntimeError(
+            f"Could not identify date column in CSV. "
+            f"Tried: {date_col_candidates}. "
+            f"Got columns: {list(new_df.columns)[:10]}"
+        )
 
     # Find date column position in the sheet header
     header_row = ws.row_values(1)
     try:
         date_col_idx = header_row.index(date_col) + 1  # 1-based
     except ValueError:
-        print(f"Warning: date column '{date_col}' not found in sheet header — skipping append.")
-        return
+        raise RuntimeError(
+            f"Date column '{date_col}' not found in sheet header. "
+            f"Sheet header: {header_row[:10]}"
+        )
 
     # Parse existing dates to find the max
     existing_dates_raw = ws.col_values(date_col_idx)[1:]  # skip header
     existing_dates = pd.to_datetime(existing_dates_raw, dayfirst=True, errors="coerce").dropna()
     if len(existing_dates) == 0:
-        print("Warning: no parseable dates in sheet — skipping append.")
-        return
+        raise RuntimeError(
+            "No parseable dates found in sheet date column. "
+            "Check that the sheet has data and dates are in a recognised format."
+        )
 
     max_existing_date = existing_dates.max().date()
     print(f"Max date already in sheet: {max_existing_date}")

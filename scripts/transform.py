@@ -6,6 +6,13 @@ transforms it, then writes:
   - static/data/transactions.parquet   (ZSTD compressed, DuckDB-WASM compatible)
   - static/data/meta.json              (row count, date range, dropdown lists)
 
+Two modes:
+  - Incremental (default): if an existing parquet is present, the CSV is
+    treated as a delta of new rows. New rows are appended to the existing
+    parquet, avoiding a full rebuild.
+  - Full rebuild: pass --full or delete the existing parquet to rebuild from
+    the CSV alone (used for backfills or schema changes).
+
 Transformations applied:
   - SQM → SQFT  (× 10.7639)
   - AED/sqm → AED/sqft
@@ -19,7 +26,8 @@ Transformations applied:
 
 import json
 import os
-from datetime import datetime, timezone  # timezone kept for meta.json lastUpdated
+import sys
+from datetime import datetime, timezone
 
 import pandas as pd
 import pyarrow as pa
@@ -128,8 +136,27 @@ def normalise_sequence(v) -> str:
     return s
 
 
-def transform():
+def load_existing_parquet() -> pd.DataFrame | None:
+    """Load the existing parquet as a DataFrame, or return None if absent."""
+    if not os.path.exists(OUTPUT_PARQUET):
+        return None
+    try:
+        tbl = pq.read_table(OUTPUT_PARQUET)
+        df = tbl.to_pandas()
+        print(f"  Loaded existing parquet: {len(df):,} rows, max date {df['sale_date'].max().date()}")
+        return df
+    except Exception as exc:
+        print(f"  Warning: could not load existing parquet ({exc}) — will do full rebuild")
+        return None
+
+
+def transform(full_rebuild: bool = False):
     os.makedirs("static/data", exist_ok=True)
+
+    # ── Check for empty sentinel (fetch_adrec.py writes "" when up to date) ──
+    if os.path.exists(INPUT_CSV) and os.path.getsize(INPUT_CSV) == 0:
+        print("CSV is empty sentinel — no new ADREC data to process. Parquet unchanged.")
+        return
 
     print(f"Reading {INPUT_CSV}…")
     df = pd.read_csv(INPUT_CSV, low_memory=False)
@@ -234,6 +261,29 @@ def transform():
         "sale_sequence":  out["sale_sequence"],
     }).dropna(subset=["sale_date", "price_aed"])
 
+    print(f"  Transformed new rows: {len(final):,}")
+
+    # ── Incremental merge with existing parquet ────────────────────────────
+    if not full_rebuild:
+        existing = load_existing_parquet()
+        if existing is not None:
+            existing_max = existing["sale_date"].max()
+            # Keep only rows genuinely newer than what's already in the parquet
+            truly_new = final[final["sale_date"] > existing_max]
+            if len(truly_new) == 0:
+                print("  No rows newer than existing parquet — nothing to append.")
+                return
+            print(f"  Appending {len(truly_new):,} rows (after {existing_max.date()}) to existing {len(existing):,}")
+            # Ensure schema compatibility before concat
+            for col in existing.columns:
+                if col not in truly_new.columns:
+                    truly_new = truly_new.copy()
+                    truly_new[col] = pd.NA
+            final = pd.concat([existing, truly_new[existing.columns]], ignore_index=True)
+            print(f"  Combined row count: {len(final):,}")
+        else:
+            print("  No existing parquet found — doing full write.")
+
     print(f"  Final row count: {len(final):,}")
 
     # ── Write Parquet (ZSTD compressed) ────────────────────────────────────
@@ -271,4 +321,4 @@ def transform():
 
 
 if __name__ == "__main__":
-    transform()
+    transform(full_rebuild="--full" in sys.argv)

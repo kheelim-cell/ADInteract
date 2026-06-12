@@ -64,15 +64,31 @@ function svgFor(districtName, s) {
     <line x1="0" y1="500" x2="1200" y2="500"/>
     <line x1="900" y1="0" x2="900" y2="630"/>
   </g>
-  <!-- top bar: brand -->
-  <text x="72" y="92" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#7fd1a8" letter-spacing="1">ADINTERACT</text>
-  <text x="72" y="126" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#9db8aa">Abu Dhabi property transactions · ADREC data</text>
+  <!-- top bar: brand icon (inlined from static/brand/logo-icon.svg, gradient id renamed) + wordmark -->
+  <g transform="translate(72,48) scale(0.36)">
+    <defs>
+      <linearGradient id="iconbg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1e4d3a"/>
+        <stop offset="100%" stop-color="#0d2318"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="200" rx="36" fill="url(#iconbg)"/>
+    <rect x="12" y="12" width="176" height="176" rx="26" fill="rgba(255,255,255,0.08)" stroke="#C8A951" stroke-width="1.5" stroke-opacity="0.5"/>
+    <path transform="translate(20,62) scale(2.0)" fill="#dfb83c"
+      d="M0,38 L0,30 L5,30 L5,26 L10,26 L10,30 L11,30 L11,25 Q15.5,18 20,25 L20,30 L21,30
+         L21,21 L23,21 L23,13 L25,3 L27,13 L27,21 L29,21 L29,17 L31,17 L31,7 L32,7 L32,2
+         L32.5,0 L33,2 L33,7 L34,7 L34,17 L35,17 L35,21 L37,21 L37,13 L39.5,7 L42,13 L42,21
+         L44,21 L44,16 L47,13 L50,16 L50,21 L52,21 L52,27 L57,27 L57,23 L64,23 L64,27 L72,27
+         L72,31 L80,31 L80,38 Z"/>
+  </g>
+  <text x="160" y="88" font-family="Arial, Helvetica, sans-serif" font-size="36" letter-spacing="1"><tspan font-weight="800" fill="#dfb83c">AD</tspan><tspan font-style="italic" font-weight="600" fill="#C8A951">INTERACT</tspan></text>
+  <text x="160" y="118" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="2" fill="#9db8aa">ABU DHABI PROPERTY TRANSACTIONS · ADREC DATA</text>
 
   <!-- district name -->
   <text x="72" y="250" font-family="Arial, Helvetica, sans-serif" font-size="${nameFontSize(districtName)}" font-weight="800" fill="#ffffff">${esc(districtName)}</text>
 
   <!-- headline stat -->
-  <text x="72" y="375" font-family="Arial, Helvetica, sans-serif" font-size="96" font-weight="800" fill="#7fd1a8">AED ${fmt(s.median_psf)}<tspan font-size="44" fill="#cde7d8"> /sqft median</tspan></text>
+  <text x="72" y="375" font-family="Arial, Helvetica, sans-serif" font-size="96" font-weight="800" fill="#dfb83c">AED ${fmt(s.median_psf)}<tspan font-size="44" fill="#cde7d8"> /sqft median</tspan></text>
   <text x="72" y="432" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#cde7d8">${esc(range)}</text>
 
   <!-- footer stats -->

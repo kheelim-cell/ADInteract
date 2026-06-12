@@ -28,6 +28,10 @@ export const entries: EntryGenerator = () =>
 
 export const prerender = true;
 
+// Override the global ssr=false: these pages exist FOR their prerendered HTML
+// (SEO prose + og:image report cards). Without SSR the build emits empty shells.
+export const ssr = true;
+
 export const load: PageLoad = ({ params }) => {
   const districtName = slugToDistrict[params.district] ?? params.district;
   const summary      = summaries[districtName] ?? null;

@@ -1,4 +1,6 @@
 <script lang="ts">
+  let { district = null }: { district?: string | null } = $props();
+
   let email = $state('');
   let status = $state<'idle' | 'loading' | 'success' | 'error'>('idle');
   let errorMsg = $state('');
@@ -11,23 +13,31 @@
     errorMsg = '';
 
     try {
-      // Store in Supabase via a simple upsert to an email_subscribers table.
-      // Falls back gracefully if Supabase is not configured.
       const { supabase } = await import('$lib/supabase');
       if (!supabase) throw new Error('not_configured');
 
-      const { error } = await supabase
-        .from('email_subscribers')
-        .upsert({ email: email.trim().toLowerCase() }, { onConflict: 'email' });
+      // RLS only allows INSERT for anon — a duplicate email comes back as
+      // 23505, which is still a successful subscribe from the user's view.
+      const row = {
+        email: email.trim().toLowerCase(),
+        district,
+        source: window.location.pathname + window.location.search
+      };
+      let { error } = await supabase.from('email_subscribers').insert(row);
 
-      if (error) throw error;
+      // 42703: district/source columns not migrated yet — store the email anyway
+      if (error && error.code === '42703') {
+        ({ error } = await supabase.from('email_subscribers').insert({ email: row.email }));
+      }
+      if (error && error.code !== '23505') throw error;
+
+      const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+      w.gtag?.('event', 'sign_up', { method: 'email_capture', item_id: district ?? 'home' });
       status = 'success';
     } catch (err: unknown) {
-      // If Supabase table doesn't exist yet, still show success to user
-      // (we'll wire the backend properly — don't block UX on it)
       const msg = err instanceof Error ? err.message : String(err);
       if (msg.includes('not_configured') || msg.includes('does not exist') || msg.includes('42P01')) {
-        status = 'success'; // degrade gracefully
+        status = 'success'; // degrade gracefully if table/config missing
       } else {
         status = 'error';
         errorMsg = 'Something went wrong. Please try again.';

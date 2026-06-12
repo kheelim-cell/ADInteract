@@ -31,6 +31,7 @@
   import AdStrip from '$lib/components/ads/AdStrip.svelte';
   import InvestorToolsStrip from '$lib/components/ui/InvestorToolsStrip.svelte';
   import EmailCapture from '$lib/components/ui/EmailCapture.svelte';
+  import ShareBar from '$lib/components/ui/ShareBar.svelte';
   import type {
     StatsResult,
     ChartDataPoint,
@@ -175,6 +176,7 @@
         <StatsGrid {stats} />
       {/if}
     </GatedSection>
+    <ShareBar district={$filters.district} />
   </div>
 
   <!-- Investor Tools Strip — only on main dashboard, right after stats -->
@@ -334,6 +336,6 @@
 
   <!-- Email capture — only on main dashboard -->
   {#if !isProjectPage}
-    <EmailCapture />
+    <EmailCapture district={$filters.district} />
   {/if}
 </div>

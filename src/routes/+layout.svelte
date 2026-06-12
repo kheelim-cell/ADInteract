@@ -9,6 +9,7 @@
   import { dbReady, dbError, dbLoading, metadata, rentalMetadata } from '$lib/stores/db';
   import { showSignInModal } from '$lib/stores/auth';
   import { base } from '$app/paths';
+  import { browser } from '$app/environment';
   import { page } from '$app/stores';
   import type { Metadata } from '$lib/db/types';
   import type { RentalMetadata } from '$lib/db/rental_types';
@@ -57,8 +58,23 @@
 </script>
 
 <svelte:head>
-  <link rel="canonical" href={canonicalUrl} />
-  <meta property="og:url" content={canonicalUrl} />
+  <!-- /area/ pages set their own meta (title, description, OG, canonical) — don't double-emit -->
+  {#if !$page.url.pathname.startsWith('/area/')}
+    <meta name="description" content="Abu Dhabi real estate transaction analytics — search, filter, and analyse property sales data powered by ADREC." />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ADInteract — Abu Dhabi Property Prices & Transactions" />
+    <meta property="og:description" content="Search Abu Dhabi property transactions from ADREC. Filter by district, project, and price. Median prices, volumes, and trends — updated daily." />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content="https://adinteract.co/brand/og-image.png" />
+    <meta property="og:image:width" content="1789" />
+    <meta property="og:image:height" content="937" />
+    <meta property="og:image:type" content="image/png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ADInteract — Abu Dhabi Property Prices & Transactions" />
+    <meta name="twitter:description" content="Search Abu Dhabi property transactions from ADREC. Filter by district, project, and price. Median prices, volumes, and trends — updated daily." />
+    <meta name="twitter:image" content="https://adinteract.co/brand/og-image.png" />
+  {/if}
 </svelte:head>
 
 <div class="min-h-screen flex flex-col bg-[#FAFAF6]">
@@ -69,7 +85,9 @@
   {/if}
 
   <main class="flex-1">
-    {#if $dbLoading}
+    <!-- During SSR/prerender, always render children so SEO pages emit their
+         prose and head tags. The DuckDB loading gate only applies in-browser. -->
+    {#if browser && $dbLoading}
       <!-- Hero renders immediately while DuckDB loads in background — prevents bounce -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         <!-- Value prop -->

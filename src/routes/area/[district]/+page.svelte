@@ -39,11 +39,17 @@
       ? `${fmtNum(summary.tx_count_12m)} ADREC-verified transactions in ${districtName}. Median AED ${fmtNum(summary.median_psf)}/sqft. Off-plan and ready sales data, price trends, top projects.`
       : `Property transaction data for ${districtName}, Abu Dhabi. ADREC-sourced price trends, median AED/sqft, and top projects.`}
   />
-  <meta property="og:url" content="https://www.adinteract.co{base}/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
+  <meta property="og:url" content="https://www.adinteract.co/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://adinteract.co/brand/og-image.png" />
+  <!-- District-specific report-card image, generated at build time by scripts/generate_og_images.mjs -->
+  <meta property="og:image" content="https://www.adinteract.co/og/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.adinteract.co/og/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}.png" />
   <!-- Canonical is the clean slug URL — tells Google this is the authoritative page -->
-  <link rel="canonical" href="https://www.adinteract.co{base}/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
+  <link rel="canonical" href="https://www.adinteract.co/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
 </svelte:head>
 
 <!-- ── Prose block ────────────────────────────────────────────────────────

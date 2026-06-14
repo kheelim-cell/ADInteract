@@ -4,7 +4,23 @@
   type DistrictEntry = { slug: string };
   const summaries = rawSummaries as Record<string, DistrictEntry>;
 
-  const allDistricts = Object.entries(summaries)
+  const PINNED = [
+    'Al Reem Island',
+    'Yas Island',
+    'Al Saadiyat Island',
+    'Al Rahah',
+    'Khalifa City',
+    'Al Reef',
+    'Al Maryah Island',
+    'Al Hidayriyyat',
+  ];
+
+  const pinnedDistricts = PINNED
+    .map(name => summaries[name] ? { name, slug: summaries[name].slug } : null)
+    .filter((d): d is { name: string; slug: string } => d !== null);
+
+  const restDistricts = Object.entries(summaries)
+    .filter(([name]) => !PINNED.includes(name))
     .map(([name, s]) => ({ name, slug: s.slug }))
     .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -224,18 +240,37 @@
           <div>
             <p class="text-[10px] font-bold text-[#dfb83c] tracking-widest uppercase mb-1">Districts you cover</p>
             <p class="text-white/30 text-xs mb-3">Select all that apply — ADREC data loads for each one.</p>
-            <div class="max-h-56 overflow-y-auto bg-white/5 border border-white/10 rounded-lg p-3 grid grid-cols-2 gap-y-2 gap-x-3">
-              {#each allDistricts as d}
-                <label class="flex items-start gap-2 cursor-pointer group">
-                  <input
-                    type="checkbox"
-                    bind:group={selectedDistricts}
-                    value={d.slug}
-                    class="mt-0.5 w-3.5 h-3.5 flex-shrink-0 rounded border-white/30 bg-white/10 accent-[#dfb83c] cursor-pointer"
-                  />
-                  <span class="text-xs text-white/60 group-hover:text-white/90 transition-colors leading-tight">{d.name}</span>
-                </label>
-              {/each}
+            <div class="max-h-56 overflow-y-auto bg-white/5 border border-white/10 rounded-lg p-3">
+              <p class="text-[9px] font-bold text-[#dfb83c]/60 tracking-widest uppercase mb-2">Popular</p>
+              <div class="grid grid-cols-2 gap-y-2 gap-x-3 mb-3">
+                {#each pinnedDistricts as d}
+                  <label class="flex items-start gap-2 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      bind:group={selectedDistricts}
+                      value={d.slug}
+                      class="mt-0.5 w-3.5 h-3.5 flex-shrink-0 rounded border-white/30 bg-white/10 accent-[#dfb83c] cursor-pointer"
+                    />
+                    <span class="text-xs text-white/80 group-hover:text-white transition-colors leading-tight font-medium">{d.name}</span>
+                  </label>
+                {/each}
+              </div>
+              <div class="border-t border-white/10 pt-3">
+                <p class="text-[9px] font-bold text-white/25 tracking-widest uppercase mb-2">All districts</p>
+                <div class="grid grid-cols-2 gap-y-2 gap-x-3">
+                  {#each restDistricts as d}
+                    <label class="flex items-start gap-2 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        bind:group={selectedDistricts}
+                        value={d.slug}
+                        class="mt-0.5 w-3.5 h-3.5 flex-shrink-0 rounded border-white/30 bg-white/10 accent-[#dfb83c] cursor-pointer"
+                      />
+                      <span class="text-xs text-white/60 group-hover:text-white/90 transition-colors leading-tight">{d.name}</span>
+                    </label>
+                  {/each}
+                </div>
+              </div>
             </div>
             {#if selectedDistricts.length > 0}
               <p class="text-[#dfb83c] text-xs mt-2">{selectedDistricts.length} district{selectedDistricts.length === 1 ? '' : 's'} selected</p>

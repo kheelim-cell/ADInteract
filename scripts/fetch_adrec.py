@@ -226,15 +226,17 @@ async def set_date_range(page, start: date, end: date) -> bool:
             start_el = date_inputs.nth(0)
             end_el   = date_inputs.nth(1)
 
-            # Try ISO format first (works for type="date"), then slash format
+            # Try ISO format first (works for type="date"), then slash format.
+            # Locator.fill() clears the field before typing, so no explicit
+            # select-all is needed (Locator has no triple_click method).
             for val in [start_str_iso, start_str_slash]:
-                await start_el.triple_click()
+                await start_el.click()
                 await start_el.fill(val)
                 await page.keyboard.press("Tab")
                 await page.wait_for_timeout(500)
 
             for val in [end_str_iso, end_str_slash]:
-                await end_el.triple_click()
+                await end_el.click()
                 await end_el.fill(val)
                 await page.keyboard.press("Tab")
                 await page.wait_for_timeout(500)

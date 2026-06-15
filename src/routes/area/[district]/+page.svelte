@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { goto } from '$app/navigation';
   import { base } from '$app/paths';
 
   let { data } = $props();
@@ -8,12 +6,11 @@
 
   const periodLabel = summary?.is_12m ? 'the past 12 months' : 'the available dataset';
 
-  // Redirect users to the homepage with district filter applied.
-  // Google reads the prerendered HTML above before any JS runs.
-  // Users land here briefly, then get the familiar /?district= interactive view.
-  onMount(() => {
-    goto(`${base}/?district=${encodeURIComponent(districtName)}`, { replaceState: true });
-  });
+  // NOTE: this page is intentionally a standalone, indexable landing page.
+  // It used to auto-redirect to /?district= on mount, but Google honoured that
+  // client-side redirect and flagged every district page as "Page with redirect"
+  // (so none got indexed). Users now stay here and click through to the
+  // interactive dashboard via the CTA button below.
 
   function fmtNum(n: number | null): string {
     if (n == null) return '—';
@@ -39,22 +36,23 @@
       ? `${fmtNum(summary.tx_count_12m)} ADREC-verified transactions in ${districtName}. Median AED ${fmtNum(summary.median_psf)}/sqft. Off-plan and ready sales data, price trends, top projects.`
       : `Property transaction data for ${districtName}, Abu Dhabi. ADREC-sourced price trends, median AED/sqft, and top projects.`}
   />
-  <meta property="og:url" content="https://www.adinteract.co/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
+  <meta property="og:url" content="https://adinteract.co/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
   <meta property="og:type" content="website" />
   <!-- District-specific report-card image, generated at build time by scripts/generate_og_images.mjs -->
-  <meta property="og:image" content="https://www.adinteract.co/og/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}.png" />
+  <meta property="og:image" content="https://adinteract.co/og/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://www.adinteract.co/og/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}.png" />
+  <meta name="twitter:image" content="https://adinteract.co/og/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}.png" />
   <!-- Canonical is the clean slug URL — tells Google this is the authoritative page -->
-  <link rel="canonical" href="https://www.adinteract.co/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
+  <link rel="canonical" href="https://adinteract.co/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
 </svelte:head>
 
 <!-- ── Prose block ────────────────────────────────────────────────────────
-     This HTML is baked in at build time. Google reads it without running JS.
-     Users see it for ~100 ms before the onMount redirect fires.
+     This HTML is baked in at build time and is the indexable landing page.
+     Google reads it without running JS; users read it and click through to
+     the interactive dashboard via the CTA below.
 ──────────────────────────────────────────────────────────────────────── -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-16">
 
@@ -102,21 +100,26 @@
       </p>
     </div>
 
-    <!-- CTA — visible to users for the ~100 ms before redirect fires -->
-    <p class="mt-5 text-sm text-gray-500">
-      Loading interactive charts…
-      <a
-        href="{base}/?district={encodeURIComponent(districtName)}"
-        class="text-brand-600 underline hover:text-brand-700"
-      >Click here if not redirected</a>
-    </p>
+    <!-- CTA into the interactive dashboard, pre-filtered to this district -->
+    <a
+      href="{base}/?district={encodeURIComponent(districtName)}"
+      class="mt-6 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+    >
+      Explore {districtName} charts &amp; transactions
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+      </svg>
+    </a>
   {:else}
-    <p class="text-gray-500 text-sm">
-      Loading {districtName} data…
-      <a href="{base}/?district={encodeURIComponent(districtName)}" class="text-brand-600 underline">
-        Go to {districtName} analytics →
-      </a>
-    </p>
+    <a
+      href="{base}/?district={encodeURIComponent(districtName)}"
+      class="mt-2 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+    >
+      Go to {districtName} analytics
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+      </svg>
+    </a>
   {/if}
 
 </div>

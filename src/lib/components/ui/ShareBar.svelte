@@ -17,7 +17,7 @@
 
   const shareUrl = $derived.by(() => {
     const path = summary ? `/area/${summary.slug}` : '/';
-    return `https://www.adinteract.co${path}`;
+    return `https://adinteract.co${path}`;
   });
 
   const shareMessage = $derived.by(() => {

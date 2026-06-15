@@ -69,24 +69,31 @@ def get_last_parquet_date() -> date:
 
 
 # ── CSV validation ───────────────────────────────────────────────────────────
-def validate_csv(path: str, expect_after: date) -> tuple[bool, str]:
+# Three possible states returned by validate_csv:
+#   "valid"       — a real transactions export WITH rows newer than expect_after
+#   "no_new_data" — a structurally-valid transactions export, but nothing newer
+#                   than expect_after (ADREC just hasn't published yet — NOT an error)
+#   "invalid"     — not a usable transactions export (wrong columns, no dates, etc.)
+def validate_csv(path: str, expect_after: date) -> tuple[str, str]:
     """
-    Returns (is_valid, reason).
-    Checks:
-      1. File is readable and has transaction-like columns.
-      2. Contains at least one row dated after expect_after.
+    Returns (status, reason) where status is one of:
+      "valid" | "no_new_data" | "invalid".
+
+    A "no_new_data" result means the scrape itself worked (correct columns and
+    parseable dates) but ADREC has no rows after expect_after yet. Callers
+    should treat that as "already up to date", not a failure.
     """
     try:
         with open(path, "r", encoding="utf-8", errors="ignore") as f:
             reader = csv.reader(f)
             header = [h.strip().lower() for h in (next(reader, None) or [])]
             if not header:
-                return False, "Empty file"
+                return "invalid", "Empty file"
 
             matches = {col for col in TRANSACTION_COLUMNS
                        if any(col in h for h in header)}
             if not matches:
-                return False, f"No transaction columns found. Got: {header[:8]}"
+                return "invalid", f"No transaction columns found. Got: {header[:8]}"
 
             # Find a date-like column
             date_col_idx = None
@@ -100,10 +107,11 @@ def validate_csv(path: str, expect_after: date) -> tuple[bool, str]:
                     break
 
             if date_col_idx is None:
-                return False, "No date column found"
+                return "invalid", "No date column found"
 
-            # Scan rows for any date after expect_after
+            # Scan rows: count parseable dates and look for any newer than expect_after.
             found_recent = False
+            parseable_dates = 0
             for row in reader:
                 if date_col_idx >= len(row):
                     continue
@@ -111,6 +119,7 @@ def validate_csv(path: str, expect_after: date) -> tuple[bool, str]:
                 for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%m/%d/%Y", "%d-%m-%Y"):
                     try:
                         d = datetime.strptime(raw, fmt).date()
+                        parseable_dates += 1
                         if d > expect_after:
                             found_recent = True
                         break
@@ -119,17 +128,21 @@ def validate_csv(path: str, expect_after: date) -> tuple[bool, str]:
                 if found_recent:
                     break
 
-            if not found_recent:
-                return False, (
-                    f"No rows dated after {expect_after}. "
-                    "ADREC may not have published this data yet, "
-                    "or the date filter did not apply."
-                )
+            if found_recent:
+                return "valid", "OK"
+
+            # No newer rows. If we couldn't parse ANY dates, the export is junk;
+            # if we parsed dates fine but none are newer, ADREC is simply behind.
+            if parseable_dates == 0:
+                return "invalid", "No parseable dates in date column"
+            return "no_new_data", (
+                f"Structurally valid export but no rows after {expect_after} "
+                f"({parseable_dates:,} dated rows scanned). ADREC has not "
+                "published newer data yet."
+            )
 
     except Exception as exc:
-        return False, f"Could not read CSV: {exc}"
-
-    return True, "OK"
+        return "invalid", f"Could not read CSV: {exc}"
 
 
 # ── Playwright helpers ───────────────────────────────────────────────────────
@@ -262,10 +275,16 @@ async def set_date_range(page, start: date, end: date) -> bool:
     return count >= 1
 
 
-async def try_export_buttons(page, output_path: str, expect_after: date) -> bool:
+async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
     """
     Try all Export buttons in order: first index 4 (known "Recent Sales"),
-    then all others. Accept the first one that produces a valid CSV.
+    then all others.
+
+    Returns one of:
+      "downloaded"  — a valid export with new rows was saved to output_path
+      "no_new_data" — at least one structurally-valid export was found, but
+                      none had rows after expect_after (ADREC is behind)
+      "failed"      — no usable transactions export could be obtained at all
     """
     tmp = output_path + ".tmp"
     all_exports = page.locator("a:has-text('Export'), button:has-text('Export')")
@@ -273,10 +292,12 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> bool
     print(f"  Found {count} Export button(s)")
 
     if count == 0:
-        return False
+        return "failed"
 
     # Try index 4 first (historically the Recent Sales export), then all others
     indices = [4] + [i for i in range(count) if i != 4]
+
+    saw_valid_export = False  # found correct columns/dates, just nothing new
 
     for i in indices:
         if i >= count:
@@ -299,20 +320,22 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> bool
             size = os.path.getsize(tmp)
             print(f"    Downloaded {size:,} bytes")
 
-            valid, reason = validate_csv(tmp, expect_after)
-            if valid:
+            status, reason = validate_csv(tmp, expect_after)
+            if status == "valid":
                 os.replace(tmp, output_path)
                 print(f"  ✓ Export #{i + 1} accepted")
-                return True
+                return "downloaded"
             else:
+                if status == "no_new_data":
+                    saw_valid_export = True
                 os.remove(tmp)
-                print(f"  ✗ Export #{i + 1} rejected: {reason}")
+                print(f"  ✗ Export #{i + 1} rejected ({status}): {reason}")
         except Exception as exc:
             print(f"  ✗ Export #{i + 1} error: {exc}")
             if os.path.exists(tmp):
                 os.remove(tmp)
 
-    return False
+    return "no_new_data" if saw_valid_export else "failed"
 
 
 # ── Main fetch ───────────────────────────────────────────────────────────────
@@ -383,17 +406,31 @@ async def fetch():
         await page.wait_for_timeout(1_000)
 
         print("[5/5] Downloading export…")
-        success = await try_export_buttons(page, OUTPUT_PATH, expect_after=last_date)
+        result = await try_export_buttons(page, OUTPUT_PATH, expect_after=last_date)
 
-        if not success:
+        if result == "no_new_data":
+            # The scrape worked, ADREC just hasn't published anything newer than
+            # last_date yet (government data routinely lags 1–2 days). This is a
+            # clean no-op, not a failure: write the empty sentinel and exit 0 so
+            # the workflow stays green and downstream steps skip gracefully.
+            await browser.close()
+            print(
+                f"  ADREC has no data after {last_date} yet — already up to date. "
+                "Writing empty sentinel and exiting cleanly."
+            )
+            Path(OUTPUT_PATH).write_text("")
+            return
+
+        if result == "failed":
             await save_debug_info(page)
             await browser.close()
             print(
-                f"ERROR: Could not obtain a CSV with data after {last_date}.\n"
+                "ERROR: Could not obtain any usable transactions export.\n"
+                "This is a real scrape failure (not just missing recent data).\n"
                 "Possible causes:\n"
-                "  - ADREC has not published this date's data yet (normal if run early)\n"
                 "  - The date filter did not apply — check debug_screenshot.png\n"
-                "  - The Export button layout changed on dari.ae",
+                "  - The Export button layout changed on dari.ae\n"
+                "  - The dashboard structure changed",
                 file=sys.stderr,
             )
             sys.exit(1)

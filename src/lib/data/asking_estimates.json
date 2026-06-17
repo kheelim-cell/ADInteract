@@ -1,0 +1,52 @@
+[
+  {
+    "district": "Al Reem Island",
+    "property_type": "apartment",
+    "bedroom_type": "2 beds",
+    "sale_type_note": "ready/secondary market",
+    "estimated_asking_psf": 1480,
+    "source": "Property Finder Market Watch Q1 2026 + Bayut Abu Dhabi Q1 2026 — active listings, secondary market",
+    "updated_at": "2026-04-01",
+    "notes": "Median asking price from active PF/Bayut 2BR apartment listings in Al Reem Island. Review quarterly."
+  },
+  {
+    "district": "Yas Island",
+    "property_type": "apartment",
+    "bedroom_type": "2 beds",
+    "sale_type_note": "ready/secondary market",
+    "estimated_asking_psf": 1950,
+    "source": "Property Finder Market Watch Q1 2026 + Bayut Abu Dhabi Q1 2026 — active listings, secondary market",
+    "updated_at": "2026-04-01",
+    "notes": "Median asking price from active PF/Bayut 2BR apartment listings on Yas Island."
+  },
+  {
+    "district": "Al Saadiyat Island",
+    "property_type": "apartment",
+    "bedroom_type": "2 beds",
+    "sale_type_note": "ready/secondary market",
+    "estimated_asking_psf": 1900,
+    "source": "Property Finder Market Watch Q1 2026 + Bayut Abu Dhabi Q1 2026 — active listings, secondary market",
+    "updated_at": "2026-04-01",
+    "notes": "Median asking price from active PF/Bayut 2BR apartment listings on Al Saadiyat Island."
+  },
+  {
+    "district": "Khalifa City",
+    "property_type": "apartment",
+    "bedroom_type": "2 beds",
+    "sale_type_note": "ready/secondary market",
+    "estimated_asking_psf": 1350,
+    "source": "Property Finder Market Watch Q1 2026 + Bayut Abu Dhabi Q1 2026 — active listings, secondary market",
+    "updated_at": "2026-04-01",
+    "notes": "Median asking price from active PF/Bayut 2BR apartment listings in Khalifa City."
+  },
+  {
+    "district": "Al Raha Beach",
+    "property_type": "apartment",
+    "bedroom_type": "2 beds",
+    "sale_type_note": "ready/secondary market",
+    "estimated_asking_psf": 1420,
+    "source": "Property Finder Market Watch Q1 2026 + Bayut Abu Dhabi Q1 2026 — active listings, secondary market",
+    "updated_at": "2026-04-01",
+    "notes": "Median asking price from active PF/Bayut 2BR apartment listings in Al Raha Beach."
+  }
+]

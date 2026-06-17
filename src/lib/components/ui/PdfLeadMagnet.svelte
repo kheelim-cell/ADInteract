@@ -1,0 +1,242 @@
+<script lang="ts">
+  import rawSummaries from '$lib/data/district_summaries.json';
+  import rawScores from '$lib/data/district_scores.json';
+
+  type DistrictSummary = {
+    slug: string;
+    tx_count_12m: number;
+    median_psf: number | null;
+    is_12m: boolean;
+    last_sale: string;
+  };
+  type ScoreEntry = {
+    score: number;
+    score_trend: number;
+    trend_direction: string;
+    offplan_pct: number;
+  };
+
+  const summaries = rawSummaries as Record<string, DistrictSummary>;
+  const scores = rawScores as Record<string, ScoreEntry>;
+
+  let email = $state('');
+  let status = $state<'idle' | 'generating' | 'emailing' | 'success' | 'error'>('idle');
+  let errorMsg = $state('');
+
+  async function generatePdf(): Promise<Uint8Array> {
+    const { PDFDocument, rgb, StandardFonts } = await import('pdf-lib');
+
+    const doc = await PDFDocument.create();
+    const boldFont = await doc.embedFont(StandardFonts.HelveticaBold);
+    const font = await doc.embedFont(StandardFonts.Helvetica);
+
+    // Brand colours as 0–1 rgb
+    const darkGreen = rgb(0.059, 0.169, 0.122);   // #0F2B1F
+    const gold      = rgb(0.784, 0.663, 0.318);    // #C8A951
+    const white     = rgb(1, 1, 1);
+    const lightGray = rgb(0.94, 0.94, 0.94);
+    const gray      = rgb(0.5, 0.5, 0.5);
+
+    const W = 595, H = 842; // A4
+
+    // ── Cover page ──
+    const cover = doc.addPage([W, H]);
+    cover.drawRectangle({ x: 0, y: 0, width: W, height: H, color: darkGreen });
+    cover.drawRectangle({ x: 48, y: 300, width: 120, height: 6, color: gold });
+    cover.drawText('ABU DHABI', { x: 48, y: 610, size: 11, font: boldFont, color: gold });
+    cover.drawText('PROPERTY PRICE GUIDE', { x: 48, y: 582, size: 22, font: boldFont, color: white });
+    cover.drawText('2026', { x: 48, y: 548, size: 64, font: boldFont, color: gold });
+    cover.drawText('Official ADREC transaction data', { x: 48, y: 490, size: 12, font, color: rgb(0.7, 0.7, 0.7) });
+    cover.drawText('Updated daily · Free · Independent', { x: 48, y: 472, size: 11, font, color: rgb(0.6, 0.6, 0.6) });
+    cover.drawText('ADInteract.co', { x: 48, y: 60, size: 14, font: boldFont, color: gold });
+    cover.drawText('Abu Dhabi Real Estate Analytics', { x: 48, y: 44, size: 10, font, color: rgb(0.5, 0.5, 0.5) });
+
+    // ── District pages (top 20 by score, with summaries) ──
+    const TOP_DISTRICTS = Object.entries(scores)
+      .filter(([name]) => summaries[name]?.median_psf != null)
+      .sort((a, b) => b[1].score - a[1].score)
+      .slice(0, 20)
+      .map(([name]) => name);
+
+    for (const district of TOP_DISTRICTS) {
+      const s = summaries[district];
+      const sc = scores[district];
+      if (!s || !sc) continue;
+
+      const p = doc.addPage([W, H]);
+
+      // Header bar
+      p.drawRectangle({ x: 0, y: H - 72, width: W, height: 72, color: darkGreen });
+      p.drawText(district.toUpperCase(), {
+        x: 48, y: H - 34, size: 15, font: boldFont, color: white,
+        maxWidth: 400,
+      });
+      p.drawText(`Investment Score  ${sc.score}/100`, {
+        x: 48, y: H - 56, size: 10, font: boldFont,
+        color: sc.score >= 75 ? rgb(0.4, 0.9, 0.5) : sc.score >= 50 ? rgb(1, 0.75, 0.2) : rgb(1, 0.4, 0.4),
+      });
+
+      // Stat row
+      const stats = [
+        ['Median AED/sqft', s.median_psf ? `AED ${s.median_psf.toLocaleString('en-AE')}` : '—'],
+        ['Transactions (12m)', s.tx_count_12m.toLocaleString('en-AE')],
+        ['Off-plan share', `${sc.offplan_pct ?? '—'}%`],
+        ['Trend', sc.trend_direction === 'up' ? '↑ Rising' : sc.trend_direction === 'down' ? '↓ Falling' : '→ Flat'],
+      ];
+
+      let y = H - 120;
+      stats.forEach(([label, val], i) => {
+        const x = 48 + (i % 2) * 250;
+        if (i % 2 === 0 && i > 0) y -= 52;
+        p.drawText(label, { x, y, size: 8, font, color: gray });
+        p.drawText(val, { x, y: y - 16, size: 14, font: boldFont, color: darkGreen });
+      });
+
+      // Data note
+      p.drawText(`Last transaction: ${s.last_sale}  ·  Source: ADREC via ADInteract.co`, {
+        x: 48, y: 40, size: 8, font, color: rgb(0.6, 0.6, 0.6),
+      });
+    }
+
+    // ── Disclaimer page ──
+    const disc = doc.addPage([W, H]);
+    disc.drawRectangle({ x: 0, y: H - 60, width: W, height: 60, color: darkGreen });
+    disc.drawText('DATA SOURCES & DISCLAIMER', { x: 48, y: H - 36, size: 13, font: boldFont, color: white });
+    const lines = [
+      'Source: Abu Dhabi Real Estate Centre (ADREC), published at dari.ae',
+      'Data is refreshed daily from official ADREC export files.',
+      'Prices are ADREC-registered transaction prices, not asking prices.',
+      'ADInteract.co is independent and not affiliated with any developer or brokerage.',
+      '',
+      'This guide is for informational purposes only and does not constitute',
+      'financial or investment advice. Past transaction prices do not guarantee',
+      'future performance.',
+      '',
+      `Generated by ADInteract.co  ·  adinteract.co`,
+    ];
+    lines.forEach((line, i) => {
+      disc.drawText(line, { x: 48, y: H - 110 - i * 22, size: 10, font, color: rgb(0.2, 0.2, 0.2) });
+    });
+
+    return doc.save();
+  }
+
+  async function submit(e: Event) {
+    e.preventDefault();
+    if (!email || status !== 'idle') return;
+
+    const emailTrimmed = email.trim().toLowerCase();
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(emailTrimmed)) {
+      errorMsg = 'Please enter a valid email address.';
+      return;
+    }
+
+    try {
+      status = 'generating';
+      errorMsg = '';
+
+      // Generate PDF
+      const pdfBytes = await generatePdf();
+      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+
+      // Store email in Supabase
+      status = 'emailing';
+      try {
+        const { supabase } = await import('$lib/supabase');
+        if (supabase) {
+          const row = {
+            email: emailTrimmed,
+            source: 'pdf_guide',
+            district: null as string | null,
+          };
+          const { error } = await supabase.from('email_subscribers').insert(row);
+          // 23505 = duplicate email (already subscribed) — still deliver the PDF
+          if (error && error.code !== '23505') {
+            console.warn('Email save error:', error.message);
+          }
+        }
+      } catch {
+        /* Supabase optional — still deliver PDF */
+      }
+
+      // Trigger browser download
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Abu-Dhabi-Property-Price-Guide-2026-ADInteract.pdf';
+      a.click();
+      URL.revokeObjectURL(url);
+
+      status = 'success';
+    } catch (err) {
+      status = 'error';
+      errorMsg = 'Failed to generate PDF. Please try again.';
+      console.error(err);
+    }
+  }
+</script>
+
+<div class="rounded-2xl border border-brand-100 bg-gradient-to-br from-[#0F2B1F]/5 to-white px-5 py-5">
+  {#if status === 'success'}
+    <div class="flex items-start gap-3">
+      <div class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-brand-100">
+        <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div>
+        <p class="text-sm font-semibold text-gray-900">PDF downloading now.</p>
+        <p class="text-xs text-gray-500 mt-0.5">You'll also receive weekly market updates.</p>
+      </div>
+    </div>
+  {:else}
+    <div class="flex items-center gap-2 mb-3">
+      <svg class="w-5 h-5 text-brand-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+      </svg>
+      <span class="text-sm font-bold text-gray-900">Free Abu Dhabi District Price Guide 2026</span>
+    </div>
+    <p class="text-xs text-gray-500 mb-4 leading-relaxed">
+      Median prices, investment scores, and off-plan trends for Abu Dhabi's top districts.
+      Official ADREC data. Generated from live transactions.
+    </p>
+
+    <form onsubmit={submit} class="flex flex-col sm:flex-row gap-2">
+      <input
+        type="email"
+        bind:value={email}
+        placeholder="your@email.com"
+        required
+        disabled={status !== 'idle'}
+        class="flex-1 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent disabled:opacity-60"
+      />
+      <button
+        type="submit"
+        disabled={status !== 'idle'}
+        class="flex-shrink-0 rounded-lg bg-brand-600 hover:bg-brand-700 disabled:opacity-60 px-4 py-2 text-sm font-semibold text-white transition-colors flex items-center gap-1.5"
+      >
+        {#if status === 'generating'}
+          <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+          </svg>
+          Building…
+        {:else if status === 'emailing'}
+          Saving…
+        {:else}
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          </svg>
+          Download free guide
+        {/if}
+      </button>
+    </form>
+
+    {#if errorMsg}
+      <p class="mt-2 text-xs text-red-600">{errorMsg}</p>
+    {:else}
+      <p class="mt-2 text-[10px] text-gray-400">No spam. Unsubscribe anytime.</p>
+    {/if}
+  {/if}
+</div>

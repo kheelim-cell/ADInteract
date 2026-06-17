@@ -1,5 +1,8 @@
 <script lang="ts">
   import { base } from '$app/paths';
+  import ConfidenceBadge from '$lib/components/ui/ConfidenceBadge.svelte';
+  import InvestmentScoreCard from '$lib/components/district/InvestmentScoreCard.svelte';
+  import PdfLeadMagnet from '$lib/components/ui/PdfLeadMagnet.svelte';
 
   let { data } = $props();
   const { districtName, summary } = data;
@@ -66,9 +69,12 @@
   </nav>
 
   <h1 class="text-3xl font-bold text-navy mb-1">{districtName}</h1>
-  <p class="text-sm text-gray-400 mb-6">
+  <p class="text-sm text-gray-400 mb-4">
     Abu Dhabi property transactions · ADREC-verified data · updated daily
   </p>
+
+  <!-- Investment Score -->
+  <InvestmentScoreCard district={districtName} />
 
   {#if summary}
     <div class="rounded-xl border border-gray-100 bg-gray-50 px-6 py-5 text-sm text-gray-700 leading-relaxed max-w-3xl">
@@ -93,10 +99,11 @@
           <strong>{summary.top_layouts.join(', ')}</strong>.
         {/if}
       </p>
-      <p class="mt-2 text-xs text-gray-400">
-        Data sourced from the Abu Dhabi Real Estate Centre (ADREC) and refreshed daily.
+      <p class="mt-2 text-xs text-gray-400 flex flex-wrap items-center gap-2">
+        <span>Data sourced from the Abu Dhabi Real Estate Centre (ADREC) and refreshed daily.
         {fmtNum(summary.tx_count_all)} total transactions recorded since 2019.
-        Last transaction: {summary.last_sale}.
+        Last transaction: {summary.last_sale}.</span>
+        <ConfidenceBadge count={summary.tx_count_12m} />
       </p>
     </div>
 
@@ -121,5 +128,10 @@
       </svg>
     </a>
   {/if}
+
+  <!-- PDF Lead Magnet -->
+  <div class="mt-10">
+    <PdfLeadMagnet />
+  </div>
 
 </div>

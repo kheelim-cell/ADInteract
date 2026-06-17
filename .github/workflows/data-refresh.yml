@@ -77,11 +77,17 @@ jobs:
       - name: Generate district summaries (SEO prose JSON)
         run: python scripts/generate_district_summaries.py
 
+      - name: Compute district investment scores
+        run: python scripts/compute_district_scores.py
+
+      - name: Fetch USD/AED exchange rate
+        run: python scripts/fetch_exchange_rate.py
+
       - name: Commit data files to main
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f static/data/transactions.parquet static/data/meta.json static/data/rental.parquet static/data/rental_meta.json src/lib/data/district_summaries.json
+          git add -f static/data/transactions.parquet static/data/meta.json static/data/rental.parquet static/data/rental_meta.json src/lib/data/district_summaries.json src/lib/data/district_scores.json static/data/config.json
           git diff --staged --quiet \
             || git commit -m "data: refresh $(date -u +%Y-%m-%d) [skip ci]"
           git stash --include-untracked || true

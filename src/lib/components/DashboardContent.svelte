@@ -32,6 +32,8 @@
   import InvestorToolsStrip from '$lib/components/ui/InvestorToolsStrip.svelte';
   import EmailCapture from '$lib/components/ui/EmailCapture.svelte';
   import ShareBar from '$lib/components/ui/ShareBar.svelte';
+  import AskingVsActualHero from '$lib/components/home/AskingVsActualHero.svelte';
+  import PdfLeadMagnet from '$lib/components/ui/PdfLeadMagnet.svelte';
   import type {
     StatsResult,
     ChartDataPoint,
@@ -182,6 +184,10 @@
   <!-- Investor Tools Strip — only on main dashboard, right after stats -->
   {#if !isProjectPage}
     <InvestorToolsStrip />
+    <!-- Asking vs Actual hero — main dashboard only, no district filter active -->
+    {#if !$filters.district}
+      <AskingVsActualHero />
+    {/if}
   {/if}
 
   <!-- Zero-result empty state banner -->
@@ -334,8 +340,11 @@
   </div>
   </GatedSection>
 
-  <!-- Email capture — only on main dashboard -->
+  <!-- Email capture + PDF lead magnet — only on main dashboard -->
   {#if !isProjectPage}
     <EmailCapture district={$filters.district} />
+    <div class="mt-4">
+      <PdfLeadMagnet />
+    </div>
   {/if}
 </div>

@@ -1,5 +1,6 @@
 <script lang="ts">
   import DistrictComparison from '$lib/components/investors/DistrictComparison.svelte';
+  import AskingVsActualHero from '$lib/components/home/AskingVsActualHero.svelte';
 </script>
 
 <svelte:head>
@@ -20,5 +21,6 @@
 </svelte:head>
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8">
+  <AskingVsActualHero />
   <DistrictComparison />
 </div>

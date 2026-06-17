@@ -130,7 +130,7 @@
           {:else if gapPct >= -10}
             Off-plan is slightly pricier than resale — developers pricing in future growth.
           {:else}
-            Off-plan trades at a significant premium to resale — high developer confidence or new launch effect.
+            Off-plan is significantly pricier than resale — buyers paid above what the secondary market currently supports.
           {/if}
         </p>
       </div>

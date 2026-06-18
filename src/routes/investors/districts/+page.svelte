@@ -120,11 +120,30 @@
 
         <span class="text-[10px] font-bold rounded-full px-2 py-0.5 {st.cls} truncate">{st.label}</span>
 
-        <div class="flex flex-col items-center gap-1">
-          <span class="text-base font-black {c.text}">{district.score}</span>
-          <div class="w-8 h-1 rounded-full bg-gray-100 overflow-hidden">
-            <div class="{c.bar} h-full rounded-full" style="width:{district.score}%"></div>
-          </div>
+        <div class="flex flex-col items-center gap-0.5">
+          {#if district.score_type === 'both' && district.ys && district.gec}
+            <div class="flex flex-col items-center gap-0.5 w-full">
+              <div class="flex items-center gap-1">
+                <span class="text-[9px] font-bold text-emerald-600">Y&S</span>
+                <span class="text-sm font-black text-emerald-600">{district.ys.total}</span>
+              </div>
+              <div class="w-8 h-0.5 rounded-full bg-gray-100 overflow-hidden">
+                <div class="bg-emerald-400 h-full rounded-full" style="width:{district.ys.total}%"></div>
+              </div>
+              <div class="flex items-center gap-1 mt-0.5">
+                <span class="text-[9px] font-bold text-blue-600">G&EC</span>
+                <span class="text-sm font-black text-blue-600">{district.gec.total}</span>
+              </div>
+              <div class="w-8 h-0.5 rounded-full bg-gray-100 overflow-hidden">
+                <div class="bg-blue-400 h-full rounded-full" style="width:{district.gec.total}%"></div>
+              </div>
+            </div>
+          {:else}
+            <span class="text-base font-black {c.text}">{district.score}</span>
+            <div class="w-8 h-1 rounded-full bg-gray-100 overflow-hidden">
+              <div class="{c.bar} h-full rounded-full" style="width:{district.score}%"></div>
+            </div>
+          {/if}
         </div>
 
         <span class="text-base font-bold text-center {t.cls}">{t.icon}</span>
@@ -166,12 +185,29 @@
         </div>
 
         <!-- Score -->
-        <div class="flex flex-col items-center flex-shrink-0 w-12">
-          <span class="text-xl font-black {c.text} leading-none">{district.score}</span>
-          <span class="text-[9px] text-gray-400 mt-0.5">/ 100</span>
-          <div class="w-8 h-1 rounded-full bg-gray-100 overflow-hidden mt-1">
-            <div class="{c.bar} h-full rounded-full" style="width:{district.score}%"></div>
-          </div>
+        <div class="flex flex-col items-center flex-shrink-0 w-14">
+          {#if district.score_type === 'both' && district.ys && district.gec}
+            <div class="flex items-center gap-1">
+              <span class="text-[9px] font-bold text-emerald-600">Y&S</span>
+              <span class="text-base font-black text-emerald-600 leading-none">{district.ys.total}</span>
+            </div>
+            <div class="w-8 h-0.5 rounded-full bg-gray-100 overflow-hidden mt-0.5">
+              <div class="bg-emerald-400 h-full rounded-full" style="width:{district.ys.total}%"></div>
+            </div>
+            <div class="flex items-center gap-1 mt-1">
+              <span class="text-[9px] font-bold text-blue-600">G&EC</span>
+              <span class="text-base font-black text-blue-600 leading-none">{district.gec.total}</span>
+            </div>
+            <div class="w-8 h-0.5 rounded-full bg-gray-100 overflow-hidden mt-0.5">
+              <div class="bg-blue-400 h-full rounded-full" style="width:{district.gec.total}%"></div>
+            </div>
+          {:else}
+            <span class="text-xl font-black {c.text} leading-none">{district.score}</span>
+            <span class="text-[9px] text-gray-400 mt-0.5">/ 100</span>
+            <div class="w-8 h-1 rounded-full bg-gray-100 overflow-hidden mt-1">
+              <div class="{c.bar} h-full rounded-full" style="width:{district.score}%"></div>
+            </div>
+          {/if}
         </div>
       </a>
     {/each}

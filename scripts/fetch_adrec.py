@@ -342,8 +342,10 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
     if count == 0:
         return "failed"
 
-    # Try index 4 first (historically the Recent Sales export), then all others
-    indices = [4] + [i for i in range(count) if i != 4]
+    # Try index 4 first (historically the Recent Sales export), then max 3 others
+    # Hard-limit to 4 attempts total so we don't burn 5 × 150s in CI
+    priority  = [4] + [i for i in range(min(count, 6)) if i != 4]
+    indices   = priority[:4]
 
     saw_valid_export = False  # found correct columns/dates, just nothing new
 
@@ -357,11 +359,12 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
         except Exception:
             continue
 
-        print(f"  Trying Export #{i + 1} (index {i})…")
+        btn_text = (await btn.inner_text()).strip()[:20]
+        print(f"  Trying Export #{i + 1} (index {i}, text={btn_text!r})…")
         try:
             await btn.scroll_into_view_if_needed()
-            await page.wait_for_timeout(400)
-            async with page.expect_download(timeout=150_000) as dl_info:
+            await page.wait_for_timeout(600)
+            async with page.expect_download(timeout=60_000) as dl_info:
                 await btn.click()
             dl = await dl_info.value
             await dl.save_as(tmp)

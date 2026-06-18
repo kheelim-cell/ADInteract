@@ -85,6 +85,17 @@ jobs:
       - name: Fetch USD/AED exchange rate
         run: python scripts/fetch_exchange_rate.py
 
+      - name: Check data freshness (fails loudly if stale)
+        run: python scripts/check_freshness.py
+
+      - name: Upload freshness report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: freshness-report-${{ github.run_id }}
+          path: scripts/data/freshness_report.txt
+          retention-days: 14
+
       - name: Commit data files to main
         run: |
           git config user.name  "github-actions[bot]"

@@ -98,10 +98,8 @@ def main() -> None:
     print("[transform_rental] === Rental Index Transform ===")
 
     if not INPUT_JSON.exists():
-        raise FileNotFoundError(
-            f"Input file not found: {INPUT_JSON}\n"
-            "Run scripts/fetch_rental.py first."
-        )
+        print(f"⚠ {INPUT_JSON} not found — fetch_rental.py produced no file. Rental parquet unchanged.")
+        return
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 

@@ -59,6 +59,7 @@ jobs:
         run: python scripts/update_sheets.py || echo "⚠️  Sheet update failed — parquet already written, continuing"
 
       - name: Fetch ADREC Rental Index
+        continue-on-error: true
         run: python scripts/fetch_rental.py
 
       # Upload rental debug artefacts even on failure

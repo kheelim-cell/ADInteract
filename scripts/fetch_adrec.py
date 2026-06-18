@@ -275,6 +275,45 @@ async def set_date_range(page, start: date, end: date) -> bool:
     return count >= 1
 
 
+async def click_show_results(page) -> bool:
+    """
+    Click ALL 'Show Results' buttons and wait for 'Downloading…' spinners to
+    clear. ADREC sections are lazy-loaded; exports won't fire until the section
+    data is fully rendered.
+    """
+    show_results = page.locator("button:has-text('Show Results'), a:has-text('Show Results')")
+    count = await show_results.count()
+    if count == 0:
+        return False
+    print(f"  Found {count} 'Show Results' button(s) — clicking all…")
+    clicked = 0
+    for idx in range(count):
+        try:
+            btn = show_results.nth(idx)
+            if await btn.is_visible(timeout=2_000):
+                await btn.scroll_into_view_if_needed()
+                await btn.click()
+                await page.wait_for_timeout(1_500)
+                clicked += 1
+        except Exception as exc:
+            print(f"  'Show Results' #{idx + 1} click failed: {exc}")
+
+    if clicked:
+        print(f"  ✓ Clicked {clicked} 'Show Results' button(s) — waiting for data load…")
+        # Wait up to 20s for all "Downloading…" spinners to clear
+        try:
+            await page.wait_for_function(
+                "() => !document.body.innerText.includes('Downloading...')",
+                timeout=20_000,
+            )
+            print("  ✓ Data sections loaded")
+        except Exception:
+            print("  ⚠ 'Downloading…' still visible after 20s — proceeding anyway")
+        await page.wait_for_timeout(2_000)
+
+    return clicked > 0
+
+
 async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
     """
     Try all Export buttons in order: first index 4 (known "Recent Sales"),
@@ -287,9 +326,18 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
       "failed"      — no usable transactions export could be obtained at all
     """
     tmp = output_path + ".tmp"
-    all_exports = page.locator("a:has-text('Export'), button:has-text('Export')")
+
+    # ADREC requires "Show Results" click before Export download fires
+    await click_show_results(page)
+
+    # Also try buttons labelled "Downloading…" — ADREC sometimes uses this
+    # label for the same trigger when data is in a loading state
+    all_exports = page.locator(
+        "a:has-text('Export'), button:has-text('Export'), "
+        "a:has-text('Downloading'), button:has-text('Downloading')"
+    )
     count = await all_exports.count()
-    print(f"  Found {count} Export button(s)")
+    print(f"  Found {count} Export/Download button(s)")
 
     if count == 0:
         return "failed"
@@ -313,7 +361,7 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
         try:
             await btn.scroll_into_view_if_needed()
             await page.wait_for_timeout(400)
-            async with page.expect_download(timeout=90_000) as dl_info:
+            async with page.expect_download(timeout=150_000) as dl_info:
                 await btn.click()
             dl = await dl_info.value
             await dl.save_as(tmp)

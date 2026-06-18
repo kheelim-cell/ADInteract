@@ -33,6 +33,7 @@ jobs:
         run: playwright install chromium --with-deps
 
       - name: Fetch ADREC export
+        continue-on-error: true
         env:
           GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
         run: python scripts/fetch_adrec.py

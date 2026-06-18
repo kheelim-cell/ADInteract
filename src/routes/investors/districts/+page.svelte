@@ -1,20 +1,21 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import rawScores from '$lib/data/district_scores.json';
+  import ScoreMethodology from '$lib/components/ui/ScoreMethodology.svelte';
 
   type ScoreEntry = {
     slug: string;
     district_name: string;
     score: number;
-    score_trend: number;
-    score_volume: number;
-    score_value: number;
-    score_offplan: number;
+    score_type?: 'yield_stability' | 'growth_early_cycle' | 'both';
+    ready_pct_alltime?: number;
     trend_direction: string;
     color: string;
     tx_count_12m: number;
     median_psf_12m: number | null;
     offplan_pct: number;
+    ys?: { total: number };
+    gec?: { total: number };
   };
 
   const scores = rawScores as Record<string, ScoreEntry>;
@@ -25,8 +26,8 @@
 
   function scoreColor(score: number) {
     if (score >= 75) return { text: 'text-emerald-600', bar: 'bg-emerald-500' };
-    if (score >= 50) return { text: 'text-amber-600', bar: 'bg-amber-400' };
-    return { text: 'text-red-600', bar: 'bg-red-500' };
+    if (score >= 50) return { text: 'text-amber-600',   bar: 'bg-amber-400' };
+    return              { text: 'text-red-600',          bar: 'bg-red-500' };
   }
 
   function trendIcon(dir: string) {
@@ -39,30 +40,56 @@
     if (n == null) return '—';
     return n.toLocaleString('en-AE');
   }
+
+  function scoreTypeLabel(type: string | undefined) {
+    if (type === 'yield_stability')    return { label: 'Y&S',       full: 'Yield & Stability',    cls: 'bg-emerald-100 text-emerald-800' };
+    if (type === 'growth_early_cycle') return { label: 'G&EC',      full: 'Growth & Early-Cycle', cls: 'bg-blue-100 text-blue-800' };
+    if (type === 'both')               return { label: 'Dual',      full: 'Dual market',          cls: 'bg-violet-100 text-violet-800' };
+    return                                    { label: '—',         full: '',                     cls: 'bg-gray-100 text-gray-500' };
+  }
 </script>
 
 <svelte:head>
   <title>Abu Dhabi District Investment Rankings — Top 10 | ADInteract</title>
-  <meta name="description" content="Top 10 Abu Dhabi districts ranked by investment score: price trend, transaction volume, value vs market, and off-plan activity. Powered by live ADREC data." />
+  <meta name="description" content="Top 10 Abu Dhabi districts ranked by investment score using a dual scoring model: Yield & Stability for established districts, Growth & Early-Cycle for new freehold areas. Powered by live ADREC data." />
 </svelte:head>
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8">
 
   <div class="mb-6">
     <h1 class="text-xl font-bold text-gray-900 mb-1">District Investment Rankings</h1>
-    <p class="text-sm text-gray-500">
-      Top 10 Abu Dhabi districts ranked by composite investment score — price trend, volume, value vs market, and off-plan activity.
+    <p class="text-sm text-gray-500 max-w-2xl">
+      Top 10 Abu Dhabi districts ranked by a dual scoring model calibrated to each district's market maturity.
+      Established secondary-market districts use a Yield &amp; Stability framework;
+      new freehold and pre-completion districts use a Growth &amp; Early-Cycle framework.
       Scores update daily from ADREC transaction data.
     </p>
+  </div>
+
+  <!-- Score type legend -->
+  <div class="flex flex-wrap gap-3 mb-5 text-xs">
+    <span class="flex items-center gap-1.5 rounded-full bg-emerald-100 text-emerald-800 px-3 py-1 font-semibold">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block"></span>
+      Yield &amp; Stability — established secondary market
+    </span>
+    <span class="flex items-center gap-1.5 rounded-full bg-blue-100 text-blue-800 px-3 py-1 font-semibold">
+      <span class="w-1.5 h-1.5 rounded-full bg-blue-600 inline-block"></span>
+      Growth &amp; Early-Cycle — new freehold / pre-completion
+    </span>
+    <span class="flex items-center gap-1.5 rounded-full bg-violet-100 text-violet-800 px-3 py-1 font-semibold">
+      <span class="w-1.5 h-1.5 rounded-full bg-violet-600 inline-block"></span>
+      Dual market — both scores apply
+    </span>
   </div>
 
   <!-- Leaderboard -->
   <div class="rounded-2xl border border-gray-200 overflow-hidden bg-white">
 
     <!-- Header -->
-    <div class="grid grid-cols-[2.5rem_1fr_5rem_5rem_6rem_5rem_7rem] items-center gap-3 px-5 py-3 bg-gray-50 border-b border-gray-100 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+    <div class="grid grid-cols-[2rem_1fr_7rem_5rem_5rem_6rem_5rem_7rem] items-center gap-2 px-5 py-3 bg-gray-50 border-b border-gray-100 text-[10px] font-bold uppercase tracking-widest text-gray-400">
       <span>#</span>
       <span>District</span>
+      <span>Score type</span>
       <span class="text-center">Score</span>
       <span class="text-center">Trend</span>
       <span class="text-right hidden sm:block">Median AED/sqft</span>
@@ -73,31 +100,36 @@
     {#each ranked as district, i}
       {@const c = scoreColor(district.score)}
       {@const t = trendIcon(district.trend_direction)}
+      {@const st = scoreTypeLabel(district.score_type)}
       <a
         href="{base}/area/{district.slug}"
-        class="grid grid-cols-[2.5rem_1fr_5rem_5rem_6rem_5rem_7rem] items-center gap-3 px-5 py-4 border-b border-gray-100 last:border-0
+        class="grid grid-cols-[2rem_1fr_7rem_5rem_5rem_6rem_5rem_7rem] items-center gap-2 px-5 py-4 border-b border-gray-100 last:border-0
                bg-white hover:bg-gray-50 transition-colors no-underline group"
       >
-        <!-- Rank -->
         <span class="text-sm font-bold {i < 3 ? 'text-amber-500' : 'text-gray-300'}">{i + 1}</span>
 
-        <!-- Name + sub-scores bar -->
         <div class="min-w-0">
           <p class="text-sm font-semibold text-gray-900 group-hover:text-brand-700 transition-colors truncate">{district.district_name}</p>
-          <!-- Sub-score bar -->
           <div class="mt-1.5 flex gap-0.5 h-1.5">
-            <div class="rounded-full bg-emerald-500/70" style="width:{district.score_trend / 25 * 100}%; max-width:25%"></div>
-            <div class="rounded-full bg-blue-400/70"    style="width:{district.score_volume / 25 * 100}%; max-width:25%"></div>
-            <div class="rounded-full bg-violet-400/70"  style="width:{district.score_value / 25 * 100}%; max-width:25%"></div>
-            <div class="rounded-full bg-amber-400/70"   style="width:{district.score_offplan / 25 * 100}%; max-width:25%"></div>
+            {#if district.ys}
+              <div class="rounded-full bg-emerald-400/80" style="width:{district.ys.total}%; max-width:50%"></div>
+            {/if}
+            {#if district.gec}
+              <div class="rounded-full bg-blue-400/80" style="width:{district.gec?.total ?? 0}%; max-width:50%"></div>
+            {/if}
           </div>
-          <p class="mt-0.5 text-[9px] text-gray-400">trend · volume · value · off-plan</p>
+          <p class="mt-0.5 text-[9px] text-gray-400">
+            {district.score_type === 'both' ? 'Y&S · G&EC' : district.score_type === 'yield_stability' ? 'yield · liquidity · stability' : 'velocity · momentum · appreciation'}
+          </p>
         </div>
 
-        <!-- Score badge -->
+        <!-- Score type badge -->
+        <span class="text-[9px] font-bold rounded-full px-2 py-0.5 {st.cls} truncate" title="{st.full}">{st.full || '—'}</span>
+
+        <!-- Score -->
         <div class="flex flex-col items-center gap-1">
           <span class="text-base font-black {c.text}">{district.score}</span>
-          <div class="w-10 h-1 rounded-full bg-gray-100 overflow-hidden">
+          <div class="w-8 h-1 rounded-full bg-gray-100 overflow-hidden">
             <div class="{c.bar} h-full rounded-full" style="width:{district.score}%"></div>
           </div>
         </div>
@@ -105,7 +137,7 @@
         <!-- Trend -->
         <span class="text-base font-bold text-center {t.cls}">{t.icon}</span>
 
-        <!-- Stats (hidden on mobile) -->
+        <!-- Stats -->
         <span class="text-sm text-right text-gray-600 hidden sm:block">
           {district.median_psf_12m ? 'AED ' + fmt(district.median_psf_12m) : '—'}
         </span>
@@ -115,15 +147,16 @@
     {/each}
   </div>
 
-  <!-- Legend -->
-  <div class="mt-4 flex flex-wrap gap-4 text-[10px] text-gray-400">
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500/70 inline-block"></span>Price trend</span>
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-400/70 inline-block"></span>Transaction volume</span>
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-violet-400/70 inline-block"></span>Value vs AD median</span>
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400/70 inline-block"></span>Off-plan activity</span>
-    <span class="ml-auto">Click any district to view the full district report →</span>
-  </div>
+  <p class="mt-3 text-[10px] text-gray-400">
+    Click any district to view the full report including per-factor breakdown →
+  </p>
+  <p class="mt-1 text-[10px] text-gray-400">Source: ADREC via ADInteract.co · scores recalculated daily</p>
 
-  <p class="mt-3 text-[10px] text-gray-400">Source: ADREC via ADInteract.co · scores recalculated daily</p>
+  <!-- ── Full methodology section ──────────────────────────────────────── -->
+  <div class="mt-12 pt-8 border-t border-gray-100">
+    <h2 class="text-base font-bold text-gray-900 mb-1">Score methodology</h2>
+    <p class="text-sm text-gray-500 mb-4">How each district is evaluated — dual scoring logic, factor weights, global benchmark comparison, and FAQs.</p>
+    <ScoreMethodology compact={false} />
+  </div>
 
 </div>

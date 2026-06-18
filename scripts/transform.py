@@ -153,8 +153,13 @@ def load_existing_parquet() -> pd.DataFrame | None:
 def transform(full_rebuild: bool = False):
     os.makedirs("static/data", exist_ok=True)
 
+    # ── Guard: CSV absent means fetch_adrec.py produced nothing (scraped failed) ──
+    if not os.path.exists(INPUT_CSV):
+        print(f"⚠ {INPUT_CSV} not found — ADREC fetch produced no file. Parquet unchanged.")
+        return
+
     # ── Check for empty sentinel (fetch_adrec.py writes "" when up to date) ──
-    if os.path.exists(INPUT_CSV) and os.path.getsize(INPUT_CSV) == 0:
+    if os.path.getsize(INPUT_CSV) == 0:
         print("CSV is empty sentinel — no new ADREC data to process. Parquet unchanged.")
         return
 

@@ -37,6 +37,77 @@ TRANSACTION_COLUMNS = {
     "asset class", "layout",
 }
 
+# Synthetic header injected when ADREC exports a CSV without a header row.
+# Order matches the "Recent Sales" table on adrec.gov.ae / dari.ae:
+#   Asset Class | Property Type | Registration | Sold Area (sqm) |
+#   Plot Area (sqm) | Rate (AED/sqm) | Layout | District | Community |
+#   Project | Price (AED)
+SYNTHETIC_HEADER = [
+    "Asset Class", "Property Type", "Registration",
+    "Sold Area (sqm)", "Plot Area (sqm)", "Rate (AED/sqm)",
+    "Layout", "District", "Community", "Project", "Price (AED)",
+]
+
+# Asset-class tokens that betray a header-less CSV (row 1 is data)
+ASSET_CLASS_VALUES = {
+    "residential", "commercial", "industrial", "land",
+    "office", "retail", "mixed-use", "mixed use", "hospitality",
+}
+
+
+def looks_headerless(first_row: list[str]) -> bool:
+    """Return True if row 1 is clearly data, not a header.
+
+    Heuristic: first cell is a known asset-class token AND somewhere in the
+    row there's a YYYY-MM-DD or DD/MM/YYYY date — ADREC's headerless export
+    pattern.
+    """
+    if not first_row:
+        return False
+    first = first_row[0].strip().lower()
+    if first not in ASSET_CLASS_VALUES:
+        return False
+    for cell in first_row:
+        raw = cell.strip()
+        for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%m/%d/%Y"):
+            try:
+                datetime.strptime(raw, fmt)
+                return True
+            except ValueError:
+                continue
+    return False
+
+
+def inject_header_if_missing(path: str) -> bool:
+    """If the CSV has no header row, prepend SYNTHETIC_HEADER.
+
+    Returns True if a header was injected (CSV mutated), False otherwise.
+    """
+    with open(path, "r", encoding="utf-8", errors="ignore", newline="") as f:
+        reader = csv.reader(f)
+        first = next(reader, None)
+    if not first or not looks_headerless(first):
+        return False
+
+    # Match synthetic header length to the actual column count of the file.
+    # If ADREC adds/removes a column, we pad with generic "col_N" names so
+    # transform.py's name-based lookup still finds what it can.
+    width = len(first)
+    header = list(SYNTHETIC_HEADER[:width])
+    while len(header) < width:
+        header.append(f"col_{len(header) + 1}")
+
+    tmp = path + ".hdr"
+    with open(path, "r", encoding="utf-8", errors="ignore", newline="") as src, \
+         open(tmp,  "w", encoding="utf-8", newline="") as dst:
+        writer = csv.writer(dst)
+        writer.writerow(header)
+        for line in src:
+            dst.write(line)
+    os.replace(tmp, path)
+    print(f"  Injected synthetic header ({width} cols) — ADREC exported without one")
+    return True
+
 # How many days back to look if we can't determine last sheet date
 DEFAULT_LOOKBACK_DAYS = 7
 
@@ -214,12 +285,14 @@ async def set_date_range(page, start: date, end: date) -> bool:
     Try multiple strategies to set the date range filter.
     Returns True if at least the start date was set.
     """
-    start_str_slash = start.strftime("%d/%m/%Y")
+    start_str_us    = start.strftime("%m/%d/%Y")   # MM/DD/YYYY (adrec.gov.ae)
+    end_str_us      = end.strftime("%m/%d/%Y")
+    start_str_slash = start.strftime("%d/%m/%Y")   # DD/MM/YYYY (legacy dari.ae)
     end_str_slash   = end.strftime("%d/%m/%Y")
     start_str_iso   = start.strftime("%Y-%m-%d")
     end_str_iso     = end.strftime("%Y-%m-%d")
 
-    print(f"  Setting date range: {start_str_slash} → {end_str_slash}")
+    print(f"  Setting date range: {start_str_us} → {end_str_us} (MM/DD/YYYY)")
 
     # Strategy 1: Standard date inputs
     date_inputs = page.locator(
@@ -239,16 +312,16 @@ async def set_date_range(page, start: date, end: date) -> bool:
             start_el = date_inputs.nth(0)
             end_el   = date_inputs.nth(1)
 
-            # Try ISO format first (works for type="date"), then slash format.
+            # Try MM/DD/YYYY (current adrec.gov.ae), then ISO, then DD/MM/YYYY (legacy).
             # Locator.fill() clears the field before typing, so no explicit
             # select-all is needed (Locator has no triple_click method).
-            for val in [start_str_iso, start_str_slash]:
+            for val in [start_str_us, start_str_iso, start_str_slash]:
                 await start_el.click()
                 await start_el.fill(val)
                 await page.keyboard.press("Tab")
                 await page.wait_for_timeout(500)
 
-            for val in [end_str_iso, end_str_slash]:
+            for val in [end_str_us, end_str_iso, end_str_slash]:
                 await end_el.click()
                 await end_el.fill(val)
                 await page.keyboard.press("Tab")
@@ -300,16 +373,17 @@ async def click_show_results(page) -> bool:
 
     if clicked:
         print(f"  ✓ Clicked {clicked} 'Show Results' button(s) — waiting for data load…")
-        # Wait up to 20s for all "Downloading…" spinners to clear
+        # Wait up to 90s for all "Downloading…" spinners to clear. Slow ADREC
+        # responses are the #1 cause of subsequent Export-button timeouts.
         try:
             await page.wait_for_function(
                 "() => !document.body.innerText.includes('Downloading...')",
-                timeout=20_000,
+                timeout=90_000,
             )
             print("  ✓ Data sections loaded")
         except Exception:
-            print("  ⚠ 'Downloading…' still visible after 20s — proceeding anyway")
-        await page.wait_for_timeout(2_000)
+            print("  ⚠ 'Downloading…' still visible after 90s — proceeding anyway")
+        await page.wait_for_timeout(3_000)
 
     return clicked > 0
 
@@ -364,12 +438,16 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
         try:
             await btn.scroll_into_view_if_needed()
             await page.wait_for_timeout(600)
-            async with page.expect_download(timeout=60_000) as dl_info:
+            async with page.expect_download(timeout=120_000) as dl_info:
                 await btn.click()
             dl = await dl_info.value
             await dl.save_as(tmp)
             size = os.path.getsize(tmp)
             print(f"    Downloaded {size:,} bytes")
+
+            # ADREC's "Recent Sales" export no longer ships a header row —
+            # inject one before validation so the downstream pipeline works.
+            inject_header_if_missing(tmp)
 
             status, reason = validate_csv(tmp, expect_after)
             if status == "valid":
@@ -410,10 +488,16 @@ async def fetch():
     print(f"  Expecting data after: {last_date}")
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(
+        # Use system Chrome channel locally on Windows (bundled chromium has
+        # spawn issues). CI installs chromium via `playwright install --with-deps`
+        # on Ubuntu, where the bundled binary works fine — toggle via env var.
+        launch_kwargs = dict(
             headless=True,
             args=["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"],
         )
+        if os.environ.get("ADREC_USE_SYSTEM_CHROME") == "1":
+            launch_kwargs["channel"] = "chrome"
+        browser = await p.chromium.launch(**launch_kwargs)
         context = await browser.new_context(
             accept_downloads=True,
             viewport={"width": 1920, "height": 1080},

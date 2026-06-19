@@ -33,7 +33,9 @@ jobs:
         run: playwright install chromium --with-deps
 
       - name: Fetch ADREC export
-        continue-on-error: true
+        # Intentionally NOT continue-on-error: a silent fetch failure here
+        # used to mask 5+ days of stale data before the freshness check caught
+        # it. Fail the run loudly the first day it breaks so we know to fix it.
         env:
           GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
         run: python scripts/fetch_adrec.py

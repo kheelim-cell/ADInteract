@@ -37,15 +37,18 @@ TRANSACTION_COLUMNS = {
     "asset class", "layout",
 }
 
-# Synthetic header injected when ADREC exports a CSV without a header row.
-# Order matches the "Recent Sales" table on adrec.gov.ae / dari.ae:
-#   Asset Class | Property Type | Registration | Sold Area (sqm) |
-#   Plot Area (sqm) | Rate (AED/sqm) | Layout | District | Community |
-#   Project | Price (AED)
+# Synthetic header injected when ADREC's "Recent Sales" export ships without
+# a header row. Order verified against a live download on 2026-06-19:
+#   residential,apartment,2026-06-18,349.12,2346.09,3 beds,Al Reem Island,
+#   RS5,SAAS Heights,5458311.58,1.0000,15634.49,off-plan,primary
+# i.e. asset_class, property_type, registration(ISO date), sold_area_sqm,
+# plot_area_sqm, layout, district, community, project, price_aed, share,
+# rate_aed_sqm, sale_type, sale_sequence — 14 columns.
 SYNTHETIC_HEADER = [
     "Asset Class", "Property Type", "Registration",
-    "Sold Area (sqm)", "Plot Area (sqm)", "Rate (AED/sqm)",
-    "Layout", "District", "Community", "Project", "Price (AED)",
+    "Sold Area (sqm)", "Plot Area (sqm)", "Layout",
+    "District", "Community", "Project", "Price (AED)",
+    "Share", "Rate (AED/sqm)", "Sale Type", "Sale Sequence",
 ]
 
 # Asset-class tokens that betray a header-less CSV (row 1 is data)
@@ -284,6 +287,15 @@ async def set_date_range(page, start: date, end: date) -> bool:
     """
     Try multiple strategies to set the date range filter.
     Returns True if at least the start date was set.
+
+    IMPORTANT: This is best-effort. The Recent Sales table is sorted
+    newest-first by default with no filter applied, so a failed/skipped
+    date-range set does NOT block getting recent rows via Export — it only
+    means the export window might be wider than [start, end]. Every step
+    below uses short explicit timeouts so a single unclickable/invisible
+    element fails in seconds, not the default 30s, which previously caused
+    multi-minute stalls (3 date formats × 2 fields × 30s ≈ 3 minutes of
+    dead time on a single bad selector match).
     """
     start_str_us    = start.strftime("%m/%d/%Y")   # MM/DD/YYYY (adrec.gov.ae)
     end_str_us      = end.strftime("%m/%d/%Y")
@@ -292,10 +304,12 @@ async def set_date_range(page, start: date, end: date) -> bool:
     start_str_iso   = start.strftime("%Y-%m-%d")
     end_str_iso     = end.strftime("%Y-%m-%d")
 
-    print(f"  Setting date range: {start_str_us} → {end_str_us} (MM/DD/YYYY)")
+    print(f"  Setting date range: {start_str_us} → {end_str_us} (MM/DD/YYYY, best-effort)")
 
-    # Strategy 1: Standard date inputs
-    date_inputs = page.locator(
+    FIELD_TIMEOUT = 4_000  # per click/fill call — fail fast on non-interactive matches
+
+    # Strategy 1: Standard date inputs — only consider ones that are actually visible
+    date_inputs_all = page.locator(
         "input[type='date'], "
         "input[placeholder*='date' i], "
         "input[placeholder*='from' i], "
@@ -304,34 +318,56 @@ async def set_date_range(page, start: date, end: date) -> bool:
         "[class*='date-picker'] input, "
         "[class*='daterange'] input"
     )
-    count = await date_inputs.count()
-    print(f"  Found {count} date input(s)")
-
-    if count >= 2:
+    raw_count = await date_inputs_all.count()
+    visible_indices = []
+    for i in range(raw_count):
         try:
-            start_el = date_inputs.nth(0)
-            end_el   = date_inputs.nth(1)
+            if await date_inputs_all.nth(i).is_visible():
+                visible_indices.append(i)
+        except Exception:
+            pass
+    print(f"  Found {raw_count} date input(s) in DOM, {len(visible_indices)} visible")
+
+    if len(visible_indices) >= 2:
+        try:
+            start_el = date_inputs_all.nth(visible_indices[0])
+            end_el   = date_inputs_all.nth(visible_indices[1])
 
             # Try MM/DD/YYYY (current adrec.gov.ae), then ISO, then DD/MM/YYYY (legacy).
-            # Locator.fill() clears the field before typing, so no explicit
-            # select-all is needed (Locator has no triple_click method).
+            # Stop at the first format that succeeds — no need to try all three.
+            set_ok = False
             for val in [start_str_us, start_str_iso, start_str_slash]:
-                await start_el.click()
-                await start_el.fill(val)
-                await page.keyboard.press("Tab")
-                await page.wait_for_timeout(500)
+                try:
+                    await start_el.click(timeout=FIELD_TIMEOUT)
+                    await start_el.fill(val, timeout=FIELD_TIMEOUT)
+                    await page.keyboard.press("Tab")
+                    await page.wait_for_timeout(400)
+                    set_ok = True
+                    break
+                except Exception:
+                    continue
 
-            for val in [end_str_us, end_str_iso, end_str_slash]:
-                await end_el.click()
-                await end_el.fill(val)
-                await page.keyboard.press("Tab")
-                await page.wait_for_timeout(500)
+            if set_ok:
+                for val in [end_str_us, end_str_iso, end_str_slash]:
+                    try:
+                        await end_el.click(timeout=FIELD_TIMEOUT)
+                        await end_el.fill(val, timeout=FIELD_TIMEOUT)
+                        await page.keyboard.press("Tab")
+                        await page.wait_for_timeout(400)
+                        break
+                    except Exception:
+                        continue
 
-            await page.wait_for_timeout(2_000)
-            print(f"  ✓ Date range set via input fields")
-            return True
+                await page.wait_for_timeout(1_500)
+                print(f"  ✓ Date range set via input fields")
+                return True
+            else:
+                print("  Date input fields found but not fillable in any format — skipping")
         except Exception as exc:
             print(f"  Date input strategy failed: {exc}")
+    else:
+        print("  No visible date inputs — skipping date-range filter "
+              "(Recent Sales is sorted newest-first by default, so this is non-fatal)")
 
     # Strategy 2: Look for Apply / Search / Filter button after setting dates
     for btn_text in ["Apply", "Search", "Filter", "Go", "Submit"]:
@@ -345,7 +381,7 @@ async def set_date_range(page, start: date, end: date) -> bool:
         except Exception:
             pass
 
-    return count >= 1
+    return len(visible_indices) >= 1
 
 
 async def click_show_results(page) -> bool:
@@ -388,10 +424,45 @@ async def click_show_results(page) -> bool:
     return clicked > 0
 
 
+async def find_recent_sales_export_indices(page, all_exports) -> list[int]:
+    """
+    Locate the Export button(s) belonging to the "Recent Sales" widget by
+    vertical proximity, rather than a hardcoded index — ADREC has reordered
+    widgets on this page before, which silently broke a fixed-index guess.
+
+    Returns indices into `all_exports`, sorted nearest-first to the "Recent
+    Sales" heading. Empty list if the heading isn't found.
+    """
+    try:
+        heading = page.locator("text='Recent Sales'").first
+        hbox = await heading.bounding_box()
+        if not hbox:
+            return []
+    except Exception:
+        return []
+
+    count = await all_exports.count()
+    scored = []
+    for i in range(count):
+        btn = all_exports.nth(i)
+        try:
+            if not await btn.is_visible():
+                continue
+            box = await btn.bounding_box()
+            if not box:
+                continue
+            scored.append((abs(box["y"] - hbox["y"]), i))
+        except Exception:
+            continue
+    scored.sort()
+    return [i for _, i in scored]
+
+
 async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
     """
-    Try all Export buttons in order: first index 4 (known "Recent Sales"),
-    then all others.
+    Try Export buttons, prioritising the one closest to the "Recent Sales"
+    heading (the widget we actually want), then fall back to any other
+    visible Export/Download button.
 
     Returns one of:
       "downloaded"  — a valid export with new rows was saved to output_path
@@ -401,7 +472,9 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
     """
     tmp = output_path + ".tmp"
 
-    # ADREC requires "Show Results" click before Export download fires
+    # Best-effort: some ADREC layouts still require a "Show Results" click
+    # before a widget's export fires. Harmless no-op if none are visible
+    # (current layout's Recent Sales table is rendered by default).
     await click_show_results(page)
 
     # Also try buttons labelled "Downloading…" — ADREC sometimes uses this
@@ -416,10 +489,17 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
     if count == 0:
         return "failed"
 
-    # Try index 4 first (historically the Recent Sales export), then max 3 others
-    # Hard-limit to 4 attempts total so we don't burn 5 × 150s in CI
-    priority  = [4] + [i for i in range(min(count, 6)) if i != 4]
-    indices   = priority[:4]
+    # Primary strategy: button(s) nearest the "Recent Sales" heading.
+    by_proximity = await find_recent_sales_export_indices(page, all_exports)
+    if by_proximity:
+        print(f"  Targeting Export button(s) nearest 'Recent Sales' heading: {by_proximity[:3]}")
+        indices = by_proximity[:3]
+    else:
+        # Fallback: no heading match (page structure changed again) — just
+        # try the first few visible Export buttons. Hard-limit to 4 attempts
+        # total so we don't burn 4 × 120s in CI on a fully broken page.
+        print("  'Recent Sales' heading not found — falling back to first visible Export buttons")
+        indices = list(range(min(count, 4)))
 
     saw_valid_export = False  # found correct columns/dates, just nothing new
 

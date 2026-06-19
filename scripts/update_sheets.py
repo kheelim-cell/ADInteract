@@ -117,11 +117,27 @@ def update():
         print(f"Full upload complete: {len(new_df):,} rows.")
         return
 
-    # Sheet has data — find the max date already in the sheet and append only newer rows
+    # Sheet has data — find the max date already in the sheet and append only newer rows.
+    # NOTE: the CSV's date column name and the Sheet's date column name can
+    # legitimately differ — ADREC has renamed this column over time
+    # ("Sale Application Date" -> "Registration" etc.) while keeping the same
+    # column *position*. Appends below are positional (raw values, no header
+    # realignment), so each side just needs its OWN fuzzy match against the
+    # same candidate list — they don't need to match each other textually.
     date_col_candidates = [
         "Sale Application Date", "Registration Date", "Registration",
         "Date", "Transaction Date",
     ]
+
+    def find_col_index(header: list[str], candidates: list[str]) -> int | None:
+        """1-based index of the first candidate name found in header (case-insensitive)."""
+        lower_header = [h.strip().lower() for h in header]
+        for cand in candidates:
+            cand_l = cand.strip().lower()
+            if cand_l in lower_header:
+                return lower_header.index(cand_l) + 1
+        return None
+
     date_col = next((c for c in date_col_candidates if c in new_df.columns), None)
     if date_col is None:
         raise RuntimeError(
@@ -130,14 +146,27 @@ def update():
             f"Got columns: {list(new_df.columns)[:10]}"
         )
 
-    # Find date column position in the sheet header
+    # Find date column position in the sheet header — independently fuzzy-matched,
+    # not required to be the same literal string as `date_col` above.
     header_row = ws.row_values(1)
-    try:
-        date_col_idx = header_row.index(date_col) + 1  # 1-based
-    except ValueError:
+    date_col_idx = find_col_index(header_row, date_col_candidates)
+    if date_col_idx is None:
         raise RuntimeError(
-            f"Date column '{date_col}' not found in sheet header. "
+            f"No recognised date column found in sheet header. "
+            f"Tried: {date_col_candidates}. "
             f"Sheet header: {header_row[:10]}"
+        )
+
+    # Safety check: appends below are positional (raw values written by column
+    # index, not by name) so a column-count mismatch would silently misalign
+    # data instead of erroring. Fail loudly instead.
+    if len(header_row) != len(new_df.columns):
+        raise RuntimeError(
+            f"Column count mismatch: sheet header has {len(header_row)} columns "
+            f"({header_row}), CSV has {len(new_df.columns)} columns "
+            f"({list(new_df.columns)}). Appends are positional — refusing to "
+            f"write misaligned data. Re-align the sheet header or CSV column "
+            f"order before retrying."
         )
 
     # Parse existing dates to find the max

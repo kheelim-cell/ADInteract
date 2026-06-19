@@ -489,29 +489,37 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
     if count == 0:
         return "failed"
 
-    # Primary strategy: button(s) nearest the "Recent Sales" heading.
+    # Primary strategy: the single button nearest the "Recent Sales" heading.
+    # We trust this targeting once it returns ANY definitive answer (a
+    # download, even an empty one, or a structurally-valid-but-stale export)
+    # — those answers came from the right widget, so there's no reason to
+    # also probe the other widgets' Export buttons. Those tend to hang for
+    # the full download timeout waiting for a download that's never coming,
+    # since they're a different widget's trigger.
     by_proximity = await find_recent_sales_export_indices(page, all_exports)
     if by_proximity:
-        print(f"  Targeting Export button(s) nearest 'Recent Sales' heading: {by_proximity[:3]}")
-        indices = by_proximity[:3]
+        primary_indices = by_proximity[:1]
+        fallback_indices = [i for i in range(min(count, 4)) if i not in primary_indices]
+        print(f"  Targeting Export button nearest 'Recent Sales' heading: index {primary_indices[0]}")
     else:
-        # Fallback: no heading match (page structure changed again) — just
-        # try the first few visible Export buttons. Hard-limit to 4 attempts
-        # total so we don't burn 4 × 120s in CI on a fully broken page.
+        # No heading match at all (page structure changed again) — just try
+        # the first few visible Export buttons with no special priority.
         print("  'Recent Sales' heading not found — falling back to first visible Export buttons")
-        indices = list(range(min(count, 4)))
+        primary_indices = []
+        fallback_indices = list(range(min(count, 4)))
 
     saw_valid_export = False  # found correct columns/dates, just nothing new
 
-    for i in indices:
-        if i >= count:
-            continue
+    async def attempt(i: int) -> str | None:
+        """Try Export button at index i. Returns 'downloaded', 'no_new_data',
+        'empty', or None (couldn't get any usable response — try elsewhere)."""
+        nonlocal saw_valid_export
         btn = all_exports.nth(i)
         try:
             if not await btn.is_visible(timeout=1_000):
-                continue
+                return None
         except Exception:
-            continue
+            return None
 
         btn_text = (await btn.inner_text()).strip()[:20]
         print(f"  Trying Export #{i + 1} (index {i}, text={btn_text!r})…")
@@ -524,6 +532,17 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
             await dl.save_as(tmp)
             size = os.path.getsize(tmp)
             print(f"    Downloaded {size:,} bytes")
+
+            # A 0-byte export from the correctly-targeted button means ADREC
+            # simply hasn't published any rows for the requested window yet
+            # (common when the window is "today" and it's early in the day).
+            # This is a clean no-op, NOT a failure.
+            if size == 0:
+                os.remove(tmp)
+                saw_valid_export = True
+                print(f"  ✗ Export #{i + 1} empty (0 bytes) — ADREC has no rows "
+                      f"in the requested window yet")
+                return "empty"
 
             # ADREC's "Recent Sales" export no longer ships a header row —
             # inject one before validation so the downstream pipeline works.
@@ -539,10 +558,33 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
                     saw_valid_export = True
                 os.remove(tmp)
                 print(f"  ✗ Export #{i + 1} rejected ({status}): {reason}")
+                return status
         except Exception as exc:
             print(f"  ✗ Export #{i + 1} error: {exc}")
             if os.path.exists(tmp):
                 os.remove(tmp)
+            return None
+
+    # Try the proximity-targeted button(s) first. Stop immediately on any
+    # definitive answer — don't waste time on other widgets once we've heard
+    # back from the right one.
+    for i in primary_indices:
+        if i >= count:
+            continue
+        result = await attempt(i)
+        if result == "downloaded":
+            return "downloaded"
+        if result in ("empty", "no_new_data"):
+            return "no_new_data"
+        # result is None (couldn't reach this button) or "invalid" — fall
+        # through to try other widgets below.
+
+    for i in fallback_indices:
+        if i >= count:
+            continue
+        result = await attempt(i)
+        if result == "downloaded":
+            return "downloaded"
 
     return "no_new_data" if saw_valid_export else "failed"
 

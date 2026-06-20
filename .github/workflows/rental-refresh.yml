@@ -1,0 +1,70 @@
+name: Quarterly Rental Index Refresh
+
+# Runs 4x/year instead of daily. The ADREC interactive-map endpoint this
+# scrapes started serving a Fortinet WAF CAPTCHA challenge, most likely
+# triggered by the previous daily automated traffic. Rental benchmarks are
+# an annual-ish index that doesn't move fast, so quarterly freshness is
+# plenty while staying well under whatever request-rate threshold trips
+# the challenge.
+on:
+  schedule:
+    - cron: '0 2 1 1,4,7,10 *'   # 06:00 GST (UTC+4) on Jan 1, Apr 1, Jul 1, Oct 1
+  workflow_dispatch:               # manually runnable from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-rental:
+    runs-on: ubuntu-22.04   # pinned: Playwright 1.44 needs libasound2 (not in 24.04)
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Install Playwright (Chromium)
+        run: playwright install chromium --with-deps
+
+      - name: Fetch ADREC Rental Index
+        # CAPTCHA-gated scrape — leave it non-blocking. A failure here means
+        # the rental index just stays at last quarter's values until the
+        # next run or a manual workflow_dispatch.
+        continue-on-error: true
+        run: python scripts/fetch_rental.py
+
+      - name: Upload rental debug artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rental-debug-${{ github.run_id }}
+          path: |
+            scripts/data/rental_debug_screenshot.png
+            scripts/data/rental_debug_page.html
+          retention-days: 30
+
+      - name: Transform Rental → Parquet + rental_meta.json
+        run: python scripts/transform_rental.py
+
+      - name: Commit rental data to main
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f static/data/rental.parquet static/data/rental_meta.json
+          git diff --staged --quiet \
+            || git commit -m "data: quarterly rental refresh $(date -u +%Y-%m-%d) [skip ci]"
+          git stash --include-untracked || true
+          git pull --rebase origin main
+          git push
+
+# Note: this workflow does NOT deploy the site. The next scheduled run of
+# data-refresh.yml (daily) will pick up the updated rental.parquet /
+# rental_meta.json from main and redeploy automatically — no need to
+# duplicate the SvelteKit build/deploy steps here.

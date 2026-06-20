@@ -336,6 +336,8 @@
 
   <!-- PDF lead magnet — only on main dashboard -->
   {#if !isProjectPage}
-    <PdfLeadMagnet />
+    <div class="mt-8">
+      <PdfLeadMagnet />
+    </div>
   {/if}
 </div>

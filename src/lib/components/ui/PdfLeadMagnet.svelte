@@ -81,7 +81,7 @@
         ['Median AED/sqft', s.median_psf ? `AED ${s.median_psf.toLocaleString('en-AE')}` : '—'],
         ['Transactions (12m)', s.tx_count_12m.toLocaleString('en-AE')],
         ['Off-plan share', `${sc.offplan_pct ?? '—'}%`],
-        ['Trend', sc.trend_direction === 'up' ? '↑ Rising' : sc.trend_direction === 'down' ? '↓ Falling' : '→ Flat'],
+        ['Trend', sc.trend_direction === 'up' ? 'Rising' : sc.trend_direction === 'down' ? 'Falling' : 'Flat'],
       ];
 
       let y = H - 120;

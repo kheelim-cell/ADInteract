@@ -23,6 +23,10 @@
 
   const ranked = Object.values(scores).sort((a, b) => b.score - a.score);
   const totalCount = ranked.length;
+  const PAGE_SIZE = 10;
+
+  let showAll = $state(false);
+  let visible = $derived(showAll ? ranked : ranked.slice(0, PAGE_SIZE));
 
   function scoreColor(score: number) {
     if (score >= 75) return { text: 'text-emerald-600', bar: 'bg-emerald-500' };
@@ -59,7 +63,7 @@
   <div class="mb-6">
     <h1 class="text-xl font-bold text-gray-900 mb-1">District Investment Rankings</h1>
     <p class="text-sm text-gray-500 max-w-2xl">
-      All <span class="font-medium text-gray-700">{totalCount}</span> Abu Dhabi districts, ranked by a dual scoring model calibrated to each district's market maturity.
+      All <span class="font-medium text-gray-700">{totalCount}</span> Abu Dhabi districts, ranked by a dual scoring model calibrated to each district's market maturity. Showing top {Math.min(PAGE_SIZE, totalCount)} by default.
       Scores update daily from ADREC transaction data.
     </p>
   </div>
@@ -93,7 +97,7 @@
       <span class="text-right">Off-plan %</span>
     </div>
 
-    {#each ranked as district, i}
+    {#each visible as district, i}
       {@const c = scoreColor(district.score)}
       {@const t = trendIcon(district.trend_direction)}
       {@const st = scoreTypeLabel(district.score_type)}
@@ -157,7 +161,7 @@
 
   <!-- ── Mobile cards (< md) ─────────────────────────────────────────── -->
   <div class="md:hidden space-y-2">
-    {#each ranked as district, i}
+    {#each visible as district, i}
       {@const c = scoreColor(district.score)}
       {@const t = trendIcon(district.trend_direction)}
       {@const st = scoreTypeLabel(district.score_type)}
@@ -217,6 +221,34 @@
       </a>
     {/each}
   </div>
+
+  {#if !showAll && totalCount > PAGE_SIZE}
+    <div class="mt-4 flex justify-center">
+      <button
+        type="button"
+        onclick={() => showAll = true}
+        class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-4 py-2 text-xs font-semibold text-gray-700 hover:border-brand-300 hover:text-brand-700 transition-colors"
+      >
+        Show all {totalCount} districts
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+        </svg>
+      </button>
+    </div>
+  {:else if showAll && totalCount > PAGE_SIZE}
+    <div class="mt-4 flex justify-center">
+      <button
+        type="button"
+        onclick={() => showAll = false}
+        class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-4 py-2 text-xs font-semibold text-gray-700 hover:border-brand-300 hover:text-brand-700 transition-colors"
+      >
+        Show top {PAGE_SIZE} only
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+        </svg>
+      </button>
+    </div>
+  {/if}
 
   <p class="mt-3 text-[10px] text-gray-400">Tap any district to view the full report with per-factor breakdown →</p>
   <p class="mt-1 text-[10px] text-gray-400">Source: ADREC via ADInteract.co · scores recalculated daily</p>

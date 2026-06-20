@@ -2,6 +2,7 @@
   import { base } from '$app/paths';
   import rawScores from '$lib/data/district_scores.json';
   import ScoreMethodology from '$lib/components/ui/ScoreMethodology.svelte';
+  import PdfLeadMagnet from '$lib/components/ui/PdfLeadMagnet.svelte';
 
   type ScoreEntry = {
     slug: string;
@@ -223,6 +224,11 @@
 
   <p class="mt-3 text-[10px] text-gray-400">Tap any district to view the full report with per-factor breakdown →</p>
   <p class="mt-1 text-[10px] text-gray-400">Source: ADREC via ADInteract.co · scores recalculated daily</p>
+
+  <!-- PDF lead magnet -->
+  <div class="mt-8">
+    <PdfLeadMagnet />
+  </div>
 
   <!-- Methodology -->
   <div class="mt-10 pt-8 border-t border-gray-100">

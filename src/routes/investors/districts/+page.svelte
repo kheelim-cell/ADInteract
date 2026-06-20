@@ -21,9 +21,8 @@
 
   const scores = rawScores as Record<string, ScoreEntry>;
 
-  const allRanked = Object.values(scores).sort((a, b) => b.score - a.score);
-  const totalCount = allRanked.length;
-  const ranked = allRanked.slice(0, 10);
+  const ranked = Object.values(scores).sort((a, b) => b.score - a.score);
+  const totalCount = ranked.length;
 
   function scoreColor(score: number) {
     if (score >= 75) return { text: 'text-emerald-600', bar: 'bg-emerald-500' };
@@ -51,8 +50,8 @@
 </script>
 
 <svelte:head>
-  <title>Abu Dhabi District Investment Rankings — Top 10 | ADInteract</title>
-  <meta name="description" content="Top 10 Abu Dhabi districts ranked by investment score using a dual scoring model: Yield & Stability for established districts, Growth & Early-Cycle for new freehold areas. Powered by live ADREC data." />
+  <title>Abu Dhabi District Investment Rankings — All Districts | ADInteract</title>
+  <meta name="description" content="Every Abu Dhabi district ranked by investment score using a dual scoring model: Yield & Stability for established districts, Growth & Early-Cycle for new freehold areas. Powered by live ADREC data." />
 </svelte:head>
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8">
@@ -60,7 +59,7 @@
   <div class="mb-6">
     <h1 class="text-xl font-bold text-gray-900 mb-1">District Investment Rankings</h1>
     <p class="text-sm text-gray-500 max-w-2xl">
-      Showing the top 10 of <span class="font-medium text-gray-700">{totalCount}</span> Abu Dhabi districts, ranked by a dual scoring model calibrated to each district's market maturity.
+      All <span class="font-medium text-gray-700">{totalCount}</span> Abu Dhabi districts, ranked by a dual scoring model calibrated to each district's market maturity.
       Scores update daily from ADREC transaction data.
     </p>
   </div>
@@ -106,7 +105,7 @@
 
         <div class="min-w-0">
           <p class="text-sm font-semibold text-gray-900 group-hover:text-brand-700 transition-colors truncate">{district.district_name}</p>
-          <div class="mt-1.5 flex flex-col gap-0.5 w-16">
+          <div class="mt-1.5 flex flex-col gap-0.5 w-full max-w-[12rem]">
             {#if district.ys}
               <div class="h-1 rounded-full bg-gray-100 overflow-hidden">
                 <div class="h-full rounded-full bg-emerald-400/80" style="width:{district.ys.total}%"></div>
@@ -118,9 +117,6 @@
               </div>
             {/if}
           </div>
-          <p class="mt-0.5 text-[9px] text-gray-400">
-            {district.score_type === 'both' ? 'Y&S · G&EC' : district.score_type === 'yield_stability' ? 'yield · liquidity · stability' : 'velocity · momentum · appreciation'}
-          </p>
         </div>
 
         <span class="text-[10px] font-bold rounded-full px-2 py-0.5 {st.cls} truncate">{st.label}</span>
@@ -179,7 +175,7 @@
             <span class="text-[10px] font-bold rounded-full px-2 py-0.5 {st.cls}">{st.label}</span>
             <span class="text-[10px] {t.cls} font-bold">{t.icon}</span>
           </div>
-          <div class="mt-1.5 flex flex-col gap-0.5 w-16">
+          <div class="mt-1.5 flex flex-col gap-0.5 w-full max-w-[10rem]">
             {#if district.ys}
               <div class="h-1 rounded-full bg-gray-100 overflow-hidden">
                 <div class="h-full rounded-full bg-emerald-400/80" style="width:{district.ys.total}%"></div>

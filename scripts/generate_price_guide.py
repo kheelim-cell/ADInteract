@@ -32,9 +32,9 @@ from reportlab.pdfgen import canvas as rl_canvas
 ROOT          = Path(__file__).parent.parent
 PARQUET       = ROOT / "static/data/transactions.parquet"
 SCORES_JSON   = ROOT / "src/lib/data/district_scores.json"
-SQUARE_LOGO   = Path(r"C:\Users\KheeXuanLim\Downloads\ADInteract Logos\Square Logo.png")
-OG_IMAGE      = Path(r"C:\Users\KheeXuanLim\Downloads\ADInteract Logos\og-image.png")
 FONT_DIR      = Path(__file__).parent / "data"
+SQUARE_LOGO   = FONT_DIR / "square-logo.png"
+OG_IMAGE      = FONT_DIR / "og-image.png"
 OUTPUT        = ROOT / "static/data/price-guide-2026.pdf"
 SS_SALES      = Path(__file__).parent / "data" / "ss_sales.png"
 SS_INVESTORS  = Path(__file__).parent / "data" / "ss_investors.png"

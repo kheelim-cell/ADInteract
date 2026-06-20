@@ -1,6 +1,37 @@
 <script lang="ts">
   let { compact = false }: { compact?: boolean } = $props();
   let open = $state(!compact);
+
+  const FAQS = [
+    {
+      q: 'Why add rental yield when the original model didn\'t include it?',
+      a: 'The original model was a pure capital gain proxy. MSCI/IPD weights income and capital return equally because total return is what reaches an investor\'s pocket. We have ADREC rental data for all districts, so there\'s no reason to exclude it. A district with rising prices but 1.5% yield is speculation, not investment.',
+    },
+    {
+      q: 'Why exclude off-plan transactions from price momentum in Y&S?',
+      a: 'Off-plan prices are set by developers at launch — they reflect margin expectations, not market clearing prices. Knight Frank PIRI and Case-Shiller use resale transactions only for this reason. Mixing developer pricing into the median distorts the signal: a premium-PSF launch would inflate an established district\'s trend even if the resale market had softened.',
+    },
+    {
+      q: 'Doesn\'t penalising volatility unfairly punish early-appreciation districts?',
+      a: 'Yes — which is why we built two models. Stability (inverse CoV) only appears in Y&S, applied to established districts where volatility is a genuine risk signal. G&EC deliberately omits it. Early-stage appreciation is inherently volatile; those price jumps are the upside, not a warning.',
+    },
+    {
+      q: 'Are MSCI/IPD and JLL GRETI relevant to Abu Dhabi?',
+      a: 'Partially. Those indices were built on London, Singapore, and Tokyo — markets 30–50 years into their liquidity cycle. Abu Dhabi opened freehold to foreigners from 2019, and is still building new geographies from scratch. We borrow the factor logic from MSCI/IPD (Y&S model) and CBRE/PGIM Emerging Markets (G&EC model), applied only where the data supports it.',
+    },
+    {
+      q: 'What data powers the scores, and how often do they update?',
+      a: 'All data comes from ADREC (dari.ae) — transaction data (price, PSF, sale type, project, district) and rental registration data. Both are scraped daily; scores recompute on every refresh. ADInteract is independent and unaffiliated with any developer, brokerage, or government body.',
+    },
+  ];
+
+  let openFaqIds = $state<Set<number>>(new Set());
+
+  function toggleFaq(id: number) {
+    const next = new Set(openFaqIds);
+    if (next.has(id)) { next.delete(id); } else { next.add(id); }
+    openFaqIds = next;
+  }
 </script>
 
 {#if compact}
@@ -174,33 +205,30 @@
   <!-- ── Section 4: FAQs ───────────────────────────────────────────── -->
   <div>
     <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">4 · FAQs</h3>
-    <div class="space-y-4">
-
-      <div>
-        <p class="font-semibold text-gray-800 mb-1">Why add rental yield when the original model didn't include it?</p>
-        <p class="text-gray-600 leading-relaxed">The original model was a pure capital gain proxy. MSCI/IPD weights income and capital return equally because total return is what reaches an investor's pocket. We have ADREC rental data for all districts, so there's no reason to exclude it. A district with rising prices but 1.5% yield is speculation, not investment.</p>
-      </div>
-
-      <div>
-        <p class="font-semibold text-gray-800 mb-1">Why exclude off-plan transactions from price momentum in Y&amp;S?</p>
-        <p class="text-gray-600 leading-relaxed">Off-plan prices are set by developers at launch — they reflect margin expectations, not market clearing prices. Knight Frank PIRI and Case-Shiller use resale transactions only for this reason. Mixing developer pricing into the median distorts the signal: a premium-PSF launch would inflate an established district's trend even if the resale market had softened.</p>
-      </div>
-
-      <div>
-        <p class="font-semibold text-gray-800 mb-1">Doesn't penalising volatility unfairly punish early-appreciation districts?</p>
-        <p class="text-gray-600 leading-relaxed">Yes — which is why we built two models. Stability (inverse CoV) only appears in Y&amp;S, applied to established districts where volatility is a genuine risk signal. G&amp;EC deliberately omits it. Early-stage appreciation is inherently volatile; those price jumps are the upside, not a warning.</p>
-      </div>
-
-      <div>
-        <p class="font-semibold text-gray-800 mb-1">Are MSCI/IPD and JLL GRETI relevant to Abu Dhabi?</p>
-        <p class="text-gray-600 leading-relaxed">Partially. Those indices were built on London, Singapore, and Tokyo — markets 30–50 years into their liquidity cycle. Abu Dhabi opened freehold to foreigners from 2019, and is still building new geographies from scratch. We borrow the factor logic from MSCI/IPD (Y&amp;S model) and CBRE/PGIM Emerging Markets (G&amp;EC model), applied only where the data supports it.</p>
-      </div>
-
-      <div>
-        <p class="font-semibold text-gray-800 mb-1">What data powers the scores, and how often do they update?</p>
-        <p class="text-gray-600 leading-relaxed">All data comes from ADREC (dari.ae) — transaction data (price, PSF, sale type, project, district) and rental registration data. Both are scraped daily; scores recompute on every refresh. ADInteract is independent and unaffiliated with any developer, brokerage, or government body.</p>
-      </div>
-
+    <div class="space-y-2">
+      {#each FAQS as faq, i}
+        {@const isOpen = openFaqIds.has(i)}
+        <div class="rounded-xl border border-gray-200 bg-white overflow-hidden transition-shadow {isOpen ? 'shadow-sm' : ''}">
+          <button
+            type="button"
+            onclick={() => toggleFaq(i)}
+            class="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-gray-50 transition-colors"
+          >
+            <span class="flex-1 text-sm font-semibold text-gray-800 leading-snug">{faq.q}</span>
+            <svg
+              class="flex-shrink-0 w-4 h-4 text-gray-400 mt-0.5 transition-transform duration-200 {isOpen ? 'rotate-180' : ''}"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </button>
+          {#if isOpen}
+            <div class="px-4 pb-4 border-t border-gray-100">
+              <p class="pt-3 text-sm text-gray-600 leading-relaxed">{faq.a}</p>
+            </div>
+          {/if}
+        </div>
+      {/each}
     </div>
   </div>
 

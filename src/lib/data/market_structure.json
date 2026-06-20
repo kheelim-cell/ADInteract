@@ -1,0 +1,88 @@
+{
+  "generated_at": "2026-06-20T18:37:28.729797+00:00",
+  "total_licensed": 5081,
+  "by_profession": [
+    {
+      "label": "Brokers",
+      "count": 4619
+    },
+    {
+      "label": "Surveyors",
+      "count": 159
+    },
+    {
+      "label": "Evaluators",
+      "count": 137
+    },
+    {
+      "label": "Account trustees",
+      "count": 29
+    },
+    {
+      "label": "Developers",
+      "count": 136
+    },
+    {
+      "label": "Auctioneers",
+      "count": 1
+    }
+  ],
+  "developer_breakdown": {
+    "Primary Developer": 36,
+    "Secondary Developer": 93
+  },
+  "samples": {
+    "Broker": [
+      {
+        "name": "EXECUTIVE GULF PROPERTIES - L.L.C - S.P.C",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "MOHAMED IBRAHIM HUSAIN",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "SARHAN THANI SARHAN SALOUMA",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "عهود عبدالله جمعه محمد",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "21 LANES REAL ESTATE - L.L.C - S.P.C",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "7TH STREET PROPERTY - L.L.C - S.P.C",
+        "classification": "Brokerage"
+      }
+    ],
+    "Developer": [
+      {
+        "name": "ABDULWAHID FAQEEH INVESTMENT COMPANY",
+        "classification": "Primary Developer"
+      },
+      {
+        "name": "ABK INVESTMENTS L.L.C.",
+        "classification": "Secondary Developer"
+      },
+      {
+        "name": "ABU DHABI NATIONAL EXHIBITIONS COMPANY ADNEC - PJSC",
+        "classification": "Primary Developer"
+      },
+      {
+        "name": "ABU DHABI NATIONAL INSURANCE COMPANY",
+        "classification": "Secondary Developer"
+      },
+      {
+        "name": "ABU DHABI UNITED HOSPITALITY L.L.C",
+        "classification": "Secondary Developer"
+      },
+      {
+        "name": "ADD REAL ESTATE - SOLE PROPRIETORSHIP L.L.C.",
+        "classification": "Secondary Developer"
+      }
+    ]
+  }
+}

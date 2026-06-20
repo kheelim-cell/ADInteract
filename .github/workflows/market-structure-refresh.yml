@@ -1,0 +1,60 @@
+name: Monthly Market Structure Refresh
+
+# Licensed broker/agency/developer counts from DARI's public professions
+# directory (dari.ae). This registry changes slowly — monthly freshness is
+# plenty, and keeps us well clear of any request-rate threshold.
+on:
+  schedule:
+    - cron: '0 2 1 * *'   # 06:00 GST (UTC+4) on the 1st of every month
+  workflow_dispatch:        # manually runnable from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-market-structure:
+    runs-on: ubuntu-22.04   # pinned: Playwright 1.44 needs libasound2 (not in 24.04)
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Install Playwright (Chromium)
+        run: playwright install chromium --with-deps
+
+      - name: Fetch DARI professions directory
+        run: python scripts/fetch_dari_directory.py
+
+      - name: Upload directory debug artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dari-directory-debug-${{ github.run_id }}
+          path: scripts/data/dari_directory_debug.png
+          retention-days: 14
+
+      - name: Compute market structure JSON
+        run: python scripts/compute_market_structure.py
+
+      - name: Commit market structure data to main
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f src/lib/data/market_structure.json
+          git diff --staged --quiet \
+            || git commit -m "data: monthly market structure refresh $(date -u +%Y-%m-%d) [skip ci]"
+          git stash --include-untracked || true
+          git pull --rebase origin main
+          git push
+
+# Note: this workflow does NOT deploy the site. The next scheduled run of
+# data-refresh.yml (daily) will pick up the updated market_structure.json
+# from main and redeploy automatically.

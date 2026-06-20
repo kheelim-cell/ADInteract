@@ -1,0 +1,69 @@
+{
+  "counts": {
+    "Broker": 4619,
+    "Evaluators": 137,
+    "Auctioneer": 1,
+    "Surveyors": 159,
+    "Account trustees": 29,
+    "Developer": 136
+  },
+  "total": 5081,
+  "samples": {
+    "Broker": [
+      {
+        "name": "EXECUTIVE GULF PROPERTIES        - L.L.C - S.P.C",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "MOHAMED IBRAHIM HUSAIN",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "SARHAN THANI SARHAN SALOUMA",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "عهود عبدالله جمعه محمد",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "21 LANES REAL ESTATE - L.L.C - S.P.C",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "7TH STREET PROPERTY - L.L.C - S.P.C",
+        "classification": "Brokerage"
+      }
+    ],
+    "Developer": [
+      {
+        "name": "ABDULWAHID FAQEEH INVESTMENT COMPANY",
+        "classification": "Primary Developer"
+      },
+      {
+        "name": "ABK INVESTMENTS L.L.C.",
+        "classification": "Secondary Developer"
+      },
+      {
+        "name": "ABU DHABI NATIONAL EXHIBITIONS COMPANY ADNEC - PJSC",
+        "classification": "Primary Developer"
+      },
+      {
+        "name": "ABU DHABI NATIONAL INSURANCE COMPANY",
+        "classification": "Secondary Developer"
+      },
+      {
+        "name": "ABU DHABI UNITED HOSPITALITY L.L.C",
+        "classification": "Secondary Developer"
+      },
+      {
+        "name": "ADD  REAL ESTATE - SOLE PROPRIETORSHIP L.L.C.",
+        "classification": "Secondary Developer"
+      }
+    ]
+  },
+  "developer_breakdown": {
+    "Primary Developer": 36,
+    "Secondary Developer": 93
+  }
+}

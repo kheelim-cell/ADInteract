@@ -73,6 +73,13 @@
       iconPath: 'M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99',
     },
     {
+      href: `${base}/investors/market-structure`,
+      label: 'Market Structure',
+      short: 'Market',
+      description: 'Licensed broker, agency and developer counts straight from DARI\'s public professions directory — who\'s actually active in this market, not estimated.',
+      iconPath: 'M3.75 21h16.5M5.25 21V8.25L12 3l6.75 5.25V21M9 21v-6h6v6',
+    },
+    {
       href: `${base}/investors/faqs`,
       label: 'Investor FAQs',
       short: 'FAQs',

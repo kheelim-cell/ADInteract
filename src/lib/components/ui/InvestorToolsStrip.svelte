@@ -35,7 +35,7 @@
     <h3 class="text-sm font-bold {t.heading} tracking-wide uppercase">Investor Tools</h3>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
     <!-- ROI Calculator -->
     <a
       href="{base}/investors/calculator"
@@ -98,6 +98,22 @@
         <span class="text-sm font-semibold text-gray-900 group-hover:{t.label} transition-colors">Off-Plan Pipeline</span>
       </div>
       <p class="text-xs text-gray-500 leading-snug">Registered-sales velocity by project — accelerating, slowing or stale</p>
+    </a>
+
+    <!-- Market Structure -->
+    <a
+      href="{base}/investors/market-structure"
+      class="group flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md px-4 py-3.5 transition-all"
+    >
+      <div class="flex items-center gap-2">
+        <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg {t.iconBg} transition-colors">
+          <svg class="w-4 h-4 {t.iconColor}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M5.25 21V8.25L12 3l6.75 5.25V21M9 21v-6h6v6" />
+          </svg>
+        </span>
+        <span class="text-sm font-semibold text-gray-900 group-hover:{t.label} transition-colors">Market Structure</span>
+      </div>
+      <p class="text-xs text-gray-500 leading-snug">Licensed broker, agency & developer counts from DARI</p>
     </a>
 
     <!-- Rental Yield -->

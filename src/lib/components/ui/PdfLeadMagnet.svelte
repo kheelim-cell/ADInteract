@@ -1,125 +1,14 @@
 <script lang="ts">
-  import rawSummaries from '$lib/data/district_summaries.json';
-  import rawScores from '$lib/data/district_scores.json';
+  import { base } from '$app/paths';
 
-  type DistrictSummary = {
-    slug: string;
-    tx_count_12m: number;
-    median_psf: number | null;
-    is_12m: boolean;
-    last_sale: string;
-  };
-  type ScoreEntry = {
-    score: number;
-    score_trend: number;
-    trend_direction: string;
-    offplan_pct: number;
-  };
-
-  const summaries = rawSummaries as Record<string, DistrictSummary>;
-  const scores = rawScores as Record<string, ScoreEntry>;
+  // Pre-generated server-side guide (scripts/generate_price_guide.py),
+  // refreshed alongside the daily data pipeline. Served straight from
+  // static/data/ — not built client-side.
+  const PDF_PATH = `${base}/data/price-guide-2026.pdf`;
 
   let email = $state('');
-  let status = $state<'idle' | 'generating' | 'emailing' | 'success' | 'error'>('idle');
+  let status = $state<'idle' | 'fetching' | 'emailing' | 'success' | 'error'>('idle');
   let errorMsg = $state('');
-
-  async function generatePdf(): Promise<Uint8Array> {
-    const { PDFDocument, rgb, StandardFonts } = await import('pdf-lib');
-
-    const doc = await PDFDocument.create();
-    const boldFont = await doc.embedFont(StandardFonts.HelveticaBold);
-    const font = await doc.embedFont(StandardFonts.Helvetica);
-
-    // Brand colours as 0–1 rgb
-    const darkGreen = rgb(0.059, 0.169, 0.122);   // #0F2B1F
-    const gold      = rgb(0.784, 0.663, 0.318);    // #C8A951
-    const white     = rgb(1, 1, 1);
-    const lightGray = rgb(0.94, 0.94, 0.94);
-    const gray      = rgb(0.5, 0.5, 0.5);
-
-    const W = 595, H = 842; // A4
-
-    // ── Cover page ──
-    const cover = doc.addPage([W, H]);
-    cover.drawRectangle({ x: 0, y: 0, width: W, height: H, color: darkGreen });
-    cover.drawRectangle({ x: 48, y: 300, width: 120, height: 6, color: gold });
-    cover.drawText('ABU DHABI', { x: 48, y: 610, size: 11, font: boldFont, color: gold });
-    cover.drawText('PROPERTY PRICE GUIDE', { x: 48, y: 582, size: 22, font: boldFont, color: white });
-    cover.drawText('2026', { x: 48, y: 548, size: 64, font: boldFont, color: gold });
-    cover.drawText('Official ADREC transaction data', { x: 48, y: 490, size: 12, font, color: rgb(0.7, 0.7, 0.7) });
-    cover.drawText('Updated daily · Free · Independent', { x: 48, y: 472, size: 11, font, color: rgb(0.6, 0.6, 0.6) });
-    cover.drawText('ADInteract.co', { x: 48, y: 60, size: 14, font: boldFont, color: gold });
-    cover.drawText('Abu Dhabi Real Estate Analytics', { x: 48, y: 44, size: 10, font, color: rgb(0.5, 0.5, 0.5) });
-
-    // ── District pages (top 20 by score, with summaries) ──
-    const TOP_DISTRICTS = Object.entries(scores)
-      .filter(([name]) => summaries[name]?.median_psf != null)
-      .sort((a, b) => b[1].score - a[1].score)
-      .slice(0, 20)
-      .map(([name]) => name);
-
-    for (const district of TOP_DISTRICTS) {
-      const s = summaries[district];
-      const sc = scores[district];
-      if (!s || !sc) continue;
-
-      const p = doc.addPage([W, H]);
-
-      // Header bar
-      p.drawRectangle({ x: 0, y: H - 72, width: W, height: 72, color: darkGreen });
-      p.drawText(district.toUpperCase(), {
-        x: 48, y: H - 34, size: 15, font: boldFont, color: white,
-        maxWidth: 400,
-      });
-      p.drawText(`Investment Score  ${sc.score}/100`, {
-        x: 48, y: H - 56, size: 10, font: boldFont,
-        color: sc.score >= 75 ? rgb(0.4, 0.9, 0.5) : sc.score >= 50 ? rgb(1, 0.75, 0.2) : rgb(1, 0.4, 0.4),
-      });
-
-      // Stat row
-      const stats = [
-        ['Median AED/sqft', s.median_psf ? `AED ${s.median_psf.toLocaleString('en-AE')}` : '—'],
-        ['Transactions (12m)', s.tx_count_12m.toLocaleString('en-AE')],
-        ['Off-plan share', `${sc.offplan_pct ?? '—'}%`],
-        ['Trend', sc.trend_direction === 'up' ? 'Rising' : sc.trend_direction === 'down' ? 'Falling' : 'Flat'],
-      ];
-
-      let y = H - 120;
-      stats.forEach(([label, val], i) => {
-        const x = 48 + (i % 2) * 250;
-        if (i % 2 === 0 && i > 0) y -= 52;
-        p.drawText(label, { x, y, size: 8, font, color: gray });
-        p.drawText(val, { x, y: y - 16, size: 14, font: boldFont, color: darkGreen });
-      });
-
-      // Data note
-      p.drawText(`Last transaction: ${s.last_sale}  ·  Source: ADREC via ADInteract.co`, {
-        x: 48, y: 40, size: 8, font, color: rgb(0.6, 0.6, 0.6),
-      });
-    }
-
-    // ── Disclaimer page ──
-    const disc = doc.addPage([W, H]);
-    disc.drawRectangle({ x: 0, y: H - 60, width: W, height: 60, color: darkGreen });
-    disc.drawText('DATA SOURCES & DISCLAIMER', { x: 48, y: H - 36, size: 13, font: boldFont, color: white });
-    const lines = [
-      'Source: Abu Dhabi Real Estate Centre (ADREC), published at dari.ae',
-      'Data is refreshed daily from official ADREC export files.',
-      'Prices are ADREC-registered transaction prices, not asking prices.',
-      'ADInteract.co is independent and not affiliated with any developer or brokerage.',
-      '',
-      'This guide is for informational purposes only and does not constitute',
-      'financial or investment advice. Past transaction prices do not guarantee',
-      'future performance.',
-      '',
-      `Generated by ADInteract.co  ·  adinteract.co`,
-    ];
-    lines.forEach((line, i) => {
-      disc.drawText(line, { x: 48, y: H - 110 - i * 22, size: 10, font, color: rgb(0.2, 0.2, 0.2) });
-    });
-
-    return doc.save();
-  }
 
   async function submit(e: Event) {
     e.preventDefault();
@@ -133,12 +22,12 @@
     }
 
     try {
-      status = 'generating';
+      status = 'fetching';
       errorMsg = '';
 
-      // Generate PDF
-      const pdfBytes = await generatePdf();
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      const res = await fetch(PDF_PATH);
+      if (!res.ok) throw new Error(`PDF fetch failed: ${res.status}`);
+      const blob = await res.blob();
 
       // Store email in Supabase
       status = 'emailing';
@@ -171,7 +60,7 @@
       status = 'success';
     } catch (err) {
       status = 'error';
-      errorMsg = 'Failed to generate PDF. Please try again.';
+      errorMsg = 'Failed to download guide. Please try again.';
       console.error(err);
     }
   }
@@ -216,12 +105,12 @@
         disabled={status !== 'idle'}
         class="flex-shrink-0 rounded-lg bg-brand-600 hover:bg-brand-700 disabled:opacity-60 px-4 py-2 text-sm font-semibold text-white transition-colors flex items-center gap-1.5"
       >
-        {#if status === 'generating'}
+        {#if status === 'fetching'}
           <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
           </svg>
-          Building…
+          Preparing…
         {:else if status === 'emailing'}
           Saving…
         {:else}

@@ -1164,7 +1164,7 @@ def main():
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     c = rl_canvas.Canvas(str(OUTPUT), pagesize=A4)
-    c.setTitle("AD Interact - ABU DHABI PROPERTY INVESTOR GUIDE 2026")
+    c.setTitle("AD Interact - Abu Dhabi Property Investor Guide 2026")
     c.setAuthor("ADInteract.co")
     c.setSubject("Abu Dhabi District Prices, Investment Scores, Off-Plan Trends")
 

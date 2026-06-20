@@ -53,7 +53,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'AD Interact - ABU DHABI PROPERTY INVESTOR GUIDE 2026.pdf';
+      a.download = 'AD Interact - Abu Dhabi Property Investor Guide 2026.pdf';
       a.click();
       URL.revokeObjectURL(url);
 

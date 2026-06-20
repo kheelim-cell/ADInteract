@@ -30,7 +30,6 @@
   import TransactionTable from '$lib/components/table/TransactionTable.svelte';
   import AdStrip from '$lib/components/ads/AdStrip.svelte';
   import InvestorToolsStrip from '$lib/components/ui/InvestorToolsStrip.svelte';
-  import EmailCapture from '$lib/components/ui/EmailCapture.svelte';
   import ShareBar from '$lib/components/ui/ShareBar.svelte';
   import PdfLeadMagnet from '$lib/components/ui/PdfLeadMagnet.svelte';
   import type {
@@ -335,11 +334,8 @@
   </div>
   </GatedSection>
 
-  <!-- Email capture + PDF lead magnet — only on main dashboard -->
+  <!-- PDF lead magnet — only on main dashboard -->
   {#if !isProjectPage}
-    <EmailCapture district={$filters.district} />
-    <div class="mt-4">
-      <PdfLeadMagnet />
-    </div>
+    <PdfLeadMagnet />
   {/if}
 </div>

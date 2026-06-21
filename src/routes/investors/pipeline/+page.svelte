@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { base } from '$app/paths';
   import rawPipeline from '$lib/data/project_pipeline.json';
 
   type ProjectRow = {
@@ -16,6 +15,10 @@
     last_sale_date: string;
     median_price_aed: number | null;
     median_psf: number | null;
+    completion_pct: number | null;
+    property_type: string | null;
+    classification: string | null;
+    construction_status: string | null;
   };
 
   type Pipeline = {
@@ -62,6 +65,12 @@
 
   const accelerating = data.projects.filter(p => p.status === 'accelerating').length;
   const stale = data.projects.filter(p => p.status === 'stale').length;
+
+  function constructionMeta(status: string | null) {
+    if (status === 'Built') return { label: 'Ready', cls: 'bg-emerald-500' };
+    if (status === 'Ready') return { label: 'Ready', cls: 'bg-emerald-500' };
+    return { label: 'Under Construction', cls: 'bg-amber-500' };
+  }
 </script>
 
 <svelte:head>
@@ -156,75 +165,56 @@
     <span class="text-xs text-gray-400 ml-auto">{filtered.length} of {data.project_count} projects</span>
   </div>
 
-  <!-- ── Desktop table (md+) ─────────────────────────────────────────── -->
-  <div class="hidden md:block rounded-2xl border border-gray-200 overflow-hidden bg-white">
-    <div class="grid grid-cols-[1.4fr_8rem_7rem_6rem_6rem_6rem_6rem] items-center gap-2 px-5 py-3 bg-gray-50 border-b border-gray-100 text-[10px] font-bold uppercase tracking-widest text-gray-400">
-      <span>Project</span>
-      <span>Status</span>
-      <span class="text-right">Last 90d sales</span>
-      <span class="text-right">Momentum</span>
-      <span class="text-right">All-time sales</span>
-      <span class="text-right">AED/sqft</span>
-      <span class="text-right">Last sale</span>
-    </div>
-
+  <!-- ── Project card grid ─────────────────────────────────────────────── -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
     {#each filtered as p}
       {@const s = statusMeta(p.status)}
-      <div class="grid grid-cols-[1.4fr_8rem_7rem_6rem_6rem_6rem_6rem] items-center gap-2 px-5 py-4 border-b border-gray-100 last:border-0 bg-white hover:bg-gray-50 transition-colors">
-        <div class="min-w-0">
-          <p class="text-sm font-semibold text-gray-900 truncate">{p.project_name}</p>
-          <p class="text-[10px] text-gray-400 truncate">{p.district ?? '—'}</p>
+      {@const c = constructionMeta(p.construction_status)}
+      <div class="group rounded-2xl border border-gray-200 bg-white overflow-hidden hover:shadow-md hover:border-gray-300 transition-all flex flex-col">
+        <!-- Visual header: no real photo (we don't have one) — a clean placeholder with the construction-status pill, same role as ADX's hero image -->
+        <div class="relative h-28 bg-gradient-to-br from-[#0a2318] to-[#0e2d45] flex items-center justify-center">
+          <span class="absolute top-2.5 left-2.5 text-[10px] font-bold text-white rounded-full px-2.5 py-1 {c.cls}">{c.label}</span>
+          {#if p.property_type}
+            <span class="absolute top-2.5 right-2.5 text-[10px] font-bold text-gray-700 bg-white/90 rounded-full px-2.5 py-1">{p.property_type}</span>
+          {/if}
+          <svg class="w-8 h-8 text-white/25" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21" />
+          </svg>
         </div>
-        <span class="text-[10px] font-bold rounded-full px-2 py-0.5 {s.cls} w-fit">{s.label}</span>
-        <span class="text-sm text-right font-semibold text-gray-900">{p.sales_last_90d}</span>
-        <span class="text-sm text-right {p.momentum_pct == null ? 'text-gray-400' : p.momentum_pct >= 0 ? 'text-emerald-600' : 'text-red-500'} font-semibold">
-          {p.momentum_pct == null ? '—' : `${p.momentum_pct >= 0 ? '+' : ''}${p.momentum_pct}%`}
-        </span>
-        <span class="text-sm text-right text-gray-600">{fmt(p.registered_sales_alltime)}</span>
-        <span class="text-sm text-right text-gray-600">{fmt(p.median_psf)}</span>
-        <span class="text-sm text-right text-gray-600">{p.days_since_last_sale === 0 ? 'today' : `${p.days_since_last_sale}d ago`}</span>
-      </div>
-    {/each}
 
-    {#if filtered.length === 0}
-      <div class="px-5 py-10 text-center text-sm text-gray-400">No projects match these filters</div>
-    {/if}
-  </div>
+        <div class="p-4 flex-1 flex flex-col">
+          <p class="text-sm font-semibold text-gray-900 group-hover:text-brand-700 transition-colors truncate">{p.project_name}</p>
+          <p class="text-xs text-gray-400 truncate mb-3">{p.district ?? '—'}</p>
 
-  <!-- ── Mobile cards (< md) ─────────────────────────────────────────── -->
-  <div class="md:hidden space-y-2">
-    {#each filtered as p}
-      {@const s = statusMeta(p.status)}
-      <div class="rounded-xl border border-gray-200 bg-white px-4 py-3.5">
-        <div class="flex items-start justify-between gap-2">
-          <div class="min-w-0">
-            <p class="text-sm font-semibold text-gray-900 truncate leading-tight">{p.project_name}</p>
-            <p class="text-[10px] text-gray-400 truncate">{p.district ?? '—'}</p>
+          {#if p.completion_pct !== null}
+            <div class="mb-2">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-[10px] text-gray-400 uppercase tracking-wide">Construction</span>
+                <span class="text-xs font-bold text-gray-700">{p.completion_pct}%</span>
+              </div>
+              <div class="h-1.5 rounded-full bg-gray-100 overflow-hidden">
+                <div class="h-full rounded-full bg-emerald-500" style="width:{p.completion_pct}%"></div>
+              </div>
+            </div>
+          {/if}
+
+          <div class="mt-auto pt-2 flex items-center justify-between gap-2">
+            <span class="text-[10px] font-bold rounded-full px-2 py-0.5 {s.cls}">{s.label}</span>
+            <span class="text-xs text-gray-500">{fmt(p.median_psf)} AED/sqft</span>
           </div>
-          <span class="text-[10px] font-bold rounded-full px-2 py-0.5 {s.cls} flex-shrink-0">{s.label}</span>
-        </div>
-        <div class="mt-2.5 grid grid-cols-3 gap-2 text-center">
-          <div>
-            <p class="text-base font-black text-gray-900 leading-none">{p.sales_last_90d}</p>
-            <p class="text-[9px] text-gray-400 mt-0.5">last 90d</p>
-          </div>
-          <div>
-            <p class="text-base font-black leading-none {p.momentum_pct == null ? 'text-gray-400' : p.momentum_pct >= 0 ? 'text-emerald-600' : 'text-red-500'}">
+
+          <div class="mt-2 pt-2 border-t border-gray-100 flex items-center justify-between text-[10px] text-gray-400">
+            <span>{p.sales_last_90d} registered sales / 90d</span>
+            <span class="{p.momentum_pct == null ? 'text-gray-400' : p.momentum_pct >= 0 ? 'text-emerald-600' : 'text-red-500'} font-semibold">
               {p.momentum_pct == null ? '—' : `${p.momentum_pct >= 0 ? '+' : ''}${p.momentum_pct}%`}
-            </p>
-            <p class="text-[9px] text-gray-400 mt-0.5">momentum</p>
-          </div>
-          <div>
-            <p class="text-base font-black text-gray-900 leading-none">{fmt(p.median_psf)}</p>
-            <p class="text-[9px] text-gray-400 mt-0.5">AED/sqft</p>
+            </span>
           </div>
         </div>
-        <p class="mt-2 text-[10px] text-gray-400">{fmt(p.registered_sales_alltime)} all-time sales · last sale {p.days_since_last_sale === 0 ? 'today' : `${p.days_since_last_sale}d ago`}</p>
       </div>
     {/each}
 
     {#if filtered.length === 0}
-      <div class="px-5 py-10 text-center text-sm text-gray-400">No projects match these filters</div>
+      <div class="col-span-full px-5 py-10 text-center text-sm text-gray-400">No projects match these filters</div>
     {/if}
   </div>
 

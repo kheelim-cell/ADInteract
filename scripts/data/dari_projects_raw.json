@@ -1,0 +1,2876 @@
+{
+  "total_scraped": 287,
+  "parse_errors": 2,
+  "projects": [
+    {
+      "name": "QASR AL JURF 3B",
+      "type": "Villa/Building",
+      "status": "New",
+      "project_number": "20250000662582",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Ghadeer Al Tayr",
+      "community": "Al Jarf"
+    },
+    {
+      "name": "ICONA Residence",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20260000775027",
+      "completion_pct": 20,
+      "classification": "Mixed use",
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Al Reeman View",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20260000854065",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Marbella",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000591588",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Zayed City",
+      "community": "MZ12"
+    },
+    {
+      "name": "Malaga",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000638221",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Zayed City",
+      "community": "MZ12"
+    },
+    {
+      "name": "Yas Park Place",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20260000826791",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "Bab Al Qasr Sea View Residence 51",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20260000846151",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW6"
+    },
+    {
+      "name": "Reeman Residence 01",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000721091",
+      "completion_pct": 21,
+      "classification": "Mixed use",
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Sila",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20260000824467",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_01"
+    },
+    {
+      "name": "The Bristol Ramhan Island",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20260000796806",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Ramhan Island",
+      "community": "Ramhan Island"
+    },
+    {
+      "name": "Al Reeman Gate",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20260000815344",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Thahr El Bateen",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20260000761367",
+      "completion_pct": 0,
+      "classification": null,
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "Emirates Palace Mansions",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20260000798794",
+      "completion_pct": 0,
+      "classification": null,
+      "district": "Al Ras Al Akhdar",
+      "community": "Al Ras Al Akhdar"
+    },
+    {
+      "name": "Luluat Marina",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20260000763259",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW15"
+    },
+    {
+      "name": "Reeman Residences",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000669368",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Bayn – Views 3",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000736301",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Ghantout",
+      "community": "Ghantout"
+    },
+    {
+      "name": "NOVAYAS",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20260000755381",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YN2"
+    },
+    {
+      "name": "Sensi",
+      "type": "Villa/Building",
+      "status": "New",
+      "project_number": "20250000731926",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDW4"
+    },
+    {
+      "name": "Hilton Residences Abu Dhabi Al Raha",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000742516",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Rahah",
+      "community": "RBW4"
+    },
+    {
+      "name": "BAIA",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000697414",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Rahah",
+      "community": "RBW3"
+    },
+    {
+      "name": "Bayn – Lagoon 2",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000629160",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Ghantout",
+      "community": "Ghantout"
+    },
+    {
+      "name": "Bayn – Views 1",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20250000729851",
+      "completion_pct": 0,
+      "classification": null,
+      "district": "Ghantout",
+      "community": "Ghantout"
+    },
+    {
+      "name": "Bab Al Qasr Garden Residence 66",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000666278",
+      "completion_pct": 12,
+      "classification": "Mixed use",
+      "district": "Khalifa City",
+      "community": "SE45_02"
+    },
+    {
+      "name": "Bashayer Residences 3&4.",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000720764",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "SHA Residential Villas and Apartments",
+      "type": "Villa/Building",
+      "status": "New",
+      "project_number": "20250000632446",
+      "completion_pct": 20,
+      "classification": "Residential",
+      "district": "Ghadeer Al Tayr",
+      "community": "Al Jarf"
+    },
+    {
+      "name": "JUMAN 3",
+      "type": "Villa/Building",
+      "status": "New",
+      "project_number": "20250000694267",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW15"
+    },
+    {
+      "name": "Fay Hills (Fay Gardens)",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000678986",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_01"
+    },
+    {
+      "name": "Al Kaser",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20250000675619",
+      "completion_pct": 37,
+      "classification": null,
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "Amwaj 2",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "20250000540004",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW3"
+    },
+    {
+      "name": "Yas Riva Residences",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000670580",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "Bashayer Residences 1&2.",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000662088",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "Bashayer Villas 2",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000688777",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "Ramhan Island Development - Phase 4",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000644247",
+      "completion_pct": 31,
+      "classification": "Residential",
+      "district": "Ramhan Island",
+      "community": "Ramhan Island"
+    },
+    {
+      "name": "Ramhan Island Development - Phase 5",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000642313",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Ramhan Island",
+      "community": "Ramhan Island"
+    },
+    {
+      "name": "Al Sharq Heights",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000635554",
+      "completion_pct": 71,
+      "classification": "Residential",
+      "district": "Bani Yas",
+      "community": "EB2_06"
+    },
+    {
+      "name": "STELLAR BY ELIE SAAB",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000659255",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "The Private Residences Saadiyat Beach",
+      "type": "Villa/Building",
+      "status": "New",
+      "project_number": "20250000526881",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN3"
+    },
+    {
+      "name": "The Row Saadiyat",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000646205",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8"
+    },
+    {
+      "name": "Ain Al Maha Village",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000542762",
+      "completion_pct": 34,
+      "classification": "Residential",
+      "district": "Al Jubail Island",
+      "community": "JS"
+    },
+    {
+      "name": "JUMAN 2",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000602148",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Rahah",
+      "community": "RBW15"
+    },
+    {
+      "name": "YAS Living",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000625852",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "PUD Residence 1",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000550699",
+      "completion_pct": 37,
+      "classification": "Mixed use",
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Bayn – Waterway",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000579884",
+      "completion_pct": 8,
+      "classification": "Residential",
+      "district": "Ghantout",
+      "community": "Ghantout"
+    },
+    {
+      "name": "Bayn – Lagoon",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000579936",
+      "completion_pct": 5,
+      "classification": "Residential",
+      "district": "Ghantout",
+      "community": "Ghantout"
+    },
+    {
+      "name": "Bloom Living (Carmona)",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000565374",
+      "completion_pct": 4,
+      "classification": "Residential",
+      "district": "Zayed City",
+      "community": "MZ12"
+    },
+    {
+      "name": "Al Deem Townhomes",
+      "type": null,
+      "status": "New",
+      "project_number": "20250000555235",
+      "completion_pct": 18,
+      "classification": "Residential",
+      "district": "Al Bahyah",
+      "community": "Ba Al Ghaiylam"
+    },
+    {
+      "name": "Bloom Living (Granada 2)",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000570475",
+      "completion_pct": 2,
+      "classification": "Residential",
+      "district": "Zayed City",
+      "community": "MZ12"
+    },
+    {
+      "name": "Fahid Beach Terraces",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000558588",
+      "completion_pct": 2,
+      "classification": "Mixed use",
+      "district": "Fahid Island",
+      "community": "Fahid Island"
+    },
+    {
+      "name": "One Saadiyat",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000548546",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8"
+    },
+    {
+      "name": "The Beach House Fahid",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000510334",
+      "completion_pct": 2,
+      "classification": "Mixed use",
+      "district": "Fahid Island",
+      "community": "Fahid Island"
+    },
+    {
+      "name": "NOUR BUILDING",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000513230",
+      "completion_pct": 69,
+      "classification": "Mixed use",
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Bab Al Qasr Canal View Residence 22",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000529701",
+      "completion_pct": 14,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW3"
+    },
+    {
+      "name": "Perla 3",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000277827",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "V Residences",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000525589",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDW4"
+    },
+    {
+      "name": "Bashayer Villas",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000543275",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "Faya Al Saadiyat ||",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000527815",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN2"
+    },
+    {
+      "name": "Fahid Beach Residences",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000506230",
+      "completion_pct": 5,
+      "classification": "Mixed use",
+      "district": "Fahid Island",
+      "community": "Fahid Island"
+    },
+    {
+      "name": "Wadeem",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20250000504083",
+      "completion_pct": 0,
+      "classification": null,
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "JUMAN 1",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000497152",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW15"
+    },
+    {
+      "name": "Ohana Development Jacob & Co Beachfront Living",
+      "type": "Villa/Building",
+      "status": "New",
+      "project_number": "20250000479372",
+      "completion_pct": 6,
+      "classification": "Mixed use",
+      "district": "Ghadeer Al Tayr",
+      "community": "Al Jarf"
+    },
+    {
+      "name": "Bab Al Qasr Resort Residence 19",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000464042",
+      "completion_pct": 31,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_05"
+    },
+    {
+      "name": "Ville 12",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000426322",
+      "completion_pct": 36,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_01"
+    },
+    {
+      "name": "Nawayef Village Townhouses",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000479424",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "Opula Residences - Yas Bay",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000452216",
+      "completion_pct": 2,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Yas Links Luxury Living",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000476165",
+      "completion_pct": 4,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS3_06"
+    },
+    {
+      "name": "Henge Residences By NORD",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000432466",
+      "completion_pct": 9,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDW4"
+    },
+    {
+      "name": "Brabus Island",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000470790",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW6"
+    },
+    {
+      "name": "Nawayef West A",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000334060",
+      "completion_pct": 20,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "NAWEYAF EAST B",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000407520",
+      "completion_pct": 23,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "Bab Al Qasr Residence 31",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000426446",
+      "completion_pct": 36,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "NAWEYAF EAST A",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000407514",
+      "completion_pct": 23,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "Nawayef Park Views",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000383164",
+      "completion_pct": 8,
+      "classification": "Mixed use",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "Bab Al Qasr Resort Residence 18",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000430524",
+      "completion_pct": 32,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_05"
+    },
+    {
+      "name": "SOLEA",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000429282",
+      "completion_pct": 7,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDE2"
+    },
+    {
+      "name": "Manarat Living III",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20250000424792",
+      "completion_pct": 5,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8"
+    },
+    {
+      "name": "Selina Bay",
+      "type": "Villa/Building",
+      "status": "New",
+      "project_number": "20240000404571",
+      "completion_pct": 10,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Telal Al Salam 2",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000290331",
+      "completion_pct": 67,
+      "classification": "Residential",
+      "district": "Al Faqa'",
+      "community": "SHIBAK 3"
+    },
+    {
+      "name": "Reeman Garden 1",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000385092",
+      "completion_pct": 70,
+      "classification": "Mixed use",
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Yamm Beach Villas",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000392829",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "Merito",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000296395",
+      "completion_pct": 81,
+      "classification": "Mixed use",
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Masyaf",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20240000384246",
+      "completion_pct": 0,
+      "classification": null,
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "The Fountain View Residences",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000370263",
+      "completion_pct": 1,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8"
+    },
+    {
+      "name": "Bab Al Qasr residence 25",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000314656",
+      "completion_pct": 26,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Mamsha Gardens B",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000361689",
+      "completion_pct": 5,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "Bloom Living (Almeria)",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000343940",
+      "completion_pct": 21,
+      "classification": "Residential",
+      "district": "Zayed City",
+      "community": "MZ12"
+    },
+    {
+      "name": "Mamsha Gardens A",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000361638",
+      "completion_pct": 3,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "Reportage Village Khalifa",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000310734",
+      "completion_pct": 62,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SW1"
+    },
+    {
+      "name": "Faya Al Saadiyat",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000334252",
+      "completion_pct": 7,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN2"
+    },
+    {
+      "name": "MAMSHA PALM",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000322782",
+      "completion_pct": 14,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "Bloom Living (Olvera )",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000324162",
+      "completion_pct": 34,
+      "classification": "Residential",
+      "district": "Zayed City",
+      "community": "MZ12"
+    },
+    {
+      "name": "Yas Riva",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000268328",
+      "completion_pct": 8,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "Right Capital 1",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000267124",
+      "completion_pct": 97,
+      "classification": "Mixed use",
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Nawayef West B",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000267566",
+      "completion_pct": 20,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "OHANA REAL ESTATE DEVELOPMENT AND CONSTRUCTION VILLAS PHASE - 3.",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000296932",
+      "completion_pct": 77,
+      "classification": "Residential",
+      "district": "Ghadeer Al Tayr",
+      "community": "Al Jarf"
+    },
+    {
+      "name": "Al Naseem",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000267837",
+      "completion_pct": 29,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island"
+    },
+    {
+      "name": "Telal Al Salam 1",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "20240000233109",
+      "completion_pct": 19,
+      "classification": "Residential",
+      "district": "Al Faqa'",
+      "community": "SHIBAK 3"
+    },
+    {
+      "name": "BAL GHAIYLAM",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000241373",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Bahyah",
+      "community": "Ba Al Ghaiylam"
+    },
+    {
+      "name": "The Arthouse",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000278844",
+      "completion_pct": 6,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8"
+    },
+    {
+      "name": "Royal Park",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000258825",
+      "completion_pct": 15,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_02"
+    },
+    {
+      "name": "Bloom Living (Seville)",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000251244",
+      "completion_pct": 57,
+      "classification": "Residential",
+      "district": "Zayed City",
+      "community": "MZ12"
+    },
+    {
+      "name": "Ramhan Island Development - Phase 3",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20240000212327",
+      "completion_pct": 26,
+      "classification": null,
+      "district": "Ramhan Island",
+      "community": "Ramhan Island"
+    },
+    {
+      "name": "Marsa Al Jubail",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000173292",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Jubail Island",
+      "community": "JS"
+    },
+    {
+      "name": "Icon",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000218582",
+      "completion_pct": 56,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Vista Del Mar",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000210180",
+      "completion_pct": 71,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "THE SOURCE TERRACES",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000219895",
+      "completion_pct": 21,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8"
+    },
+    {
+      "name": "Al Jurf Gardens Phase 3 A",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20240000200460",
+      "completion_pct": 58,
+      "classification": "Residential",
+      "district": "Ghadeer Al Tayr",
+      "community": "Al Jarf"
+    },
+    {
+      "name": "The Bay Residence 11",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000205606",
+      "completion_pct": 1,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Bloom Living (Granada 1)",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000196178",
+      "completion_pct": 39,
+      "classification": "Residential",
+      "district": "Zayed City",
+      "community": "MZ12"
+    },
+    {
+      "name": "Golden Meadows",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20240000202614",
+      "completion_pct": 4,
+      "classification": null,
+      "district": "Al Faqa'",
+      "community": "SHIBAK 3"
+    },
+    {
+      "name": "Nouran Living",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000198137",
+      "completion_pct": 6,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDW4"
+    },
+    {
+      "name": "Ranches",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20240000202596",
+      "completion_pct": 32,
+      "classification": null,
+      "district": "Al Faqa'",
+      "community": "SHIBAK 1"
+    },
+    {
+      "name": "sun valley",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20240000201987",
+      "completion_pct": 7,
+      "classification": null,
+      "district": "Al Faqa'",
+      "community": "SHIBAK 3"
+    },
+    {
+      "name": "Royal palms",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20240000199796",
+      "completion_pct": 16,
+      "classification": null,
+      "district": "Al Faqa'",
+      "community": "SHIBAK 3"
+    },
+    {
+      "name": "park vista",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20240000199516",
+      "completion_pct": 5,
+      "classification": null,
+      "district": "Al Faqa'",
+      "community": "SHIBAK 3"
+    },
+    {
+      "name": "Gazal Parkview",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20240000191527",
+      "completion_pct": 18,
+      "classification": null,
+      "district": "Al Faqa'",
+      "community": "SHIBAK 1"
+    },
+    {
+      "name": "Mangrove Village",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "20240000188002",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Rabdan",
+      "community": "RB15"
+    },
+    {
+      "name": "Nakheel Oasis",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20240000191147",
+      "completion_pct": 23,
+      "classification": null,
+      "district": "Al Faqa'",
+      "community": "SHIBAK 1"
+    },
+    {
+      "name": "Arabian hills estate",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20240000184750",
+      "completion_pct": 31,
+      "classification": null,
+      "district": "Al Faqa'",
+      "community": "SHIBAK 1"
+    },
+    {
+      "name": "Dunes Heights",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20240000186445",
+      "completion_pct": 43,
+      "classification": null,
+      "district": "Al Faqa'",
+      "community": "SHIBAK 1"
+    },
+    {
+      "name": "SAMA YAS",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20240000172071",
+      "completion_pct": 33,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "Ville 11",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20230000127102",
+      "completion_pct": 95,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_01"
+    },
+    {
+      "name": "Plaza 2",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20230000142430",
+      "completion_pct": 68,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_01"
+    },
+    {
+      "name": "Bada Al Jubail 1",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20230000154450",
+      "completion_pct": 57,
+      "classification": null,
+      "district": "Al Jubail Island",
+      "community": "JS"
+    },
+    {
+      "name": "Bada Al Jubail 2",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20230000157247",
+      "completion_pct": 10,
+      "classification": null,
+      "district": "Al Jubail Island",
+      "community": "JS"
+    },
+    {
+      "name": "Manarat Living II",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20230000157087",
+      "completion_pct": 34,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8"
+    },
+    {
+      "name": "Nobu Residences Abu Dhabi 1",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20230000139496",
+      "completion_pct": 31,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "NOBU RESIDENCES ABU DHABI 2",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20230000138563",
+      "completion_pct": 35,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "Murjan Al Saadiyat",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20230000108340",
+      "completion_pct": 93,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN3"
+    },
+    {
+      "name": "Mayyas At The Bay",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20230000095124",
+      "completion_pct": 95,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Gardenia",
+      "type": "Villa/Building",
+      "status": "New",
+      "project_number": "20230000070554",
+      "completion_pct": 11,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YS1"
+    },
+    {
+      "name": "Bloom Living (Casares)",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20230000064799",
+      "completion_pct": 92,
+      "classification": "Residential",
+      "district": "Zayed City",
+      "community": "MZ12"
+    },
+    {
+      "name": "Ramhan Island Development project phase 1",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20230000064241",
+      "completion_pct": 38,
+      "classification": null,
+      "district": "Ramhan Island",
+      "community": "Ramhan Island"
+    },
+    {
+      "name": "Ramhan Development",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20230000057498",
+      "completion_pct": 37,
+      "classification": null,
+      "district": "Ramhan Island",
+      "community": "Ramhan Island"
+    },
+    {
+      "name": "THE VILLAGES ZONE D",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2023/285738",
+      "completion_pct": 0,
+      "classification": null,
+      "district": "Ain Al Faydah",
+      "community": "AIN AL FAYDA2"
+    },
+    {
+      "name": "The Source Residences",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20230000057302",
+      "completion_pct": 27,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8"
+    },
+    {
+      "name": "Hydra Village - Zone 8",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2023/322566",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Rawdat Al Reef",
+      "community": "Rawdat Al Reef"
+    },
+    {
+      "name": "Qaryat Al Hidd - Sunrise",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2023/291538",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN7"
+    },
+    {
+      "name": "AJWAN TOWERS",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2023/302023",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "Bloom Arjaan by Rotana",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2023/296407",
+      "completion_pct": 99,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDW4"
+    },
+    {
+      "name": "Reeman Living 2",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2023/287106",
+      "completion_pct": 96,
+      "classification": "Residential",
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "C3 Garden",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2023/278930",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN7"
+    },
+    {
+      "name": "Yas Waterfront South",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2023/223966",
+      "completion_pct": 62,
+      "classification": null,
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "THE SOURCE",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2023/183655",
+      "completion_pct": 36,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8"
+    },
+    {
+      "name": "Sea La Vie",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2023/176037",
+      "completion_pct": 48,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Reeman Living",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2023/157372",
+      "completion_pct": 99,
+      "classification": "Mixed use",
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Al Jurf Gardens 1.4",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "2023/152798",
+      "completion_pct": 91,
+      "classification": "Residential",
+      "district": "Ghadeer Al Tayr",
+      "community": "Al Jarf"
+    },
+    {
+      "name": "Yas Acres - The Dahlias 2",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2023/123563",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Yas Island",
+      "community": "YN5"
+    },
+    {
+      "name": "The Sustainable City Yas Island - Phase 1",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2023/96930",
+      "completion_pct": 95,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "AL Reeman 2 Phase 3 - Fay AL Reeman II",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2023/72911",
+      "completion_pct": 82,
+      "classification": null,
+      "district": "Al Shamkhah",
+      "community": "SH35"
+    },
+    {
+      "name": "Manarat Living",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2023/62218",
+      "completion_pct": 79,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8"
+    },
+    {
+      "name": "Qaryat Al Hidd - Sunset",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2023/56160",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN7"
+    },
+    {
+      "name": "Saadiyat Lagoons Phase 2 - ETHIR",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2023/19409",
+      "completion_pct": 43,
+      "classification": null,
+      "district": "Al Saadiyat Island",
+      "community": "SDE3"
+    },
+    {
+      "name": "Saadiyat Lagoons Phase 2- AL SIDR",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2023/17878",
+      "completion_pct": 71,
+      "classification": null,
+      "district": "Al Saadiyat Island",
+      "community": "SDE3"
+    },
+    {
+      "name": "Saadiyat Lagoons - Wilds Phase 2",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2022/643329",
+      "completion_pct": 65,
+      "classification": null,
+      "district": "Al Saadiyat Island",
+      "community": "SDE3"
+    },
+    {
+      "name": "Merzab Community",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2022/622809",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Al Samhah",
+      "community": "Al Samhah East Old"
+    },
+    {
+      "name": "The Bay Residence",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2022/611769",
+      "completion_pct": 85,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Saadiyat Lagoons - Wilds Phase 1",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2022/598291",
+      "completion_pct": 42,
+      "classification": null,
+      "district": "Al Saadiyat Island",
+      "community": "SDE3"
+    },
+    {
+      "name": "Jubail Terraces",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2022/572357",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Jubail Island",
+      "community": "JS"
+    },
+    {
+      "name": "THE VILLAGES ZONE B",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2022/448832",
+      "completion_pct": 82,
+      "classification": null,
+      "district": "Ain Al Faydah",
+      "community": "AIN AL FAYDA2"
+    },
+    {
+      "name": "Plaza",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2022/441812",
+      "completion_pct": 77,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_05"
+    },
+    {
+      "name": "NOYA 5 - YAS PARK VIEWS",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2022/423328",
+      "completion_pct": 94,
+      "classification": null,
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "Bloom Living (TOLEDO)",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2022/405583",
+      "completion_pct": 96,
+      "classification": null,
+      "district": "Zayed City",
+      "community": "MZ12"
+    },
+    {
+      "name": "NOYA 4 - YAS PARK GATE",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2022/395105",
+      "completion_pct": 95,
+      "classification": null,
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "Perla 2",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2022/363936",
+      "completion_pct": 86,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Perla 1",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2022/351584",
+      "completion_pct": 12,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Al Jubail Island Phase 3",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "2022/346011",
+      "completion_pct": 95,
+      "classification": "Residential",
+      "district": "Al Jubail Island",
+      "community": "JS"
+    },
+    {
+      "name": "Ansam 2 - Yas Golf Collection",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2022/334087",
+      "completion_pct": 99,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YS3_06"
+    },
+    {
+      "name": "The Grove - Heart",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2022/322984",
+      "completion_pct": 98,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8"
+    },
+    {
+      "name": "Nurai Island – Phase 3",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "2022/321615",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Nourai Island",
+      "community": "Nourai Island"
+    },
+    {
+      "name": "ElYakoat Tower",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2022/243878",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Sa`adah",
+      "community": "E40"
+    },
+    {
+      "name": "Al Reeman 2 - Phase 2",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "2022/133442",
+      "completion_pct": 98,
+      "classification": null,
+      "district": "Al Shamkhah",
+      "community": "SH35"
+    },
+    {
+      "name": "Louvre Abu Dhabi Residences",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2022/128971",
+      "completion_pct": 90,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8"
+    },
+    {
+      "name": "Bloom Living (Cordoba)",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2022/122218",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Zayed City",
+      "community": "MZ12"
+    },
+    {
+      "name": "Yas Acres - Precinct 8",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2022/79248",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Yas Island",
+      "community": "YN2"
+    },
+    {
+      "name": "Al Jurf Gardens 1.3",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "2021/599503",
+      "completion_pct": 92,
+      "classification": "Residential",
+      "district": "Ghadeer Al Tayr",
+      "community": "Al Jarf"
+    },
+    {
+      "name": "DIVA 1",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2021/401179",
+      "completion_pct": 94,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Yas Acres - The Dahlias",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2021/386378",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Yas Island",
+      "community": "YN5"
+    },
+    {
+      "name": "The Magnolias",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2021/385070",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Yas Island",
+      "community": "YN5"
+    },
+    {
+      "name": "Diva 2",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2021/311211",
+      "completion_pct": 89,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Al Gurm - Phase 2",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2021/323974",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Qurm",
+      "community": "W50_01"
+    },
+    {
+      "name": "West Yas Plots",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2021/300888",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Yas Island",
+      "community": "YS3_03"
+    },
+    {
+      "name": "Saadiyat Reserve - The Dunes",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2021/296874",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Saadiyat Island",
+      "community": "SDE3"
+    },
+    {
+      "name": "Noya Luma",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2021/245801",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "Noya Viva",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2021/202994",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "Bloom Capital Gardens (Al Dhay)",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2021/186807",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Muntazah",
+      "community": "E48"
+    },
+    {
+      "name": "AIN ALFAYDA 380 PROJECT",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2021/52187",
+      "completion_pct": 99,
+      "classification": null,
+      "district": "Ain Al Faydah",
+      "community": "AIN AL FAYDA"
+    },
+    {
+      "name": "Jubail Island development south - Phase two - off plan Building",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "2020/670930",
+      "completion_pct": 96,
+      "classification": "Residential",
+      "district": "Al Jubail Island",
+      "community": "JS"
+    },
+    {
+      "name": "NOYA - Phase 1",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2020/540783",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YN7"
+    },
+    {
+      "name": "Yas Beach Residence",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2020/410062",
+      "completion_pct": 41,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Ghantoot Hotel and Resort",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2020/115202",
+      "completion_pct": 0,
+      "classification": null,
+      "district": "Ghantout",
+      "community": "Ghantout"
+    },
+    {
+      "name": "The Gate",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2020/33486",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_05"
+    },
+    {
+      "name": "Residential Building for Masdar",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2020/10070",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_05"
+    },
+    {
+      "name": "Yas Bay",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2019/527512",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Yas Island",
+      "community": "YS2"
+    },
+    {
+      "name": "Sadiyat Reserve",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2019/422350",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Saadiyat Island",
+      "community": "SDE3"
+    },
+    {
+      "name": "Nudra Beach Villas",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2019/385972",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "SB-03 Luxury Residential Project",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "2019/356843",
+      "completion_pct": 17,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "Al Mahra Residence",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2019/344662",
+      "completion_pct": 90,
+      "classification": "Mixed use",
+      "district": "Khalifa City",
+      "community": "SE45_05"
+    },
+    {
+      "name": "Bawabat Al Sharq Development - Phase 5",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2019/329823",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Bani Yas",
+      "community": "EB2_06"
+    },
+    {
+      "name": "Al Reeman 2 - Phase 1",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2019/315320",
+      "completion_pct": 95,
+      "classification": null,
+      "district": "Al Shamkhah",
+      "community": "SH35"
+    },
+    {
+      "name": "the villages -2",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2019/303962",
+      "completion_pct": 15,
+      "classification": null,
+      "district": "Ain Al Faydah",
+      "community": "AIN AL FAYDA2"
+    },
+    {
+      "name": "THE VILLAGES",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2019/246737",
+      "completion_pct": 17,
+      "classification": null,
+      "district": "Ain Al Faydah",
+      "community": "AIN AL FAYDA2"
+    },
+    {
+      "name": "Jubail Island - Phase 1",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2019/231361",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Jubail Island",
+      "community": "JS"
+    },
+    {
+      "name": "LEA",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2019/222253",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Yas Island",
+      "community": "YN2"
+    },
+    {
+      "name": "Al Reeman - Phase 2",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2019/24404",
+      "completion_pct": 99,
+      "classification": null,
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Al Reeman - Phase 1",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2018/479098",
+      "completion_pct": 98,
+      "classification": null,
+      "district": "Al Shamkhah",
+      "community": "SH36"
+    },
+    {
+      "name": "Shams Residential Complex",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2018/457290",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Madinat Zayed",
+      "community": "MZW21"
+    },
+    {
+      "name": "Bawabat Al Sharq - Phase 2",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2018/441827",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Bani Yas",
+      "community": "EB2_06"
+    },
+    {
+      "name": "Bawabat Al Sharq Development - Phase3",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2018/441992",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Bani Yas",
+      "community": "EB2_06"
+    },
+    {
+      "name": "Bawabat Al Sharq Development - Phase 4",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2018/442000",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Bani Yas",
+      "community": "EB2_06"
+    },
+    {
+      "name": "Prestige Tower C16",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2018/443653",
+      "completion_pct": 100,
+      "classification": "Commercial",
+      "district": "Mohamed Bin Zayed City",
+      "community": "ME2"
+    },
+    {
+      "name": "Prestige Tower C17",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2018/443805",
+      "completion_pct": 100,
+      "classification": "Commercial",
+      "district": "Mohamed Bin Zayed City",
+      "community": "ME2"
+    },
+    {
+      "name": "Soho Square",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2018/442196",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDW4"
+    },
+    {
+      "name": "Park View",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2018/442116",
+      "completion_pct": 92,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDW4"
+    },
+    {
+      "name": "Bawabat Al Sharq Development - Phase1",
+      "type": "Villa/Building",
+      "status": "Built",
+      "project_number": "2018/439964",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Bani Yas",
+      "community": "EB2_06"
+    },
+    {
+      "name": "Al Bateen Park - Apartment",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2018/435651",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Bateen",
+      "community": "W17_03"
+    },
+    {
+      "name": "ALRAHA LOFTS 1",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2018/352050",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW3"
+    },
+    {
+      "name": "ALRAHA LOFTS 2",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2018/352497",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW3"
+    },
+    {
+      "name": "Al Jurf Gardens Phase 1.2",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2018/343033",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Ghadeer Al Tayr",
+      "community": "Al Jarf"
+    },
+    {
+      "name": "St Regis",
+      "type": "Villa/Building",
+      "status": "Built",
+      "project_number": "2018/303182",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "HIDD AL SAADIYAT - Phase 2",
+      "type": "Villa/Building",
+      "status": "Built",
+      "project_number": "2018/340444",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN7"
+    },
+    {
+      "name": "Al Jurf Gardens Phase 1.1",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2018/337409",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Ghadeer Al Tayr",
+      "community": "Al Jarf"
+    },
+    {
+      "name": "Al Bateen Park",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2018/302561",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Bateen",
+      "community": "W17_03"
+    },
+    {
+      "name": "Al Reef Villas",
+      "type": "Villa/Building",
+      "status": "Built",
+      "project_number": "2018/278412",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Reef",
+      "community": "Al Reef"
+    },
+    {
+      "name": "AL FORSAN VILLAGE",
+      "type": "Villa/Building",
+      "status": "Built",
+      "project_number": "2018/21489",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Khalifa City",
+      "community": "SW17"
+    },
+    {
+      "name": "Leonardo Residences",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2018/190210",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_05"
+    },
+    {
+      "name": "Jamam Building",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2018/184762",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Rahah",
+      "community": "RBW2"
+    },
+    {
+      "name": "Bloom Gardens",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2018/170262",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Muntazah",
+      "community": "E48"
+    },
+    {
+      "name": "Oasis Residence",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2018/160770",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Khalifa City",
+      "community": "SE45_05"
+    },
+    {
+      "name": "Al Ghadeer Phase 2 - Neighbourhood 1 - R1",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2018/123269",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Layyan",
+      "community": "Seih Al Sedeirah 7"
+    },
+    {
+      "name": "Manazel Alreef 2",
+      "type": "Villa/Building",
+      "status": "Built",
+      "project_number": "2018/80565",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Samhah",
+      "community": "Al Samhah East Old"
+    },
+    {
+      "name": "Saadiyat Beach District",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2018/86305",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Saadiyat Island",
+      "community": "SDN4"
+    },
+    {
+      "name": "New York University Precinct",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2018/74586",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Saadiyat Island",
+      "community": "SDW4"
+    },
+    {
+      "name": "Nudra Beach Villas",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2018/73220",
+      "completion_pct": 99,
+      "classification": null,
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "Masdar City - Phase 2",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2018/72533",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Khalifa City",
+      "community": "SE45_02"
+    },
+    {
+      "name": "Masdar city - Phase 1",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2018/71334",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Khalifa City",
+      "community": "SE45_05"
+    },
+    {
+      "name": "Capital Center",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2018/67554",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Rawdah",
+      "community": "W59_01"
+    },
+    {
+      "name": "manazel al reef 2",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2017/230880",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Samhah",
+      "community": "Al Samhah East Old"
+    },
+    {
+      "name": "Saadiyat Beach Villas",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2017/462537",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN2"
+    },
+    {
+      "name": "Saadiyat Beach Villas",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2017/459471",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN4"
+    },
+    {
+      "name": "Jawaheir Villas",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "2017/446499",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "AlQurm Villas",
+      "type": "Villa/Building",
+      "status": "Built",
+      "project_number": "2017/435157",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Muntazah",
+      "community": "E48"
+    },
+    {
+      "name": "WAHAT AL ZAWEYA",
+      "type": "Building",
+      "status": "New",
+      "project_number": "2017/393137",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Faqa'",
+      "community": "SHIBAK 1"
+    },
+    {
+      "name": "DANAT ABU DHABI",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2017/414685",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Sa`adah",
+      "community": "E40"
+    },
+    {
+      "name": "Desert Towers",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2017/414689",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Mohamed Bin Zayed City",
+      "community": "ME8"
+    },
+    {
+      "name": "AIN AL FAYDHA",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "2017/394465",
+      "completion_pct": 98,
+      "classification": null,
+      "district": "Ain Al Faydah",
+      "community": "AIN AL FAYDA"
+    },
+    {
+      "name": "Water's Edge - Precinct B",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2017/389538",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YS1"
+    },
+    {
+      "name": "Highland Resort",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2017/385368",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Muzoun",
+      "community": "W51"
+    },
+    {
+      "name": "West Yas",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2017/346613",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YS3_05"
+    },
+    {
+      "name": "Water's Edge Precinct A",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2017/288702",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YS1"
+    },
+    {
+      "name": "nurai island",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "2017/253374",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Nourai Island",
+      "community": "Nourai Island"
+    },
+    {
+      "name": "hidd al saadiyat",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2017/234960",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN7"
+    },
+    {
+      "name": "Saydiyat Beach apartments",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2017/62427",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN2"
+    },
+    {
+      "name": "Al Ghadeer 1",
+      "type": "Villa/Building",
+      "status": "Built",
+      "project_number": "2017/235524",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Layyan",
+      "community": "Seih Al Sedeirah 1"
+    },
+    {
+      "name": "Saydiyat Beach apartments",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2017/62330",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN2"
+    },
+    {
+      "name": "BLOOM GARDENS",
+      "type": "Villa/Building",
+      "status": "Built",
+      "project_number": "2017/67872",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Muntazah",
+      "community": "E48"
+    },
+    {
+      "name": "Saydiyat Beach apartments",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2017/44777",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN2"
+    },
+    {
+      "name": "Saydiyat Beach apartments",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2017/58491",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN2"
+    },
+    {
+      "name": "Rawdhat Abu Dhabi",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2017/201303",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Muntazah",
+      "community": "E48"
+    },
+    {
+      "name": "Lamar",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2017/134024",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW6"
+    },
+    {
+      "name": "Saraya",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2017/105576",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Zahiyah",
+      "community": "E12"
+    },
+    {
+      "name": "SAADIYAT BEACH VILLA",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2017/18059",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN2"
+    },
+    {
+      "name": "Al Gurm Resort",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2017/15762",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Qurm",
+      "community": "W50_01"
+    },
+    {
+      "name": "Golf Gardens",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2017/65753",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Khalifa City",
+      "community": "SW17"
+    },
+    {
+      "name": "Al Raha Gardens",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2017/87386",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Khalifa City",
+      "community": "SE47"
+    },
+    {
+      "name": "AlMuneera Island",
+      "type": "Villa/Building",
+      "status": "Built",
+      "project_number": "2017/64427",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW2"
+    },
+    {
+      "name": "Al Raha Beach",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2017/86020",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Rahah",
+      "community": "RBW5"
+    },
+    {
+      "name": "Al Zeina",
+      "type": "Villa/Building",
+      "status": "Built",
+      "project_number": "2017/51703",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW2"
+    },
+    {
+      "name": "Nareel Island",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2017/60064",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Bateen",
+      "community": "W32"
+    },
+    {
+      "name": "Al Merief",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2017/54758",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Khalifa City",
+      "community": "SE45"
+    },
+    {
+      "name": "sadiyat Beach Apartment",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2017/37548",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN2"
+    },
+    {
+      "name": "sadiyat Beach Apartment",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2017/37506",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN2"
+    },
+    {
+      "name": "Marina City",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2016/402948",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Kasir",
+      "community": "Kasser Al Amwaj"
+    },
+    {
+      "name": "Ansam",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2017/2846",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YS3_06"
+    },
+    {
+      "name": "Saadiyat Beach villas",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2016/403767",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN2"
+    },
+    {
+      "name": "Saadiyat Beach villas",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2016/403834",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN2"
+    },
+    {
+      "name": "Mayan",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2016/377676",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Yas Island",
+      "community": "YS3_06"
+    },
+    {
+      "name": "Fairmont Hotel & Serviced Apartments",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2016/364602",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Kasir",
+      "community": "Kasser Al Amwaj"
+    },
+    {
+      "name": "Jawaher Saadiyat",
+      "type": "Plot",
+      "status": "Built",
+      "project_number": "2016/360499",
+      "completion_pct": 100,
+      "classification": null,
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "The View",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2016/276028",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW5"
+    },
+    {
+      "name": "Al Hadeel",
+      "type": "Villa/Building",
+      "status": "Built",
+      "project_number": "2016/344293",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW4"
+    },
+    {
+      "name": "Al Bandar",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2016/344923",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBW2"
+    },
+    {
+      "name": "Mamsh Al Saadiyat",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2016/341968",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "Mamsh Al Saadiyat",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2016/342068",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "Mamsh Al Saadiyat - Azur",
+      "type": "Building",
+      "status": "Built",
+      "project_number": "2016/342251",
+      "completion_pct": 100,
+      "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN1"
+    },
+    {
+      "name": "YAS ACRES-Precinct3",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2016/261732",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YN4"
+    },
+    {
+      "name": "YAS Acres- Precinct7",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2016/179574",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YN6"
+    },
+    {
+      "name": "YAS ACRES-Precinct 1",
+      "type": "Villas",
+      "status": "Built",
+      "project_number": "2016/172918",
+      "completion_pct": 100,
+      "classification": "Residential",
+      "district": "Yas Island",
+      "community": "YN6"
+    }
+  ]
+}

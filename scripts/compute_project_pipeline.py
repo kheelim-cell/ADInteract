@@ -22,15 +22,19 @@ straight from registered transactions:
 Run after transform.py in CI.
 """
 
+import difflib
 import json
 import os
+import re
 from datetime import datetime, timezone
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
 PARQUET_TX = "static/data/transactions.parquet"
 OUTPUT     = "src/lib/data/project_pipeline.json"
+DARI_PROJECTS_RAW = Path("scripts/data/dari_projects_raw.json")
 
 MIN_SALES_ALLTIME = 5     # projects with fewer off-plan registrations ever are excluded (too thin to read)
 STALE_DAYS        = 120   # no registrations in this many days → flagged stale
@@ -42,8 +46,47 @@ def slugify(name: str) -> str:
     return "-".join(s.split())
 
 
+def normalize_name(name: str) -> str:
+    """Loose match key for joining ADREC transaction project names against
+    DARI's project directory names — different sources, different casing/
+    punctuation conventions for the same project."""
+    s = re.sub(r"[^a-z0-9]+", " ", str(name).lower()).strip()
+    return re.sub(r"\s+", " ", s)
+
+
+def load_dari_projects() -> dict[str, dict]:
+    """Construction completion %, type, and classification straight from
+    DARI's public Projects directory — keyed by normalized name. Returns
+    {} if the scrape hasn't been run yet (compute still works without it,
+    those fields are just null on every project)."""
+    if not DARI_PROJECTS_RAW.exists():
+        return {}
+    with open(DARI_PROJECTS_RAW, encoding="utf-8") as f:
+        raw = json.load(f)
+    lookup = {}
+    for p in raw.get("projects", []):
+        lookup[normalize_name(p["name"])] = p
+    return lookup
+
+
+def fuzzy_match(name_key: str, lookup: dict[str, dict], cutoff: float = 0.84) -> dict | None:
+    """Conservative fallback for naming variants the exact join misses
+    (e.g. ADREC's 'Bashayer Residences - Phases 3 And 4' vs DARI's
+    'Bashayer Residences 3&4.'). High cutoff — wrong matches are worse than
+    no match, since a wrong completion-% next to a project name is a much
+    more damaging error than an honest 'no data'."""
+    candidates = difflib.get_close_matches(name_key, lookup.keys(), n=1, cutoff=cutoff)
+    return lookup[candidates[0]] if candidates else None
+
+
 def main():
     os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
+
+    dari_lookup = load_dari_projects()
+    if dari_lookup:
+        print(f"Loaded {len(dari_lookup)} DARI project records for construction-completion matching")
+    else:
+        print(f"{DARI_PROJECTS_RAW} not found — completion_pct/type will be null (run fetch_dari_projects.py)")
 
     print(f"Reading {PARQUET_TX}…")
     df = pd.read_parquet(PARQUET_TX)
@@ -96,6 +139,9 @@ def main():
         else:
             status = "steady"
 
+        name_key = normalize_name(project)
+        dari_match = dari_lookup.get(name_key) or fuzzy_match(name_key, dari_lookup)
+
         results.append({
             "slug": slugify(project),
             "project_name": str(project).strip(),
@@ -110,6 +156,10 @@ def main():
             "last_sale_date": last_sale_date.strftime("%Y-%m-%d"),
             "median_price_aed": int(price.median()) if len(price) else None,
             "median_psf": int(psf.median()) if len(psf) else None,
+            "completion_pct": dari_match["completion_pct"] if dari_match else None,
+            "property_type": dari_match["type"] if dari_match else None,
+            "classification": dari_match["classification"] if dari_match else None,
+            "construction_status": dari_match["status"] if dari_match else None,
         })
 
     # Rank by recent registration velocity — most active pipelines first
@@ -132,6 +182,9 @@ def main():
     accelerating = sum(1 for r in results if r["status"] == "accelerating")
     stale = sum(1 for r in results if r["status"] == "stale")
     print(f"  accelerating: {accelerating}  stale: {stale}")
+    if dari_lookup:
+        matched = sum(1 for r in results if r["completion_pct"] is not None)
+        print(f"  DARI completion-% match: {matched}/{len(results)} projects")
 
 
 if __name__ == "__main__":

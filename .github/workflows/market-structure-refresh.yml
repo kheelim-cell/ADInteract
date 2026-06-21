@@ -14,6 +14,7 @@ permissions:
 jobs:
   refresh-market-structure:
     runs-on: ubuntu-22.04   # pinned: Playwright 1.44 needs libasound2 (not in 24.04)
+    timeout-minutes: 120    # agency rankings scrape alone is ~45-60min (~1,088 companies)
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,14 +42,27 @@ jobs:
           path: scripts/data/dari_directory_debug.png
           retention-days: 14
 
+      - name: Fetch DARI agency rankings (top agencies by broker headcount)
+        # Heavier scrape (~1,088 companies, one detail-panel click each) —
+        # non-blocking. A failure here just means agency_rankings stays
+        # empty and the page shows its "pending" state until next month.
+        continue-on-error: true
+        run: python scripts/fetch_dari_agency_rankings.py
+
       - name: Compute market structure JSON
         run: python scripts/compute_market_structure.py
 
-      - name: Commit market structure data to main
+      - name: Fetch DARI projects directory (construction % / type)
+        # Separate public directory (category=projects) — feeds the
+        # Off-Plan Pipeline page's construction-progress data. Same slow-
+        # moving registry, same monthly cadence.
+        run: python scripts/fetch_dari_projects.py
+
+      - name: Commit market structure + projects directory data to main
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f src/lib/data/market_structure.json
+          git add -f src/lib/data/market_structure.json scripts/data/dari_projects_raw.json
           git diff --staged --quiet \
             || git commit -m "data: monthly market structure refresh $(date -u +%Y-%m-%d) [skip ci]"
           git stash --include-untracked || true

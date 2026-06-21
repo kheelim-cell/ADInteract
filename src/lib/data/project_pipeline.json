@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T06:41:35.410634+00:00",
+  "generated_at": "2026-06-21T07:45:47.640530+00:00",
   "as_of_date": "2026-06-19",
   "project_count": 243,
   "total_registered_sales_alltime": 62694,
@@ -17,7 +17,11 @@
       "first_sale_date": "2026-04-20",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 2399000,
-      "median_psf": 1845
+      "median_psf": 1845,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "yas-park-place",
@@ -32,7 +36,11 @@
       "first_sale_date": "2026-04-22",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 2090394,
-      "median_psf": 2534
+      "median_psf": 2534,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "bashayer-residences---phases-3-and-4",
@@ -47,7 +55,11 @@
       "first_sale_date": "2026-04-20",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 3550000,
-      "median_psf": 2332
+      "median_psf": 2332,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "sunstone",
@@ -62,7 +74,11 @@
       "first_sale_date": "2026-03-26",
       "last_sale_date": "2026-06-18",
       "median_price_aed": 2755277,
-      "median_psf": 1751
+      "median_psf": 1751,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "gardenia-bay",
@@ -77,7 +93,11 @@
       "first_sale_date": "2023-09-20",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 1479983,
-      "median_psf": 1816
+      "median_psf": 1816,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "al-naseem",
@@ -92,7 +112,11 @@
       "first_sale_date": "2024-10-21",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 9211982,
-      "median_psf": 1113
+      "median_psf": 1113,
+      "completion_pct": 29,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "muheira-b",
@@ -107,7 +131,11 @@
       "first_sale_date": "2025-11-28",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 2370716,
-      "median_psf": 1913
+      "median_psf": 1913,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "rotana-residences-south",
@@ -122,7 +150,11 @@
       "first_sale_date": "2026-04-22",
       "last_sale_date": "2026-06-16",
       "median_price_aed": 1781200,
-      "median_psf": 2044
+      "median_psf": 2044,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "the-row-saadiyat",
@@ -137,7 +169,11 @@
       "first_sale_date": "2025-11-11",
       "last_sale_date": "2026-06-05",
       "median_price_aed": 5507000,
-      "median_psf": 3860
+      "median_psf": 3860,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "rotana-residences-north",
@@ -152,7 +188,11 @@
       "first_sale_date": "2026-04-29",
       "last_sale_date": "2026-06-16",
       "median_price_aed": 2555000,
-      "median_psf": 1683
+      "median_psf": 1683,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "yas-riva-residences",
@@ -167,7 +207,11 @@
       "first_sale_date": "2025-12-22",
       "last_sale_date": "2026-06-04",
       "median_price_aed": 2089536,
-      "median_psf": 2535
+      "median_psf": 2535,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "bashayer-residences",
@@ -182,7 +226,11 @@
       "first_sale_date": "2026-02-04",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 3423000,
-      "median_psf": 2170
+      "median_psf": 2170,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "bloom-living---marbella",
@@ -197,7 +245,11 @@
       "first_sale_date": "2026-06-03",
       "last_sale_date": "2026-06-03",
       "median_price_aed": 4010811,
-      "median_psf": 1457
+      "median_psf": 1457,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bloom-living---malaga",
@@ -212,7 +264,11 @@
       "first_sale_date": "2026-05-15",
       "last_sale_date": "2026-06-01",
       "median_price_aed": 4094634,
-      "median_psf": 1486
+      "median_psf": 1486,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "radiant-waves",
@@ -227,7 +283,11 @@
       "first_sale_date": "2026-02-17",
       "last_sale_date": "2026-06-18",
       "median_price_aed": 959000,
-      "median_psf": 1676
+      "median_psf": 1676,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "radiant-atrium",
@@ -242,7 +302,11 @@
       "first_sale_date": "2026-01-15",
       "last_sale_date": "2026-06-18",
       "median_price_aed": 1261050,
-      "median_psf": 1625
+      "median_psf": 1625,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "rixos-residences-al-reem-island",
@@ -257,7 +321,11 @@
       "first_sale_date": "2026-05-29",
       "last_sale_date": "2026-06-18",
       "median_price_aed": 3137198,
-      "median_psf": 2241
+      "median_psf": 2241,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "juman-3",
@@ -272,7 +340,11 @@
       "first_sale_date": "2026-02-02",
       "last_sale_date": "2026-04-30",
       "median_price_aed": 2051571,
-      "median_psf": 1871
+      "median_psf": 1871,
+      "completion_pct": 0,
+      "property_type": "Villa/Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "reeman-living",
@@ -287,7 +359,11 @@
       "first_sale_date": "2023-04-13",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 611600,
-      "median_psf": 1208
+      "median_psf": 1208,
+      "completion_pct": 99,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "radiant-elite-tower",
@@ -302,7 +378,11 @@
       "first_sale_date": "2025-10-21",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 986000,
-      "median_psf": 1445
+      "median_psf": 1445,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "the-sustainable-city---yas-island---phase-1",
@@ -317,7 +397,11 @@
       "first_sale_date": "2023-03-01",
       "last_sale_date": "2026-06-10",
       "median_price_aed": 1889617,
-      "median_psf": 1165
+      "median_psf": 1165,
+      "completion_pct": 95,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "yas-living",
@@ -332,7 +416,11 @@
       "first_sale_date": "2025-10-21",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 1698100,
-      "median_psf": 2277
+      "median_psf": 2277,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "radiant-marina-towers",
@@ -347,7 +435,11 @@
       "first_sale_date": "2025-04-30",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 1125000,
-      "median_psf": 1468
+      "median_psf": 1468,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "seamont-residences-by-marriott",
@@ -362,7 +454,11 @@
       "first_sale_date": "2025-08-15",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 3201000,
-      "median_psf": 2554
+      "median_psf": 2554,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "ansam---phase-2---the-golf-collection",
@@ -377,7 +473,11 @@
       "first_sale_date": "2022-08-09",
       "last_sale_date": "2026-06-16",
       "median_price_aed": 1435987,
-      "median_psf": 1602
+      "median_psf": 1602,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "saadiyat-grove---the-heart",
@@ -392,7 +492,11 @@
       "first_sale_date": "2022-09-05",
       "last_sale_date": "2026-06-16",
       "median_price_aed": 1642641,
-      "median_psf": 2072
+      "median_psf": 2072,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "the-beach-house",
@@ -407,7 +511,11 @@
       "first_sale_date": "2025-08-21",
       "last_sale_date": "2026-06-04",
       "median_price_aed": 3427972,
-      "median_psf": 3362
+      "median_psf": 3362,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "royal-park",
@@ -422,7 +530,11 @@
       "first_sale_date": "2024-08-30",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 776479,
-      "median_psf": 1144
+      "median_psf": 1144,
+      "completion_pct": 15,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "hilton-residences-abu-dhabi-al-raha",
@@ -437,7 +549,11 @@
       "first_sale_date": "2026-04-07",
       "last_sale_date": "2026-05-14",
       "median_price_aed": 3418630,
-      "median_psf": 2903
+      "median_psf": 2903,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "bloom-living---granada-2",
@@ -452,7 +568,11 @@
       "first_sale_date": "2025-09-19",
       "last_sale_date": "2026-05-14",
       "median_price_aed": 1563262,
-      "median_psf": 1486
+      "median_psf": 1486,
+      "completion_pct": 2,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "bashayer-villas---phase-2",
@@ -467,7 +587,11 @@
       "first_sale_date": "2025-12-24",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 7671000,
-      "median_psf": 1947
+      "median_psf": 1947,
+      "completion_pct": 0,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "juman-2",
@@ -482,7 +606,11 @@
       "first_sale_date": "2025-11-04",
       "last_sale_date": "2026-05-19",
       "median_price_aed": 2876441,
-      "median_psf": 1864
+      "median_psf": 1864,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "novayas",
@@ -497,7 +625,11 @@
       "first_sale_date": "2026-04-30",
       "last_sale_date": "2026-05-21",
       "median_price_aed": 2275000,
-      "median_psf": 2404
+      "median_psf": 2404,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "radiant-bridges",
@@ -512,7 +644,11 @@
       "first_sale_date": "2026-04-27",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 859000,
-      "median_psf": 1839
+      "median_psf": 1839,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "fahid-beach-terraces",
@@ -527,7 +663,11 @@
       "first_sale_date": "2025-08-29",
       "last_sale_date": "2026-06-05",
       "median_price_aed": 7050650,
-      "median_psf": 4016
+      "median_psf": 4016,
+      "completion_pct": 2,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "sha-residences",
@@ -542,7 +682,11 @@
       "first_sale_date": "2026-06-04",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 16011777,
-      "median_psf": 3740
+      "median_psf": 3740,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "st-regis-residences-al-maryah-island",
@@ -557,7 +701,11 @@
       "first_sale_date": "2025-12-04",
       "last_sale_date": "2026-06-03",
       "median_price_aed": 8175574,
-      "median_psf": 4241
+      "median_psf": 4241,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "reeman-living-2",
@@ -572,7 +720,11 @@
       "first_sale_date": "2023-06-16",
       "last_sale_date": "2026-06-11",
       "median_price_aed": 675101,
-      "median_psf": 1345
+      "median_psf": 1345,
+      "completion_pct": 96,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "reeman-residences",
@@ -587,7 +739,11 @@
       "first_sale_date": "2026-04-23",
       "last_sale_date": "2026-05-21",
       "median_price_aed": 885000,
-      "median_psf": 1239
+      "median_psf": 1239,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "noya---phase-4---yas-park-gate",
@@ -602,7 +758,11 @@
       "first_sale_date": "2022-09-16",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 2345506,
-      "median_psf": 1358
+      "median_psf": 1358,
+      "completion_pct": 95,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "nouran-living",
@@ -617,7 +777,11 @@
       "first_sale_date": "2024-04-23",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 1647573,
-      "median_psf": 2107
+      "median_psf": 2107,
+      "completion_pct": 6,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "bab-al-qasr-garden-residence-66",
@@ -632,7 +796,11 @@
       "first_sale_date": "2026-02-01",
       "last_sale_date": "2026-06-10",
       "median_price_aed": 1900000,
-      "median_psf": 1538
+      "median_psf": 1538,
+      "completion_pct": 12,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "nawayef-east-b",
@@ -647,7 +815,11 @@
       "first_sale_date": "2025-05-20",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 10520911,
-      "median_psf": 2138
+      "median_psf": 2138,
+      "completion_pct": 20,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "fay-hills---fay-gardens",
@@ -662,7 +834,11 @@
       "first_sale_date": "2026-02-02",
       "last_sale_date": "2026-06-04",
       "median_price_aed": 5676000,
-      "median_psf": 1349
+      "median_psf": 1349,
+      "completion_pct": 0,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "al-sharq-heights",
@@ -677,7 +853,11 @@
       "first_sale_date": "2025-12-22",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 2453750,
-      "median_psf": 1136
+      "median_psf": 1136,
+      "completion_pct": 71,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "saadiyat-lagoons---phase-2---al-sidr",
@@ -692,7 +872,11 @@
       "first_sale_date": "2023-03-28",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 7979322,
-      "median_psf": 1453
+      "median_psf": 1453,
+      "completion_pct": 71,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "mayyas-at-the-bay",
@@ -707,7 +891,11 @@
       "first_sale_date": "2024-02-15",
       "last_sale_date": "2026-05-20",
       "median_price_aed": 991600,
-      "median_psf": 1411
+      "median_psf": 1411,
+      "completion_pct": 95,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "the-fountain-view-residences",
@@ -722,7 +910,11 @@
       "first_sale_date": "2025-01-02",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 12741029,
-      "median_psf": 6192
+      "median_psf": 6192,
+      "completion_pct": 1,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "al-reeman-2---phase-2",
@@ -737,7 +929,11 @@
       "first_sale_date": "2022-05-20",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 3640000,
-      "median_psf": 800
+      "median_psf": 800,
+      "completion_pct": 98,
+      "property_type": "Villas",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "noya---phase-5---yas-park-views",
@@ -752,7 +948,11 @@
       "first_sale_date": "2022-12-23",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 3942141,
-      "median_psf": 1431
+      "median_psf": 1431,
+      "completion_pct": 94,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "sea-la-vie",
@@ -767,7 +967,11 @@
       "first_sale_date": "2023-12-07",
       "last_sale_date": "2026-06-16",
       "median_price_aed": 2750469,
-      "median_psf": 1771
+      "median_psf": 1771,
+      "completion_pct": 48,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "saadiyat-lagoons---wilds---phase-1",
@@ -782,7 +986,11 @@
       "first_sale_date": "2022-12-22",
       "last_sale_date": "2026-06-10",
       "median_price_aed": 8237753,
-      "median_psf": 1336
+      "median_psf": 1336,
+      "completion_pct": 42,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "al-reeman-2---phase-3---fay-al-reeman-ii",
@@ -797,7 +1005,11 @@
       "first_sale_date": "2023-03-27",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 3711800,
-      "median_psf": null
+      "median_psf": null,
+      "completion_pct": 82,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "al-deem-townhomes",
@@ -812,7 +1024,11 @@
       "first_sale_date": "2025-10-28",
       "last_sale_date": "2026-06-16",
       "median_price_aed": 4269048,
-      "median_psf": 1186
+      "median_psf": 1186,
+      "completion_pct": 18,
+      "property_type": null,
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "manarat-living-i",
@@ -827,7 +1043,11 @@
       "first_sale_date": "2023-03-22",
       "last_sale_date": "2026-05-15",
       "median_price_aed": 1351350,
-      "median_psf": 1878
+      "median_psf": 1878,
+      "completion_pct": 34,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "jubail-island---ain-al-maha-village",
@@ -842,7 +1062,11 @@
       "first_sale_date": "2025-12-23",
       "last_sale_date": "2026-06-12",
       "median_price_aed": 4200000,
-      "median_psf": 1563
+      "median_psf": 1563,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "louvre-residences",
@@ -857,7 +1081,11 @@
       "first_sale_date": "2022-04-22",
       "last_sale_date": "2026-06-11",
       "median_price_aed": 3060817,
-      "median_psf": 2694
+      "median_psf": 2694,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "reem-eleven",
@@ -872,7 +1100,11 @@
       "first_sale_date": "2024-12-17",
       "last_sale_date": "2026-06-03",
       "median_price_aed": 2198140,
-      "median_psf": 1635
+      "median_psf": 1635,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "radiant-garden-tower",
@@ -887,7 +1119,11 @@
       "first_sale_date": "2025-09-23",
       "last_sale_date": "2026-06-01",
       "median_price_aed": 1378000,
-      "median_psf": 1448
+      "median_psf": 1448,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bal-ghaiylam",
@@ -902,7 +1138,11 @@
       "first_sale_date": "2024-10-08",
       "last_sale_date": "2026-06-18",
       "median_price_aed": 2389000,
-      "median_psf": 461
+      "median_psf": 461,
+      "completion_pct": 0,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "mamsha-gardens-b",
@@ -917,7 +1157,11 @@
       "first_sale_date": "2024-11-28",
       "last_sale_date": "2026-06-07",
       "median_price_aed": 7156950,
-      "median_psf": 3445
+      "median_psf": 3445,
+      "completion_pct": 5,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "riviera-residences",
@@ -932,7 +1176,11 @@
       "first_sale_date": "2025-11-13",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 2360791,
-      "median_psf": 1974
+      "median_psf": 1974,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "manarat-living-ii",
@@ -947,7 +1195,11 @@
       "first_sale_date": "2024-03-04",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 1662634,
-      "median_psf": 2124
+      "median_psf": 2124,
+      "completion_pct": 34,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "radisson-residences---tower-1",
@@ -962,7 +1214,11 @@
       "first_sale_date": "2025-12-30",
       "last_sale_date": "2026-05-11",
       "median_price_aed": 1629500,
-      "median_psf": 1769
+      "median_psf": 1769,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bloom-living---seville",
@@ -977,7 +1233,11 @@
       "first_sale_date": "2024-07-11",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 2265686,
-      "median_psf": 1385
+      "median_psf": 1385,
+      "completion_pct": 57,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "fahid-beach-residences",
@@ -992,7 +1252,11 @@
       "first_sale_date": "2025-07-31",
       "last_sale_date": "2026-06-04",
       "median_price_aed": 7007400,
-      "median_psf": 3836
+      "median_psf": 3836,
+      "completion_pct": 5,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "bada-al-jubail---phase-2",
@@ -1007,7 +1271,11 @@
       "first_sale_date": "2026-05-21",
       "last_sale_date": "2026-05-21",
       "median_price_aed": 36500000,
-      "median_psf": null
+      "median_psf": null,
+      "completion_pct": 10,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "bloom-living---carmona",
@@ -1022,7 +1290,11 @@
       "first_sale_date": "2025-10-07",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 2382896,
-      "median_psf": 1532
+      "median_psf": 1532,
+      "completion_pct": 4,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "bloom-living---toledo",
@@ -1037,7 +1309,11 @@
       "first_sale_date": "2022-10-27",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 2363725,
-      "median_psf": 1239
+      "median_psf": 1239,
+      "completion_pct": 96,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "saas-heights",
@@ -1052,7 +1328,11 @@
       "first_sale_date": "2025-07-31",
       "last_sale_date": "2026-06-18",
       "median_price_aed": 2225699,
-      "median_psf": 1763
+      "median_psf": 1763,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "radisson-residences---tower-2",
@@ -1067,7 +1347,11 @@
       "first_sale_date": "2026-01-07",
       "last_sale_date": "2026-04-14",
       "median_price_aed": 2140000,
-      "median_psf": 1585
+      "median_psf": 1585,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bashayer-villas---phase-1",
@@ -1082,7 +1366,11 @@
       "first_sale_date": "2025-09-18",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 9053000,
-      "median_psf": 1591
+      "median_psf": 1591,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bloom-living---granada-1",
@@ -1097,7 +1385,11 @@
       "first_sale_date": "2024-04-05",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 1344117,
-      "median_psf": 1240
+      "median_psf": 1240,
+      "completion_pct": 39,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "manarat-living-iii",
@@ -1112,7 +1404,11 @@
       "first_sale_date": "2025-02-25",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 1986833,
-      "median_psf": 2392
+      "median_psf": 2392,
+      "completion_pct": 5,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "four-seasons-private-residences",
@@ -1127,7 +1423,11 @@
       "first_sale_date": "2025-12-22",
       "last_sale_date": "2026-06-08",
       "median_price_aed": 33600000,
-      "median_psf": 8112
+      "median_psf": 8112,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "reem-eight",
@@ -1142,7 +1442,11 @@
       "first_sale_date": "2024-11-05",
       "last_sale_date": "2026-06-03",
       "median_price_aed": 2628911,
-      "median_psf": 1865
+      "median_psf": 1865,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bayn---views-3",
@@ -1157,7 +1461,11 @@
       "first_sale_date": "2026-03-18",
       "last_sale_date": "2026-05-21",
       "median_price_aed": 22465000,
-      "median_psf": 3038
+      "median_psf": 3038,
+      "completion_pct": 0,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "nawayef-village-townhouses",
@@ -1172,7 +1480,11 @@
       "first_sale_date": "2025-08-18",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 4543510,
-      "median_psf": 1617
+      "median_psf": 1617,
+      "completion_pct": 0,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "sama-yas",
@@ -1187,7 +1499,11 @@
       "first_sale_date": "2024-03-04",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 3660100,
-      "median_psf": 2185
+      "median_psf": 2185,
+      "completion_pct": 33,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "saadiyat-grove---the-source-residences",
@@ -1202,7 +1518,11 @@
       "first_sale_date": "2023-08-23",
       "last_sale_date": "2026-05-14",
       "median_price_aed": 5711600,
-      "median_psf": 3159
+      "median_psf": 3159,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "vida-residences",
@@ -1217,7 +1537,11 @@
       "first_sale_date": "2025-10-29",
       "last_sale_date": "2026-06-12",
       "median_price_aed": 3230000,
-      "median_psf": 2867
+      "median_psf": 2867,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "selina-bay",
@@ -1232,7 +1556,11 @@
       "first_sale_date": "2025-07-24",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 1326641,
-      "median_psf": 1247
+      "median_psf": 1247,
+      "completion_pct": 10,
+      "property_type": "Villa/Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "saadiyat-grove---the-source",
@@ -1247,7 +1575,11 @@
       "first_sale_date": "2023-04-28",
       "last_sale_date": "2026-06-05",
       "median_price_aed": 4808000,
-      "median_psf": 2949
+      "median_psf": 2949,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "ramhan-island",
@@ -1262,7 +1594,11 @@
       "first_sale_date": "2025-10-21",
       "last_sale_date": "2026-05-11",
       "median_price_aed": 12435888,
-      "median_psf": null
+      "median_psf": null,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bloom-living---casares",
@@ -1277,7 +1613,11 @@
       "first_sale_date": "2023-08-10",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 1802941,
-      "median_psf": 1331
+      "median_psf": 1331,
+      "completion_pct": 92,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "muheira-a",
@@ -1292,7 +1632,11 @@
       "first_sale_date": "2025-08-26",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 2421000,
-      "median_psf": 1689
+      "median_psf": 1689,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "nawayef-west-b",
@@ -1307,7 +1651,11 @@
       "first_sale_date": "2024-10-03",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 10626000,
-      "median_psf": 1542
+      "median_psf": 1542,
+      "completion_pct": 20,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "vista-3",
@@ -1322,7 +1670,11 @@
       "first_sale_date": "2024-11-25",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 707915,
-      "median_psf": 1312
+      "median_psf": 1312,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bloom-living---olvera",
@@ -1337,7 +1689,11 @@
       "first_sale_date": "2024-10-11",
       "last_sale_date": "2026-06-04",
       "median_price_aed": 2046797,
-      "median_psf": 1425
+      "median_psf": 1425,
+      "completion_pct": 34,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "saadiyat-grove---the-arthouse",
@@ -1352,7 +1708,11 @@
       "first_sale_date": "2024-08-07",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 6300291,
-      "median_psf": 3499
+      "median_psf": 3499,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "saadiyat-lagoons---phase-2---ethir",
@@ -1367,7 +1727,11 @@
       "first_sale_date": "2023-03-28",
       "last_sale_date": "2026-04-29",
       "median_price_aed": 7679400,
-      "median_psf": 1240
+      "median_psf": 1240,
+      "completion_pct": 43,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "bayn---lagoon-2",
@@ -1382,7 +1746,11 @@
       "first_sale_date": "2026-01-30",
       "last_sale_date": "2026-05-12",
       "median_price_aed": 5661500,
-      "median_psf": 2172
+      "median_psf": 2172,
+      "completion_pct": 0,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "nawayef-west-a",
@@ -1397,7 +1765,11 @@
       "first_sale_date": "2025-08-17",
       "last_sale_date": "2026-06-17",
       "median_price_aed": 46965733,
-      "median_psf": 1526
+      "median_psf": 1526,
+      "completion_pct": 20,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "bab-al-qasr-sea-view-residence-51",
@@ -1412,7 +1784,11 @@
       "first_sale_date": "2026-06-08",
       "last_sale_date": "2026-06-08",
       "median_price_aed": 4305000,
-      "median_psf": 1496
+      "median_psf": 1496,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "ramhan-island---phase-3",
@@ -1427,7 +1803,11 @@
       "first_sale_date": "2025-11-12",
       "last_sale_date": "2026-06-05",
       "median_price_aed": 13313888,
-      "median_psf": null
+      "median_psf": null,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "yas-links-luxury-living",
@@ -1442,7 +1822,11 @@
       "first_sale_date": "2025-06-19",
       "last_sale_date": "2026-06-04",
       "median_price_aed": 6789200,
-      "median_psf": 3044
+      "median_psf": 3044,
+      "completion_pct": 4,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "bab-al-qasr-residence-19",
@@ -1457,7 +1841,11 @@
       "first_sale_date": "2025-06-26",
       "last_sale_date": "2026-05-10",
       "median_price_aed": 1518450,
-      "median_psf": 1363
+      "median_psf": 1363,
+      "completion_pct": 36,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "the-bay-residence",
@@ -1472,7 +1860,11 @@
       "first_sale_date": "2023-02-15",
       "last_sale_date": "2026-05-22",
       "median_price_aed": 1343233,
-      "median_psf": 1650
+      "median_psf": 1650,
+      "completion_pct": 85,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "perla-3",
@@ -1487,7 +1879,11 @@
       "first_sale_date": "2025-11-11",
       "last_sale_date": "2026-06-11",
       "median_price_aed": 1058763,
-      "median_psf": 1453
+      "median_psf": 1453,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "ville-12",
@@ -1502,7 +1898,11 @@
       "first_sale_date": "2025-06-11",
       "last_sale_date": "2026-04-21",
       "median_price_aed": 1270000,
-      "median_psf": 1125
+      "median_psf": 1125,
+      "completion_pct": 36,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "radiant-square",
@@ -1517,7 +1917,11 @@
       "first_sale_date": "2024-01-02",
       "last_sale_date": "2026-06-18",
       "median_price_aed": 1060580,
-      "median_psf": 1075
+      "median_psf": 1075,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "yas-riva",
@@ -1532,7 +1936,11 @@
       "first_sale_date": "2024-10-09",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 10329845,
-      "median_psf": 1655
+      "median_psf": 1655,
+      "completion_pct": 8,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "icon",
@@ -1547,7 +1955,11 @@
       "first_sale_date": "2024-06-19",
       "last_sale_date": "2026-06-16",
       "median_price_aed": 1441000,
-      "median_psf": 1978
+      "median_psf": 1978,
+      "completion_pct": 56,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "bab-al-qasr-residence-22",
@@ -1562,7 +1974,11 @@
       "first_sale_date": "2025-10-28",
       "last_sale_date": "2026-04-26",
       "median_price_aed": 2816000,
-      "median_psf": 1725
+      "median_psf": 1725,
+      "completion_pct": 26,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "al-jurf-gardens---phase-13",
@@ -1577,7 +1993,11 @@
       "first_sale_date": "2022-05-13",
       "last_sale_date": "2026-05-11",
       "median_price_aed": 4069777,
-      "median_psf": 849
+      "median_psf": 849,
+      "completion_pct": 100,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "ramhan-island---phase-1",
@@ -1592,7 +2012,11 @@
       "first_sale_date": "2025-11-12",
       "last_sale_date": "2026-04-14",
       "median_price_aed": 13200888,
-      "median_psf": 3149
+      "median_psf": 3149,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "one-saadiyat",
@@ -1607,7 +2031,11 @@
       "first_sale_date": "2026-04-07",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 30987050,
-      "median_psf": 9718
+      "median_psf": 9718,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "plaza-1",
@@ -1622,7 +2050,11 @@
       "first_sale_date": "2023-01-26",
       "last_sale_date": "2026-06-12",
       "median_price_aed": 616495,
-      "median_psf": 1163
+      "median_psf": 1163,
+      "completion_pct": 68,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "saadiyat-lagoons---wilds---phase-2",
@@ -1637,7 +2069,11 @@
       "first_sale_date": "2023-01-16",
       "last_sale_date": "2026-06-16",
       "median_price_aed": 6876145,
-      "median_psf": 1223
+      "median_psf": 1223,
+      "completion_pct": 65,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "nawayef-park-views",
@@ -1652,7 +2088,11 @@
       "first_sale_date": "2025-06-25",
       "last_sale_date": "2026-06-12",
       "median_price_aed": 3244086,
-      "median_psf": 1764
+      "median_psf": 1764,
+      "completion_pct": 8,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "mamsha-gardens-a",
@@ -1667,7 +2107,11 @@
       "first_sale_date": "2025-06-13",
       "last_sale_date": "2026-05-20",
       "median_price_aed": 7338053,
-      "median_psf": 3837
+      "median_psf": 3837,
+      "completion_pct": 3,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "mayar",
@@ -1682,7 +2126,11 @@
       "first_sale_date": "2025-04-29",
       "last_sale_date": "2026-05-11",
       "median_price_aed": 3927307,
-      "median_psf": 1475
+      "median_psf": 1475,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "al-jurf-gardens---phase-3a",
@@ -1697,7 +2145,11 @@
       "first_sale_date": "2024-08-16",
       "last_sale_date": "2026-04-30",
       "median_price_aed": 5149777,
-      "median_psf": 1599
+      "median_psf": 1599,
+      "completion_pct": 58,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "jacob-co-beachfront-living",
@@ -1712,7 +2164,11 @@
       "first_sale_date": "2025-06-04",
       "last_sale_date": "2026-05-13",
       "median_price_aed": 5381962,
-      "median_psf": 3069
+      "median_psf": 3069,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "private",
@@ -1727,7 +2183,11 @@
       "first_sale_date": "2019-01-07",
       "last_sale_date": "2026-05-13",
       "median_price_aed": 740000,
-      "median_psf": 635
+      "median_psf": 635,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "diva-at-the-bay-1",
@@ -1742,7 +2202,11 @@
       "first_sale_date": "2021-12-23",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 587606,
-      "median_psf": 1326
+      "median_psf": 1326,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bab-al-qasr-residence-25",
@@ -1757,7 +2221,11 @@
       "first_sale_date": "2025-01-13",
       "last_sale_date": "2026-06-01",
       "median_price_aed": 1641764,
-      "median_psf": 1507
+      "median_psf": 1507,
+      "completion_pct": 26,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "bawabat-al-sharq---phase-3",
@@ -1772,7 +2240,11 @@
       "first_sale_date": "2020-12-21",
       "last_sale_date": "2026-06-11",
       "median_price_aed": 950000,
-      "median_psf": 1116
+      "median_psf": 1116,
+      "completion_pct": 100,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "Built"
     },
     {
       "slug": "bab-al-qasr-residence-31",
@@ -1787,7 +2259,11 @@
       "first_sale_date": "2025-06-23",
       "last_sale_date": "2026-06-01",
       "median_price_aed": 1800000,
-      "median_psf": 1626
+      "median_psf": 1626,
+      "completion_pct": 36,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "juman-1",
@@ -1802,7 +2278,11 @@
       "first_sale_date": "2025-07-23",
       "last_sale_date": "2026-04-27",
       "median_price_aed": 1816998,
-      "median_psf": 1666
+      "median_psf": 1666,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "brabus-island",
@@ -1817,7 +2297,11 @@
       "first_sale_date": "2025-11-26",
       "last_sale_date": "2026-05-19",
       "median_price_aed": 3671422,
-      "median_psf": 2773
+      "median_psf": 2773,
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "bab-al-qasr-residence-18",
@@ -1832,7 +2316,11 @@
       "first_sale_date": "2025-06-25",
       "last_sale_date": "2026-06-04",
       "median_price_aed": 1472000,
-      "median_psf": 1342
+      "median_psf": 1342,
+      "completion_pct": 36,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "bab-al-qasr-royal-residence-28",
@@ -1847,7 +2335,11 @@
       "first_sale_date": "2026-05-10",
       "last_sale_date": "2026-05-12",
       "median_price_aed": 2130000,
-      "median_psf": 1759
+      "median_psf": 1759,
+      "completion_pct": 32,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "ramhan-island---phase-5",
@@ -1862,7 +2354,11 @@
       "first_sale_date": "2026-03-26",
       "last_sale_date": "2026-05-11",
       "median_price_aed": 13655888,
-      "median_psf": 5413
+      "median_psf": 5413,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "diva-at-the-bay-2",
@@ -1877,7 +2373,11 @@
       "first_sale_date": "2021-12-23",
       "last_sale_date": "2026-06-04",
       "median_price_aed": 700553,
-      "median_psf": 1318
+      "median_psf": 1318,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "reportage-village",
@@ -1892,7 +2392,11 @@
       "first_sale_date": "2025-07-25",
       "last_sale_date": "2026-06-02",
       "median_price_aed": 2291282,
-      "median_psf": 719
+      "median_psf": 719,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "nawayef-east-a",
@@ -1907,7 +2411,11 @@
       "first_sale_date": "2025-11-26",
       "last_sale_date": "2026-06-01",
       "median_price_aed": 40239563,
-      "median_psf": 1824
+      "median_psf": 1824,
+      "completion_pct": 20,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "bayn---lagoon-1",
@@ -1922,7 +2430,11 @@
       "first_sale_date": "2025-10-08",
       "last_sale_date": "2026-04-17",
       "median_price_aed": 4216000,
-      "median_psf": 1639
+      "median_psf": 1639,
+      "completion_pct": 0,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "solea",
@@ -1937,7 +2449,11 @@
       "first_sale_date": "2025-05-02",
       "last_sale_date": "2026-06-08",
       "median_price_aed": 3060500,
-      "median_psf": 2326
+      "median_psf": 2326,
+      "completion_pct": 7,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "reem-hills---phase-1a",
@@ -1952,7 +2468,11 @@
       "first_sale_date": "2022-06-20",
       "last_sale_date": "2026-06-05",
       "median_price_aed": 15305400,
-      "median_psf": 1116
+      "median_psf": 1116,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bayn---waterway",
@@ -1967,7 +2487,11 @@
       "first_sale_date": "2025-10-08",
       "last_sale_date": "2026-04-28",
       "median_price_aed": 6646000,
-      "median_psf": 2194
+      "median_psf": 2194,
+      "completion_pct": 8,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "perla-1",
@@ -1982,7 +2506,11 @@
       "first_sale_date": "2022-12-07",
       "last_sale_date": "2026-05-08",
       "median_price_aed": 1513820,
-      "median_psf": 1097
+      "median_psf": 1097,
+      "completion_pct": 12,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "marina-bay-by-damac",
@@ -1997,7 +2525,11 @@
       "first_sale_date": "2020-10-14",
       "last_sale_date": "2026-05-20",
       "median_price_aed": 1756000,
-      "median_psf": 1657
+      "median_psf": 1657,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "elie-saab-waterfront",
@@ -2012,7 +2544,11 @@
       "first_sale_date": "2024-06-26",
       "last_sale_date": "2026-05-07",
       "median_price_aed": 1991975,
-      "median_psf": 1786
+      "median_psf": 1786,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "plaza-2",
@@ -2027,7 +2563,11 @@
       "first_sale_date": "2024-06-24",
       "last_sale_date": "2026-05-15",
       "median_price_aed": 600179,
-      "median_psf": 1024
+      "median_psf": 1024,
+      "completion_pct": 68,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "ville-11",
@@ -2042,7 +2582,11 @@
       "first_sale_date": "2024-03-20",
       "last_sale_date": "2026-05-14",
       "median_price_aed": 900000,
-      "median_psf": 836
+      "median_psf": 836,
+      "completion_pct": 95,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "al-jurf-gardens---phase-14",
@@ -2057,7 +2601,11 @@
       "first_sale_date": "2023-04-06",
       "last_sale_date": "2026-04-28",
       "median_price_aed": 4521777,
-      "median_psf": 1367
+      "median_psf": 1367,
+      "completion_pct": 100,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "perla-2",
@@ -2072,7 +2620,11 @@
       "first_sale_date": "2022-12-08",
       "last_sale_date": "2026-06-19",
       "median_price_aed": 1855671,
-      "median_psf": 1102
+      "median_psf": 1102,
+      "completion_pct": 86,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "reeman-garden-1",
@@ -2087,7 +2639,11 @@
       "first_sale_date": "2025-06-11",
       "last_sale_date": "2026-05-11",
       "median_price_aed": 766033,
-      "median_psf": 1052
+      "median_psf": 1052,
+      "completion_pct": 70,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "nobu-residences-1",
@@ -2102,7 +2658,11 @@
       "first_sale_date": "2024-01-19",
       "last_sale_date": "2026-06-05",
       "median_price_aed": 17994200,
-      "median_psf": 6368
+      "median_psf": 6368,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "yamm-beach-villas",
@@ -2117,7 +2677,11 @@
       "first_sale_date": "2026-01-14",
       "last_sale_date": "2026-04-21",
       "median_price_aed": 68000000,
-      "median_psf": 2796
+      "median_psf": 2796,
+      "completion_pct": 0,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "reem-hills---phase-2d",
@@ -2132,7 +2696,11 @@
       "first_sale_date": "2023-07-03",
       "last_sale_date": "2026-05-21",
       "median_price_aed": 1622880,
-      "median_psf": 1057
+      "median_psf": 1057,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "jubail-island---phase-3",
@@ -2147,7 +2715,11 @@
       "first_sale_date": "2022-12-15",
       "last_sale_date": "2026-04-09",
       "median_price_aed": 6700000,
-      "median_psf": 1620
+      "median_psf": 1620,
+      "completion_pct": 100,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "Built"
     },
     {
       "slug": "rivage",
@@ -2162,7 +2734,11 @@
       "first_sale_date": "2025-01-30",
       "last_sale_date": "2026-05-20",
       "median_price_aed": 1902219,
-      "median_psf": 1556
+      "median_psf": 1556,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "w-residences-abu-dhabi",
@@ -2177,7 +2753,11 @@
       "first_sale_date": "2025-01-05",
       "last_sale_date": "2026-04-08",
       "median_price_aed": 4411000,
-      "median_psf": 2603
+      "median_psf": 2603,
+      "completion_pct": 35,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "henge-residences",
@@ -2192,7 +2772,11 @@
       "first_sale_date": "2025-06-30",
       "last_sale_date": "2026-05-21",
       "median_price_aed": 1991452,
-      "median_psf": 2169
+      "median_psf": 2169,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "vista-2",
@@ -2207,7 +2791,11 @@
       "first_sale_date": "2025-06-26",
       "last_sale_date": "2026-04-29",
       "median_price_aed": 667000,
-      "median_psf": 1327
+      "median_psf": 1327,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bloom-living---almeria",
@@ -2222,7 +2810,11 @@
       "first_sale_date": "2024-12-06",
       "last_sale_date": "2026-06-18",
       "median_price_aed": 4527713,
-      "median_psf": 1374
+      "median_psf": 1374,
+      "completion_pct": 21,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "nour-watan",
@@ -2237,7 +2829,11 @@
       "first_sale_date": "2025-09-25",
       "last_sale_date": "2026-06-09",
       "median_price_aed": 892500,
-      "median_psf": 1209
+      "median_psf": 1209,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "the-bay-residence-ii",
@@ -2252,7 +2848,11 @@
       "first_sale_date": "2024-07-30",
       "last_sale_date": "2026-05-04",
       "median_price_aed": 1345461,
-      "median_psf": 1458
+      "median_psf": 1458,
+      "completion_pct": 85,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "saadiyat-grove---the-source-terraces",
@@ -2267,7 +2867,11 @@
       "first_sale_date": "2024-05-21",
       "last_sale_date": "2026-06-02",
       "median_price_aed": 8434914,
-      "median_psf": 3627
+      "median_psf": 3627,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "al-ghadeer---phase-1",
@@ -2282,7 +2886,11 @@
       "first_sale_date": "2020-10-07",
       "last_sale_date": "2026-04-23",
       "median_price_aed": 648964,
-      "median_psf": 692
+      "median_psf": 692,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "mamsha-palm",
@@ -2297,7 +2905,11 @@
       "first_sale_date": "2024-11-06",
       "last_sale_date": "2026-04-13",
       "median_price_aed": 7257800,
-      "median_psf": 3861
+      "median_psf": 3861,
+      "completion_pct": 14,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "renad-tower",
@@ -2312,7 +2924,11 @@
       "first_sale_date": "2024-03-06",
       "last_sale_date": "2026-05-15",
       "median_price_aed": 1165527,
-      "median_psf": 1660
+      "median_psf": 1660,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "thoraya",
@@ -2327,7 +2943,11 @@
       "first_sale_date": "2025-04-29",
       "last_sale_date": "2026-04-09",
       "median_price_aed": 4872504,
-      "median_psf": 1485
+      "median_psf": 1485,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "the-gate-and-arc-towers",
@@ -2342,7 +2962,11 @@
       "first_sale_date": "2020-06-01",
       "last_sale_date": "2026-05-15",
       "median_price_aed": 1981196,
-      "median_psf": 1746
+      "median_psf": 1746,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "nobu-residences-2",
@@ -2357,7 +2981,11 @@
       "first_sale_date": "2024-02-14",
       "last_sale_date": "2026-05-08",
       "median_price_aed": 18778725,
-      "median_psf": 6584
+      "median_psf": 6584,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "sun-sky-boutik-mall",
@@ -2372,7 +3000,11 @@
       "first_sale_date": "2020-10-12",
       "last_sale_date": "2026-05-14",
       "median_price_aed": 2084926,
-      "median_psf": 1280
+      "median_psf": 1280,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "al-muneera-island",
@@ -2387,7 +3019,11 @@
       "first_sale_date": "2020-10-22",
       "last_sale_date": "2026-06-03",
       "median_price_aed": 1706500,
-      "median_psf": 1059
+      "median_psf": 1059,
+      "completion_pct": 100,
+      "property_type": "Villa/Building",
+      "classification": "Mixed use",
+      "construction_status": "Built"
     },
     {
       "slug": "yas-acres---the-dahlias-2",
@@ -2402,7 +3038,11 @@
       "first_sale_date": "2023-11-09",
       "last_sale_date": "2026-04-21",
       "median_price_aed": 2946879,
-      "median_psf": 1283
+      "median_psf": 1283,
+      "completion_pct": 100,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "Built"
     },
     {
       "slug": "al-bandar",
@@ -2417,7 +3057,11 @@
       "first_sale_date": "2020-10-15",
       "last_sale_date": "2026-04-13",
       "median_price_aed": 1272225,
-      "median_psf": 1212
+      "median_psf": 1212,
+      "completion_pct": 100,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "Built"
     },
     {
       "slug": "faya-al-saadiyat",
@@ -2432,7 +3076,11 @@
       "first_sale_date": "2024-12-26",
       "last_sale_date": "2026-06-08",
       "median_price_aed": 93878700,
-      "median_psf": 4662
+      "median_psf": 4662,
+      "completion_pct": 7,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "al-yaqut-tower",
@@ -2447,7 +3095,11 @@
       "first_sale_date": "2023-07-05",
       "last_sale_date": "2026-04-07",
       "median_price_aed": 1475000,
-      "median_psf": 950
+      "median_psf": 950,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bada-al-jubail---phase-1",
@@ -2462,7 +3114,11 @@
       "first_sale_date": "2025-08-06",
       "last_sale_date": "2026-05-21",
       "median_price_aed": 19300000,
-      "median_psf": null
+      "median_psf": null,
+      "completion_pct": 57,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "waters-edge---precinct-b",
@@ -2477,7 +3133,11 @@
       "first_sale_date": "2019-02-24",
       "last_sale_date": "2025-07-16",
       "median_price_aed": 907188,
-      "median_psf": 1207
+      "median_psf": 1207,
+      "completion_pct": 100,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "Built"
     },
     {
       "slug": "waters-edge---precinct-a",
@@ -2492,7 +3152,11 @@
       "first_sale_date": "2019-02-24",
       "last_sale_date": "2023-05-03",
       "median_price_aed": 1149770,
-      "median_psf": 1153
+      "median_psf": 1153,
+      "completion_pct": 100,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "Built"
     },
     {
       "slug": "noya---phase-1",
@@ -2507,7 +3171,11 @@
       "first_sale_date": "2020-11-25",
       "last_sale_date": "2024-05-10",
       "median_price_aed": 1882784,
-      "median_psf": 1086
+      "median_psf": 1086,
+      "completion_pct": 100,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "Built"
     },
     {
       "slug": "al-reef-2",
@@ -2522,7 +3190,11 @@
       "first_sale_date": "2019-06-27",
       "last_sale_date": "2024-07-08",
       "median_price_aed": 1953000,
-      "median_psf": 1155
+      "median_psf": 1155,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "jubail-island---phase-2",
@@ -2537,7 +3209,11 @@
       "first_sale_date": "2020-12-22",
       "last_sale_date": "2025-11-13",
       "median_price_aed": 5055000,
-      "median_psf": 1307
+      "median_psf": 1307,
+      "completion_pct": 100,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "Built"
     },
     {
       "slug": "noya---phase-2---viva",
@@ -2552,7 +3228,11 @@
       "first_sale_date": "2021-05-25",
       "last_sale_date": "2024-08-23",
       "median_price_aed": 2007072,
-      "median_psf": 1197
+      "median_psf": 1197,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "oasis-1",
@@ -2567,7 +3247,11 @@
       "first_sale_date": "2019-03-18",
       "last_sale_date": "2025-08-02",
       "median_price_aed": 530000,
-      "median_psf": 1013
+      "median_psf": 1013,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "pixel",
@@ -2582,7 +3266,11 @@
       "first_sale_date": "2019-02-03",
       "last_sale_date": "2023-09-06",
       "median_price_aed": 1099777,
-      "median_psf": 1257
+      "median_psf": 1257,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "al-ghadeer---phase-2-tala",
@@ -2597,7 +3285,11 @@
       "first_sale_date": "2019-11-07",
       "last_sale_date": "2023-05-16",
       "median_price_aed": 581800,
-      "median_psf": 834
+      "median_psf": 834,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "hydra-avenue-hydra-towers",
@@ -2612,7 +3304,11 @@
       "first_sale_date": "2020-12-14",
       "last_sale_date": "2024-07-30",
       "median_price_aed": 805657,
-      "median_psf": 1327
+      "median_psf": 1327,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "yas-acres---the-magnolias",
@@ -2627,7 +3323,11 @@
       "first_sale_date": "2021-09-21",
       "last_sale_date": "2026-02-23",
       "median_price_aed": 3535817,
-      "median_psf": 1163
+      "median_psf": 1163,
+      "completion_pct": 100,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "Built"
     },
     {
       "slug": "mayan",
@@ -2642,7 +3342,11 @@
       "first_sale_date": "2019-10-23",
       "last_sale_date": "2024-05-06",
       "median_price_aed": 1556100,
-      "median_psf": 1507
+      "median_psf": 1507,
+      "completion_pct": 100,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "Built"
     },
     {
       "slug": "reem-hills---phase-1b",
@@ -2657,7 +3361,11 @@
       "first_sale_date": "2022-11-08",
       "last_sale_date": "2025-11-17",
       "median_price_aed": 2910350,
-      "median_psf": 1020
+      "median_psf": 1020,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "yas-acres---the-cedars",
@@ -2672,7 +3380,11 @@
       "first_sale_date": "2019-04-18",
       "last_sale_date": "2023-02-27",
       "median_price_aed": 3225000,
-      "median_psf": 978
+      "median_psf": 978,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "the-bridges-towers-1-2-and-3",
@@ -2687,7 +3399,11 @@
       "first_sale_date": "2019-05-06",
       "last_sale_date": "2023-01-16",
       "median_price_aed": 1097260,
-      "median_psf": 1128
+      "median_psf": 1128,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "the-gate-masdar-city",
@@ -2702,7 +3418,11 @@
       "first_sale_date": "2020-06-04",
       "last_sale_date": "2025-01-09",
       "median_price_aed": 596323,
-      "median_psf": 1255
+      "median_psf": 1255,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bloom-living---cordoba",
@@ -2717,7 +3437,11 @@
       "first_sale_date": "2022-07-22",
       "last_sale_date": "2025-04-16",
       "median_price_aed": 2255700,
-      "median_psf": 1232
+      "median_psf": 1232,
+      "completion_pct": 100,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "Built"
     },
     {
       "slug": "yas-acres---the-aspens",
@@ -2732,7 +3456,11 @@
       "first_sale_date": "2019-05-05",
       "last_sale_date": "2022-11-03",
       "median_price_aed": 3766000,
-      "median_psf": 990
+      "median_psf": 990,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "reem-hills---phase-2c",
@@ -2747,7 +3475,11 @@
       "first_sale_date": "2023-05-30",
       "last_sale_date": "2025-11-17",
       "median_price_aed": 2859900,
-      "median_psf": 1065
+      "median_psf": 1065,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "oasis-2",
@@ -2762,7 +3494,11 @@
       "first_sale_date": "2020-08-17",
       "last_sale_date": "2025-01-27",
       "median_price_aed": 666667,
-      "median_psf": 874
+      "median_psf": 874,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "noya---phase-3---luma",
@@ -2777,7 +3513,11 @@
       "first_sale_date": "2021-06-14",
       "last_sale_date": "2024-08-28",
       "median_price_aed": 2883523,
-      "median_psf": 1194
+      "median_psf": 1194,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "reem-hills---phase-1c",
@@ -2792,7 +3532,11 @@
       "first_sale_date": "2022-11-08",
       "last_sale_date": "2025-11-17",
       "median_price_aed": 2545482,
-      "median_psf": 1001
+      "median_psf": 1001,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "reem-hills---phase-2a",
@@ -2807,7 +3551,11 @@
       "first_sale_date": "2023-05-04",
       "last_sale_date": "2025-11-05",
       "median_price_aed": 2566700,
-      "median_psf": 1079
+      "median_psf": 1079,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "opula-residences",
@@ -2822,7 +3570,11 @@
       "first_sale_date": "2025-07-10",
       "last_sale_date": "2026-03-16",
       "median_price_aed": 1730000,
-      "median_psf": 1809
+      "median_psf": 1809,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "al-mahra-residence",
@@ -2837,7 +3589,11 @@
       "first_sale_date": "2019-12-23",
       "last_sale_date": "2025-01-15",
       "median_price_aed": 372500,
-      "median_psf": 598
+      "median_psf": 598,
+      "completion_pct": 90,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "mamsha-al-saadiyat---azure",
@@ -2852,7 +3608,11 @@
       "first_sale_date": "2019-10-27",
       "last_sale_date": "2023-04-25",
       "median_price_aed": 3634529,
-      "median_psf": 1540
+      "median_psf": 1540,
+      "completion_pct": 100,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "Built"
     },
     {
       "slug": "al-raha-lofts-1",
@@ -2867,7 +3627,11 @@
       "first_sale_date": "2020-12-31",
       "last_sale_date": "2024-08-07",
       "median_price_aed": 1108875,
-      "median_psf": 987
+      "median_psf": 987,
+      "completion_pct": 100,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "Built"
     },
     {
       "slug": "mamsha-al-saadiyat---turquoise",
@@ -2882,7 +3646,11 @@
       "first_sale_date": "2020-05-11",
       "last_sale_date": "2023-03-21",
       "median_price_aed": 3519497,
-      "median_psf": 1585
+      "median_psf": 1585,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "reflection-tower-a",
@@ -2897,7 +3665,11 @@
       "first_sale_date": "2022-02-18",
       "last_sale_date": "2023-04-30",
       "median_price_aed": 926207,
-      "median_psf": 1279
+      "median_psf": 1279,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "yas-acres---the-dahlias",
@@ -2912,7 +3684,11 @@
       "first_sale_date": "2021-11-23",
       "last_sale_date": "2026-03-09",
       "median_price_aed": 3791254,
-      "median_psf": 1178
+      "median_psf": 1178,
+      "completion_pct": 100,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "Built"
     },
     {
       "slug": "reem-hills---phase-2b",
@@ -2927,7 +3703,11 @@
       "first_sale_date": "2023-05-04",
       "last_sale_date": "2025-11-17",
       "median_price_aed": 2544250,
-      "median_psf": 1070
+      "median_psf": 1070,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "mamsha-al-saadiyat---lilac",
@@ -2942,7 +3722,11 @@
       "first_sale_date": "2020-01-14",
       "last_sale_date": "2023-02-27",
       "median_price_aed": 3517296,
-      "median_psf": 1537
+      "median_psf": 1537,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "reflection-tower-b",
@@ -2957,7 +3741,11 @@
       "first_sale_date": "2019-04-14",
       "last_sale_date": "2023-03-31",
       "median_price_aed": 935400,
-      "median_psf": 1239
+      "median_psf": 1239,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "jubail-terraces",
@@ -2972,7 +3760,11 @@
       "first_sale_date": "2023-12-15",
       "last_sale_date": "2025-12-12",
       "median_price_aed": 2245000,
-      "median_psf": 1472
+      "median_psf": 1472,
+      "completion_pct": 100,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "al-raha-lofts-2",
@@ -2987,7 +3779,11 @@
       "first_sale_date": "2020-12-31",
       "last_sale_date": "2024-01-22",
       "median_price_aed": 1291310,
-      "median_psf": 1098
+      "median_psf": 1098,
+      "completion_pct": 100,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "marina-square-paragon-bay-mall",
@@ -3002,7 +3798,11 @@
       "first_sale_date": "2020-09-23",
       "last_sale_date": "2026-03-07",
       "median_price_aed": 1414269,
-      "median_psf": 1042
+      "median_psf": 1042,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "yas-acres---the-redwoods",
@@ -3017,7 +3817,11 @@
       "first_sale_date": "2019-05-06",
       "last_sale_date": "2021-11-23",
       "median_price_aed": 4031000,
-      "median_psf": 1028
+      "median_psf": 1028,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "yas-beach-residence",
@@ -3032,7 +3836,11 @@
       "first_sale_date": "2020-09-10",
       "last_sale_date": "2025-04-30",
       "median_price_aed": 600237,
-      "median_psf": 833
+      "median_psf": 833,
+      "completion_pct": 41,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "leonardo-residences",
@@ -3047,7 +3855,11 @@
       "first_sale_date": "2019-01-03",
       "last_sale_date": "2019-05-21",
       "median_price_aed": 545000,
-      "median_psf": 1208
+      "median_psf": 1208,
+      "completion_pct": 100,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "Built"
     },
     {
       "slug": "saadiyat-reserve---the-dunes",
@@ -3062,7 +3874,11 @@
       "first_sale_date": "2021-07-27",
       "last_sale_date": "2025-07-16",
       "median_price_aed": 6727665,
-      "median_psf": 1439
+      "median_psf": 1439,
+      "completion_pct": 100,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "Built"
     },
     {
       "slug": "jawaher-al-saadiyat",
@@ -3077,7 +3893,11 @@
       "first_sale_date": "2019-12-09",
       "last_sale_date": "2021-09-20",
       "median_price_aed": 7875000,
-      "median_psf": 1013
+      "median_psf": 1013,
+      "completion_pct": 100,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "Built"
     },
     {
       "slug": "merito",
@@ -3092,7 +3912,11 @@
       "first_sale_date": "2025-10-03",
       "last_sale_date": "2026-02-19",
       "median_price_aed": 1015989,
-      "median_psf": 1374
+      "median_psf": 1374,
+      "completion_pct": 81,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "al-reef-downtown",
@@ -3107,7 +3931,11 @@
       "first_sale_date": "2020-09-23",
       "last_sale_date": "2024-02-28",
       "median_price_aed": 744125,
-      "median_psf": 671
+      "median_psf": 671,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "mangrove-place",
@@ -3122,7 +3950,11 @@
       "first_sale_date": "2021-11-03",
       "last_sale_date": "2025-06-10",
       "median_price_aed": 1082747,
-      "median_psf": 1103
+      "median_psf": 1103,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "park-view-tower-al-reem-island",
@@ -3137,7 +3969,11 @@
       "first_sale_date": "2019-01-08",
       "last_sale_date": "2023-04-19",
       "median_price_aed": 1883220,
-      "median_psf": 1122
+      "median_psf": 1122,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "al-reef-townhouses---arabian-village",
@@ -3152,7 +3988,11 @@
       "first_sale_date": "2020-09-23",
       "last_sale_date": "2024-03-12",
       "median_price_aed": 1094292,
-      "median_psf": 697
+      "median_psf": 697,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "vista-1",
@@ -3167,7 +4007,11 @@
       "first_sale_date": "2025-02-11",
       "last_sale_date": "2026-01-16",
       "median_price_aed": 789000,
-      "median_psf": 1424
+      "median_psf": 1424,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "murjan-al-saadiyat",
@@ -3182,7 +4026,11 @@
       "first_sale_date": "2023-10-31",
       "last_sale_date": "2026-01-27",
       "median_price_aed": 8000000,
-      "median_psf": 2882
+      "median_psf": 2882,
+      "completion_pct": 93,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "addax-tower",
@@ -3197,7 +4045,11 @@
       "first_sale_date": "2020-09-30",
       "last_sale_date": "2026-03-08",
       "median_price_aed": 2013984,
-      "median_psf": 1144
+      "median_psf": 1144,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "vista-del-mar",
@@ -3212,7 +4064,11 @@
       "first_sale_date": "2024-08-20",
       "last_sale_date": "2026-02-16",
       "median_price_aed": 2312310,
-      "median_psf": 1566
+      "median_psf": 1566,
+      "completion_pct": 71,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "fairmont-residences-rixos-marina",
@@ -3227,7 +4083,11 @@
       "first_sale_date": "2019-07-02",
       "last_sale_date": "2026-01-23",
       "median_price_aed": 3422230,
-      "median_psf": 2180
+      "median_psf": 2180,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "park-view-residence-al-saadiyat-island",
@@ -3242,7 +4102,11 @@
       "first_sale_date": "2020-09-28",
       "last_sale_date": "2025-10-24",
       "median_price_aed": 1100777,
-      "median_psf": 1546
+      "median_psf": 1546,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "al-jurf-gardens---phase-12",
@@ -3257,7 +4121,11 @@
       "first_sale_date": "2023-02-06",
       "last_sale_date": "2025-09-29",
       "median_price_aed": 3462777,
-      "median_psf": 837
+      "median_psf": 837,
+      "completion_pct": 100,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "New"
     },
     {
       "slug": "al-reef-townhouses---contemporary-village",
@@ -3272,7 +4140,11 @@
       "first_sale_date": "2020-09-24",
       "last_sale_date": "2022-06-16",
       "median_price_aed": 1365275,
-      "median_psf": 760
+      "median_psf": 760,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "pud-residence-1",
@@ -3287,7 +4159,11 @@
       "first_sale_date": "2025-10-20",
       "last_sale_date": "2026-02-03",
       "median_price_aed": 646840,
-      "median_psf": 819
+      "median_psf": 819,
+      "completion_pct": 37,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "al-reef-townhouses---desert-village",
@@ -3302,7 +4178,11 @@
       "first_sale_date": "2020-09-24",
       "last_sale_date": "2024-02-13",
       "median_price_aed": 1147450,
-      "median_psf": 696
+      "median_psf": 696,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "al-reef-townhouses---mediterranean-village",
@@ -3317,7 +4197,11 @@
       "first_sale_date": "2020-09-24",
       "last_sale_date": "2023-11-30",
       "median_price_aed": 1328646,
-      "median_psf": 714
+      "median_psf": 714,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bloom-gardens---al-dhay",
@@ -3332,7 +4216,11 @@
       "first_sale_date": "2021-06-14",
       "last_sale_date": "2023-01-18",
       "median_price_aed": 2833000,
-      "median_psf": 1323
+      "median_psf": 1323,
+      "completion_pct": 100,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "Built"
     },
     {
       "slug": "azure",
@@ -3347,7 +4235,11 @@
       "first_sale_date": "2020-03-22",
       "last_sale_date": "2022-04-08",
       "median_price_aed": 1355043,
-      "median_psf": 1230
+      "median_psf": 1230,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "reem-nine",
@@ -3362,7 +4254,11 @@
       "first_sale_date": "2023-02-21",
       "last_sale_date": "2023-10-02",
       "median_price_aed": 2315605,
-      "median_psf": 1496
+      "median_psf": 1496,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "right-capital-1",
@@ -3377,7 +4273,11 @@
       "first_sale_date": "2025-05-30",
       "last_sale_date": "2026-02-19",
       "median_price_aed": 1210000,
-      "median_psf": 1092
+      "median_psf": 1092,
+      "completion_pct": 97,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New"
     },
     {
       "slug": "al-ghadeer---phase-1-sabil",
@@ -3392,7 +4292,11 @@
       "first_sale_date": "2020-10-06",
       "last_sale_date": "2023-09-04",
       "median_price_aed": 652588,
-      "median_psf": 963
+      "median_psf": 963,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "reem-five",
@@ -3407,7 +4311,11 @@
       "first_sale_date": "2022-06-24",
       "last_sale_date": "2023-01-27",
       "median_price_aed": 2207709,
-      "median_psf": 1662
+      "median_psf": 1662,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "marina-bay-towers-city-of-lights",
@@ -3422,7 +4330,11 @@
       "first_sale_date": "2020-09-29",
       "last_sale_date": "2024-03-13",
       "median_price_aed": 1286359,
-      "median_psf": 1602
+      "median_psf": 1602,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "marsa-al-jubail",
@@ -3437,7 +4349,11 @@
       "first_sale_date": "2024-09-18",
       "last_sale_date": "2025-11-05",
       "median_price_aed": 7600000,
-      "median_psf": 1697
+      "median_psf": 1697,
+      "completion_pct": 100,
+      "property_type": "Villas",
+      "classification": "Residential",
+      "construction_status": "New"
     },
     {
       "slug": "canal-by-m",
@@ -3452,7 +4368,11 @@
       "first_sale_date": "2025-01-29",
       "last_sale_date": "2026-03-11",
       "median_price_aed": 3367282,
-      "median_psf": 1933
+      "median_psf": 1933,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "al-muneera-mainland",
@@ -3467,7 +4387,11 @@
       "first_sale_date": "2020-10-06",
       "last_sale_date": "2024-05-30",
       "median_price_aed": 1315750,
-      "median_psf": 1077
+      "median_psf": 1077,
+      "completion_pct": 100,
+      "property_type": "Villa/Building",
+      "classification": "Mixed use",
+      "construction_status": "Built"
     },
     {
       "slug": "the-wave",
@@ -3482,7 +4406,11 @@
       "first_sale_date": "2020-09-23",
       "last_sale_date": "2022-06-07",
       "median_price_aed": 1642020,
-      "median_psf": 1219
+      "median_psf": 1219,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "one-reem-island",
@@ -3497,7 +4425,11 @@
       "first_sale_date": "2022-06-21",
       "last_sale_date": "2023-03-07",
       "median_price_aed": 4430230,
-      "median_psf": 1678
+      "median_psf": 1678,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "al-ghadeer---phase-1-waha",
@@ -3512,7 +4444,11 @@
       "first_sale_date": "2020-11-09",
       "last_sale_date": "2023-09-04",
       "median_price_aed": 656637,
-      "median_psf": 964
+      "median_psf": 964,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "al-zeina",
@@ -3527,7 +4463,11 @@
       "first_sale_date": "2020-10-12",
       "last_sale_date": "2025-05-28",
       "median_price_aed": 2344250,
-      "median_psf": 1153
+      "median_psf": 1153,
+      "completion_pct": 100,
+      "property_type": "Villa/Building",
+      "classification": "Mixed use",
+      "construction_status": "Built"
     },
     {
       "slug": "shams-meera-towers",
@@ -3542,7 +4482,11 @@
       "first_sale_date": "2019-11-26",
       "last_sale_date": "2023-02-06",
       "median_price_aed": 987525,
-      "median_psf": 1376
+      "median_psf": 1376,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "bloom-soho-square",
@@ -3557,7 +4501,11 @@
       "first_sale_date": "2020-09-23",
       "last_sale_date": "2021-09-06",
       "median_price_aed": 956162,
-      "median_psf": 1485
+      "median_psf": 1485,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "nudra-beach-villas",
@@ -3572,7 +4520,11 @@
       "first_sale_date": "2019-08-25",
       "last_sale_date": "2024-08-02",
       "median_price_aed": 26334777,
-      "median_psf": 1467
+      "median_psf": 1467,
+      "completion_pct": 99,
+      "property_type": "Plot",
+      "classification": null,
+      "construction_status": "Built"
     },
     {
       "slug": "sky-gardens-tower",
@@ -3587,7 +4539,11 @@
       "first_sale_date": "2025-03-21",
       "last_sale_date": "2025-05-29",
       "median_price_aed": 1158620,
-      "median_psf": 774
+      "median_psf": 774,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "sigma-towers-city-of-lights",
@@ -3602,7 +4558,11 @@
       "first_sale_date": "2021-06-20",
       "last_sale_date": "2026-03-12",
       "median_price_aed": 1303800,
-      "median_psf": 1616
+      "median_psf": 1616,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "oceanscape",
@@ -3617,7 +4577,11 @@
       "first_sale_date": "2021-01-04",
       "last_sale_date": "2024-11-12",
       "median_price_aed": 1220500,
-      "median_psf": 1347
+      "median_psf": 1347,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "ohana-villas",
@@ -3632,7 +4596,11 @@
       "first_sale_date": "2024-12-25",
       "last_sale_date": "2025-11-25",
       "median_price_aed": 8050000,
-      "median_psf": 2078
+      "median_psf": 2078,
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null
     },
     {
       "slug": "prestige-towers",
@@ -3647,7 +4615,11 @@
       "first_sale_date": "2020-11-02",
       "last_sale_date": "2023-05-03",
       "median_price_aed": 6391125,
-      "median_psf": 1092
+      "median_psf": 1092,
+      "completion_pct": 100,
+      "property_type": "Building",
+      "classification": "Commercial",
+      "construction_status": "Built"
     }
   ]
 }

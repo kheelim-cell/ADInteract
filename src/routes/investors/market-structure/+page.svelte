@@ -22,10 +22,25 @@
   const primaryDevelopers = data.developer_breakdown['Primary Developer'] ?? 0;
   const secondaryDevelopers = data.developer_breakdown['Secondary Developer'] ?? 0;
 
-  const allSamples: Sample[] = [
-    ...(data.samples['Broker'] ?? []),
-    ...(data.samples['Developer'] ?? []),
-  ];
+  const sampleProfessions = Object.keys(data.samples).filter(label => (data.samples[label] ?? []).length > 0);
+
+  const PAGE_SIZE = 10;
+  let filterProfession = $state('');
+  let showAllSamples = $state(false);
+
+  let filteredSamples = $derived(
+    filterProfession
+      ? (data.samples[filterProfession] ?? [])
+      : sampleProfessions.flatMap(label => data.samples[label] ?? [])
+  );
+
+  let visibleSamples = $derived(
+    showAllSamples ? filteredSamples : filteredSamples.slice(0, PAGE_SIZE)
+  );
+
+  function onFilterChange() {
+    showAllSamples = false;
+  }
 </script>
 
 <svelte:head>
@@ -97,17 +112,49 @@
   {/if}
 
   <!-- ── Directory sample ───────────────────────────────────────────────── -->
-  {#if allSamples.length > 0}
+  {#if sampleProfessions.length > 0}
     <div class="rounded-2xl border border-gray-200 bg-white px-5 py-4">
-      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Directory sample</h3>
-      <div class="divide-y divide-gray-100">
-        {#each allSamples as s}
-          <div class="flex items-center justify-between gap-3 py-2.5">
-            <span class="text-sm text-gray-800 truncate">{s.name}</span>
-            <span class="text-[10px] font-bold rounded-full px-2 py-0.5 bg-gray-100 text-gray-600 flex-shrink-0">{s.classification}</span>
-          </div>
-        {/each}
+      <div class="flex items-center justify-between gap-3 mb-4">
+        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Directory sample</h3>
+        <select
+          bind:value={filterProfession}
+          onchange={onFilterChange}
+          class="text-xs font-medium text-gray-700 border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500"
+        >
+          <option value="">All professions</option>
+          {#each sampleProfessions as label}
+            <option value={label}>{label}</option>
+          {/each}
+        </select>
       </div>
+
+      {#if visibleSamples.length === 0}
+        <p class="text-sm text-gray-400 py-4 text-center">No sample entries for this profession</p>
+      {:else}
+        <div class="divide-y divide-gray-100">
+          {#each visibleSamples as s}
+            <div class="flex items-center justify-between gap-3 py-2.5">
+              <span class="text-sm text-gray-800 truncate">{s.name}</span>
+              <span class="text-[10px] font-bold rounded-full px-2 py-0.5 bg-gray-100 text-gray-600 flex-shrink-0">{s.classification}</span>
+            </div>
+          {/each}
+        </div>
+
+        {#if filteredSamples.length > PAGE_SIZE}
+          <div class="mt-3 flex justify-center">
+            <button
+              type="button"
+              onclick={() => showAllSamples = !showAllSamples}
+              class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-4 py-2 text-xs font-semibold text-gray-700 hover:border-brand-300 hover:text-brand-700 transition-colors"
+            >
+              {showAllSamples ? `Show top ${PAGE_SIZE} only` : `Show all ${filteredSamples.length}`}
+              <svg class="w-3.5 h-3.5 transition-transform {showAllSamples ? 'rotate-180' : ''}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+          </div>
+        {/if}
+      {/if}
     </div>
   {/if}
 

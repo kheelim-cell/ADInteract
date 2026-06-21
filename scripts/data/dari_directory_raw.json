@@ -33,6 +33,181 @@
       {
         "name": "7TH STREET PROPERTY - L.L.C - S.P.C",
         "classification": "Brokerage"
+      },
+      {
+        "name": "804 AVENUE  PROPERTIES AND CONTRACTING - L.L.C - S.P.C",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "88 STREET PROPERTIES AND BUILDING MAINTENANCE  - SOLE PROPRIETORSHIP L.L.C.",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "A B C PROPERTIES BROKERAGE - SOLE PROPRIETORSHIP L.L.C.",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "A H F GLOBAL REAL ESTATE  - L.L.C",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "A M M H GENERAL CONTRACTING & MAINTENANCE - SOLE PROPRIETORSHIP L.L.C.",
+        "classification": "Brokerage"
+      },
+      {
+        "name": "A ONE PRIME PROPERTIES - L.L.C - S.P.C",
+        "classification": "Brokerage"
+      }
+    ],
+    "Evaluators": [
+      {
+        "name": "3 D APPRAISAL INTERNATIONAL REAL ESTATE VALUATION SERVICES L.L.C - BRANCH OF ABU DHABI 1",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "ABDEL MAJEED MOHAMMAD A M AL KHALIDI",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "ABU DHABI COMMERCIAL ENGINEERING SERVICES  - L.L.C - S.P.C",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "ADAM MOHAMED IBRAHIM IDRIS MOHAMED",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "AHMED A S JABER",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "AHMED M HASAN M MAHDI",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "AHMED W A ALMALLAHI",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "AHMET OZGUR",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "ALBERT CHEN",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "ALEXEY KLETSOV",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "AMER SAKHR MAWAS",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "AMIR NASSIRI",
+        "classification": "Evaluator"
+      }
+    ],
+    "Auctioneer": [],
+    "Surveyors": [
+      {
+        "name": "ABDALLA MOHAMED MOHAMED ELSAYED ELMOKABAR",
+        "classification": "Surveying"
+      },
+      {
+        "name": "ABDELGHANI MAMDOUH ELSAYED MOHAMED TAHA",
+        "classification": "Surveying"
+      },
+      {
+        "name": "ABDULRAHIM AKKAD",
+        "classification": "Surveying"
+      },
+      {
+        "name": "ABDULSAMIE OTHMAN AHMED MOHAMMED",
+        "classification": "Surveying"
+      },
+      {
+        "name": "ABDULSAMIE OTHMAN AHMED MOHAMMED",
+        "classification": "Surveying"
+      },
+      {
+        "name": "ABDUR RAUF MAJEED ABDUL MAJEED KHAN",
+        "classification": "Surveying"
+      },
+      {
+        "name": "AHMED ABDELHAMEED AHMED ALI",
+        "classification": "Surveying"
+      },
+      {
+        "name": "AHMED ABDELRHMAN AHMED DAF ALLA",
+        "classification": "Surveying"
+      },
+      {
+        "name": "AHMED ALI ABDULKARIM AHMED",
+        "classification": "Surveying"
+      },
+      {
+        "name": "AHMED ELOBAED MOHAMMED HAMED",
+        "classification": "Surveying"
+      },
+      {
+        "name": "AHMED MOHAMEDOSMAN SEEDAHMED ELHASSAN",
+        "classification": "Surveying"
+      },
+      {
+        "name": "AHMED MOHAMMED MOHAMMED MOHAMMED",
+        "classification": "Surveying"
+      }
+    ],
+    "Account trustees": [
+      {
+        "name": "ABU DHABI COMMERCIAL BANK",
+        "classification": "Account Keeper"
+      },
+      {
+        "name": "ABU DHABI ISLAMIC BANK",
+        "classification": "Account Keeper"
+      },
+      {
+        "name": "AJMAN BANK - P.S.C. KHALDEYA BRANCH",
+        "classification": "Account Keeper"
+      },
+      {
+        "name": "AL HILAL BANK PJSC",
+        "classification": "Account Keeper"
+      },
+      {
+        "name": "AL MARYAH COMMUNITY BANK L.L.C.",
+        "classification": "Account Keeper"
+      },
+      {
+        "name": "ARAB BANK - P L C",
+        "classification": "Account Keeper"
+      },
+      {
+        "name": "ARAB BANK FOR INVESTMENT FOREIGN TRADE",
+        "classification": "Account Keeper"
+      },
+      {
+        "name": "BANK OF SHARJAH-ABU DHABI BR",
+        "classification": "Account Keeper"
+      },
+      {
+        "name": "BANQUE MISR",
+        "classification": "Account Keeper"
+      },
+      {
+        "name": "COMMERCIAL BANK OF DUBAI - P S C",
+        "classification": "Account Keeper"
+      },
+      {
+        "name": "commercial bank of dubai p s c branch of abu dhabi 2",
+        "classification": "Account Keeper"
+      },
+      {
+        "name": "Commerical Bank International - Corniche Branch2",
+        "classification": "Account Keeper"
       }
     ],
     "Developer": [
@@ -59,11 +234,35 @@
       {
         "name": "ADD  REAL ESTATE - SOLE PROPRIETORSHIP L.L.C.",
         "classification": "Secondary Developer"
+      },
+      {
+        "name": "ADVANCED PRIME  PROPERTIES - L.L.C - S.P.C",
+        "classification": "Secondary Developer"
+      },
+      {
+        "name": "ADVANCED PROPERTIES LIMITED",
+        "classification": "Secondary Developer"
+      },
+      {
+        "name": "AJYAL BURTVILLE REAL ESTATE DEVELOPMENT  - L.L.C",
+        "classification": "Secondary Developer"
+      },
+      {
+        "name": "AL BENAA REAL ESTATE INVESTMENT - PJSC",
+        "classification": "Secondary Developer"
+      },
+      {
+        "name": "AL SADIYAAT DEVELOPMENT AND INVESTMENT COMPANY - SOLE PROPRIETORSHIP L.L.C.",
+        "classification": "Primary Developer"
+      },
+      {
+        "name": "AL TAMOUH  INVESTMENTS  COMPANY LLC",
+        "classification": "Primary Developer"
       }
     ]
   },
   "developer_breakdown": {
-    "Primary Developer": 36,
-    "Secondary Developer": 93
+    "Primary Developer": 35,
+    "Secondary Developer": 94
   }
 }

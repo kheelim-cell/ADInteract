@@ -20,11 +20,11 @@ guessed — the URL value differs from the display label for 3 of 6):
 
 For each profession we just read the "<N> Results" count off the filtered
 page — six page loads instead of paginating ~430 pages of cards. We also
-grab the first page of cards for Broker and Developer as illustrative
-directory samples (company name + sub-label only; license numbers and
-dates live in the per-card detail panel, which is NOT scraped in v1 —
-that's a heavier per-record fetch, deferred to v2 alongside the top-agency
-broker-headcount ranking).
+grab the first page of cards (up to SAMPLE_LIMIT) for every profession type
+as illustrative directory samples (company name + sub-label only; license
+numbers and dates live in the per-card detail panel, which is NOT scraped
+in v1 — that's a heavier per-record fetch, deferred to v2 alongside the
+top-agency broker-headcount ranking).
 
 Output: scripts/data/dari_directory_raw.json
 
@@ -52,7 +52,8 @@ PROFESSIONS = [
     ("Developer", "Developer"),
 ]
 
-SAMPLE_PROFESSIONS = ["Broker", "Developer"]  # which ones to grab card samples for
+SAMPLE_PROFESSIONS = [label for label, _ in PROFESSIONS]  # grab card samples for every profession type
+SAMPLE_LIMIT = 15  # per profession — enough for the page's profession filter + "show more" UI
 
 OUTPUT_DIR = Path("scripts/data")
 OUTPUT_FILE = OUTPUT_DIR / "dari_directory_raw.json"
@@ -179,7 +180,7 @@ def main():
             print(f"  {label}: {n} results")
 
             if label in SAMPLE_PROFESSIONS:
-                samples[label] = scrape_card_samples(page, limit=6)
+                samples[label] = scrape_card_samples(page, limit=SAMPLE_LIMIT)
 
         developer_breakdown = {}
         if counts.get("Developer"):

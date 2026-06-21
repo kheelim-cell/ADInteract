@@ -162,7 +162,14 @@
 
   <!-- ── Section 3: Global benchmarks ──────────────────────────────── -->
   <div>
-    <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">3 · Coverage vs global benchmarks</h3>
+    <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">3 · Coverage vs global benchmarks</h3>
+    <p class="text-xs text-gray-500 mb-3">
+      <strong class="text-gray-600">MSCI</strong> = MSCI/IPD Global Property Index ·
+      <strong class="text-gray-600">JLL</strong> = JLL GRETI (Global Real Estate Transparency Index) ·
+      <strong class="text-gray-600">KF</strong> = Knight Frank (PIRI / global residential indices) ·
+      <strong class="text-gray-600">Y&amp;S</strong> = our Yield &amp; Stability model ·
+      <strong class="text-gray-600">G&amp;EC</strong> = our Growth &amp; Early-Cycle model
+    </p>
     <div class="overflow-x-auto">
       <table class="w-full text-xs border-collapse">
         <thead>

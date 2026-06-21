@@ -1,0 +1,15 @@
+{
+  "_comment": "Manually verified hotlinks to images hosted on a project's own official developer page (not DARI). Each entry's image filename/path or page URL itself names this exact project — not a shared community-level image reused across multiple distinctly-named sub-phases. Hotlink only — never download/rehost. Add to this file only when the specific project name is confirmed against its own specific image.",
+  "images": [
+    {
+      "project_name": "Tara A",
+      "source_page": "https://www.modon.com/real-estate/tara-park",
+      "image_url": "https://www.modon.com/images/modoncorporatelibraries/real-estate/tara-a/hero_image_nightlight_1080x600.jpg?sfvrsn=96a477e_1"
+    },
+    {
+      "project_name": "Gardenia Bay",
+      "source_page": "https://www.aldar.com/properties/en/uae/yas-island/gardenia-bay",
+      "image_url": "https://app-dms-cms-prod-un-001.azurewebsites.net/dmscore/_next/image?url=https%3A%2F%2Fimages1.cmp.optimizely.com%2Fassets%2Fgardenia_header-ltst.webp%2FZz01MWY0MDljZTg0YzUxMWYwYmVjNTcyNGU3Nzc0MGNmMA%3D%3D&w=3840&q=75"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T09:58:00.697656+00:00",
+  "generated_at": "2026-06-21T10:17:38.522870+00:00",
   "as_of_date": "2026-06-19",
   "project_count": 243,
   "total_registered_sales_alltime": 62694,
@@ -22,7 +22,7 @@
       "property_type": null,
       "classification": null,
       "construction_status": null,
-      "image_url": null
+      "image_url": "https://www.modon.com/images/modoncorporatelibraries/real-estate/tara-a/hero_image_nightlight_1080x600.jpg?sfvrsn=96a477e_1"
     },
     {
       "slug": "yas-park-place",
@@ -102,7 +102,7 @@
       "property_type": null,
       "classification": null,
       "construction_status": null,
-      "image_url": null
+      "image_url": "https://app-dms-cms-prod-un-001.azurewebsites.net/dmscore/_next/image?url=https%3A%2F%2Fimages1.cmp.optimizely.com%2Fassets%2Fgardenia_header-ltst.webp%2FZz01MWY0MDljZTg0YzUxMWYwYmVjNTcyNGU3Nzc0MGNmMA%3D%3D&w=3840&q=75"
     },
     {
       "slug": "al-naseem",

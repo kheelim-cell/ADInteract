@@ -35,6 +35,7 @@ import pandas as pd
 PARQUET_TX = "static/data/transactions.parquet"
 OUTPUT     = "src/lib/data/project_pipeline.json"
 DARI_PROJECTS_RAW = Path("scripts/data/dari_projects_raw.json")
+MANUAL_IMAGES = Path("scripts/data/manual_project_images.json")
 
 MIN_SALES_ALLTIME = 5     # projects with fewer off-plan registrations ever are excluded (too thin to read)
 STALE_DAYS        = 120   # no registrations in this many days → flagged stale
@@ -69,6 +70,18 @@ def load_dari_projects() -> dict[str, dict]:
     return lookup
 
 
+def load_manual_images() -> dict[str, str]:
+    """Hotlinks to images on a project's own official developer page, manually
+    verified (exact project name confirmed present on that page) — see
+    scripts/data/manual_project_images.json. Used only as a fallback when DARI
+    has no image for a project; never overrides a DARI match."""
+    if not MANUAL_IMAGES.exists():
+        return {}
+    with open(MANUAL_IMAGES, encoding="utf-8") as f:
+        raw = json.load(f)
+    return {normalize_name(e["project_name"]): e["image_url"] for e in raw.get("images", [])}
+
+
 def fuzzy_match(name_key: str, lookup: dict[str, dict], cutoff: float = 0.84) -> dict | None:
     """Conservative fallback for naming variants the exact join misses
     (e.g. ADREC's 'Bashayer Residences - Phases 3 And 4' vs DARI's
@@ -87,6 +100,10 @@ def main():
         print(f"Loaded {len(dari_lookup)} DARI project records for construction-completion matching")
     else:
         print(f"{DARI_PROJECTS_RAW} not found — completion_pct/type will be null (run fetch_dari_projects.py)")
+
+    manual_images = load_manual_images()
+    if manual_images:
+        print(f"Loaded {len(manual_images)} manually-verified developer-page images")
 
     print(f"Reading {PARQUET_TX}…")
     df = pd.read_parquet(PARQUET_TX)
@@ -160,7 +177,7 @@ def main():
             "property_type": dari_match["type"] if dari_match else None,
             "classification": dari_match["classification"] if dari_match else None,
             "construction_status": dari_match["status"] if dari_match else None,
-            "image_url": dari_match.get("image_url") if dari_match else None,
+            "image_url": (dari_match.get("image_url") if dari_match else None) or manual_images.get(name_key),
         })
 
     # Rank by recent registration velocity — most active pipelines first

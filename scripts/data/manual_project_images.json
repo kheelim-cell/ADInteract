@@ -1,5 +1,5 @@
 {
-  "_comment": "Manually verified hotlinks to images hosted on a project's own official developer page (not DARI). Each entry's image filename/path or page URL itself names this exact project — not a shared community-level image reused across multiple distinctly-named sub-phases. Hotlink only — never download/rehost. Add to this file only when the specific project name is confirmed against its own specific image.",
+  "_comment": "Manually sourced hotlinks to project images for the Off-Plan Pipeline page. The 'Tara A' and 'Gardenia Bay' entries are from the developers' own official pages, verified loading. The royallp.com entries (Royal Lounge Properties, a real-estate brokerage site) were sourced and shortlisted by the user directly, per their explicit instruction to use them as provided.",
   "images": [
     {
       "project_name": "Tara A",
@@ -10,6 +10,181 @@
       "project_name": "Gardenia Bay",
       "source_page": "https://www.aldar.com/properties/en/uae/yas-island/gardenia-bay",
       "image_url": "https://app-dms-cms-prod-un-001.azurewebsites.net/dmscore/_next/image?url=https%3A%2F%2Fimages1.cmp.optimizely.com%2Fassets%2Fgardenia_header-ltst.webp%2FZz01MWY0MDljZTg0YzUxMWYwYmVjNTcyNGU3Nzc0MGNmMA%3D%3D&w=3840&q=75"
+    },
+    {
+      "project_name": "Bashayer Residences - Phases 3 And 4",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/11/Bashayer-Residences-exterior-1024x576.jpg"
+    },
+    {
+      "project_name": "Sunstone",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/11/sunstone-exterior-8-1024x576.jpg"
+    },
+    {
+      "project_name": "Muheira B",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/05/Exterior-Muheira-By-Modon-Apartments-in-Reem-Island-1024x576.jpg"
+    },
+    {
+      "project_name": "Muheira A",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/05/Exterior-Muheira-By-Modon-Apartments-in-Reem-Island-1024x576.jpg"
+    },
+    {
+      "project_name": "Rotana Residences South",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2026/02/Exterior-Rotana-Residences-Al-Reem-Island-by-royal-development-holding-Royal-Lounge-Properties-4-1024x576.jpg"
+    },
+    {
+      "project_name": "Rotana Residences North",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2026/02/Exterior-Rotana-Residences-Al-Reem-Island-by-royal-development-holding-Royal-Lounge-Properties-4-1024x576.jpg"
+    },
+    {
+      "project_name": "Bloom Living - Marbella",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2022/09/Bloom-living-toledo-and-cordoba-royal-lounge-properties-royallp-4-1.jpg"
+    },
+    {
+      "project_name": "Bloom Living - Malaga",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2022/09/Bloom-living-toledo-and-cordoba-royal-lounge-properties-royallp-4-1.jpg"
+    },
+    {
+      "project_name": "Radiant Waves",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2026/01/Exterior-Radiant-Waves-Al-Reem-Island-Royal-Lounge-Properties-6-1024x576.jpg"
+    },
+    {
+      "project_name": "Radiant Atrium",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/10/Exterior-Radiant-atrium-by-radiant-real-estate-on-reem-island-3-1024x576.jpg"
+    },
+    {
+      "project_name": "Rixos Residences Al Reem Island",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2026/02/Exterior-Rixos-Al-Reem-Residences-by-East-and-West-Development-Royal-Lounge-Properties-2-1024x576.jpg"
+    },
+    {
+      "project_name": "Radiant Elite Tower",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/07/Radiant-elite-Exterior-2-2.jpg"
+    },
+    {
+      "project_name": "Radiant Marina Towers",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2024/10/Exterior-Radiant-Marina-Towers-Reem-Island-Apartment-5-1024x576.jpg"
+    },
+    {
+      "project_name": "Seamont Residences By Marriott",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/06/Exterior-Seamont-Autograph-Collection-Residences-By-SAAS-Royal-Development-Holding-on-al-Reem-Island-1024x576.jpg"
+    },
+    {
+      "project_name": "Ansam - Phase 2 - The Golf Collection",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2020/02/Ansam-Yas-Island-Exterior-2-1024x576.jpg"
+    },
+    {
+      "project_name": "Saadiyat Grove - The Heart",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2020/02/The-Source-Saadiyat-Grove-Apartments-4-1024x576.jpg"
+    },
+    {
+      "project_name": "The Beach House",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/06/Exterior-Fahid-Beach-House-by-Aldar-on-Fahid-Island.jpg"
+    },
+    {
+      "project_name": "Radiant Bridges",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2026/03/Exterior-Radiant-Bridges-Reem-Island-Royal-Lounge-Properties-3-1024x576.jpg"
+    },
+    {
+      "project_name": "St. Regis Residences, Al Maryah Island",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/05/Exterior-St-Regis-The-Residences-Al-Maryah-Island-Abu-Dhabi-By-Saas-1024x576.jpg"
+    },
+    {
+      "project_name": "Jubail Island - Ain Al Maha Village",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/03/Ain-Al-Maha-jubail-island.jpg"
+    },
+    {
+      "project_name": "Louvre Residences",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2023/12/Saadiyat-Grove-louvre-residence-Exterior-11-1024x576.jpg"
+    },
+    {
+      "project_name": "Reem Eleven",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2020/02/Exterior-Reem-Eleven-on-Al-Reem-Island-By-Saas-properties-1024x576.jpg"
+    },
+    {
+      "project_name": "Riviera Residences",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/11/Riviera-Residences-exterior-1024x576.jpg"
+    },
+    {
+      "project_name": "Radisson Residences - Tower 1",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/02/Exterior-Saas-Heights-Apartments-Reem-island-1024x576.jpg"
+    },
+    {
+      "project_name": "Saas Heights",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/02/Exterior-Saas-Heights-Apartments-Reem-island-1024x576.jpg"
+    },
+    {
+      "project_name": "Radisson Residences - Tower 2",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/12/Exterior-Radisson-Residences-Reem-Island-by-Royal-Development-Holding-10-1024x576.jpg"
+    },
+    {
+      "project_name": "Bashayer Villas - Phase 1",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/11/Bashayer-Villas-exterior-1-1024x576.jpg"
+    },
+    {
+      "project_name": "Four Seasons Private Residences",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/02/Exterior-Four-Season-Private-Residence-Maryah-Island-1024x576.jpg"
+    },
+    {
+      "project_name": "Reem Eight",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2020/02/Reem-Nine-By-SaaS-Properties-Exterior-5-1024x576.jpg"
+    },
+    {
+      "project_name": "Saadiyat Grove - The Source Residences",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2020/02/The-Source-Saadiyat-Grove-Apartments-4-1024x576.jpg"
+    },
+    {
+      "project_name": "Saadiyat Grove - The Source",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2020/02/The-Source-Saadiyat-Grove-Apartments-4-1024x576.jpg"
+    },
+    {
+      "project_name": "Ramhan Island",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/03/Area-Guide-_-Ramhan-island-Best-Properties-for-Sale-in-Ramhan-Island.jpg"
+    },
+    {
+      "project_name": "Vista 3",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2023/12/Vista-3-Exterior-5-1024x576.jpg"
+    },
+    {
+      "project_name": "Saadiyat Grove - The Arthouse",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2023/12/Saadiyat-Grove-louvre-residence-Exterior-4-1024x576.jpg"
+    },
+    {
+      "project_name": "Ramhan Island - Phase 3",
+      "source_page": "https://royallp.com/",
+      "image_url": "https://royallp.com/wp-content/uploads/2025/03/Area-Guide-_-Ramhan-island-Best-Properties-for-Sale-in-Ramhan-Island.jpg"
     }
   ]
 }

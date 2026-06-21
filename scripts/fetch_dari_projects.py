@@ -16,6 +16,12 @@ reporting. We pair this with our own honest metric (registered-sales
 velocity from ADREC transactions, see compute_project_pipeline.py) instead
 of fabricating a sold percentage.
 
+Each card also carries a real project image (Azure blob storage URL under
+DARI's own public path, e.g. dmtstrguae1dev.blob.core.windows.net/public/
+projects/...) — this is the actual render DARI itself serves to every
+visitor of the public directory, not a third-party asset, so we link to it
+directly (hotlink) rather than copy/rehost it.
+
 Output: scripts/data/dari_projects_raw.json
 
 Usage:
@@ -55,7 +61,7 @@ CARD_RE = re.compile(
 KNOWN_CLASSIFICATIONS = {"Residential", "Mixed use", "Commercial"}
 
 
-def parse_card(text: str) -> dict | None:
+def parse_card(text: str, image_url: str | None) -> dict | None:
     text = text.strip()
     # A handful of cards have no leading "type" line at all — the card
     # starts straight with the status word. Confirmed via manual inspection
@@ -90,6 +96,7 @@ def parse_card(text: str) -> dict | None:
         "classification": classification,
         "district": location_parts[1] if len(location_parts) > 1 else None,
         "community": location_parts[2] if len(location_parts) > 2 else None,
+        "image_url": image_url,
     }
 
 
@@ -133,7 +140,11 @@ def main():
             cards = page.query_selector_all(".MuiCard-root")
             print(f"Page {page_num}/{total_pages}: {len(cards)} cards")
             for c in cards:
-                parsed = parse_card(c.inner_text())
+                img = c.query_selector("img")
+                image_url = img.get_attribute("src") if img else None
+                if image_url and "blob.core.windows.net" not in image_url:
+                    image_url = None  # only trust DARI's own public asset host, not stray icons
+                parsed = parse_card(c.inner_text(), image_url)
                 if parsed:
                     projects.append(parsed)
                 else:

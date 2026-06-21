@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T07:45:47.640530+00:00",
+  "generated_at": "2026-06-21T09:58:00.697656+00:00",
   "as_of_date": "2026-06-19",
   "project_count": 243,
   "total_registered_sales_alltime": 62694,
@@ -21,7 +21,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "yas-park-place",
@@ -40,7 +41,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE690/image-galary/final/577387996974642.png"
     },
     {
       "slug": "bashayer-residences---phases-3-and-4",
@@ -59,7 +61,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "sunstone",
@@ -78,7 +81,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "gardenia-bay",
@@ -97,7 +101,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-naseem",
@@ -116,7 +121,8 @@
       "completion_pct": 29,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE564/image-galary/final/123055213640626.png"
     },
     {
       "slug": "muheira-b",
@@ -135,7 +141,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "rotana-residences-south",
@@ -154,7 +161,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "the-row-saadiyat",
@@ -173,7 +181,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE630/image-galary/final/921830270737099.jfif"
     },
     {
       "slug": "rotana-residences-north",
@@ -192,7 +201,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "yas-riva-residences",
@@ -211,7 +221,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE633/image-galary/final/754962410310505.png"
     },
     {
       "slug": "bashayer-residences",
@@ -230,7 +241,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE649/image-galary/final/807907584034695.jpg"
     },
     {
       "slug": "bloom-living---marbella",
@@ -249,7 +261,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bloom-living---malaga",
@@ -268,7 +281,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "radiant-waves",
@@ -287,7 +301,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "radiant-atrium",
@@ -306,7 +321,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "rixos-residences-al-reem-island",
@@ -325,7 +341,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "juman-3",
@@ -344,7 +361,8 @@
       "completion_pct": 0,
       "property_type": "Villa/Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE645/image-galary/final/626380022604225.png"
     },
     {
       "slug": "reeman-living",
@@ -363,7 +381,8 @@
       "completion_pct": 99,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE204/image-galary/final/103254685065538.JPG"
     },
     {
       "slug": "radiant-elite-tower",
@@ -382,7 +401,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "the-sustainable-city---yas-island---phase-1",
@@ -401,7 +421,8 @@
       "completion_pct": 95,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE197/image-galary/final/382362386275047.jfif"
     },
     {
       "slug": "yas-living",
@@ -420,7 +441,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE626/image-galary/final/392961551320020.avif"
     },
     {
       "slug": "radiant-marina-towers",
@@ -439,7 +461,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "seamont-residences-by-marriott",
@@ -458,7 +481,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "ansam---phase-2---the-golf-collection",
@@ -477,7 +501,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "saadiyat-grove---the-heart",
@@ -496,7 +521,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "the-beach-house",
@@ -515,7 +541,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "royal-park",
@@ -534,7 +561,8 @@
       "completion_pct": 15,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE560/image-galary/final/624585533592234.jfif"
     },
     {
       "slug": "hilton-residences-abu-dhabi-al-raha",
@@ -553,7 +581,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE666/image-galary/final/568190441945946.jpeg"
     },
     {
       "slug": "bloom-living---granada-2",
@@ -572,7 +601,8 @@
       "completion_pct": 2,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE619/image-galary/final/901943740375662.jpg"
     },
     {
       "slug": "bashayer-villas---phase-2",
@@ -591,7 +621,8 @@
       "completion_pct": 0,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE640/image-galary/final/688167697310271.jpg"
     },
     {
       "slug": "juman-2",
@@ -610,7 +641,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE627/image-galary/final/513098072297927.png"
     },
     {
       "slug": "novayas",
@@ -629,7 +661,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE671/image-galary/final/864897913092236.jfif"
     },
     {
       "slug": "radiant-bridges",
@@ -648,7 +681,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "fahid-beach-terraces",
@@ -667,7 +701,8 @@
       "completion_pct": 2,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE617/image-galary/final/610700121430578.jpg"
     },
     {
       "slug": "sha-residences",
@@ -686,7 +721,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE612/image-galary/final/933098716524251.jpg"
     },
     {
       "slug": "st-regis-residences-al-maryah-island",
@@ -705,7 +741,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "reeman-living-2",
@@ -724,7 +761,8 @@
       "completion_pct": 96,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/null/image-galary/final/839002092426731.JPG"
     },
     {
       "slug": "reeman-residences",
@@ -743,7 +781,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE675/image-galary/final/567031836226816.jpg"
     },
     {
       "slug": "noya---phase-4---yas-park-gate",
@@ -762,7 +801,8 @@
       "completion_pct": 95,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE173/image-galary/final/531815618941771.jpeg"
     },
     {
       "slug": "nouran-living",
@@ -781,7 +821,8 @@
       "completion_pct": 6,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE543/image-galary/final/388037531156135.jpeg"
     },
     {
       "slug": "bab-al-qasr-garden-residence-66",
@@ -800,7 +841,8 @@
       "completion_pct": 12,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE648/image-galary/final/213968350675127.jpg"
     },
     {
       "slug": "nawayef-east-b",
@@ -819,7 +861,8 @@
       "completion_pct": 20,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE567/image-galary/final/175655573995710.png"
     },
     {
       "slug": "fay-hills---fay-gardens",
@@ -838,7 +881,8 @@
       "completion_pct": 0,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE638/image-galary/final/331528257312035.jfif"
     },
     {
       "slug": "al-sharq-heights",
@@ -857,7 +901,8 @@
       "completion_pct": 71,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE635/image-galary/final/430828111260460.jpg"
     },
     {
       "slug": "saadiyat-lagoons---phase-2---al-sidr",
@@ -876,7 +921,8 @@
       "completion_pct": 71,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE189/image-galary/final/422307538138987.jpeg"
     },
     {
       "slug": "mayyas-at-the-bay",
@@ -895,7 +941,8 @@
       "completion_pct": 95,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE507/image-galary/final/535968716732845.JPG"
     },
     {
       "slug": "the-fountain-view-residences",
@@ -914,7 +961,8 @@
       "completion_pct": 1,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE582/image-galary/final/950165270161074.jfif"
     },
     {
       "slug": "al-reeman-2---phase-2",
@@ -933,7 +981,8 @@
       "completion_pct": 98,
       "property_type": "Villas",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE154/image-galary/final/909921205610665.jpg"
     },
     {
       "slug": "noya---phase-5---yas-park-views",
@@ -952,7 +1001,8 @@
       "completion_pct": 94,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE175/image-galary/final/408530358859761.jpeg"
     },
     {
       "slug": "sea-la-vie",
@@ -971,7 +1021,8 @@
       "completion_pct": 48,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE206/image-galary/final/779511741400547.jfif"
     },
     {
       "slug": "saadiyat-lagoons---wilds---phase-1",
@@ -990,7 +1041,8 @@
       "completion_pct": 42,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE184/image-galary/final/623268439724145.jfif"
     },
     {
       "slug": "al-reeman-2---phase-3---fay-al-reeman-ii",
@@ -1009,7 +1061,8 @@
       "completion_pct": 82,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE193/image-galary/final/409665758346353.JPG"
     },
     {
       "slug": "al-deem-townhomes",
@@ -1028,7 +1081,8 @@
       "completion_pct": 18,
       "property_type": null,
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE620/image-galary/final/352198647065507.jfif"
     },
     {
       "slug": "manarat-living-i",
@@ -1047,7 +1101,8 @@
       "completion_pct": 34,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE513/image-galary/final/808627386175663.jpeg"
     },
     {
       "slug": "jubail-island---ain-al-maha-village",
@@ -1066,7 +1121,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "louvre-residences",
@@ -1085,7 +1141,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "reem-eleven",
@@ -1104,7 +1161,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "radiant-garden-tower",
@@ -1123,7 +1181,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bal-ghaiylam",
@@ -1142,7 +1201,8 @@
       "completion_pct": 0,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE561/image-galary/final/779728958700176.jpg"
     },
     {
       "slug": "mamsha-gardens-b",
@@ -1161,7 +1221,8 @@
       "completion_pct": 5,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE581/image-galary/final/810421661950558.jfif"
     },
     {
       "slug": "riviera-residences",
@@ -1180,7 +1241,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "manarat-living-ii",
@@ -1199,7 +1261,8 @@
       "completion_pct": 34,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE513/image-galary/final/808627386175663.jpeg"
     },
     {
       "slug": "radisson-residences---tower-1",
@@ -1218,7 +1281,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bloom-living---seville",
@@ -1237,7 +1301,8 @@
       "completion_pct": 57,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE559/image-galary/final/328895923290132.jpeg"
     },
     {
       "slug": "fahid-beach-residences",
@@ -1256,7 +1321,8 @@
       "completion_pct": 5,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE609/image-galary/final/915473643006263.png"
     },
     {
       "slug": "bada-al-jubail---phase-2",
@@ -1275,7 +1341,8 @@
       "completion_pct": 10,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE517/image-galary/final/101663204179405.jpg"
     },
     {
       "slug": "bloom-living---carmona",
@@ -1294,7 +1361,8 @@
       "completion_pct": 4,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE621/image-galary/final/718139098071905.jfif"
     },
     {
       "slug": "bloom-living---toledo",
@@ -1313,7 +1381,8 @@
       "completion_pct": 96,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE174/image-galary/final/774087518992594.jpg"
     },
     {
       "slug": "saas-heights",
@@ -1332,7 +1401,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "radisson-residences---tower-2",
@@ -1351,7 +1421,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bashayer-villas---phase-1",
@@ -1370,7 +1441,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bloom-living---granada-1",
@@ -1389,7 +1461,8 @@
       "completion_pct": 39,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE547/image-galary/final/231205731594864.jpeg"
     },
     {
       "slug": "manarat-living-iii",
@@ -1408,7 +1481,8 @@
       "completion_pct": 5,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE590/image-galary/final/684315633953307.jpeg"
     },
     {
       "slug": "four-seasons-private-residences",
@@ -1427,7 +1501,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "reem-eight",
@@ -1446,7 +1521,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bayn---views-3",
@@ -1465,7 +1541,8 @@
       "completion_pct": 0,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE646/image-galary/final/342965288134685.jpg"
     },
     {
       "slug": "nawayef-village-townhouses",
@@ -1484,7 +1561,8 @@
       "completion_pct": 0,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE603/image-galary/final/110600593283756.jpg"
     },
     {
       "slug": "sama-yas",
@@ -1503,7 +1581,8 @@
       "completion_pct": 33,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE534/image-galary/final/170719071345284.jpg"
     },
     {
       "slug": "saadiyat-grove---the-source-residences",
@@ -1522,7 +1601,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "vida-residences",
@@ -1541,7 +1621,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE612/image-galary/final/933098716524251.jpg"
     },
     {
       "slug": "selina-bay",
@@ -1560,7 +1641,8 @@
       "completion_pct": 10,
       "property_type": "Villa/Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE591/image-galary/final/686731317647104.jpg"
     },
     {
       "slug": "saadiyat-grove---the-source",
@@ -1579,7 +1661,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "ramhan-island",
@@ -1598,7 +1681,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bloom-living---casares",
@@ -1617,7 +1701,8 @@
       "completion_pct": 92,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE505/image-galary/final/451438058619341.jpeg"
     },
     {
       "slug": "muheira-a",
@@ -1636,7 +1721,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "nawayef-west-b",
@@ -1655,7 +1741,8 @@
       "completion_pct": 20,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE567/image-galary/final/175655573995710.png"
     },
     {
       "slug": "vista-3",
@@ -1674,7 +1761,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bloom-living---olvera",
@@ -1693,7 +1781,8 @@
       "completion_pct": 34,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE573/image-galary/final/500030876383744.jpg"
     },
     {
       "slug": "saadiyat-grove---the-arthouse",
@@ -1712,7 +1801,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "saadiyat-lagoons---phase-2---ethir",
@@ -1731,7 +1821,8 @@
       "completion_pct": 43,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE190/image-galary/final/450023647603321.JPG"
     },
     {
       "slug": "bayn---lagoon-2",
@@ -1750,7 +1841,8 @@
       "completion_pct": 0,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE628/image-galary/final/323782482132850.jpg"
     },
     {
       "slug": "nawayef-west-a",
@@ -1769,7 +1861,8 @@
       "completion_pct": 20,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE598/image-galary/final/346393027397321.jfif"
     },
     {
       "slug": "bab-al-qasr-sea-view-residence-51",
@@ -1788,7 +1881,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE688/image-galary/final/107325826944903.jpeg"
     },
     {
       "slug": "ramhan-island---phase-3",
@@ -1807,7 +1901,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "yas-links-luxury-living",
@@ -1826,7 +1921,8 @@
       "completion_pct": 4,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE601/image-galary/final/392812505207333.png"
     },
     {
       "slug": "bab-al-qasr-residence-19",
@@ -1845,7 +1941,8 @@
       "completion_pct": 36,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE596/image-galary/final/346949606464272.jpg"
     },
     {
       "slug": "the-bay-residence",
@@ -1864,7 +1961,8 @@
       "completion_pct": 85,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE185/image-galary/final/188816918814941.jfif"
     },
     {
       "slug": "perla-3",
@@ -1883,7 +1981,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE613/image-galary/final/176507555585817.jfif"
     },
     {
       "slug": "ville-12",
@@ -1902,7 +2001,8 @@
       "completion_pct": 36,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE604/image-galary/final/880869828190603.jpg"
     },
     {
       "slug": "radiant-square",
@@ -1921,7 +2021,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "yas-riva",
@@ -1940,7 +2041,8 @@
       "completion_pct": 8,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE571/image-galary/final/387167167989873.jpg"
     },
     {
       "slug": "icon",
@@ -1959,7 +2061,8 @@
       "completion_pct": 56,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE555/image-galary/final/618487670948955.jpeg"
     },
     {
       "slug": "bab-al-qasr-residence-22",
@@ -1978,7 +2081,8 @@
       "completion_pct": 26,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE580/image-galary/final/778218720869483.jpg"
     },
     {
       "slug": "al-jurf-gardens---phase-13",
@@ -1997,7 +2101,8 @@
       "completion_pct": 100,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE052/image-galary/final/457282901359310.jfif"
     },
     {
       "slug": "ramhan-island---phase-1",
@@ -2016,7 +2121,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "one-saadiyat",
@@ -2035,7 +2141,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE618/image-galary/final/649938974420675.png"
     },
     {
       "slug": "plaza-1",
@@ -2054,7 +2161,8 @@
       "completion_pct": 68,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE519/image-galary/final/914883427021862.jpg"
     },
     {
       "slug": "saadiyat-lagoons---wilds---phase-2",
@@ -2073,7 +2181,8 @@
       "completion_pct": 65,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE188/image-galary/final/524984748548336.jfif"
     },
     {
       "slug": "nawayef-park-views",
@@ -2092,7 +2201,8 @@
       "completion_pct": 8,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE594/image-galary/final/511691495056648.jfif"
     },
     {
       "slug": "mamsha-gardens-a",
@@ -2111,7 +2221,8 @@
       "completion_pct": 3,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE578/image-galary/final/829512941931041.jpg"
     },
     {
       "slug": "mayar",
@@ -2130,7 +2241,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-jurf-gardens---phase-3a",
@@ -2149,7 +2261,8 @@
       "completion_pct": 58,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE549/image-galary/final/408599643454854.JPG"
     },
     {
       "slug": "jacob-co-beachfront-living",
@@ -2168,7 +2281,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "private",
@@ -2187,7 +2301,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "diva-at-the-bay-1",
@@ -2206,7 +2321,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bab-al-qasr-residence-25",
@@ -2225,7 +2341,8 @@
       "completion_pct": 26,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE580/image-galary/final/778218720869483.jpg"
     },
     {
       "slug": "bawabat-al-sharq---phase-3",
@@ -2244,7 +2361,8 @@
       "completion_pct": 100,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE087/image-galary/final/618569815242232.jpg"
     },
     {
       "slug": "bab-al-qasr-residence-31",
@@ -2263,7 +2381,8 @@
       "completion_pct": 36,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE596/image-galary/final/346949606464272.jpg"
     },
     {
       "slug": "juman-1",
@@ -2282,7 +2401,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE607/image-galary/final/389384881932974.png"
     },
     {
       "slug": "brabus-island",
@@ -2301,7 +2421,8 @@
       "completion_pct": 0,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE600/image-galary/final/645305542384195.jpeg"
     },
     {
       "slug": "bab-al-qasr-residence-18",
@@ -2320,7 +2441,8 @@
       "completion_pct": 36,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE596/image-galary/final/346949606464272.jpg"
     },
     {
       "slug": "bab-al-qasr-royal-residence-28",
@@ -2339,7 +2461,8 @@
       "completion_pct": 32,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE593/image-galary/final/575223179110580.jpg"
     },
     {
       "slug": "ramhan-island---phase-5",
@@ -2358,7 +2481,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "diva-at-the-bay-2",
@@ -2377,7 +2501,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "reportage-village",
@@ -2396,7 +2521,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "nawayef-east-a",
@@ -2415,7 +2541,8 @@
       "completion_pct": 20,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE598/image-galary/final/346393027397321.jfif"
     },
     {
       "slug": "bayn---lagoon-1",
@@ -2434,7 +2561,8 @@
       "completion_pct": 0,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE628/image-galary/final/323782482132850.jpg"
     },
     {
       "slug": "solea",
@@ -2453,7 +2581,8 @@
       "completion_pct": 7,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE592/image-galary/final/720851123952740.jfif"
     },
     {
       "slug": "reem-hills---phase-1a",
@@ -2472,7 +2601,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bayn---waterway",
@@ -2491,7 +2621,8 @@
       "completion_pct": 8,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE623/image-galary/final/260172546206534.jpg"
     },
     {
       "slug": "perla-1",
@@ -2510,7 +2641,8 @@
       "completion_pct": 12,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE171/image-galary/final/736169813746830.jfif"
     },
     {
       "slug": "marina-bay-by-damac",
@@ -2529,7 +2661,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "elie-saab-waterfront",
@@ -2548,7 +2681,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "plaza-2",
@@ -2567,7 +2701,8 @@
       "completion_pct": 68,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE519/image-galary/final/914883427021862.jpg"
     },
     {
       "slug": "ville-11",
@@ -2586,7 +2721,8 @@
       "completion_pct": 95,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE533/image-galary/final/630642801275105.jpg"
     },
     {
       "slug": "al-jurf-gardens---phase-14",
@@ -2605,7 +2741,8 @@
       "completion_pct": 100,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE052/image-galary/final/457282901359310.jfif"
     },
     {
       "slug": "perla-2",
@@ -2624,7 +2761,8 @@
       "completion_pct": 86,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE172/image-galary/final/274300699693560.jfif"
     },
     {
       "slug": "reeman-garden-1",
@@ -2643,7 +2781,8 @@
       "completion_pct": 70,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE587/image-galary/final/448968562257769.jfif"
     },
     {
       "slug": "nobu-residences-1",
@@ -2662,7 +2801,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "yamm-beach-villas",
@@ -2681,7 +2821,8 @@
       "completion_pct": 0,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE588/image-galary/final/126041700620042.png"
     },
     {
       "slug": "reem-hills---phase-2d",
@@ -2700,7 +2841,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "jubail-island---phase-3",
@@ -2719,7 +2861,8 @@
       "completion_pct": 100,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE007/image-galary/final/241888435273286.jfif"
     },
     {
       "slug": "rivage",
@@ -2738,7 +2881,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "w-residences-abu-dhabi",
@@ -2757,7 +2901,8 @@
       "completion_pct": 35,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE511/image-galary/final/875268483474352.jfif"
     },
     {
       "slug": "henge-residences",
@@ -2776,7 +2921,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "vista-2",
@@ -2795,7 +2941,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bloom-living---almeria",
@@ -2814,7 +2961,8 @@
       "completion_pct": 21,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE579/image-galary/final/114267916870509.jpeg"
     },
     {
       "slug": "nour-watan",
@@ -2833,7 +2981,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "the-bay-residence-ii",
@@ -2852,7 +3001,8 @@
       "completion_pct": 85,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE185/image-galary/final/188816918814941.jfif"
     },
     {
       "slug": "saadiyat-grove---the-source-terraces",
@@ -2871,7 +3021,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-ghadeer---phase-1",
@@ -2890,7 +3041,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "mamsha-palm",
@@ -2909,7 +3061,8 @@
       "completion_pct": 14,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE574/image-galary/final/953734724072172.jfif"
     },
     {
       "slug": "renad-tower",
@@ -2928,7 +3081,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "thoraya",
@@ -2947,7 +3101,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "the-gate-and-arc-towers",
@@ -2966,7 +3121,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "nobu-residences-2",
@@ -2985,7 +3141,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "sun-sky-boutik-mall",
@@ -3004,7 +3161,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-muneera-island",
@@ -3023,7 +3181,8 @@
       "completion_pct": 100,
       "property_type": "Villa/Building",
       "classification": "Mixed use",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE036/image-galary/final/39.almuneera.PNG"
     },
     {
       "slug": "yas-acres---the-dahlias-2",
@@ -3042,7 +3201,8 @@
       "completion_pct": 100,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE202/image-galary/final/219239809381124.jfif"
     },
     {
       "slug": "al-bandar",
@@ -3061,7 +3221,8 @@
       "completion_pct": 100,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE021/image-galary/final/860786626452793.jpeg"
     },
     {
       "slug": "faya-al-saadiyat",
@@ -3080,7 +3241,8 @@
       "completion_pct": 7,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE575/image-galary/final/187347570851863.JPG"
     },
     {
       "slug": "al-yaqut-tower",
@@ -3099,7 +3261,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bada-al-jubail---phase-1",
@@ -3118,7 +3281,8 @@
       "completion_pct": 57,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE515/image-galary/final/435405770905754.jpg"
     },
     {
       "slug": "waters-edge---precinct-b",
@@ -3137,7 +3301,8 @@
       "completion_pct": 100,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE033/image-galary/final/937214822676034.jpeg"
     },
     {
       "slug": "waters-edge---precinct-a",
@@ -3156,7 +3321,8 @@
       "completion_pct": 100,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE029/image-galary/final/405920428370900.jpeg"
     },
     {
       "slug": "noya---phase-1",
@@ -3175,7 +3341,8 @@
       "completion_pct": 100,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE048/image-galary/final/450478150004965.jfif"
     },
     {
       "slug": "al-reef-2",
@@ -3194,7 +3361,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "jubail-island---phase-2",
@@ -3213,7 +3381,8 @@
       "completion_pct": 100,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE007/image-galary/final/241888435273286.jfif"
     },
     {
       "slug": "noya---phase-2---viva",
@@ -3232,7 +3401,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "oasis-1",
@@ -3251,7 +3421,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "pixel",
@@ -3270,7 +3441,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-ghadeer---phase-2-tala",
@@ -3289,7 +3461,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "hydra-avenue-hydra-towers",
@@ -3308,7 +3481,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "yas-acres---the-magnolias",
@@ -3327,7 +3501,8 @@
       "completion_pct": 100,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE068/image-galary/final/994670676750512.jfif"
     },
     {
       "slug": "mayan",
@@ -3346,7 +3521,8 @@
       "completion_pct": 100,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE023/image-galary/final/Mayan.jpg"
     },
     {
       "slug": "reem-hills---phase-1b",
@@ -3365,7 +3541,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "yas-acres---the-cedars",
@@ -3384,7 +3561,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "the-bridges-towers-1-2-and-3",
@@ -3403,7 +3581,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "the-gate-masdar-city",
@@ -3422,7 +3601,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bloom-living---cordoba",
@@ -3441,7 +3621,8 @@
       "completion_pct": 100,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE161/image-galary/final/269471695208456.JPG"
     },
     {
       "slug": "yas-acres---the-aspens",
@@ -3460,7 +3641,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "reem-hills---phase-2c",
@@ -3479,7 +3661,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "oasis-2",
@@ -3498,7 +3681,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "noya---phase-3---luma",
@@ -3517,7 +3701,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "reem-hills---phase-1c",
@@ -3536,7 +3721,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "reem-hills---phase-2a",
@@ -3555,7 +3741,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "opula-residences",
@@ -3574,7 +3761,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-mahra-residence",
@@ -3593,7 +3781,8 @@
       "completion_pct": 90,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE130/image-galary/final/383925699627984.jfif"
     },
     {
       "slug": "mamsha-al-saadiyat---azure",
@@ -3612,7 +3801,8 @@
       "completion_pct": 100,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE019/image-galary/final/17.Mamsha_Image_3_REV_H.jpg"
     },
     {
       "slug": "al-raha-lofts-1",
@@ -3631,7 +3821,8 @@
       "completion_pct": 100,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE011/image-galary/final/AE011.jpeg"
     },
     {
       "slug": "mamsha-al-saadiyat---turquoise",
@@ -3650,7 +3841,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "reflection-tower-a",
@@ -3669,7 +3861,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "yas-acres---the-dahlias",
@@ -3688,7 +3881,8 @@
       "completion_pct": 100,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE068/image-galary/final/994670676750512.jfif"
     },
     {
       "slug": "reem-hills---phase-2b",
@@ -3707,7 +3901,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "mamsha-al-saadiyat---lilac",
@@ -3726,7 +3921,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "reflection-tower-b",
@@ -3745,7 +3941,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "jubail-terraces",
@@ -3764,7 +3961,8 @@
       "completion_pct": 100,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE183/image-galary/final/161212609062165.jfif"
     },
     {
       "slug": "al-raha-lofts-2",
@@ -3783,7 +3981,8 @@
       "completion_pct": 100,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE012/image-galary/final/AE012.jpeg"
     },
     {
       "slug": "marina-square-paragon-bay-mall",
@@ -3802,7 +4001,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "yas-acres---the-redwoods",
@@ -3821,7 +4021,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "yas-beach-residence",
@@ -3840,7 +4041,8 @@
       "completion_pct": 41,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE085/image-galary/final/319367715519581.jpg"
     },
     {
       "slug": "leonardo-residences",
@@ -3859,7 +4061,8 @@
       "completion_pct": 100,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE010/image-galary/final/31.leonardo.PNG"
     },
     {
       "slug": "saadiyat-reserve---the-dunes",
@@ -3878,7 +4081,8 @@
       "completion_pct": 100,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE065/image-galary/final/758951898631463.jfif"
     },
     {
       "slug": "jawaher-al-saadiyat",
@@ -3897,7 +4101,8 @@
       "completion_pct": 100,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE022/image-galary/final/536490499585721.webp"
     },
     {
       "slug": "merito",
@@ -3916,7 +4121,8 @@
       "completion_pct": 81,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE586/image-galary/final/319514067120945.jpg"
     },
     {
       "slug": "al-reef-downtown",
@@ -3935,7 +4141,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "mangrove-place",
@@ -3954,7 +4161,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "park-view-tower-al-reem-island",
@@ -3973,7 +4181,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-reef-townhouses---arabian-village",
@@ -3992,7 +4201,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "vista-1",
@@ -4011,7 +4221,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "murjan-al-saadiyat",
@@ -4030,7 +4241,8 @@
       "completion_pct": 93,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE508/image-galary/final/132346221182685.jfif"
     },
     {
       "slug": "addax-tower",
@@ -4049,7 +4261,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "vista-del-mar",
@@ -4068,7 +4281,8 @@
       "completion_pct": 71,
       "property_type": "Building",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE554/image-galary/final/812722870448655.jfif"
     },
     {
       "slug": "fairmont-residences-rixos-marina",
@@ -4087,7 +4301,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "park-view-residence-al-saadiyat-island",
@@ -4106,7 +4321,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-jurf-gardens---phase-12",
@@ -4125,7 +4341,8 @@
       "completion_pct": 100,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE052/image-galary/final/457282901359310.jfif"
     },
     {
       "slug": "al-reef-townhouses---contemporary-village",
@@ -4144,7 +4361,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "pud-residence-1",
@@ -4163,7 +4381,8 @@
       "completion_pct": 37,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE625/image-galary/final/396630490444563.jfif"
     },
     {
       "slug": "al-reef-townhouses---desert-village",
@@ -4182,7 +4401,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-reef-townhouses---mediterranean-village",
@@ -4201,7 +4421,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bloom-gardens---al-dhay",
@@ -4220,7 +4441,8 @@
       "completion_pct": 100,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE006/image-galary/final/803249638701160.png"
     },
     {
       "slug": "azure",
@@ -4239,7 +4461,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "reem-nine",
@@ -4258,7 +4481,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "right-capital-1",
@@ -4277,7 +4501,8 @@
       "completion_pct": 97,
       "property_type": "Building",
       "classification": "Mixed use",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE568/image-galary/final/304567853273156.jfif"
     },
     {
       "slug": "al-ghadeer---phase-1-sabil",
@@ -4296,7 +4521,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "reem-five",
@@ -4315,7 +4541,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "marina-bay-towers-city-of-lights",
@@ -4334,7 +4561,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "marsa-al-jubail",
@@ -4353,7 +4581,8 @@
       "completion_pct": 100,
       "property_type": "Villas",
       "classification": "Residential",
-      "construction_status": "New"
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE556/image-galary/final/935177817444403.jpg"
     },
     {
       "slug": "canal-by-m",
@@ -4372,7 +4601,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-muneera-mainland",
@@ -4391,7 +4621,8 @@
       "completion_pct": 100,
       "property_type": "Villa/Building",
       "classification": "Mixed use",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE036/image-galary/final/39.almuneera.PNG"
     },
     {
       "slug": "the-wave",
@@ -4410,7 +4641,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "one-reem-island",
@@ -4429,7 +4661,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-ghadeer---phase-1-waha",
@@ -4448,7 +4681,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-zeina",
@@ -4467,7 +4701,8 @@
       "completion_pct": 100,
       "property_type": "Villa/Building",
       "classification": "Mixed use",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE034/image-galary/final/40.alzeina.PNG"
     },
     {
       "slug": "shams-meera-towers",
@@ -4486,7 +4721,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bloom-soho-square",
@@ -4505,7 +4741,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "nudra-beach-villas",
@@ -4524,7 +4761,8 @@
       "completion_pct": 99,
       "property_type": "Plot",
       "classification": null,
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE004/image-galary/final/123529684802459.jfif"
     },
     {
       "slug": "sky-gardens-tower",
@@ -4543,7 +4781,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "sigma-towers-city-of-lights",
@@ -4562,7 +4801,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "oceanscape",
@@ -4581,7 +4821,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "ohana-villas",
@@ -4600,7 +4841,8 @@
       "completion_pct": null,
       "property_type": null,
       "classification": null,
-      "construction_status": null
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "prestige-towers",
@@ -4619,7 +4861,8 @@
       "completion_pct": 100,
       "property_type": "Building",
       "classification": "Commercial",
-      "construction_status": "Built"
+      "construction_status": "Built",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE105/image-galary/final/2PrestigeTowerC16C17.png"
     }
   ]
 }

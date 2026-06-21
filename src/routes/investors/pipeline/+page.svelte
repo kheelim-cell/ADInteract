@@ -19,6 +19,7 @@
     property_type: string | null;
     classification: string | null;
     construction_status: string | null;
+    image_url: string | null;
   };
 
   type Pipeline = {
@@ -171,15 +172,25 @@
       {@const s = statusMeta(p.status)}
       {@const c = constructionMeta(p.construction_status)}
       <div class="group rounded-2xl border border-gray-200 bg-white overflow-hidden hover:shadow-md hover:border-gray-300 transition-all flex flex-col">
-        <!-- Visual header: no real photo (we don't have one) — a clean placeholder with the construction-status pill, same role as ADX's hero image -->
-        <div class="relative h-28 bg-gradient-to-br from-[#0a2318] to-[#0e2d45] flex items-center justify-center">
+        <!-- Visual header: real project render from DARI's public directory when matched, otherwise a clean placeholder -->
+        <div class="relative h-28 bg-gradient-to-br from-[#0a2318] to-[#0e2d45] flex items-center justify-center overflow-hidden">
+          {#if p.image_url}
+            <img
+              src={p.image_url}
+              alt={p.project_name}
+              loading="lazy"
+              class="absolute inset-0 w-full h-full object-cover"
+              onerror={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+            />
+          {:else}
+            <svg class="w-8 h-8 text-white/25" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21" />
+            </svg>
+          {/if}
           <span class="absolute top-2.5 left-2.5 text-[10px] font-bold text-white rounded-full px-2.5 py-1 {c.cls}">{c.label}</span>
           {#if p.property_type}
             <span class="absolute top-2.5 right-2.5 text-[10px] font-bold text-gray-700 bg-white/90 rounded-full px-2.5 py-1">{p.property_type}</span>
           {/if}
-          <svg class="w-8 h-8 text-white/25" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21" />
-          </svg>
         </div>
 
         <div class="p-4 flex-1 flex flex-col">

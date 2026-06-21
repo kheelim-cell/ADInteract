@@ -10,7 +10,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Ghadeer Al Tayr",
-      "community": "Al Jarf"
+      "community": "Al Jarf",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE707/image-galary/final/671024371563899.png"
     },
     {
       "name": "ICONA Residence",
@@ -20,7 +21,8 @@
       "completion_pct": 20,
       "classification": "Mixed use",
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE701/image-galary/final/931622541563377.jpeg"
     },
     {
       "name": "Al Reeman View",
@@ -30,7 +32,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE698/image-galary/final/136474653876974.jpeg"
     },
     {
       "name": "Marbella",
@@ -40,7 +43,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Zayed City",
-      "community": "MZ12"
+      "community": "MZ12",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE622/image-galary/final/616590293718791.jpg"
     },
     {
       "name": "Malaga",
@@ -50,7 +54,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Zayed City",
-      "community": "MZ12"
+      "community": "MZ12",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE629/image-galary/final/503028045727004.JPG"
     },
     {
       "name": "Yas Park Place",
@@ -60,7 +65,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE690/image-galary/final/577387996974642.png"
     },
     {
       "name": "Bab Al Qasr Sea View Residence 51",
@@ -70,7 +76,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW6"
+      "community": "RBW6",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE688/image-galary/final/107325826944903.jpeg"
     },
     {
       "name": "Reeman Residence 01",
@@ -80,7 +87,8 @@
       "completion_pct": 21,
       "classification": "Mixed use",
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE689/image-galary/final/MainPhoto.jpg"
     },
     {
       "name": "Sila",
@@ -90,7 +98,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_01"
+      "community": "SE45_01",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE682/image-galary/final/912474524328821.jpeg"
     },
     {
       "name": "The Bristol Ramhan Island",
@@ -100,7 +109,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Ramhan Island",
-      "community": "Ramhan Island"
+      "community": "Ramhan Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE684/image-galary/final/358884968247131.jpg"
     },
     {
       "name": "Al Reeman Gate",
@@ -110,7 +120,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE681/image-galary/final/634990735471879.jpeg"
     },
     {
       "name": "Thahr El Bateen",
@@ -120,7 +131,8 @@
       "completion_pct": 0,
       "classification": null,
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE680/image-galary/final/421150993449075.jpg"
     },
     {
       "name": "Emirates Palace Mansions",
@@ -130,7 +142,8 @@
       "completion_pct": 0,
       "classification": null,
       "district": "Al Ras Al Akhdar",
-      "community": "Al Ras Al Akhdar"
+      "community": "Al Ras Al Akhdar",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE674/image-galary/final/803047594987408.jpg"
     },
     {
       "name": "Luluat Marina",
@@ -140,7 +153,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW15"
+      "community": "RBW15",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE678/image-galary/final/852967971645024.png"
     },
     {
       "name": "Reeman Residences",
@@ -150,7 +164,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE675/image-galary/final/567031836226816.jpg"
     },
     {
       "name": "Bayn – Views 3",
@@ -160,7 +175,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Ghantout",
-      "community": "Ghantout"
+      "community": "Ghantout",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE646/image-galary/final/342965288134685.jpg"
     },
     {
       "name": "NOVAYAS",
@@ -170,7 +186,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YN2"
+      "community": "YN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE671/image-galary/final/864897913092236.jfif"
     },
     {
       "name": "Sensi",
@@ -180,7 +197,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDW4"
+      "community": "SDW4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE669/image-galary/final/873112106944105.png"
     },
     {
       "name": "Hilton Residences Abu Dhabi Al Raha",
@@ -190,7 +208,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Rahah",
-      "community": "RBW4"
+      "community": "RBW4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE666/image-galary/final/568190441945946.jpeg"
     },
     {
       "name": "BAIA",
@@ -200,7 +219,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Rahah",
-      "community": "RBW3"
+      "community": "RBW3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE651/image-galary/final/201715606535094.jfif"
     },
     {
       "name": "Bayn – Lagoon 2",
@@ -210,7 +230,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Ghantout",
-      "community": "Ghantout"
+      "community": "Ghantout",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE628/image-galary/final/323782482132850.jpg"
     },
     {
       "name": "Bayn – Views 1",
@@ -220,7 +241,8 @@
       "completion_pct": 0,
       "classification": null,
       "district": "Ghantout",
-      "community": "Ghantout"
+      "community": "Ghantout",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE650/image-galary/final/823213934809736.jpg"
     },
     {
       "name": "Bab Al Qasr Garden Residence 66",
@@ -230,7 +252,8 @@
       "completion_pct": 12,
       "classification": "Mixed use",
       "district": "Khalifa City",
-      "community": "SE45_02"
+      "community": "SE45_02",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE648/image-galary/final/213968350675127.jpg"
     },
     {
       "name": "Bashayer Residences 3&4.",
@@ -240,7 +263,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE649/image-galary/final/807907584034695.jpg"
     },
     {
       "name": "SHA Residential Villas and Apartments",
@@ -250,7 +274,8 @@
       "completion_pct": 20,
       "classification": "Residential",
       "district": "Ghadeer Al Tayr",
-      "community": "Al Jarf"
+      "community": "Al Jarf",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE644/image-galary/final/836422486289005.png"
     },
     {
       "name": "JUMAN 3",
@@ -260,7 +285,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW15"
+      "community": "RBW15",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE645/image-galary/final/626380022604225.png"
     },
     {
       "name": "Fay Hills (Fay Gardens)",
@@ -270,7 +296,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_01"
+      "community": "SE45_01",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE638/image-galary/final/331528257312035.jfif"
     },
     {
       "name": "Al Kaser",
@@ -280,7 +307,8 @@
       "completion_pct": 37,
       "classification": null,
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE642/image-galary/final/756719259908497.jfif"
     },
     {
       "name": "Amwaj 2",
@@ -290,7 +318,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW3"
+      "community": "RBW3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE641/image-galary/final/426845241838262.jpg"
     },
     {
       "name": "Yas Riva Residences",
@@ -300,7 +329,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE633/image-galary/final/754962410310505.png"
     },
     {
       "name": "Bashayer Residences 1&2.",
@@ -310,7 +340,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE639/image-galary/final/118019180691799.jpg"
     },
     {
       "name": "Bashayer Villas 2",
@@ -320,7 +351,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE640/image-galary/final/688167697310271.jpg"
     },
     {
       "name": "Ramhan Island Development - Phase 4",
@@ -330,7 +362,8 @@
       "completion_pct": 31,
       "classification": "Residential",
       "district": "Ramhan Island",
-      "community": "Ramhan Island"
+      "community": "Ramhan Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE636/image-galary/final/697311594346409.jfif"
     },
     {
       "name": "Ramhan Island Development - Phase 5",
@@ -340,7 +373,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Ramhan Island",
-      "community": "Ramhan Island"
+      "community": "Ramhan Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE637/image-galary/final/447927121073411.jpg"
     },
     {
       "name": "Al Sharq Heights",
@@ -350,7 +384,8 @@
       "completion_pct": 71,
       "classification": "Residential",
       "district": "Bani Yas",
-      "community": "EB2_06"
+      "community": "EB2_06",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE635/image-galary/final/430828111260460.jpg"
     },
     {
       "name": "STELLAR BY ELIE SAAB",
@@ -360,7 +395,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE634/image-galary/final/164766161503226.jpeg"
     },
     {
       "name": "The Private Residences Saadiyat Beach",
@@ -370,7 +406,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN3"
+      "community": "SDN3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE632/image-galary/final/717818564581837.jfif"
     },
     {
       "name": "The Row Saadiyat",
@@ -380,7 +417,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN8"
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE630/image-galary/final/921830270737099.jfif"
     },
     {
       "name": "Ain Al Maha Village",
@@ -390,7 +428,8 @@
       "completion_pct": 34,
       "classification": "Residential",
       "district": "Al Jubail Island",
-      "community": "JS"
+      "community": "JS",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/null/image-galary/final/549099012146236.jfif"
     },
     {
       "name": "JUMAN 2",
@@ -400,7 +439,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Rahah",
-      "community": "RBW15"
+      "community": "RBW15",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE627/image-galary/final/513098072297927.png"
     },
     {
       "name": "YAS Living",
@@ -410,7 +450,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE626/image-galary/final/392961551320020.avif"
     },
     {
       "name": "PUD Residence 1",
@@ -420,7 +461,8 @@
       "completion_pct": 37,
       "classification": "Mixed use",
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE625/image-galary/final/396630490444563.jfif"
     },
     {
       "name": "Bayn – Waterway",
@@ -430,7 +472,8 @@
       "completion_pct": 8,
       "classification": "Residential",
       "district": "Ghantout",
-      "community": "Ghantout"
+      "community": "Ghantout",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE623/image-galary/final/260172546206534.jpg"
     },
     {
       "name": "Bayn – Lagoon",
@@ -440,7 +483,8 @@
       "completion_pct": 5,
       "classification": "Residential",
       "district": "Ghantout",
-      "community": "Ghantout"
+      "community": "Ghantout",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE624/image-galary/final/242953461410683.jpeg"
     },
     {
       "name": "Bloom Living (Carmona)",
@@ -450,7 +494,8 @@
       "completion_pct": 4,
       "classification": "Residential",
       "district": "Zayed City",
-      "community": "MZ12"
+      "community": "MZ12",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE621/image-galary/final/718139098071905.jfif"
     },
     {
       "name": "Al Deem Townhomes",
@@ -460,7 +505,8 @@
       "completion_pct": 18,
       "classification": "Residential",
       "district": "Al Bahyah",
-      "community": "Ba Al Ghaiylam"
+      "community": "Ba Al Ghaiylam",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE620/image-galary/final/352198647065507.jfif"
     },
     {
       "name": "Bloom Living (Granada 2)",
@@ -470,7 +516,8 @@
       "completion_pct": 2,
       "classification": "Residential",
       "district": "Zayed City",
-      "community": "MZ12"
+      "community": "MZ12",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE619/image-galary/final/901943740375662.jpg"
     },
     {
       "name": "Fahid Beach Terraces",
@@ -480,7 +527,8 @@
       "completion_pct": 2,
       "classification": "Mixed use",
       "district": "Fahid Island",
-      "community": "Fahid Island"
+      "community": "Fahid Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE617/image-galary/final/610700121430578.jpg"
     },
     {
       "name": "One Saadiyat",
@@ -490,7 +538,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN8"
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE618/image-galary/final/649938974420675.png"
     },
     {
       "name": "The Beach House Fahid",
@@ -500,7 +549,8 @@
       "completion_pct": 2,
       "classification": "Mixed use",
       "district": "Fahid Island",
-      "community": "Fahid Island"
+      "community": "Fahid Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE615/image-galary/final/314870722258937.png"
     },
     {
       "name": "NOUR BUILDING",
@@ -510,7 +560,8 @@
       "completion_pct": 69,
       "classification": "Mixed use",
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE616/image-galary/final/880868984797724.jpg"
     },
     {
       "name": "Bab Al Qasr Canal View Residence 22",
@@ -520,7 +571,8 @@
       "completion_pct": 14,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW3"
+      "community": "RBW3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE614/image-galary/final/147208411421447.jpg"
     },
     {
       "name": "Perla 3",
@@ -530,7 +582,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE613/image-galary/final/176507555585817.jfif"
     },
     {
       "name": "V Residences",
@@ -540,7 +593,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDW4"
+      "community": "SDW4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE612/image-galary/final/933098716524251.jpg"
     },
     {
       "name": "Bashayer Villas",
@@ -550,7 +604,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE611/image-galary/final/117320409719403.jfif"
     },
     {
       "name": "Faya Al Saadiyat ||",
@@ -560,7 +615,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN2"
+      "community": "SDN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE610/image-galary/final/131804520575842.jfif"
     },
     {
       "name": "Fahid Beach Residences",
@@ -570,7 +626,8 @@
       "completion_pct": 5,
       "classification": "Mixed use",
       "district": "Fahid Island",
-      "community": "Fahid Island"
+      "community": "Fahid Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE609/image-galary/final/915473643006263.png"
     },
     {
       "name": "Wadeem",
@@ -580,7 +637,8 @@
       "completion_pct": 0,
       "classification": null,
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE608/image-galary/final/246594645054783.jpg"
     },
     {
       "name": "JUMAN 1",
@@ -590,7 +648,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW15"
+      "community": "RBW15",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE607/image-galary/final/389384881932974.png"
     },
     {
       "name": "Ohana Development Jacob & Co Beachfront Living",
@@ -600,7 +659,8 @@
       "completion_pct": 6,
       "classification": "Mixed use",
       "district": "Ghadeer Al Tayr",
-      "community": "Al Jarf"
+      "community": "Al Jarf",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE606/image-galary/final/270388965500642.jfif"
     },
     {
       "name": "Bab Al Qasr Resort Residence 19",
@@ -610,7 +670,8 @@
       "completion_pct": 31,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_05"
+      "community": "SE45_05",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE605/image-galary/final/489965656979596.jpg"
     },
     {
       "name": "Ville 12",
@@ -620,7 +681,8 @@
       "completion_pct": 36,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_01"
+      "community": "SE45_01",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE604/image-galary/final/880869828190603.jpg"
     },
     {
       "name": "Nawayef Village Townhouses",
@@ -630,7 +692,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE603/image-galary/final/110600593283756.jpg"
     },
     {
       "name": "Opula Residences - Yas Bay",
@@ -640,7 +703,8 @@
       "completion_pct": 2,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE602/image-galary/final/370048600164037.jpg"
     },
     {
       "name": "Yas Links Luxury Living",
@@ -650,7 +714,8 @@
       "completion_pct": 4,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS3_06"
+      "community": "YS3_06",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE601/image-galary/final/392812505207333.png"
     },
     {
       "name": "Henge Residences By NORD",
@@ -660,7 +725,8 @@
       "completion_pct": 9,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDW4"
+      "community": "SDW4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE599/image-galary/final/885911799102227.jfif"
     },
     {
       "name": "Brabus Island",
@@ -670,7 +736,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW6"
+      "community": "RBW6",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE600/image-galary/final/645305542384195.jpeg"
     },
     {
       "name": "Nawayef West A",
@@ -680,7 +747,8 @@
       "completion_pct": 20,
       "classification": "Residential",
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE598/image-galary/final/346393027397321.jfif"
     },
     {
       "name": "NAWEYAF EAST B",
@@ -690,7 +758,8 @@
       "completion_pct": 23,
       "classification": "Residential",
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE597/image-galary/final/249352598479920.jpg"
     },
     {
       "name": "Bab Al Qasr Residence 31",
@@ -700,7 +769,8 @@
       "completion_pct": 36,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE596/image-galary/final/346949606464272.jpg"
     },
     {
       "name": "NAWEYAF EAST A",
@@ -710,7 +780,8 @@
       "completion_pct": 23,
       "classification": "Residential",
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE595/image-galary/final/153594011085191.jfif"
     },
     {
       "name": "Nawayef Park Views",
@@ -720,7 +791,8 @@
       "completion_pct": 8,
       "classification": "Mixed use",
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE594/image-galary/final/511691495056648.jfif"
     },
     {
       "name": "Bab Al Qasr Resort Residence 18",
@@ -730,7 +802,8 @@
       "completion_pct": 32,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_05"
+      "community": "SE45_05",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE593/image-galary/final/575223179110580.jpg"
     },
     {
       "name": "SOLEA",
@@ -740,7 +813,8 @@
       "completion_pct": 7,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDE2"
+      "community": "SDE2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE592/image-galary/final/720851123952740.jfif"
     },
     {
       "name": "Manarat Living III",
@@ -750,7 +824,8 @@
       "completion_pct": 5,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN8"
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE590/image-galary/final/684315633953307.jpeg"
     },
     {
       "name": "Selina Bay",
@@ -760,7 +835,8 @@
       "completion_pct": 10,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE591/image-galary/final/686731317647104.jpg"
     },
     {
       "name": "Telal Al Salam 2",
@@ -770,7 +846,8 @@
       "completion_pct": 67,
       "classification": "Residential",
       "district": "Al Faqa'",
-      "community": "SHIBAK 3"
+      "community": "SHIBAK 3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE589/image-galary/final/389934954571572.jpg"
     },
     {
       "name": "Reeman Garden 1",
@@ -780,7 +857,8 @@
       "completion_pct": 70,
       "classification": "Mixed use",
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE587/image-galary/final/448968562257769.jfif"
     },
     {
       "name": "Yamm Beach Villas",
@@ -790,7 +868,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE588/image-galary/final/126041700620042.png"
     },
     {
       "name": "Merito",
@@ -800,7 +879,8 @@
       "completion_pct": 81,
       "classification": "Mixed use",
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE586/image-galary/final/319514067120945.jpg"
     },
     {
       "name": "Masyaf",
@@ -810,7 +890,8 @@
       "completion_pct": 0,
       "classification": null,
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE585/image-galary/final/371267559868277.jpg"
     },
     {
       "name": "The Fountain View Residences",
@@ -820,7 +901,8 @@
       "completion_pct": 1,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN8"
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE582/image-galary/final/950165270161074.jfif"
     },
     {
       "name": "Bab Al Qasr residence 25",
@@ -830,7 +912,8 @@
       "completion_pct": 26,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE580/image-galary/final/778218720869483.jpg"
     },
     {
       "name": "Mamsha Gardens B",
@@ -840,7 +923,8 @@
       "completion_pct": 5,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE581/image-galary/final/810421661950558.jfif"
     },
     {
       "name": "Bloom Living (Almeria)",
@@ -850,7 +934,8 @@
       "completion_pct": 21,
       "classification": "Residential",
       "district": "Zayed City",
-      "community": "MZ12"
+      "community": "MZ12",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE579/image-galary/final/114267916870509.jpeg"
     },
     {
       "name": "Mamsha Gardens A",
@@ -860,7 +945,8 @@
       "completion_pct": 3,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE578/image-galary/final/829512941931041.jpg"
     },
     {
       "name": "Reportage Village Khalifa",
@@ -870,7 +956,8 @@
       "completion_pct": 62,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SW1"
+      "community": "SW1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE577/image-galary/final/657566895288631.jpg"
     },
     {
       "name": "Faya Al Saadiyat",
@@ -880,7 +967,8 @@
       "completion_pct": 7,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN2"
+      "community": "SDN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE575/image-galary/final/187347570851863.JPG"
     },
     {
       "name": "MAMSHA PALM",
@@ -890,7 +978,8 @@
       "completion_pct": 14,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE574/image-galary/final/953734724072172.jfif"
     },
     {
       "name": "Bloom Living (Olvera )",
@@ -900,7 +989,8 @@
       "completion_pct": 34,
       "classification": "Residential",
       "district": "Zayed City",
-      "community": "MZ12"
+      "community": "MZ12",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE573/image-galary/final/500030876383744.jpg"
     },
     {
       "name": "Yas Riva",
@@ -910,7 +1000,8 @@
       "completion_pct": 8,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE571/image-galary/final/387167167989873.jpg"
     },
     {
       "name": "Right Capital 1",
@@ -920,7 +1011,8 @@
       "completion_pct": 97,
       "classification": "Mixed use",
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE568/image-galary/final/304567853273156.jfif"
     },
     {
       "name": "Nawayef West B",
@@ -930,7 +1022,8 @@
       "completion_pct": 20,
       "classification": "Residential",
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE567/image-galary/final/175655573995710.png"
     },
     {
       "name": "OHANA REAL ESTATE DEVELOPMENT AND CONSTRUCTION VILLAS PHASE - 3.",
@@ -940,7 +1033,8 @@
       "completion_pct": 77,
       "classification": "Residential",
       "district": "Ghadeer Al Tayr",
-      "community": "Al Jarf"
+      "community": "Al Jarf",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE565/image-galary/final/527152184206605.jpg"
     },
     {
       "name": "Al Naseem",
@@ -950,7 +1044,8 @@
       "completion_pct": 29,
       "classification": "Residential",
       "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island"
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE564/image-galary/final/123055213640626.png"
     },
     {
       "name": "Telal Al Salam 1",
@@ -960,7 +1055,8 @@
       "completion_pct": 19,
       "classification": "Residential",
       "district": "Al Faqa'",
-      "community": "SHIBAK 3"
+      "community": "SHIBAK 3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE563/image-galary/final/315276375358225.jpg"
     },
     {
       "name": "BAL GHAIYLAM",
@@ -970,7 +1066,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Bahyah",
-      "community": "Ba Al Ghaiylam"
+      "community": "Ba Al Ghaiylam",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE561/image-galary/final/779728958700176.jpg"
     },
     {
       "name": "The Arthouse",
@@ -980,7 +1077,8 @@
       "completion_pct": 6,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN8"
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE562/image-galary/final/320163649900648.jfif"
     },
     {
       "name": "Royal Park",
@@ -990,7 +1088,8 @@
       "completion_pct": 15,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_02"
+      "community": "SE45_02",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE560/image-galary/final/624585533592234.jfif"
     },
     {
       "name": "Bloom Living (Seville)",
@@ -1000,7 +1099,8 @@
       "completion_pct": 57,
       "classification": "Residential",
       "district": "Zayed City",
-      "community": "MZ12"
+      "community": "MZ12",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE559/image-galary/final/328895923290132.jpeg"
     },
     {
       "name": "Ramhan Island Development - Phase 3",
@@ -1010,7 +1110,8 @@
       "completion_pct": 26,
       "classification": null,
       "district": "Ramhan Island",
-      "community": "Ramhan Island"
+      "community": "Ramhan Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE557/image-galary/final/961095189131803.jfif"
     },
     {
       "name": "Marsa Al Jubail",
@@ -1020,7 +1121,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Jubail Island",
-      "community": "JS"
+      "community": "JS",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE556/image-galary/final/935177817444403.jpg"
     },
     {
       "name": "Icon",
@@ -1030,7 +1132,8 @@
       "completion_pct": 56,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE555/image-galary/final/618487670948955.jpeg"
     },
     {
       "name": "Vista Del Mar",
@@ -1040,7 +1143,8 @@
       "completion_pct": 71,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE554/image-galary/final/812722870448655.jfif"
     },
     {
       "name": "THE SOURCE TERRACES",
@@ -1050,7 +1154,8 @@
       "completion_pct": 21,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN8"
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE552/image-galary/final/249264094196815.jpg"
     },
     {
       "name": "Al Jurf Gardens Phase 3 A",
@@ -1060,7 +1165,8 @@
       "completion_pct": 58,
       "classification": "Residential",
       "district": "Ghadeer Al Tayr",
-      "community": "Al Jarf"
+      "community": "Al Jarf",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE549/image-galary/final/408599643454854.JPG"
     },
     {
       "name": "The Bay Residence 11",
@@ -1070,7 +1176,8 @@
       "completion_pct": 1,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE548/image-galary/final/156487499430259.jfif"
     },
     {
       "name": "Bloom Living (Granada 1)",
@@ -1080,7 +1187,8 @@
       "completion_pct": 39,
       "classification": "Residential",
       "district": "Zayed City",
-      "community": "MZ12"
+      "community": "MZ12",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE547/image-galary/final/231205731594864.jpeg"
     },
     {
       "name": "Golden Meadows",
@@ -1090,7 +1198,8 @@
       "completion_pct": 4,
       "classification": null,
       "district": "Al Faqa'",
-      "community": "SHIBAK 3"
+      "community": "SHIBAK 3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE546/image-galary/final/845438941186834.jfif"
     },
     {
       "name": "Nouran Living",
@@ -1100,7 +1209,8 @@
       "completion_pct": 6,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDW4"
+      "community": "SDW4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE543/image-galary/final/388037531156135.jpeg"
     },
     {
       "name": "Ranches",
@@ -1110,7 +1220,8 @@
       "completion_pct": 32,
       "classification": null,
       "district": "Al Faqa'",
-      "community": "SHIBAK 1"
+      "community": "SHIBAK 1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE544/image-galary/final/216896956151570.jfif"
     },
     {
       "name": "sun valley",
@@ -1120,7 +1231,8 @@
       "completion_pct": 7,
       "classification": null,
       "district": "Al Faqa'",
-      "community": "SHIBAK 3"
+      "community": "SHIBAK 3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE545/image-galary/final/622264210851702.jpg"
     },
     {
       "name": "Royal palms",
@@ -1130,7 +1242,8 @@
       "completion_pct": 16,
       "classification": null,
       "district": "Al Faqa'",
-      "community": "SHIBAK 3"
+      "community": "SHIBAK 3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE541/image-galary/final/936003197948150.jpg"
     },
     {
       "name": "park vista",
@@ -1140,7 +1253,8 @@
       "completion_pct": 5,
       "classification": null,
       "district": "Al Faqa'",
-      "community": "SHIBAK 3"
+      "community": "SHIBAK 3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE542/image-galary/final/680693666491821.jpg"
     },
     {
       "name": "Gazal Parkview",
@@ -1150,7 +1264,8 @@
       "completion_pct": 18,
       "classification": null,
       "district": "Al Faqa'",
-      "community": "SHIBAK 1"
+      "community": "SHIBAK 1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE539/image-galary/final/220518660033069.jpeg"
     },
     {
       "name": "Mangrove Village",
@@ -1160,7 +1275,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Rabdan",
-      "community": "RB15"
+      "community": "RB15",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE540/image-galary/final/210422885781625.jpeg"
     },
     {
       "name": "Nakheel Oasis",
@@ -1170,7 +1286,8 @@
       "completion_pct": 23,
       "classification": null,
       "district": "Al Faqa'",
-      "community": "SHIBAK 1"
+      "community": "SHIBAK 1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE538/image-galary/final/879809724364740.JPG"
     },
     {
       "name": "Arabian hills estate",
@@ -1180,7 +1297,8 @@
       "completion_pct": 31,
       "classification": null,
       "district": "Al Faqa'",
-      "community": "SHIBAK 1"
+      "community": "SHIBAK 1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE535/image-galary/final/223026458799246.png"
     },
     {
       "name": "Dunes Heights",
@@ -1190,7 +1308,8 @@
       "completion_pct": 43,
       "classification": null,
       "district": "Al Faqa'",
-      "community": "SHIBAK 1"
+      "community": "SHIBAK 1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE537/image-galary/final/645019924542623.jpg"
     },
     {
       "name": "SAMA YAS",
@@ -1200,7 +1319,8 @@
       "completion_pct": 33,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE534/image-galary/final/170719071345284.jpg"
     },
     {
       "name": "Ville 11",
@@ -1210,7 +1330,8 @@
       "completion_pct": 95,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_01"
+      "community": "SE45_01",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE533/image-galary/final/630642801275105.jpg"
     },
     {
       "name": "Plaza 2",
@@ -1220,7 +1341,8 @@
       "completion_pct": 68,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_01"
+      "community": "SE45_01",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE519/image-galary/final/914883427021862.jpg"
     },
     {
       "name": "Bada Al Jubail 1",
@@ -1230,7 +1352,8 @@
       "completion_pct": 57,
       "classification": null,
       "district": "Al Jubail Island",
-      "community": "JS"
+      "community": "JS",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE515/image-galary/final/435405770905754.jpg"
     },
     {
       "name": "Bada Al Jubail 2",
@@ -1240,7 +1363,8 @@
       "completion_pct": 10,
       "classification": null,
       "district": "Al Jubail Island",
-      "community": "JS"
+      "community": "JS",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE517/image-galary/final/101663204179405.jpg"
     },
     {
       "name": "Manarat Living II",
@@ -1250,7 +1374,8 @@
       "completion_pct": 34,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN8"
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE513/image-galary/final/808627386175663.jpeg"
     },
     {
       "name": "Nobu Residences Abu Dhabi 1",
@@ -1260,7 +1385,8 @@
       "completion_pct": 31,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE512/image-galary/final/110097839562427.jpeg"
     },
     {
       "name": "NOBU RESIDENCES ABU DHABI 2",
@@ -1270,7 +1396,8 @@
       "completion_pct": 35,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE511/image-galary/final/875268483474352.jfif"
     },
     {
       "name": "Murjan Al Saadiyat",
@@ -1280,7 +1407,8 @@
       "completion_pct": 93,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN3"
+      "community": "SDN3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE508/image-galary/final/132346221182685.jfif"
     },
     {
       "name": "Mayyas At The Bay",
@@ -1290,7 +1418,8 @@
       "completion_pct": 95,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE507/image-galary/final/535968716732845.JPG"
     },
     {
       "name": "Gardenia",
@@ -1300,7 +1429,8 @@
       "completion_pct": 11,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YS1"
+      "community": "YS1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE506/image-galary/final/486834196831778.jpg"
     },
     {
       "name": "Bloom Living (Casares)",
@@ -1310,7 +1440,8 @@
       "completion_pct": 92,
       "classification": "Residential",
       "district": "Zayed City",
-      "community": "MZ12"
+      "community": "MZ12",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE505/image-galary/final/451438058619341.jpeg"
     },
     {
       "name": "Ramhan Island Development project phase 1",
@@ -1320,7 +1451,8 @@
       "completion_pct": 38,
       "classification": null,
       "district": "Ramhan Island",
-      "community": "Ramhan Island"
+      "community": "Ramhan Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE504/image-galary/final/733209256705894.jpg"
     },
     {
       "name": "Ramhan Development",
@@ -1330,7 +1462,8 @@
       "completion_pct": 37,
       "classification": null,
       "district": "Ramhan Island",
-      "community": "Ramhan Island"
+      "community": "Ramhan Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE502/image-galary/final/266191900231410.jpeg"
     },
     {
       "name": "THE VILLAGES ZONE D",
@@ -1340,7 +1473,8 @@
       "completion_pct": 0,
       "classification": null,
       "district": "Ain Al Faydah",
-      "community": "AIN AL FAYDA2"
+      "community": "AIN AL FAYDA2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/null/image-galary/final/852452135244446.jpg"
     },
     {
       "name": "The Source Residences",
@@ -1350,7 +1484,8 @@
       "completion_pct": 27,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN8"
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE500/image-galary/final/334312593034910.jfif"
     },
     {
       "name": "Hydra Village - Zone 8",
@@ -1360,7 +1495,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Rawdat Al Reef",
-      "community": "Rawdat Al Reef"
+      "community": "Rawdat Al Reef",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/null/image-galary/final/440387631417884.jpg"
     },
     {
       "name": "Qaryat Al Hidd - Sunrise",
@@ -1370,7 +1506,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN7"
+      "community": "SDN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/null/image-galary/final/781840531766824.png"
     },
     {
       "name": "AJWAN TOWERS",
@@ -1380,7 +1517,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/null/image-galary/final/962485358387646.png"
     },
     {
       "name": "Bloom Arjaan by Rotana",
@@ -1390,7 +1528,8 @@
       "completion_pct": 99,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDW4"
+      "community": "SDW4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/null/image-galary/final/131054701791585.jfif"
     },
     {
       "name": "Reeman Living 2",
@@ -1400,7 +1539,8 @@
       "completion_pct": 96,
       "classification": "Residential",
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/null/image-galary/final/839002092426731.JPG"
     },
     {
       "name": "C3 Garden",
@@ -1410,7 +1550,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN7"
+      "community": "SDN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE496/image-galary/final/623491898204434.png"
     },
     {
       "name": "Yas Waterfront South",
@@ -1420,7 +1561,8 @@
       "completion_pct": 62,
       "classification": null,
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/null/image-galary/final/730269518545425.jfif"
     },
     {
       "name": "THE SOURCE",
@@ -1430,7 +1572,8 @@
       "completion_pct": 36,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN8"
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE207/image-galary/final/202237841527783.jfif"
     },
     {
       "name": "Sea La Vie",
@@ -1440,7 +1583,8 @@
       "completion_pct": 48,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE206/image-galary/final/779511741400547.jfif"
     },
     {
       "name": "Reeman Living",
@@ -1450,7 +1594,8 @@
       "completion_pct": 99,
       "classification": "Mixed use",
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE204/image-galary/final/103254685065538.JPG"
     },
     {
       "name": "Al Jurf Gardens 1.4",
@@ -1460,7 +1605,8 @@
       "completion_pct": 91,
       "classification": "Residential",
       "district": "Ghadeer Al Tayr",
-      "community": "Al Jarf"
+      "community": "Al Jarf",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE203/image-galary/final/782682527681352.jfif"
     },
     {
       "name": "Yas Acres - The Dahlias 2",
@@ -1470,7 +1616,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Yas Island",
-      "community": "YN5"
+      "community": "YN5",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE202/image-galary/final/219239809381124.jfif"
     },
     {
       "name": "The Sustainable City Yas Island - Phase 1",
@@ -1480,7 +1627,8 @@
       "completion_pct": 95,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE197/image-galary/final/382362386275047.jfif"
     },
     {
       "name": "AL Reeman 2 Phase 3 - Fay AL Reeman II",
@@ -1490,7 +1638,8 @@
       "completion_pct": 82,
       "classification": null,
       "district": "Al Shamkhah",
-      "community": "SH35"
+      "community": "SH35",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE193/image-galary/final/409665758346353.JPG"
     },
     {
       "name": "Manarat Living",
@@ -1500,7 +1649,8 @@
       "completion_pct": 79,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN8"
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE192/image-galary/final/324748098160627.jfif"
     },
     {
       "name": "Qaryat Al Hidd - Sunset",
@@ -1510,7 +1660,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN7"
+      "community": "SDN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE191/image-galary/final/AE191.jpeg"
     },
     {
       "name": "Saadiyat Lagoons Phase 2 - ETHIR",
@@ -1520,7 +1671,8 @@
       "completion_pct": 43,
       "classification": null,
       "district": "Al Saadiyat Island",
-      "community": "SDE3"
+      "community": "SDE3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE190/image-galary/final/450023647603321.JPG"
     },
     {
       "name": "Saadiyat Lagoons Phase 2- AL SIDR",
@@ -1530,7 +1682,8 @@
       "completion_pct": 71,
       "classification": null,
       "district": "Al Saadiyat Island",
-      "community": "SDE3"
+      "community": "SDE3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE189/image-galary/final/422307538138987.jpeg"
     },
     {
       "name": "Saadiyat Lagoons - Wilds Phase 2",
@@ -1540,7 +1693,8 @@
       "completion_pct": 65,
       "classification": null,
       "district": "Al Saadiyat Island",
-      "community": "SDE3"
+      "community": "SDE3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE188/image-galary/final/524984748548336.jfif"
     },
     {
       "name": "Merzab Community",
@@ -1550,7 +1704,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Al Samhah",
-      "community": "Al Samhah East Old"
+      "community": "Al Samhah East Old",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE187/image-galary/final/431949519537989.png"
     },
     {
       "name": "The Bay Residence",
@@ -1560,7 +1715,8 @@
       "completion_pct": 85,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE185/image-galary/final/188816918814941.jfif"
     },
     {
       "name": "Saadiyat Lagoons - Wilds Phase 1",
@@ -1570,7 +1726,8 @@
       "completion_pct": 42,
       "classification": null,
       "district": "Al Saadiyat Island",
-      "community": "SDE3"
+      "community": "SDE3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE184/image-galary/final/623268439724145.jfif"
     },
     {
       "name": "Jubail Terraces",
@@ -1580,7 +1737,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Jubail Island",
-      "community": "JS"
+      "community": "JS",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE183/image-galary/final/161212609062165.jfif"
     },
     {
       "name": "THE VILLAGES ZONE B",
@@ -1590,7 +1748,8 @@
       "completion_pct": 82,
       "classification": null,
       "district": "Ain Al Faydah",
-      "community": "AIN AL FAYDA2"
+      "community": "AIN AL FAYDA2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE180/image-galary/final/307106414953036.jpg"
     },
     {
       "name": "Plaza",
@@ -1600,7 +1759,8 @@
       "completion_pct": 77,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_05"
+      "community": "SE45_05",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE179/image-galary/final/517948503722388.jpg"
     },
     {
       "name": "NOYA 5 - YAS PARK VIEWS",
@@ -1610,7 +1770,8 @@
       "completion_pct": 94,
       "classification": null,
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE175/image-galary/final/408530358859761.jpeg"
     },
     {
       "name": "Bloom Living (TOLEDO)",
@@ -1620,7 +1781,8 @@
       "completion_pct": 96,
       "classification": null,
       "district": "Zayed City",
-      "community": "MZ12"
+      "community": "MZ12",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE174/image-galary/final/774087518992594.jpg"
     },
     {
       "name": "NOYA 4 - YAS PARK GATE",
@@ -1630,7 +1792,8 @@
       "completion_pct": 95,
       "classification": null,
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE173/image-galary/final/531815618941771.jpeg"
     },
     {
       "name": "Perla 2",
@@ -1640,7 +1803,8 @@
       "completion_pct": 86,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE172/image-galary/final/274300699693560.jfif"
     },
     {
       "name": "Perla 1",
@@ -1650,7 +1814,8 @@
       "completion_pct": 12,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE171/image-galary/final/736169813746830.jfif"
     },
     {
       "name": "Al Jubail Island Phase 3",
@@ -1660,7 +1825,8 @@
       "completion_pct": 95,
       "classification": "Residential",
       "district": "Al Jubail Island",
-      "community": "JS"
+      "community": "JS",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE170/image-galary/final/284729599508257.jfif"
     },
     {
       "name": "Ansam 2 - Yas Golf Collection",
@@ -1670,7 +1836,8 @@
       "completion_pct": 99,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YS3_06"
+      "community": "YS3_06",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE168/image-galary/final/572154543705073.png"
     },
     {
       "name": "The Grove - Heart",
@@ -1680,7 +1847,8 @@
       "completion_pct": 98,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN8"
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE167/image-galary/final/447215928195608.jfif"
     },
     {
       "name": "Nurai Island – Phase 3",
@@ -1690,7 +1858,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Nourai Island",
-      "community": "Nourai Island"
+      "community": "Nourai Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE169/image-galary/final/NuraiIslandPhase3.jpg"
     },
     {
       "name": "ElYakoat Tower",
@@ -1700,7 +1869,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Sa`adah",
-      "community": "E40"
+      "community": "E40",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE162/image-galary/final/ElYakoat_Tower_main_photo.jpg"
     },
     {
       "name": "Al Reeman 2 - Phase 2",
@@ -1710,7 +1880,8 @@
       "completion_pct": 98,
       "classification": null,
       "district": "Al Shamkhah",
-      "community": "SH35"
+      "community": "SH35",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE154/image-galary/final/909921205610665.jpg"
     },
     {
       "name": "Louvre Abu Dhabi Residences",
@@ -1720,7 +1891,8 @@
       "completion_pct": 90,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN8"
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE155/image-galary/final/805289274335243.jfif"
     },
     {
       "name": "Bloom Living (Cordoba)",
@@ -1730,7 +1902,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Zayed City",
-      "community": "MZ12"
+      "community": "MZ12",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE161/image-galary/final/269471695208456.JPG"
     },
     {
       "name": "Yas Acres - Precinct 8",
@@ -1740,7 +1913,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Yas Island",
-      "community": "YN2"
+      "community": "YN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE151/image-galary/final/721538803661248.png"
     },
     {
       "name": "Al Jurf Gardens 1.3",
@@ -1750,7 +1924,8 @@
       "completion_pct": 92,
       "classification": "Residential",
       "district": "Ghadeer Al Tayr",
-      "community": "Al Jarf"
+      "community": "Al Jarf",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE159/image-galary/final/842525017022080.jfif"
     },
     {
       "name": "DIVA 1",
@@ -1760,7 +1935,8 @@
       "completion_pct": 94,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE112/image-galary/final/479170704404478.jfif"
     },
     {
       "name": "Yas Acres - The Dahlias",
@@ -1770,7 +1946,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Yas Island",
-      "community": "YN5"
+      "community": "YN5",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE068/image-galary/final/994670676750512.jfif"
     },
     {
       "name": "The Magnolias",
@@ -1780,7 +1957,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Yas Island",
-      "community": "YN5"
+      "community": "YN5",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE067/image-galary/final/918749378708397.jpg"
     },
     {
       "name": "Diva 2",
@@ -1790,7 +1968,8 @@
       "completion_pct": 89,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE113/image-galary/final/546329181443637.jfif"
     },
     {
       "name": "Al Gurm - Phase 2",
@@ -1800,7 +1979,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Qurm",
-      "community": "W50_01"
+      "community": "W50_01",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE066/image-galary/final/612099518731882.jfif"
     },
     {
       "name": "West Yas Plots",
@@ -1810,7 +1990,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Yas Island",
-      "community": "YS3_03"
+      "community": "YS3_03",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE049/image-galary/final/677870061075455.jpg"
     },
     {
       "name": "Saadiyat Reserve - The Dunes",
@@ -1820,7 +2001,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Saadiyat Island",
-      "community": "SDE3"
+      "community": "SDE3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE065/image-galary/final/758951898631463.jfif"
     },
     {
       "name": "Noya Luma",
@@ -1830,7 +2012,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE064/image-galary/final/105268445667814.jfif"
     },
     {
       "name": "Noya Viva",
@@ -1840,7 +2023,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE063/image-galary/final/491974595998622.jpg"
     },
     {
       "name": "Bloom Capital Gardens (Al Dhay)",
@@ -1850,7 +2034,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Muntazah",
-      "community": "E48"
+      "community": "E48",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE006/image-galary/final/803249638701160.png"
     },
     {
       "name": "AIN ALFAYDA 380 PROJECT",
@@ -1860,7 +2045,8 @@
       "completion_pct": 99,
       "classification": null,
       "district": "Ain Al Faydah",
-      "community": "AIN AL FAYDA"
+      "community": "AIN AL FAYDA",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE165/image-galary/final/861209318567801.jpg"
     },
     {
       "name": "Jubail Island development south - Phase two - off plan Building",
@@ -1870,7 +2056,8 @@
       "completion_pct": 96,
       "classification": "Residential",
       "district": "Al Jubail Island",
-      "community": "JS"
+      "community": "JS",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE008/image-galary/final/152781731012198.jpg"
     },
     {
       "name": "NOYA - Phase 1",
@@ -1880,7 +2067,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YN7"
+      "community": "YN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE048/image-galary/final/450478150004965.jfif"
     },
     {
       "name": "Yas Beach Residence",
@@ -1890,7 +2078,8 @@
       "completion_pct": 41,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE085/image-galary/final/319367715519581.jpg"
     },
     {
       "name": "Ghantoot Hotel and Resort",
@@ -1900,7 +2089,8 @@
       "completion_pct": 0,
       "classification": null,
       "district": "Ghantout",
-      "community": "Ghantout"
+      "community": "Ghantout",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE158/image-galary/final/GhantootHotelandResortphoto.jpg"
     },
     {
       "name": "The Gate",
@@ -1910,7 +2100,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_05"
+      "community": "SE45_05",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE009/image-galary/final/475766624705810.jfif"
     },
     {
       "name": "Residential Building for Masdar",
@@ -1920,7 +2111,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_05"
+      "community": "SE45_05",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE096/image-galary/final/600572894723559.jpg"
     },
     {
       "name": "Yas Bay",
@@ -1930,7 +2122,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Yas Island",
-      "community": "YS2"
+      "community": "YS2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE145/image-galary/final/987083155861315.jpg"
     },
     {
       "name": "Sadiyat Reserve",
@@ -1940,7 +2133,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Saadiyat Island",
-      "community": "SDE3"
+      "community": "SDE3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE069/image-galary/final/783446384831069.png"
     },
     {
       "name": "Nudra Beach Villas",
@@ -1950,7 +2144,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE005/image-galary/final/18-07-2022_Nudra_Beach_Villas-photo.JPG"
     },
     {
       "name": "SB-03 Luxury Residential Project",
@@ -1960,7 +2155,8 @@
       "completion_pct": 17,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE081/image-galary/final/261128100855319.jfif"
     },
     {
       "name": "Al Mahra Residence",
@@ -1970,7 +2166,8 @@
       "completion_pct": 90,
       "classification": "Mixed use",
       "district": "Khalifa City",
-      "community": "SE45_05"
+      "community": "SE45_05",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE130/image-galary/final/383925699627984.jfif"
     },
     {
       "name": "Bawabat Al Sharq Development - Phase 5",
@@ -1980,7 +2177,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Bani Yas",
-      "community": "EB2_06"
+      "community": "EB2_06",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE090/image-galary/final/975606140396770.jfif"
     },
     {
       "name": "Al Reeman 2 - Phase 1",
@@ -1990,7 +2188,8 @@
       "completion_pct": 95,
       "classification": null,
       "district": "Al Shamkhah",
-      "community": "SH35"
+      "community": "SH35",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE047/image-galary/final/819966783131126.JPG"
     },
     {
       "name": "the villages -2",
@@ -2000,7 +2199,8 @@
       "completion_pct": 15,
       "classification": null,
       "district": "Ain Al Faydah",
-      "community": "AIN AL FAYDA2"
+      "community": "AIN AL FAYDA2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE164/image-galary/final/thevillages2.jpg"
     },
     {
       "name": "THE VILLAGES",
@@ -2010,7 +2210,8 @@
       "completion_pct": 17,
       "classification": null,
       "district": "Ain Al Faydah",
-      "community": "AIN AL FAYDA2"
+      "community": "AIN AL FAYDA2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE163/image-galary/final/AE163.jpg"
     },
     {
       "name": "Jubail Island - Phase 1",
@@ -2020,7 +2221,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Jubail Island",
-      "community": "JS"
+      "community": "JS",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE007/image-galary/final/241888435273286.jfif"
     },
     {
       "name": "LEA",
@@ -2030,7 +2232,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Yas Island",
-      "community": "YN2"
+      "community": "YN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE045/image-galary/final/236449725337554.jpg"
     },
     {
       "name": "Al Reeman - Phase 2",
@@ -2040,7 +2243,8 @@
       "completion_pct": 99,
       "classification": null,
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE046/image-galary/final/806497699005641.jfif"
     },
     {
       "name": "Al Reeman - Phase 1",
@@ -2050,7 +2254,8 @@
       "completion_pct": 98,
       "classification": null,
       "district": "Al Shamkhah",
-      "community": "SH36"
+      "community": "SH36",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE044/image-galary/final/593063201508688.jfif"
     },
     {
       "name": "Shams Residential Complex",
@@ -2060,7 +2265,8 @@
       "completion_pct": 0,
       "classification": "Mixed use",
       "district": "Madinat Zayed",
-      "community": "MZW21"
+      "community": "MZW21",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE166/image-galary/final/484616944539598.jpg"
     },
     {
       "name": "Bawabat Al Sharq - Phase 2",
@@ -2070,7 +2276,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Bani Yas",
-      "community": "EB2_06"
+      "community": "EB2_06",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE087/image-galary/final/618569815242232.jpg"
     },
     {
       "name": "Bawabat Al Sharq Development - Phase3",
@@ -2080,7 +2287,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Bani Yas",
-      "community": "EB2_06"
+      "community": "EB2_06",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE088/image-galary/final/BawabatAlSharqPhase3.jpg"
     },
     {
       "name": "Bawabat Al Sharq Development - Phase 4",
@@ -2090,7 +2298,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Bani Yas",
-      "community": "EB2_06"
+      "community": "EB2_06",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE089/image-galary/final/597324941748279.png"
     },
     {
       "name": "Prestige Tower C16",
@@ -2100,7 +2309,8 @@
       "completion_pct": 100,
       "classification": "Commercial",
       "district": "Mohamed Bin Zayed City",
-      "community": "ME2"
+      "community": "ME2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE104/image-galary/final/PrestigeTowerC16C17.png"
     },
     {
       "name": "Prestige Tower C17",
@@ -2110,7 +2320,8 @@
       "completion_pct": 100,
       "classification": "Commercial",
       "district": "Mohamed Bin Zayed City",
-      "community": "ME2"
+      "community": "ME2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE105/image-galary/final/2PrestigeTowerC16C17.png"
     },
     {
       "name": "Soho Square",
@@ -2120,7 +2331,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDW4"
+      "community": "SDW4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE120/image-galary/final/902351274312226.jpg"
     },
     {
       "name": "Park View",
@@ -2130,7 +2342,8 @@
       "completion_pct": 92,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDW4"
+      "community": "SDW4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE147/image-galary/final/park_view_main_photo.jpg"
     },
     {
       "name": "Bawabat Al Sharq Development - Phase1",
@@ -2140,7 +2353,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Bani Yas",
-      "community": "EB2_06"
+      "community": "EB2_06",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE086/image-galary/final/593415356622286.png"
     },
     {
       "name": "Al Bateen Park - Apartment",
@@ -2150,7 +2364,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Bateen",
-      "community": "W17_03"
+      "community": "W17_03",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE043/image-galary/final/AlBateenParkBuildings.jpg"
     },
     {
       "name": "ALRAHA LOFTS 1",
@@ -2160,7 +2375,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW3"
+      "community": "RBW3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE011/image-galary/final/AE011.jpeg"
     },
     {
       "name": "ALRAHA LOFTS 2",
@@ -2170,7 +2386,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW3"
+      "community": "RBW3",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE012/image-galary/final/AE012.jpeg"
     },
     {
       "name": "Al Jurf Gardens Phase 1.2",
@@ -2180,7 +2397,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Ghadeer Al Tayr",
-      "community": "Al Jarf"
+      "community": "Al Jarf",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE052/image-galary/final/457282901359310.jfif"
     },
     {
       "name": "St Regis",
@@ -2190,7 +2408,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE119/image-galary/final/StRegis.png"
     },
     {
       "name": "HIDD AL SAADIYAT - Phase 2",
@@ -2200,7 +2419,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN7"
+      "community": "SDN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE108/image-galary/final/hidd.jpg"
     },
     {
       "name": "Al Jurf Gardens Phase 1.1",
@@ -2210,7 +2430,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Ghadeer Al Tayr",
-      "community": "Al Jarf"
+      "community": "Al Jarf",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE051/image-galary/final/894393726023245.jfif"
     },
     {
       "name": "Al Bateen Park",
@@ -2220,7 +2441,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Bateen",
-      "community": "W17_03"
+      "community": "W17_03",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE042/image-galary/final/259312707741553.jpg"
     },
     {
       "name": "Al Reef Villas",
@@ -2230,7 +2452,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Reef",
-      "community": "Al Reef"
+      "community": "Al Reef",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE055/image-galary/final/502165456357521.jpg"
     },
     {
       "name": "AL FORSAN VILLAGE",
@@ -2240,7 +2463,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Khalifa City",
-      "community": "SW17"
+      "community": "SW17",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE076/image-galary/final/690295207763019.jpg"
     },
     {
       "name": "Leonardo Residences",
@@ -2250,7 +2474,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_05"
+      "community": "SE45_05",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE010/image-galary/final/31.leonardo.PNG"
     },
     {
       "name": "Jamam Building",
@@ -2260,7 +2485,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Rahah",
-      "community": "RBW2"
+      "community": "RBW2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE156/image-galary/final/jamamresidencemetaphoto.jpg"
     },
     {
       "name": "Bloom Gardens",
@@ -2270,7 +2496,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Muntazah",
-      "community": "E48"
+      "community": "E48",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE111/image-galary/final/682897388823891.jpg"
     },
     {
       "name": "Oasis Residence",
@@ -2280,7 +2507,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Khalifa City",
-      "community": "SE45_05"
+      "community": "SE45_05",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE136/image-galary/final/901416120477191.jfif"
     },
     {
       "name": "Al Ghadeer Phase 2 - Neighbourhood 1 - R1",
@@ -2290,7 +2518,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Layyan",
-      "community": "Seih Al Sedeirah 7"
+      "community": "Seih Al Sedeirah 7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE041/image-galary/final/784400079486048.jpg"
     },
     {
       "name": "Manazel Alreef 2",
@@ -2300,7 +2529,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Samhah",
-      "community": "Al Samhah East Old"
+      "community": "Al Samhah East Old",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE056/image-galary/final/41alreef2.jpg"
     },
     {
       "name": "Saadiyat Beach District",
@@ -2310,7 +2540,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Saadiyat Island",
-      "community": "SDN4"
+      "community": "SDN4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE083/image-galary/final/194590897641192.jpg"
     },
     {
       "name": "New York University Precinct",
@@ -2320,7 +2551,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Saadiyat Island",
-      "community": "SDW4"
+      "community": "SDW4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE082/image-galary/final/37.NEWYORK.jpg"
     },
     {
       "name": "Nudra Beach Villas",
@@ -2330,7 +2562,8 @@
       "completion_pct": 99,
       "classification": null,
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE004/image-galary/final/123529684802459.jfif"
     },
     {
       "name": "Masdar City - Phase 2",
@@ -2340,7 +2573,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Khalifa City",
-      "community": "SE45_02"
+      "community": "SE45_02",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE135/image-galary/final/MasdarCityPhase2.jpg"
     },
     {
       "name": "Masdar city - Phase 1",
@@ -2350,7 +2584,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Khalifa City",
-      "community": "SE45_05"
+      "community": "SE45_05",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE134/image-galary/final/574665646514288.jpg"
     },
     {
       "name": "Capital Center",
@@ -2360,7 +2595,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Rawdah",
-      "community": "W59_01"
+      "community": "W59_01",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE077/image-galary/final/35capitalcentre.jfif"
     },
     {
       "name": "manazel al reef 2",
@@ -2370,7 +2606,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Samhah",
-      "community": "Al Samhah East Old"
+      "community": "Al Samhah East Old",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE146/image-galary/final/almanazlalreef2.jpg"
     },
     {
       "name": "Saadiyat Beach Villas",
@@ -2380,7 +2617,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN2"
+      "community": "SDN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE073/image-galary/final/saadiyatbeachvillas4.jpg"
     },
     {
       "name": "Saadiyat Beach Villas",
@@ -2390,7 +2628,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN4"
+      "community": "SDN4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE072/image-galary/final/saadiyatbeachvillas3.jpg"
     },
     {
       "name": "Jawaheir Villas",
@@ -2400,7 +2639,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE128/image-galary/final/jawahervillas.jpg"
     },
     {
       "name": "AlQurm Villas",
@@ -2410,7 +2650,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Muntazah",
-      "community": "E48"
+      "community": "E48",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE129/image-galary/final/alqurmvilla.png"
     },
     {
       "name": "WAHAT AL ZAWEYA",
@@ -2420,7 +2661,8 @@
       "completion_pct": 0,
       "classification": "Residential",
       "district": "Al Faqa'",
-      "community": "SHIBAK 1"
+      "community": "SHIBAK 1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/null/image-galary/final/307784019477114.jpeg"
     },
     {
       "name": "DANAT ABU DHABI",
@@ -2430,7 +2672,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Sa`adah",
-      "community": "E40"
+      "community": "E40",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE050/image-galary/final/Dant_abu%20dhabi_photo.jpg"
     },
     {
       "name": "Desert Towers",
@@ -2440,7 +2683,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Mohamed Bin Zayed City",
-      "community": "ME8"
+      "community": "ME8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE098/image-galary/final/DesertTowers.jpg"
     },
     {
       "name": "AIN AL FAYDHA",
@@ -2450,7 +2694,8 @@
       "completion_pct": 98,
       "classification": null,
       "district": "Ain Al Faydah",
-      "community": "AIN AL FAYDA"
+      "community": "AIN AL FAYDA",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE127/image-galary/final/AE127.jpg"
     },
     {
       "name": "Water's Edge - Precinct B",
@@ -2460,7 +2705,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YS1"
+      "community": "YS1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE033/image-galary/final/937214822676034.jpeg"
     },
     {
       "name": "Highland Resort",
@@ -2470,7 +2716,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Muzoun",
-      "community": "W51"
+      "community": "W51",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE141/image-galary/final/HighlandResortphoto.jpg"
     },
     {
       "name": "West Yas",
@@ -2480,7 +2727,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YS3_05"
+      "community": "YS3_05",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE032/image-galary/final/westyas.jpg"
     },
     {
       "name": "Water's Edge Precinct A",
@@ -2490,7 +2738,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YS1"
+      "community": "YS1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE029/image-galary/final/405920428370900.jpeg"
     },
     {
       "name": "nurai island",
@@ -2500,7 +2749,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Nourai Island",
-      "community": "Nourai Island"
+      "community": "Nourai Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE107/image-galary/final/nuraiisland.jpg"
     },
     {
       "name": "hidd al saadiyat",
@@ -2510,7 +2760,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN7"
+      "community": "SDN7",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE053/image-galary/final/32hiddalsaadeiat.jfif"
     },
     {
       "name": "Saydiyat Beach apartments",
@@ -2520,7 +2771,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN2"
+      "community": "SDN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE126/image-galary/final/Saadiyatbeachresidence6.jpg"
     },
     {
       "name": "Al Ghadeer 1",
@@ -2530,7 +2782,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Layyan",
-      "community": "Seih Al Sedeirah 1"
+      "community": "Seih Al Sedeirah 1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE027/image-galary/final/AlGhadeer1.jpg"
     },
     {
       "name": "Saydiyat Beach apartments",
@@ -2540,7 +2793,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN2"
+      "community": "SDN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE125/image-galary/final/Saadiyatbeachresidence5.jpg"
     },
     {
       "name": "BLOOM GARDENS",
@@ -2550,7 +2804,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Muntazah",
-      "community": "E48"
+      "community": "E48",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE109/image-galary/final/654875525843262.jpg"
     },
     {
       "name": "Saydiyat Beach apartments",
@@ -2560,7 +2815,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN2"
+      "community": "SDN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE121/image-galary/final/Saadiyatbeachresidence1.jpg"
     },
     {
       "name": "Saydiyat Beach apartments",
@@ -2570,7 +2826,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN2"
+      "community": "SDN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE123/image-galary/final/Saadiyatbeachresidence3.jpg"
     },
     {
       "name": "Rawdhat Abu Dhabi",
@@ -2580,7 +2837,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Muntazah",
-      "community": "E48"
+      "community": "E48",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE115/image-galary/final/281013440078649.jpg"
     },
     {
       "name": "Lamar",
@@ -2590,7 +2848,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW6"
+      "community": "RBW6",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE078/image-galary/final/Lamar.jpg"
     },
     {
       "name": "Saraya",
@@ -2600,7 +2859,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Zahiyah",
-      "community": "E12"
+      "community": "E12",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE062/image-galary/final/179193645475569.jpg"
     },
     {
       "name": "SAADIYAT BEACH VILLA",
@@ -2610,7 +2870,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN2"
+      "community": "SDN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE071/image-galary/final/saadiyatbeachvillas2.jpg"
     },
     {
       "name": "Al Gurm Resort",
@@ -2620,7 +2881,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Qurm",
-      "community": "W50_01"
+      "community": "W50_01",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE026/image-galary/final/633955535132588.jpg"
     },
     {
       "name": "Golf Gardens",
@@ -2630,7 +2892,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Khalifa City",
-      "community": "SW17"
+      "community": "SW17",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE037/image-galary/final/GOLF_GARDENS_min_photo.jpg"
     },
     {
       "name": "Al Raha Gardens",
@@ -2640,7 +2903,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Khalifa City",
-      "community": "SE47"
+      "community": "SE47",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE038/image-galary/final/AlRahaGardens.jpg"
     },
     {
       "name": "AlMuneera Island",
@@ -2650,7 +2914,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW2"
+      "community": "RBW2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE036/image-galary/final/39.almuneera.PNG"
     },
     {
       "name": "Al Raha Beach",
@@ -2660,7 +2925,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Rahah",
-      "community": "RBW5"
+      "community": "RBW5",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE060/image-galary/final/AlRahaBeachphoto.jpg"
     },
     {
       "name": "Al Zeina",
@@ -2670,7 +2936,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW2"
+      "community": "RBW2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE034/image-galary/final/40.alzeina.PNG"
     },
     {
       "name": "Nareel Island",
@@ -2680,7 +2947,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Bateen",
-      "community": "W32"
+      "community": "W32",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE035/image-galary/final/NareelIslandPHOTO.jpg"
     },
     {
       "name": "Al Merief",
@@ -2690,7 +2958,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Khalifa City",
-      "community": "SE45"
+      "community": "SE45",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE059/image-galary/final/18almurif.jpg"
     },
     {
       "name": "sadiyat Beach Apartment",
@@ -2700,7 +2969,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN2"
+      "community": "SDN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE122/image-galary/final/Saadiyatbeachresidence3.jpg"
     },
     {
       "name": "sadiyat Beach Apartment",
@@ -2710,7 +2980,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN2"
+      "community": "SDN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE124/image-galary/final/Saadiyatbeachresidence4.jpeg"
     },
     {
       "name": "Marina City",
@@ -2720,7 +2991,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Kasir",
-      "community": "Kasser Al Amwaj"
+      "community": "Kasser Al Amwaj",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE133/image-galary/final/MarinaCityphoto.jpg"
     },
     {
       "name": "Ansam",
@@ -2730,7 +3002,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YS3_06"
+      "community": "YS3_06",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE028/image-galary/final/13.Ansam-Project-Gallery---Court.jpg"
     },
     {
       "name": "Saadiyat Beach villas",
@@ -2740,7 +3013,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN2"
+      "community": "SDN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE070/image-galary/final/SaadiyatBeachVillas1.jpg"
     },
     {
       "name": "Saadiyat Beach villas",
@@ -2750,7 +3024,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN2"
+      "community": "SDN2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE074/image-galary/final/saadiyatbeachvillas5.jpg"
     },
     {
       "name": "Mayan",
@@ -2760,7 +3035,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Yas Island",
-      "community": "YS3_06"
+      "community": "YS3_06",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE023/image-galary/final/Mayan.jpg"
     },
     {
       "name": "Fairmont Hotel & Serviced Apartments",
@@ -2770,7 +3046,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Kasir",
-      "community": "Kasser Al Amwaj"
+      "community": "Kasser Al Amwaj",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE075/image-galary/final/9.fairmont-marina-abu-dhabi.jpg"
     },
     {
       "name": "Jawaher Saadiyat",
@@ -2780,7 +3057,8 @@
       "completion_pct": 100,
       "classification": null,
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE022/image-galary/final/536490499585721.webp"
     },
     {
       "name": "The View",
@@ -2790,7 +3068,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW5"
+      "community": "RBW5",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE114/image-galary/final/ae114-the-view-photo.jpg"
     },
     {
       "name": "Al Hadeel",
@@ -2800,7 +3079,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW4"
+      "community": "RBW4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE020/image-galary/final/AlHadeel.jpg"
     },
     {
       "name": "Al Bandar",
@@ -2810,7 +3090,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Rahah",
-      "community": "RBW2"
+      "community": "RBW2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE021/image-galary/final/860786626452793.jpeg"
     },
     {
       "name": "Mamsh Al Saadiyat",
@@ -2820,7 +3101,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE017/image-galary/final/MamshaAlSaadiyatTurquoise.jpg"
     },
     {
       "name": "Mamsh Al Saadiyat",
@@ -2830,7 +3112,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE018/image-galary/final/MamshaAlSaadiyatLilac.jpg"
     },
     {
       "name": "Mamsh Al Saadiyat - Azur",
@@ -2840,7 +3123,8 @@
       "completion_pct": 100,
       "classification": "Mixed use",
       "district": "Al Saadiyat Island",
-      "community": "SDN1"
+      "community": "SDN1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE019/image-galary/final/17.Mamsha_Image_3_REV_H.jpg"
     },
     {
       "name": "YAS ACRES-Precinct3",
@@ -2850,7 +3134,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YN4"
+      "community": "YN4",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE016/image-galary/final/774944910394232.jpg"
     },
     {
       "name": "YAS Acres- Precinct7",
@@ -2860,7 +3145,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YN6"
+      "community": "YN6",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE015/image-galary/final/YASAcresPrecinct7.jpg"
     },
     {
       "name": "YAS ACRES-Precinct 1",
@@ -2870,7 +3156,8 @@
       "completion_pct": 100,
       "classification": "Residential",
       "district": "Yas Island",
-      "community": "YN6"
+      "community": "YN6",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE014/image-galary/final/YASAcresPrecinct1.jpg"
     }
   ]
 }

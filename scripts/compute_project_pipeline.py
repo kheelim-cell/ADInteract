@@ -160,6 +160,7 @@ def main():
             "property_type": dari_match["type"] if dari_match else None,
             "classification": dari_match["classification"] if dari_match else None,
             "construction_status": dari_match["status"] if dari_match else None,
+            "image_url": dari_match.get("image_url") if dari_match else None,
         })
 
     # Rank by recent registration velocity — most active pipelines first

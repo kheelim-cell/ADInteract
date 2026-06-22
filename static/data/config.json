@@ -1,5 +1,5 @@
 {
   "usd_aed_rate": 3.67,
-  "usd_aed_rate_updated": "2026-06-21",
+  "usd_aed_rate_updated": "2026-06-22",
   "note": "AED is pegged to USD. Rate updated daily by CI via fetch_exchange_rate.py."
 }

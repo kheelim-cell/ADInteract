@@ -16,7 +16,9 @@
  *   • No filter         → leaderboard = Top 5 Areas by Volume
  */
 
-import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage } from 'pdf-lib';
+import { PDFDocument, rgb, type PDFFont, type PDFPage, type PDFImage } from 'pdf-lib';
+import fontkit from '@pdf-lib/fontkit';
+import { base } from '$app/paths';
 import type { StatsResult, DistrictSummary, LayoutSummaryRow, FilterState } from '$lib/db/types';
 import {
 	exportTransactions,
@@ -25,6 +27,11 @@ import {
 	queryLayoutSummary
 } from '$lib/db/queries';
 import { formatCurrency, formatRate, formatCurrencyShort, formatDate, growthPercent } from './format';
+
+async function fetchBytes(path: string): Promise<ArrayBuffer> {
+	const res = await fetch(`${base}${path}`);
+	return res.arrayBuffer();
+}
 
 // ─── brand colours ───────────────────────────────────────────────────────────
 
@@ -143,6 +150,31 @@ class PdfBuilder {
 		this.page.drawText(str, { x: drawX, y: this.y, size, font: f, color: opts.color ?? BRAND_DARK });
 	}
 
+	/** Draws text constrained to maxWidth: shrinks font size first, then
+	 * truncates with an ellipsis as a last resort — so a long value (a
+	 * project name, "Off-plan / Secondary", etc.) never bleeds into the
+	 * next column or off the page edge. */
+	fitText(str: string, x: number, y: number, maxWidth: number, size: number, opts: { bold?: boolean; color?: ReturnType<typeof rgb>; align?: 'l' | 'r' } = {}) {
+		const f = opts.bold ? this.bold : this.font;
+		let s = size;
+		let w = f.widthOfTextAtSize(str, s);
+		const MIN_SIZE = 6;
+		while (w > maxWidth && s > MIN_SIZE) {
+			s -= 0.5;
+			w = f.widthOfTextAtSize(str, s);
+		}
+		let out = str;
+		if (w > maxWidth) {
+			while (out.length > 1 && f.widthOfTextAtSize(out + '…', s) > maxWidth) {
+				out = out.slice(0, -1);
+			}
+			out += '…';
+			w = f.widthOfTextAtSize(out, s);
+		}
+		const drawX = opts.align === 'r' ? x + maxWidth - w : x;
+		this.page.drawText(out, { x: drawX, y, size: s, font: f, color: opts.color ?? BRAND_DARK });
+	}
+
 	rect(x: number, y: number, w: number, h: number, color: ReturnType<typeof rgb>) {
 		this.page.drawRectangle({ x, y, width: w, height: h, color });
 	}
@@ -173,11 +205,10 @@ class PdfBuilder {
 			this.rect(MARGIN, this.y - headH + 4, CONTENT_W, headH, GREY_BG);
 			spec.headers.forEach((h, i) => {
 				const w = spec.colWidths[i] * CONTENT_W;
-				this.text(h.toUpperCase(), colXs[i] + 5, 7, {
+				this.fitText(h.toUpperCase(), colXs[i] + 5, this.y, w - 10, 7, {
 					bold: true,
 					color: GREY_MED,
-					align: spec.rows[0]?.align?.[i] === 'r' ? 'r' : 'l',
-					width: w - 10
+					align: spec.rows[0]?.align?.[i] === 'r' ? 'r' : 'l'
 				});
 			});
 			this.y -= headH;
@@ -212,7 +243,7 @@ class PdfBuilder {
 					});
 					return;
 				}
-				this.text(cell, x, 8, { color: rgb(0.22, 0.25, 0.28), align, width: w - 10 });
+				this.fitText(cell, x, this.y, w - 10, 8, { color: rgb(0.22, 0.25, 0.28), align: align === 'r' ? 'r' : 'l' });
 			});
 			this.y -= rowH;
 			this.line(MARGIN, this.y + 4, MARGIN + CONTENT_W, this.y + 4, GREY_BORDER, 0.5);
@@ -275,7 +306,7 @@ export async function exportMarketReportPdf(opts: {
 	const displayTx = allTx.slice(0, MAX_TX);
 	const distCol = f.project ? 'Community' : 'District';
 
-	const txHeaders = ['Date', 'Project', distCol, 'Price (AED)', 'AED/sqft', 'Beds', 'Area (sqft)', 'Type'];
+	const txHeaders = ['Date', 'Project', distCol, 'Price (AED)', 'AED/sqft', 'Beds', 'Sqft', 'Type'];
 	const txRows: Row[] = displayTx.map((tx) => {
 		const layout = tx.layout && tx.layout !== 'unclassified' ? tx.layout.charAt(0).toUpperCase() + tx.layout.slice(1) : '-';
 		const distVal = f.project ? ((tx as Record<string, unknown>).community as string | undefined ?? tx.district) : tx.district;
@@ -304,32 +335,39 @@ export async function exportMarketReportPdf(opts: {
 	const pdfDoc = await PDFDocument.create();
 	pdfDoc.setTitle(filename);
 	pdfDoc.setProducer('ADInteract.co');
+	pdfDoc.registerFontkit(fontkit);
 
-	const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-	const bold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+	const [regularBytes, boldBytes, logoBytes] = await Promise.all([
+		fetchBytes('/fonts/Montserrat-Regular.ttf'),
+		fetchBytes('/fonts/Montserrat-Bold.ttf'),
+		fetchBytes('/branding/logo-horizontal-dark.png')
+	]);
+	const font = await pdfDoc.embedFont(regularBytes, { subset: true });
+	const bold = await pdfDoc.embedFont(boldBytes, { subset: true });
+	const logo: PDFImage = await pdfDoc.embedPng(logoBytes);
+
 	const builder = new PdfBuilder(pdfDoc, font, bold);
 	builder.newPage();
 
-	// Header
-	builder.text('AD', MARGIN, 22, { bold: true, color: rgb(0x0d / 255, 0x23 / 255, 0x18 / 255) });
-	const adW = bold.widthOfTextAtSize('AD', 22);
-	builder.text('INTERACT', MARGIN + adW + 1, 22, { bold: true, color: BRAND_GOLD });
-	builder.y -= 14;
-	builder.text('ABU DHABI PROPERTY TRANSACTIONS', MARGIN, 7, { color: GREY_MED });
+	// Header — logo banner on the left, scope/period/generated block on the right,
+	// vertically sized to whichever side is taller so neither overlaps what follows.
+	const logoH = 44;
+	const logoW = logoH * (logo.width / logo.height);
+	builder.page.drawImage(logo, { x: MARGIN, y: builder.y - logoH, width: logoW, height: logoH });
 
 	const rightX = MARGIN + CONTENT_W;
-	let ry = PAGE_H - MARGIN;
+	let ry = builder.y - 11;
 	const drawRight = (str: string, size: number, color = BRAND_DARK, bold_ = false) => {
 		const f2 = bold_ ? bold : font;
-		const w = f2.widthOfTextAtSize(str, size);
-		builder.page.drawText(str, { x: rightX - w, y: ry, size, font: f2, color });
-		ry -= size + 4;
+		builder.fitText(str, MARGIN + logoW + 12, ry, CONTENT_W - logoW - 12, size, { bold: bold_, color, align: 'r' });
+		ry -= size + 5;
 	};
 	drawRight(scope, 12, BRAND_DARK, true);
 	drawRight(`${period}  -  ADREC Transaction Data`, 8, GREY_MED);
 	drawRight(`Generated ${generated}  -  adinteract.co`, 7, GREY_LIGHT);
 
-	builder.y -= 6;
+	const rightBlockBottom = ry + 5; // undo the last decrement to get the true bottom
+	builder.y = Math.min(builder.y - logoH, rightBlockBottom) - 10;
 	builder.line(MARGIN, builder.y, MARGIN + CONTENT_W, builder.y, BRAND_GOLD, 1.5);
 	builder.y -= 18;
 
@@ -378,7 +416,7 @@ export async function exportMarketReportPdf(opts: {
 		builder.y -= 12;
 	}
 	builder.table({
-		colWidths: [0.11, 0.20, 0.15, 0.13, 0.10, 0.08, 0.10, 0.13],
+		colWidths: [0.10, 0.18, 0.13, 0.13, 0.09, 0.08, 0.09, 0.20],
 		headers: txHeaders,
 		rows: txRows
 	});

@@ -201,17 +201,24 @@ class PdfBuilder {
 			this.y -= 10;
 		}
 
+		// One coordinate system for the whole row: [bottom, top], top = this.y
+		// before the row is drawn. The zebra rect, divider line, text baseline,
+		// and rank-circle centre are all derived from bottom/top directly —
+		// no per-element fudge offsets, so nothing can drift out of sync.
 		const drawHeader = () => {
-			this.rect(MARGIN, this.y - headH + 4, CONTENT_W, headH, GREY_BG);
+			const top = this.y;
+			const bottom = top - headH;
+			this.rect(MARGIN, bottom, CONTENT_W, headH, GREY_BG);
+			const textY = bottom + (headH - 7) / 2 + 1.5; // optically centred for a 7pt label
 			spec.headers.forEach((h, i) => {
 				const w = spec.colWidths[i] * CONTENT_W;
-				this.fitText(h.toUpperCase(), colXs[i] + 5, this.y, w - 10, 7, {
+				this.fitText(h.toUpperCase(), colXs[i] + 5, textY, w - 10, 7, {
 					bold: true,
 					color: GREY_MED,
 					align: spec.rows[0]?.align?.[i] === 'r' ? 'r' : 'l'
 				});
 			});
-			this.y -= headH;
+			this.y = bottom;
 		};
 
 		this.ensureSpace(headH + rowH);
@@ -219,19 +226,20 @@ class PdfBuilder {
 
 		spec.rows.forEach((row, ri) => {
 			this.ensureSpace(rowH);
-			if (this.y > PAGE_H - MARGIN - headH - 1 && ri > 0) {
-				// just paginated — redraw header on new page
-			}
-			if (ri % 2 === 1) this.rect(MARGIN, this.y - rowH + 4, CONTENT_W, rowH, GREY_BG);
+			const top = this.y;
+			const bottom = top - rowH;
+			const cellY = bottom + (rowH - 8) / 2 + 1.5; // optically centred for 8pt body text
+
+			if (ri % 2 === 1) this.rect(MARGIN, bottom, CONTENT_W, rowH, GREY_BG);
 
 			row.cells.forEach((cell, ci) => {
 				const w = spec.colWidths[ci] * CONTENT_W;
 				const align = row.align?.[ci] ?? 'l';
-				let x = colXs[ci] + 5;
+				const x = colXs[ci] + 5;
 				if (ci === 0 && row.rank !== undefined) {
-					// rank circle
+					// rank circle, vertically centred in the row
 					const cx = colXs[ci] + 9;
-					const cy = this.y - rowH / 2 + 5;
+					const cy = bottom + rowH / 2;
 					const rankColor = row.rank === 0 ? BRAND_GOLD : row.rank === 1 ? rgb(0.44, 0.44, 0.44) : row.rank === 2 ? rgb(0.47, 0.21, 0.04) : rgb(0.82, 0.84, 0.86);
 					this.page.drawCircle({ x: cx, y: cy, size: 7, color: rankColor });
 					this.page.drawText(String(row.rank + 1), {
@@ -243,10 +251,10 @@ class PdfBuilder {
 					});
 					return;
 				}
-				this.fitText(cell, x, this.y, w - 10, 8, { color: rgb(0.22, 0.25, 0.28), align: align === 'r' ? 'r' : 'l' });
+				this.fitText(cell, x, cellY, w - 10, 8, { color: rgb(0.22, 0.25, 0.28), align: align === 'r' ? 'r' : 'l' });
 			});
-			this.y -= rowH;
-			this.line(MARGIN, this.y + 4, MARGIN + CONTENT_W, this.y + 4, GREY_BORDER, 0.5);
+			this.y = bottom;
+			this.line(MARGIN, bottom, MARGIN + CONTENT_W, bottom, GREY_BORDER, 0.5);
 		});
 
 		this.y -= 8;

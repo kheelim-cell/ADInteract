@@ -1,0 +1,7 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"site_name": "ADInteract",
+	"site_tagline": "معاملات العقارات في أبوظبي",
+	"language_english": "English",
+	"language_arabic": "العربية"
+}

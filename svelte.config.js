@@ -23,6 +23,12 @@ const config = {
 			: adapterStatic({ fallback: '404.html' }),
 		paths: {
 			base: ''
+		},
+		prerender: {
+			// Seed Arabic entry points so the crawler discovers /ar/* before any
+			// language switcher links to them. Without this, prerendering only
+			// produces English HTML and the AR scaffold can't be verified.
+			entries: ['*', '/ar/', '/ar/investors', '/ar/rental']
 		}
 	}
 };

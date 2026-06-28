@@ -1,5 +1,6 @@
 <script lang="ts">
   import { metadata } from '$lib/stores/db';
+  import { m } from '$lib/paraglide/messages.js';
 
   const currentYear = new Date().getFullYear();
 
@@ -22,27 +23,24 @@
       <!-- Brand + attribution -->
       <div class="flex flex-col gap-1.5">
         <div class="flex items-center gap-2">
-          <span class="text-sm font-bold text-navy tracking-wide">ADInteract</span>
+          <span class="text-sm font-bold text-navy tracking-wide">{m.site_name()}</span>
           <span class="text-gray-300">·</span>
-          <span class="text-xs text-gray-500">Abu Dhabi Property Transactions</span>
+          <span class="text-xs text-gray-500">{m.site_tagline()}</span>
         </div>
         <p class="text-xs text-gray-400">
-          Data sourced from the public dashboard of the
+          {m.footer_data_source_prefix()}
           <a
             href="https://adrec.gov.ae"
             target="_blank"
             rel="noopener noreferrer"
             class="text-brand-600 hover:text-brand-700 hover:underline font-medium"
           >
-            Abu Dhabi Real Estate Centre (ADREC)
+            {m.footer_data_source_name()}
           </a>
-          — updated daily. ADInteract is an independent platform and is not affiliated with,
-          endorsed by, or officially connected to ADREC or any Abu Dhabi government entity.
+          {m.footer_data_source_suffix()}
         </p>
         <p class="text-[11px] text-gray-400">
-          Data is derived from ADREC's public dashboard and has been processed for analysis
-          (unit conversion, normalisation). Figures may differ from official ADREC records.
-          For informational purposes only. Not financial or investment advice.
+          {m.footer_disclaimer()}
         </p>
       </div>
 
@@ -53,7 +51,7 @@
             <svg class="h-3.5 w-3.5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 2.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
             </svg>
-            {$metadata.rowCount.toLocaleString()} transactions
+            {$metadata.rowCount.toLocaleString()} {m.footer_transactions_suffix()}
             {#if $metadata.dateRange?.min && $metadata.dateRange?.max}
               · {new Date($metadata.dateRange.min).getFullYear()}–{new Date($metadata.dateRange.max).getFullYear()}
             {/if}
@@ -63,11 +61,11 @@
               <svg class="h-3.5 w-3.5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Last updated {formatUpdated($metadata.lastUpdated)}
+              {m.footer_last_updated_prefix({ date: formatUpdated($metadata.lastUpdated) })}
             </div>
           {/if}
         {/if}
-        <p class="text-[11px] text-gray-300">© {currentYear} ADInteract. All rights reserved.</p>
+        <p class="text-[11px] text-gray-300">{m.footer_copyright({ year: String(currentYear) })}</p>
       </div>
 
     </div>

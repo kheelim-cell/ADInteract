@@ -1,17 +1,18 @@
 <script lang="ts">
   import { filters, updateFilter } from '$lib/stores/filters';
+  import { m } from '$lib/paraglide/messages.js';
 
   let open = $state(false);
   let el = $state<HTMLDivElement>();
 
-  const PROPERTY_OPTIONS = [
-    { label: 'Apartment',                value: 'apartment' },
-    { label: 'Duplex',                   value: 'duplex' },
-    { label: 'Townhouse / Attached Villa', value: 'townhouse / attached villa' },
-    { label: 'Villa',                    value: 'villa' },
-    { label: 'Office',                   value: 'office' },
-    { label: 'Retail',                   value: 'retail' },
-  ];
+  let PROPERTY_OPTIONS = $derived([
+    { label: m.filter_property_apartment(),       value: 'apartment' },
+    { label: m.filter_property_duplex(),          value: 'duplex' },
+    { label: m.filter_property_townhouse_villa(), value: 'townhouse / attached villa' },
+    { label: m.filter_property_villa(),           value: 'villa' },
+    { label: m.filter_property_office(),          value: 'office' },
+    { label: m.filter_property_retail(),          value: 'retail' },
+  ]);
 
   let selected = $derived($filters.propertyTypes);
   let count = $derived(selected.length);
@@ -54,7 +55,7 @@
              ? 'border-brand-300 bg-brand-50 text-brand-700'
              : 'border-gray-200 bg-white text-gray-900 hover:border-gray-300 hover:bg-gray-50'}"
   >
-    Property Type
+    {m.filter_property_type_label()}
     {#if count > 0}
       <span class="inline-flex items-center justify-center rounded-full bg-brand-600 text-white text-[10px] font-bold min-w-[18px] h-[18px] px-1">
         {count}
@@ -69,13 +70,13 @@
     <div class="absolute z-20 mt-1.5 w-56 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
       {#if count > 0}
         <div class="border-b border-gray-100 px-3 py-2 flex items-center justify-between">
-          <span class="text-[10px] font-medium uppercase tracking-wider text-gray-400">{count} selected</span>
+          <span class="text-[10px] font-medium uppercase tracking-wider text-gray-400">{m.filter_selected_count({ count: String(count) })}</span>
           <button
             type="button"
             onclick={clearAll}
             class="text-xs text-brand-600 hover:text-brand-800 font-medium transition-colors"
           >
-            Clear
+            {m.filter_clear()}
           </button>
         </div>
       {/if}

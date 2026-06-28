@@ -1,11 +1,12 @@
 <script lang="ts">
   import { filters, updateFilter } from '$lib/stores/filters';
+  import { m } from '$lib/paraglide/messages.js';
 
-  const options = [
-    { label: 'All',       value: 'all'       as const },
-    { label: 'Primary',   value: 'primary'   as const },
-    { label: 'Secondary', value: 'secondary' as const }
-  ];
+  let options = $derived([
+    { label: m.filter_common_all(),               value: 'all'       as const },
+    { label: m.filter_sale_sequence_primary(),     value: 'primary'   as const },
+    { label: m.filter_sale_sequence_secondary(),   value: 'secondary' as const }
+  ]);
 </script>
 
 <div class="inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5">

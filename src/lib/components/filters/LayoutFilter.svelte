@@ -1,19 +1,20 @@
 <script lang="ts">
   import { filters, updateFilter } from '$lib/stores/filters';
   import { metadata } from '$lib/stores/db';
+  import { m } from '$lib/paraglide/messages.js';
 
   let open = $state(false);
   let el = $state<HTMLDivElement>();
 
-  const LAYOUT_OPTIONS = [
-    { label: 'Studio',  value: 'studio' },
-    { label: '1 Bed',   value: '1 bed' },
-    { label: '2 Beds',  value: '2 beds' },
-    { label: '3 Beds',  value: '3 beds' },
-    { label: '4 Beds',  value: '4 beds' },
-    { label: '5 Beds',  value: '5 beds' },
-    { label: '6+ Beds', value: '6+ beds' },
-  ];
+  let LAYOUT_OPTIONS = $derived([
+    { label: m.filter_layout_studio(),      value: 'studio' },
+    { label: m.filter_layout_1_bed(),       value: '1 bed' },
+    { label: m.filter_layout_2_beds(),      value: '2 beds' },
+    { label: m.filter_layout_3_beds(),      value: '3 beds' },
+    { label: m.filter_layout_4_beds(),      value: '4 beds' },
+    { label: m.filter_layout_5_beds(),      value: '5 beds' },
+    { label: m.filter_layout_6_plus_beds(), value: '6+ beds' },
+  ]);
   let selected = $derived($filters.layouts);
   let count = $derived(selected.length);
 
@@ -55,7 +56,7 @@
              ? 'border-brand-300 bg-brand-50 text-brand-700'
              : 'border-gray-200 bg-white text-gray-900 hover:border-gray-300 hover:bg-gray-50'}"
   >
-    Layout
+    {m.filter_layout_label()}
     {#if count > 0}
       <span class="inline-flex items-center justify-center rounded-full bg-brand-600 text-white text-[10px] font-bold min-w-[18px] h-[18px] px-1">
         {count}
@@ -70,13 +71,13 @@
     <div class="absolute z-20 mt-1.5 w-48 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
       {#if count > 0}
         <div class="border-b border-gray-100 px-3 py-2 flex items-center justify-between">
-          <span class="text-[10px] font-medium uppercase tracking-wider text-gray-400">{count} selected</span>
+          <span class="text-[10px] font-medium uppercase tracking-wider text-gray-400">{m.filter_selected_count({ count: String(count) })}</span>
           <button
             type="button"
             onclick={clearAll}
             class="text-xs text-brand-600 hover:text-brand-800 font-medium transition-colors"
           >
-            Clear
+            {m.filter_clear()}
           </button>
         </div>
       {/if}

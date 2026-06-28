@@ -4,6 +4,7 @@
   import { metadata, rentalMetadata } from '$lib/stores/db';
   import { user, isAuthenticated, openSignIn, signOut } from '$lib/stores/auth';
   import { supabaseEnabled } from '$lib/supabase';
+  import { m } from '$lib/paraglide/messages.js';
 
   let { lastUpdated = '' } = $props();
 
@@ -35,7 +36,7 @@
       return new Date(ts).toLocaleDateString('en-GB', {
         day: 'numeric', month: 'short', year: 'numeric',
         hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Dubai'
-      }) + ' GST';
+      });
     } catch {
       return ts;
     }
@@ -73,11 +74,11 @@
               <span class="text-[26px] font-extrabold text-brand-400 tracking-tight">AD</span><span class="text-[26px] font-light italic text-brand-400 tracking-tight">INTERACT</span>
             </h1>
             <span class="hidden sm:inline-flex items-center gap-1 rounded-full bg-white/8 border border-white/15 px-2 py-0.5 text-[10px] font-semibold text-white/40 tracking-wide">
-              Data: ADREC
+              {m.header_data_badge()}
             </span>
           </div>
           <p class="text-[10px] text-white/35 font-semibold tracking-widest uppercase mt-1">
-            Abu Dhabi Property Transactions
+            {m.site_tagline()}
           </p>
         </div>
       </div>
@@ -90,21 +91,21 @@
             class="rounded-full w-28 py-2 text-sm font-bold text-center transition-colors tracking-wide
                    {!isRentalPage && !isInvestorPage ? 'bg-brand-500 text-white shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
-            Sales
+            {m.header_nav_sales()}
           </a>
           <a
             href="{base}/rental"
             class="rounded-full w-28 py-2 text-sm font-bold text-center transition-colors tracking-wide
                    {isRentalPage ? 'bg-brand-500 text-white shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
-            Rental
+            {m.header_nav_rental()}
           </a>
           <a
             href="{base}/investors"
             class="rounded-full w-28 py-2 text-sm font-bold text-center transition-colors tracking-wide
                    {isInvestorPage ? 'bg-emerald-600 text-white shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
-            Investors
+            {m.header_nav_investors()}
           </a>
         </nav>
       {/if}
@@ -135,7 +136,7 @@
                 onclick={() => (avatarMenuOpen = false)}
               >
                 <div class="px-4 py-3 border-b border-gray-100">
-                  <p class="text-xs text-gray-400">Signed in as</p>
+                  <p class="text-xs text-gray-400">{m.header_signed_in_as()}</p>
                   <p class="text-sm font-semibold text-gray-900 truncate">{getDisplayName($user)}</p>
                 </div>
                 <button
@@ -146,7 +147,7 @@
                   <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
                   </svg>
-                  Sign out
+                  {m.header_sign_out()}
                 </button>
               </div>
             {/if}
@@ -160,7 +161,7 @@
               <svg class="h-3.5 w-3.5 text-brand-500/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694 4.125-8.25 4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 2.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
               </svg>
-              <span class="text-white/80">{$metadata.rowCount.toLocaleString()}</span> transactions
+              <span class="text-white/80">{$metadata.rowCount.toLocaleString()}</span> {m.header_transactions_suffix()}
               {#if $metadata.dateRange?.min && $metadata.dateRange?.max}
                 <span class="text-white/30">·</span>
                 <span>{dataRange($metadata.dateRange.min, $metadata.dateRange.max)}</span>
@@ -172,7 +173,7 @@
               <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Updated {formatUpdated(lastUpdated)}
+              {m.header_updated_prefix({ date: formatUpdated(lastUpdated) })}
             </div>
           {/if}
         </div>
@@ -189,21 +190,21 @@
             class="rounded-full w-[5.5rem] py-1.5 text-xs font-semibold text-center transition-colors
                    {!isRentalPage && !isInvestorPage ? 'bg-brand-500 text-white shadow-sm' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
-            Sales
+            {m.header_nav_sales()}
           </a>
           <a
             href="{base}/rental"
             class="rounded-full w-[5.5rem] py-1.5 text-xs font-semibold text-center transition-colors
                    {isRentalPage ? 'bg-brand-500 text-white shadow-sm' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
-            Rental
+            {m.header_nav_rental()}
           </a>
           <a
             href="{base}/investors"
             class="rounded-full w-[5.5rem] py-1.5 text-xs font-semibold text-center transition-colors
                    {isInvestorPage ? 'bg-emerald-600 text-white shadow-sm' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
-            Investors
+            {m.header_nav_investors()}
           </a>
         </nav>
       </div>

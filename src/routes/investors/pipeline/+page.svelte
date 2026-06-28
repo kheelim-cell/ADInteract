@@ -1,5 +1,6 @@
 <script lang="ts">
   import rawPipeline from '$lib/data/project_pipeline.json';
+  import { m } from '$lib/paraglide/messages.js';
 
   type ProjectRow = {
     slug: string;
@@ -57,20 +58,20 @@
   }
 
   function statusMeta(status: ProjectRow['status']) {
-    if (status === 'accelerating') return { label: 'Accelerating', cls: 'bg-emerald-100 text-emerald-800' };
-    if (status === 'new_launch')   return { label: 'New launch',   cls: 'bg-blue-100 text-blue-800' };
-    if (status === 'slowing')      return { label: 'Slowing',      cls: 'bg-amber-100 text-amber-800' };
-    if (status === 'stale')        return { label: 'Stale',        cls: 'bg-gray-100 text-gray-500' };
-    return                                 { label: 'Steady',      cls: 'bg-violet-100 text-violet-800' };
+    if (status === 'accelerating') return { label: m.pipeline_status_accelerating(), cls: 'bg-emerald-100 text-emerald-800' };
+    if (status === 'new_launch')   return { label: m.pipeline_status_new_launch(),   cls: 'bg-blue-100 text-blue-800' };
+    if (status === 'slowing')      return { label: m.pipeline_status_slowing(),      cls: 'bg-amber-100 text-amber-800' };
+    if (status === 'stale')        return { label: m.pipeline_status_stale(),        cls: 'bg-gray-100 text-gray-500' };
+    return                                 { label: m.pipeline_status_steady(),      cls: 'bg-violet-100 text-violet-800' };
   }
 
   const accelerating = data.projects.filter(p => p.status === 'accelerating').length;
   const stale = data.projects.filter(p => p.status === 'stale').length;
 
   function constructionMeta(status: string | null) {
-    if (status === 'Built') return { label: 'Ready', cls: 'bg-emerald-500' };
-    if (status === 'Ready') return { label: 'Ready', cls: 'bg-emerald-500' };
-    return { label: 'Under Construction', cls: 'bg-amber-500' };
+    if (status === 'Built') return { label: m.pipeline_construction_ready(), cls: 'bg-emerald-500' };
+    if (status === 'Ready') return { label: m.pipeline_construction_ready(), cls: 'bg-emerald-500' };
+    return { label: m.pipeline_construction_underway(), cls: 'bg-amber-500' };
   }
 </script>
 
@@ -82,10 +83,9 @@
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8 space-y-6">
 
   <div class="mb-2">
-    <h1 class="text-xl font-bold text-gray-900 mb-1">Off-Plan Project Pipeline</h1>
+    <h1 class="text-xl font-bold text-gray-900 mb-1">{m.pipeline_page_title()}</h1>
     <p class="text-sm text-gray-500 max-w-2xl">
-      <span class="font-medium text-gray-700">{data.project_count}</span> active off-plan projects, ranked by registered-sales activity in the last 90 days.
-      Updated daily from ADREC transaction data as of {data.as_of_date}.
+      {m.pipeline_page_intro({ count: String(data.project_count), date: data.as_of_date })}
     </p>
   </div>
 
@@ -98,12 +98,9 @@
         </svg>
       </div>
       <div>
-        <p class="text-sm font-semibold text-gray-800">What this tracks — and what it can't tell you</p>
+        <p class="text-sm font-semibold text-gray-800">{m.pipeline_honesty_title()}</p>
         <p class="mt-0.5 text-xs leading-relaxed text-gray-500">
-          This is <strong class="text-gray-700">registered-sales velocity</strong>, not unit absorption. ADREC's transaction export has no field for total units per project,
-          so we can't report a "% sold" or true absorption rate — anyone quoting one from this data source is estimating, not reporting.
-          What we do report straight from registrations: how many off-plan sales a project has logged in the <strong class="text-gray-700">last 90 days vs. the prior 90 days</strong> (momentum),
-          and how many days since its <strong class="text-gray-700">last registered sale</strong> (a 0-sale 90+ day gap is flagged "stale" — sold out, paused, or struggling; we can't tell which).
+          {m.pipeline_honesty_part1()} <strong class="text-gray-700">{m.pipeline_honesty_velocity()}</strong>{m.pipeline_honesty_part2()} <strong class="text-gray-700">{m.pipeline_honesty_window()}</strong> {m.pipeline_honesty_part3()} <strong class="text-gray-700">{m.pipeline_honesty_last_sale()}</strong> {m.pipeline_honesty_part4()}
         </p>
       </div>
     </div>
@@ -112,22 +109,22 @@
   <!-- ── KPI strip ──────────────────────────────────────────────────────── -->
   <div class="flex flex-wrap items-center gap-x-8 gap-y-2 rounded-xl border border-gray-100 bg-white px-4 py-3 text-sm shadow-sm">
     <div class="flex items-center gap-2">
-      <span class="text-gray-500">Projects tracked</span>
+      <span class="text-gray-500">{m.pipeline_kpi_projects_tracked()}</span>
       <span class="font-semibold text-gray-900">{data.project_count}</span>
     </div>
     <div class="h-4 w-px bg-gray-200 hidden sm:block"></div>
     <div class="flex items-center gap-2">
-      <span class="text-gray-500">All-time registered sales</span>
+      <span class="text-gray-500">{m.pipeline_kpi_alltime_sales()}</span>
       <span class="font-semibold text-gray-900">{fmt(data.total_registered_sales_alltime)}</span>
     </div>
     <div class="h-4 w-px bg-gray-200 hidden sm:block"></div>
     <div class="flex items-center gap-2">
-      <span class="text-gray-500">Accelerating</span>
+      <span class="text-gray-500">{m.pipeline_kpi_accelerating()}</span>
       <span class="font-semibold text-emerald-700">{accelerating}</span>
     </div>
     <div class="h-4 w-px bg-gray-200 hidden sm:block"></div>
     <div class="flex items-center gap-2">
-      <span class="text-gray-500">Stale (90+ days, no sales)</span>
+      <span class="text-gray-500">{m.pipeline_kpi_stale()}</span>
       <span class="font-semibold text-gray-500">{stale}</span>
     </div>
   </div>
@@ -135,19 +132,19 @@
   <!-- ── Filters ────────────────────────────────────────────────────────── -->
   <div class="flex flex-wrap items-center gap-3">
     <select bind:value={filterDistrict} class="text-xs font-medium text-gray-700 border border-gray-200 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 min-w-[9rem]">
-      <option value="">All Districts</option>
+      <option value="">{m.calc_district_all()}</option>
       {#each districts as d}
         <option value={d}>{d}</option>
       {/each}
     </select>
 
     <select bind:value={filterStatus} class="text-xs font-medium text-gray-700 border border-gray-200 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 min-w-[9rem]">
-      <option value="">All Statuses</option>
-      <option value="accelerating">Accelerating</option>
-      <option value="new_launch">New launch</option>
-      <option value="steady">Steady</option>
-      <option value="slowing">Slowing</option>
-      <option value="stale">Stale</option>
+      <option value="">{m.pipeline_all_statuses()}</option>
+      <option value="accelerating">{m.pipeline_status_accelerating()}</option>
+      <option value="new_launch">{m.pipeline_status_new_launch()}</option>
+      <option value="steady">{m.pipeline_status_steady()}</option>
+      <option value="slowing">{m.pipeline_status_slowing()}</option>
+      <option value="stale">{m.pipeline_status_stale()}</option>
     </select>
 
     {#if hasFilter}
@@ -159,11 +156,11 @@
         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
         </svg>
-        Clear filters
+        {m.pipeline_clear_filters()}
       </button>
     {/if}
 
-    <span class="text-xs text-gray-400 ml-auto">{filtered.length} of {data.project_count} projects</span>
+    <span class="text-xs text-gray-400 ml-auto">{m.pipeline_filtered_count({ filtered: String(filtered.length), total: String(data.project_count) })}</span>
   </div>
 
   <!-- ── Project card grid ─────────────────────────────────────────────── -->
@@ -200,7 +197,7 @@
           {#if p.completion_pct !== null}
             <div class="mb-2">
               <div class="flex items-center justify-between mb-1">
-                <span class="text-[10px] text-gray-400 uppercase tracking-wide">Construction</span>
+                <span class="text-[10px] text-gray-400 uppercase tracking-wide">{m.pipeline_construction_label()}</span>
                 <span class="text-xs font-bold text-gray-700">{p.completion_pct}%</span>
               </div>
               <div class="h-1.5 rounded-full bg-gray-100 overflow-hidden">
@@ -215,7 +212,7 @@
           </div>
 
           <div class="mt-2 pt-2 border-t border-gray-100 flex items-center justify-between text-[10px] text-gray-400">
-            <span>{p.sales_last_90d} registered sales / 90d</span>
+            <span>{m.pipeline_sales_per_90d({ count: String(p.sales_last_90d) })}</span>
             <span class="{p.momentum_pct == null ? 'text-gray-400' : p.momentum_pct >= 0 ? 'text-emerald-600' : 'text-red-500'} font-semibold">
               {p.momentum_pct == null ? '—' : `${p.momentum_pct >= 0 ? '+' : ''}${p.momentum_pct}%`}
             </span>
@@ -225,10 +222,10 @@
     {/each}
 
     {#if filtered.length === 0}
-      <div class="col-span-full px-5 py-10 text-center text-sm text-gray-400">No projects match these filters</div>
+      <div class="col-span-full px-5 py-10 text-center text-sm text-gray-400">{m.pipeline_no_match()}</div>
     {/if}
   </div>
 
-  <p class="mt-1 text-[10px] text-gray-400">Source: ADREC via ADInteract.co · registered off-plan sales only · updated daily</p>
+  <p class="mt-1 text-[10px] text-gray-400">{m.pipeline_source_footer()}</p>
 
 </div>

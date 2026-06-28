@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
+
   let { compact = false }: { compact?: boolean } = $props();
   let open = $state(!compact);
 
@@ -43,7 +45,7 @@
     <svg class="w-3.5 h-3.5 transition-transform {open ? 'rotate-90' : ''}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
       <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
     </svg>
-    {open ? 'Hide' : 'How is this scored?'}
+    {open ? m.score_methodology_toggle_hide() : m.score_methodology_toggle_show()}
   </button>
 {/if}
 

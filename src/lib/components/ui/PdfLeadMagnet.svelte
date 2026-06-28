@@ -1,5 +1,6 @@
 <script lang="ts">
   import { base } from '$app/paths';
+  import { m } from '$lib/paraglide/messages.js';
 
   // Pre-generated server-side guide (scripts/generate_price_guide.py),
   // refreshed alongside the daily data pipeline. Served straight from
@@ -17,7 +18,7 @@
     const emailTrimmed = email.trim().toLowerCase();
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRe.test(emailTrimmed)) {
-      errorMsg = 'Please enter a valid email address.';
+      errorMsg = m.pdf_lead_email_invalid();
       return;
     }
 
@@ -60,7 +61,7 @@
       status = 'success';
     } catch (err) {
       status = 'error';
-      errorMsg = 'Failed to download guide. Please try again.';
+      errorMsg = m.pdf_lead_download_failed();
       console.error(err);
     }
   }
@@ -75,8 +76,8 @@
         </svg>
       </div>
       <div>
-        <p class="text-sm font-semibold text-gray-900">PDF downloading now.</p>
-        <p class="text-xs text-gray-500 mt-0.5">You'll also receive weekly market updates.</p>
+        <p class="text-sm font-semibold text-gray-900">{m.pdf_lead_downloading_title()}</p>
+        <p class="text-xs text-gray-500 mt-0.5">{m.pdf_lead_downloading_subtitle()}</p>
       </div>
     </div>
   {:else}
@@ -84,18 +85,17 @@
       <svg class="w-5 h-5 text-brand-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
       </svg>
-      <span class="text-sm font-bold text-gray-900">Free Abu Dhabi Investment Guide 2026</span>
+      <span class="text-sm font-bold text-gray-900">{m.pdf_lead_heading()}</span>
     </div>
     <p class="text-xs text-gray-500 mb-4 leading-relaxed">
-      Median prices, district deep-dives and investment scores for Abu Dhabi's top districts.
-      Official ADREC data.
+      {m.pdf_lead_body()}
     </p>
 
     <form onsubmit={submit} class="flex flex-col sm:flex-row gap-2">
       <input
         type="email"
         bind:value={email}
-        placeholder="your@email.com"
+        placeholder={m.pdf_lead_email_placeholder()}
         required
         disabled={status !== 'idle'}
         class="flex-1 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent disabled:opacity-60"
@@ -110,14 +110,14 @@
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
           </svg>
-          Preparing…
+          {m.pdf_lead_preparing()}
         {:else if status === 'emailing'}
-          Saving…
+          {m.pdf_lead_saving()}
         {:else}
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
           </svg>
-          Download free guide
+          {m.pdf_lead_download_button()}
         {/if}
       </button>
     </form>
@@ -125,7 +125,7 @@
     {#if errorMsg}
       <p class="mt-2 text-xs text-red-600">{errorMsg}</p>
     {:else}
-      <p class="mt-2 text-[10px] text-gray-400">No spam. Unsubscribe anytime.</p>
+      <p class="mt-2 text-[10px] text-gray-400">{m.pdf_lead_no_spam()}</p>
     {/if}
   {/if}
 </div>

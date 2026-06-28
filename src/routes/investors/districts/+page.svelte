@@ -3,6 +3,7 @@
   import rawScores from '$lib/data/district_scores.json';
   import ScoreMethodology from '$lib/components/ui/ScoreMethodology.svelte';
   import PdfLeadMagnet from '$lib/components/ui/PdfLeadMagnet.svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   type ScoreEntry = {
     slug: string;
@@ -46,10 +47,10 @@
   }
 
   function scoreTypeLabel(type: string | undefined) {
-    if (type === 'yield_stability')    return { label: 'Yield & Stability',    cls: 'bg-emerald-100 text-emerald-800' };
-    if (type === 'growth_early_cycle') return { label: 'Growth & Early-Cycle', cls: 'bg-blue-100 text-blue-800' };
-    if (type === 'both')               return { label: 'Dual market',          cls: 'bg-violet-100 text-violet-800' };
-    return                                    { label: '—',                    cls: 'bg-gray-100 text-gray-500' };
+    if (type === 'yield_stability')    return { label: m.districts_legend_yield_stability(),    cls: 'bg-emerald-100 text-emerald-800' };
+    if (type === 'growth_early_cycle') return { label: m.districts_legend_growth_early_cycle(), cls: 'bg-blue-100 text-blue-800' };
+    if (type === 'both')               return { label: m.districts_legend_dual_market(),          cls: 'bg-violet-100 text-violet-800' };
+    return                                    { label: m.districts_score_type_na(),                    cls: 'bg-gray-100 text-gray-500' };
   }
 </script>
 
@@ -61,10 +62,9 @@
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8">
 
   <div class="mb-6">
-    <h1 class="text-xl font-bold text-gray-900 mb-1">District Investment Rankings</h1>
+    <h1 class="text-xl font-bold text-gray-900 mb-1">{m.districts_page_title()}</h1>
     <p class="text-sm text-gray-500 max-w-2xl">
-      All <span class="font-medium text-gray-700">{totalCount}</span> Abu Dhabi districts, ranked by a dual scoring model calibrated to each district's market maturity. Showing top {Math.min(PAGE_SIZE, totalCount)} by default.
-      Scores update daily from ADREC transaction data.
+      {m.districts_page_intro({ count: String(totalCount), pageSize: String(Math.min(PAGE_SIZE, totalCount)) })}
     </p>
   </div>
 
@@ -72,29 +72,29 @@
   <div class="flex flex-wrap gap-2 mb-5 text-xs">
     <span class="flex items-center gap-1.5 rounded-full bg-emerald-100 text-emerald-800 px-3 py-1 font-semibold">
       <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block"></span>
-      Yield &amp; Stability
+      {m.districts_legend_yield_stability()}
     </span>
     <span class="flex items-center gap-1.5 rounded-full bg-blue-100 text-blue-800 px-3 py-1 font-semibold">
       <span class="w-1.5 h-1.5 rounded-full bg-blue-600 inline-block"></span>
-      Growth &amp; Early-Cycle
+      {m.districts_legend_growth_early_cycle()}
     </span>
     <span class="flex items-center gap-1.5 rounded-full bg-violet-100 text-violet-800 px-3 py-1 font-semibold">
       <span class="w-1.5 h-1.5 rounded-full bg-violet-600 inline-block"></span>
-      Dual market
+      {m.districts_legend_dual_market()}
     </span>
   </div>
 
   <!-- ── Desktop table (md+) ─────────────────────────────────────────── -->
   <div class="hidden md:block rounded-2xl border border-gray-200 overflow-hidden bg-white">
     <div class="grid grid-cols-[2rem_1fr_9rem_5rem_5rem_6rem_5rem_7rem] items-center gap-2 px-5 py-3 bg-gray-50 border-b border-gray-100 text-[10px] font-bold uppercase tracking-widest text-gray-400">
-      <span>#</span>
-      <span>District</span>
-      <span>Score type</span>
-      <span class="text-center">Score</span>
-      <span class="text-center">Trend</span>
-      <span class="text-right">AED/sqft</span>
-      <span class="text-right">Sales 12m</span>
-      <span class="text-right">Off-plan %</span>
+      <span>{m.districts_th_rank()}</span>
+      <span>{m.districts_th_district()}</span>
+      <span>{m.districts_th_score_type()}</span>
+      <span class="text-center">{m.districts_th_score()}</span>
+      <span class="text-center">{m.districts_th_trend()}</span>
+      <span class="text-right">{m.districts_th_psf()}</span>
+      <span class="text-right">{m.districts_th_sales_12m()}</span>
+      <span class="text-right">{m.districts_th_offplan_pct()}</span>
     </div>
 
     {#each visible as district, i}
@@ -229,7 +229,7 @@
         onclick={() => showAll = true}
         class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-4 py-2 text-xs font-semibold text-gray-700 hover:border-brand-300 hover:text-brand-700 transition-colors"
       >
-        Show all {totalCount} districts
+        {m.districts_show_all({ count: String(totalCount) })}
         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
         </svg>
@@ -242,7 +242,7 @@
         onclick={() => showAll = false}
         class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-4 py-2 text-xs font-semibold text-gray-700 hover:border-brand-300 hover:text-brand-700 transition-colors"
       >
-        Show top {PAGE_SIZE} only
+        {m.districts_show_top({ pageSize: String(PAGE_SIZE) })}
         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
         </svg>
@@ -250,8 +250,8 @@
     </div>
   {/if}
 
-  <p class="mt-3 text-[10px] text-gray-400">Tap any district to view the full report with per-factor breakdown →</p>
-  <p class="mt-1 text-[10px] text-gray-400">Source: ADREC via ADInteract.co · scores recalculated daily</p>
+  <p class="mt-3 text-[10px] text-gray-400">{m.districts_tap_hint()}</p>
+  <p class="mt-1 text-[10px] text-gray-400">{m.districts_source_footer()}</p>
 
   <!-- PDF lead magnet -->
   <div class="mt-8">
@@ -260,8 +260,8 @@
 
   <!-- Methodology -->
   <div class="mt-10 pt-8 border-t border-gray-100">
-    <h2 class="text-base font-bold text-gray-900 mb-1">Score methodology</h2>
-    <p class="text-sm text-gray-500 mb-4">Dual scoring logic, factor weights, global benchmark comparison, and FAQs.</p>
+    <h2 class="text-base font-bold text-gray-900 mb-1">{m.districts_methodology_title()}</h2>
+    <p class="text-sm text-gray-500 mb-4">{m.districts_methodology_subtitle()}</p>
     <ScoreMethodology compact={false} />
   </div>
 

@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import { metadata, rentalMetadata, dbReady } from '$lib/stores/db';
   import { queryDistrictComparison, type DistrictComparisonData } from '$lib/db/investor_queries';
+  import { m } from '$lib/paraglide/messages.js';
 
   // ── Types ──────────────────────────────────────────────────────────────────
   interface ScProject {
@@ -12,12 +13,12 @@
   }
 
   // ── Constants ──────────────────────────────────────────────────────────────
-  const LAYOUTS = [
-    { value: 'studio', label: 'Studio' },
-    { value: '1 bed',  label: '1 Bed'  },
-    { value: '2 beds', label: '2 Beds' },
-    { value: '3 beds', label: '3 Beds' },
-  ] as const;
+  let LAYOUTS = $derived([
+    { value: 'studio', label: m.filter_layout_studio() },
+    { value: '1 bed',  label: m.filter_layout_1_bed()  },
+    { value: '2 beds', label: m.filter_layout_2_beds() },
+    { value: '3 beds', label: m.filter_layout_3_beds() },
+  ] as const);
 
   const PINNED_DISTRICTS = [
     'Al Reem Island', 'Yas Island', 'Al Saadiyat Island', 'Al Rahah',
@@ -194,9 +195,9 @@
         </svg>
       </div>
       <div>
-        <p class="text-sm font-semibold text-gray-800">How it works</p>
+        <p class="text-sm font-semibold text-gray-800">{m.compare_explainer_title()}</p>
         <p class="mt-0.5 text-xs leading-relaxed text-gray-500">
-          Select 2–3 districts and a bedroom type to see a side-by-side breakdown of median sale price, AED/sqft, YoY appreciation, gross rental yield, service charge, and liquidity. Price and YoY data uses a rolling 12-month window from ADREC; rental yield uses the latest ADREC Rental Index ({rentalYear}); service charges from registered ADREC data. <strong class="text-gray-700">↑ best</strong> / <strong class="text-gray-700">↓ lowest</strong> badges highlight the leading district for each metric.
+          {m.compare_explainer_body({ year: String(rentalYear) })} <strong class="text-gray-700">{m.compare_explainer_best_label()}</strong> / <strong class="text-gray-700">{m.compare_explainer_lowest_label()}</strong> {m.compare_explainer_badges_suffix()}
         </p>
       </div>
     </div>
@@ -207,7 +208,7 @@
 
     <!-- Layout chips -->
     <div>
-      <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Bedroom type</p>
+      <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">{m.compare_bedroom_type_label()}</p>
       <div class="flex flex-wrap gap-2">
         {#each LAYOUTS as l}
           <button
@@ -226,19 +227,19 @@
 
     <!-- District selectors -->
     <div>
-      <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Districts to compare</p>
+      <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">{m.compare_districts_label()}</p>
       <div class="flex flex-wrap items-center gap-3">
 
         <!-- District 1 -->
         <div class="relative">
           <select bind:value={district1} class="{sel} min-w-[11rem]">
-            <option value="">District 1 (required)</option>
-            <optgroup label="Popular">
+            <option value="">{m.compare_district1_placeholder()}</option>
+            <optgroup label={m.compare_popular()}>
               {#each pinnedDistricts as d}
                 <option value={d} disabled={d === district2 || (show3rd && d === district3)}>{d}</option>
               {/each}
             </optgroup>
-            <optgroup label="All districts">
+            <optgroup label={m.compare_all_districts()}>
               {#each otherDistricts as d}
                 <option value={d} disabled={d === district2 || (show3rd && d === district3)}>{d}</option>
               {/each}
@@ -249,18 +250,18 @@
           </svg>
         </div>
 
-        <span class="text-gray-300 font-bold text-sm hidden sm:block">vs</span>
+        <span class="text-gray-300 font-bold text-sm hidden sm:block">{m.compare_vs()}</span>
 
         <!-- District 2 -->
         <div class="relative">
           <select bind:value={district2} class="{sel} min-w-[11rem]">
-            <option value="">District 2 (required)</option>
-            <optgroup label="Popular">
+            <option value="">{m.compare_district2_placeholder()}</option>
+            <optgroup label={m.compare_popular()}>
               {#each pinnedDistricts as d}
                 <option value={d} disabled={d === district1 || (show3rd && d === district3)}>{d}</option>
               {/each}
             </optgroup>
-            <optgroup label="All districts">
+            <optgroup label={m.compare_all_districts()}>
               {#each otherDistricts as d}
                 <option value={d} disabled={d === district1 || (show3rd && d === district3)}>{d}</option>
               {/each}
@@ -273,16 +274,16 @@
 
         <!-- District 3 (optional) -->
         {#if show3rd}
-          <span class="text-gray-300 font-bold text-sm hidden sm:block">vs</span>
+          <span class="text-gray-300 font-bold text-sm hidden sm:block">{m.compare_vs()}</span>
           <div class="relative flex items-center gap-1.5">
             <select bind:value={district3} class="{sel} min-w-[11rem]">
-              <option value="">District 3 (optional)</option>
-              <optgroup label="Popular">
+              <option value="">{m.compare_district3_placeholder()}</option>
+              <optgroup label={m.compare_popular()}>
                 {#each pinnedDistricts as d}
                   <option value={d} disabled={d === district1 || d === district2}>{d}</option>
                 {/each}
               </optgroup>
-              <optgroup label="All districts">
+              <optgroup label={m.compare_all_districts()}>
                 {#each otherDistricts as d}
                   <option value={d} disabled={d === district1 || d === district2}>{d}</option>
                 {/each}
@@ -294,7 +295,7 @@
             <button
               type="button"
               onclick={() => { show3rd = false; district3 = ''; }}
-              title="Remove 3rd district"
+              title={m.compare_remove_3rd_title()}
               class="flex-shrink-0 rounded-full p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
             >
               <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -311,7 +312,7 @@
             <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
-            Add 3rd district
+            {m.compare_add_3rd()}
           </button>
         {/if}
 
@@ -327,8 +328,8 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 3M21 7.5H7.5" />
         </svg>
       </div>
-      <p class="text-sm font-semibold text-gray-700">Select 2 districts to compare</p>
-      <p class="mt-1 text-xs text-gray-400">Choose a bedroom type and at least 2 districts above</p>
+      <p class="text-sm font-semibold text-gray-700">{m.compare_select_2_title()}</p>
+      <p class="mt-1 text-xs text-gray-400">{m.compare_select_2_subtitle()}</p>
     </div>
 
   {:else if loading}
@@ -369,8 +370,8 @@
       <svg class="h-10 w-10 text-gray-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
       </svg>
-      <p class="text-sm font-semibold text-gray-700">No data for these selections</p>
-      <p class="mt-1 text-xs text-gray-400">Try a different layout or check the district names</p>
+      <p class="text-sm font-semibold text-gray-700">{m.compare_no_data_title()}</p>
+      <p class="mt-1 text-xs text-gray-400">{m.compare_no_data_subtitle()}</p>
     </div>
 
   {:else}
@@ -383,7 +384,7 @@
           <thead class="bg-gray-50 border-b border-gray-100">
             <tr>
               <th class="px-2 sm:px-4 py-3 text-left text-[10px] font-bold text-gray-400 uppercase tracking-widest w-28 sm:w-52">
-                Metric
+                {m.compare_metric_header()}
               </th>
               {#each selectedDistricts as d, i}
                 {@const row = rowByDistrict.get(d)}
@@ -392,10 +393,10 @@
                   <span class="block text-xs sm:text-sm font-bold {colors[i]} leading-tight">{d}</span>
                   {#if row}
                     <span class="hidden sm:block text-[10px] font-normal text-gray-400 mt-0.5">
-                      {fmtCount(row.txCount)} sales · 12 months
+                      {m.compare_sales_12mo({ count: fmtCount(row.txCount) })}
                     </span>
                   {:else}
-                    <span class="hidden sm:block text-[10px] font-normal text-gray-400 mt-0.5">No data</span>
+                    <span class="hidden sm:block text-[10px] font-normal text-gray-400 mt-0.5">{m.compare_no_data_short()}</span>
                   {/if}
                 </th>
               {/each}
@@ -407,8 +408,8 @@
             <!-- 1. Median Sale Price (AED) — informational, no winner -->
             <tr class="hover:bg-gray-50/50 transition-colors">
               <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
-                <span class="font-semibold text-gray-700">Median Sale Price</span>
-                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">AED · rolling 12 months</span>
+                <span class="font-semibold text-gray-700">{m.compare_median_sale_price()}</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">{m.compare_aed_rolling_12mo()}</span>
               </td>
               {#each selectedDistricts as d}
                 {@const row = rowByDistrict.get(d)}
@@ -421,8 +422,8 @@
             <!-- 2. Median AED/sqft — informational, no winner -->
             <tr class="hover:bg-gray-50/50 transition-colors">
               <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
-                <span class="font-semibold text-gray-700">Median AED/sqft</span>
-                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">Rolling 12 months</span>
+                <span class="font-semibold text-gray-700">{m.compare_median_psf()}</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">{m.compare_rolling_12mo()}</span>
               </td>
               {#each selectedDistricts as d}
                 {@const row = rowByDistrict.get(d)}
@@ -435,8 +436,8 @@
             <!-- 3. YoY Price Growth — highest wins -->
             <tr class="hover:bg-gray-50/50 transition-colors">
               <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
-                <span class="font-semibold text-gray-700">YoY Price Growth</span>
-                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">AED/sqft · vs prior 12 months</span>
+                <span class="font-semibold text-gray-700">{m.compare_yoy_price_growth()}</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">{m.compare_yoy_subtitle()}</span>
               </td>
               {#each selectedDistricts as d, i}
                 {@const row = rowByDistrict.get(d)}
@@ -449,7 +450,7 @@
                       {fmtPct(v)}
                     </span>
                     {#if isWinner}
-                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">↑ best</span>
+                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">{m.compare_best_badge()}</span>
                     {/if}
                   </div>
                 </td>
@@ -459,8 +460,8 @@
             <!-- 4. Gross Rental Yield — highest wins -->
             <tr class="hover:bg-gray-50/50 transition-colors">
               <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
-                <span class="font-semibold text-gray-700">Gross Rental Yield</span>
-                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">ADREC rent ÷ sale price · {rentalYear}</span>
+                <span class="font-semibold text-gray-700">{m.compare_gross_rental_yield()}</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">{m.compare_rental_yield_subtitle({ year: String(rentalYear) })}</span>
               </td>
               {#each selectedDistricts as d, i}
                 {@const row = rowByDistrict.get(d)}
@@ -473,7 +474,7 @@
                       {v !== null ? v.toFixed(2) + '%' : '—'}
                     </span>
                     {#if isWinner}
-                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">↑ best</span>
+                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">{m.compare_best_badge()}</span>
                     {/if}
                   </div>
                 </td>
@@ -483,8 +484,8 @@
             <!-- 5. Median Service Charge — lowest wins -->
             <tr class="hover:bg-gray-50/50 transition-colors">
               <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
-                <span class="font-semibold text-gray-700">Service Charge</span>
-                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">Median AED/sqft/yr across projects</span>
+                <span class="font-semibold text-gray-700">{m.compare_service_charge()}</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">{m.compare_service_charge_subtitle()}</span>
               </td>
               {#each selectedDistricts as d, i}
                 {@const sc = districtMedianSc(d)}
@@ -500,7 +501,7 @@
                       {/if}
                     </span>
                     {#if isWinner}
-                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">↓ lowest</span>
+                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">{m.compare_lowest_badge()}</span>
                     {/if}
                   </div>
                 </td>
@@ -510,8 +511,8 @@
             <!-- 6. Transaction Volume — highest wins (liquidity) -->
             <tr class="hover:bg-gray-50/50 transition-colors">
               <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
-                <span class="font-semibold text-gray-700">Transaction Volume</span>
-                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">Sales count · rolling 12 months</span>
+                <span class="font-semibold text-gray-700">{m.compare_transaction_volume()}</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">{m.compare_tx_volume_subtitle()}</span>
               </td>
               {#each selectedDistricts as d, i}
                 {@const row = rowByDistrict.get(d)}
@@ -520,10 +521,10 @@
                   <div class="flex flex-col items-end sm:flex-row sm:items-center sm:justify-end gap-0.5 sm:gap-0">
                     <span class="tabular-nums text-xs sm:text-sm font-medium sm:mr-1
                       {isWinner ? 'text-emerald-700 font-semibold' : 'text-gray-800'}">
-                      {row ? fmtCount(row.txCount) + ' sales' : '—'}
+                      {row ? `${fmtCount(row.txCount)} ${m.compare_sales_suffix()}` : '—'}
                     </span>
                     {#if isWinner}
-                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">↑ most liquid</span>
+                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700">{m.compare_most_liquid_badge()}</span>
                     {/if}
                   </div>
                 </td>
@@ -533,13 +534,13 @@
             <!-- 7. Supply Pipeline — informational only -->
             <tr class="hover:bg-gray-50/50 transition-colors">
               <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-xs">
-                <span class="font-semibold text-gray-700">Supply Pipeline</span>
-                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">Off-plan primary registrations · 3 yrs</span>
+                <span class="font-semibold text-gray-700">{m.compare_supply_pipeline()}</span>
+                <span class="hidden sm:block text-[10px] text-gray-400 mt-0.5">{m.compare_supply_pipeline_subtitle()}</span>
               </td>
               {#each selectedDistricts as d}
                 {@const row = rowByDistrict.get(d)}
                 <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-right tabular-nums text-xs sm:text-sm font-medium text-gray-800">
-                  {row ? fmtCount(row.pipelineCount) + ' units' : '—'}
+                  {row ? `${fmtCount(row.pipelineCount)} ${m.compare_units_suffix()}` : '—'}
                 </td>
               {/each}
             </tr>
@@ -555,14 +556,14 @@
       <!-- Legend -->
       <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] text-gray-400">
         <span class="flex items-center gap-1">
-          <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 font-bold text-emerald-700">↑ best</span>
-          Highest value wins
+          <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 font-bold text-emerald-700">{m.compare_best_badge()}</span>
+          {m.compare_legend_highest()}
         </span>
         <span class="flex items-center gap-1">
-          <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 font-bold text-emerald-700">↓ lowest</span>
-          Lowest cost wins
+          <span class="inline-flex items-center rounded-full bg-emerald-100 px-1.5 py-0.5 font-bold text-emerald-700">{m.compare_lowest_badge()}</span>
+          {m.compare_legend_lowest()}
         </span>
-        <span>Supply Pipeline is informational — not scored</span>
+        <span>{m.compare_legend_pipeline()}</span>
       </div>
 
       <!-- Share link -->
@@ -575,23 +576,23 @@
           <svg class="h-3.5 w-3.5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
           </svg>
-          Link copied!
+          {m.compare_link_copied()}
         {:else}
           <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 1 1.242 7.244" />
           </svg>
-          Share comparison
+          {m.compare_share_comparison()}
         {/if}
       </button>
     </div>
 
     <!-- ── Data attribution ───────────────────────────────────────────────── -->
     <p class="text-[10px] text-gray-400 leading-relaxed">
-      <strong class="text-gray-500">Prices & volume:</strong> ADREC registered sales, rolling 12 months ·
-      <strong class="text-gray-500">Rental yield:</strong> ADREC Rental Index {rentalYear} ·
-      <strong class="text-gray-500">Service charges:</strong> ADREC project-level rates, district median ·
-      <strong class="text-gray-500">Supply pipeline:</strong> off-plan primary registrations, last 3 years.
-      Figures are computed from ADREC-registered transactions; they may differ from asking prices or agent quotations.
+      <strong class="text-gray-500">{m.compare_attrib_prices_volume_label()}</strong> {m.compare_attrib_prices_volume_text()} ·
+      <strong class="text-gray-500">{m.compare_attrib_rental_yield_label()}</strong> {m.compare_attrib_rental_yield_text({ year: String(rentalYear) })} ·
+      <strong class="text-gray-500">{m.compare_attrib_service_charges_label()}</strong> {m.compare_attrib_service_charges_text()} ·
+      <strong class="text-gray-500">{m.compare_attrib_supply_pipeline_label()}</strong> {m.compare_attrib_supply_pipeline_text()}.
+      {m.compare_attrib_footer()}
     </p>
 
   {/if}

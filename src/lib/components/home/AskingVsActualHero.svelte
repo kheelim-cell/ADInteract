@@ -3,6 +3,7 @@
   import { dbReady } from '$lib/stores/db';
   import { query } from '$lib/db/duckdb';
   import rawScores from '$lib/data/district_scores.json';
+  import { m } from '$lib/paraglide/messages.js';
 
   type ScoreEntry = { slug: string; tx_count_12m: number };
   const scores = rawScores as Record<string, ScoreEntry>;
@@ -70,7 +71,7 @@
 
 <div class="rounded-2xl border border-brand-100 bg-gradient-to-br from-[#0F2B1F]/5 to-white px-5 py-5 mb-6">
   <div class="flex flex-wrap items-center justify-between gap-3 mb-1">
-    <p class="text-xs font-bold uppercase tracking-widest text-brand-700">Off-plan vs ready market · AED/sqft</p>
+    <p class="text-xs font-bold uppercase tracking-widest text-brand-700">{m.hero_offplan_vs_ready_title()}</p>
     <select
       bind:value={selectedDistrict}
       class="text-xs font-semibold border border-gray-200 rounded-lg px-2 py-1.5 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-400"
@@ -80,32 +81,32 @@
       {/each}
     </select>
   </div>
-  <p class="text-xs text-gray-400 mb-4">Last 12 months · ADREC-registered transactions</p>
+  <p class="text-xs text-gray-400 mb-4">{m.hero_last_12mo_source()}</p>
 
   <div class="grid grid-cols-2 gap-4 mb-4">
     <!-- Off-plan -->
     <div class="rounded-xl bg-white border border-gray-100 px-4 py-3">
-      <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Off-plan</p>
+      <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">{m.hero_offplan_label()}</p>
       {#if loading}
         <div class="h-6 w-24 bg-gray-100 rounded animate-pulse mb-1"></div>
       {:else if offplanPsf}
         <p class="text-lg font-extrabold text-gray-900">AED {fmt(offplanPsf)}<span class="text-xs font-normal">/sqft</span></p>
-        <p class="text-[10px] text-gray-400 mt-0.5">{fmt(offplanCnt)} transactions</p>
+        <p class="text-[10px] text-gray-400 mt-0.5">{fmt(offplanCnt)} {m.hero_transactions_suffix()}</p>
       {:else}
-        <p class="text-sm text-gray-400 italic">No data</p>
+        <p class="text-sm text-gray-400 italic">{m.hero_no_data()}</p>
       {/if}
     </div>
 
     <!-- Ready / secondary -->
     <div class="rounded-xl bg-white border border-brand-100 px-4 py-3">
-      <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">Ready / resale</p>
+      <p class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1">{m.hero_ready_label()}</p>
       {#if loading}
         <div class="h-6 w-24 bg-gray-100 rounded animate-pulse mb-1"></div>
       {:else if readyPsf}
         <p class="text-lg font-extrabold text-gray-900">AED {fmt(readyPsf)}<span class="text-xs font-normal">/sqft</span></p>
-        <p class="text-[10px] text-gray-400 mt-0.5">{fmt(readyCnt)} transactions</p>
+        <p class="text-[10px] text-gray-400 mt-0.5">{fmt(readyCnt)} {m.hero_transactions_suffix()}</p>
       {:else}
-        <p class="text-sm text-gray-400 italic">No data</p>
+        <p class="text-sm text-gray-400 italic">{m.hero_no_data()}</p>
       {/if}
     </div>
   </div>
@@ -119,18 +120,18 @@
             {gapPct >= 0 ? '+' : ''}{gapPct}%
           </span>
           <span class="text-sm text-gray-500">
-            {gapPct >= 0 ? 'ready trades above off-plan' : 'ready trades below off-plan'}
+            {gapPct >= 0 ? m.hero_ready_above() : m.hero_ready_below()}
           </span>
         </div>
         <p class="text-[10px] text-gray-400 mt-1 max-w-xs leading-relaxed">
           {#if gapPct >= 10}
-            Completed units command a premium — off-plan buyers have seen strong capital appreciation here.
+            {m.hero_interp_strong_premium()}
           {:else if gapPct >= 0}
-            Ready market is broadly in line with off-plan pricing — typical for a stable, liquid district.
+            {m.hero_interp_in_line()}
           {:else if gapPct >= -10}
-            Off-plan is slightly pricier than resale — developers pricing in future growth.
+            {m.hero_interp_slightly_pricier()}
           {:else}
-            Off-plan is significantly pricier than resale — buyers paid above what the secondary market currently supports.
+            {m.hero_interp_significantly_pricier()}
           {/if}
         </p>
       </div>
@@ -139,12 +140,12 @@
         href="{base}/?district={encodeURIComponent(selectedDistrict)}"
         class="text-xs font-semibold text-brand-700 hover:text-brand-900 underline underline-offset-2 flex-shrink-0"
       >
-        Explore {selectedDistrict} →
+        {m.hero_explore_district({ district: selectedDistrict })}
       </a>
     </div>
   {:else if !loading}
-    <p class="text-xs text-gray-400">Insufficient data for this district in the last 12 months.</p>
+    <p class="text-xs text-gray-400">{m.hero_insufficient_data()}</p>
   {/if}
 
-  <p class="mt-3 text-[10px] text-gray-400">Source: ADREC via ADInteract.co · updated daily</p>
+  <p class="mt-3 text-[10px] text-gray-400">{m.hero_source_footer()}</p>
 </div>

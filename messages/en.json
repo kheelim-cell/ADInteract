@@ -54,5 +54,55 @@
 	"filter_sale_type_off_plan": "Off-plan",
 	"filter_sale_type_ready": "Ready",
 	"filter_sale_sequence_primary": "Primary",
-	"filter_sale_sequence_secondary": "Secondary"
+	"filter_sale_sequence_secondary": "Secondary",
+
+	"other_filters_label": "Filters",
+	"other_filters_title": "Other Filters",
+	"other_filters_sale_sequence_label": "Sale Sequence",
+	"other_filters_property_size_label": "Property Size (sqft)",
+	"other_filters_min_placeholder": "Min",
+	"other_filters_max_placeholder": "Max",
+	"other_filters_to": "to",
+	"other_filters_reset_all": "Reset all",
+	"other_filters_apply": "Apply filters",
+
+	"district_search_placeholder_district": "Search district...",
+	"district_search_placeholder_project": "Search project...",
+	"district_search_clear_aria": "Clear selection",
+	"district_search_project_hint": "Type at least 2 characters to search projects",
+	"district_search_no_results": "No results for \"{query}\"",
+
+	"date_range_custom": "Custom",
+
+	"stat_vs_last": "vs. last {period}",
+	"stat_flat_with_comparison": "0.0% flat · {comparison}",
+	"stat_growth_with_comparison": "{percent} · {comparison}",
+	"stat_no_prior": "No prior period data",
+
+	"stat_label_volume": "Transaction Volume",
+	"stat_label_median_price": "Median Price",
+	"stat_label_median_rate": "Median Rate",
+	"stat_label_total_value": "Total Value",
+
+	"investor_tools_heading": "Investor Tools",
+	"investor_tool_roi_calculator_title": "ROI Calculator",
+	"investor_tool_roi_calculator_desc": "Net yield, capital gain & total ROI — off-plan or ready",
+	"investor_tool_compare_title": "Compare Districts",
+	"investor_tool_compare_desc": "Side-by-side metrics across yield, growth & price",
+	"investor_tool_flip_scanner_title": "Flip Scanner",
+	"investor_tool_flip_scanner_desc": "Off-plan projects priced below secondary market",
+	"investor_tool_pipeline_title": "Off-Plan Pipeline",
+	"investor_tool_pipeline_desc": "Registered-sales velocity by project — accelerating, slowing or stale",
+	"investor_tool_market_structure_title": "Market Structure",
+	"investor_tool_market_structure_desc": "Licensed broker, agency & developer counts from DARI",
+	"investor_tool_rental_yield_title": "Rental Yield",
+	"investor_tool_rental_yield_desc": "Gross yield % by community, type & layout",
+
+	"share_bar_district_label": "Share {district} prices",
+	"share_bar_dashboard_label": "Share this data",
+	"share_bar_whatsapp_aria": "Share on WhatsApp",
+	"share_bar_whatsapp_label": "WhatsApp",
+	"share_bar_copy_link_aria": "Copy link",
+	"share_bar_copied": "Copied",
+	"share_bar_copy_link": "Copy link"
 }

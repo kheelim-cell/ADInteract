@@ -1,6 +1,7 @@
 <script lang="ts">
   import { filters, updateFilter } from '$lib/stores/filters';
   import { metadata, salesDistrictCounts } from '$lib/stores/db';
+  import { m } from '$lib/paraglide/messages.js';
 
   function fmtCount(n: number): string {
     if (n >= 1000) return `${(n / 1000).toFixed(1).replace(/\.0$/, '')}K`;
@@ -87,7 +88,7 @@
   });
 
   let placeholder = $derived(
-    searchType === 'district' ? 'Search district...' : 'Search project...'
+    searchType === 'district' ? m.district_search_placeholder_district() : m.district_search_placeholder_project()
   );
 </script>
 
@@ -103,7 +104,7 @@
         type="button"
         onclick={clear}
         class="rounded-full p-0.5 text-brand-400 hover:bg-brand-100 hover:text-brand-600 transition-colors"
-        aria-label="Clear selection"
+        aria-label={m.district_search_clear_aria()}
       >
         <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -128,7 +129,7 @@
 
     {#if showHint}
       <div class="absolute z-20 mt-1.5 w-full rounded-xl border border-gray-200 bg-white shadow-lg px-3 py-3">
-        <p class="text-xs text-gray-400 text-center">Type at least 2 characters to search projects</p>
+        <p class="text-xs text-gray-400 text-center">{m.district_search_project_hint()}</p>
       </div>
     {:else if open && filtered().length > 0}
       <div class="absolute z-20 mt-1.5 w-full max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
@@ -152,7 +153,7 @@
       </div>
     {:else if noResults}
       <div class="absolute z-20 mt-1.5 w-full rounded-xl border border-gray-200 bg-white shadow-lg px-3 py-3">
-        <p class="text-xs text-gray-400 text-center">No results for "{query.trim()}"</p>
+        <p class="text-xs text-gray-400 text-center">{m.district_search_no_results({ query: query.trim() })}</p>
       </div>
     {/if}
   {/if}

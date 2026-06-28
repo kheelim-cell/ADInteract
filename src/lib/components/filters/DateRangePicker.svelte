@@ -1,5 +1,6 @@
 <script lang="ts">
   import { filters, updateFilter } from '$lib/stores/filters';
+  import { m } from '$lib/paraglide/messages.js';
 
   let showCustom = $state(false);
   let customStart = $state($filters.customDateStart || '');
@@ -64,7 +65,7 @@
         <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
-        Custom
+        {m.date_range_custom()}
       </button>
     </div>
   </div>
@@ -77,7 +78,7 @@
         onchange={applyCustom}
         class="rounded-lg border border-gray-200 bg-white px-2.5 py-1 text-xs text-gray-700 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100 w-full sm:w-auto"
       />
-      <span class="text-xs text-gray-400 flex-shrink-0">to</span>
+      <span class="text-xs text-gray-400 flex-shrink-0">{m.other_filters_to()}</span>
       <input
         type="date"
         bind:value={customEnd}

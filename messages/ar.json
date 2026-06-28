@@ -54,5 +54,55 @@
 	"filter_sale_type_off_plan": "على الخارطة",
 	"filter_sale_type_ready": "جاهز",
 	"filter_sale_sequence_primary": "أولي",
-	"filter_sale_sequence_secondary": "ثانوي"
+	"filter_sale_sequence_secondary": "ثانوي",
+
+	"other_filters_label": "الفلاتر",
+	"other_filters_title": "فلاتر أخرى",
+	"other_filters_sale_sequence_label": "تسلسل البيع",
+	"other_filters_property_size_label": "مساحة العقار (قدم مربع)",
+	"other_filters_min_placeholder": "الحد الأدنى",
+	"other_filters_max_placeholder": "الحد الأقصى",
+	"other_filters_to": "إلى",
+	"other_filters_reset_all": "إعادة ضبط الكل",
+	"other_filters_apply": "تطبيق الفلاتر",
+
+	"district_search_placeholder_district": "البحث عن منطقة...",
+	"district_search_placeholder_project": "البحث عن مشروع...",
+	"district_search_clear_aria": "إلغاء التحديد",
+	"district_search_project_hint": "اكتب حرفين على الأقل للبحث عن المشاريع",
+	"district_search_no_results": "لا توجد نتائج لـ \"{query}\"",
+
+	"date_range_custom": "مخصص",
+
+	"stat_vs_last": "مقارنة بآخر {period}",
+	"stat_flat_with_comparison": "0.0% ثابت · {comparison}",
+	"stat_growth_with_comparison": "{percent} · {comparison}",
+	"stat_no_prior": "لا توجد بيانات للفترة السابقة",
+
+	"stat_label_volume": "حجم المعاملات",
+	"stat_label_median_price": "السعر الوسيط",
+	"stat_label_median_rate": "السعر الوسيط للقدم المربع",
+	"stat_label_total_value": "القيمة الإجمالية",
+
+	"investor_tools_heading": "أدوات المستثمر",
+	"investor_tool_roi_calculator_title": "حاسبة العائد على الاستثمار",
+	"investor_tool_roi_calculator_desc": "صافي العائد، الأرباح الرأسمالية والعائد الإجمالي — على الخارطة أو جاهز",
+	"investor_tool_compare_title": "مقارنة المناطق",
+	"investor_tool_compare_desc": "مقاييس جانبية حول العائد، النمو والسعر",
+	"investor_tool_flip_scanner_title": "كاشف الفرص",
+	"investor_tool_flip_scanner_desc": "مشاريع على الخارطة بأسعار أقل من السوق الثانوي",
+	"investor_tool_pipeline_title": "خط أنابيب المشاريع على الخارطة",
+	"investor_tool_pipeline_desc": "سرعة المبيعات المسجلة حسب المشروع — متسارعة، متباطئة أو ثابتة",
+	"investor_tool_market_structure_title": "هيكل السوق",
+	"investor_tool_market_structure_desc": "عدد الوسطاء والوكالات والمطورين المرخصين من DARI",
+	"investor_tool_rental_yield_title": "عائد الإيجار",
+	"investor_tool_rental_yield_desc": "نسبة العائد الإجمالي حسب المجتمع، النوع والتصميم",
+
+	"share_bar_district_label": "مشاركة أسعار {district}",
+	"share_bar_dashboard_label": "مشاركة هذه البيانات",
+	"share_bar_whatsapp_aria": "مشاركة عبر واتساب",
+	"share_bar_whatsapp_label": "واتساب",
+	"share_bar_copy_link_aria": "نسخ الرابط",
+	"share_bar_copied": "تم النسخ",
+	"share_bar_copy_link": "نسخ الرابط"
 }

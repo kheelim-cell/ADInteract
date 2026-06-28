@@ -2,6 +2,7 @@
   import { growthPercent, formatPercent } from '$lib/utils/format';
   import { filters } from '$lib/stores/filters';
   import { getContext } from 'svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   const gatedCtx = getContext<{ get: () => boolean } | undefined>('gated-locked');
   let locked = $derived(gatedCtx?.get() ?? false);
@@ -31,13 +32,16 @@
     $filters.dateRange !== 'custom'
   );
 
-  const PRESET_LABEL: Record<string, string> = {
-    '1m':  'vs. last 1M',
-    '3m':  'vs. last 3M',
-    '6m':  'vs. last 6M',
-    '12m': 'vs. last 12M',
-    '3y':  'vs. last 3Y',
+  const PRESET_PERIOD: Record<string, string> = {
+    '1m':  '1M',
+    '3m':  '3M',
+    '6m':  '6M',
+    '12m': '12M',
+    '3y':  '3Y',
   };
+  const PRESET_LABEL: Record<string, string> = Object.fromEntries(
+    Object.entries(PRESET_PERIOD).map(([k, period]) => [k, m.stat_vs_last({ period })])
+  );
 
   let comparisonLabel = $derived(
     showComparison ? (PRESET_LABEL[$filters.dateRange] ?? '') : ''
@@ -59,7 +63,7 @@
         <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
         </svg>
-        0.0% flat · {comparisonLabel}
+        {m.stat_flat_with_comparison({ comparison: comparisonLabel })}
       </span>
     {:else}
       <span class="inline-flex items-center gap-1 self-start px-2.5 py-1 rounded-full text-xs font-semibold
@@ -73,7 +77,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 4.5l15 15m0 0V8.25m0 11.25H8.25" />
           </svg>
         {/if}
-        {formatPercent(growth)} · {comparisonLabel}
+        {m.stat_growth_with_comparison({ percent: formatPercent(growth), comparison: comparisonLabel })}
       </span>
     {/if}
   {:else if previousRaw > 0 && ($filters.dateRange === 'ytd' || $filters.dateRange === 'custom')}
@@ -96,7 +100,7 @@
       {growth !== null ? formatPercent(growth) : '—'}
     </span>
   {:else}
-    <span class="text-xs text-navy/30 font-medium">No prior period data</span>
+    <span class="text-xs text-navy/30 font-medium">{m.stat_no_prior()}</span>
   {/if}
   </div><!-- end blurred growth wrapper -->
 </div>

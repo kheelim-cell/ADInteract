@@ -1,6 +1,7 @@
 <script lang="ts">
   import { filters, updateFilter } from '$lib/stores/filters';
   import { browser } from '$app/environment';
+  import { m } from '$lib/paraglide/messages.js';
 
   // ── Panel open/close ──────────────────────────────────────────────
   let open      = $state(false);
@@ -54,11 +55,11 @@
     ($filters.areaSqftMax  != null   ? 1 : 0)
   );
 
-  const sequenceOptions = [
-    { label: 'All',       value: 'all'       as const },
-    { label: 'Primary',   value: 'primary'   as const },
-    { label: 'Secondary', value: 'secondary' as const }
-  ];
+  let sequenceOptions = $derived([
+    { label: m.filter_common_all(),           value: 'all'       as const },
+    { label: m.filter_sale_sequence_primary(),   value: 'primary'   as const },
+    { label: m.filter_sale_sequence_secondary(), value: 'secondary' as const }
+  ]);
 </script>
 
 <div class="relative" bind:this={panelEl}>
@@ -76,7 +77,7 @@
     <svg class="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" />
     </svg>
-    <span>Filters</span>
+    <span>{m.other_filters_label()}</span>
     {#if activeCount > 0}
       <span class="inline-flex h-4 w-4 items-center justify-center rounded-full bg-brand-600 text-[10px] font-bold text-white leading-none">
         {activeCount}
@@ -90,14 +91,14 @@
 
       <!-- Header -->
       <div class="px-4 py-3 border-b border-gray-100">
-        <h3 class="text-sm font-semibold text-gray-900">Other Filters</h3>
+        <h3 class="text-sm font-semibold text-gray-900">{m.other_filters_title()}</h3>
       </div>
 
       <div class="px-4 py-4 space-y-5">
 
         <!-- Sale Sequence -->
         <div>
-          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">Sale Sequence</p>
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">{m.other_filters_sale_sequence_label()}</p>
           <div class="inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5">
             {#each sequenceOptions as opt}
               <button
@@ -116,20 +117,20 @@
 
         <!-- Property Size -->
         <div>
-          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">Property Size (sqft)</p>
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">{m.other_filters_property_size_label()}</p>
           <div class="flex items-center gap-2">
             <input
               type="number"
-              placeholder="Min"
+              placeholder={m.other_filters_min_placeholder()}
               min="0"
               bind:value={draftAreaMin}
               class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 placeholder-gray-400
                      focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400 transition-colors"
             />
-            <span class="flex-shrink-0 text-xs text-gray-400">to</span>
+            <span class="flex-shrink-0 text-xs text-gray-400">{m.other_filters_to()}</span>
             <input
               type="number"
-              placeholder="Max"
+              placeholder={m.other_filters_max_placeholder()}
               min="0"
               bind:value={draftAreaMax}
               class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-900 placeholder-gray-400
@@ -147,14 +148,14 @@
           onclick={resetAll}
           class="text-xs font-medium text-gray-500 hover:text-red-600 transition-colors"
         >
-          Reset all
+          {m.other_filters_reset_all()}
         </button>
         <button
           type="button"
           onclick={apply}
           class="rounded-full bg-brand-600 px-4 py-1.5 text-xs font-semibold text-white hover:bg-brand-700 transition-colors"
         >
-          Apply filters
+          {m.other_filters_apply()}
         </button>
       </div>
 

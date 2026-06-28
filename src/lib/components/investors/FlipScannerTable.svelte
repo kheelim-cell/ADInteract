@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { FlipRow } from '$lib/db/investor_queries';
   import { base } from '$app/paths';
+  import { m } from '$lib/paraglide/messages.js';
 
   type SortCol = 'roiPct' | 'psfGain' | 'exitPsf' | 'entryPsf' | 'offplanCount' | 'secondaryCount';
 
@@ -79,32 +80,32 @@
       <svg class="h-8 w-8 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
       </svg>
-      <p class="text-sm font-semibold text-gray-500">No flip opportunities found</p>
-      <p class="text-xs text-gray-400">Try broadening the district or layout filter</p>
+      <p class="text-sm font-semibold text-gray-500">{m.flip_table_no_opportunities()}</p>
+      <p class="text-xs text-gray-400">{m.flip_table_broaden_hint()}</p>
     </div>
   {:else}
     <!-- Mobile: card list (table is unusable at phone width with 10 columns) -->
     <div class="block md:hidden divide-y divide-gray-100">
       <!-- Mobile sort control -->
       <div class="flex items-center gap-2 px-4 py-2.5 bg-gray-50/80 border-b border-gray-100">
-        <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Sort by</span>
+        <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">{m.flip_sort_by()}</span>
         <select
           bind:value={sortCol}
           class="rounded-lg border border-gray-200 bg-white px-2 py-1 text-xs font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
         >
-          <option value="roiPct">ROI %</option>
-          <option value="psfGain">PSF Gain</option>
-          <option value="exitPsf">Exit PSF</option>
-          <option value="entryPsf">Entry PSF</option>
-          <option value="offplanCount">Off-plan Volume</option>
-          <option value="secondaryCount">Secondary Volume</option>
+          <option value="roiPct">{m.flip_sort_roi()}</option>
+          <option value="psfGain">{m.flip_sort_psf_gain()}</option>
+          <option value="exitPsf">{m.flip_sort_exit_psf()}</option>
+          <option value="entryPsf">{m.flip_sort_entry_psf()}</option>
+          <option value="offplanCount">{m.flip_sort_offplan_volume()}</option>
+          <option value="secondaryCount">{m.flip_sort_secondary_volume()}</option>
         </select>
         <button
           type="button"
           onclick={() => (sortDir = sortDir === 'desc' ? 'asc' : 'desc')}
           class="rounded-lg border border-gray-200 bg-white px-2 py-1 text-xs font-medium text-gray-700"
         >
-          {sortDir === 'desc' ? '↓ High to low' : '↑ Low to high'}
+          {sortDir === 'desc' ? m.flip_sort_high_to_low() : m.flip_sort_low_to_high()}
         </button>
       </div>
 
@@ -126,20 +127,20 @@
           </div>
           <div class="mt-2.5 grid grid-cols-3 gap-2 text-center">
             <div class="rounded-lg bg-gray-50 px-2 py-1.5">
-              <p class="text-[10px] font-semibold uppercase tracking-wide text-gray-400">Entry PSF</p>
+              <p class="text-[10px] font-semibold uppercase tracking-wide text-gray-400">{m.flip_th_entry_psf()}</p>
               <p class="text-xs font-semibold tabular-nums text-gray-700">{fmt(row.entryPsf)}</p>
             </div>
             <div class="rounded-lg bg-gray-50 px-2 py-1.5">
-              <p class="text-[10px] font-semibold uppercase tracking-wide text-gray-400">Exit PSF</p>
+              <p class="text-[10px] font-semibold uppercase tracking-wide text-gray-400">{m.flip_th_exit_psf()}</p>
               <p class="text-xs font-semibold tabular-nums text-gray-700">{fmt(row.exitPsf)}</p>
             </div>
             <div class="rounded-lg bg-emerald-50 px-2 py-1.5">
-              <p class="text-[10px] font-semibold uppercase tracking-wide text-emerald-600">PSF Gain</p>
+              <p class="text-[10px] font-semibold uppercase tracking-wide text-emerald-600">{m.flip_th_psf_gain()}</p>
               <p class="text-xs font-bold tabular-nums text-emerald-700">+{fmt(row.psfGain)}</p>
             </div>
           </div>
           <p class="mt-2 text-[10px] text-gray-400">
-            {row.offplanCount} off-plan · {row.secondaryCount} secondary · entry {fmtDate(row.earliestOffplan)} – {fmtDate(row.latestOffplan)}
+            {m.flip_mobile_offplan_secondary({ offplan: String(row.offplanCount), secondary: String(row.secondaryCount), start: fmtDate(row.earliestOffplan), end: fmtDate(row.latestOffplan) })}
           </p>
         </div>
       {/each}
@@ -149,29 +150,29 @@
     <table class="hidden md:table w-full border-collapse text-left">
       <thead class="border-b border-gray-100 bg-gray-50/80">
         <tr>
-          <th class="{TH} pl-4" style="min-width:180px">Project</th>
-          <th class={TH}>District</th>
-          <th class={TH}>Layout</th>
+          <th class="{TH} pl-4" style="min-width:180px">{m.flip_th_project()}</th>
+          <th class={TH}>{m.calc_field_district()}</th>
+          <th class={TH}>{m.calc_field_layout()}</th>
           <!-- sortable columns -->
           <th class={TH} onclick={() => toggleSort('entryPsf')}>
-            Entry PSF {arrow('entryPsf')}
+            {m.flip_th_entry_psf()} {arrow('entryPsf')}
           </th>
           <th class={TH} onclick={() => toggleSort('exitPsf')}>
-            Exit PSF {arrow('exitPsf')}
+            {m.flip_th_exit_psf()} {arrow('exitPsf')}
           </th>
           <th class={TH} onclick={() => toggleSort('psfGain')}>
-            PSF Gain {arrow('psfGain')}
+            {m.flip_th_psf_gain()} {arrow('psfGain')}
           </th>
           <th class={TH} onclick={() => toggleSort('roiPct')}>
-            ROI % {arrow('roiPct')}
+            {m.flip_th_roi()} {arrow('roiPct')}
           </th>
           <th class="{TH}" onclick={() => toggleSort('offplanCount')}>
-            Off-plan Vol {arrow('offplanCount')}
+            {m.flip_th_offplan_vol()} {arrow('offplanCount')}
           </th>
           <th class="{TH}" onclick={() => toggleSort('secondaryCount')}>
-            Secondary Vol {arrow('secondaryCount')}
+            {m.flip_th_secondary_vol()} {arrow('secondaryCount')}
           </th>
-          <th class={TH}>Entry Window</th>
+          <th class={TH}>{m.flip_th_entry_window()}</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-50">
@@ -243,13 +244,13 @@
 
     <!-- Footer legend -->
     <div class="border-t border-gray-100 px-4 py-3 flex flex-wrap items-center gap-x-6 gap-y-1.5 text-[10px] text-gray-400">
-      <span>{sorted.length} project–layout combinations</span>
+      <span>{m.flip_footer_count({ count: String(sorted.length) })}</span>
       <span class="hidden sm:inline">·</span>
-      <span>Entry PSF = median off-plan rate/sqft (12–48 months ago)</span>
+      <span>{m.flip_footer_entry_psf_def()}</span>
       <span class="hidden sm:inline">·</span>
-      <span>Exit PSF = median secondary-market rate/sqft (last 12 months)</span>
+      <span>{m.flip_footer_exit_psf_def()}</span>
       <span class="hidden sm:inline">·</span>
-      <span>ROI = price-per-sqft appreciation only — excludes ADM fee, agency fees, and financing</span>
+      <span>{m.flip_footer_roi_def()}</span>
     </div>
   {/if}
 </div>

@@ -8,6 +8,7 @@
   } from '$lib/db/investor_queries';
   import FlipScannerTable from '$lib/components/investors/FlipScannerTable.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   // ── Filter state ───────────────────────────────────────────────────────────
   let filterDistrict = $state('');
@@ -89,11 +90,10 @@
       </div>
       <div>
         <p class="text-sm font-semibold text-gray-800">
-          How it works
+          {m.compare_explainer_title()}
         </p>
         <p class="mt-0.5 text-xs leading-relaxed text-gray-500">
-          This scanner compares the <strong class="text-gray-700">median off-plan price/sqft</strong> registered with ADREC in the selected entry window against the <strong class="text-gray-700">median secondary-market price/sqft</strong> recorded in the last 12 months — for the same project and bedroom type. Projects where secondary prices exceed off-plan entry prices are ranked by ROI %.
-          Results reflect ADREC-registered prices, not asking prices. Transaction costs (2% ADM fee, agency fees) are not included in the ROI figure.
+          {m.flip_explainer_part1()} <strong class="text-gray-700">{m.flip_explainer_median_offplan()}</strong> {m.flip_explainer_part2()} <strong class="text-gray-700">{m.flip_explainer_median_secondary()}</strong> {m.flip_explainer_part3()}
         </p>
       </div>
     </div>
@@ -104,14 +104,14 @@
     <div class="flex flex-wrap items-center gap-3">
 
       <select bind:value={filterDistrict} class={sel}>
-        <option value="">All Districts</option>
+        <option value="">{m.calc_district_all()}</option>
         {#each districts as d}
           <option value={d}>{d}</option>
         {/each}
       </select>
 
       <select bind:value={filterLayout} class={sel}>
-        <option value="">All Layouts</option>
+        <option value="">{m.flip_all_layouts()}</option>
         {#each layouts as l}
           <option value={l}>{LAYOUT_DISPLAY[l.toLowerCase()] ?? l}</option>
         {/each}
@@ -119,25 +119,25 @@
 
       <!-- Entry window selector -->
       <div class="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2">
-        <span class="text-xs text-gray-500 whitespace-nowrap">Off-plan window:</span>
+        <span class="text-xs text-gray-500 whitespace-nowrap">{m.flip_offplan_window_label()}</span>
         <select
           bind:value={entryStartMonths}
           class="text-xs font-semibold text-gray-700 bg-transparent focus:outline-none"
         >
-          <option value={24}>24 months ago</option>
-          <option value={36}>36 months ago</option>
-          <option value={48}>48 months ago</option>
-          <option value={60}>60 months ago</option>
+          <option value={24}>{m.flip_months_ago({ n: '24' })}</option>
+          <option value={36}>{m.flip_months_ago({ n: '36' })}</option>
+          <option value={48}>{m.flip_months_ago({ n: '48' })}</option>
+          <option value={60}>{m.flip_months_ago({ n: '60' })}</option>
         </select>
         <span class="text-xs text-gray-400">→</span>
         <select
           bind:value={entryEndMonths}
           class="text-xs font-semibold text-gray-700 bg-transparent focus:outline-none"
         >
-          <option value={6}>6 months ago</option>
-          <option value={12}>12 months ago</option>
-          <option value={18}>18 months ago</option>
-          <option value={24}>24 months ago</option>
+          <option value={6}>{m.flip_months_ago({ n: '6' })}</option>
+          <option value={12}>{m.flip_months_ago({ n: '12' })}</option>
+          <option value={18}>{m.flip_months_ago({ n: '18' })}</option>
+          <option value={24}>{m.flip_months_ago({ n: '24' })}</option>
         </select>
       </div>
 
@@ -150,7 +150,7 @@
           <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
-          Clear filters
+          {m.flip_clear_filters()}
         </button>
       {/if}
     </div>
@@ -161,22 +161,22 @@
   {#if !loading && rows.length > 0}
     <div class="flex flex-wrap items-center gap-x-8 gap-y-2 rounded-xl border border-gray-100 bg-white px-4 py-3 text-sm shadow-sm">
       <div class="flex items-center gap-2">
-        <span class="text-gray-500">Opportunities</span>
-        <span class="font-semibold text-gray-900">{rows.length} project–layout pairs</span>
+        <span class="text-gray-500">{m.flip_opportunities_label()}</span>
+        <span class="font-semibold text-gray-900">{m.flip_project_layout_pairs({ count: String(rows.length) })}</span>
       </div>
       <div class="h-4 w-px bg-gray-200 hidden sm:block"></div>
       <div class="flex items-center gap-2">
-        <span class="text-gray-500">Unique projects</span>
+        <span class="text-gray-500">{m.flip_unique_projects_label()}</span>
         <span class="font-semibold text-gray-900">{totalProjects}</span>
       </div>
       <div class="h-4 w-px bg-gray-200 hidden sm:block"></div>
       <div class="flex items-center gap-2">
-        <span class="text-gray-500">Top ROI</span>
+        <span class="text-gray-500">{m.flip_top_roi_label()}</span>
         <span class="font-semibold text-emerald-700">+{topRoi?.toFixed(1)}%</span>
       </div>
       <div class="h-4 w-px bg-gray-200 hidden sm:block"></div>
       <div class="flex items-center gap-2">
-        <span class="text-gray-500">Avg ROI</span>
+        <span class="text-gray-500">{m.flip_avg_roi_label()}</span>
         <span class="font-semibold text-gray-900">+{avgRoi?.toFixed(1)}%</span>
       </div>
     </div>
@@ -184,7 +184,7 @@
 
   <!-- ── Section heading ─────────────────────────────────────────────────── -->
   <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">
-    Off-Plan Entry vs Secondary Market — Projects Ranked by AED/sqft Appreciation
+    {m.flip_section_heading()}
   </h3>
 
   <!-- ── Table ──────────────────────────────────────────────────────────── -->

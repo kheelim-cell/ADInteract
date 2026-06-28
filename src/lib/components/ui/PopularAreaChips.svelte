@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
+
   const POPULAR_DISTRICTS = [
     'Al Reem Island',
     'Yas Island',
@@ -21,7 +23,7 @@
 
 {#if alwaysShow || !activeDistrict}
   <div class="flex flex-wrap items-center gap-2 mt-3">
-    <span class="text-xs font-medium text-gray-400 shrink-0">Popular:</span>
+    <span class="text-xs font-medium text-gray-400 shrink-0">{m.popular_chips_label()}</span>
     {#each POPULAR_DISTRICTS as district}
       <button
         type="button"

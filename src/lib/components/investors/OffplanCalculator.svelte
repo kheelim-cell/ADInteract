@@ -4,6 +4,7 @@
   import PropertyUpload, { type ExtractionData } from '$lib/components/investors/PropertyUpload.svelte';
   import { base } from '$app/paths';
   import { buildDealUrl, type OffplanDealSnapshot } from '$lib/utils/dealShare';
+  import { m } from '$lib/paraglide/messages.js';
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
   function fmtAed(v: number): string {
@@ -121,11 +122,11 @@
 
   // Fields that the scanner couldn't fill — shown as a prompt to the user
   const ALL_SCANNER_FIELDS: [string, string][] = [
-    ['district',         'District'],
-    ['layout',           'Layout'],
-    ['cost',             'Price (AED)'],
-    ['size',             'Size (sqft)'],
-    ['yearsTillHandover','Years till Handover'],
+    ['district',         m.calc_field_district()],
+    ['layout',           m.calc_field_layout()],
+    ['cost',             m.calc_field_price()],
+    ['size',             m.calc_field_size()],
+    ['yearsTillHandover',m.calc_years_till_handover_label()],
   ];
 
   let missingAfterScan = $derived.by(() => {
@@ -316,8 +317,8 @@
       </svg>
     </div>
     <div>
-      <h4 class="text-sm font-bold text-white">Offplan Investment Calculator</h4>
-      <p class="text-xs text-white/40 mt-0.5">Capital gains · Rental yield · Net ROI</p>
+      <h4 class="text-sm font-bold text-white">{m.calc_offplan_title()}</h4>
+      <p class="text-xs text-white/40 mt-0.5">{m.calc_offplan_subtitle()}</p>
     </div>
   </div>
 
@@ -332,7 +333,7 @@
           <span class="font-semibold text-amber-400/80">{scannedMeta.projectName}</span>
         {/if}
         {#if scannedMeta.developer}
-          <span class="text-white/30">by</span>
+          <span class="text-white/30">{m.calc_by()}</span>
           <span class="text-white/50">{scannedMeta.developer}</span>
         {/if}
       </div>
@@ -341,7 +342,7 @@
     <!-- Missing fields prompt -->
     {#if missingAfterScan.length > 0}
       <div class="flex items-center gap-1.5 flex-wrap">
-        <span class="text-[10px] text-white/30">Still needs manual input:</span>
+        <span class="text-[10px] text-white/30">{m.calc_still_needs_manual()}</span>
         {#each missingAfterScan as field}
           <span class="text-[10px] bg-amber-500/10 border border-amber-500/20 text-amber-400/70 rounded px-1.5 py-0.5 leading-none">{field}</span>
         {/each}
@@ -356,24 +357,24 @@
 
       <!-- Unit Details -->
       <fieldset class="space-y-3">
-        <legend class="text-[10px] font-bold text-amber-400/80 uppercase tracking-widest">Unit Details</legend>
+        <legend class="text-[10px] font-bold text-amber-400/80 uppercase tracking-widest">{m.calc_unit_details_title()}</legend>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="space-y-1">
             <div class="flex items-center gap-1">
-              <span class="text-[11px] text-white/50">District</span>
+              <span class="text-[11px] text-white/50">{m.calc_field_district()}</span>
               {@render scannedBadge('district')}
             </div>
             <div class="relative">
               <select bind:value={district} class={sel}>
-                <option value="">All Districts</option>
+                <option value="">{m.calc_district_all()}</option>
                 {#if districts.length > 0}
-                  <optgroup label="── Popular ──">
+                  <optgroup label={m.calc_optgroup_popular()}>
                     {#each districts.slice(0, pinnedCount) as d}
                       <option value={d}>{d}</option>
                     {/each}
                   </optgroup>
-                  <optgroup label="── All Districts ──">
+                  <optgroup label={m.calc_optgroup_all_districts()}>
                     {#each districts.slice(pinnedCount) as d}
                       <option value={d}>{d}</option>
                     {/each}
@@ -387,12 +388,12 @@
           </div>
           <div class="space-y-1">
             <div class="flex items-center gap-1">
-              <span class="text-[11px] text-white/50">Layout</span>
+              <span class="text-[11px] text-white/50">{m.calc_field_layout()}</span>
               {@render scannedBadge('layout')}
             </div>
             <div class="relative">
               <select bind:value={layout} class={sel}>
-                <option value="">Select Layout</option>
+                <option value="">{m.calc_layout_select()}</option>
                 {#each layouts as l}
                   <option value={l}>{LAYOUT_DISPLAY[l.toLowerCase()] ?? l}</option>
                 {/each}
@@ -407,14 +408,14 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <label class="space-y-1">
             <div class="flex items-center gap-1">
-              <span class="text-[11px] text-white/50">Price (AED)</span>
+              <span class="text-[11px] text-white/50">{m.calc_field_price()}</span>
               {@render scannedBadge('cost')}
             </div>
             <input type="number" bind:value={cost} min="0" step="10000" class={scannedFields.has('cost') ? inp : inpManual} />
           </label>
           <label class="space-y-1">
             <div class="flex items-center gap-1">
-              <span class="text-[11px] text-white/50">Size (sqft)</span>
+              <span class="text-[11px] text-white/50">{m.calc_field_size()}</span>
               {@render scannedBadge('size')}
             </div>
             <input type="number" bind:value={size} min="0" step="10" class={scannedFields.has('size') ? inp : inpManual} />
@@ -423,36 +424,36 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="rounded-lg bg-amber-500/8 border border-amber-500/20 px-3 py-2.5">
-            <p class="text-[10px] text-amber-400/70 uppercase tracking-wider">Price per sqft</p>
+            <p class="text-[10px] text-amber-400/70 uppercase tracking-wider">{m.calc_price_per_sqft_label()}</p>
             <p class="text-base font-black text-amber-400 tabular-nums mt-0.5">
               {size > 0 ? Math.round(pricePerSqft).toLocaleString('en-AE') : '—'} <span class="text-xs font-semibold text-amber-400/60">AED/sqft</span>
             </p>
           </div>
           <div class="rounded-lg bg-white/3 border border-white/8 px-3 py-2.5">
-            <p class="text-[10px] text-white/35 uppercase tracking-wider">Total Acquisition Cost</p>
+            <p class="text-[10px] text-white/35 uppercase tracking-wider">{m.calc_total_acquisition_cost_label()}</p>
             <p class="text-sm font-bold text-white/70 tabular-nums mt-0.5">{fmtAed(totalPurchaseCost)}</p>
-            <p class="text-[9px] text-white/25 mt-0.5">Price + DARI/DMT (2%+1K) + Dev. reg. ({cost < 500_000 ? '2,000' : '4,000'}) + Admin (≤5K)</p>
+            <p class="text-[9px] text-white/25 mt-0.5">{m.calc_total_acquisition_breakdown({ devFee: cost < 500_000 ? '2,000' : '4,000' })}</p>
           </div>
         </div>
       </fieldset>
 
       <!-- Rental Analysis -->
       <fieldset class="space-y-3">
-        <legend class="text-[10px] font-bold text-emerald-400/80 uppercase tracking-widest">Rental Analysis (at Handover)</legend>
+        <legend class="text-[10px] font-bold text-emerald-400/80 uppercase tracking-widest">{m.calc_rental_analysis_title()}</legend>
 
         <div class="grid grid-cols-2 gap-3">
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Comparable Rent today (AED/yr)</span>
+            <span class="text-[11px] text-white/50">{m.calc_comparable_rent_label()}</span>
             <input type="number" bind:value={comparableRent} min="0" step="1000" class={inp} />
             {#if rentLoading}
-              <p class="text-[10px] text-white/30 pl-0.5">Loading 2025 median rent…</p>
+              <p class="text-[10px] text-white/30 pl-0.5">{m.calc_loading_median_rent()}</p>
             {:else if rentSource}
-              <p class="text-[10px] text-emerald-400/60 pl-0.5">↳ 2025 median · {rentSource}</p>
+              <p class="text-[10px] text-emerald-400/60 pl-0.5">{m.calc_median_rent_source({ source: rentSource })}</p>
             {/if}
           </label>
           <label class="space-y-1">
             <div class="flex items-center gap-1">
-              <span class="text-[11px] text-white/50">Years till Handover</span>
+              <span class="text-[11px] text-white/50">{m.calc_years_till_handover_label()}</span>
               {@render scannedBadge('yearsTillHandover')}
             </div>
             <input type="number" bind:value={yearsTillHandover} min="0" max="10" step="0.5" class={scannedFields.has('yearsTillHandover') ? inp : inpManual} />
@@ -461,22 +462,22 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Rental Appreciation over Build (%)</span>
+            <span class="text-[11px] text-white/50">{m.calc_rental_appreciation_label()}</span>
             <input type="number" bind:value={rentalAppPct} min="0" max="10" step="0.5" class={inp} />
             {#if rentalYoyLoading}
-              <p class="text-[10px] text-white/30 pl-0.5">Loading rental YoY…</p>
+              <p class="text-[10px] text-white/30 pl-0.5">{m.calc_loading_rental_yoy()}</p>
             {:else if rentalYoySource}
-              <p class="text-[10px] text-amber-400/60 pl-0.5">↳ 2024→2025 YoY · {rentalYoySource} · 50% haircut</p>
+              <p class="text-[10px] text-amber-400/60 pl-0.5">{m.calc_rental_yoy_source({ source: rentalYoySource })}</p>
             {/if}
           </label>
           <div class="space-y-1">
-            <span class="text-[11px] text-white/50">Furnishing / Branding</span>
+            <span class="text-[11px] text-white/50">{m.calc_furnishing_label()}</span>
             <div class="relative">
               <select bind:value={furnishingType} class={selManual}>
-                <option value="none">No furnishing (+0%)</option>
-                <option value="basic_airbnb">Basic AirBnB (+10%)</option>
-                <option value="highend_airbnb">High-end AirBnB (+20%)</option>
-                <option value="branded_hospitality">Branded hospitality (+25%)</option>
+                <option value="none">{m.calc_furnishing_none()}</option>
+                <option value="basic_airbnb">{m.calc_furnishing_basic()}</option>
+                <option value="highend_airbnb">{m.calc_furnishing_highend()}</option>
+                <option value="branded_hospitality">{m.calc_furnishing_branded()}</option>
               </select>
               <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -484,71 +485,71 @@
             </div>
           </div>
           <div class="space-y-1">
-            <span class="text-[11px] text-white/50">Maid's Room</span>
+            <span class="text-[11px] text-white/50">{m.calc_maids_room_label()}</span>
             <div class="relative">
               <select bind:value={maidsRoom} class={selManual}>
-                <option value="no">No (+0%)</option>
-                <option value="yes">Yes{maidsPct > 0 ? ` (+${maidsPct}%)` : ''}</option>
+                <option value="no">{m.calc_maids_no()}</option>
+                <option value="yes">{maidsPct > 0 ? m.calc_maids_yes_pct({ pct: String(maidsPct) }) : m.calc_maids_yes_plain()}</option>
               </select>
               <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
             {#if maidsRoom === 'yes' && maidsPct === 0}
-              <p class="text-[10px] text-white/30 pl-0.5">Select 2 or 3 beds for premium</p>
+              <p class="text-[10px] text-white/30 pl-0.5">{m.calc_maids_hint()}</p>
             {/if}
           </div>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 items-end">
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Management Fee (%)</span>
+            <span class="text-[11px] text-white/50">{m.calc_mgmt_fee_label()}</span>
             <input type="number" bind:value={mgmtFeePct} min="0" max="30" step="0.5" class={inpManual} />
           </label>
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Utilities (AED/mth)</span>
+            <span class="text-[11px] text-white/50">{m.calc_utilities_label()}</span>
             <input type="number" bind:value={utilitiesMonthly} min="0" step="100" class={inpManual} />
           </label>
           <label class="space-y-1">
             <div class="flex items-center gap-1">
-              <span class="text-[11px] text-white/50">Service Charge (AED/sqft)</span>
+              <span class="text-[11px] text-white/50">{m.calc_service_charge_label()}</span>
               {@render scannedBadge('serviceChargePsf')}
             </div>
             <input type="number" bind:value={serviceChargePsf} min="0" step="0.5" class={scannedFields.has('serviceChargePsf') ? inp : inpManual} />
           </label>
         </div>
         <p class="text-[11px] text-white/30 pl-0.5">
-          Service charge = {size.toLocaleString('en-AE')} sqft × AED {serviceChargePsf} + 5% VAT = <span class="text-amber-400/70">{fmtAed(serviceCharge)}/yr</span>
+          {m.calc_service_charge_formula({ size: size.toLocaleString('en-AE'), rate: String(serviceChargePsf) })} <span class="text-amber-400/70">{fmtAed(serviceCharge)}/yr</span>
         </p>
       </fieldset>
 
       <!-- Capital Gains -->
       <fieldset class="space-y-3">
-        <legend class="text-[10px] font-bold text-blue-400/80 uppercase tracking-widest">Capital Gains Estimation</legend>
+        <legend class="text-[10px] font-bold text-blue-400/80 uppercase tracking-widest">{m.calc_capital_gains_title()}</legend>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Time of Resale (years from today)</span>
+            <span class="text-[11px] text-white/50">{m.calc_resale_time_offplan_label()}</span>
             <input type="number" bind:value={yearsToResale} min="0" max="5" step="1" class={inpManual} />
           </label>
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Annual Appreciation (%)</span>
+            <span class="text-[11px] text-white/50">{m.calc_annual_appreciation_label()}</span>
             <input type="number" bind:value={annualAppPct} min="0" max="10" step="0.5" class={inp} />
             {#if capYoyLoading}
-              <p class="text-[10px] text-white/30 pl-0.5">Loading off-plan YoY…</p>
+              <p class="text-[10px] text-white/30 pl-0.5">{m.calc_loading_offplan_yoy()}</p>
             {:else if capYoySource}
-              <p class="text-[10px] text-amber-400/60 pl-0.5">↳ YoY off-plan · {capYoySource} · 50% haircut</p>
+              <p class="text-[10px] text-amber-400/60 pl-0.5">{m.calc_offplan_yoy_source({ source: capYoySource })}</p>
             {/if}
           </label>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="space-y-1">
-            <span class="text-[11px] text-white/50">Furnishing / Branding</span>
+            <span class="text-[11px] text-white/50">{m.calc_furnishing_label()}</span>
             <div class="relative">
               <select bind:value={otherFactorType} class={selManual}>
-                <option value="no">No (+0%)</option>
-                <option value="yes">Yes, furnished/branded (+10%)</option>
+                <option value="no">{m.calc_maids_no()}</option>
+                <option value="yes">{m.calc_finish_branding_yes()}</option>
               </select>
               <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -556,13 +557,13 @@
             </div>
           </div>
           <label class="space-y-1">
-            <span class="text-[11px] text-white/50">Resale Broker Fee (%)</span>
+            <span class="text-[11px] text-white/50">{m.calc_resale_broker_fee_label()}</span>
             <input type="number" bind:value={resaleBrokerPct} min="0" max="5" step="0.25" class={inpManual} />
           </label>
         </div>
 
         <p class="text-[11px] text-white/30 pl-0.5">
-          Selling price: {fmtAed(cost)} × (1 + {annualAppPct}%)^{yearsToResale}{otherAppPct > 0 ? ` × (1 + ${otherAppPct}%)` : ''} = <span class="text-amber-400/70">{fmtAed(sellingPrice)}</span>
+          {m.calc_selling_price_formula_offplan({ cost: fmtAed(cost), pct: String(annualAppPct), years: String(yearsToResale), extra: otherAppPct > 0 ? ` × (1 + ${otherAppPct}%)` : '' })} <span class="text-amber-400/70">{fmtAed(sellingPrice)}</span>
         </p>
       </fieldset>
 
@@ -577,14 +578,14 @@
           <svg class="w-3.5 h-3.5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
           </svg>
-          <span class="text-[10px] font-bold text-gray-900 uppercase tracking-widest">Estimated Returns</span>
+          <span class="text-[10px] font-bold text-gray-900 uppercase tracking-widest">{m.calc_estimated_returns()}</span>
         </div>
         <div class="flex gap-1.5">
           <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide border {rentalObjective ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-red-50 text-red-600 border-red-200'}">
-            {rentalObjective ? '✓ Yield 7%+' : '✗ Yield <7%'}
+            {rentalObjective ? m.calc_yield_pass() : m.calc_yield_fail()}
           </span>
           <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide border {capitalObjective ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-red-50 text-red-600 border-red-200'}">
-            {capitalObjective ? '✓ CAGR 7%+' : '✗ CAGR <7%'}
+            {capitalObjective ? m.calc_cagr_pass() : m.calc_cagr_fail()}
           </span>
         </div>
       </div>
@@ -594,26 +595,26 @@
         <!-- KPI hero strip -->
         <div class="grid grid-cols-3 divide-x divide-amber-200 rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white overflow-hidden shadow-sm">
           <div class="px-3 py-4 text-center">
-            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Net Rental Yield p.a</p>
+            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">{m.calc_net_rental_yield_pa()}</p>
             <p class="text-xl sm:text-3xl font-black tabular-nums mt-1.5 leading-none {netYield >= 7 ? 'text-emerald-600' : netYield >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netYield)}</p>
-            <p class="text-[9px] text-gray-500 mt-1">on total cost</p>
+            <p class="text-[9px] text-gray-500 mt-1">{m.calc_on_total_cost()}</p>
           </div>
           <div class="px-3 py-4 text-center">
-            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Capital Gain p.a</p>
+            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">{m.calc_capital_gain_pa()}</p>
             <p class="text-xl sm:text-3xl font-black tabular-nums mt-1.5 leading-none {netProfitPerYear >= 7 ? 'text-emerald-600' : netProfitPerYear >= 5 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(netProfitPerYear)}</p>
-            <p class="text-[9px] text-gray-500 mt-1">{yearsToResale}yr horizon</p>
+            <p class="text-[9px] text-gray-500 mt-1">{m.calc_yr_horizon({ years: String(yearsToResale) })}</p>
           </div>
           <div class="px-3 py-4 text-center">
-            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Total ROI p.a</p>
+            <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">{m.calc_total_roi_pa()}</p>
             <p class="text-xl sm:text-3xl font-black tabular-nums mt-1.5 leading-none {totalRoiPa >= 14 ? 'text-emerald-600' : totalRoiPa >= 7 ? 'text-amber-600' : 'text-red-600'}">{fmtPct(totalRoiPa)}</p>
-            <p class="text-[9px] text-gray-500 mt-1">yield + capital gain</p>
+            <p class="text-[9px] text-gray-500 mt-1">{m.calc_yield_plus_capital()}</p>
           </div>
         </div>
 
         <!-- Rental breakdown -->
         <div class="rounded-xl border border-amber-200 bg-white overflow-hidden shadow-sm">
           <div class="px-3.5 py-2.5 border-b border-amber-100 bg-amber-50">
-            <h5 class="text-[10px] font-bold text-gray-900 uppercase tracking-widest">Rental Income at Handover</h5>
+            <h5 class="text-[10px] font-bold text-gray-900 uppercase tracking-widest">{m.calc_rental_income_at_handover_title()}</h5>
           </div>
           <div class="px-3.5 py-3 space-y-1.5 text-xs">
             <div class="flex justify-between text-gray-500">
@@ -622,44 +623,44 @@
             </div>
             {#if furnishingPct > 0}
               <div class="flex justify-between text-gray-500">
-                <span>Furnishing premium (+{furnishingPct}%)</span>
+                <span>{m.calc_furnishing_premium({ pct: String(furnishingPct) })}</span>
                 <span class="tabular-nums text-emerald-600">+ {fmtAed(baseRentalAfterGrowth * furnishingPct / 100)}</span>
               </div>
             {/if}
             {#if maidsPct > 0}
               <div class="flex justify-between text-gray-500">
-                <span>Maid's room premium (+{maidsPct}%)</span>
+                <span>{m.calc_maids_premium({ pct: String(maidsPct) })}</span>
                 <span class="tabular-nums text-emerald-600">+ {fmtAed(afterFurnishing * maidsPct / 100)}</span>
               </div>
             {/if}
             <div class="flex justify-between font-semibold text-gray-800 border-t border-amber-100 pt-1.5">
-              <span>Gross Rental Revenue</span>
+              <span>{m.calc_gross_rental_revenue()}</span>
               <span class="tabular-nums">{fmtAed(grossRental)}</span>
             </div>
             {#if mgmtFee > 0}
               <div class="flex justify-between text-gray-500">
-                <span>Management fee ({mgmtFeePct}%)</span>
+                <span>{m.calc_mgmt_fee_line({ pct: String(mgmtFeePct) })}</span>
                 <span class="tabular-nums text-red-500">− {fmtAed(mgmtFee)}</span>
               </div>
             {/if}
             {#if utilities > 0}
               <div class="flex justify-between text-gray-500">
-                <span>Utilities</span>
+                <span>{m.calc_utilities_line()}</span>
                 <span class="tabular-nums text-red-500">− {fmtAed(utilities)}</span>
               </div>
             {/if}
             <div class="flex justify-between text-gray-500">
-              <span>Service charge + VAT</span>
+              <span>{m.calc_service_charge_vat_line()}</span>
               <span class="tabular-nums text-red-500">− {fmtAed(serviceCharge)}</span>
             </div>
             <div class="flex justify-between font-bold text-gray-800 border-t border-amber-100 pt-1.5">
-              <span>Net Annual Revenue</span>
+              <span>{m.calc_net_annual_revenue()}</span>
               <span class="tabular-nums {netRental >= 0 ? 'text-emerald-600' : 'text-red-600'}">{fmtAed(netRental)}</span>
             </div>
           </div>
           <!-- Monthly cashflow callout -->
           <div class="mx-3.5 mb-3.5 rounded-lg border px-3.5 py-2.5 flex items-center justify-between {netRental >= 0 ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200'}">
-            <span class="text-xs font-semibold {netRental >= 0 ? 'text-emerald-700' : 'text-red-700'}">Monthly net cashflow</span>
+            <span class="text-xs font-semibold {netRental >= 0 ? 'text-emerald-700' : 'text-red-700'}">{m.calc_monthly_net_cashflow()}</span>
             <span class="text-xl font-black tabular-nums {netRental >= 0 ? 'text-emerald-600' : 'text-red-600'}">{fmtAed(netRental / 12)}</span>
           </div>
         </div>
@@ -667,7 +668,7 @@
         <!-- Capital Gains breakdown -->
         <div class="rounded-xl border border-amber-200 bg-white overflow-hidden shadow-sm">
           <div class="px-3.5 py-2.5 border-b border-amber-100 bg-amber-50">
-            <h5 class="text-[10px] font-bold text-gray-900 uppercase tracking-widest">Capital Gains · {yearsToResale}yr Horizon</h5>
+            <h5 class="text-[10px] font-bold text-gray-900 uppercase tracking-widest">{m.calc_capital_gains_horizon_title({ years: String(yearsToResale) })}</h5>
           </div>
           <div class="px-3.5 py-3 space-y-1.5 text-xs">
             <div class="flex justify-between text-gray-500">
@@ -675,30 +676,30 @@
               <span class="tabular-nums text-gray-700 font-medium">{fmtAed(sellingPrice)}</span>
             </div>
             <div class="flex justify-between gap-2 text-gray-500">
-              <span class="min-w-0">Total purchase cost (price + fees)</span>
+              <span class="min-w-0">{m.calc_total_purchase_cost()}</span>
               <span class="tabular-nums text-red-500 flex-shrink-0">− {fmtAed(cost + registrationFee + devRegistrationFee + handoverAdminFee)}</span>
             </div>
             <div class="flex justify-between gap-2 text-gray-500">
-              <span class="min-w-0">Resale broker fee ({resaleBrokerPct}%)</span>
+              <span class="min-w-0">{m.calc_resale_broker_fee_line()} ({resaleBrokerPct}%)</span>
               <span class="tabular-nums text-red-500 flex-shrink-0">− {fmtAed(resaleBrokerFee)}</span>
             </div>
             <div class="flex justify-between font-bold text-gray-800 border-t border-amber-100 pt-1.5">
-              <span>Net Profit</span>
+              <span>{m.calc_net_profit()}</span>
               <span class="tabular-nums {netProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}">{fmtAed(netProfit)}</span>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-2 mx-3.5 mb-3.5">
             <div class="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2.5 text-center">
-              <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Total Return</p>
+              <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">{m.calc_total_return()}</p>
               <p class="text-xl font-black tabular-nums mt-1 {netProfitPct >= 0 ? 'text-emerald-600' : 'text-red-600'}">{fmtPct(netProfitPct)}</p>
-              <p class="text-[9px] text-gray-500 mt-0.5">on all-in cost</p>
+              <p class="text-[9px] text-gray-500 mt-0.5">{m.calc_on_all_in_cost()}</p>
             </div>
             <div class="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2.5 text-center">
-              <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">Net Profit</p>
+              <p class="text-[10px] font-bold text-gray-800 uppercase tracking-wider">{m.calc_net_profit()}</p>
               <p class="text-xl font-black tabular-nums mt-1 {netProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}">
                 {netProfit >= 0 ? '+' : ''}{Math.abs(netProfit) >= 1_000_000 ? (netProfit / 1_000_000).toFixed(2) + 'M' : Math.round(Math.abs(netProfit) / 1000) + 'K'}
               </p>
-              <p class="text-[9px] text-gray-500 mt-0.5">AED</p>
+              <p class="text-[9px] text-gray-500 mt-0.5">{m.calc_aed()}</p>
             </div>
           </div>
         </div>
@@ -713,18 +714,18 @@
             <svg class="h-3.5 w-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
-            <span class="text-emerald-600">Link copied!</span>
+            <span class="text-emerald-600">{m.calc_share_link_copied()}</span>
           {:else}
             <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 1 1.242 7.244" />
             </svg>
-            Share this analysis
+            {m.calc_share_button()}
           {/if}
         </button>
 
         <!-- Disclaimer -->
         <p class="text-[10px] text-gray-400 leading-relaxed px-0.5">
-          Indicative estimates only. Abu Dhabi registration fee: 2% DARI/DMT + AED 1,000 title deed. Developer registration fee: AED 2,000 (&lt; AED 500K) / AED 4,000 (≥ AED 500K). Handover/admin fee up to AED 5,000. Assumes {annualAppPct}%/yr compound appreciation{otherAppPct > 0 ? ` + ${otherAppPct}% finish premium applied at resale` : ''}. Service charge on full unit size + 5% VAT. Cross-verify rental comparables on ADInteract Sales and Rental data.
+          {m.calc_disclaimer_offplan({ pct: String(annualAppPct), extra: otherAppPct > 0 ? ` + ${otherAppPct}% finish premium applied at resale` : '' })}
         </p>
 
       </div><!-- end inner padding -->

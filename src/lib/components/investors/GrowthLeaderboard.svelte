@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { GrowthRow } from '$lib/db/investor_queries';
   import { base } from '$app/paths';
+  import { m } from '$lib/paraglide/messages.js';
 
   let {
     title,
@@ -64,7 +65,7 @@
   <!-- Empty state -->
   {:else if rows.length === 0}
     <div class="flex-1 flex items-center justify-center py-12">
-      <p class="text-sm text-gray-400 text-center px-6">Not enough data to rank for this period.</p>
+      <p class="text-sm text-gray-400 text-center px-6">{m.growth_leaderboard_not_enough_data()}</p>
     </div>
 
   <!-- Leaderboard rows -->

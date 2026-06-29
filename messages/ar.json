@@ -340,6 +340,16 @@
 	"pipeline_no_match": "لا توجد مشاريع تطابق هذه الفلاتر",
 	"pipeline_source_footer": "المصدر: ADREC عبر ADInteract.co · مبيعات الخارطة المسجلة فقط · يُحدّث يوميًا",
 
+	"pricegrowth_all_property_types": "جميع أنواع العقارات",
+	"pricegrowth_section_heading": "نمو الأسعار سنويًا ({prevYear} ← {year})",
+	"pricegrowth_districts_title": "أفضل المناطق · نمو سعر البيع",
+	"pricegrowth_districts_subtitle": "متوسط الدرهم/قدم مربع · 10 صفقات على الأقل في كل سنة",
+	"pricegrowth_projects_title": "أفضل المشاريع · نمو سعر البيع",
+	"pricegrowth_projects_subtitle": "متوسط الدرهم/قدم مربع · 5 صفقات على الأقل في كل سنة",
+	"pricegrowth_rental_title": "أفضل المشاريع · نمو الإيجار",
+	"pricegrowth_rental_subtitle": "متوسط الإيجار السنوي · {prevYear} ← {year}",
+	"growth_leaderboard_not_enough_data": "لا توجد بيانات كافية للترتيب في هذه الفترة.",
+
 	"calc_offplan_title": "حاسبة استثمار العقارات على الخارطة",
 	"calc_offplan_subtitle": "الأرباح الرأسمالية · العائد الإيجاري · صافي العائد على الاستثمار",
 	"calc_total_acquisition_breakdown": "السعر + DARI/DMT (2%+1000) + رسوم تسجيل المطور ({devFee}) + الإدارة (حتى 5000)",

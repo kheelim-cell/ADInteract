@@ -9,6 +9,7 @@
   } from '$lib/db/investor_queries';
   import GrowthLeaderboard from '$lib/components/investors/GrowthLeaderboard.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   const thisCalendarYear = new Date().getFullYear();
 
@@ -114,21 +115,21 @@
   <div>
     <div class="flex flex-wrap items-center gap-3">
       <select bind:value={filterDistrict} class={sel}>
-        <option value="">All Districts</option>
+        <option value="">{m.calc_district_all()}</option>
         {#each districts as d}
           <option value={d}>{d}</option>
         {/each}
       </select>
 
       <select bind:value={filterPropertyType} class={sel}>
-        <option value="">All Property Types</option>
+        <option value="">{m.pricegrowth_all_property_types()}</option>
         {#each propertyTypes as pt}
           <option value={pt}>{pt}</option>
         {/each}
       </select>
 
       <select bind:value={filterLayout} class={sel}>
-        <option value="">All Layouts</option>
+        <option value="">{m.flip_all_layouts()}</option>
         {#each layouts as l}
           <option value={l}>{LAYOUT_DISPLAY[l.toLowerCase()] ?? l}</option>
         {/each}
@@ -143,7 +144,7 @@
           <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
-          Clear filters
+          {m.pipeline_clear_filters()}
         </button>
       {/if}
     </div>
@@ -152,14 +153,14 @@
 
   <!-- ── Section heading ─────────────────────────────────────────────────── -->
   <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">
-    Year-on-Year Price Growth ({prevSalesYear} → {salesYear})
+    {m.pricegrowth_section_heading({ prevYear: String(prevSalesYear), year: String(salesYear) })}
   </h3>
 
   <!-- ── Leaderboards ────────────────────────────────────────────────────── -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
     <GrowthLeaderboard
-      title="Top Districts · Sale Rate Growth"
-      subtitle="Median AED/sqft · min 10 transactions each year"
+      title={m.pricegrowth_districts_title()}
+      subtitle={m.pricegrowth_districts_subtitle()}
       rows={districtRows}
       loading={loadingSales}
       valueLabel="/sqft"
@@ -167,8 +168,8 @@
     />
 
     <GrowthLeaderboard
-      title="Top Projects · Sale Rate Growth"
-      subtitle="Median AED/sqft · min 5 transactions each year"
+      title={m.pricegrowth_projects_title()}
+      subtitle={m.pricegrowth_projects_subtitle()}
       rows={salesProjectRows}
       loading={loadingSales}
       valueLabel="/sqft"
@@ -176,8 +177,8 @@
     />
 
     <GrowthLeaderboard
-      title="Top Projects · Rental Growth"
-      subtitle="Median annual rent · {rentalYear - 1} → {rentalYear}"
+      title={m.pricegrowth_rental_title()}
+      subtitle={m.pricegrowth_rental_subtitle({ prevYear: String(rentalYear - 1), year: String(rentalYear) })}
       rows={rentalProjectRows}
       loading={loadingRental}
       valueLabel="/yr"

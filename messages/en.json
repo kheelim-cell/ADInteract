@@ -340,6 +340,16 @@
 	"pipeline_no_match": "No projects match these filters",
 	"pipeline_source_footer": "Source: ADREC via ADInteract.co · registered off-plan sales only · updated daily",
 
+	"pricegrowth_all_property_types": "All Property Types",
+	"pricegrowth_section_heading": "Year-on-Year Price Growth ({prevYear} → {year})",
+	"pricegrowth_districts_title": "Top Districts · Sale Rate Growth",
+	"pricegrowth_districts_subtitle": "Median AED/sqft · min 10 transactions each year",
+	"pricegrowth_projects_title": "Top Projects · Sale Rate Growth",
+	"pricegrowth_projects_subtitle": "Median AED/sqft · min 5 transactions each year",
+	"pricegrowth_rental_title": "Top Projects · Rental Growth",
+	"pricegrowth_rental_subtitle": "Median annual rent · {prevYear} → {year}",
+	"growth_leaderboard_not_enough_data": "Not enough data to rank for this period.",
+
 	"calc_offplan_title": "Offplan Investment Calculator",
 	"calc_offplan_subtitle": "Capital gains · Rental yield · Net ROI",
 	"calc_total_acquisition_breakdown": "Price + DARI/DMT (2%+1K) + Dev. reg. ({devFee}) + Admin (≤5K)",

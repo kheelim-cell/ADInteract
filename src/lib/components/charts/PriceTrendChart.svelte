@@ -3,6 +3,7 @@
   import * as echarts from 'echarts';
   import type { ChartDataPoint } from '$lib/db/types';
   import { formatCurrencyShort } from '$lib/utils/format';
+  import { m } from '$lib/paraglide/messages.js';
 
   let { data = [] as ChartDataPoint[] } = $props();
   let chartEl = $state<HTMLDivElement>();
@@ -25,6 +26,8 @@
       const months = data.map((d) => d.month);
       const prices = data.map((d) => d.medianPrice);
       const rates = data.map((d) => d.medianRate);
+      const medianPriceLabel = m.chart_series_median_price();
+      const medianRateLabel = m.chart_series_median_rate_sqft();
 
       chart.setOption({
         textStyle: { fontFamily: 'Manrope, system-ui, sans-serif' },
@@ -41,7 +44,7 @@
               const color = p.color;
               const name = p.seriesName;
               const val =
-                name === 'Median Price'
+                name === medianPriceLabel
                   ? formatCurrencyShort(p.value) + ' AED'
                   : formatCurrencyShort(p.value) + ' AED/sqft';
               html += `<div class="flex items-center gap-2"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color}"></span>${name}: <b>${val}</b></div>`;
@@ -65,7 +68,7 @@
         yAxis: [
           {
             type: 'value',
-            name: 'Price (AED)',
+            name: m.chart_yaxis_price_aed(),
             nameTextStyle: { color: '#9ca3af', fontSize: 11 },
             axisLine: { show: false },
             axisTick: { show: false },
@@ -78,7 +81,7 @@
           },
           {
             type: 'value',
-            name: 'AED/sqft',
+            name: m.chart_yaxis_aed_sqft(),
             nameTextStyle: { color: '#9ca3af', fontSize: 11 },
             axisLine: { show: false },
             axisTick: { show: false },
@@ -92,7 +95,7 @@
         ],
         series: [
           {
-            name: 'Median Price',
+            name: medianPriceLabel,
             type: 'line',
             data: prices,
             yAxisIndex: 0,
@@ -109,7 +112,7 @@
             }
           },
           {
-            name: 'Median Rate/sqft',
+            name: medianRateLabel,
             type: 'line',
             data: rates,
             yAxisIndex: 1,

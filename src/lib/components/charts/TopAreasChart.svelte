@@ -4,6 +4,7 @@
   import { goto } from '$app/navigation';
   import { base } from '$app/paths';
   import type { DistrictSummary } from '$lib/db/types';
+  import { m } from '$lib/paraglide/messages.js';
 
   let { data = [] as DistrictSummary[], clickable = true } = $props();
   let chartEl = $state<HTMLDivElement>();
@@ -47,15 +48,15 @@
             const item = sorted.find((d) => d.district === p.name);
             if (!item) return '';
             return `<div class="font-medium">${p.name}</div>
-                    <div>Volume: <b>${item.volume.toLocaleString()}</b></div>
-                    <div>Median Price: <b>${item.medianPrice.toLocaleString()} AED</b></div>
-                    <div>Median Rate: <b>${item.medianRate.toLocaleString()} AED/sqft</b></div>`;
+                    <div>${m.chart_tooltip_volume()}: <b>${item.volume.toLocaleString()}</b></div>
+                    <div>${m.chart_tooltip_median_price()}: <b>${item.medianPrice.toLocaleString()} AED</b></div>
+                    <div>${m.chart_tooltip_median_rate()}: <b>${item.medianRate.toLocaleString()} AED/sqft</b></div>`;
           }
         },
         grid: { left: 140, right: 40, top: 10, bottom: 10 },
         xAxis: {
           type: 'value',
-          name: 'Transactions',
+          name: m.chart_yaxis_transactions(),
           nameTextStyle: { color: '#9ca3af', fontSize: 11 },
           axisLine: { show: false },
           axisTick: { show: false },

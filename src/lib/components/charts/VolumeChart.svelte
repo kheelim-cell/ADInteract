@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import * as echarts from 'echarts';
   import type { ChartDataPoint } from '$lib/db/types';
+  import { m } from '$lib/paraglide/messages.js';
 
   let { data = [] as ChartDataPoint[] } = $props();
   let chartEl = $state<HTMLDivElement>();
@@ -41,7 +42,7 @@
               total += p.value;
               html += `<div class="flex items-center gap-2"><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${p.color}"></span>${p.seriesName}: <b>${p.value.toLocaleString()}</b></div>`;
             }
-            html += `<div class="mt-1 pt-1 border-t border-gray-200 font-medium">Total: <b>${total.toLocaleString()}</b></div>`;
+            html += `<div class="mt-1 pt-1 border-t border-gray-200 font-medium">${m.chart_tooltip_total()}: <b>${total.toLocaleString()}</b></div>`;
             return html;
           }
         },
@@ -60,7 +61,7 @@
         },
         yAxis: {
           type: 'value',
-          name: 'Transactions',
+          name: m.chart_yaxis_transactions(),
           nameTextStyle: { color: '#9ca3af', fontSize: 11 },
           axisLine: { show: false },
           axisTick: { show: false },
@@ -69,7 +70,7 @@
         },
         series: [
           {
-            name: 'Off-plan',
+            name: m.chart_series_offplan(),
             type: 'bar',
             stack: 'volume',
             data: offPlan,
@@ -80,7 +81,7 @@
             }
           },
           {
-            name: 'Ready',
+            name: m.chart_series_ready(),
             type: 'bar',
             stack: 'volume',
             data: ready,

@@ -3,6 +3,7 @@
   import * as echarts from 'echarts';
   import type { PriceDistributionPoint } from '$lib/db/types';
   import { formatCurrencyShort } from '$lib/utils/format';
+  import { m } from '$lib/paraglide/messages.js';
 
   let { data = [] as PriceDistributionPoint[] } = $props();
   let chartEl = $state<HTMLDivElement>();
@@ -39,12 +40,12 @@
             const item = data[idx];
             if (!item) return '';
             return `<div class="font-medium mb-1">${item.layout}</div>
-                    <div>Max: <b>${formatCurrencyShort(item.max)}</b></div>
-                    <div>Q3: <b>${formatCurrencyShort(item.q3)}</b></div>
-                    <div>Median: <b>${formatCurrencyShort(item.median)}</b></div>
-                    <div>Q1: <b>${formatCurrencyShort(item.q1)}</b></div>
-                    <div>Min: <b>${formatCurrencyShort(item.min)}</b></div>
-                    <div class="mt-1 text-gray-400">${item.count.toLocaleString()} transactions</div>`;
+                    <div>${m.chart_tooltip_max()}: <b>${formatCurrencyShort(item.max)}</b></div>
+                    <div>${m.chart_tooltip_q3()}: <b>${formatCurrencyShort(item.q3)}</b></div>
+                    <div>${m.chart_tooltip_median()}: <b>${formatCurrencyShort(item.median)}</b></div>
+                    <div>${m.chart_tooltip_q1()}: <b>${formatCurrencyShort(item.q1)}</b></div>
+                    <div>${m.chart_tooltip_min()}: <b>${formatCurrencyShort(item.min)}</b></div>
+                    <div class="mt-1 text-gray-400">${item.count.toLocaleString()} ${m.chart_tooltip_transactions_suffix()}</div>`;
           }
         },
         grid: { left: 70, right: 30, top: 20, bottom: 40 },
@@ -57,7 +58,7 @@
         },
         yAxis: {
           type: 'value',
-          name: 'AED/sqft',
+          name: m.chart_yaxis_aed_sqft(),
           nameTextStyle: { color: '#9ca3af', fontSize: 11 },
           axisLine: { show: false },
           axisTick: { show: false },

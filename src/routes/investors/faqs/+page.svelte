@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
+
   // ── FAQ data ───────────────────────────────────────────────────────────────
   type FaqItem = {
     id: number;
@@ -9,54 +11,30 @@
   };
 
   const FAQS: FaqItem[] = [
-    {
-      id: 1,
-      q: 'Can I, as a foreign investor, own property 100% freehold in Abu Dhabi?',
-      a: 'Yes, but only in designated "Investment Zones." Foreigners (non-GCC nationals) can buy freehold land and property with 100% absolute ownership in specific master-planned areas like Yas Island, Saadiyat Island, Al Reem Island, and Al Raha Beach. Outside these zones, property ownership is restricted to UAE/GCC nationals.',
-    },
+    { id: 1, q: m.faqs_q1(), a: m.faqs_a1() },
     {
       id: 2,
-      q: 'What are the upfront transaction costs when buying a property?',
-      intro: 'Unlike some global markets with massive stamp duties, Abu Dhabi is relatively lean.',
+      q: m.faqs_q2(),
+      intro: m.faqs_intro2(),
       bullets: [
-        { label: 'ADREC Transfer Fee', text: '2% of the purchase price (paid to the Abu Dhabi Real Estate Centre).' },
-        { label: 'Agency Commission', text: 'Typically 2% (+ 5% VAT).' },
-        { label: 'Developer Admin Fee', text: 'Usually AED 1,000 to AED 5,000.' },
-        { label: 'Mortgage Registration Fee (if financing)', text: '0.1% of the loan amount.' },
+        { label: m.faqs_b2_1_label(), text: m.faqs_b2_1_text() },
+        { label: m.faqs_b2_2_label(), text: m.faqs_b2_2_text() },
+        { label: m.faqs_b2_3_label(), text: m.faqs_b2_3_text() },
+        { label: m.faqs_b2_4_label(), text: m.faqs_b2_4_text() },
       ],
     },
-    {
-      id: 3,
-      q: 'How does the UAE Golden Visa work through property, and do off-plan projects count?',
-      a: 'If your total property equity reaches AED 2 million (approx. $545,000 USD) or more, you qualify for a 10-year residency Golden Visa. You can combine multiple properties to hit this threshold. Crucially, off-plan properties qualify as long as the developer confirms your equity contribution has reached the AED 2 million mark.',
-    },
-    {
-      id: 4,
-      q: 'How well-protected is my money if I buy an off-plan property?',
-      a: 'Highly protected. Abu Dhabi heavily regulates off-plan sales. Developers are legally required to open a project-specific Escrow Account monitored by ADREC. Your payment plan installments go directly into this account and are only disbursed to the developer based on verified construction milestones, drastically minimising delivery risk.',
-    },
-    {
-      id: 5,
-      q: 'Is there a rent cap in Abu Dhabi to prevent tenants from locking into low rates forever?',
-      a: 'No fixed city-wide cap exists anymore. Abu Dhabi previously had a 5% rent cap, but it was abolished. However, rent increases must still match market valuations. Tenants can dispute unfair hikes via the Rental Dispute Settlement Committee (RDSC) if the landlord asks for an increase vastly above the prevailing market average for that specific building.',
-    },
-    {
-      id: 6,
-      q: 'How does the tax structure affect my rental income and capital gains?',
-      a: 'This is Abu Dhabi\'s biggest selling point. There is 0% personal income tax on rental yields and 0% capital gains tax when you flip or sell the property. No annual municipal property taxes apply either. The only tax consideration is a standard 5% VAT applied strictly to commercial property transactions or agency/management services — not residential rent.',
-    },
-    {
-      id: 7,
-      q: 'What is the historical developer track record for handovers?',
-      a: 'The market is dominated by massive, government-backed or highly capitalised master developers like Aldar, Modon, and Bloom. While minor delays of 3–6 months can happen globally, these tier-1 developers have an exceptional track record of finishing projects to high standards, which keeps secondary market demand robust.',
-    },
+    { id: 3, q: m.faqs_q3(), a: m.faqs_a3() },
+    { id: 4, q: m.faqs_q4(), a: m.faqs_a4() },
+    { id: 5, q: m.faqs_q5(), a: m.faqs_a5() },
+    { id: 6, q: m.faqs_q6(), a: m.faqs_a6() },
+    { id: 7, q: m.faqs_q7(), a: m.faqs_a7() },
     {
       id: 8,
-      q: 'Should I focus on Apartments or Villas for the best long-term play?',
-      intro: 'It depends on your strategy.',
+      q: m.faqs_q8(),
+      intro: m.faqs_intro8(),
       bullets: [
-        { label: 'Apartments (e.g., Al Reem Island)', text: 'Traditionally yield higher net rental returns (6%–8%) and attract a steady stream of young professional tenants.' },
-        { label: 'Villas/Townhouses (e.g., Yas Island or Saadiyat)', text: 'Yield slightly lower (4%–6%) but have seen massive capital appreciation due to limited supply and high demand from affluent families.' },
+        { label: m.faqs_b8_1_label(), text: m.faqs_b8_1_text() },
+        { label: m.faqs_b8_2_label(), text: m.faqs_b8_2_text() },
       ],
     },
   ];
@@ -92,71 +70,71 @@
 
   const TABLE_SECTIONS: TableSection[] = [
     {
-      category: '1. Government Transfer / Registration',
+      category: m.faqs_table_cat1(),
       rows: [
-        { item: 'Rate', abu_dhabi: '2% of purchase price', dubai: '4% of purchase price' },
-        { item: 'Convention', abu_dhabi: 'Split 1% buyer / 1% seller (negotiable)', dubai: 'Buyer pays full 4%' },
-        { item: 'Off-plan registration', abu_dhabi: '2% via DARI/Tamleek', dubai: '4% Oqood at SPA signing' },
-        { item: 'Title deed issuance', abu_dhabi: 'AED 1,000 flat', dubai: 'AED 250 + map fees (~AED 580)' },
-        { item: 'Late registration penalty', abu_dhabi: 'AED 10,000 (if >21 days)', dubai: 'More lenient' },
+        { item: m.faqs_table_s1_r1_item(), abu_dhabi: m.faqs_table_s1_r1_ad(), dubai: m.faqs_table_s1_r1_dxb() },
+        { item: m.faqs_table_s1_r2_item(), abu_dhabi: m.faqs_table_s1_r2_ad(), dubai: m.faqs_table_s1_r2_dxb() },
+        { item: m.faqs_table_s1_r3_item(), abu_dhabi: m.faqs_table_s1_r3_ad(), dubai: m.faqs_table_s1_r3_dxb() },
+        { item: m.faqs_table_s1_r4_item(), abu_dhabi: m.faqs_table_s1_r4_ad(), dubai: m.faqs_table_s1_r4_dxb() },
+        { item: m.faqs_table_s1_r5_item(), abu_dhabi: m.faqs_table_s1_r5_ad(), dubai: m.faqs_table_s1_r5_dxb() },
       ],
     },
     {
-      category: '2. Trustee / Admin Fees',
+      category: m.faqs_table_cat2(),
       rows: [
-        { item: 'Trustee office fee', abu_dhabi: 'N/A (via DARI portal)', dubai: 'AED 4,200 (>AED 500K, incl. 5% VAT)' },
-        { item: 'Admin / knowledge fees', abu_dhabi: 'AED 540–1,000', dubai: 'AED 600' },
+        { item: m.faqs_table_s2_r1_item(), abu_dhabi: m.faqs_table_s2_r1_ad(), dubai: m.faqs_table_s2_r1_dxb() },
+        { item: m.faqs_table_s2_r2_item(), abu_dhabi: m.faqs_table_s2_r2_ad(), dubai: m.faqs_table_s2_r2_dxb() },
       ],
     },
     {
-      category: '3. Agency Commission (Ready/Resale)',
+      category: m.faqs_table_cat3(),
       rows: [
-        { item: 'Standard rate', abu_dhabi: '2% + 5% VAT = 2.1%', dubai: '2% + 5% VAT = 2.1%' },
-        { item: 'Luxury (>AED 10M)', abu_dhabi: 'Up to 3%', dubai: 'Typically stays at 2%' },
-        { item: 'Who pays', abu_dhabi: 'Negotiable (often seller)', dubai: 'Negotiable (often seller)' },
+        { item: m.faqs_table_s3_r1_item(), abu_dhabi: m.faqs_table_s3_r1_ad(), dubai: m.faqs_table_s3_r1_dxb() },
+        { item: m.faqs_table_s3_r2_item(), abu_dhabi: m.faqs_table_s3_r2_ad(), dubai: m.faqs_table_s3_r2_dxb() },
+        { item: m.faqs_table_s3_r3_item(), abu_dhabi: m.faqs_table_s3_r3_ad(), dubai: m.faqs_table_s3_r3_dxb() },
       ],
     },
     {
-      category: '4. Developer Admin Fee (Off-plan)',
+      category: m.faqs_table_cat4(),
       rows: [
-        { item: 'Registration fee', abu_dhabi: 'AED 2,000 (<500K) / AED 4,000 (>500K)', dubai: 'Included in Oqood; admin ~AED 580–1,000' },
-        { item: 'Handover / admin fee', abu_dhabi: 'AED 2,000–5,000', dubai: 'AED 1,000–5,000 (developer-specific)' },
+        { item: m.faqs_table_s4_r1_item(), abu_dhabi: m.faqs_table_s4_r1_ad(), dubai: m.faqs_table_s4_r1_dxb() },
+        { item: m.faqs_table_s4_r2_item(), abu_dhabi: m.faqs_table_s4_r2_ad(), dubai: m.faqs_table_s4_r2_dxb() },
       ],
     },
     {
-      category: '5. NOC Fee (Ready/Resale)',
+      category: m.faqs_table_cat5(),
       rows: [
-        { item: 'Range', abu_dhabi: 'AED 500–2,500', dubai: 'AED 500–5,000' },
-        { item: 'Typical', abu_dhabi: '~AED 1,000', dubai: '~AED 1,000–5,000' },
-        { item: 'Who pays', abu_dhabi: 'Usually seller', dubai: 'Usually seller' },
+        { item: m.faqs_table_s5_r1_item(), abu_dhabi: m.faqs_table_s5_r1_ad(), dubai: m.faqs_table_s5_r1_dxb() },
+        { item: m.faqs_table_s5_r2_item(), abu_dhabi: m.faqs_table_s5_r2_ad(), dubai: m.faqs_table_s5_r2_dxb() },
+        { item: m.faqs_table_s5_r3_item(), abu_dhabi: m.faqs_table_s5_r3_ad(), dubai: m.faqs_table_s5_r3_dxb() },
       ],
     },
     {
-      category: '6. Mortgage Fees',
+      category: m.faqs_table_cat6(),
       rows: [
-        { item: 'Mortgage registration fee', abu_dhabi: '0.1% of loan (min AED 500, max AED 1,000) + AED 450', dubai: '0.25% of loan + AED 290' },
-        { item: 'Bank processing / arrangement', abu_dhabi: '0.5%–1% of loan', dubai: '0.5%–1% of loan' },
-        { item: 'Property valuation', abu_dhabi: 'AED 2,500–3,500', dubai: 'AED 2,500–3,500' },
-        { item: 'Life insurance (annual)', abu_dhabi: '~0.4–0.6% of loan', dubai: '~0.4–0.6% of loan' },
+        { item: m.faqs_table_s6_r1_item(), abu_dhabi: m.faqs_table_s6_r1_ad(), dubai: m.faqs_table_s6_r1_dxb() },
+        { item: m.faqs_table_s6_r2_item(), abu_dhabi: m.faqs_table_s6_r2_ad(), dubai: m.faqs_table_s6_r2_dxb() },
+        { item: m.faqs_table_s6_r3_item(), abu_dhabi: m.faqs_table_s6_r3_ad(), dubai: m.faqs_table_s6_r3_dxb() },
+        { item: m.faqs_table_s6_r4_item(), abu_dhabi: m.faqs_table_s6_r4_ad(), dubai: m.faqs_table_s6_r4_dxb() },
       ],
     },
     {
-      category: '7. Other Costs',
+      category: m.faqs_table_cat7(),
       rows: [
-        { item: 'Conveyancing / legal (optional)', abu_dhabi: 'AED 5,000–15,000', dubai: 'AED 5,000–15,000' },
-        { item: 'Utility connection + deposit', abu_dhabi: 'AED 1,000–2,500 + deposit (ADDC)', dubai: 'AED 1,000–2,500 + deposit (DEWA)' },
-        { item: 'Home insurance (annual)', abu_dhabi: 'AED 1,000–3,000', dubai: 'AED 1,000–3,000' },
-        { item: 'Service charges (annual)', abu_dhabi: 'AED 10–40/sqft/year', dubai: 'AED 10–40/sqft/year' },
+        { item: m.faqs_table_s7_r1_item(), abu_dhabi: m.faqs_table_s7_r1_ad(), dubai: m.faqs_table_s7_r1_dxb() },
+        { item: m.faqs_table_s7_r2_item(), abu_dhabi: m.faqs_table_s7_r2_ad(), dubai: m.faqs_table_s7_r2_dxb() },
+        { item: m.faqs_table_s7_r3_item(), abu_dhabi: m.faqs_table_s7_r3_ad(), dubai: m.faqs_table_s7_r3_dxb() },
+        { item: m.faqs_table_s7_r4_item(), abu_dhabi: m.faqs_table_s7_r4_ad(), dubai: m.faqs_table_s7_r4_dxb() },
       ],
     },
   ];
 </script>
 
 <svelte:head>
-  <title>Abu Dhabi Property Investment FAQs 2025 — Ownership, Taxes, Golden Visa | ADInteract</title>
-  <meta name="description" content="Expert answers: Can foreigners own 100% freehold in Abu Dhabi? Golden Visa through property, transaction costs, escrow protection, 0% capital gains tax, and Abu Dhabi vs Dubai cost comparison." />
-  <meta property="og:title" content="Abu Dhabi Property Investment FAQs 2025 | ADInteract" />
-  <meta property="og:description" content="Foreign ownership rules, Golden Visa eligibility, transaction costs, escrow protection, and a full Abu Dhabi vs Dubai cost comparison — answered with ADREC data." />
+  <title>{m.faqs_meta_title()}</title>
+  <meta name="description" content={m.faqs_meta_description()} />
+  <meta property="og:title" content={m.faqs_og_title()} />
+  <meta property="og:description" content={m.faqs_og_description()} />
 
   {@html `<script type="application/ld+json">${faqSchema}</script>`}
 </svelte:head>
@@ -166,7 +144,7 @@
   <!-- ── FAQ section ─────────────────────────────────────────────────────────── -->
   <section>
     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">
-      Frequently Asked Questions · Abu Dhabi Property Investment
+      {m.faqs_section_heading()}
     </h3>
 
     <div class="space-y-2">
@@ -236,9 +214,9 @@
   <section>
     <div class="mb-6">
       <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
-        Buying in Abu Dhabi vs Dubai — Transaction Cost Comparison
+        {m.faqs_table_heading()}
       </h3>
-      <p class="text-xs text-gray-400">All costs are buyer-side estimates unless noted. Figures are indicative; verify with your agent and legal adviser.</p>
+      <p class="text-xs text-gray-400">{m.faqs_table_subtitle()}</p>
     </div>
 
     <div class="rounded-xl border border-gray-200 overflow-hidden shadow-sm">
@@ -247,17 +225,17 @@
         <!-- Table header — 3 columns (Fee Category removed) -->
         <thead>
           <tr class="bg-gray-800 text-white">
-            <th class="px-2 sm:px-4 py-2 sm:py-3 text-start text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[30%]">Line Item</th>
+            <th class="px-2 sm:px-4 py-2 sm:py-3 text-start text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[30%]">{m.faqs_table_th_line_item()}</th>
             <th class="px-2 sm:px-4 py-2 sm:py-3 text-start text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[35%]">
               <span class="inline-flex items-center gap-1">
                 <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0"></span>
-                Abu Dhabi
+                {m.faqs_table_th_abudhabi()}
               </span>
             </th>
             <th class="px-2 sm:px-4 py-2 sm:py-3 text-start text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[35%]">
               <span class="inline-flex items-center gap-1">
                 <span class="inline-block w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>
-                Dubai
+                {m.faqs_table_th_dubai()}
               </span>
             </th>
           </tr>
@@ -285,18 +263,18 @@
           <!-- Total row -->
           <tr class="bg-emerald-50 border-t-2 border-emerald-200">
             <td class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-xs font-bold text-gray-700 uppercase tracking-wider">
-              Total Closing Costs
-              <span class="block text-[9px] sm:text-[10px] font-normal normal-case text-gray-500 mt-0.5">excl. down payment</span>
+              {m.faqs_table_total_label()}
+              <span class="block text-[9px] sm:text-[10px] font-normal normal-case text-gray-500 mt-0.5">{m.faqs_table_total_sublabel()}</span>
             </td>
-            <td class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-sm font-bold text-emerald-700">~4–7% of purchase price</td>
-            <td class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-sm font-semibold text-gray-600">~7–9% of purchase price</td>
+            <td class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-sm font-bold text-emerald-700">{m.faqs_table_total_ad()}</td>
+            <td class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-sm font-semibold text-gray-600">{m.faqs_table_total_dxb()}</td>
           </tr>
 
           <!-- Net delta row -->
           <tr class="bg-emerald-100/60">
-            <td class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-xs font-bold text-gray-700 uppercase tracking-wider">Net Delta</td>
+            <td class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-xs font-bold text-gray-700 uppercase tracking-wider">{m.faqs_table_delta_label()}</td>
             <td colspan="2" class="px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-sm font-bold text-emerald-700">
-              Abu Dhabi saves ~2–3 percentage points vs Dubai
+              {m.faqs_table_delta_text()}
             </td>
           </tr>
         </tbody>

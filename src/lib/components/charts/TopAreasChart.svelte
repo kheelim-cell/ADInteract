@@ -5,6 +5,10 @@
   import { base } from '$app/paths';
   import type { DistrictSummary } from '$lib/db/types';
   import { m } from '$lib/paraglide/messages.js';
+  import { getLocale } from '$lib/paraglide/runtime';
+
+  const isAr = getLocale() === 'ar';
+  const fontFamily = isAr ? "'Noto Sans Arabic', Manrope, system-ui, sans-serif" : 'Manrope, system-ui, sans-serif';
 
   let { data = [] as DistrictSummary[], clickable = true } = $props();
   let chartEl = $state<HTMLDivElement>();
@@ -35,14 +39,14 @@
       }
 
       chart.setOption({
-        textStyle: { fontFamily: 'Manrope, system-ui, sans-serif' },
+        textStyle: { fontFamily },
         tooltip: {
           trigger: 'axis',
           axisPointer: { type: 'shadow' },
           backgroundColor: '#fff',
           borderColor: '#e5e7eb',
           borderWidth: 1,
-          textStyle: { color: '#374151', fontSize: 12, fontFamily: 'Manrope, system-ui, sans-serif' },
+          textStyle: { color: '#374151', fontSize: 12, fontFamily },
           formatter(params: any) {
             const p = params[0];
             const item = sorted.find((d) => d.district === p.name);
@@ -57,6 +61,7 @@
         xAxis: {
           type: 'value',
           name: m.chart_yaxis_transactions(),
+          inverse: isAr,
           nameTextStyle: { color: '#9ca3af', fontSize: 11 },
           axisLine: { show: false },
           axisTick: { show: false },

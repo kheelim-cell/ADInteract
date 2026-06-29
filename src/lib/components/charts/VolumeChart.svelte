@@ -3,6 +3,10 @@
   import * as echarts from 'echarts';
   import type { ChartDataPoint } from '$lib/db/types';
   import { m } from '$lib/paraglide/messages.js';
+  import { getLocale } from '$lib/paraglide/runtime';
+
+  const isAr = getLocale() === 'ar';
+  const fontFamily = isAr ? "'Noto Sans Arabic', Manrope, system-ui, sans-serif" : 'Manrope, system-ui, sans-serif';
 
   let { data = [] as ChartDataPoint[] } = $props();
   let chartEl = $state<HTMLDivElement>();
@@ -27,13 +31,13 @@
       const ready = data.map((d) => d.readyVolume);
 
       chart.setOption({
-        textStyle: { fontFamily: 'Manrope, system-ui, sans-serif' },
+        textStyle: { fontFamily },
         tooltip: {
           trigger: 'axis',
           backgroundColor: '#fff',
           borderColor: '#e5e7eb',
           borderWidth: 1,
-          textStyle: { color: '#374151', fontSize: 12, fontFamily: 'Manrope, system-ui, sans-serif' },
+          textStyle: { color: '#374151', fontSize: 12, fontFamily },
           formatter(params: any) {
             const month = params[0].axisValue;
             let total = 0;
@@ -48,13 +52,14 @@
         },
         legend: {
           top: 0,
-          right: 0,
+          [isAr ? 'left' : 'right']: 0,
           textStyle: { fontSize: 12, color: '#6b7280' }
         },
         grid: { left: 50, right: 20, top: 30, bottom: 30 },
         xAxis: {
           type: 'category',
           data: months,
+          inverse: isAr,
           axisLine: { lineStyle: { color: '#e5e7eb' } },
           axisTick: { show: false },
           axisLabel: { color: '#9ca3af', fontSize: 11, rotate: months.length > 18 ? 45 : 0 }

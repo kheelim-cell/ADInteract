@@ -4,6 +4,10 @@
   import type { PriceDistributionPoint } from '$lib/db/types';
   import { formatCurrencyShort } from '$lib/utils/format';
   import { m } from '$lib/paraglide/messages.js';
+  import { getLocale } from '$lib/paraglide/runtime';
+
+  const isAr = getLocale() === 'ar';
+  const fontFamily = isAr ? "'Noto Sans Arabic', Manrope, system-ui, sans-serif" : 'Manrope, system-ui, sans-serif';
 
   let { data = [] as PriceDistributionPoint[] } = $props();
   let chartEl = $state<HTMLDivElement>();
@@ -28,13 +32,13 @@
       const boxData = data.map((d) => [d.min, d.q1, d.median, d.q3, d.max]);
 
       chart.setOption({
-        textStyle: { fontFamily: 'Manrope, system-ui, sans-serif' },
+        textStyle: { fontFamily },
         tooltip: {
           trigger: 'item',
           backgroundColor: '#fff',
           borderColor: '#e5e7eb',
           borderWidth: 1,
-          textStyle: { color: '#374151', fontSize: 12, fontFamily: 'Manrope, system-ui, sans-serif' },
+          textStyle: { color: '#374151', fontSize: 12, fontFamily },
           formatter(params: any) {
             const idx = params.dataIndex;
             const item = data[idx];
@@ -52,6 +56,7 @@
         xAxis: {
           type: 'category',
           data: layouts,
+          inverse: isAr,
           axisLine: { lineStyle: { color: '#e5e7eb' } },
           axisTick: { show: false },
           axisLabel: { color: '#374151', fontSize: 11 }

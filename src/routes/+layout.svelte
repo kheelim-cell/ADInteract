@@ -13,11 +13,16 @@
   import { page } from '$app/stores';
   import type { Metadata } from '$lib/db/types';
   import type { RentalMetadata } from '$lib/db/rental_types';
+  import { deLocalizeHref, localizeHref } from '$lib/paraglide/runtime';
 
   let { children } = $props();
 
   const SITE_URL = 'https://adinteract.co';
   let canonicalUrl = $derived(`${SITE_URL}${$page.url.pathname}`);
+
+  let basePath = $derived(deLocalizeHref($page.url.pathname));
+  let hreflangEn = $derived(`${SITE_URL}${localizeHref(basePath, { locale: 'en' })}`);
+  let hreflangAr = $derived(`${SITE_URL}${localizeHref(basePath, { locale: 'ar' })}`);
 
   onMount(async () => {
     try {
@@ -58,6 +63,12 @@
 </script>
 
 <svelte:head>
+  <!-- hreflang alternates — emitted on every page, including /area/ pages which
+       otherwise set their own title/description/OG/canonical below. -->
+  <link rel="alternate" hreflang="en" href={hreflangEn} />
+  <link rel="alternate" hreflang="ar" href={hreflangAr} />
+  <link rel="alternate" hreflang="x-default" href={hreflangEn} />
+
   <!-- /area/ pages set their own meta (title, description, OG, canonical) — don't double-emit -->
   {#if !$page.url.pathname.startsWith('/area/')}
     <meta name="description" content="Abu Dhabi real estate transaction analytics — search, filter, and analyse property sales data powered by ADREC." />

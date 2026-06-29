@@ -5,6 +5,12 @@
   import { user, isAuthenticated, openSignIn, signOut } from '$lib/stores/auth';
   import { supabaseEnabled } from '$lib/supabase';
   import { m } from '$lib/paraglide/messages.js';
+  import { getLocale, localizeHref, deLocalizeHref } from '$lib/paraglide/runtime';
+
+  let currentLocale = $derived(getLocale());
+  let currentHref = $derived($page.url.pathname + $page.url.search);
+  let switchLocale = $derived(currentLocale === 'ar' ? 'en' : 'ar');
+  let switchHref = $derived(localizeHref(deLocalizeHref(currentHref), { locale: switchLocale }));
 
   let { lastUpdated = '' } = $props();
 
@@ -112,6 +118,15 @@
 
       <!-- Right: avatar + dataset stats -->
       <div class="flex items-center gap-3 flex-shrink-0">
+
+        <!-- Language switcher -->
+        <a
+          href={switchHref}
+          class="flex-shrink-0 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 px-3 py-1.5 text-xs font-semibold text-white/70 hover:text-white transition-colors"
+          aria-label={switchLocale === 'ar' ? m.language_arabic() : m.language_english()}
+        >
+          {switchLocale === 'ar' ? m.language_arabic() : m.language_english()}
+        </a>
 
         <!-- User avatar (only when signed in) -->
         {#if supabaseEnabled && $isAuthenticated && $user}

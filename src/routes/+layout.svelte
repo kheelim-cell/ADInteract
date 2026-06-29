@@ -69,8 +69,9 @@
   <link rel="alternate" hreflang="ar" href={hreflangAr} />
   <link rel="alternate" hreflang="x-default" href={hreflangEn} />
 
-  <!-- /area/ pages set their own meta (title, description, OG, canonical) — don't double-emit -->
-  {#if !$page.url.pathname.startsWith('/area/')}
+  <!-- /area/ pages set their own meta (title, description, OG, canonical) — don't double-emit.
+       Check the de-localized path so this also catches /ar/area/... pages. -->
+  {#if !basePath.startsWith('/area/')}
     <meta name="description" content="Abu Dhabi real estate transaction analytics — search, filter, and analyse property sales data powered by ADREC." />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content="website" />

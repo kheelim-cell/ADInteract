@@ -8,10 +8,10 @@
 </script>
 
 <svelte:head>
-  <title>Abu Dhabi Property ROI Calculator — Net Yield & Capital Gain | ADInteract</title>
-  <meta name="description" content="Calculate net rental yield, capital gain CAGR, and total ROI for Abu Dhabi off-plan and ready properties. Auto-populated with live ADREC rent and price data. Free to use." />
-  <meta property="og:title" content="Abu Dhabi Property ROI Calculator — Net Yield & Capital Gain | ADInteract" />
-  <meta property="og:description" content="Model your Abu Dhabi property investment return. Off-plan and ready property scenarios — net yield, capital gain CAGR, total ROI — powered by live ADREC data." />
+  <title>{m.seo_calculator_title()}</title>
+  <meta name="description" content={m.seo_calculator_description()} />
+  <meta property="og:title" content={m.seo_calculator_title()} />
+  <meta property="og:description" content={m.seo_calculator_og_description()} />
 
   {@html `<script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",

@@ -645,5 +645,34 @@
 	"faqs_table_total_ad": "~4–7% of purchase price",
 	"faqs_table_total_dxb": "~7–9% of purchase price",
 	"faqs_table_delta_label": "Net Delta",
-	"faqs_table_delta_text": "Abu Dhabi saves ~2–3 percentage points vs Dubai"
+	"faqs_table_delta_text": "Abu Dhabi saves ~2–3 percentage points vs Dubai",
+
+	"seo_pipeline_title": "Abu Dhabi Off-Plan Project Pipeline — Registered Sales Velocity | ADInteract",
+	"seo_pipeline_description": "Off-plan project pipeline for Abu Dhabi: registered-sales velocity per project, recent vs prior 90-day momentum, and days since last registration. Sourced from ADREC transaction data.",
+
+	"seo_pricegrowth_title": "Abu Dhabi Property Price Growth 2025 — Best Appreciating Areas | ADInteract",
+	"seo_pricegrowth_description": "Which Abu Dhabi districts and projects grew the most in value? Year-on-year price appreciation ranked by median AED/sqft — sourced from ADREC registered transactions.",
+	"seo_pricegrowth_og_description": "Ranked year-on-year price appreciation by district and project in Abu Dhabi. Median AED/sqft growth from ADREC transaction data.",
+
+	"seo_rentalyield_title": "Abu Dhabi Rental Yield by Area 2025 — Gross Yield % by Community | ADInteract",
+	"seo_rentalyield_description": "Gross rental yield benchmarks for every Abu Dhabi community — ADREC registered rents divided by sale prices. Find the highest-yielding areas before you invest.",
+	"seo_rentalyield_og_description": "Which Abu Dhabi areas deliver the best rental yield? Gross yield % by community from ADREC rent and sale data — updated regularly.",
+
+	"seo_servicecharges_title": "Service Charges — ADInteract Investor Intelligence",
+	"seo_servicecharges_description": "Annual ADREC-registered service charge rates by Abu Dhabi project in AED/sqft.",
+
+	"seo_districts_title": "Abu Dhabi District Investment Rankings — All Districts | ADInteract",
+	"seo_districts_description": "Every Abu Dhabi district ranked by investment score using a dual scoring model: Yield & Stability for established districts, Growth & Early-Cycle for new freehold areas. Powered by live ADREC data.",
+
+	"seo_compare_title": "Abu Dhabi District Comparison — Side-by-Side Investment Metrics | ADInteract",
+	"seo_compare_description": "Compare 2–3 Abu Dhabi districts side by side: median sale price, AED/sqft, YoY price growth, gross rental yield, service charges, transaction volume, and supply pipeline. Powered by ADREC transaction data.",
+	"seo_compare_og_description": "Which Abu Dhabi district wins on yield, price growth, or liquidity? Compare up to 3 areas across 7 investment metrics from ADREC-registered transaction data.",
+
+	"seo_flipscanner_title": "Off-Plan Flip Scanner — Abu Dhabi Investment Opportunities | ADInteract",
+	"seo_flipscanner_description": "Identify Abu Dhabi projects where off-plan entry prices are significantly below current secondary-market rates — sourced from ADREC registered transactions.",
+	"seo_flipscanner_og_description": "Compare off-plan entry prices to today's secondary-market rates. Find where Abu Dhabi investors are seeing the strongest appreciation on ADREC data.",
+
+	"seo_calculator_title": "Abu Dhabi Property ROI Calculator — Net Yield & Capital Gain | ADInteract",
+	"seo_calculator_description": "Calculate net rental yield, capital gain CAGR, and total ROI for Abu Dhabi off-plan and ready properties. Auto-populated with live ADREC rent and price data. Free to use.",
+	"seo_calculator_og_description": "Model your Abu Dhabi property investment return. Off-plan and ready property scenarios — net yield, capital gain CAGR, total ROI — powered by live ADREC data."
 }

@@ -55,8 +55,8 @@
 </script>
 
 <svelte:head>
-  <title>Abu Dhabi District Investment Rankings — All Districts | ADInteract</title>
-  <meta name="description" content="Every Abu Dhabi district ranked by investment score using a dual scoring model: Yield & Stability for established districts, Growth & Early-Cycle for new freehold areas. Powered by live ADREC data." />
+  <title>{m.seo_districts_title()}</title>
+  <meta name="description" content={m.seo_districts_description()} />
 </svelte:head>
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8">

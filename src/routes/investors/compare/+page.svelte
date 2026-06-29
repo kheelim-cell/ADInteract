@@ -1,13 +1,14 @@
 <script lang="ts">
   import DistrictComparison from '$lib/components/investors/DistrictComparison.svelte';
   import AskingVsActualHero from '$lib/components/home/AskingVsActualHero.svelte';
+  import { m } from '$lib/paraglide/messages.js';
 </script>
 
 <svelte:head>
-  <title>Abu Dhabi District Comparison — Side-by-Side Investment Metrics | ADInteract</title>
-  <meta name="description" content="Compare 2–3 Abu Dhabi districts side by side: median sale price, AED/sqft, YoY price growth, gross rental yield, service charges, transaction volume, and supply pipeline. Powered by ADREC transaction data." />
-  <meta property="og:title" content="Abu Dhabi District Comparison — Side-by-Side Investment Metrics | ADInteract" />
-  <meta property="og:description" content="Which Abu Dhabi district wins on yield, price growth, or liquidity? Compare up to 3 areas across 7 investment metrics from ADREC-registered transaction data." />
+  <title>{m.seo_compare_title()}</title>
+  <meta name="description" content={m.seo_compare_description()} />
+  <meta property="og:title" content={m.seo_compare_title()} />
+  <meta property="og:description" content={m.seo_compare_og_description()} />
 
   {@html `<script type="application/ld+json">${JSON.stringify({
     "@context": "https://schema.org",

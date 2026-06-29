@@ -4,6 +4,7 @@
   import InvestmentScoreCard from '$lib/components/district/InvestmentScoreCard.svelte';
   import PdfLeadMagnet from '$lib/components/ui/PdfLeadMagnet.svelte';
   import { m } from '$lib/paraglide/messages.js';
+  import { localizeHref } from '$lib/paraglide/runtime';
 
   let { data } = $props();
   const { districtName, summary } = data;
@@ -20,12 +21,14 @@
     if (n == null) return '—';
     return n.toLocaleString('en-AE');
   }
+
+  const districtPath = `/area/${summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}`;
+  const canonicalUrl = `https://adinteract.co${localizeHref(districtPath)}`;
+  const ogImageUrl = `https://adinteract.co/og/area/${summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}.png`;
 </script>
 
 <svelte:head>
-  <title>
-    {m.area_meta_title({ district: districtName })}
-  </title>
+  <title>{m.area_meta_title({ district: districtName })}</title>
   <meta
     name="description"
     content={summary
@@ -40,17 +43,17 @@
       ? m.area_og_description_with_data({ count: fmtNum(summary.tx_count_12m), district: districtName, psf: fmtNum(summary.median_psf) })
       : m.area_meta_description_no_data({ district: districtName })}
   />
-  <meta property="og:url" content="https://adinteract.co/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
+  <meta property="og:url" content={canonicalUrl} />
   <meta property="og:type" content="website" />
   <!-- District-specific report-card image, generated at build time by scripts/generate_og_images.mjs -->
-  <meta property="og:image" content="https://adinteract.co/og/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}.png" />
+  <meta property="og:image" content={ogImageUrl} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://adinteract.co/og/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}.png" />
-  <!-- Canonical is the clean slug URL — tells Google this is the authoritative page -->
-  <link rel="canonical" href="https://adinteract.co/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
+  <meta name="twitter:image" content={ogImageUrl} />
+  <!-- Canonical is the clean slug URL (locale-aware) — tells Google this is the authoritative page -->
+  <link rel="canonical" href={canonicalUrl} />
 </svelte:head>
 
 <!-- ── Prose block ────────────────────────────────────────────────────────

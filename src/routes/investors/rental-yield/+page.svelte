@@ -76,10 +76,10 @@
 </script>
 
 <svelte:head>
-  <title>Abu Dhabi Rental Yield by Area 2025 — Gross Yield % by Community | ADInteract</title>
-  <meta name="description" content="Gross rental yield benchmarks for every Abu Dhabi community — ADREC registered rents divided by sale prices. Find the highest-yielding areas before you invest." />
-  <meta property="og:title" content="Abu Dhabi Rental Yield by Area 2025 — Gross Yield % by Community | ADInteract" />
-  <meta property="og:description" content="Which Abu Dhabi areas deliver the best rental yield? Gross yield % by community from ADREC rent and sale data — updated regularly." />
+  <title>{m.seo_rentalyield_title()}</title>
+  <meta name="description" content={m.seo_rentalyield_description()} />
+  <meta property="og:title" content={m.seo_rentalyield_title()} />
+  <meta property="og:description" content={m.seo_rentalyield_og_description()} />
 </svelte:head>
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8 space-y-6">

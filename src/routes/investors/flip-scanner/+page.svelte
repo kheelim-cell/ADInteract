@@ -72,10 +72,10 @@
 </script>
 
 <svelte:head>
-  <title>Off-Plan Flip Scanner — Abu Dhabi Investment Opportunities | ADInteract</title>
-  <meta name="description" content="Identify Abu Dhabi projects where off-plan entry prices are significantly below current secondary-market rates — sourced from ADREC registered transactions." />
-  <meta property="og:title" content="Off-Plan Flip Scanner — Abu Dhabi Investment Opportunities | ADInteract" />
-  <meta property="og:description" content="Compare off-plan entry prices to today's secondary-market rates. Find where Abu Dhabi investors are seeing the strongest appreciation on ADREC data." />
+  <title>{m.seo_flipscanner_title()}</title>
+  <meta name="description" content={m.seo_flipscanner_description()} />
+  <meta property="og:title" content={m.seo_flipscanner_title()} />
+  <meta property="og:description" content={m.seo_flipscanner_og_description()} />
 </svelte:head>
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8 space-y-6">

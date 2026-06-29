@@ -15,8 +15,8 @@
 </script>
 
 <svelte:head>
-  <title>Service Charges — ADInteract Investor Intelligence</title>
-  <meta name="description" content="Annual ADREC-registered service charge rates by Abu Dhabi project in AED/sqft." />
+  <title>{m.seo_servicecharges_title()}</title>
+  <meta name="description" content={m.seo_servicecharges_description()} />
 </svelte:head>
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8 space-y-6">

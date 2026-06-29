@@ -76,8 +76,8 @@
 </script>
 
 <svelte:head>
-  <title>Abu Dhabi Off-Plan Project Pipeline — Registered Sales Velocity | ADInteract</title>
-  <meta name="description" content="Off-plan project pipeline for Abu Dhabi: registered-sales velocity per project, recent vs prior 90-day momentum, and days since last registration. Sourced from ADREC transaction data." />
+  <title>{m.seo_pipeline_title()}</title>
+  <meta name="description" content={m.seo_pipeline_description()} />
 </svelte:head>
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8 space-y-6">

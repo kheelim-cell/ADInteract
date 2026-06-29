@@ -103,10 +103,10 @@
 </script>
 
 <svelte:head>
-  <title>Abu Dhabi Property Price Growth 2025 — Best Appreciating Areas | ADInteract</title>
-  <meta name="description" content="Which Abu Dhabi districts and projects grew the most in value? Year-on-year price appreciation ranked by median AED/sqft — sourced from ADREC registered transactions." />
-  <meta property="og:title" content="Abu Dhabi Property Price Growth 2025 — Best Appreciating Areas | ADInteract" />
-  <meta property="og:description" content="Ranked year-on-year price appreciation by district and project in Abu Dhabi. Median AED/sqft growth from ADREC transaction data." />
+  <title>{m.seo_pricegrowth_title()}</title>
+  <meta name="description" content={m.seo_pricegrowth_description()} />
+  <meta property="og:title" content={m.seo_pricegrowth_title()} />
+  <meta property="og:description" content={m.seo_pricegrowth_og_description()} />
 </svelte:head>
 
 <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-8 space-y-6">

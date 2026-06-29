@@ -6,9 +6,10 @@
   import { supabaseEnabled } from '$lib/supabase';
   import { m } from '$lib/paraglide/messages.js';
   import { getLocale, localizeHref, deLocalizeHref } from '$lib/paraglide/runtime';
+  import { browser } from '$app/environment';
 
   let currentLocale = $derived(getLocale());
-  let currentHref = $derived($page.url.pathname + $page.url.search);
+  let currentHref = $derived($page.url.pathname + (browser ? $page.url.search : ''));
   let switchLocale = $derived(currentLocale === 'ar' ? 'en' : 'ar');
   let switchHref = $derived(localizeHref(deLocalizeHref(currentHref), { locale: switchLocale }));
 

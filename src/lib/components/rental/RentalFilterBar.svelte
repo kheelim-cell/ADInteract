@@ -1,9 +1,10 @@
 <script lang="ts">
   import { rentalFilters, updateRentalFilter, resetRentalFilters } from '$lib/stores/rental_filters';
   import { rentalMetadata, rentalDistrictCounts } from '$lib/stores/db';
+  import { m } from '$lib/paraglide/messages.js';
 
   function fmtProjectCount(n: number): string {
-    return n === 1 ? '1 project' : `${n} projects`;
+    return n === 1 ? m.rental_filter_project_count_one() : m.rental_filter_project_count_other({ n: String(n) });
   }
   import { DEFAULT_RENTAL_FILTERS } from '$lib/db/rental_types';
   import { browser } from '$app/environment';
@@ -87,7 +88,7 @@
     setTimeout(() => (copied = false), 2000);
   }
   function shareWhatsApp() {
-    const msg = encodeURIComponent('Check out this Abu Dhabi rental data view: ' + currentUrl());
+    const msg = encodeURIComponent(m.rental_filter_whatsapp_message() + currentUrl());
     window.open(`https://wa.me/?text=${msg}`, '_blank');
     shareMenuOpen = false;
   }
@@ -131,7 +132,7 @@
           </svg>
           <input
             type="text"
-            placeholder="District"
+            placeholder={m.rental_filter_district_placeholder()}
             bind:value={districtQuery}
             oninput={() => { districtOpen = true; }}
             onfocus={() => { districtOpen = true; }}
@@ -169,7 +170,7 @@
           </svg>
           <input
             type="text"
-            placeholder="Project"
+            placeholder={m.rental_filter_project_placeholder()}
             bind:value={projectQuery}
             oninput={() => { projectOpen = true; }}
             onfocus={() => { projectOpen = true; }}
@@ -185,7 +186,7 @@
         </div>
         {#if projectOpen && projectQuery.trim().length < PROJECT_MIN}
           <div class="absolute top-full start-0 z-30 mt-1 w-72 rounded-xl border border-gray-200 bg-white shadow-lg px-4 py-3">
-            <p class="text-xs text-gray-400 text-center">Type at least {PROJECT_MIN} characters to search projects</p>
+            <p class="text-xs text-gray-400 text-center">{m.rental_filter_project_min_chars({ n: String(PROJECT_MIN) })}</p>
           </div>
         {:else if projectOpen && projectMatches().length > 0}
           <div class="absolute top-full start-0 z-30 mt-1 w-72 max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
@@ -198,7 +199,7 @@
           </div>
         {:else if projectOpen && projectQuery.trim().length >= PROJECT_MIN}
           <div class="absolute top-full start-0 z-30 mt-1 w-72 rounded-xl border border-gray-200 bg-white shadow-lg px-4 py-3">
-            <p class="text-xs text-gray-400 text-center">No results for "{projectQuery.trim()}"</p>
+            <p class="text-xs text-gray-400 text-center">{m.rental_filter_no_results_for({ query: projectQuery.trim() })}</p>
           </div>
         {/if}
       </div>
@@ -207,14 +208,14 @@
 
       <!-- Rent type pills -->
       <div class="inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5">
-        {#each ['All types', 'New', 'Renew'] as rt}
+        {#each [{ value: 'All types', label: m.rental_filter_type_all() }, { value: 'New', label: m.rental_filter_type_new() }, { value: 'Renew', label: m.rental_filter_type_renew() }] as rt}
           <button
             type="button"
-            onclick={() => updateRentalFilter({ rentType: rt })}
+            onclick={() => updateRentalFilter({ rentType: rt.value })}
             class="rounded-full px-3 py-1 text-xs font-semibold transition-all whitespace-nowrap
-                   {$rentalFilters.rentType === rt ? 'bg-brand-600 text-white shadow-sm' : 'text-gray-900 hover:bg-white'}"
+                   {$rentalFilters.rentType === rt.value ? 'bg-brand-600 text-white shadow-sm' : 'text-gray-900 hover:bg-white'}"
           >
-            {rt}
+            {rt.label}
           </button>
         {/each}
       </div>
@@ -226,7 +227,7 @@
           onchange={(e) => updateRentalFilter({ typology: (e.currentTarget as HTMLSelectElement).value || null })}
           class="rounded-xl border border-gray-200 bg-white px-3 py-2 text-xs font-medium text-gray-700 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 cursor-pointer"
         >
-          <option value="">All types</option>
+          <option value="">{m.rental_filter_type_all()}</option>
           {#each typologies as t}<option value={t}>{t}</option>{/each}
         </select>
       {/if}
@@ -238,7 +239,7 @@
           onchange={(e) => updateRentalFilter({ layout: (e.currentTarget as HTMLSelectElement).value || null })}
           class="rounded-xl border border-gray-200 bg-white px-3 py-2 text-xs font-medium text-gray-700 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100 cursor-pointer"
         >
-          <option value="">All beds</option>
+          <option value="">{m.rental_filter_layout_all()}</option>
           {#each layouts as l}<option value={l}>{capLayout(l)}</option>{/each}
         </select>
       {/if}
@@ -271,13 +272,13 @@
             <button
               type="button"
               onclick={resetRentalFilters}
-              title="Clear all filters"
+              title={m.rental_clear_all_filters()}
               class="inline-flex items-center gap-1 rounded-full px-2 sm:px-3 py-1.5 text-xs font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 border border-gray-200 hover:border-red-200 transition-colors"
             >
               <svg class="h-3 w-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
-              <span class="hidden sm:inline whitespace-nowrap">Clear all</span>
+              <span class="hidden sm:inline whitespace-nowrap">{m.rental_filter_clear_all()}</span>
             </button>
           {/if}
 
@@ -286,7 +287,7 @@
             <button
               type="button"
               onclick={() => (shareMenuOpen = !shareMenuOpen)}
-              title="Share"
+              title={m.rental_filter_share()}
               class="inline-flex items-center gap-1.5 rounded-full px-2 sm:px-3 py-1.5 text-xs font-medium border transition-colors
                      {copied
                        ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
@@ -296,12 +297,12 @@
                 <svg class="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span class="hidden sm:inline">Copied!</span>
+                <span class="hidden sm:inline">{m.rental_filter_copied()}</span>
               {:else}
                 <svg class="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
                 </svg>
-                <span class="hidden sm:inline">Share</span>
+                <span class="hidden sm:inline">{m.rental_filter_share()}</span>
               {/if}
             </button>
             {#if shareMenuOpen}
@@ -311,14 +312,14 @@
                   <svg class="h-4 w-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
                   </svg>
-                  Copy link
+                  {m.rental_filter_copy_link()}
                 </button>
                 <button type="button" onclick={shareWhatsApp}
                   class="flex w-full items-center gap-2.5 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors border-t border-gray-100">
                   <svg class="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="#25D366">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                   </svg>
-                  Share on WhatsApp
+                  {m.rental_filter_share_whatsapp()}
                 </button>
               </div>
             {/if}

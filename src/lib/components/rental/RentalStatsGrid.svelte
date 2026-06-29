@@ -1,6 +1,7 @@
 <script lang="ts">
   import RentalStatCard from './RentalStatCard.svelte';
   import type { RentalStatsResult } from '$lib/db/rental_types';
+  import { m } from '$lib/paraglide/messages.js';
 
   let { stats }: { stats: RentalStatsResult } = $props();
 
@@ -10,31 +11,31 @@
     return `AED ${n.toLocaleString('en-US')}`;
   }
 
-  let compLabel = $derived(`vs. ${stats.prevYear}`);
+  let compLabel = $derived(m.rental_stat_vs_year({ year: String(stats.prevYear) }));
 </script>
 
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
   <RentalStatCard
-    label="Projects Tracked"
+    label={m.rental_stat_projects_tracked()}
     value={stats.projectCount.toLocaleString('en-US')}
-    sub="in selected filters"
+    sub={m.rental_stat_in_selected_filters()}
   />
   <RentalStatCard
-    label="Lower Band (25th %ile)"
+    label={m.rental_stat_lower_band()}
     value={fmt(stats.lowerRent)}
     currentRaw={stats.lowerRent}
     previousRaw={stats.prevLowerRent ?? 0}
     comparisonLabel={compLabel}
   />
   <RentalStatCard
-    label="Median Annual Rent"
+    label={m.rental_stat_median_annual_rent()}
     value={fmt(stats.medianRent)}
     currentRaw={stats.medianRent}
     previousRaw={stats.prevMedianRent ?? 0}
     comparisonLabel={compLabel}
   />
   <RentalStatCard
-    label="Upper Band (75th %ile)"
+    label={m.rental_stat_upper_band()}
     value={fmt(stats.upperRent)}
     currentRaw={stats.upperRent}
     previousRaw={stats.prevUpperRent ?? 0}

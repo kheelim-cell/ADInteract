@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { RentalProjectRow } from '$lib/db/rental_types';
   import { resetRentalFilters } from '$lib/stores/rental_filters';
+  import { m } from '$lib/paraglide/messages.js';
 
   let {
     rows,
@@ -27,10 +28,10 @@
   } = $props();
 
   const mobileSortOptions = [
-    { value: 'median_rent:desc', label: 'Median AED (high → low)' },
-    { value: 'median_rent:asc',  label: 'Median AED (low → high)' },
-    { value: 'yoy_change:desc',  label: 'YoY Growth (high → low)' },
-    { value: 'yoy_change:asc',   label: 'YoY Growth (low → high)' },
+    { value: 'median_rent:desc', label: m.rental_table_sort_median_desc() },
+    { value: 'median_rent:asc',  label: m.rental_table_sort_median_asc() },
+    { value: 'yoy_change:desc',  label: m.rental_table_sort_yoy_desc() },
+    { value: 'yoy_change:asc',   label: m.rental_table_sort_yoy_asc() },
   ];
 
   let mobileSortValue = $derived(`${sortCol}:${sortDir}`);
@@ -65,14 +66,14 @@
   }
 
   const HEADERS: { label: string; col: string; align: string }[] = [
-    { label: 'Project',       col: 'project_name', align: 'left'  },
-    { label: 'District',      col: 'district',     align: 'left'  },
-    { label: 'Property Type', col: 'typology',     align: 'left'  },
-    { label: 'Layout',        col: 'layout',       align: 'left'  },
-    { label: 'Lower',         col: 'lower_rent',   align: 'right' },
-    { label: 'Median',        col: 'median_rent',  align: 'right' },
-    { label: 'Upper',         col: 'upper_rent',   align: 'right' },
-    { label: 'YoY',           col: 'yoy_change',   align: 'right' }
+    { label: m.rental_table_col_project(),  col: 'project_name', align: 'left'  },
+    { label: m.rental_table_col_district(), col: 'district',     align: 'left'  },
+    { label: m.rental_table_col_type(),     col: 'typology',     align: 'left'  },
+    { label: m.rental_table_col_layout(),   col: 'layout',       align: 'left'  },
+    { label: m.rental_table_col_lower(),    col: 'lower_rent',   align: 'right' },
+    { label: m.rental_table_col_median(),   col: 'median_rent',  align: 'right' },
+    { label: m.rental_table_col_upper(),    col: 'upper_rent',   align: 'right' },
+    { label: m.rental_table_col_yoy(),      col: 'yoy_change',   align: 'right' }
   ];
 
   // Mobile page numbers
@@ -92,10 +93,10 @@
   <!-- Header row -->
   <div class="px-4 sm:px-6 py-4 border-b border-gray-100 flex items-center justify-between gap-4">
     <div>
-      <h3 class="text-sm font-semibold text-navy">Project Rental Rates</h3>
+      <h3 class="text-sm font-semibold text-navy">{m.rental_table_title()}</h3>
       {#if !loading}
         <p class="text-xs text-gray-400 mt-0.5">
-          Showing {showing.from}–{showing.to} of {total.toLocaleString('en-US')} projects
+          {m.rental_table_showing({ from: String(showing.from), to: String(showing.to), total: total.toLocaleString('en-US') })}
         </p>
       {/if}
     </div>
@@ -150,15 +151,15 @@
                   </svg>
                 </div>
                 <div>
-                  <p class="text-sm font-semibold text-gray-700">No rental listings match these filters</p>
-                  <p class="mt-1 text-xs text-gray-400">Try broadening the year range or removing a filter</p>
+                  <p class="text-sm font-semibold text-gray-700">{m.rental_no_results_title()}</p>
+                  <p class="mt-1 text-xs text-gray-400">{m.rental_no_results_sub()}</p>
                 </div>
                 <button
                   type="button"
                   onclick={resetRentalFilters}
                   class="mt-1 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold bg-brand-600 text-white hover:bg-brand-700 transition-colors"
                 >
-                  Clear all filters
+                  {m.rental_clear_all_filters()}
                 </button>
               </div>
             </td>
@@ -238,7 +239,7 @@
               </div>
               <div class="text-end flex-shrink-0">
                 <p class="text-sm font-bold text-gray-900">{fmt(row.median_rent)}</p>
-                <p class="text-xs text-gray-400">median/yr</p>
+                <p class="text-xs text-gray-400">{m.rental_table_median_per_year()}</p>
               </div>
             </div>
             <div class="mt-1.5 flex items-center gap-2 text-xs text-gray-500 flex-wrap">
@@ -248,7 +249,7 @@
               {#if row.yoy_change !== null && row.yoy_change !== undefined}
                 <span class="inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-xs font-semibold
                              {row.yoy_change > 0 ? 'bg-emerald-50 text-emerald-700' : row.yoy_change < 0 ? 'bg-red-50 text-red-700' : 'bg-gray-50 text-gray-500'}">
-                  {fmtYoY(row.yoy_change)} YoY
+                  {fmtYoY(row.yoy_change)} {m.rental_table_yoy_suffix()}
                 </span>
               {/if}
             </div>
@@ -262,7 +263,7 @@
   {#if totalPages > 1}
     <div class="px-4 sm:px-6 py-3 border-t border-gray-100 flex items-center justify-between gap-4">
       <span class="text-xs text-gray-400 hidden sm:block">
-        Page {page} of {totalPages}
+        {m.rental_table_page_of({ page: String(page), totalPages: String(totalPages) })}
       </span>
       <div class="flex items-center gap-1 mx-auto sm:mx-0">
         <button
@@ -271,7 +272,7 @@
           disabled={page <= 1}
           class="rounded-lg px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          Prev
+          {m.rental_table_prev()}
         </button>
         {#each mobilePaginationPages() as p}
           {#if p === '…'}
@@ -293,7 +294,7 @@
           disabled={page >= totalPages}
           class="rounded-lg px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          Next
+          {m.rental_table_next()}
         </button>
       </div>
     </div>

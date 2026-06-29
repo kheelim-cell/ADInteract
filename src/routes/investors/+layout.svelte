@@ -5,6 +5,7 @@
   import { metadata } from '$lib/stores/db';
   import { isPro, isAuthenticated, openSignIn } from '$lib/stores/auth';
   import { supabaseEnabled, investorProGated, stanStoreUrl } from '$lib/supabase';
+  import { m } from '$lib/paraglide/messages.js';
 
   let { children } = $props();
 
@@ -22,68 +23,68 @@
   const NAV_ITEMS = [
     {
       href: `${base}/investors/calculator`,
-      label: 'Investment ROI Calculator',
-      short: 'ROI Calculator',
-      description: 'Model net yield, capital gain CAGR, and total ROI before you commit — for both ready and off-plan properties. Auto-populated with live ADREC rent and appreciation data.',
+      label: m.investors_nav_calculator_label(),
+      short: m.investors_nav_calculator_short(),
+      description: m.investors_nav_calculator_desc(),
       iconPath: 'M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V13.5Zm0 2.25h.008v.008H8.25v-.008Zm2.25-4.5h.008v.008H10.5v-.008Zm0 2.25h.008v.008H10.5V13.5Zm0 2.25h.008v.008H10.5v-.008Zm2.25-4.5h.008v.008H12.75v-.008Zm0 2.25h.008v.008H12.75V13.5Zm0 2.25h.008v.008H12.75v-.008ZM6.75 6.75h10.5v10.5H6.75V6.75ZM6 3.75A2.25 2.25 0 0 1 8.25 1.5h7.5A2.25 2.25 0 0 1 18 3.75v.75H6v-.75Z',
     },
     {
       href: `${base}/investors/districts`,
-      label: 'District Rankings',
-      short: 'Rankings',
-      description: 'Top 10 Abu Dhabi districts ranked by composite investment score — price trend, transaction volume, value vs market, and off-plan activity. Each row links to the full district report.',
+      label: m.investors_nav_districts_label(),
+      short: m.investors_nav_districts_short(),
+      description: m.investors_nav_districts_desc(),
       iconPath: 'M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z',
     },
     {
       href: `${base}/investors/pipeline`,
-      label: 'Off-Plan Pipeline',
-      short: 'Pipeline',
-      description: 'Registered off-plan sales activity by project — recent vs prior 90-day velocity, days since last registration, and going-rate AED/sqft. Flags which pipelines are accelerating, slowing, or stale.',
+      label: m.investors_nav_pipeline_label(),
+      short: m.investors_nav_pipeline_short(),
+      description: m.investors_nav_pipeline_desc(),
       iconPath: 'M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h6M9 11.25h6M9 15.75h6',
     },
     {
       href: `${base}/investors/compare`,
-      label: 'District Comparison',
-      short: 'Compare',
-      description: 'Compare 2–3 Abu Dhabi districts side by side across 7 investment metrics: median price, AED/sqft, YoY growth, gross rental yield, service charge, transaction volume, and supply pipeline.',
+      label: m.investors_nav_compare_label(),
+      short: m.investors_nav_compare_short(),
+      description: m.investors_nav_compare_desc(),
       iconPath: 'M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 3M21 7.5H7.5',
     },
     {
       href: `${base}/investors/price-growth`,
-      label: 'Price Growth',
-      description: 'Year-on-year appreciation leaders ranked by median AED/sqft across districts, sale projects, and rental projects — sourced directly from ADREC registered transactions.',
+      label: m.investors_nav_pricegrowth_label(),
+      description: m.investors_nav_pricegrowth_desc(),
       iconPath: 'M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941',
     },
     {
       href: `${base}/investors/rental-yield`,
-      label: 'Rental Yield',
-      description: 'Gross rental yield benchmarks by community: registered rents divided by sale prices. Use this to shortlist high-yield areas before running a detailed calculator scenario.',
+      label: m.investors_nav_rentalyield_label(),
+      description: m.investors_nav_rentalyield_desc(),
       iconPath: 'M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z',
     },
     {
       href: `${base}/investors/service-charges`,
-      label: 'Service Charges',
-      description: 'Annual ADREC-registered service charge rates by project in AED/sqft. This recurring cost directly erodes net rental yield and must be verified before any purchase decision.',
+      label: m.investors_nav_servicecharges_label(),
+      description: m.investors_nav_servicecharges_desc(),
       iconPath: 'M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z',
     },
     {
       href: `${base}/investors/flip-scanner`,
-      label: 'Flip Scanner',
-      description: 'Compare ADREC-registered off-plan entry prices against today\'s secondary-market rates — ranked by AED/sqft appreciation. Identifies where buyers from 1–4 years ago are sitting on the largest paper gains.',
+      label: m.investors_nav_flipscanner_label(),
+      description: m.investors_nav_flipscanner_desc(),
       iconPath: 'M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99',
     },
     {
       href: `${base}/investors/market-structure`,
-      label: 'Market Structure',
-      short: 'Market',
-      description: 'Licensed broker, agency and developer counts straight from DARI\'s public professions directory — who\'s actually active in this market, not estimated.',
+      label: m.investors_nav_marketstructure_label(),
+      short: m.investors_nav_marketstructure_short(),
+      description: m.investors_nav_marketstructure_desc(),
       iconPath: 'M3.75 21h16.5M5.25 21V8.25L12 3l6.75 5.25V21M9 21v-6h6v6',
     },
     {
       href: `${base}/investors/faqs`,
-      label: 'Investor FAQs',
-      short: 'FAQs',
-      description: 'Key questions answered: foreign ownership rules, transaction costs, Golden Visa eligibility, escrow protection, taxes, and Abu Dhabi vs Dubai cost comparison.',
+      label: m.investors_nav_faqs_label(),
+      short: m.investors_nav_faqs_short(),
+      description: m.investors_nav_faqs_desc(),
       iconPath: 'M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z',
     },
   ];
@@ -108,13 +109,13 @@
         <svg class="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
         </svg>
-        Investor Intelligence
+        {m.investors_badge()}
       </span>
       <h2 class="text-sm sm:text-lg font-bold text-white leading-tight">
-        Abu Dhabi Property Investment Insights
+        {m.investors_hero_title()}
       </h2>
       <p class="hidden sm:block text-xs text-white/40 border-s border-white/10 ps-3 ms-1">
-        ADREC transaction data · {prevSalesYear}–{salesYear}
+        {m.investors_hero_subtitle({ prevYear: String(prevSalesYear), year: String(salesYear) })}
       </p>
     </div>
   </div>
@@ -180,7 +181,7 @@
           {' '}{activeNavItem.description}
         </p>
       {:else}
-        <p class="text-[11px] text-white/20">Hover a section to learn more · click to navigate</p>
+        <p class="text-[11px] text-white/20">{m.investors_hover_hint()}</p>
       {/if}
     </div>
 
@@ -195,8 +196,8 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
       </svg>
       <p class="text-xs sm:text-base font-bold text-white tracking-wide text-center">
-        <span class="sm:hidden">🎉 Free access — all investor tools open right now</span>
-        <span class="hidden sm:inline">🎉 Free Access for a Limited Time Only — All Investor Intelligence tools are open to everyone right now.</span>
+        <span class="sm:hidden">{m.investors_free_banner_mobile()}</span>
+        <span class="hidden sm:inline">{m.investors_free_banner_desktop()}</span>
       </p>
       <svg class="hidden sm:block h-5 w-5 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -219,20 +220,20 @@
       </div>
 
       <!-- Heading -->
-      <h2 class="text-xl font-bold text-gray-900 mb-2">Investor Intelligence · Pro</h2>
+      <h2 class="text-xl font-bold text-gray-900 mb-2">{m.investors_paywall_title()}</h2>
       <p class="text-sm text-gray-500 mb-8 leading-relaxed">
-        Price growth rankings, rental yield benchmarks, service charge data, and the ROI calculator — all powered by live ADREC transaction data.
+        {m.investors_paywall_desc()}
       </p>
 
       <!-- What's included -->
       <ul class="text-start space-y-2.5 mb-8">
         {#each [
-          'Year-on-year price appreciation by district & project',
-          'Gross rental yield % by community',
-          'Annual service charges by project (AED/sqft)',
-          'Investment ROI & net yield calculator',
-          'Off-Plan Flip Scanner — entry vs secondary-market prices',
-          'All filters: district, property type, layout',
+          m.investors_paywall_feature_1(),
+          m.investors_paywall_feature_2(),
+          m.investors_paywall_feature_3(),
+          m.investors_paywall_feature_4(),
+          m.investors_paywall_feature_5(),
+          m.investors_paywall_feature_6(),
         ] as feature}
           <li class="flex items-start gap-2.5 text-sm text-gray-700">
             <svg class="h-4 w-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -254,7 +255,7 @@
           <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
           </svg>
-          Upgrade to Pro
+          {m.investors_paywall_upgrade()}
         </a>
       {:else}
         <!-- Not signed in -->
@@ -266,9 +267,9 @@
           <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25z" />
           </svg>
-          Sign in to continue
+          {m.investors_paywall_signin()}
         </button>
-        <p class="mt-3 text-xs text-gray-400">Then upgrade to Pro to unlock all Investor Intelligence features.</p>
+        <p class="mt-3 text-xs text-gray-400">{m.investors_paywall_signin_hint()}</p>
       {/if}
 
     </div>

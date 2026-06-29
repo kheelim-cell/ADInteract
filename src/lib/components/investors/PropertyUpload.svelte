@@ -10,6 +10,8 @@
     serviceChargePsf:  number | null;
   };
 
+  import { m } from '$lib/paraglide/messages.js';
+
   type Props = {
     onExtracted: (data: ExtractionData) => void;
   };
@@ -148,13 +150,13 @@
       if (file.size > maxMb * 1024 * 1024) {
         status   = 'error';
         errorMsg = isPdf
-          ? `"${file.name}" is ${(file.size / 1024 / 1024).toFixed(1)} MB. PDFs must be under ${MAX_PDF_MB} MB — compress it at smallpdf.com or take a screenshot instead.`
-          : `"${file.name}" is too large (${(file.size / 1024 / 1024).toFixed(1)} MB). Max ${MAX_IMG_MB} MB.`;
+          ? m.upload_error_pdf_too_large({ name: file.name, size: (file.size / 1024 / 1024).toFixed(1), max: String(MAX_PDF_MB) })
+          : m.upload_error_img_too_large({ name: file.name, size: (file.size / 1024 / 1024).toFixed(1), max: String(MAX_IMG_MB) });
         return;
       }
       if (!ALLOWED_TYPES.includes(file.type)) {
         status   = 'error';
-        errorMsg = `"${file.name}" is an unsupported type. Use JPEG, PNG, WebP, or PDF.`;
+        errorMsg = m.upload_error_unsupported_type({ name: file.name });
         return;
       }
     }
@@ -172,7 +174,11 @@
         results.push(data);
       } catch (e: unknown) {
         status   = 'error';
-        errorMsg = `File ${i + 1} of ${files.length} failed: ${e instanceof Error ? e.message : 'Extraction failed. Check that npm run dev is running and ANTHROPIC_API_KEY is set in .env.local.'}`;
+        errorMsg = m.upload_error_file_failed({
+          n: String(i + 1),
+          total: String(files.length),
+          message: e instanceof Error ? e.message : m.upload_error_extraction_failed_default()
+        });
         return;
       }
     }
@@ -227,9 +233,9 @@
         </div>
         <div>
           <p class="text-xs font-semibold text-white/80">
-            {isDragging ? 'Drop to scan…' : 'AI Property Scanner — drop screenshot or PDF'}
+            {isDragging ? m.upload_drop_to_scan() : m.upload_offplan_title()}
           </p>
-          <p class="text-[11px] text-white/30 mt-0.5">JPEG · PNG · WebP · PDF · up to {MAX_FILES} files · max {MAX_IMG_MB} MB each</p>
+          <p class="text-[11px] text-white/30 mt-0.5">{m.upload_file_types_hint({ max: String(MAX_FILES), mb: String(MAX_IMG_MB) })}</p>
         </div>
       </div>
 
@@ -247,7 +253,7 @@
       </svg>
       <div class="flex-1 min-w-0">
         <p class="text-xs font-medium text-white/70">
-          Extracting file {currentFile} of {totalFiles} with Claude AI…
+          {m.upload_extracting({ current: String(currentFile), total: String(totalFiles) })}
         </p>
         <p class="text-[11px] text-white/30 truncate mt-0.5">{fileNames[currentFile - 1] ?? ''}</p>
       </div>
@@ -288,7 +294,7 @@
       {/if}
       <div class="flex-1 min-w-0">
         <p class="text-xs font-semibold text-emerald-400">
-          {totalFiles === 1 ? 'Extraction complete' : `${totalFiles} files scanned`} — fields pre-filled below
+          {totalFiles === 1 ? m.upload_extraction_complete() : m.upload_files_scanned({ n: String(totalFiles) })} {m.upload_prefilled_suffix()}
         </p>
         <p class="text-[11px] text-white/30 truncate mt-0.5">
           {fileNames.join(' · ')}
@@ -299,7 +305,7 @@
         onclick={reset}
         class="flex-shrink-0 text-[11px] text-white/25 hover:text-white/55 transition-colors underline underline-offset-2"
       >
-        Clear
+        {m.upload_clear()}
       </button>
     </div>
   {/if}

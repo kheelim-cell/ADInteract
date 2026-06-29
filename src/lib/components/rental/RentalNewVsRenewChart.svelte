@@ -2,6 +2,7 @@
   import * as echarts from 'echarts';
   import { onMount } from 'svelte';
   import type { NewVsRenewRow } from '$lib/db/rental_types';
+  import { m } from '$lib/paraglide/messages.js';
 
   let { data }: { data: NewVsRenewRow[] } = $props();
 
@@ -35,7 +36,7 @@
       textStyle: { fontFamily: 'Montserrat, system-ui, sans-serif' },
       grid: { top: 8, right: 110, bottom: 56, left: 70, containLabel: false },
       legend: {
-        data: ['New contract', 'Renewal'],
+        data: [m.rental_legend_new(), m.rental_legend_renewal()],
         bottom: 8,
         left: 'center',
         itemGap: 36,
@@ -56,18 +57,20 @@
           const label = arr[0]?.axisValue ?? '';
           const idx   = layouts.indexOf(label as string);
           const gap   = gaps[idx];
-          const newV  = arr.find((p) => p.seriesName === 'New contract')?.value as number ?? 0;
-          const renV  = arr.find((p) => p.seriesName === 'Renewal')?.value as number ?? 0;
+          const newV  = arr.find((p) => p.seriesName === m.rental_legend_new())?.value as number ?? 0;
+          const renV  = arr.find((p) => p.seriesName === m.rental_legend_renewal())?.value as number ?? 0;
           const delta = newV - renV;
-          const dir   = delta >= 0 ? 'more' : 'less';
           const sign  = gap !== null && gap >= 0 ? '+' : '';
+          const deltaText = delta >= 0
+            ? m.rental_tooltip_new_pays_more({ amount: fmtK(Math.abs(delta)) })
+            : m.rental_tooltip_new_pays_less({ amount: fmtK(Math.abs(delta)) });
           const deltaLine = gap !== null
-            ? `<br/><span style="color:#059669;font-weight:600">New pays ${fmtK(Math.abs(delta))} ${dir}/yr &nbsp;·&nbsp; ${sign}${gap.toFixed(1)}%</span>`
+            ? `<br/><span style="color:#059669;font-weight:600">${deltaText} &nbsp;·&nbsp; ${sign}${gap.toFixed(1)}%</span>`
             : '';
           return (
             `<b>${label}</b><br/>` +
-            `New:     <b>${fmtK(newV)}</b><br/>` +
-            `Renewal: <b>${fmtK(renV)}</b>` +
+            `${m.rental_tooltip_new_label()}     <b>${fmtK(newV)}</b><br/>` +
+            `${m.rental_tooltip_renewal_label()} <b>${fmtK(renV)}</b>` +
             deltaLine
           );
         }
@@ -90,7 +93,7 @@
       },
       series: [
         {
-          name: 'New contract',
+          name: m.rental_legend_new(),
           type: 'bar',
           data: [...newRents].reverse(),
           barMaxWidth: 18,
@@ -103,7 +106,7 @@
           }
         },
         {
-          name: 'Renewal',
+          name: m.rental_legend_renewal(),
           type: 'bar',
           data: [...renRents].reverse(),
           barMaxWidth: 18,
@@ -121,7 +124,7 @@
 </script>
 
 {#if data.length === 0}
-  <div class="h-56 flex items-center justify-center text-gray-400 text-sm">No data</div>
+  <div class="h-56 flex items-center justify-center text-gray-400 text-sm">{m.rental_chart_no_data_short()}</div>
 {:else}
   <div bind:this={chartEl} class="w-full" style="height: {Math.max(240, data.length * 52 + 72)}px"></div>
 {/if}

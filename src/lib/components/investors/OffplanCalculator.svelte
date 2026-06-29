@@ -618,7 +618,7 @@
           </div>
           <div class="px-3.5 py-3 space-y-1.5 text-xs">
             <div class="flex justify-between text-gray-500">
-              <span>Comparable rent × (1 + {rentalAppPct}%)^{yearsTillHandover}yr</span>
+              <span>{m.calc_rental_growth_formula({ rentalAppPct: String(rentalAppPct), years: String(yearsTillHandover) })}</span>
               <span class="tabular-nums text-gray-700 font-medium">{fmtAed(baseRentalAfterGrowth)}</span>
             </div>
             {#if furnishingPct > 0}
@@ -672,7 +672,7 @@
           </div>
           <div class="px-3.5 py-3 space-y-1.5 text-xs">
             <div class="flex justify-between text-gray-500">
-              <span>Potential selling price (@ {annualAppPct}%/yr{otherAppPct > 0 ? ` + ${otherAppPct}% finish` : ''})</span>
+              <span>{m.calc_selling_price_formula({ annualAppPct: String(annualAppPct), finishSuffix: otherAppPct > 0 ? m.calc_selling_price_finish_suffix({ otherAppPct: String(otherAppPct) }) : '' })}</span>
               <span class="tabular-nums text-gray-700 font-medium">{fmtAed(sellingPrice)}</span>
             </div>
             <div class="flex justify-between gap-2 text-gray-500">

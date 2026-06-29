@@ -3,6 +3,7 @@
   import { dbReady, rentalMetadata } from '$lib/stores/db';
   import { loadRentalFiltersFromUrl } from '$lib/stores/rental_filters';
   import RentalContent from '$lib/components/rental/RentalContent.svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   onMount(() => {
     loadRentalFiltersFromUrl();
@@ -10,10 +11,10 @@
 </script>
 
 <svelte:head>
-  <title>Abu Dhabi Rental Prices 2025 — Median Rents by Area & Project | ADInteract</title>
-  <meta name="description" content="Abu Dhabi rental price benchmarks by district, project, and layout. Median, lower, and upper annual rents for apartments and villas — sourced from ADREC registered contracts." />
-  <meta property="og:title" content="Abu Dhabi Rental Prices 2025 — Median Rents by Area & Project | ADInteract" />
-  <meta property="og:description" content="Find median rental prices across all Abu Dhabi districts and projects. Studio to 4-bed apartments and villas — registered ADREC contract data." />
+  <title>{m.rental_seo_title()}</title>
+  <meta name="description" content={m.rental_seo_description()} />
+  <meta property="og:title" content={m.rental_seo_title()} />
+  <meta property="og:description" content={m.rental_seo_og_description()} />
   <meta property="og:url" content="https://adinteract.co/rental" />
 </svelte:head>
 
@@ -23,11 +24,11 @@
     <svg class="h-12 w-12 text-brand-400 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
       <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
     </svg>
-    <p class="text-gray-500 text-sm">Loading rental data…</p>
+    <p class="text-gray-500 text-sm">{m.rental_loading()}</p>
     {#if !$dbReady}
-      <p class="text-gray-400 text-xs">Waiting for database to initialise…</p>
+      <p class="text-gray-400 text-xs">{m.rental_waiting_db()}</p>
     {:else}
-      <p class="text-gray-400 text-xs">rental.parquet not found — run the data pipeline first.</p>
+      <p class="text-gray-400 text-xs">{m.rental_no_parquet()}</p>
     {/if}
   </div>
 {:else}

@@ -2,6 +2,7 @@
   import * as echarts from 'echarts';
   import { onMount } from 'svelte';
   import type { RentalTrendPoint } from '$lib/db/rental_types';
+  import { m } from '$lib/paraglide/messages.js';
 
   let { data }: { data: RentalTrendPoint[] } = $props();
 
@@ -42,7 +43,7 @@
         textStyle: { color: '#111827', fontSize: 12, fontFamily: 'Montserrat, system-ui, sans-serif' },
         formatter: (params: echarts.TooltipComponentFormatterCallbackParams) => {
           const p = Array.isArray(params) ? params[0] : params;
-          return `<b>${p.name}</b><br/>Median: <b>${formatRent(p.value as number)}</b>`;
+          return `<b>${p.name}</b><br/>${m.rental_tooltip_median()}: <b>${formatRent(p.value as number)}</b>`;
         }
       },
       xAxis: {
@@ -88,7 +89,7 @@
 </script>
 
 {#if data.length === 0}
-  <div class="flex items-center justify-center text-gray-400 text-sm" style="height:280px">No trend data</div>
+  <div class="flex items-center justify-center text-gray-400 text-sm" style="height:280px">{m.rental_chart_no_trend_data()}</div>
 {:else}
   <div bind:this={chartEl} class="w-full" style="height:280px"></div>
 {/if}

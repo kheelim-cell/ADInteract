@@ -3,11 +3,12 @@
   import ConfidenceBadge from '$lib/components/ui/ConfidenceBadge.svelte';
   import InvestmentScoreCard from '$lib/components/district/InvestmentScoreCard.svelte';
   import PdfLeadMagnet from '$lib/components/ui/PdfLeadMagnet.svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   let { data } = $props();
   const { districtName, summary } = data;
 
-  const periodLabel = summary?.is_12m ? 'the past 12 months' : 'the available dataset';
+  const periodLabel = summary?.is_12m ? m.area_period_12m() : m.area_period_all();
 
   // NOTE: this page is intentionally a standalone, indexable landing page.
   // It used to auto-redirect to /?district= on mount, but Google honoured that
@@ -23,21 +24,21 @@
 
 <svelte:head>
   <title>
-    {districtName} Property Prices — AED/sqft &amp; Transactions | ADInteract
+    {m.area_meta_title({ district: districtName })}
   </title>
   <meta
     name="description"
     content={summary
-      ? `${fmtNum(summary.tx_count_12m)} ADREC-verified property transactions in ${districtName}. Median AED ${fmtNum(summary.median_psf)}/sqft. View off-plan and ready sales data, price trends, and top projects.`
-      : `Property transaction data for ${districtName}, Abu Dhabi. ADREC-sourced price trends, median AED/sqft, and top projects.`}
+      ? m.area_meta_description_with_data({ count: fmtNum(summary.tx_count_12m), district: districtName, psf: fmtNum(summary.median_psf) })
+      : m.area_meta_description_no_data({ district: districtName })}
   />
   <!-- Open Graph — district-specific, overrides global layout defaults -->
-  <meta property="og:title" content="{districtName} Property Prices — AED/sqft & Transactions | ADInteract" />
+  <meta property="og:title" content={m.area_meta_title({ district: districtName })} />
   <meta
     property="og:description"
     content={summary
-      ? `${fmtNum(summary.tx_count_12m)} ADREC-verified transactions in ${districtName}. Median AED ${fmtNum(summary.median_psf)}/sqft. Off-plan and ready sales data, price trends, top projects.`
-      : `Property transaction data for ${districtName}, Abu Dhabi. ADREC-sourced price trends, median AED/sqft, and top projects.`}
+      ? m.area_og_description_with_data({ count: fmtNum(summary.tx_count_12m), district: districtName, psf: fmtNum(summary.median_psf) })
+      : m.area_meta_description_no_data({ district: districtName })}
   />
   <meta property="og:url" content="https://adinteract.co/area/{summary?.slug ?? districtName.toLowerCase().replace(/\s+/g, '-')}" />
   <meta property="og:type" content="website" />
@@ -61,7 +62,7 @@
 
   <!-- Breadcrumb -->
   <nav class="flex items-center gap-2 text-sm text-gray-500 mb-5">
-    <a href="{base}/" class="hover:text-brand-600 transition-colors">Overview</a>
+    <a href="{base}/" class="hover:text-brand-600 transition-colors">{m.area_breadcrumb_overview()}</a>
     <svg class="h-4 w-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
     </svg>
@@ -70,7 +71,7 @@
 
   <h1 class="text-3xl font-bold text-navy mb-1">{districtName}</h1>
   <p class="text-sm text-gray-400 mb-4">
-    Abu Dhabi property transactions · ADREC-verified data · updated daily
+    {m.area_subtitle()}
   </p>
 
   <!-- Investment Score -->
@@ -79,30 +80,27 @@
   {#if summary}
     <div class="rounded-xl border border-gray-100 bg-gray-50 px-6 py-5 text-sm text-gray-700 leading-relaxed max-w-3xl">
       <p>
-        <strong>{districtName}</strong> recorded
-        <strong>{fmtNum(summary.tx_count_12m)} ADREC-verified property transactions</strong>
-        in {periodLabel}.
+        <strong>{districtName}</strong> {m.area_prose_recorded()}
+        <strong>{m.area_prose_tx_count({ count: fmtNum(summary.tx_count_12m) })}</strong>
+        {m.area_prose_in()} {periodLabel}.
         {#if summary.median_psf}
-          The median price is <strong>AED {fmtNum(summary.median_psf)}/sqft</strong>
+          {m.area_prose_median_price_is()} <strong>{m.area_prose_psf_value({ psf: fmtNum(summary.median_psf) })}</strong>
           {#if summary.p10_psf && summary.p90_psf}
-            , with most properties trading between
-            AED {fmtNum(summary.p10_psf)} and AED {fmtNum(summary.p90_psf)}/sqft.
+            {m.area_prose_trading_range({ p10: fmtNum(summary.p10_psf), p90: fmtNum(summary.p90_psf) })}
           {:else}
             .
           {/if}
         {/if}
         {#if summary.median_price}
-          The median transaction value is <strong>AED {fmtNum(summary.median_price)}</strong>.
+          {m.area_prose_median_value_is()} <strong>{m.area_prose_value_amount({ price: fmtNum(summary.median_price) })}</strong>.
         {/if}
         {#if summary.top_layouts.length}
-          The most actively traded property types are
+          {m.area_prose_top_layouts_are()}
           <strong>{summary.top_layouts.join(', ')}</strong>.
         {/if}
       </p>
       <p class="mt-2 text-xs text-gray-400 flex flex-wrap items-center gap-2">
-        <span>Data sourced from the Abu Dhabi Real Estate Centre (ADREC) and refreshed daily.
-        {fmtNum(summary.tx_count_all)} total transactions recorded since 2019.
-        Last transaction: {summary.last_sale}.</span>
+        <span>{m.area_footer_sourced({ totalCount: fmtNum(summary.tx_count_all), lastSale: summary.last_sale })}</span>
         <ConfidenceBadge count={summary.tx_count_12m} />
       </p>
     </div>
@@ -112,7 +110,7 @@
       href="{base}/?district={encodeURIComponent(districtName)}"
       class="mt-6 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
     >
-      Explore {districtName} charts &amp; transactions
+      {m.area_cta_explore({ district: districtName })}
       <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
       </svg>
@@ -122,7 +120,7 @@
       href="{base}/?district={encodeURIComponent(districtName)}"
       class="mt-2 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
     >
-      Go to {districtName} analytics
+      {m.area_cta_go_to({ district: districtName })}
       <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
       </svg>

@@ -179,7 +179,7 @@
       <h2 class="text-base sm:text-lg font-bold text-white leading-tight">
         Abu Dhabi Property Investment Insights
       </h2>
-      <p class="hidden sm:block text-xs text-white/40 border-l border-white/10 pl-3 ml-1">
+      <p class="hidden sm:block text-xs text-white/40 border-s border-white/10 ps-3 ms-1">
         ADREC transaction data · {prevSalesYear}–{salesYear}
       </p>
     </div>

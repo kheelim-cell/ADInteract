@@ -103,7 +103,7 @@
     <div class="max-w-3xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
       <a href="{base}/" class="flex items-center gap-2 no-underline">
         <span class="text-base font-black text-white tracking-tight">ADInteract</span>
-        <span class="hidden sm:inline text-[10px] text-white/30 border-l border-white/15 pl-2 ml-1">Abu Dhabi Property Intelligence</span>
+        <span class="hidden sm:inline text-[10px] text-white/30 border-s border-white/15 ps-2 ms-1">Abu Dhabi Property Intelligence</span>
       </a>
       <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-500/15 border border-amber-500/25 px-2.5 py-0.5 text-[10px] font-bold text-amber-400 tracking-wider uppercase">
         Deal Analysis
@@ -207,54 +207,54 @@
           {#if isOffplan && op}
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Purchase price</span>
-              <span class="font-semibold tabular-nums text-gray-900 flex-shrink-0 text-right">{fmtAed(op.cost)}</span>
+              <span class="font-semibold tabular-nums text-gray-900 flex-shrink-0 text-end">{fmtAed(op.cost)}</span>
             </div>
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Size</span>
-              <span class="font-semibold tabular-nums text-gray-900 flex-shrink-0 text-right">{fmtNum(op.size)} sqft ({fmtNum(op.pricePerSqft)} AED/sqft)</span>
+              <span class="font-semibold tabular-nums text-gray-900 flex-shrink-0 text-end">{fmtNum(op.size)} sqft ({fmtNum(op.pricePerSqft)} AED/sqft)</span>
             </div>
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Registration fee (2% ADM)</span>
-              <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{fmtAed(op.registrationFee)}</span>
+              <span class="tabular-nums text-gray-700 flex-shrink-0 text-end">{fmtAed(op.registrationFee)}</span>
             </div>
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Developer registration</span>
-              <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{fmtAed(op.devRegistrationFee)}</span>
+              <span class="tabular-nums text-gray-700 flex-shrink-0 text-end">{fmtAed(op.devRegistrationFee)}</span>
             </div>
             <div class="flex justify-between py-2 gap-2 font-semibold">
               <span class="text-gray-800 min-w-0">Total all-in cost</span>
-              <span class="tabular-nums text-gray-900 flex-shrink-0 text-right">{fmtAed(op.totalPurchaseCost)}</span>
+              <span class="tabular-nums text-gray-900 flex-shrink-0 text-end">{fmtAed(op.totalPurchaseCost)}</span>
             </div>
             <div class="flex justify-between py-2 gap-2 text-gray-400">
               <span class="min-w-0">Years till handover</span>
-              <span class="flex-shrink-0 text-right">{op.yearsTillHandover} yr</span>
+              <span class="flex-shrink-0 text-end">{op.yearsTillHandover} yr</span>
             </div>
           {:else if rd}
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Purchase price</span>
-              <span class="font-semibold tabular-nums text-gray-900 flex-shrink-0 text-right">{fmtAed(rd.price)}</span>
+              <span class="font-semibold tabular-nums text-gray-900 flex-shrink-0 text-end">{fmtAed(rd.price)}</span>
             </div>
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Size (living + balcony)</span>
-              <span class="font-semibold tabular-nums text-gray-900 flex-shrink-0 text-right">{fmtNum(rd.livingArea + rd.balconyArea)} sqft ({fmtNum(rd.pricePerSqft)} AED/sqft)</span>
+              <span class="font-semibold tabular-nums text-gray-900 flex-shrink-0 text-end">{fmtNum(rd.livingArea + rd.balconyArea)} sqft ({fmtNum(rd.pricePerSqft)} AED/sqft)</span>
             </div>
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Mortgage</span>
-              <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{mtLabel(rd.mortgageType)} · {residencyLabel(rd.residency)}</span>
+              <span class="tabular-nums text-gray-700 flex-shrink-0 text-end">{mtLabel(rd.mortgageType)} · {residencyLabel(rd.residency)}</span>
             </div>
             {#if rd.mortgageAmount > 0}
               <div class="flex justify-between py-2 gap-2">
                 <span class="text-gray-500 min-w-0">Mortgage amount</span>
-                <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{fmtAed(rd.mortgageAmount)}</span>
+                <span class="tabular-nums text-gray-700 flex-shrink-0 text-end">{fmtAed(rd.mortgageAmount)}</span>
               </div>
               <div class="flex justify-between py-2 gap-2">
                 <span class="text-gray-500 min-w-0">Monthly payment</span>
-                <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{fmtAed(rd.totalMonthlyMortgage)}</span>
+                <span class="tabular-nums text-gray-700 flex-shrink-0 text-end">{fmtAed(rd.totalMonthlyMortgage)}</span>
               </div>
             {/if}
             <div class="flex justify-between py-2 gap-2 font-semibold">
               <span class="text-gray-800 min-w-0">Equity injection</span>
-              <span class="tabular-nums text-gray-900 flex-shrink-0 text-right">{fmtAed(rd.equityInjection)}</span>
+              <span class="tabular-nums text-gray-900 flex-shrink-0 text-end">{fmtAed(rd.equityInjection)}</span>
             </div>
           {/if}
         </div>
@@ -269,78 +269,78 @@
           {#if isOffplan && op}
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Comparable rent (ADREC {op.district || 'Abu Dhabi'} median)</span>
-              <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{fmtAed(op.comparableRent)}</span>
+              <span class="tabular-nums text-gray-700 flex-shrink-0 text-end">{fmtAed(op.comparableRent)}</span>
             </div>
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Rental appreciation rate</span>
-              <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{fmtPct(op.rentalAppPct)} p.a.</span>
+              <span class="tabular-nums text-gray-700 flex-shrink-0 text-end">{fmtPct(op.rentalAppPct)} p.a.</span>
             </div>
             {#if furnishingPctVal(op.furnishingType) > 0}
               <div class="flex justify-between py-2 gap-2">
                 <span class="text-gray-500 min-w-0">Furnishing premium · {furnishingLabel(op.furnishingType)}</span>
-                <span class="tabular-nums text-emerald-600 flex-shrink-0 text-right">+{fmtPct(furnishingPctVal(op.furnishingType), 0)}</span>
+                <span class="tabular-nums text-emerald-600 flex-shrink-0 text-end">+{fmtPct(furnishingPctVal(op.furnishingType), 0)}</span>
               </div>
             {/if}
             {#if maidsPctVal(op.layout, op.maidsRoom) > 0}
               <div class="flex justify-between py-2 gap-2">
                 <span class="text-gray-500 min-w-0">Maid's room premium</span>
-                <span class="tabular-nums text-emerald-600 flex-shrink-0 text-right">+{fmtPct(maidsPctVal(op.layout, op.maidsRoom), 0)}</span>
+                <span class="tabular-nums text-emerald-600 flex-shrink-0 text-end">+{fmtPct(maidsPctVal(op.layout, op.maidsRoom), 0)}</span>
               </div>
             {/if}
             <div class="flex justify-between py-2 gap-2 font-semibold">
               <span class="text-gray-800 min-w-0">Gross rental at handover</span>
-              <span class="tabular-nums text-emerald-700 flex-shrink-0 text-right">{fmtAed(op.grossRental)}</span>
+              <span class="tabular-nums text-emerald-700 flex-shrink-0 text-end">{fmtAed(op.grossRental)}</span>
             </div>
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Service charge ({op.serviceChargePsf} AED/sqft + 5% VAT)</span>
-              <span class="tabular-nums text-red-500 flex-shrink-0 text-right">− {fmtAed(op.size * op.serviceChargePsf * 1.05)}</span>
+              <span class="tabular-nums text-red-500 flex-shrink-0 text-end">− {fmtAed(op.size * op.serviceChargePsf * 1.05)}</span>
             </div>
             <div class="flex justify-between py-2 gap-2 font-semibold">
               <span class="text-gray-800 min-w-0">Net rental income</span>
-              <span class="tabular-nums flex-shrink-0 text-right {op.netRental >= 0 ? 'text-emerald-700' : 'text-red-600'}">{fmtAed(op.netRental)}</span>
+              <span class="tabular-nums flex-shrink-0 text-end {op.netRental >= 0 ? 'text-emerald-700' : 'text-red-600'}">{fmtAed(op.netRental)}</span>
             </div>
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Gross yield</span>
-              <span class="tabular-nums font-semibold text-gray-800 flex-shrink-0 text-right">{fmtPct(op.grossYield)}</span>
+              <span class="tabular-nums font-semibold text-gray-800 flex-shrink-0 text-end">{fmtPct(op.grossYield)}</span>
             </div>
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-600 font-medium min-w-0">Net yield (on total cost)</span>
-              <span class="tabular-nums font-bold flex-shrink-0 text-right {roiColour(op.netYield)}">{fmtPct(op.netYield)}</span>
+              <span class="tabular-nums font-bold flex-shrink-0 text-end {roiColour(op.netYield)}">{fmtPct(op.netYield)}</span>
             </div>
           {:else if rd}
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Annual rent</span>
-              <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{fmtAed(rd.annualRent)}</span>
+              <span class="tabular-nums text-gray-700 flex-shrink-0 text-end">{fmtAed(rd.annualRent)}</span>
             </div>
             {#if furnishingPctVal(rd.furnishingType) > 0}
               <div class="flex justify-between py-2 gap-2">
                 <span class="text-gray-500 min-w-0">Furnishing premium · {furnishingLabel(rd.furnishingType)}</span>
-                <span class="tabular-nums text-emerald-600 flex-shrink-0 text-right">+{fmtPct(furnishingPctVal(rd.furnishingType), 0)}</span>
+                <span class="tabular-nums text-emerald-600 flex-shrink-0 text-end">+{fmtPct(furnishingPctVal(rd.furnishingType), 0)}</span>
               </div>
             {/if}
             {#if maidsPctVal(rd.layout, rd.maidsRoom) > 0}
               <div class="flex justify-between py-2 gap-2">
                 <span class="text-gray-500 min-w-0">Maid's room premium</span>
-                <span class="tabular-nums text-emerald-600 flex-shrink-0 text-right">+{fmtPct(maidsPctVal(rd.layout, rd.maidsRoom), 0)}</span>
+                <span class="tabular-nums text-emerald-600 flex-shrink-0 text-end">+{fmtPct(maidsPctVal(rd.layout, rd.maidsRoom), 0)}</span>
               </div>
             {/if}
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-500 min-w-0">Service charge</span>
-              <span class="tabular-nums text-red-500 flex-shrink-0 text-right">− {fmtAed(rd.serviceCharge)}</span>
+              <span class="tabular-nums text-red-500 flex-shrink-0 text-end">− {fmtAed(rd.serviceCharge)}</span>
             </div>
             {#if rd.mortgageAmount > 0}
               <div class="flex justify-between py-2 gap-2">
                 <span class="text-gray-500 min-w-0">Annual mortgage payments</span>
-                <span class="tabular-nums text-red-500 flex-shrink-0 text-right">− {fmtAed(rd.totalMonthlyMortgage * 12)}</span>
+                <span class="tabular-nums text-red-500 flex-shrink-0 text-end">− {fmtAed(rd.totalMonthlyMortgage * 12)}</span>
               </div>
             {/if}
             <div class="flex justify-between py-2 gap-2 font-semibold">
               <span class="text-gray-800 min-w-0">Net annual cashflow</span>
-              <span class="tabular-nums flex-shrink-0 text-right {rd.netAnnualRental >= 0 ? 'text-emerald-700' : 'text-red-600'}">{fmtAed(rd.netAnnualRental)}</span>
+              <span class="tabular-nums flex-shrink-0 text-end {rd.netAnnualRental >= 0 ? 'text-emerald-700' : 'text-red-600'}">{fmtAed(rd.netAnnualRental)}</span>
             </div>
             <div class="flex justify-between py-2 gap-2">
               <span class="text-gray-600 font-medium min-w-0">Net yield (on equity)</span>
-              <span class="tabular-nums font-bold flex-shrink-0 text-right {roiColour(rd.netYield)}">{fmtPct(rd.netYield)}</span>
+              <span class="tabular-nums font-bold flex-shrink-0 text-end {roiColour(rd.netYield)}">{fmtPct(rd.netYield)}</span>
             </div>
           {/if}
         </div>
@@ -354,21 +354,21 @@
         <div class="px-4 py-3 divide-y divide-gray-50 text-sm">
           <div class="flex justify-between py-2 gap-2">
             <span class="text-gray-500 min-w-0">Appreciation rate</span>
-            <span class="tabular-nums text-gray-700 flex-shrink-0 text-right">{fmtPct(deal.annualAppPct)} p.a.{deal.otherFactorType === 'yes' ? ' + furnished/branded (+10%)' : ''}</span>
+            <span class="tabular-nums text-gray-700 flex-shrink-0 text-end">{fmtPct(deal.annualAppPct)} p.a.{deal.otherFactorType === 'yes' ? ' + furnished/branded (+10%)' : ''}</span>
           </div>
           <div class="flex justify-between py-2 gap-2 font-semibold">
             <span class="text-gray-800 min-w-0">Projected selling price</span>
-            <span class="tabular-nums text-gray-900 flex-shrink-0 text-right">{fmtAed(deal.sellingPrice)}</span>
+            <span class="tabular-nums text-gray-900 flex-shrink-0 text-end">{fmtAed(deal.sellingPrice)}</span>
           </div>
           <div class="flex justify-between py-2 gap-2 font-semibold">
             <span class="text-gray-800 min-w-0">Net profit</span>
-            <span class="tabular-nums flex-shrink-0 text-right {deal.netProfit >= 0 ? 'text-emerald-700' : 'text-red-600'}">
+            <span class="tabular-nums flex-shrink-0 text-end {deal.netProfit >= 0 ? 'text-emerald-700' : 'text-red-600'}">
               {deal.netProfit >= 0 ? '+' : ''}{fmtAed(deal.netProfit)}
             </span>
           </div>
           <div class="flex justify-between py-2 gap-2">
             <span class="text-gray-600 font-medium min-w-0">Capital gain CAGR</span>
-            <span class="tabular-nums font-bold flex-shrink-0 text-right {roiColour(deal.netProfitPerYear)}">{fmtPct(deal.netProfitPerYear)}</span>
+            <span class="tabular-nums font-bold flex-shrink-0 text-end {roiColour(deal.netProfitPerYear)}">{fmtPct(deal.netProfitPerYear)}</span>
           </div>
         </div>
       </div>

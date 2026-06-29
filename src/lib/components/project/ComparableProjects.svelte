@@ -35,7 +35,7 @@
         </div>
 
         <!-- Median rate + % diff vs current project -->
-        <div class="text-right flex-shrink-0">
+        <div class="text-end flex-shrink-0">
           <p class="text-sm font-semibold text-gray-900 tabular-nums">
             {Math.round(project.medianRate).toLocaleString()}
             <span class="text-xs text-gray-400 font-normal"> AED/sqft</span>

@@ -121,8 +121,8 @@
     }
   });
 
-  const thClass  = 'px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400 cursor-pointer select-none hover:text-gray-600 transition-colors whitespace-nowrap';
-  const thRClass = 'px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400 cursor-pointer select-none hover:text-gray-600 transition-colors whitespace-nowrap';
+  const thClass  = 'px-5 py-3 text-start text-xs font-semibold uppercase tracking-wider text-gray-400 cursor-pointer select-none hover:text-gray-600 transition-colors whitespace-nowrap';
+  const thRClass = 'px-5 py-3 text-end text-xs font-semibold uppercase tracking-wider text-gray-400 cursor-pointer select-none hover:text-gray-600 transition-colors whitespace-nowrap';
 </script>
 
 <div class="rounded-2xl bg-white shadow-sm ring-1 ring-black/5 overflow-hidden">
@@ -209,7 +209,7 @@
                     {project.developer_name}
                   </p>
                 </td>
-                <td class="px-5 py-3.5 text-right">
+                <td class="px-5 py-3.5 text-end">
                   <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-bold tabular-nums {feeBadge(project.sc_avg)}">
                     {fmtFee(project.sc_avg)}
                   </span>
@@ -279,7 +279,7 @@
                     {project.developer_name}
                   </p>
                 </div>
-                <div class="flex-shrink-0 text-right">
+                <div class="flex-shrink-0 text-end">
                   <span class="inline-flex items-center rounded-full px-3 py-1.5 text-sm font-bold tabular-nums {feeBadge(project.sc_avg)}">
                     {fmtFee(project.sc_avg)}
                   </span>

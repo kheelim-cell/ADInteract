@@ -33,14 +33,14 @@
 
       <!-- Search -->
       <div class="relative">
-        <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg class="absolute start-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
         <input
           type="text"
           placeholder={m.servicecharges_search_placeholder()}
           bind:value={searchQuery}
-          class="pl-8 pr-3 py-2 text-xs border border-gray-200 rounded-lg bg-white focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100 min-w-[200px]"
+          class="ps-8 pe-3 py-2 text-xs border border-gray-200 rounded-lg bg-white focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100 min-w-[200px]"
         />
       </div>
 

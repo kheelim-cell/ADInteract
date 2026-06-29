@@ -78,7 +78,7 @@
 
           <!-- Top line: rank + name + YoY badge -->
           <div class="flex items-center gap-2.5">
-            <span class="text-xs w-5 flex-shrink-0 text-right {rankStyle[i]}">{i + 1}</span>
+            <span class="text-xs w-5 flex-shrink-0 text-end {rankStyle[i]}">{i + 1}</span>
             <div class="flex-1 min-w-0">
               <a
                 href="{base}/{linkPrefix}/{encodeURIComponent(row.name)}"
@@ -97,7 +97,7 @@
           </div>
 
           <!-- Growth bar + value comparison -->
-          <div class="mt-2.5 pl-7">
+          <div class="mt-2.5 ps-7">
             <div class="h-1 w-full rounded-full bg-gray-100 overflow-hidden mb-1.5">
               <div
                 class="h-full rounded-full {isPositive ? 'bg-emerald-400' : 'bg-red-400'}"

@@ -57,7 +57,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-6 divide-gray-100 lg:divide-x">
 
       <!-- Col 1: Location -->
-      <div class="lg:pr-5">
+      <div class="lg:pe-5">
         <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1.5">Location</p>
         <a
           href="{base}/area/{encodeURIComponent(info.district)}"
@@ -131,7 +131,7 @@
       </div>
 
       <!-- Col 4: vs District benchmark -->
-      <div class="lg:pl-5 border-t sm:border-t-0 border-gray-100 pt-4 sm:pt-0">
+      <div class="lg:ps-5 border-t sm:border-t-0 border-gray-100 pt-4 sm:pt-0">
         <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">vs {info.district}</p>
         {#if info.projectMedianRate && info.districtMedianRate}
           {@const diff = (info.projectMedianRate - info.districtMedianRate) / info.districtMedianRate}

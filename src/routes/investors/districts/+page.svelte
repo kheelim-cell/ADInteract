@@ -92,9 +92,9 @@
       <span>{m.districts_th_score_type()}</span>
       <span class="text-center">{m.districts_th_score()}</span>
       <span class="text-center">{m.districts_th_trend()}</span>
-      <span class="text-right">{m.districts_th_psf()}</span>
-      <span class="text-right">{m.districts_th_sales_12m()}</span>
-      <span class="text-right">{m.districts_th_offplan_pct()}</span>
+      <span class="text-end">{m.districts_th_psf()}</span>
+      <span class="text-end">{m.districts_th_sales_12m()}</span>
+      <span class="text-end">{m.districts_th_offplan_pct()}</span>
     </div>
 
     {#each visible as district, i}
@@ -152,9 +152,9 @@
         </div>
 
         <span class="text-base font-bold text-center {t.cls}">{t.icon}</span>
-        <span class="text-sm text-right text-gray-600">{district.median_psf_12m ? fmt(district.median_psf_12m) : '—'}</span>
-        <span class="text-sm text-right text-gray-600">{fmt(district.tx_count_12m)}</span>
-        <span class="text-sm text-right text-gray-600">{district.offplan_pct ?? '—'}%</span>
+        <span class="text-sm text-end text-gray-600">{district.median_psf_12m ? fmt(district.median_psf_12m) : '—'}</span>
+        <span class="text-sm text-end text-gray-600">{fmt(district.tx_count_12m)}</span>
+        <span class="text-sm text-end text-gray-600">{district.offplan_pct ?? '—'}%</span>
       </a>
     {/each}
   </div>

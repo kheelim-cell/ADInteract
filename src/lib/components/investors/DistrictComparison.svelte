@@ -245,7 +245,7 @@
               {/each}
             </optgroup>
           </select>
-          <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
           </svg>
         </div>
@@ -267,7 +267,7 @@
               {/each}
             </optgroup>
           </select>
-          <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
           </svg>
         </div>
@@ -289,7 +289,7 @@
                 {/each}
               </optgroup>
             </select>
-            <svg class="pointer-events-none absolute right-8 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <svg class="pointer-events-none absolute end-8 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
             </svg>
             <button
@@ -341,8 +341,8 @@
             <tr>
               <th class="px-2 sm:px-4 py-3 w-28 sm:w-44"></th>
               {#each selectedDistricts as d}
-                <th class="px-2 sm:px-4 py-3 text-right">
-                  <div class="ml-auto h-4 w-16 sm:w-24 bg-gray-200 rounded animate-pulse"></div>
+                <th class="px-2 sm:px-4 py-3 text-end">
+                  <div class="ms-auto h-4 w-16 sm:w-24 bg-gray-200 rounded animate-pulse"></div>
                 </th>
               {/each}
             </tr>
@@ -354,8 +354,8 @@
                   <div class="h-3 w-20 sm:w-32 bg-gray-100 rounded animate-pulse mb-1.5"></div>
                 </td>
                 {#each selectedDistricts as __}
-                  <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-right">
-                    <div class="ml-auto h-4 w-16 sm:w-20 bg-gray-100 rounded animate-pulse"></div>
+                  <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-end">
+                    <div class="ms-auto h-4 w-16 sm:w-20 bg-gray-100 rounded animate-pulse"></div>
                   </td>
                 {/each}
               </tr>
@@ -383,13 +383,13 @@
           <!-- Header: district names as columns -->
           <thead class="bg-gray-50 border-b border-gray-100">
             <tr>
-              <th class="px-2 sm:px-4 py-3 text-left text-[10px] font-bold text-gray-400 uppercase tracking-widest w-28 sm:w-52">
+              <th class="px-2 sm:px-4 py-3 text-start text-[10px] font-bold text-gray-400 uppercase tracking-widest w-28 sm:w-52">
                 {m.compare_metric_header()}
               </th>
               {#each selectedDistricts as d, i}
                 {@const row = rowByDistrict.get(d)}
                 {@const colors = ['text-sky-700', 'text-violet-700', 'text-amber-700']}
-                <th class="px-2 sm:px-4 py-3 text-right">
+                <th class="px-2 sm:px-4 py-3 text-end">
                   <span class="block text-xs sm:text-sm font-bold {colors[i]} leading-tight">{d}</span>
                   {#if row}
                     <span class="hidden sm:block text-[10px] font-normal text-gray-400 mt-0.5">
@@ -413,7 +413,7 @@
               </td>
               {#each selectedDistricts as d}
                 {@const row = rowByDistrict.get(d)}
-                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-right tabular-nums text-xs sm:text-sm font-medium text-gray-800">
+                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-end tabular-nums text-xs sm:text-sm font-medium text-gray-800">
                   {fmtAed(row?.medianPrice ?? null)}
                 </td>
               {/each}
@@ -427,7 +427,7 @@
               </td>
               {#each selectedDistricts as d}
                 {@const row = rowByDistrict.get(d)}
-                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-right tabular-nums text-xs sm:text-sm font-medium text-gray-800">
+                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-end tabular-nums text-xs sm:text-sm font-medium text-gray-800">
                   {fmtPsf(row?.medianPsf ?? null)}
                 </td>
               {/each}
@@ -445,7 +445,7 @@
                 {@const isWinner = yoyWinners.has(i)}
                 <td class="px-2 sm:px-4 py-2.5 sm:py-3.5">
                   <div class="flex flex-col items-end sm:flex-row sm:items-center sm:justify-end gap-0.5 sm:gap-0">
-                    <span class="tabular-nums text-xs sm:text-sm font-medium sm:mr-1
+                    <span class="tabular-nums text-xs sm:text-sm font-medium sm:me-1
                       {isWinner ? 'text-emerald-700 font-semibold' : v !== null && v < 0 ? 'text-red-500' : 'text-gray-800'}">
                       {fmtPct(v)}
                     </span>
@@ -469,7 +469,7 @@
                 {@const isWinner = yieldWinners.has(i)}
                 <td class="px-2 sm:px-4 py-2.5 sm:py-3.5">
                   <div class="flex flex-col items-end sm:flex-row sm:items-center sm:justify-end gap-0.5 sm:gap-0">
-                    <span class="tabular-nums text-xs sm:text-sm font-medium sm:mr-1
+                    <span class="tabular-nums text-xs sm:text-sm font-medium sm:me-1
                       {isWinner ? 'text-emerald-700 font-semibold' : 'text-gray-800'}">
                       {v !== null ? v.toFixed(2) + '%' : '—'}
                     </span>
@@ -492,7 +492,7 @@
                 {@const isWinner = scWinners.has(i)}
                 <td class="px-2 sm:px-4 py-2.5 sm:py-3.5">
                   <div class="flex flex-col items-end sm:flex-row sm:items-center sm:justify-end gap-0.5 sm:gap-0">
-                    <span class="tabular-nums text-xs sm:text-sm font-medium sm:mr-1
+                    <span class="tabular-nums text-xs sm:text-sm font-medium sm:me-1
                       {isWinner ? 'text-emerald-700 font-semibold' : 'text-gray-800'}">
                       {#if sc !== null}
                         {fmtSc(sc)}<span class="text-gray-400 text-[10px]">/sqft</span>
@@ -519,7 +519,7 @@
                 {@const isWinner = volWinners.has(i)}
                 <td class="px-2 sm:px-4 py-2.5 sm:py-3.5">
                   <div class="flex flex-col items-end sm:flex-row sm:items-center sm:justify-end gap-0.5 sm:gap-0">
-                    <span class="tabular-nums text-xs sm:text-sm font-medium sm:mr-1
+                    <span class="tabular-nums text-xs sm:text-sm font-medium sm:me-1
                       {isWinner ? 'text-emerald-700 font-semibold' : 'text-gray-800'}">
                       {row ? `${fmtCount(row.txCount)} ${m.compare_sales_suffix()}` : '—'}
                     </span>
@@ -539,7 +539,7 @@
               </td>
               {#each selectedDistricts as d}
                 {@const row = rowByDistrict.get(d)}
-                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-right tabular-nums text-xs sm:text-sm font-medium text-gray-800">
+                <td class="px-2 sm:px-4 py-2.5 sm:py-3.5 text-end tabular-nums text-xs sm:text-sm font-medium text-gray-800">
                   {row ? `${fmtCount(row.pipelineCount)} ${m.compare_units_suffix()}` : '—'}
                 </td>
               {/each}

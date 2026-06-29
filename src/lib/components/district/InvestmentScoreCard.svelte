@@ -149,7 +149,7 @@
             <div class="flex-1 min-w-0">
               <div class="flex justify-between mb-0.5">
                 <span class="text-gray-600 truncate">{row.label}</span>
-                <span class="font-semibold text-gray-800 flex-shrink-0 ml-2">{row.score}/{row.max}</span>
+                <span class="font-semibold text-gray-800 flex-shrink-0 ms-2">{row.score}/{row.max}</span>
               </div>
               <div class="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
                 <div class="h-full bg-emerald-400 rounded-full" style="width:{row.score/row.max*100}%"></div>
@@ -178,7 +178,7 @@
           <div class="flex-1 min-w-0">
             <div class="flex justify-between mb-0.5">
               <span class="text-gray-600 truncate">{row.label}</span>
-              <span class="font-semibold text-gray-800 flex-shrink-0 ml-2">{row.score}/{row.max}</span>
+              <span class="font-semibold text-gray-800 flex-shrink-0 ms-2">{row.score}/{row.max}</span>
             </div>
             <div class="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
               <div class="h-full bg-blue-400 rounded-full" style="width:{row.score/row.max*100}%"></div>

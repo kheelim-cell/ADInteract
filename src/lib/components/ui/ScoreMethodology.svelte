@@ -59,12 +59,12 @@
       Abu Dhabi's two market segments cannot be scored on the same framework. Applying a mature-market index to a pre-completion district penalises it for lacking rental income or resale history — the defining features of an early-cycle opportunity. Each district is classified automatically from ADREC data.
     </p>
     <div class="grid sm:grid-cols-2 gap-3">
-      <div class="rounded-xl border-l-4 border-emerald-500 border border-gray-100 bg-gray-50 px-4 py-3">
+      <div class="rounded-xl border-s-4 border-emerald-500 border border-gray-100 bg-gray-50 px-4 py-3">
         <p class="text-xs font-bold text-emerald-700 uppercase tracking-widest mb-1">Yield &amp; Stability</p>
         <p class="text-xs text-gray-600 leading-relaxed">Applied when <strong>&gt;60%</strong> of all-time transactions are ready/secondary-market. Established districts with active resale, rental benchmarks, and multi-year price history. Mirrors MSCI/IPD total-return logic: income (yield) + capital return (momentum), risk-adjusted.</p>
         <p class="text-xs text-gray-400 mt-1.5">e.g. Khalifa City, Al Reem Island, Corniche</p>
       </div>
-      <div class="rounded-xl border-l-4 border-blue-500 border border-gray-100 bg-gray-50 px-4 py-3">
+      <div class="rounded-xl border-s-4 border-blue-500 border border-gray-100 bg-gray-50 px-4 py-3">
         <p class="text-xs font-bold text-blue-700 uppercase tracking-widest mb-1">Growth &amp; Early-Cycle</p>
         <p class="text-xs text-gray-600 leading-relaxed">Applied when <strong>&lt;40%</strong> of all-time transactions are ready — predominantly developer-launched, most units not yet completed. Mirrors CBRE/PGIM emerging market logic: demand velocity, developer confidence, forward appreciation.</p>
         <p class="text-xs text-gray-400 mt-1.5">e.g. Al Hidayriyyat, Al Jubail Island, new Saadiyat phases</p>
@@ -84,9 +84,9 @@
       <table class="w-full text-xs border-collapse">
         <thead>
           <tr class="bg-gray-50">
-            <th class="text-left px-3 py-2 border border-gray-100 font-semibold text-gray-600 w-[22%]">Factor</th>
-            <th class="text-left px-3 py-2 border border-gray-100 font-semibold text-gray-600 w-[10%]">Wt</th>
-            <th class="text-left px-3 py-2 border border-gray-100 font-semibold text-gray-600">How it's calculated</th>
+            <th class="text-start px-3 py-2 border border-gray-100 font-semibold text-gray-600 w-[22%]">Factor</th>
+            <th class="text-start px-3 py-2 border border-gray-100 font-semibold text-gray-600 w-[10%]">Wt</th>
+            <th class="text-start px-3 py-2 border border-gray-100 font-semibold text-gray-600">How it's calculated</th>
           </tr>
         </thead>
         <tbody>
@@ -124,9 +124,9 @@
       <table class="w-full text-xs border-collapse">
         <thead>
           <tr class="bg-gray-50">
-            <th class="text-left px-3 py-2 border border-gray-100 font-semibold text-gray-600 w-[22%]">Factor</th>
-            <th class="text-left px-3 py-2 border border-gray-100 font-semibold text-gray-600 w-[10%]">Wt</th>
-            <th class="text-left px-3 py-2 border border-gray-100 font-semibold text-gray-600">How it's calculated</th>
+            <th class="text-start px-3 py-2 border border-gray-100 font-semibold text-gray-600 w-[22%]">Factor</th>
+            <th class="text-start px-3 py-2 border border-gray-100 font-semibold text-gray-600 w-[10%]">Wt</th>
+            <th class="text-start px-3 py-2 border border-gray-100 font-semibold text-gray-600">How it's calculated</th>
           </tr>
         </thead>
         <tbody>
@@ -176,7 +176,7 @@
       <table class="w-full text-xs border-collapse">
         <thead>
           <tr class="bg-gray-50">
-            <th class="text-left px-3 py-2 border border-gray-100 font-semibold text-gray-600">Factor</th>
+            <th class="text-start px-3 py-2 border border-gray-100 font-semibold text-gray-600">Factor</th>
             <th class="text-center px-2 py-2 border border-gray-100 font-semibold text-gray-600">MSCI</th>
             <th class="text-center px-2 py-2 border border-gray-100 font-semibold text-gray-600">JLL</th>
             <th class="text-center px-2 py-2 border border-gray-100 font-semibold text-gray-600">KF</th>
@@ -221,7 +221,7 @@
           <button
             type="button"
             onclick={() => toggleFaq(i)}
-            class="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-gray-50 transition-colors"
+            class="w-full flex items-start gap-3 px-4 py-3 text-start hover:bg-gray-50 transition-colors"
           >
             <span class="flex-1 text-sm font-semibold text-gray-800 leading-snug">{faq.q}</span>
             <svg

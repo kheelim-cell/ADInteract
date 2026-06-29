@@ -197,7 +197,7 @@
           <div>
             <label for="slug" class="block text-[10px] font-bold text-[#dfb83c] tracking-widest uppercase mb-2">Your page URL *</label>
             <div class="flex items-center bg-white/10 border border-white/20 rounded-lg overflow-hidden focus-within:border-[#dfb83c] focus-within:ring-1 focus-within:ring-[#dfb83c]">
-              <span class="text-white/35 text-sm pl-4 pr-1 flex-shrink-0 whitespace-nowrap">adinteract.co/b/</span>
+              <span class="text-white/35 text-sm ps-4 pe-1 flex-shrink-0 whitespace-nowrap">adinteract.co/b/</span>
               <input
                 id="slug"
                 type="text"
@@ -205,7 +205,7 @@
                 oninput={onSlugInput}
                 placeholder="sarah-jones"
                 required
-                class="flex-1 bg-transparent py-3 pr-4 text-white text-sm focus:outline-none min-w-0"
+                class="flex-1 bg-transparent py-3 pe-4 text-white text-sm focus:outline-none min-w-0"
               />
             </div>
           </div>

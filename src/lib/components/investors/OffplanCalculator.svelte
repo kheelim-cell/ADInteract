@@ -300,7 +300,7 @@
 
 {#snippet scannedBadge(field: string)}
   {#if scannedFields.has(field)}
-    <span class="ml-1 inline-flex items-center gap-0.5 text-[9px] font-bold text-emerald-400 bg-emerald-400/10 border border-emerald-400/25 rounded px-1.5 py-0.5 leading-none">
+    <span class="ms-1 inline-flex items-center gap-0.5 text-[9px] font-bold text-emerald-400 bg-emerald-400/10 border border-emerald-400/25 rounded px-1.5 py-0.5 leading-none">
       ✓ AI
     </span>
   {/if}
@@ -381,7 +381,7 @@
                   </optgroup>
                 {/if}
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
@@ -398,7 +398,7 @@
                   <option value={l}>{LAYOUT_DISPLAY[l.toLowerCase()] ?? l}</option>
                 {/each}
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
@@ -446,9 +446,9 @@
             <span class="text-[11px] text-white/50">{m.calc_comparable_rent_label()}</span>
             <input type="number" bind:value={comparableRent} min="0" step="1000" class={inp} />
             {#if rentLoading}
-              <p class="text-[10px] text-white/30 pl-0.5">{m.calc_loading_median_rent()}</p>
+              <p class="text-[10px] text-white/30 ps-0.5">{m.calc_loading_median_rent()}</p>
             {:else if rentSource}
-              <p class="text-[10px] text-emerald-400/60 pl-0.5">{m.calc_median_rent_source({ source: rentSource })}</p>
+              <p class="text-[10px] text-emerald-400/60 ps-0.5">{m.calc_median_rent_source({ source: rentSource })}</p>
             {/if}
           </label>
           <label class="space-y-1">
@@ -465,9 +465,9 @@
             <span class="text-[11px] text-white/50">{m.calc_rental_appreciation_label()}</span>
             <input type="number" bind:value={rentalAppPct} min="0" max="10" step="0.5" class={inp} />
             {#if rentalYoyLoading}
-              <p class="text-[10px] text-white/30 pl-0.5">{m.calc_loading_rental_yoy()}</p>
+              <p class="text-[10px] text-white/30 ps-0.5">{m.calc_loading_rental_yoy()}</p>
             {:else if rentalYoySource}
-              <p class="text-[10px] text-amber-400/60 pl-0.5">{m.calc_rental_yoy_source({ source: rentalYoySource })}</p>
+              <p class="text-[10px] text-amber-400/60 ps-0.5">{m.calc_rental_yoy_source({ source: rentalYoySource })}</p>
             {/if}
           </label>
           <div class="space-y-1">
@@ -479,7 +479,7 @@
                 <option value="highend_airbnb">{m.calc_furnishing_highend()}</option>
                 <option value="branded_hospitality">{m.calc_furnishing_branded()}</option>
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
@@ -491,12 +491,12 @@
                 <option value="no">{m.calc_maids_no()}</option>
                 <option value="yes">{maidsPct > 0 ? m.calc_maids_yes_pct({ pct: String(maidsPct) }) : m.calc_maids_yes_plain()}</option>
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
             {#if maidsRoom === 'yes' && maidsPct === 0}
-              <p class="text-[10px] text-white/30 pl-0.5">{m.calc_maids_hint()}</p>
+              <p class="text-[10px] text-white/30 ps-0.5">{m.calc_maids_hint()}</p>
             {/if}
           </div>
         </div>
@@ -518,7 +518,7 @@
             <input type="number" bind:value={serviceChargePsf} min="0" step="0.5" class={scannedFields.has('serviceChargePsf') ? inp : inpManual} />
           </label>
         </div>
-        <p class="text-[11px] text-white/30 pl-0.5">
+        <p class="text-[11px] text-white/30 ps-0.5">
           {m.calc_service_charge_formula({ size: size.toLocaleString('en-AE'), rate: String(serviceChargePsf) })} <span class="text-amber-400/70">{fmtAed(serviceCharge)}/yr</span>
         </p>
       </fieldset>
@@ -536,9 +536,9 @@
             <span class="text-[11px] text-white/50">{m.calc_annual_appreciation_label()}</span>
             <input type="number" bind:value={annualAppPct} min="0" max="10" step="0.5" class={inp} />
             {#if capYoyLoading}
-              <p class="text-[10px] text-white/30 pl-0.5">{m.calc_loading_offplan_yoy()}</p>
+              <p class="text-[10px] text-white/30 ps-0.5">{m.calc_loading_offplan_yoy()}</p>
             {:else if capYoySource}
-              <p class="text-[10px] text-amber-400/60 pl-0.5">{m.calc_offplan_yoy_source({ source: capYoySource })}</p>
+              <p class="text-[10px] text-amber-400/60 ps-0.5">{m.calc_offplan_yoy_source({ source: capYoySource })}</p>
             {/if}
           </label>
         </div>
@@ -551,7 +551,7 @@
                 <option value="no">{m.calc_maids_no()}</option>
                 <option value="yes">{m.calc_finish_branding_yes()}</option>
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
@@ -562,7 +562,7 @@
           </label>
         </div>
 
-        <p class="text-[11px] text-white/30 pl-0.5">
+        <p class="text-[11px] text-white/30 ps-0.5">
           {m.calc_selling_price_formula_offplan({ cost: fmtAed(cost), pct: String(annualAppPct), years: String(yearsToResale), extra: otherAppPct > 0 ? ` × (1 + ${otherAppPct}%)` : '' })} <span class="text-amber-400/70">{fmtAed(sellingPrice)}</span>
         </p>
       </fieldset>

@@ -178,7 +178,7 @@
           <button
             type="button"
             onclick={() => toggle(faq.id)}
-            class="w-full flex items-start gap-4 px-5 py-4 text-left hover:bg-gray-50 transition-colors"
+            class="w-full flex items-start gap-4 px-5 py-4 text-start hover:bg-gray-50 transition-colors"
           >
             <!-- Q number badge -->
             <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/12 border border-emerald-500/25 text-[10px] font-bold text-emerald-600 mt-0.5">
@@ -200,7 +200,7 @@
 
           <!-- Answer -->
           {#if isOpen}
-            <div class="px-5 pb-5 pl-[3.75rem] border-t border-gray-100">
+            <div class="px-5 pb-5 ps-[3.75rem] border-t border-gray-100">
               <div class="pt-4 space-y-3 text-sm text-gray-600 leading-relaxed">
                 {#if faq.intro}
                   <p>{faq.intro}</p>
@@ -247,14 +247,14 @@
         <!-- Table header — 3 columns (Fee Category removed) -->
         <thead>
           <tr class="bg-gray-800 text-white">
-            <th class="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[30%]">Line Item</th>
-            <th class="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[35%]">
+            <th class="px-2 sm:px-4 py-2 sm:py-3 text-start text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[30%]">Line Item</th>
+            <th class="px-2 sm:px-4 py-2 sm:py-3 text-start text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[35%]">
               <span class="inline-flex items-center gap-1">
                 <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0"></span>
                 Abu Dhabi
               </span>
             </th>
-            <th class="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[35%]">
+            <th class="px-2 sm:px-4 py-2 sm:py-3 text-start text-[10px] sm:text-xs font-bold uppercase tracking-wider w-[35%]">
               <span class="inline-flex items-center gap-1">
                 <span class="inline-block w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>
                 Dubai

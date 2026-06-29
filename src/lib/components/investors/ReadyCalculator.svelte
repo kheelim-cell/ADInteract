@@ -489,7 +489,7 @@
 
 {#snippet scannedBadge(field: string)}
   {#if scannedFields.has(field)}
-    <span class="ml-1 inline-flex items-center gap-0.5 text-[9px] font-bold text-emerald-400 bg-emerald-400/10 border border-emerald-400/25 rounded px-1.5 py-0.5 leading-none">
+    <span class="ms-1 inline-flex items-center gap-0.5 text-[9px] font-bold text-emerald-400 bg-emerald-400/10 border border-emerald-400/25 rounded px-1.5 py-0.5 leading-none">
       ✓ AI
     </span>
   {/if}
@@ -557,7 +557,7 @@
                   </optgroup>
                 {/if}
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
@@ -574,7 +574,7 @@
                   <option value={l}>{LAYOUT_DISPLAY[l.toLowerCase()] ?? l}</option>
                 {/each}
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
@@ -609,12 +609,12 @@
                 {/if}
                 <option value="other">{m.calc_other_not_listed()}</option>
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
             {#if project && project !== 'other' && scLookup[project.toLowerCase().trim()] != null}
-              <p class="text-[10px] text-emerald-400/60 pl-0.5">{m.calc_sc_auto_populated()}</p>
+              <p class="text-[10px] text-emerald-400/60 ps-0.5">{m.calc_sc_auto_populated()}</p>
             {/if}
           </div>
 
@@ -654,11 +654,11 @@
               class={scannedFields.has('annualRent') ? inp : tenancyStatus === 'tenanted' ? inpManual : inp} />
             {#if tenancyStatus === 'vacant'}
               {#if medianRentLoading}
-                <p class="text-[10px] text-white/30 pl-0.5">{m.calc_loading_median_rent()}</p>
+                <p class="text-[10px] text-white/30 ps-0.5">{m.calc_loading_median_rent()}</p>
               {:else if rentSource === 'project' && project && project !== 'other'}
-                <p class="text-[10px] text-emerald-400/60 pl-0.5">{m.calc_median_rent_project_source({ project: toTitleCase(project), layout: layout || 'all' })}</p>
+                <p class="text-[10px] text-emerald-400/60 ps-0.5">{m.calc_median_rent_project_source({ project: toTitleCase(project), layout: layout || 'all' })}</p>
               {:else}
-                <p class="text-[10px] text-amber-400/60 pl-0.5">{m.calc_median_rent_district_source({ district: district || 'Abu Dhabi', layout: layout || 'all' })}</p>
+                <p class="text-[10px] text-amber-400/60 ps-0.5">{m.calc_median_rent_district_source({ district: district || 'Abu Dhabi', layout: layout || 'all' })}</p>
               {/if}
             {/if}
           </label>
@@ -675,7 +675,7 @@
                 <option value="highend_airbnb">{m.calc_furnishing_highend()}</option>
                 <option value="branded_hospitality">{m.calc_furnishing_branded()}</option>
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
@@ -687,12 +687,12 @@
                 <option value="no">{m.calc_maids_no()}</option>
                 <option value="yes">{maidsPct > 0 ? m.calc_maids_yes_pct({ pct: String(maidsPct) }) : m.calc_maids_yes_plain()}</option>
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
             {#if maidsRoom === 'yes' && maidsPct === 0}
-              <p class="text-[10px] text-white/30 pl-0.5">{m.calc_maids_hint()}</p>
+              <p class="text-[10px] text-white/30 ps-0.5">{m.calc_maids_hint()}</p>
             {/if}
           </div>
         </div>
@@ -817,9 +817,9 @@
             <span class="text-[11px] text-white/50">{m.calc_comparable_psf_label()}</span>
             <input type="number" bind:value={comparablePsf} min="0" step="50" class={inp} />
             {#if psf6mLoading}
-              <p class="text-[10px] text-white/30 pl-0.5">{m.calc_loading_median_psf()}</p>
+              <p class="text-[10px] text-white/30 ps-0.5">{m.calc_loading_median_psf()}</p>
             {:else if psf6mSource}
-              <p class="text-[10px] text-amber-400/60 pl-0.5">{m.calc_median_psf_source({ source: psf6mSource })}</p>
+              <p class="text-[10px] text-amber-400/60 ps-0.5">{m.calc_median_psf_source({ source: psf6mSource })}</p>
             {/if}
           </label>
           <label class="space-y-1">
@@ -832,9 +832,9 @@
             <span class="text-[11px] text-white/50">{m.calc_annual_appreciation_label()}</span>
             <input type="number" bind:value={annualAppPct} min="0" max="10" step="0.5" class={inp} />
             {#if yoyLoading}
-              <p class="text-[10px] text-white/30 pl-0.5">{m.calc_loading_yoy()}</p>
+              <p class="text-[10px] text-white/30 ps-0.5">{m.calc_loading_yoy()}</p>
             {:else if yoySource}
-              <p class="text-[10px] text-amber-400/60 pl-0.5">{m.calc_yoy_ready_source({ source: yoySource })}</p>
+              <p class="text-[10px] text-amber-400/60 ps-0.5">{m.calc_yoy_ready_source({ source: yoySource })}</p>
             {/if}
           </label>
           <div class="space-y-1">
@@ -844,7 +844,7 @@
                 <option value="no">{m.calc_maids_no()}</option>
                 <option value="yes">{m.calc_finish_branding_yes()}</option>
               </select>
-              <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <svg class="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
@@ -854,7 +854,7 @@
             <input type="number" bind:value={additionalCapex} min="0" step="5000" class={inpManual} />
           </label>
         </div>
-        <p class="text-[11px] text-white/30 pl-0.5">
+        <p class="text-[11px] text-white/30 ps-0.5">
           {m.calc_selling_price_based_on({ psf: comparablePsf.toLocaleString('en-AE'), area: String(livingArea), pct: String(annualAppPct), years: String(yearsToResale), extra: otherAppPct > 0 ? ` × (1 + ${otherAppPct}%)` : '' })} <span class="text-amber-400/70">{fmtAed(sellingPrice)}</span>
         </p>
       </fieldset>

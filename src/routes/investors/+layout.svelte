@@ -113,7 +113,7 @@
       <h2 class="text-sm sm:text-lg font-bold text-white leading-tight">
         Abu Dhabi Property Investment Insights
       </h2>
-      <p class="hidden sm:block text-xs text-white/40 border-l border-white/10 pl-3 ml-1">
+      <p class="hidden sm:block text-xs text-white/40 border-s border-white/10 ps-3 ms-1">
         ADREC transaction data · {prevSalesYear}–{salesYear}
       </p>
     </div>
@@ -137,7 +137,7 @@
             </option>
           {/each}
         </select>
-        <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <svg class="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
         </svg>
       </div>
@@ -225,7 +225,7 @@
       </p>
 
       <!-- What's included -->
-      <ul class="text-left space-y-2.5 mb-8">
+      <ul class="text-start space-y-2.5 mb-8">
         {#each [
           'Year-on-year price appreciation by district & project',
           'Gross rental yield % by community',

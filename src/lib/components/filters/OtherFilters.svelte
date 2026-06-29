@@ -87,7 +87,7 @@
 
   <!-- Dropdown panel -->
   {#if open}
-    <div class="absolute right-0 z-30 mt-2 w-72 max-w-[calc(100vw-1rem)] rounded-2xl border border-gray-200 bg-white shadow-xl overflow-hidden">
+    <div class="absolute end-0 z-30 mt-2 w-72 max-w-[calc(100vw-1rem)] rounded-2xl border border-gray-200 bg-white shadow-xl overflow-hidden">
 
       <!-- Header -->
       <div class="px-4 py-3 border-b border-gray-100">

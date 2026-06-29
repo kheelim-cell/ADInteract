@@ -53,14 +53,14 @@
     <table class="w-full text-sm">
       <thead>
         <tr class="bg-gray-50 border-b border-gray-100">
-          <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">#</th>
-          <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_district()}</th>
-          <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_community()}</th>
-          <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_median_sale_price()}</th>
-          <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_median_annual_rent()}</th>
+          <th class="px-5 py-3 text-start text-xs font-semibold uppercase tracking-wider text-gray-400">#</th>
+          <th class="px-5 py-3 text-start text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_district()}</th>
+          <th class="px-5 py-3 text-start text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_community()}</th>
+          <th class="px-5 py-3 text-end text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_median_sale_price()}</th>
+          <th class="px-5 py-3 text-end text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_median_annual_rent()}</th>
           <th class="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-400 w-44">{m.yield_table_th_gross_yield()}</th>
-          <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_sales()}</th>
-          <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_projects()}</th>
+          <th class="px-5 py-3 text-end text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_sales()}</th>
+          <th class="px-5 py-3 text-end text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_projects()}</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-50">
@@ -104,10 +104,10 @@
                   {row.community}
                 </a>
               </td>
-              <td class="px-5 py-3.5 text-right text-gray-700 whitespace-nowrap tabular-nums">
+              <td class="px-5 py-3.5 text-end text-gray-700 whitespace-nowrap tabular-nums">
                 {fmtCurrency(row.medianSalePrice)}
               </td>
-              <td class="px-5 py-3.5 text-right text-gray-700 whitespace-nowrap tabular-nums">
+              <td class="px-5 py-3.5 text-end text-gray-700 whitespace-nowrap tabular-nums">
                 {fmtCurrency(row.medianAnnualRent)}/yr
               </td>
               <td class="px-5 py-3.5">
@@ -123,8 +123,8 @@
                   </span>
                 </div>
               </td>
-              <td class="px-5 py-3.5 text-right text-xs text-gray-500 tabular-nums">{row.saleCount.toLocaleString()}</td>
-              <td class="px-5 py-3.5 text-right text-xs text-gray-500 tabular-nums">{row.projectCount}</td>
+              <td class="px-5 py-3.5 text-end text-xs text-gray-500 tabular-nums">{row.saleCount.toLocaleString()}</td>
+              <td class="px-5 py-3.5 text-end text-xs text-gray-500 tabular-nums">{row.projectCount}</td>
             </tr>
           {/each}
         {/if}

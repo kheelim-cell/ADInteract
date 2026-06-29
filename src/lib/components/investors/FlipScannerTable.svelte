@@ -50,7 +50,7 @@
     return encodeURIComponent(name.toLowerCase().replace(/\s+/g, '-'));
   }
 
-  const TH = 'text-left text-[10px] font-bold uppercase tracking-wider text-gray-400 py-2 px-3 whitespace-nowrap select-none cursor-pointer hover:text-gray-600 transition-colors';
+  const TH = 'text-start text-[10px] font-bold uppercase tracking-wider text-gray-400 py-2 px-3 whitespace-nowrap select-none cursor-pointer hover:text-gray-600 transition-colors';
   const TD = 'py-2.5 px-3 text-sm';
 
   function arrow(col: SortCol): string {
@@ -147,10 +147,10 @@
     </div>
 
     <!-- Desktop: full table -->
-    <table class="hidden md:table w-full border-collapse text-left">
+    <table class="hidden md:table w-full border-collapse text-start">
       <thead class="border-b border-gray-100 bg-gray-50/80">
         <tr>
-          <th class="{TH} pl-4" style="min-width:180px">{m.flip_th_project()}</th>
+          <th class="{TH} ps-4" style="min-width:180px">{m.flip_th_project()}</th>
           <th class={TH}>{m.calc_field_district()}</th>
           <th class={TH}>{m.calc_field_layout()}</th>
           <!-- sortable columns -->
@@ -179,7 +179,7 @@
         {#each sorted as row, i}
           <tr class="hover:bg-gray-50/60 transition-colors {i % 2 === 0 ? '' : 'bg-gray-50/30'}">
             <!-- Project name → link -->
-            <td class="{TD} pl-4 font-medium text-gray-900" style="min-width:180px">
+            <td class="{TD} ps-4 font-medium text-gray-900" style="min-width:180px">
               <a
                 href="{base}/project/{projectSlug(row.projectName)}"
                 class="hover:text-brand-600 hover:underline transition-colors line-clamp-2"
@@ -202,34 +202,34 @@
             <td class="{TD} capitalize whitespace-nowrap text-gray-600">{row.layout}</td>
 
             <!-- Entry PSF -->
-            <td class="{TD} text-right tabular-nums text-gray-700 whitespace-nowrap">
+            <td class="{TD} text-end tabular-nums text-gray-700 whitespace-nowrap">
               {fmt(row.entryPsf)}
             </td>
 
             <!-- Exit PSF -->
-            <td class="{TD} text-right tabular-nums text-gray-700 whitespace-nowrap">
+            <td class="{TD} text-end tabular-nums text-gray-700 whitespace-nowrap">
               {fmt(row.exitPsf)}
             </td>
 
             <!-- PSF Gain -->
-            <td class="{TD} text-right tabular-nums font-semibold text-emerald-700 whitespace-nowrap">
+            <td class="{TD} text-end tabular-nums font-semibold text-emerald-700 whitespace-nowrap">
               +{fmt(row.psfGain)}
             </td>
 
             <!-- ROI % — colour banded -->
-            <td class="{TD} text-right whitespace-nowrap">
+            <td class="{TD} text-end whitespace-nowrap">
               <span class="inline-block rounded-full px-2 py-0.5 text-sm {roiClass(row.roiPct)}">
                 +{Math.round(row.roiPct)}%
               </span>
             </td>
 
             <!-- Off-plan count with tooltip-style confidence -->
-            <td class="{TD} text-right text-gray-500 whitespace-nowrap">
+            <td class="{TD} text-end text-gray-500 whitespace-nowrap">
               {row.offplanCount}
             </td>
 
             <!-- Secondary count -->
-            <td class="{TD} text-right text-gray-500 whitespace-nowrap">
+            <td class="{TD} text-end text-gray-500 whitespace-nowrap">
               {row.secondaryCount}
             </td>
 

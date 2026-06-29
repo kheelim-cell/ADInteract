@@ -58,7 +58,7 @@
     <button
       type="button"
       onclick={closeSignIn}
-      class="absolute top-3.5 right-3.5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+      class="absolute top-3.5 end-3.5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
       aria-label="Close"
     >
       <svg class="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -124,13 +124,13 @@
             WhatsApp Number
           </label>
           <div class="flex items-center rounded-xl border border-gray-200 focus-within:border-brand-400 focus-within:ring-2 focus-within:ring-brand-400/20 transition-colors overflow-hidden">
-            <span class="pl-3.5 pr-1 text-sm text-gray-400 select-none">+</span>
+            <span class="ps-3.5 pe-1 text-sm text-gray-400 select-none">+</span>
             <input
               id="auth-whatsapp"
               type="tel"
               bind:value={whatsapp}
               placeholder="971501234567"
-              class="flex-1 pr-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none bg-transparent"
+              class="flex-1 pe-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none bg-transparent"
             />
           </div>
           <p class="mt-1 text-xs text-gray-400">Include country code · e.g. 971501234567</p>

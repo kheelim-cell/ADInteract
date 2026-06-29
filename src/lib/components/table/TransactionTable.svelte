@@ -322,7 +322,7 @@
                   </p>
                 {/if}
               </div>
-              <div class="text-right flex-shrink-0">
+              <div class="text-end flex-shrink-0">
                 <p class="text-sm font-bold text-gray-900">{formatCurrency(row.price_aed)}</p>
                 {#if row.rate_per_sqft}
                   <p class="text-xs text-gray-400 mt-0.5">
@@ -372,7 +372,7 @@
               {#if row.project_name && row.project_name.toLowerCase() !== 'private'}
                 <a
                   href="{base}/project/{encodeURIComponent(row.project_name)}"
-                  class="ml-auto text-xs font-medium text-brand-600 hover:text-brand-700 whitespace-nowrap"
+                  class="ms-auto text-xs font-medium text-brand-600 hover:text-brand-700 whitespace-nowrap"
                 >
                   Explore →
                 </a>
@@ -393,7 +393,7 @@
             <th
               class="px-4 py-3 text-[11px] font-semibold tracking-wider uppercase
                      {$filters.sortColumn === col.key ? 'text-brand-600' : 'text-gray-500'}
-                     {col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'}
+                     {col.align === 'right' ? 'text-end' : col.align === 'center' ? 'text-center' : 'text-start'}
                      {col.width || ''}
                      {col.sortable ? 'cursor-pointer select-none hover:text-brand-500 transition-colors group' : ''}"
               onclick={() => col.sortable && col.key && handleColumnSort(col.key)}
@@ -436,10 +436,10 @@
             <tr class="animate-pulse">
               {#each columns as col}
                 <td class="px-4 py-4">
-                  <div class="h-4 rounded bg-gray-100 {col.align === 'right' ? 'ml-auto w-20' : 'w-24'}"></div>
+                  <div class="h-4 rounded bg-gray-100 {col.align === 'right' ? 'ms-auto w-20' : 'w-24'}"></div>
                 </td>
               {/each}
-              <td class="px-4 py-4"><div class="h-4 w-12 rounded bg-gray-100 ml-auto"></div></td>
+              <td class="px-4 py-4"><div class="h-4 w-12 rounded bg-gray-100 ms-auto"></div></td>
             </tr>
           {/each}
         {:else if transactions.length === 0}
@@ -502,7 +502,7 @@
               </td>
 
               <!-- Price + Rate -->
-              <td class="px-4 py-4 text-right align-top whitespace-nowrap">
+              <td class="px-4 py-4 text-end align-top whitespace-nowrap">
                 <div class="text-sm font-semibold text-gray-900">{formatCurrency(row.price_aed)}</div>
                 {#if row.rate_per_sqft}
                   <div class="text-xs text-gray-400 mt-0.5">AED {formatRate(row.rate_per_sqft).replace(' AED/sqft', '')} /sqft</div>
@@ -520,7 +520,7 @@
               </td>
 
               <!-- Built-up Area -->
-              <td class="px-4 py-4 text-right align-top whitespace-nowrap">
+              <td class="px-4 py-4 text-end align-top whitespace-nowrap">
                 <span class="text-sm text-gray-700 tabular-nums">{row.area_sqft ? formatArea(row.area_sqft) : '-'}</span>
               </td>
 
@@ -557,7 +557,7 @@
               </td>
 
               <!-- Project link -->
-              <td class="px-4 py-4 text-right align-top">
+              <td class="px-4 py-4 text-end align-top">
                 {#if row.project_name && row.project_name.toLowerCase() !== 'private'}
                   <a
                     href="{base}/project/{encodeURIComponent(row.project_name)}"

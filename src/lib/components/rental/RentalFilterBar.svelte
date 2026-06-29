@@ -146,11 +146,11 @@
           {/if}
         </div>
         {#if districtOpen && districtMatches().length > 0}
-          <div class="absolute top-full left-0 z-30 mt-1 w-64 max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
+          <div class="absolute top-full start-0 z-30 mt-1 w-64 max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
             {#each districtMatches() as d}
               {@const cnt = $rentalDistrictCounts[d] ?? 0}
               <button type="button" onclick={() => selectDistrict(d)}
-                class="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition-colors text-left">
+                class="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition-colors text-start">
                 <span class="flex-1">{d}</span>
                 {#if cnt > 0}
                   <span class="text-xs text-gray-400 flex-shrink-0 tabular-nums">{fmtProjectCount(cnt)}</span>
@@ -184,20 +184,20 @@
           {/if}
         </div>
         {#if projectOpen && projectQuery.trim().length < PROJECT_MIN}
-          <div class="absolute top-full left-0 z-30 mt-1 w-72 rounded-xl border border-gray-200 bg-white shadow-lg px-4 py-3">
+          <div class="absolute top-full start-0 z-30 mt-1 w-72 rounded-xl border border-gray-200 bg-white shadow-lg px-4 py-3">
             <p class="text-xs text-gray-400 text-center">Type at least {PROJECT_MIN} characters to search projects</p>
           </div>
         {:else if projectOpen && projectMatches().length > 0}
-          <div class="absolute top-full left-0 z-30 mt-1 w-72 max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
+          <div class="absolute top-full start-0 z-30 mt-1 w-72 max-h-64 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
             {#each projectMatches() as p}
               <button type="button" onclick={() => selectProject(p)}
-                class="flex w-full items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition-colors text-left">
+                class="flex w-full items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition-colors text-start">
                 {p}
               </button>
             {/each}
           </div>
         {:else if projectOpen && projectQuery.trim().length >= PROJECT_MIN}
-          <div class="absolute top-full left-0 z-30 mt-1 w-72 rounded-xl border border-gray-200 bg-white shadow-lg px-4 py-3">
+          <div class="absolute top-full start-0 z-30 mt-1 w-72 rounded-xl border border-gray-200 bg-white shadow-lg px-4 py-3">
             <p class="text-xs text-gray-400 text-center">No results for "{projectQuery.trim()}"</p>
           </div>
         {/if}
@@ -305,7 +305,7 @@
               {/if}
             </button>
             {#if shareMenuOpen}
-              <div class="absolute right-0 z-30 mt-1.5 w-52 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
+              <div class="absolute end-0 z-30 mt-1.5 w-52 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
                 <button type="button" onclick={copyLink}
                   class="flex w-full items-center gap-2.5 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
                   <svg class="h-4 w-4 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

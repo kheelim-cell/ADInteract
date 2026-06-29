@@ -132,7 +132,7 @@
             {#if avatarMenuOpen}
               <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
               <div
-                class="absolute right-0 z-30 mt-2 w-44 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden"
+                class="absolute end-0 z-30 mt-2 w-44 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden"
                 onclick={() => (avatarMenuOpen = false)}
               >
                 <div class="px-4 py-3 border-b border-gray-100">

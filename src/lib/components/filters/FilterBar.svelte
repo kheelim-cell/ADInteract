@@ -124,7 +124,7 @@
           </button>
 
           {#if shareMenuOpen}
-            <div class="absolute right-0 z-30 mt-1.5 w-52 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
+            <div class="absolute end-0 z-30 mt-1.5 w-52 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
               <button
                 type="button"
                 onclick={copyLink}

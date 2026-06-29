@@ -121,7 +121,7 @@
           {#each HEADERS as h}
             <th
               class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-400 cursor-pointer hover:text-gray-700 whitespace-nowrap
-                     {h.align === 'right' ? 'text-right' : 'text-left'}"
+                     {h.align === 'right' ? 'text-end' : 'text-start'}"
               onclick={() => onSort(h.col)}
             >
               {h.label}{sortArrow(h.col)}
@@ -170,10 +170,10 @@
               <td class="px-4 py-3 text-gray-600 whitespace-nowrap">{row.district}</td>
               <td class="px-4 py-3 text-gray-500 whitespace-nowrap capitalize">{row.typology || '—'}</td>
               <td class="px-4 py-3 text-gray-500 whitespace-nowrap capitalize">{row.layout}</td>
-              <td class="px-4 py-3 text-right text-gray-600 whitespace-nowrap">{fmt(row.lower_rent)}</td>
-              <td class="px-4 py-3 text-right font-semibold text-gray-900 whitespace-nowrap">{fmt(row.median_rent)}</td>
-              <td class="px-4 py-3 text-right text-gray-600 whitespace-nowrap">{fmt(row.upper_rent)}</td>
-              <td class="px-4 py-3 text-right whitespace-nowrap">
+              <td class="px-4 py-3 text-end text-gray-600 whitespace-nowrap">{fmt(row.lower_rent)}</td>
+              <td class="px-4 py-3 text-end font-semibold text-gray-900 whitespace-nowrap">{fmt(row.median_rent)}</td>
+              <td class="px-4 py-3 text-end text-gray-600 whitespace-nowrap">{fmt(row.upper_rent)}</td>
+              <td class="px-4 py-3 text-end whitespace-nowrap">
                 {#if row.yoy_change !== null && row.yoy_change !== undefined}
                   <span class="inline-flex items-center gap-1 text-xs font-semibold rounded-full px-2 py-0.5
                                {row.yoy_change > 0
@@ -236,7 +236,7 @@
                   {row.district}{row.typology ? ` · ${row.typology}` : ''} · <span class="capitalize">{row.layout}</span>
                 </p>
               </div>
-              <div class="text-right flex-shrink-0">
+              <div class="text-end flex-shrink-0">
                 <p class="text-sm font-bold text-gray-900">{fmt(row.median_rent)}</p>
                 <p class="text-xs text-gray-400">median/yr</p>
               </div>

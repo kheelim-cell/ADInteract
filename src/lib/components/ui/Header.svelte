@@ -13,6 +13,10 @@
   let switchLocale = $derived(currentLocale === 'ar' ? 'en' : 'ar');
   let switchHref = $derived(localizeHref(deLocalizeHref(currentHref), { locale: switchLocale }));
 
+  function navHref(path: string): string {
+    return localizeHref(`${base}${path}`);
+  }
+
   let { lastUpdated = '' } = $props();
 
   let avatarMenuOpen = $state(false);
@@ -94,21 +98,21 @@
       {#if hasRental}
         <nav class="hidden sm:flex items-center rounded-full bg-white/10 border border-white/25 p-1 gap-1">
           <a
-            href="{base}/"
+            href={navHref('/')}
             class="rounded-full w-28 py-2 text-sm font-bold text-center transition-colors tracking-wide
                    {!isRentalPage && !isInvestorPage ? 'bg-brand-500 text-white shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
             {m.header_nav_sales()}
           </a>
           <a
-            href="{base}/rental"
+            href={navHref('/rental')}
             class="rounded-full w-28 py-2 text-sm font-bold text-center transition-colors tracking-wide
                    {isRentalPage ? 'bg-brand-500 text-white shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
             {m.header_nav_rental()}
           </a>
           <a
-            href="{base}/investors"
+            href={navHref('/investors')}
             class="rounded-full w-28 py-2 text-sm font-bold text-center transition-colors tracking-wide
                    {isInvestorPage ? 'bg-emerald-600 text-white shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
@@ -123,6 +127,7 @@
         <!-- Language switcher -->
         <a
           href={switchHref}
+          data-sveltekit-reload
           class="flex-shrink-0 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 px-3 py-1.5 text-xs font-semibold text-white/70 hover:text-white transition-colors"
           aria-label={switchLocale === 'ar' ? m.language_arabic() : m.language_english()}
         >
@@ -202,21 +207,21 @@
       <div class="sm:hidden flex justify-center pb-3">
         <nav class="flex items-center rounded-full bg-white/10 border border-white/25 p-0.5 gap-0.5">
           <a
-            href="{base}/"
+            href={navHref('/')}
             class="rounded-full w-[5.5rem] py-1.5 text-xs font-semibold text-center transition-colors
                    {!isRentalPage && !isInvestorPage ? 'bg-brand-500 text-white shadow-sm' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
             {m.header_nav_sales()}
           </a>
           <a
-            href="{base}/rental"
+            href={navHref('/rental')}
             class="rounded-full w-[5.5rem] py-1.5 text-xs font-semibold text-center transition-colors
                    {isRentalPage ? 'bg-brand-500 text-white shadow-sm' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >
             {m.header_nav_rental()}
           </a>
           <a
-            href="{base}/investors"
+            href={navHref('/investors')}
             class="rounded-full w-[5.5rem] py-1.5 text-xs font-semibold text-center transition-colors
                    {isInvestorPage ? 'bg-emerald-600 text-white shadow-sm' : 'text-white/60 hover:text-white hover:bg-white/10'}"
           >

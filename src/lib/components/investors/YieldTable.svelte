@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { YieldRow } from '$lib/db/investor_queries';
   import { base } from '$app/paths';
+  import { m } from '$lib/paraglide/messages.js';
 
   let {
     rows,
@@ -41,9 +42,9 @@
 
   <!-- Header -->
   <div class="px-5 py-4 border-b border-gray-100">
-    <h3 class="text-sm font-bold text-navy">Gross Rental Yield by Community</h3>
+    <h3 class="text-sm font-bold text-navy">{m.yield_table_title()}</h3>
     <p class="text-xs text-gray-400 mt-0.5">
-      Median annual rent ÷ median sale price · Communities with ≥ 5 sales and rental benchmark data
+      {m.yield_table_subtitle()}
     </p>
   </div>
 
@@ -53,13 +54,13 @@
       <thead>
         <tr class="bg-gray-50 border-b border-gray-100">
           <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">#</th>
-          <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">District</th>
-          <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">Community ↗</th>
-          <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">Median Sale Price</th>
-          <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">Median Annual Rent</th>
-          <th class="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-400 w-44">Gross Yield</th>
-          <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400"># Sales</th>
-          <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400"># Projects</th>
+          <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_district()}</th>
+          <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_community()}</th>
+          <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_median_sale_price()}</th>
+          <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_median_annual_rent()}</th>
+          <th class="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-400 w-44">{m.yield_table_th_gross_yield()}</th>
+          <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_sales()}</th>
+          <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">{m.yield_table_th_projects()}</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-50">
@@ -76,7 +77,7 @@
         {:else if rows.length === 0}
           <tr>
             <td colspan="8" class="px-5 py-16 text-center text-sm text-gray-400">
-              No communities found with both sales and rental benchmark data.
+              {m.yield_table_no_data_desktop()}
             </td>
           </tr>
 
@@ -97,7 +98,7 @@
                   href={googleSearchUrl(row.community, row.district)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="Search Google to find the exact location of this community"
+                  title={m.yield_table_search_title()}
                   class="font-medium text-gray-900 hover:text-brand-600 hover:underline"
                 >
                   {row.community}
@@ -139,10 +140,10 @@
       >
         {#if expanded}
           <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" /></svg>
-          Show fewer
+          {m.yield_table_show_fewer()}
         {:else}
           <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
-          Show all {rows.length} communities
+          {m.yield_table_show_all({ count: String(rows.length) })}
         {/if}
       </button>
     {/if}
@@ -166,7 +167,7 @@
       {/each}
 
     {:else if rows.length === 0}
-      <div class="px-4 py-12 text-center text-sm text-gray-400">No data available.</div>
+      <div class="px-4 py-12 text-center text-sm text-gray-400">{m.yield_table_no_data_mobile()}</div>
 
     {:else}
       <div class="divide-y divide-gray-50">
@@ -188,7 +189,7 @@
                   href={googleSearchUrl(row.community, row.district)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="Search Google to find the exact location of this community"
+                  title={m.yield_table_search_title()}
                   class="text-xs text-gray-500 hover:text-brand-600 hover:underline mt-0.5 block"
                 >
                   {row.community} ↗
@@ -207,11 +208,11 @@
             <!-- Sale price + rent -->
             <div class="mt-2.5 grid grid-cols-2 gap-x-4 text-xs">
               <div>
-                <p class="text-gray-400">Sale price</p>
+                <p class="text-gray-400">{m.yield_table_sale_price_label()}</p>
                 <p class="font-semibold text-gray-800 tabular-nums">{fmtCurrency(row.medianSalePrice)}</p>
               </div>
               <div>
-                <p class="text-gray-400">Annual rent</p>
+                <p class="text-gray-400">{m.yield_table_annual_rent_label()}</p>
                 <p class="font-semibold text-gray-800 tabular-nums">{fmtCurrency(row.medianAnnualRent)}</p>
               </div>
             </div>
@@ -227,10 +228,10 @@
         >
           {#if expanded}
             <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" /></svg>
-            Show fewer
+            {m.yield_table_show_fewer()}
           {:else}
             <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
-            Show all {rows.length} communities
+            {m.yield_table_show_all({ count: String(rows.length) })}
           {/if}
         </button>
       {/if}

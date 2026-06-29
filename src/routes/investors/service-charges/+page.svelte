@@ -2,6 +2,7 @@
   import { metadata } from '$lib/stores/db';
   import ServiceChargeTable from '$lib/components/investors/ServiceChargeTable.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   let filterDistrict = $state('');
   let searchQuery    = $state('');
@@ -24,7 +25,7 @@
   <div>
     <div class="flex flex-wrap items-center gap-3">
       <select bind:value={filterDistrict} class={sel}>
-        <option value="">All Districts</option>
+        <option value="">{m.calc_district_all()}</option>
         {#each districts as d}
           <option value={d}>{d}</option>
         {/each}
@@ -37,7 +38,7 @@
         </svg>
         <input
           type="text"
-          placeholder="Search project or developer…"
+          placeholder={m.servicecharges_search_placeholder()}
           bind:value={searchQuery}
           class="pl-8 pr-3 py-2 text-xs border border-gray-200 rounded-lg bg-white focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100 min-w-[200px]"
         />
@@ -52,7 +53,7 @@
           <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
-          Clear filters
+          {m.pipeline_clear_filters()}
         </button>
       {/if}
     </div>
@@ -61,7 +62,7 @@
 
   <!-- ── Section heading ─────────────────────────────────────────────────── -->
   <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">
-    Annual Service Charges · ADREC Registered Projects
+    {m.servicecharges_section_heading()}
   </h3>
 
   <!-- ── Service charge table ────────────────────────────────────────────── -->

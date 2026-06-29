@@ -1,6 +1,7 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import { onMount } from 'svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   interface Project {
     project_name: string;
@@ -114,7 +115,7 @@
       projects    = json.projects ?? [];
       lastUpdated = json.last_updated ?? '';
     } catch (e) {
-      error = 'Failed to load service charge data.';
+      error = m.servicecharges_load_error();
     } finally {
       loading = false;
     }
@@ -128,10 +129,10 @@
 
   <!-- Header -->
   <div class="px-5 py-4 border-b border-gray-100">
-    <h3 class="text-sm font-bold text-navy">Service Charges by Project</h3>
+    <h3 class="text-sm font-bold text-navy">{m.servicecharges_table_title()}</h3>
     <p class="text-xs text-gray-400 mt-0.5">
-      Annual service charge fees (AED/sqft) · Source: ADREC
-      {#if lastUpdated}· Updated {lastUpdated}{/if}
+      {m.servicecharges_table_subtitle()}
+      {#if lastUpdated}{m.servicecharges_table_updated({ date: lastUpdated })}{/if}
     </p>
   </div>
 
@@ -152,13 +153,13 @@
         <thead>
           <tr class="bg-gray-50 border-b border-gray-100">
             <th class={thClass} onclick={() => setSort('project_name')}>
-              Project {sortIcon('project_name')}
+              {m.servicecharges_th_project()} {sortIcon('project_name')}
             </th>
             <th class={thClass} onclick={() => setSort('district')}>
-              District {sortIcon('district')}
+              {m.servicecharges_th_district()} {sortIcon('district')}
             </th>
             <th class={thClass} onclick={() => setSort('developer_name')}>
-              Developer {sortIcon('developer_name')}
+              {m.servicecharges_th_developer()} {sortIcon('developer_name')}
             </th>
             <th class={thRClass} onclick={() => setSort('sc_avg')}>
               AED/sqft {sortIcon('sc_avg')}
@@ -179,7 +180,7 @@
           {:else if filtered().length === 0}
             <tr>
               <td colspan="4" class="px-5 py-16 text-center text-sm text-gray-400">
-                No projects match the current filters.
+                {m.servicecharges_no_match()}
               </td>
             </tr>
 
@@ -228,16 +229,16 @@
         >
           {#if expanded}
             <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" /></svg>
-            Show fewer
+            {m.servicecharges_show_fewer()}
           {:else}
             <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
-            Show all {filtered().length} projects
+            {m.servicecharges_show_all({ count: String(filtered().length) })}
           {/if}
         </button>
       {:else if !loading && filtered().length > 0}
         <div class="px-5 py-3 border-t border-gray-50 text-xs text-gray-400">
-          {filtered().length} project{filtered().length === 1 ? '' : 's'}
-          {#if district || searchQuery.trim()} matching filters{/if}
+          {filtered().length === 1 ? m.servicecharges_count_singular({ count: String(filtered().length) }) : m.servicecharges_count_plural({ count: String(filtered().length) })}
+          {#if district || searchQuery.trim()}{m.servicecharges_matching_filters()}{/if}
         </div>
       {/if}
     </div>
@@ -297,10 +298,10 @@
           >
             {#if expanded}
               <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" /></svg>
-              Show fewer
+              {m.servicecharges_show_fewer()}
             {:else}
               <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
-              Show all {filtered().length} projects
+              {m.servicecharges_show_all({ count: String(filtered().length) })}
             {/if}
           </button>
         {/if}

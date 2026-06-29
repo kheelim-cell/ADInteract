@@ -11,6 +11,12 @@
 	h1, h2, h3, h4, h5, h6 {
 		@apply font-semibold tracking-tight;
 	}
+
+	/* Arabic pages: Noto Sans Arabic for Arabic glyphs, Montserrat stays as the
+	   fallback for mixed-in Latin text (project names, "AED", proper nouns). */
+	:lang(ar) {
+		font-family: 'Noto Sans Arabic', 'Montserrat', system-ui, sans-serif;
+	}
 }
 
 /* Hide scrollbar on filter bar but keep it scrollable */

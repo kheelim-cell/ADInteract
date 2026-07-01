@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-06-21T06:56:40.885208+00:00",
-  "total_licensed": 5081,
+  "generated_at": "2026-07-01T06:29:53.060357+00:00",
+  "total_licensed": 461,
   "by_profession": [
     {
       "label": "Brokers",
-      "count": 4619
+      "count": 0
     },
     {
       "label": "Surveyors",
-      "count": 159
+      "count": 163
     },
     {
       "label": "Evaluators",
-      "count": 137
+      "count": 130
     },
     {
       "label": "Account trustees",
-      "count": 29
+      "count": 30
     },
     {
       "label": "Developers",
-      "count": 136
+      "count": 137
     },
     {
       "label": "Auctioneers",
@@ -29,66 +29,12 @@
   ],
   "developer_breakdown": {
     "Primary Developer": 35,
-    "Secondary Developer": 94
+    "Secondary Developer": 95
   },
   "samples": {
-    "Broker": [
-      {
-        "name": "EXECUTIVE GULF PROPERTIES - L.L.C - S.P.C",
-        "classification": "Brokerage"
-      },
-      {
-        "name": "MOHAMED IBRAHIM HUSAIN",
-        "classification": "Brokerage"
-      },
-      {
-        "name": "SARHAN THANI SARHAN SALOUMA",
-        "classification": "Brokerage"
-      },
-      {
-        "name": "عهود عبدالله جمعه محمد",
-        "classification": "Brokerage"
-      },
-      {
-        "name": "21 LANES REAL ESTATE - L.L.C - S.P.C",
-        "classification": "Brokerage"
-      },
-      {
-        "name": "7TH STREET PROPERTY - L.L.C - S.P.C",
-        "classification": "Brokerage"
-      },
-      {
-        "name": "804 AVENUE PROPERTIES AND CONTRACTING - L.L.C - S.P.C",
-        "classification": "Brokerage"
-      },
-      {
-        "name": "88 STREET PROPERTIES AND BUILDING MAINTENANCE - SOLE PROPRIETORSHIP L.L.C.",
-        "classification": "Brokerage"
-      },
-      {
-        "name": "A B C PROPERTIES BROKERAGE - SOLE PROPRIETORSHIP L.L.C.",
-        "classification": "Brokerage"
-      },
-      {
-        "name": "A H F GLOBAL REAL ESTATE - L.L.C",
-        "classification": "Brokerage"
-      },
-      {
-        "name": "A M M H GENERAL CONTRACTING & MAINTENANCE - SOLE PROPRIETORSHIP L.L.C.",
-        "classification": "Brokerage"
-      },
-      {
-        "name": "A ONE PRIME PROPERTIES - L.L.C - S.P.C",
-        "classification": "Brokerage"
-      }
-    ],
     "Evaluators": [
       {
         "name": "3 D APPRAISAL INTERNATIONAL REAL ESTATE VALUATION SERVICES L.L.C - BRANCH OF ABU DHABI 1",
-        "classification": "Evaluator"
-      },
-      {
-        "name": "ABDEL MAJEED MOHAMMAD A M AL KHALIDI",
         "classification": "Evaluator"
       },
       {
@@ -124,11 +70,15 @@
         "classification": "Evaluator"
       },
       {
-        "name": "AMER SAKHR MAWAS",
+        "name": "AMIR NASSIRI",
         "classification": "Evaluator"
       },
       {
-        "name": "AMIR NASSIRI",
+        "name": "ANDREI SHCHETININ",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "ANDREW MARK LAVER",
         "classification": "Evaluator"
       }
     ],
@@ -159,6 +109,10 @@
         "classification": "Surveying"
       },
       {
+        "name": "ABUBAKR HATIM ELGURANI ABDELRAHMAN",
+        "classification": "Surveying"
+      },
+      {
         "name": "AHMED ABDELHAMEED AHMED ALI",
         "classification": "Surveying"
       },
@@ -176,10 +130,6 @@
       },
       {
         "name": "AHMED MOHAMEDOSMAN SEEDAHMED ELHASSAN",
-        "classification": "Surveying"
-      },
-      {
-        "name": "AHMED MOHAMMED MOHAMMED MOHAMMED",
         "classification": "Surveying"
       }
     ],

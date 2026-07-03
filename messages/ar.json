@@ -95,6 +95,8 @@
 	"investor_tool_pipeline_desc": "سرعة المبيعات المسجلة حسب المشروع — متسارعة، متباطئة أو ثابتة",
 	"investor_tool_market_structure_title": "هيكل السوق",
 	"investor_tool_market_structure_desc": "عدد الوسطاء والوكالات والمطوّرين المرخصين من DARI",
+	"investor_tool_districts_title": "تصنيف أحياء الاستثمار",
+	"investor_tool_districts_desc": "أبرز أحياء أبوظبي مرتبةً حسب اتجاه الأسعار والحجم والقيمة ونشاط التطوير",
 	"investor_tool_rental_yield_title": "عائد الإيجار",
 	"investor_tool_rental_yield_desc": "نسبة العائد الإجمالي حسب المجتمع، النوع والتصميم",
 

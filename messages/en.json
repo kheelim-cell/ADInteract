@@ -95,6 +95,8 @@
 	"investor_tool_pipeline_desc": "Registered-sales velocity by project — accelerating, slowing or stale",
 	"investor_tool_market_structure_title": "Market Structure",
 	"investor_tool_market_structure_desc": "Licensed broker, agency & developer counts from DARI",
+	"investor_tool_districts_title": "Investment District Ranking",
+	"investor_tool_districts_desc": "Top Abu Dhabi districts ranked by price trend, volume, value & off-plan activity",
 	"investor_tool_rental_yield_title": "Rental Yield",
 	"investor_tool_rental_yield_desc": "Gross yield % by community, type & layout",
 

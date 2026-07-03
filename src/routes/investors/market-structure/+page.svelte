@@ -3,12 +3,16 @@
 
   type ProfessionRow = { label: string; count: number };
   type Sample = { name: string; classification: string };
+  type AgencyRow = { name: string; employee_count: number };
   type MarketStructure = {
     generated_at: string;
     total_licensed: number;
     by_profession: ProfessionRow[];
     developer_breakdown: Record<string, number>;
+    broker_breakdown: Record<string, number>;
     samples: Record<string, Sample[]>;
+    agency_rankings: AgencyRow[];
+    agency_rankings_total_scraped: number;
   };
 
   const data = rawData as MarketStructure;
@@ -21,6 +25,10 @@
 
   const primaryDevelopers = data.developer_breakdown['Primary Developer'] ?? 0;
   const secondaryDevelopers = data.developer_breakdown['Secondary Developer'] ?? 0;
+
+  const agencyCount = data.broker_breakdown?.['Companies'] ?? 0;
+  const individualBrokerCount = data.broker_breakdown?.['Individual'] ?? 0;
+  const maxAgencyEmployees = Math.max(1, ...data.agency_rankings.map(a => a.employee_count));
 
   const sampleProfessions = Object.keys(data.samples).filter(label => (data.samples[label] ?? []).length > 0);
 
@@ -58,7 +66,7 @@
   </div>
 
   <!-- ── KPI strip ──────────────────────────────────────────────────────── -->
-  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+  <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
     <div class="rounded-xl border border-gray-100 bg-white px-4 py-3.5 shadow-sm">
       <p class="text-xs text-gray-500 mb-1">Total licensed</p>
       <p class="text-xl font-bold text-gray-900">{fmt(data.total_licensed)}</p>
@@ -66,6 +74,10 @@
     <div class="rounded-xl border border-gray-100 bg-white px-4 py-3.5 shadow-sm">
       <p class="text-xs text-gray-500 mb-1">Brokers</p>
       <p class="text-xl font-bold text-gray-900">{fmt(data.by_profession.find(p => p.label === 'Brokers')?.count ?? 0)}</p>
+    </div>
+    <div class="rounded-xl border border-gray-100 bg-white px-4 py-3.5 shadow-sm">
+      <p class="text-xs text-gray-500 mb-1">Agencies</p>
+      <p class="text-xl font-bold text-gray-900">{fmt(agencyCount)}</p>
     </div>
     <div class="rounded-xl border border-gray-100 bg-white px-4 py-3.5 shadow-sm">
       <p class="text-xs text-gray-500 mb-1">Developers</p>
@@ -106,6 +118,24 @@
         <div class="flex-1 rounded-xl bg-blue-50 border border-blue-100 px-4 py-3">
           <p class="text-xs text-blue-700 font-semibold mb-1">Secondary developers</p>
           <p class="text-xl font-bold text-blue-900">{fmt(secondaryDevelopers)}</p>
+        </div>
+      </div>
+    </div>
+  {/if}
+
+  <!-- ── Broker composition ────────────────────────────────────────────── -->
+  {#if agencyCount || individualBrokerCount}
+    <div class="rounded-2xl border border-gray-200 bg-white px-5 py-4">
+      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Broker composition</h3>
+      <p class="text-xs text-gray-400 mb-4">Within the Broker profession, agencies (companies) and independent brokers are licensed separately.</p>
+      <div class="flex gap-3">
+        <div class="flex-1 rounded-xl bg-emerald-50 border border-emerald-100 px-4 py-3">
+          <p class="text-xs text-emerald-700 font-semibold mb-1">Agencies (companies)</p>
+          <p class="text-xl font-bold text-emerald-900">{fmt(agencyCount)}</p>
+        </div>
+        <div class="flex-1 rounded-xl bg-blue-50 border border-blue-100 px-4 py-3">
+          <p class="text-xs text-blue-700 font-semibold mb-1">Independent brokers</p>
+          <p class="text-xl font-bold text-blue-900">{fmt(individualBrokerCount)}</p>
         </div>
       </div>
     </div>
@@ -158,16 +188,35 @@
     </div>
   {/if}
 
-  <!-- ── v2 teaser ──────────────────────────────────────────────────────── -->
-  <div class="rounded-2xl border border-dashed border-gray-200 bg-gray-50 px-5 py-4">
-    <div class="flex items-center gap-2 mb-1">
-      <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25z" />
-      </svg>
-      <p class="text-sm font-semibold text-gray-600">Top agencies by broker headcount — coming soon</p>
+  <!-- ── Top agencies by broker headcount ──────────────────────────────── -->
+  {#if data.agency_rankings.length > 0}
+    <div class="rounded-2xl border border-gray-200 bg-white px-5 py-4">
+      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Top agencies by broker headcount</h3>
+      <p class="text-xs text-gray-400 mb-4">Ranked by number of licensed broker employees listed against each agency, out of {fmt(data.agency_rankings_total_scraped)} agencies scraped.</p>
+      <div class="space-y-2.5">
+        {#each data.agency_rankings as a, i}
+          <div class="flex items-center gap-3">
+            <span class="w-5 flex-shrink-0 text-xs font-bold {i < 3 ? 'text-amber-500' : 'text-gray-300'}">{i + 1}</span>
+            <span class="flex-1 text-sm text-gray-800 truncate">{a.name}</span>
+            <div class="w-24 h-1.5 rounded-full bg-gray-100 overflow-hidden flex-shrink-0">
+              <div class="h-full rounded-full bg-emerald-500" style="width:{(a.employee_count / maxAgencyEmployees) * 100}%"></div>
+            </div>
+            <span class="w-8 flex-shrink-0 text-right text-sm font-semibold text-gray-900">{a.employee_count}</span>
+          </div>
+        {/each}
+      </div>
     </div>
-    <p class="text-xs text-gray-400">Requires a per-company detail fetch (employee list) on top of this directory scrape. Held for a follow-up build.</p>
-  </div>
+  {:else}
+    <div class="rounded-2xl border border-dashed border-gray-200 bg-gray-50 px-5 py-4">
+      <div class="flex items-center gap-2 mb-1">
+        <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25z" />
+        </svg>
+        <p class="text-sm font-semibold text-gray-600">Top agencies by broker headcount — pending first scrape</p>
+      </div>
+      <p class="text-xs text-gray-400">Requires a per-company detail fetch (employee list) across ~1,088 agencies — runs as part of the monthly refresh.</p>
+    </div>
+  {/if}
 
   <p class="mt-1 text-[10px] text-gray-400">Source: DARI public professions directory (dari.ae) via ADInteract.co · updated monthly · counts only, not unit/transaction data</p>
 

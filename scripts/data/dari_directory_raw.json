@@ -262,7 +262,11 @@
     ]
   },
   "developer_breakdown": {
-    "Primary Developer": 35,
-    "Secondary Developer": 94
+    "Primary Developer": 33,
+    "Secondary Developer": 96
+  },
+  "broker_breakdown": {
+    "Companies": 1088,
+    "Individual": 3531
   }
 }

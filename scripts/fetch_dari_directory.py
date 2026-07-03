@@ -188,6 +188,22 @@ def main():
             developer_breakdown = count_developer_classifications(page, counts["Developer"])
             print(f"  {developer_breakdown}")
 
+        # Broker profession mixes agencies (Company) and independent
+        # individual brokers — DARI's "Classification" filter exposes this
+        # split via an ownerType param, cheap to read (2 page loads, no
+        # pagination needed since we only want the totals).
+        broker_breakdown = {}
+        if counts.get("Broker"):
+            print("Reading Broker Company vs Individual split…")
+            for owner_label, owner_param in [("Companies", "COMPANIES"), ("Individual", "INDIVIDUAL")]:
+                url = f"https://www.dari.ae/en/app/directory?category=professions&ownerType={owner_param}&page=1&professionType=Broker"
+                page.goto(url, wait_until="networkidle", timeout=60_000)
+                page.wait_for_timeout(2000)
+                n = read_results_count(page)
+                if n is not None:
+                    broker_breakdown[owner_label] = n
+                    print(f"  {owner_label}: {n}")
+
         browser.close()
 
     output = {
@@ -195,6 +211,7 @@ def main():
         "total": sum(counts.values()),
         "samples": samples,
         "developer_breakdown": developer_breakdown,
+        "broker_breakdown": broker_breakdown,
     }
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:

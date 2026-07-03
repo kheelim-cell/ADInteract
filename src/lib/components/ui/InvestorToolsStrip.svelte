@@ -11,7 +11,7 @@
     label:     'text-brand-900',
     iconBg:    'bg-brand-50 group-hover:bg-brand-100',
     iconColor: 'text-brand-600',
-    cardBorder:'border-brand-200 hover:border-emerald-400',
+    cardBorder:'border-brand-200 hover:border-amber-500',
     heading:   'text-brand-900',
   } : {
     border:    'border-emerald-100',
@@ -20,7 +20,7 @@
     label:     'text-emerald-900',
     iconBg:    'bg-emerald-50 group-hover:bg-emerald-100',
     iconColor: 'text-emerald-600',
-    cardBorder:'border-emerald-100 hover:border-emerald-400',
+    cardBorder:'border-emerald-100 hover:border-amber-500',
     heading:   'text-emerald-900',
   });
 </script>
@@ -40,7 +40,7 @@
     <!-- ROI Calculator -->
     <a
       href="{base}/investors/calculator"
-      class="group relative flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md hover:bg-emerald-50 px-4 py-3.5 transition-all cursor-pointer"
+      class="group relative flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md hover:bg-amber-50 px-4 py-3.5 transition-all cursor-pointer"
     >
       <div class="flex items-center gap-2">
         <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg {t.iconBg} transition-colors">
@@ -49,7 +49,7 @@
           </svg>
         </span>
         <span class="text-sm font-semibold text-gray-900 group-hover:{t.label} transition-colors flex-1">{m.investor_tool_roi_calculator_title()}</span>
-        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-emerald-500 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-amber-600 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
         </svg>
       </div>
@@ -59,7 +59,7 @@
     <!-- District Comparison -->
     <a
       href="{base}/investors/compare"
-      class="group relative flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md hover:bg-emerald-50 px-4 py-3.5 transition-all cursor-pointer"
+      class="group relative flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md hover:bg-amber-50 px-4 py-3.5 transition-all cursor-pointer"
     >
       <div class="flex items-center gap-2">
         <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg {t.iconBg} transition-colors">
@@ -68,7 +68,7 @@
           </svg>
         </span>
         <span class="text-sm font-semibold text-gray-900 group-hover:{t.label} transition-colors flex-1">{m.investor_tool_compare_title()}</span>
-        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-emerald-500 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-amber-600 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
         </svg>
       </div>
@@ -78,7 +78,7 @@
     <!-- Flip Scanner -->
     <a
       href="{base}/investors/flip-scanner"
-      class="group relative flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md hover:bg-emerald-50 px-4 py-3.5 transition-all cursor-pointer"
+      class="group relative flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md hover:bg-amber-50 px-4 py-3.5 transition-all cursor-pointer"
     >
       <div class="flex items-center gap-2">
         <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg {t.iconBg} transition-colors">
@@ -87,7 +87,7 @@
           </svg>
         </span>
         <span class="text-sm font-semibold text-gray-900 group-hover:{t.label} transition-colors flex-1">{m.investor_tool_flip_scanner_title()}</span>
-        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-emerald-500 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-amber-600 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
         </svg>
       </div>
@@ -97,7 +97,7 @@
     <!-- Off-Plan Pipeline -->
     <a
       href="{base}/investors/pipeline"
-      class="group relative flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md hover:bg-emerald-50 px-4 py-3.5 transition-all cursor-pointer"
+      class="group relative flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md hover:bg-amber-50 px-4 py-3.5 transition-all cursor-pointer"
     >
       <div class="flex items-center gap-2">
         <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg {t.iconBg} transition-colors">
@@ -106,7 +106,7 @@
           </svg>
         </span>
         <span class="text-sm font-semibold text-gray-900 group-hover:{t.label} transition-colors flex-1">{m.investor_tool_pipeline_title()}</span>
-        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-emerald-500 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-amber-600 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
         </svg>
       </div>
@@ -116,7 +116,7 @@
     <!-- Market Structure -->
     <a
       href="{base}/investors/market-structure"
-      class="group relative flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md hover:bg-emerald-50 px-4 py-3.5 transition-all cursor-pointer"
+      class="group relative flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md hover:bg-amber-50 px-4 py-3.5 transition-all cursor-pointer"
     >
       <div class="flex items-center gap-2">
         <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg {t.iconBg} transition-colors">
@@ -125,7 +125,7 @@
           </svg>
         </span>
         <span class="text-sm font-semibold text-gray-900 group-hover:{t.label} transition-colors flex-1">{m.investor_tool_market_structure_title()}</span>
-        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-emerald-500 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-amber-600 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
         </svg>
       </div>
@@ -135,7 +135,7 @@
     <!-- Rental Yield -->
     <a
       href="{base}/investors/rental-yield"
-      class="group relative flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md hover:bg-emerald-50 px-4 py-3.5 transition-all cursor-pointer"
+      class="group relative flex flex-col gap-1.5 rounded-xl border {t.cardBorder} bg-white hover:shadow-md hover:bg-amber-50 px-4 py-3.5 transition-all cursor-pointer"
     >
       <div class="flex items-center gap-2">
         <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg {t.iconBg} transition-colors">
@@ -144,7 +144,7 @@
           </svg>
         </span>
         <span class="text-sm font-semibold text-gray-900 group-hover:{t.label} transition-colors flex-1">{m.investor_tool_rental_yield_title()}</span>
-        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-emerald-500 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <svg class="w-3.5 h-3.5 text-gray-300 group-hover:text-amber-600 transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
         </svg>
       </div>

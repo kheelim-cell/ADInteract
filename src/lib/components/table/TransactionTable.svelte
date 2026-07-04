@@ -6,6 +6,7 @@
   import { base } from '$app/paths';
   import { isAuthenticated, openSignIn } from '$lib/stores/auth';
   import { supabaseEnabled } from '$lib/supabase';
+  import { m } from '$lib/paraglide/messages.js';
 
   let exporting = $state(false);
 
@@ -66,16 +67,16 @@
     width?: string;
   }
 
-  const columns: Column[] = [
-    { key: 'sale_date', label: 'DATE', sortable: true, align: 'left', width: 'w-[100px]' },
-    { key: 'project_name', label: 'LOCATION', sortable: true, align: 'left' },
-    { key: 'price_aed', label: 'PRICE (AED)', sortable: true, align: 'right', width: 'w-[160px]' },
-    { key: 'property_type', label: 'TYPE', sortable: true, align: 'center', width: 'w-[100px]' },
-    { key: 'layout', label: 'BEDS', sortable: true, align: 'center', width: 'w-[90px]' },
-    { key: 'area_sqft', label: 'AREA (SQFT)', sortable: true, align: 'right', width: 'w-[110px]' },
-    { key: 'sale_type',     label: 'SALE SCENARIO', sortable: true, align: 'center', width: 'w-[130px]' },
-    { key: 'sale_sequence', label: 'SEQUENCE',      sortable: true, align: 'center', width: 'w-[110px]' },
-  ];
+  let columns = $derived([
+    { key: 'sale_date',     label: m.tx_col_date(),          sortable: true, align: 'left'   as const, width: 'w-[100px]' },
+    { key: 'project_name', label: m.tx_col_location(),      sortable: true, align: 'left'   as const },
+    { key: 'price_aed',    label: m.tx_col_price(),         sortable: true, align: 'right'  as const, width: 'w-[160px]' },
+    { key: 'property_type',label: m.tx_col_type(),          sortable: true, align: 'center' as const, width: 'w-[100px]' },
+    { key: 'layout',       label: m.tx_col_beds(),          sortable: true, align: 'center' as const, width: 'w-[90px]' },
+    { key: 'area_sqft',    label: m.tx_col_area(),          sortable: true, align: 'right'  as const, width: 'w-[110px]' },
+    { key: 'sale_type',    label: m.tx_col_sale_scenario(), sortable: true, align: 'center' as const, width: 'w-[130px]' },
+    { key: 'sale_sequence',label: m.tx_col_sequence(),      sortable: true, align: 'center' as const, width: 'w-[110px]' },
+  ]);
 
   let currentPage = $derived($filters.page);
   let pageSize = $derived($filters.pageSize);
@@ -83,14 +84,14 @@
   let showStart = $derived((currentPage - 1) * pageSize + 1);
   let showEnd = $derived(Math.min(currentPage * pageSize, totalCount));
 
-  let sortOptions = [
-    { value: 'sale_date:desc', label: 'Newest' },
-    { value: 'sale_date:asc', label: 'Oldest' },
-    { value: 'price_aed:desc', label: 'High price' },
-    { value: 'price_aed:asc', label: 'Low price' },
-    { value: 'rate_per_sqft:desc', label: 'High price /sqft' },
-    { value: 'rate_per_sqft:asc', label: 'Low price /sqft' },
-  ];
+  let sortOptions = $derived([
+    { value: 'sale_date:desc',    label: m.tx_sort_newest() },
+    { value: 'sale_date:asc',     label: m.tx_sort_oldest() },
+    { value: 'price_aed:desc',    label: m.tx_sort_price_high() },
+    { value: 'price_aed:asc',     label: m.tx_sort_price_low() },
+    { value: 'rate_per_sqft:desc',label: m.tx_sort_rate_high() },
+    { value: 'rate_per_sqft:asc', label: m.tx_sort_rate_low() },
+  ]);
 
   let currentSort = $derived(`${$filters.sortColumn}:${$filters.sortDirection}`);
 
@@ -118,7 +119,35 @@
 
   function formatLayout(layout: string): string {
     if (!layout || layout === 'unclassified') return '-';
+    const lower = layout.toLowerCase().trim();
+    if (lower === 'studio') return m.tx_layout_studio();
+    const bedsMatch = lower.match(/beds?\s*(\d+)|(\d+)\s*beds?/);
+    if (bedsMatch) return m.tx_layout_beds({ n: bedsMatch[1] ?? bedsMatch[2] });
     return layout.charAt(0).toUpperCase() + layout.slice(1);
+  }
+
+  function translateType(type: string): string {
+    if (!type) return '';
+    switch (type.toLowerCase()) {
+      case 'apartment': return m.tx_type_apartment();
+      case 'villa':     return m.tx_type_villa();
+      case 'townhouse': return m.tx_type_townhouse();
+      case 'penthouse': return m.tx_type_penthouse();
+      case 'land':      return m.tx_type_land();
+      default: return type.charAt(0).toUpperCase() + type.slice(1);
+    }
+  }
+
+  function translateSaleType(type: string): string {
+    if (type === 'off-plan') return m.tx_sale_offplan();
+    if (type === 'ready')    return m.tx_sale_ready();
+    return type.charAt(0).toUpperCase() + type.slice(1);
+  }
+
+  function translateSequence(seq: string): string {
+    if (seq === 'primary')   return m.tx_seq_primary();
+    if (seq === 'secondary') return m.tx_seq_secondary();
+    return seq.charAt(0).toUpperCase() + seq.slice(1);
   }
 
   function mapsUrl(projectName: string): string {
@@ -171,7 +200,7 @@
   <!-- Sort bar -->
   <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100 gap-3">
     <div class="flex items-center gap-2 min-w-0">
-      <label for="sort-select" class="hidden sm:block text-sm text-gray-500 whitespace-nowrap flex-shrink-0">Sort by</label>
+      <label for="sort-select" class="hidden sm:block text-sm text-gray-500 whitespace-nowrap flex-shrink-0">{m.tx_sort_by()}</label>
       <select
         id="sort-select"
         value={currentSort}
@@ -186,7 +215,7 @@
     {#if totalCount > 0}
       <div class="flex items-center gap-2 flex-shrink-0">
         <span class="text-xs sm:text-sm text-gray-500 whitespace-nowrap">
-          {totalCount.toLocaleString()} <span class="hidden sm:inline">transactions</span>
+          {totalCount.toLocaleString()} <span class="hidden sm:inline">{m.tx_transactions_unit()}</span>
         </span>
 
         <!-- Export CSV -->
@@ -202,12 +231,12 @@
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
             </svg>
-            <span class="hidden sm:inline">Exporting...</span>
+            <span class="hidden sm:inline">{m.tx_csv_exporting()}</span>
           {:else}
             <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
             </svg>
-            <span class="hidden sm:inline">CSV</span>
+            <span class="hidden sm:inline">{m.tx_csv_export()}</span>
           {/if}
         </button>
 
@@ -225,13 +254,13 @@
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
               </svg>
-              <span class="hidden sm:inline">Building...</span>
+              <span class="hidden sm:inline">{m.tx_pdf_building()}</span>
             {:else}
               <!-- PDF file icon -->
               <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
               </svg>
-              <span class="hidden sm:inline">PDF Report</span>
+              <span class="hidden sm:inline">{m.tx_pdf_report()}</span>
             {/if}
           </button>
         {/if}
@@ -253,7 +282,7 @@
           <svg class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
           </svg>
-          Sign In to view transactions
+          {m.tx_sign_in_prompt()}
         </button>
       </div>
     {/if}
@@ -313,7 +342,7 @@
                     class="text-sm font-semibold text-gray-900 truncate leading-snug hover:text-brand-700 hover:underline block"
                   >{row.project_name}</a>
                 {:else}
-                  <p class="text-sm font-semibold text-gray-900 truncate leading-snug">Private</p>
+                  <p class="text-sm font-semibold text-gray-900 truncate leading-snug">{m.tx_private()}</p>
                 {/if}
                 {#if row.district}
                   <p class="text-xs text-gray-400 mt-0.5 truncate">
@@ -326,7 +355,7 @@
                 <p class="text-sm font-bold text-gray-900">{formatCurrency(row.price_aed)}</p>
                 {#if row.rate_per_sqft}
                   <p class="text-xs text-gray-400 mt-0.5">
-                    AED {formatRate(row.rate_per_sqft).replace(' AED/sqft', '')} /sqft
+                    AED {formatRate(row.rate_per_sqft).replace(' AED/sqft', '')} {m.tx_unit_per_sqft()}
                   </p>
                 {/if}
               </div>
@@ -354,7 +383,7 @@
                   {row.sale_sequence === 'primary'
                     ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                     : 'bg-purple-50 text-purple-700 border border-purple-200'}">
-                  {row.sale_sequence.charAt(0).toUpperCase() + row.sale_sequence.slice(1)}
+                  {translateSequence(row.sale_sequence)}
                 </span>
               {/if}
 
@@ -363,9 +392,7 @@
                   {row.sale_type === 'off-plan' ? 'bg-brand-50 text-brand-700 border border-brand-200' :
                    row.sale_type === 'ready' ? 'bg-navy/5 text-navy border border-navy/20' :
                    'bg-gray-100 text-gray-600 border border-gray-200'}">
-                  {row.sale_type === 'off-plan' ? 'Off-plan' :
-                   row.sale_type === 'ready' ? 'Ready' :
-                   row.sale_type.charAt(0).toUpperCase() + row.sale_type.slice(1)}
+                  {translateSaleType(row.sale_type)}
                 </span>
               {/if}
 
@@ -374,7 +401,7 @@
                   href="{base}/project/{encodeURIComponent(row.project_name)}"
                   class="ms-auto text-xs font-medium text-brand-600 hover:text-brand-700 whitespace-nowrap"
                 >
-                  Explore →
+                  {m.tx_explore()} →
                 </a>
               {/if}
             </div>
@@ -452,15 +479,15 @@
                   </svg>
                 </div>
                 <div>
-                  <p class="text-sm font-semibold text-gray-700">No transactions match these filters</p>
-                  <p class="mt-1 text-xs text-gray-400">Try broadening the date range or removing a filter</p>
+                  <p class="text-sm font-semibold text-gray-700">{m.tx_no_results_title()}</p>
+                  <p class="mt-1 text-xs text-gray-400">{m.tx_no_results_sub()}</p>
                 </div>
                 <button
                   type="button"
                   onclick={resetFilters}
                   class="mt-1 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold bg-brand-600 text-white hover:bg-brand-700 transition-colors"
                 >
-                  Clear all filters
+                  {m.tx_clear_filters()}
                 </button>
               </div>
             </td>
@@ -491,7 +518,7 @@
                       </svg>
                     </a>
                   {:else}
-                    Private
+                    {m.tx_private()}
                   {/if}
                 </div>
                 <div class="text-xs text-gray-400 mt-0.5">
@@ -505,13 +532,13 @@
               <td class="px-4 py-4 text-end align-top whitespace-nowrap">
                 <div class="text-sm font-semibold text-gray-900">{formatCurrency(row.price_aed)}</div>
                 {#if row.rate_per_sqft}
-                  <div class="text-xs text-gray-400 mt-0.5">AED {formatRate(row.rate_per_sqft).replace(' AED/sqft', '')} /sqft</div>
+                  <div class="text-xs text-gray-400 mt-0.5">AED {formatRate(row.rate_per_sqft).replace(' AED/sqft', '')} {m.tx_unit_per_sqft()}</div>
                 {/if}
               </td>
 
               <!-- Type -->
               <td class="px-4 py-4 text-center align-top">
-                <span class="text-sm text-gray-700">{row.property_type ? row.property_type.charAt(0).toUpperCase() + row.property_type.slice(1) : ''}</span>
+                <span class="text-sm text-gray-700">{row.property_type ? translateType(row.property_type) : ''}</span>
               </td>
 
               <!-- Beds / Layout -->
@@ -521,7 +548,7 @@
 
               <!-- Built-up Area -->
               <td class="px-4 py-4 text-end align-top whitespace-nowrap">
-                <span class="text-sm text-gray-700 tabular-nums">{row.area_sqft ? formatArea(row.area_sqft) : '-'}</span>
+                <span class="text-sm text-gray-700 tabular-nums">{row.area_sqft ? formatArea(row.area_sqft).replace('sqft', m.tx_unit_sqft()) : '-'}</span>
               </td>
 
               <!-- Sale Scenario -->
@@ -531,9 +558,7 @@
                     {row.sale_type === 'off-plan' ? 'bg-brand-50 text-brand-700 border border-brand-200' :
                      row.sale_type === 'ready' ? 'bg-navy/5 text-navy border border-navy/20' :
                      'bg-gray-100 text-gray-600 border border-gray-200'}">
-                    {row.sale_type === 'off-plan' ? 'Off-plan' :
-                     row.sale_type === 'ready' ? 'Ready' :
-                     row.sale_type.charAt(0).toUpperCase() + row.sale_type.slice(1)}
+                    {translateSaleType(row.sale_type)}
                   </span>
                 {:else}
                   <span class="text-gray-400">-</span>
@@ -549,7 +574,7 @@
                       : row.sale_sequence === 'secondary'
                         ? 'bg-purple-50 text-purple-700 border border-purple-200'
                         : 'bg-gray-100 text-gray-600 border border-gray-200'}">
-                    {row.sale_sequence.charAt(0).toUpperCase() + row.sale_sequence.slice(1)}
+                    {translateSequence(row.sale_sequence)}
                   </span>
                 {:else}
                   <span class="text-gray-400">-</span>
@@ -567,7 +592,7 @@
                     <svg class="h-3.5 w-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
                     </svg>
-                    Explore
+                    {m.tx_explore()}
                   </a>
                 {/if}
               </td>
@@ -584,13 +609,11 @@
   {#if totalCount > 0}
     <div class="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-gray-200 bg-gray-50/50 px-4 py-3">
       <p class="text-sm text-gray-500 hidden sm:block">
-        Showing <span class="font-medium text-gray-700">{showStart.toLocaleString()}</span>
-        – <span class="font-medium text-gray-700">{showEnd.toLocaleString()}</span>
-        of <span class="font-medium text-gray-700">{totalCount.toLocaleString()}</span>
+        {m.tx_showing({ from: showStart.toLocaleString(), to: showEnd.toLocaleString(), total: totalCount.toLocaleString() })}
       </p>
       <!-- Mobile: compact count -->
       <p class="text-xs text-gray-500 sm:hidden">
-        {showStart}–{showEnd} of {totalCount.toLocaleString()}
+        {m.tx_showing_mobile({ from: String(showStart), to: String(showEnd), total: totalCount.toLocaleString() })}
       </p>
 
       <!-- Desktop: full pagination -->
@@ -604,7 +627,7 @@
           <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
-          Prev
+          {m.tx_prev()}
         </button>
 
         {#each paginationPages() as page}
@@ -630,7 +653,7 @@
           disabled={currentPage >= totalPages}
           class="inline-flex items-center justify-center rounded-md px-2 py-1.5 text-sm text-gray-500 hover:bg-white hover:text-gray-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         >
-          Next
+          {m.tx_next()}
           <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
           </svg>
@@ -648,7 +671,7 @@
           <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
-          Prev
+          {m.tx_prev()}
         </button>
 
         {#each mobilePaginationPages() as page}
@@ -674,7 +697,7 @@
           disabled={currentPage >= totalPages}
           class="inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 text-sm font-medium text-gray-600 border border-gray-200 bg-white hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         >
-          Next
+          {m.tx_next()}
           <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
           </svg>

@@ -8,7 +8,7 @@
     "tx_count_12m": 2459,
     "median_psf_12m": 1782,
     "offplan_pct": 100.0,
-    "computed_at": "2026-07-05T05:52:35.475517+00:00",
+    "computed_at": "2026-07-06T06:16:10.147486+00:00",
     "gec": {
       "total": 87,
       "velocity": {
@@ -47,16 +47,16 @@
     "score_type": "both",
     "ready_pct_alltime": 53.1,
     "trend_direction": "up",
-    "tx_count_12m": 8461,
-    "median_psf_12m": 1598,
-    "offplan_pct": 69.5,
-    "computed_at": "2026-07-05T05:52:35.776157+00:00",
+    "tx_count_12m": 8429,
+    "median_psf_12m": 1599,
+    "offplan_pct": 69.4,
+    "computed_at": "2026-07-06T06:16:10.459672+00:00",
     "ys": {
       "total": 61,
       "momentum": {
         "score": 24,
         "max": 30,
-        "pct_change": 26.3,
+        "pct_change": 26.4,
         "direction": "up"
       },
       "yield": {
@@ -85,12 +85,12 @@
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 4.54
+        "velocity_ratio": 4.38
       },
       "momentum": {
         "score": 17,
         "max": 25,
-        "pct_change": 16.0,
+        "pct_change": 16.1,
         "direction": "up"
       },
       "appreciation": {
@@ -106,7 +106,7 @@
       "entry": {
         "score": 10,
         "max": 10,
-        "entry_ratio": 1.51
+        "entry_ratio": 1.52
       }
     },
     "score": 77,
@@ -121,7 +121,7 @@
     "tx_count_12m": 210,
     "median_psf_12m": 2870,
     "offplan_pct": 93.3,
-    "computed_at": "2026-07-05T05:52:36.025872+00:00",
+    "computed_at": "2026-07-06T06:16:10.732602+00:00",
     "gec": {
       "total": 76,
       "velocity": {
@@ -160,21 +160,21 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 7.4,
     "trend_direction": "up",
-    "tx_count_12m": 807,
+    "tx_count_12m": 808,
     "median_psf_12m": 1262,
     "offplan_pct": 83.9,
-    "computed_at": "2026-07-05T05:52:35.895157+00:00",
+    "computed_at": "2026-07-06T06:16:10.584738+00:00",
     "gec": {
       "total": 70,
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 4.24
+        "velocity_ratio": 4.25
       },
       "momentum": {
         "score": 13,
         "max": 25,
-        "pct_change": 3.3,
+        "pct_change": 3.2,
         "direction": "up"
       },
       "appreciation": {
@@ -205,7 +205,7 @@
     "tx_count_12m": 13,
     "median_psf_12m": 533,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:35.924749+00:00",
+    "computed_at": "2026-07-06T06:16:10.615372+00:00",
     "ys": {
       "total": 69,
       "momentum": {
@@ -244,21 +244,21 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 32.1,
     "trend_direction": "up",
-    "tx_count_12m": 1293,
+    "tx_count_12m": 1288,
     "median_psf_12m": 1245,
-    "offplan_pct": 67.7,
-    "computed_at": "2026-07-05T05:52:36.089171+00:00",
+    "offplan_pct": 68.2,
+    "computed_at": "2026-07-06T06:16:10.800287+00:00",
     "gec": {
       "total": 68,
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 3.78
+        "velocity_ratio": 3.8
       },
       "momentum": {
         "score": 15,
         "max": 25,
-        "pct_change": 9.4,
+        "pct_change": 9.3,
         "direction": "up"
       },
       "appreciation": {
@@ -274,7 +274,7 @@
       "entry": {
         "score": 2,
         "max": 10,
-        "entry_ratio": 0.73
+        "entry_ratio": 0.75
       }
     },
     "score": 68,
@@ -289,7 +289,7 @@
     "tx_count_12m": 1413,
     "median_psf_12m": 1486,
     "offplan_pct": 95.6,
-    "computed_at": "2026-07-05T05:52:36.296034+00:00",
+    "computed_at": "2026-07-06T06:16:11.011779+00:00",
     "gec": {
       "total": 68,
       "velocity": {
@@ -328,16 +328,16 @@
     "score_type": "yield_stability",
     "ready_pct_alltime": 95.6,
     "trend_direction": "up",
-    "tx_count_12m": 466,
-    "median_psf_12m": 983,
+    "tx_count_12m": 463,
+    "median_psf_12m": 986,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:35.748302+00:00",
+    "computed_at": "2026-07-06T06:16:10.431425+00:00",
     "ys": {
       "total": 67,
       "momentum": {
         "score": 26,
         "max": 30,
-        "pct_change": 31.6,
+        "pct_change": 31.9,
         "direction": "up"
       },
       "yield": {
@@ -348,12 +348,12 @@
       "liquidity": {
         "score": 6,
         "max": 20,
-        "recency_ratio": 0.58
+        "recency_ratio": 0.59
       },
       "stability": {
         "score": 8,
         "max": 15,
-        "cov": 0.157
+        "cov": 0.158
       },
       "appreciation": {
         "score": 5,
@@ -370,10 +370,10 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 15.3,
     "trend_direction": "up",
-    "tx_count_12m": 5131,
-    "median_psf_12m": 2100,
-    "offplan_pct": 88.2,
-    "computed_at": "2026-07-05T05:52:36.257907+00:00",
+    "tx_count_12m": 5129,
+    "median_psf_12m": 2101,
+    "offplan_pct": 88.3,
+    "computed_at": "2026-07-06T06:16:10.972135+00:00",
     "gec": {
       "total": 66,
       "velocity": {
@@ -415,13 +415,13 @@
     "tx_count_12m": 258,
     "median_psf_12m": 937,
     "offplan_pct": 0.8,
-    "computed_at": "2026-07-05T05:52:35.582065+00:00",
+    "computed_at": "2026-07-06T06:16:10.259760+00:00",
     "ys": {
       "total": 65,
       "momentum": {
         "score": 22,
         "max": 30,
-        "pct_change": 21.1,
+        "pct_change": 21.0,
         "direction": "up"
       },
       "yield": {
@@ -457,7 +457,7 @@
     "tx_count_12m": 279,
     "median_psf_12m": 1734,
     "offplan_pct": 61.6,
-    "computed_at": "2026-07-05T05:52:35.520901+00:00",
+    "computed_at": "2026-07-06T06:16:10.195960+00:00",
     "gec": {
       "total": 64,
       "velocity": {
@@ -496,16 +496,16 @@
     "score_type": "yield_stability",
     "ready_pct_alltime": 68.8,
     "trend_direction": "up",
-    "tx_count_12m": 1028,
+    "tx_count_12m": 1026,
     "median_psf_12m": 1726,
-    "offplan_pct": 61.0,
-    "computed_at": "2026-07-05T05:52:35.715585+00:00",
+    "offplan_pct": 61.2,
+    "computed_at": "2026-07-06T06:16:10.397610+00:00",
     "ys": {
-      "total": 58,
+      "total": 60,
       "momentum": {
-        "score": 22,
+        "score": 23,
         "max": 30,
-        "pct_change": 21.1,
+        "pct_change": 21.4,
         "direction": "up"
       },
       "yield": {
@@ -516,20 +516,20 @@
       "liquidity": {
         "score": 13,
         "max": 20,
-        "recency_ratio": 1.52
+        "recency_ratio": 1.53
       },
       "stability": {
         "score": 5,
         "max": 15,
-        "cov": 0.249
+        "cov": 0.246
       },
       "appreciation": {
-        "score": 2,
+        "score": 3,
         "max": 10,
         "ratio": 0.8
       }
     },
-    "score": 58,
+    "score": 60,
     "color": "amber"
   },
   "Rabdan": {
@@ -538,16 +538,16 @@
     "score_type": "yield_stability",
     "ready_pct_alltime": 100.0,
     "trend_direction": "up",
-    "tx_count_12m": 77,
+    "tx_count_12m": 76,
     "median_psf_12m": 1202,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:36.167637+00:00",
+    "computed_at": "2026-07-06T06:16:10.880388+00:00",
     "ys": {
       "total": 57,
       "momentum": {
         "score": 17,
         "max": 30,
-        "pct_change": 6.0,
+        "pct_change": 6.2,
         "direction": "up"
       },
       "yield": {
@@ -558,7 +558,7 @@
       "liquidity": {
         "score": 7,
         "max": 20,
-        "recency_ratio": 0.73
+        "recency_ratio": 0.74
       },
       "stability": {
         "score": 12,
@@ -580,16 +580,16 @@
     "score_type": "both",
     "ready_pct_alltime": 49.4,
     "trend_direction": "down",
-    "tx_count_12m": 648,
-    "median_psf_12m": 1803,
-    "offplan_pct": 50.3,
-    "computed_at": "2026-07-05T05:52:35.617168+00:00",
+    "tx_count_12m": 647,
+    "median_psf_12m": 1804,
+    "offplan_pct": 50.4,
+    "computed_at": "2026-07-06T06:16:10.295756+00:00",
     "ys": {
       "total": 56,
       "momentum": {
         "score": 21,
         "max": 30,
-        "pct_change": 17.4,
+        "pct_change": 17.0,
         "direction": "up"
       },
       "yield": {
@@ -600,7 +600,7 @@
       "liquidity": {
         "score": 4,
         "max": 20,
-        "recency_ratio": 0.4
+        "recency_ratio": 0.41
       },
       "stability": {
         "score": 2,
@@ -654,7 +654,7 @@
     "tx_count_12m": 35,
     "median_psf_12m": 779,
     "offplan_pct": 5.7,
-    "computed_at": "2026-07-05T05:52:35.807981+00:00",
+    "computed_at": "2026-07-06T06:16:10.492690+00:00",
     "ys": {
       "total": 56,
       "momentum": {
@@ -696,7 +696,7 @@
     "tx_count_12m": 15,
     "median_psf_12m": 828,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:36.206446+00:00",
+    "computed_at": "2026-07-06T06:16:10.920464+00:00",
     "ys": {
       "total": 55,
       "momentum": {
@@ -736,9 +736,9 @@
     "ready_pct_alltime": 17.8,
     "trend_direction": "up",
     "tx_count_12m": 2266,
-    "median_psf_12m": 3114,
-    "offplan_pct": 86.1,
-    "computed_at": "2026-07-05T05:52:35.830076+00:00",
+    "median_psf_12m": 3117,
+    "offplan_pct": 86.2,
+    "computed_at": "2026-07-06T06:16:10.515295+00:00",
     "gec": {
       "total": 54,
       "velocity": {
@@ -749,7 +749,7 @@
       "momentum": {
         "score": 25,
         "max": 25,
-        "pct_change": 43.0,
+        "pct_change": 43.1,
         "direction": "up"
       },
       "appreciation": {
@@ -780,7 +780,7 @@
     "tx_count_12m": 11,
     "median_psf_12m": 1163,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:35.646828+00:00",
+    "computed_at": "2026-07-06T06:16:10.327022+00:00",
     "ys": {
       "total": 51,
       "momentum": {
@@ -822,7 +822,7 @@
     "tx_count_12m": 16,
     "median_psf_12m": 297,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:35.505094+00:00",
+    "computed_at": "2026-07-06T06:16:10.178852+00:00",
     "ys": {
       "total": 50,
       "momentum": {
@@ -864,7 +864,7 @@
     "tx_count_12m": 50,
     "median_psf_12m": 2347,
     "offplan_pct": 2.0,
-    "computed_at": "2026-07-05T05:52:35.535858+00:00",
+    "computed_at": "2026-07-06T06:16:10.212062+00:00",
     "ys": {
       "total": 50,
       "momentum": {
@@ -906,7 +906,7 @@
     "tx_count_12m": 13,
     "median_psf_12m": 329,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:35.671872+00:00",
+    "computed_at": "2026-07-06T06:16:10.352897+00:00",
     "ys": {
       "total": 49,
       "momentum": {
@@ -948,7 +948,7 @@
     "tx_count_12m": 13,
     "median_psf_12m": 262,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:35.977950+00:00",
+    "computed_at": "2026-07-06T06:16:10.681250+00:00",
     "ys": {
       "total": 48,
       "momentum": {
@@ -990,7 +990,7 @@
     "tx_count_12m": 10,
     "median_psf_12m": 229,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:35.875198+00:00",
+    "computed_at": "2026-07-06T06:16:10.563456+00:00",
     "ys": {
       "total": 47,
       "momentum": {
@@ -1032,7 +1032,7 @@
     "tx_count_12m": 1548,
     "median_psf_12m": 3699,
     "offplan_pct": 100.0,
-    "computed_at": "2026-07-05T05:52:36.006211+00:00",
+    "computed_at": "2026-07-06T06:16:10.711249+00:00",
     "gec": {
       "total": 47,
       "velocity": {
@@ -1074,7 +1074,7 @@
     "tx_count_12m": 645,
     "median_psf_12m": 2085,
     "offplan_pct": 100.0,
-    "computed_at": "2026-07-05T05:52:36.040569+00:00",
+    "computed_at": "2026-07-06T06:16:10.748315+00:00",
     "gec": {
       "total": 47,
       "velocity": {
@@ -1116,7 +1116,7 @@
     "tx_count_12m": 253,
     "median_psf_12m": 3242,
     "offplan_pct": 100.0,
-    "computed_at": "2026-07-05T05:52:36.182854+00:00",
+    "computed_at": "2026-07-06T06:16:10.896615+00:00",
     "gec": {
       "total": 47,
       "velocity": {
@@ -1158,7 +1158,7 @@
     "tx_count_12m": 21,
     "median_psf_12m": 398,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:36.277637+00:00",
+    "computed_at": "2026-07-06T06:16:10.992886+00:00",
     "ys": {
       "total": 44,
       "momentum": {
@@ -1200,7 +1200,7 @@
     "tx_count_12m": 13,
     "median_psf_12m": 233,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:35.392355+00:00",
+    "computed_at": "2026-07-06T06:16:10.059812+00:00",
     "ys": {
       "total": 42,
       "momentum": {
@@ -1242,7 +1242,7 @@
     "tx_count_12m": 151,
     "median_psf_12m": 1137,
     "offplan_pct": 68.2,
-    "computed_at": "2026-07-05T05:52:35.957698+00:00",
+    "computed_at": "2026-07-06T06:16:10.653395+00:00",
     "ys": {
       "total": 42,
       "momentum": {
@@ -1284,7 +1284,7 @@
     "tx_count_12m": 53,
     "median_psf_12m": 381,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:35.565673+00:00",
+    "computed_at": "2026-07-06T06:16:10.242357+00:00",
     "ys": {
       "total": 41,
       "momentum": {
@@ -1326,7 +1326,7 @@
     "tx_count_12m": 21,
     "median_psf_12m": 397,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:36.134259+00:00",
+    "computed_at": "2026-07-06T06:16:10.846025+00:00",
     "ys": {
       "total": 39,
       "momentum": {
@@ -1368,7 +1368,7 @@
     "tx_count_12m": 37,
     "median_psf_12m": 706,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:36.105182+00:00",
+    "computed_at": "2026-07-06T06:16:10.816454+00:00",
     "ys": {
       "total": 38,
       "momentum": {
@@ -1407,10 +1407,10 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 2.2,
     "trend_direction": "up",
-    "tx_count_12m": 1033,
+    "tx_count_12m": 1032,
     "median_psf_12m": 493,
     "offplan_pct": 98.3,
-    "computed_at": "2026-07-05T05:52:35.409808+00:00",
+    "computed_at": "2026-07-06T06:16:10.078302+00:00",
     "gec": {
       "total": 36,
       "velocity": {
@@ -1452,7 +1452,7 @@
     "tx_count_12m": 10,
     "median_psf_12m": 271,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:36.072829+00:00",
+    "computed_at": "2026-07-06T06:16:10.781411+00:00",
     "ys": {
       "total": 35,
       "momentum": {
@@ -1494,7 +1494,7 @@
     "tx_count_12m": 97,
     "median_psf_12m": 1132,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:35.861553+00:00",
+    "computed_at": "2026-07-06T06:16:10.548661+00:00",
     "gec": {
       "total": 33,
       "velocity": {
@@ -1536,7 +1536,7 @@
     "tx_count_12m": 19,
     "median_psf_12m": 529,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-05T05:52:35.425302+00:00",
+    "computed_at": "2026-07-06T06:16:10.094875+00:00",
     "ys": {
       "total": 29,
       "momentum": {

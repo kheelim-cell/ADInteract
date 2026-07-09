@@ -1,110 +1,194 @@
 [
   {
-    "developer_name": "Reportage Investments L.L.C.",
-    "project_count": 1,
-    "total_tx": 198,
-    "psf_premium_pct": 70.3,
-    "secondary_market_ratio": 80.6,
-    "pipeline_velocity": 10.0,
-    "composite_score": 72.8
-  },
-  {
     "developer_name": "Aldar Properties - P J S C",
     "project_count": 9,
     "total_tx": 3580,
-    "psf_premium_pct": -0.3,
-    "secondary_market_ratio": 121.2,
-    "pipeline_velocity": 90.0,
-    "composite_score": 67.5
+    "district_count": 4,
+    "delivery_rate": 100.0,
+    "secondary_tx": 1977,
+    "price_stability": 61.2,
+    "composite_score": 85.2,
+    "score_breakdown": {
+      "dominance": 38.8,
+      "delivery": 20,
+      "liquidity": 15,
+      "stability": 11.5
+    }
   },
   {
     "developer_name": "Aldar Development  - L.L.C - O.P.C",
     "project_count": 2,
     "total_tx": 445,
-    "psf_premium_pct": 5.7,
-    "secondary_market_ratio": 46.2,
-    "pipeline_velocity": 20.0,
-    "composite_score": 54.3
-  },
-  {
-    "developer_name": "Esk Investments - Sole Proprietorship L.L.C.",
-    "project_count": 1,
-    "total_tx": 70,
-    "psf_premium_pct": 57.4,
-    "secondary_market_ratio": null,
-    "pipeline_velocity": 10.0,
-    "composite_score": 44.8
-  },
-  {
-    "developer_name": "High Street Oriental Development  L.L.C.",
-    "project_count": 1,
-    "total_tx": 28,
-    "psf_premium_pct": 22.6,
-    "secondary_market_ratio": null,
-    "pipeline_velocity": 10.0,
-    "composite_score": 42.1
+    "district_count": 1,
+    "delivery_rate": 100.0,
+    "secondary_tx": 145,
+    "price_stability": 87.6,
+    "composite_score": 68.4,
+    "score_breakdown": {
+      "dominance": 21.4,
+      "delivery": 20,
+      "liquidity": 12.0,
+      "stability": 15
+    }
   },
   {
     "developer_name": "Albadie Group For Trading & Investments - L Lc",
     "project_count": 1,
     "total_tx": 284,
-    "psf_premium_pct": -12.8,
-    "secondary_market_ratio": null,
-    "pipeline_velocity": 10.0,
-    "composite_score": 18.9
+    "district_count": 1,
+    "delivery_rate": 100.0,
+    "secondary_tx": 157,
+    "price_stability": 78.9,
+    "composite_score": 66.3,
+    "score_breakdown": {
+      "dominance": 19.3,
+      "delivery": 20,
+      "liquidity": 12.2,
+      "stability": 14.8
+    }
   },
   {
-    "developer_name": "Mangrove Properties  - Sole Proprietorship L.L.C.",
+    "developer_name": "Reportage Investments L.L.C.",
     "project_count": 1,
-    "total_tx": 289,
-    "psf_premium_pct": 0.0,
-    "secondary_market_ratio": null,
-    "pipeline_velocity": 10.0,
-    "composite_score": 18.9
+    "total_tx": 198,
+    "district_count": 1,
+    "delivery_rate": 100.0,
+    "secondary_tx": 75,
+    "price_stability": 77.3,
+    "composite_score": 63.2,
+    "score_breakdown": {
+      "dominance": 18.3,
+      "delivery": 20,
+      "liquidity": 10.4,
+      "stability": 14.5
+    }
   },
   {
     "developer_name": "Dhafir Property Development L L C",
     "project_count": 1,
     "total_tx": 191,
-    "psf_premium_pct": -14.4,
-    "secondary_market_ratio": null,
-    "pipeline_velocity": 10.0,
-    "composite_score": 17.7
+    "district_count": 1,
+    "delivery_rate": null,
+    "secondary_tx": 153,
+    "price_stability": 83.2,
+    "composite_score": 55.3,
+    "score_breakdown": {
+      "dominance": 18.2,
+      "delivery": 10.0,
+      "liquidity": 12.1,
+      "stability": 15
+    }
   },
   {
     "developer_name": "Baniyas Investment & Development Company - L L C",
     "project_count": 1,
     "total_tx": 137,
-    "psf_premium_pct": 0.0,
-    "secondary_market_ratio": null,
-    "pipeline_velocity": 10.0,
-    "composite_score": 16.7
-  },
-  {
-    "developer_name": "Buttinah Real Estate Management",
-    "project_count": 1,
-    "total_tx": 83,
-    "psf_premium_pct": -2.3,
-    "secondary_market_ratio": null,
-    "pipeline_velocity": 10.0,
-    "composite_score": 15.3
+    "district_count": 1,
+    "delivery_rate": null,
+    "secondary_tx": 22,
+    "price_stability": 84.2,
+    "composite_score": 49.7,
+    "score_breakdown": {
+      "dominance": 17.2,
+      "delivery": 10.0,
+      "liquidity": 7.5,
+      "stability": 15
+    }
   },
   {
     "developer_name": "Bloom  Emirates  Properties  L L C",
     "project_count": 1,
     "total_tx": 57,
-    "psf_premium_pct": 0.0,
-    "secondary_market_ratio": null,
-    "pipeline_velocity": 10.0,
-    "composite_score": 14.2
+    "district_count": 1,
+    "delivery_rate": null,
+    "secondary_tx": 37,
+    "price_stability": 78.6,
+    "composite_score": 48.1,
+    "score_breakdown": {
+      "dominance": 14.6,
+      "delivery": 10.0,
+      "liquidity": 8.7,
+      "stability": 14.7
+    }
+  },
+  {
+    "developer_name": "Mangrove Properties  - Sole Proprietorship L.L.C.",
+    "project_count": 1,
+    "total_tx": 289,
+    "district_count": 1,
+    "delivery_rate": null,
+    "secondary_tx": 4,
+    "price_stability": 84.8,
+    "composite_score": 47.7,
+    "score_breakdown": {
+      "dominance": 19.4,
+      "delivery": 10.0,
+      "liquidity": 3.3,
+      "stability": 15
+    }
   },
   {
     "developer_name": "Tourism Development & Investment  Company - Pjs",
     "project_count": 1,
     "total_tx": 54,
-    "psf_premium_pct": -9.6,
-    "secondary_market_ratio": null,
-    "pipeline_velocity": 10.0,
-    "composite_score": 14.0
+    "district_count": 1,
+    "delivery_rate": null,
+    "secondary_tx": 52,
+    "price_stability": 68.7,
+    "composite_score": 46.9,
+    "score_breakdown": {
+      "dominance": 14.5,
+      "delivery": 10.0,
+      "liquidity": 9.5,
+      "stability": 12.9
+    }
+  },
+  {
+    "developer_name": "Buttinah Real Estate Management",
+    "project_count": 1,
+    "total_tx": 83,
+    "district_count": 1,
+    "delivery_rate": null,
+    "secondary_tx": 4,
+    "price_stability": 86.4,
+    "composite_score": 44.1,
+    "score_breakdown": {
+      "dominance": 15.7,
+      "delivery": 10.0,
+      "liquidity": 3.3,
+      "stability": 15
+    }
+  },
+  {
+    "developer_name": "High Street Oriental Development  L.L.C.",
+    "project_count": 1,
+    "total_tx": 28,
+    "district_count": 1,
+    "delivery_rate": null,
+    "secondary_tx": 26,
+    "price_stability": 70.9,
+    "composite_score": 43.7,
+    "score_breakdown": {
+      "dominance": 12.5,
+      "delivery": 10.0,
+      "liquidity": 7.9,
+      "stability": 13.3
+    }
+  },
+  {
+    "developer_name": "Esk Investments - Sole Proprietorship L.L.C.",
+    "project_count": 1,
+    "total_tx": 70,
+    "district_count": 1,
+    "delivery_rate": null,
+    "secondary_tx": 0,
+    "price_stability": 93.3,
+    "composite_score": 40.2,
+    "score_breakdown": {
+      "dominance": 15.2,
+      "delivery": 10.0,
+      "liquidity": 0.0,
+      "stability": 15
+    }
   }
 ]

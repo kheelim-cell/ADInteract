@@ -1,0 +1,112 @@
+<script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
+
+  let {
+    purchasePrice = 0,
+    netAnnualRental = 0,
+    onchange
+  }: {
+    purchasePrice: number;
+    netAnnualRental: number;
+    onchange?: (data: { monthlyPayment: number; equity: number; enabled: boolean }) => void;
+  } = $props();
+
+  let enabled = $state(false);
+  let ltv = $state(75);
+  let annualRate = $state(4.5);
+  let termYears = $state(25);
+
+  const TERMS = [5, 10, 15, 20, 25];
+
+  let loanAmount   = $derived(purchasePrice * (ltv / 100));
+  let equity       = $derived(purchasePrice - loanAmount);
+  let monthlyRate  = $derived(annualRate / 12 / 100);
+  let n            = $derived(termYears * 12);
+  let monthlyPayment = $derived(
+    monthlyRate > 0 && n > 0 && loanAmount > 0
+      ? loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1)
+      : 0
+  );
+  let totalInterest  = $derived(monthlyPayment * n - loanAmount);
+  let cashOnCash     = $derived(
+    equity > 0 && netAnnualRental > 0
+      ? ((netAnnualRental - monthlyPayment * 12) / equity) * 100
+      : null
+  );
+
+  $effect(() => {
+    onchange?.({ monthlyPayment: enabled ? monthlyPayment : 0, equity: enabled ? equity : purchasePrice, enabled });
+  });
+
+  function fmt(n: number) { return Math.round(n).toLocaleString('en-AE'); }
+  function fmtPct(n: number | null) { return n == null ? '—' : n.toFixed(1) + '%'; }
+</script>
+
+<div class="mt-6 rounded-xl border border-gray-200 overflow-hidden">
+  <!-- Toggle header -->
+  <button
+    type="button"
+    onclick={() => { enabled = !enabled; }}
+    class="w-full flex items-center justify-between px-5 py-3.5 bg-gray-50 hover:bg-gray-100 transition-colors text-start"
+  >
+    <span class="flex items-center gap-2 text-sm font-semibold text-gray-800">
+      <svg class="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
+      </svg>
+      {m.mortgage_section_toggle()}
+    </span>
+    <svg class="w-4 h-4 text-gray-400 transition-transform {enabled ? 'rotate-180' : ''}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+    </svg>
+  </button>
+
+  {#if enabled}
+    <div class="px-5 py-4 space-y-4 bg-white">
+      <!-- LTV slider -->
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <label class="text-xs font-semibold text-gray-600">{m.mortgage_ltv_label()}</label>
+          <span class="text-xs font-bold text-blue-700">{ltv}%</span>
+        </div>
+        <input type="range" min="10" max="90" step="5" bind:value={ltv} class="w-full accent-blue-600" />
+        <p class="text-[10px] text-gray-400 mt-0.5">{m.mortgage_ltv_hint()}</p>
+      </div>
+
+      <!-- Rate + Term -->
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-xs font-semibold text-gray-600 mb-1">{m.mortgage_rate_label()}</label>
+          <input
+            type="number" min="1" max="15" step="0.1"
+            bind:value={annualRate}
+            class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-blue-400"
+          />
+          <p class="text-[10px] text-gray-400 mt-0.5">{m.mortgage_rate_hint()}</p>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-600 mb-1">{m.mortgage_term_label()}</label>
+          <select bind:value={termYears} class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-blue-400">
+            {#each TERMS as t}
+              <option value={t}>{t} yrs</option>
+            {/each}
+          </select>
+        </div>
+      </div>
+
+      <!-- KPI tiles -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+        {#each [
+          { label: m.mortgage_monthly_payment(), value: 'AED ' + fmt(monthlyPayment), accent: 'text-blue-700' },
+          { label: m.mortgage_cash_on_cash(),    value: fmtPct(cashOnCash),            accent: cashOnCash != null && cashOnCash > 0 ? 'text-emerald-600' : 'text-red-500' },
+          { label: m.mortgage_total_interest(),  value: 'AED ' + fmt(totalInterest),   accent: 'text-red-600' },
+          { label: m.mortgage_equity_required(), value: 'AED ' + fmt(equity),          accent: 'text-gray-800' },
+        ] as kpi}
+          <div class="rounded-lg bg-gray-50 border border-gray-100 px-3 py-2.5">
+            <p class="text-[10px] text-gray-500 mb-0.5">{kpi.label}</p>
+            <p class="text-sm font-bold {kpi.accent}">{kpi.value}</p>
+          </div>
+        {/each}
+      </div>
+    </div>
+  {/if}
+</div>

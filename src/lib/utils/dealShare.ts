@@ -94,7 +94,14 @@ export interface ReadyDealSnapshot {
 	totalRoiPa: number;
 }
 
-export type DealSnapshot = OffplanDealSnapshot | ReadyDealSnapshot;
+export interface AgentCard {
+	name: string;
+	avatar: string | null;
+	identity: string;
+	whatsapp: string | null;
+}
+
+export type DealSnapshot = (OffplanDealSnapshot | ReadyDealSnapshot) & { agentCard?: AgentCard };
 
 // ─── Encode / Decode ───────────────────────────────────────────────────────
 
@@ -123,4 +130,14 @@ export function decodeDeal(encoded: string): DealSnapshot | null {
 export function buildDealUrl(snapshot: DealSnapshot, origin: string, basePath = ''): string {
 	const encoded = encodeDeal(snapshot);
 	return `${origin}${basePath}/deal?s=${encoded}`;
+}
+
+export function buildAgentDealUrl(
+	snapshot: DealSnapshot,
+	origin: string,
+	basePath: string,
+	agentCard: AgentCard
+): string {
+	const withAgent: DealSnapshot = { ...snapshot, agentCard };
+	return buildDealUrl(withAgent, origin, basePath);
 }

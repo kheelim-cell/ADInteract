@@ -5,6 +5,7 @@
     type YieldRow,
     type InvestorFilterState
   } from '$lib/db/investor_queries';
+  import { queryRentalActivity, type RentalActivityRow } from '$lib/db/rental_queries';
   import YieldTable from '$lib/components/investors/YieldTable.svelte';
   import PopularAreaChips from '$lib/components/ui/PopularAreaChips.svelte';
   import { m } from '$lib/paraglide/messages.js';
@@ -61,6 +62,7 @@
   // ── Query state ────────────────────────────────────────────────────────────
   let yieldRows    = $state<YieldRow[]>([]);
   let loadingYield = $state(true);
+  let activityRows = $state<RentalActivityRow[]>([]);
 
   $effect(() => {
     const sy = salesYear;
@@ -72,6 +74,10 @@
       .then(rows => { yieldRows = rows; })
       .catch(() => { yieldRows = []; })
       .finally(() => { loadingYield = false; });
+
+    queryRentalActivity(ry, f.district ?? undefined)
+      .then(rows => { activityRows = rows; })
+      .catch(() => { activityRows = []; });
   });
 </script>
 
@@ -131,5 +137,55 @@
 
   <!-- ── Yield table ─────────────────────────────────────────────────────── -->
   <YieldTable rows={yieldRows} loading={loadingYield} />
+
+  <!-- ── Rental Activity (occupancy proxy) ──────────────────────────────── -->
+  {#if activityRows.length > 0}
+    <div class="mt-8">
+      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+        Rental Market Activity — Occupancy Signal by District
+      </h3>
+      <p class="text-xs text-gray-400 mb-4">
+        New vs renewal contract split · {rentalYear} ADREC data.
+        <span class="italic">True vacancy data is not published by ADREC. This signal is derived from new vs renewal contract ratios — a proxy, not a direct measure.</span>
+      </p>
+      <div class="rounded-xl border border-gray-200 overflow-hidden">
+        <table class="w-full text-xs">
+          <thead>
+            <tr class="bg-gray-50 border-b border-gray-100">
+              <th class="px-4 py-2.5 text-start text-[10px] font-semibold text-gray-500 uppercase tracking-wider">District</th>
+              <th class="px-4 py-2.5 text-end text-[10px] font-semibold text-emerald-600 uppercase tracking-wider">New Contracts</th>
+              <th class="px-4 py-2.5 text-end text-[10px] font-semibold text-blue-600 uppercase tracking-wider">Renewals</th>
+              <th class="px-4 py-2.5 text-start text-[10px] font-semibold text-gray-500 uppercase tracking-wider hidden sm:table-cell">Split</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-50">
+            {#each activityRows as r}
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="px-4 py-2.5 font-medium text-gray-800">{r.district}</td>
+                <td class="px-4 py-2.5 text-end">
+                  <span class="font-semibold text-emerald-700">{r.new_pct}%</span>
+                  <span class="text-gray-400 ml-1">({r.new_count.toLocaleString('en-AE')})</span>
+                </td>
+                <td class="px-4 py-2.5 text-end">
+                  <span class="font-semibold text-blue-700">{r.renewal_pct}%</span>
+                  <span class="text-gray-400 ml-1">({r.renewal_count.toLocaleString('en-AE')})</span>
+                </td>
+                <td class="px-4 py-2.5 hidden sm:table-cell">
+                  <div class="flex h-2 w-full rounded-full overflow-hidden bg-gray-100">
+                    <div class="bg-emerald-400" style="width: {r.new_pct}%"></div>
+                    <div class="bg-blue-400" style="width: {r.renewal_pct}%"></div>
+                  </div>
+                </td>
+              </tr>
+            {/each}
+          </tbody>
+        </table>
+        <div class="px-4 py-2 border-t border-gray-100 bg-gray-50 flex items-center gap-4 text-[10px] text-gray-400">
+          <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span> New contract</span>
+          <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-blue-400 inline-block"></span> Renewal · Higher renewal % = lower vacancy signal</span>
+        </div>
+      </div>
+    </div>
+  {/if}
 
 </div>

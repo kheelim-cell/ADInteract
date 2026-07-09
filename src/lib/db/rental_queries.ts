@@ -464,3 +464,61 @@ export async function queryPriceToRent(
 		LIMIT ${limit}
 	`);
 }
+
+// ─── Rental Market Activity (occupancy proxy) ─────────────────────────────────
+
+export interface RentalActivityRow {
+	district: string;
+	new_count: number;
+	renewal_count: number;
+	total_count: number;
+	new_pct: number;
+	renewal_pct: number;
+}
+
+/**
+ * Per-district breakdown of new vs renewal contracts.
+ * Lower new_pct signals stronger occupancy (more tenants renewing vs vacating).
+ */
+export async function queryRentalActivity(latestYear: number, district?: string): Promise<RentalActivityRow[]> {
+	const districtClause = district ? `AND district = '${esc(district)}'` : '';
+	const rows = await query<{
+		district: string;
+		new_count: number;
+		renewal_count: number;
+		total_count: number;
+	}>(`
+		SELECT
+			district,
+			SUM(CASE WHEN rent_type = 'New' THEN cnt ELSE 0 END)    AS new_count,
+			SUM(CASE WHEN rent_type = 'Renew' THEN cnt ELSE 0 END)  AS renewal_count,
+			SUM(cnt)                                                  AS total_count
+		FROM (
+			SELECT district, rent_type, COUNT(*) AS cnt
+			FROM rental
+			WHERE year = ${latestYear}
+			  AND typology = 'All property types'
+			  AND layout = 'all beds'
+			  AND rent_type IN ('New', 'Renew')
+			  AND district IS NOT NULL AND district != ''
+			  ${districtClause}
+			GROUP BY district, rent_type
+		)
+		GROUP BY district
+		HAVING SUM(cnt) >= 3
+		ORDER BY new_count DESC
+		LIMIT 20
+	`);
+
+	return rows.map(r => {
+		const total = Number(r.total_count) || 1;
+		return {
+			district: r.district,
+			new_count: Number(r.new_count),
+			renewal_count: Number(r.renewal_count),
+			total_count: total,
+			new_pct: Math.round((Number(r.new_count) / total) * 100),
+			renewal_pct: Math.round((Number(r.renewal_count) / total) * 100),
+		};
+	});
+}

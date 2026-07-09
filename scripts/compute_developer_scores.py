@@ -15,14 +15,15 @@ import pandas as pd
 
 REPO_ROOT = Path(__file__).parent.parent
 TX_PATH = REPO_ROOT / "static" / "data" / "transactions.parquet"
-SC_PATH = REPO_ROOT / "src" / "lib" / "data" / "service_charges.json"
+SC_PATH = REPO_ROOT / "static" / "data" / "service_charges.json"
 OUT_PATH = REPO_ROOT / "static" / "data" / "developer_scores.json"
 
 
 def load_data():
     tx = pd.read_parquet(TX_PATH)
     with open(SC_PATH, encoding="utf-8") as f:
-        sc = json.load(f)
+        raw = json.load(f)
+    sc = raw["projects"] if isinstance(raw, dict) else raw
     return tx, sc
 
 

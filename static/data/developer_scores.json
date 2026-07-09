@@ -1,0 +1,110 @@
+[
+  {
+    "developer_name": "Reportage Investments L.L.C.",
+    "project_count": 1,
+    "total_tx": 198,
+    "psf_premium_pct": 70.3,
+    "secondary_market_ratio": 80.6,
+    "pipeline_velocity": 10.0,
+    "composite_score": 72.8
+  },
+  {
+    "developer_name": "Aldar Properties - P J S C",
+    "project_count": 9,
+    "total_tx": 3580,
+    "psf_premium_pct": -0.3,
+    "secondary_market_ratio": 121.2,
+    "pipeline_velocity": 90.0,
+    "composite_score": 67.5
+  },
+  {
+    "developer_name": "Aldar Development  - L.L.C - O.P.C",
+    "project_count": 2,
+    "total_tx": 445,
+    "psf_premium_pct": 5.7,
+    "secondary_market_ratio": 46.2,
+    "pipeline_velocity": 20.0,
+    "composite_score": 54.3
+  },
+  {
+    "developer_name": "Esk Investments - Sole Proprietorship L.L.C.",
+    "project_count": 1,
+    "total_tx": 70,
+    "psf_premium_pct": 57.4,
+    "secondary_market_ratio": null,
+    "pipeline_velocity": 10.0,
+    "composite_score": 44.8
+  },
+  {
+    "developer_name": "High Street Oriental Development  L.L.C.",
+    "project_count": 1,
+    "total_tx": 28,
+    "psf_premium_pct": 22.6,
+    "secondary_market_ratio": null,
+    "pipeline_velocity": 10.0,
+    "composite_score": 42.1
+  },
+  {
+    "developer_name": "Albadie Group For Trading & Investments - L Lc",
+    "project_count": 1,
+    "total_tx": 284,
+    "psf_premium_pct": -12.8,
+    "secondary_market_ratio": null,
+    "pipeline_velocity": 10.0,
+    "composite_score": 18.9
+  },
+  {
+    "developer_name": "Mangrove Properties  - Sole Proprietorship L.L.C.",
+    "project_count": 1,
+    "total_tx": 289,
+    "psf_premium_pct": 0.0,
+    "secondary_market_ratio": null,
+    "pipeline_velocity": 10.0,
+    "composite_score": 18.9
+  },
+  {
+    "developer_name": "Dhafir Property Development L L C",
+    "project_count": 1,
+    "total_tx": 191,
+    "psf_premium_pct": -14.4,
+    "secondary_market_ratio": null,
+    "pipeline_velocity": 10.0,
+    "composite_score": 17.7
+  },
+  {
+    "developer_name": "Baniyas Investment & Development Company - L L C",
+    "project_count": 1,
+    "total_tx": 137,
+    "psf_premium_pct": 0.0,
+    "secondary_market_ratio": null,
+    "pipeline_velocity": 10.0,
+    "composite_score": 16.7
+  },
+  {
+    "developer_name": "Buttinah Real Estate Management",
+    "project_count": 1,
+    "total_tx": 83,
+    "psf_premium_pct": -2.3,
+    "secondary_market_ratio": null,
+    "pipeline_velocity": 10.0,
+    "composite_score": 15.3
+  },
+  {
+    "developer_name": "Bloom  Emirates  Properties  L L C",
+    "project_count": 1,
+    "total_tx": 57,
+    "psf_premium_pct": 0.0,
+    "secondary_market_ratio": null,
+    "pipeline_velocity": 10.0,
+    "composite_score": 14.2
+  },
+  {
+    "developer_name": "Tourism Development & Investment  Company - Pjs",
+    "project_count": 1,
+    "total_tx": 54,
+    "psf_premium_pct": -9.6,
+    "secondary_market_ratio": null,
+    "pipeline_velocity": 10.0,
+    "composite_score": 14.0
+  }
+]

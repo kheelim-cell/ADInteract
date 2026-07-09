@@ -1,18 +1,146 @@
 [
   {
-    "developer_name": "Aldar Properties - P J S C",
-    "project_count": 9,
-    "total_tx": 3580,
-    "district_count": 4,
-    "delivery_rate": 100.0,
-    "secondary_tx": 1977,
-    "price_stability": 61.2,
-    "composite_score": 85.2,
+    "developer_name": "Aldar Properties",
+    "project_count": 121,
+    "total_tx": 52242,
+    "district_count": 9,
+    "delivery_rate": 76.9,
+    "secondary_tx": 16226,
+    "price_stability": 44.9,
+    "composite_score": 92.6,
     "score_breakdown": {
-      "dominance": 38.8,
+      "dominance": 50,
+      "delivery": 19.2,
+      "liquidity": 15,
+      "stability": 8.4
+    }
+  },
+  {
+    "developer_name": "Bloom Holding",
+    "project_count": 13,
+    "total_tx": 4380,
+    "district_count": 3,
+    "delivery_rate": 84.6,
+    "secondary_tx": 710,
+    "price_stability": 87.3,
+    "composite_score": 90.4,
+    "score_breakdown": {
+      "dominance": 40.4,
       "delivery": 20,
       "liquidity": 15,
-      "stability": 11.5
+      "stability": 15
+    }
+  },
+  {
+    "developer_name": "Modon Properties",
+    "project_count": 14,
+    "total_tx": 4837,
+    "district_count": 3,
+    "delivery_rate": 71.4,
+    "secondary_tx": 500,
+    "price_stability": 57.4,
+    "composite_score": 85.0,
+    "score_breakdown": {
+      "dominance": 41.4,
+      "delivery": 17.9,
+      "liquidity": 15,
+      "stability": 10.8
+    }
+  },
+  {
+    "developer_name": "Q Properties",
+    "project_count": 9,
+    "total_tx": 2757,
+    "district_count": 1,
+    "delivery_rate": 88.9,
+    "secondary_tx": 380,
+    "price_stability": 83.0,
+    "composite_score": 81.3,
+    "score_breakdown": {
+      "dominance": 32.0,
+      "delivery": 20,
+      "liquidity": 14.3,
+      "stability": 15
+    }
+  },
+  {
+    "developer_name": "Radiant Group",
+    "project_count": 7,
+    "total_tx": 2758,
+    "district_count": 1,
+    "delivery_rate": 100.0,
+    "secondary_tx": 395,
+    "price_stability": 78.6,
+    "composite_score": 79.7,
+    "score_breakdown": {
+      "dominance": 30.5,
+      "delivery": 20,
+      "liquidity": 14.4,
+      "stability": 14.7
+    }
+  },
+  {
+    "developer_name": "Hydra Properties",
+    "project_count": 5,
+    "total_tx": 3328,
+    "district_count": 2,
+    "delivery_rate": 100.0,
+    "secondary_tx": 1712,
+    "price_stability": 61.6,
+    "composite_score": 78.1,
+    "score_breakdown": {
+      "dominance": 31.6,
+      "delivery": 20,
+      "liquidity": 15,
+      "stability": 11.6
+    }
+  },
+  {
+    "developer_name": "Abu Dhabi Housing Authority",
+    "project_count": 6,
+    "total_tx": 1654,
+    "district_count": 1,
+    "delivery_rate": 83.3,
+    "secondary_tx": 363,
+    "price_stability": 60.6,
+    "composite_score": 73.9,
+    "score_breakdown": {
+      "dominance": 28.3,
+      "delivery": 20,
+      "liquidity": 14.2,
+      "stability": 11.4
+    }
+  },
+  {
+    "developer_name": "Diamond Developers",
+    "project_count": 1,
+    "total_tx": 1170,
+    "district_count": 1,
+    "delivery_rate": 100.0,
+    "secondary_tx": 318,
+    "price_stability": 85.1,
+    "composite_score": 72.4,
+    "score_breakdown": {
+      "dominance": 23.5,
+      "delivery": 20,
+      "liquidity": 13.9,
+      "stability": 15
+    }
+  },
+  {
+    "developer_name": "Aldar Properties - P J S C",
+    "project_count": 3,
+    "total_tx": 710,
+    "district_count": 2,
+    "delivery_rate": 100.0,
+    "secondary_tx": 546,
+    "price_stability": 60.0,
+    "composite_score": 71.8,
+    "score_breakdown": {
+      "dominance": 25.5,
+      "delivery": 20,
+      "liquidity": 15,
+      "stability": 11.3
     }
   },
   {
@@ -32,6 +160,22 @@
     }
   },
   {
+    "developer_name": "Addax Petroleum",
+    "project_count": 1,
+    "total_tx": 1050,
+    "district_count": 1,
+    "delivery_rate": 100.0,
+    "secondary_tx": 481,
+    "price_stability": 46.9,
+    "composite_score": 66.9,
+    "score_breakdown": {
+      "dominance": 23.2,
+      "delivery": 20,
+      "liquidity": 14.9,
+      "stability": 8.8
+    }
+  },
+  {
     "developer_name": "Albadie Group For Trading & Investments - L Lc",
     "project_count": 1,
     "total_tx": 284,
@@ -48,7 +192,55 @@
     }
   },
   {
-    "developer_name": "Reportage Investments L.L.C.",
+    "developer_name": "Masdar",
+    "project_count": 1,
+    "total_tx": 542,
+    "district_count": 1,
+    "delivery_rate": 100.0,
+    "secondary_tx": 103,
+    "price_stability": 71.2,
+    "composite_score": 65.8,
+    "score_breakdown": {
+      "dominance": 21.2,
+      "delivery": 20,
+      "liquidity": 11.2,
+      "stability": 13.3
+    }
+  },
+  {
+    "developer_name": "Tamouh Investments",
+    "project_count": 6,
+    "total_tx": 1628,
+    "district_count": 2,
+    "delivery_rate": 100.0,
+    "secondary_tx": 873,
+    "price_stability": 0,
+    "composite_score": 65.2,
+    "score_breakdown": {
+      "dominance": 30.2,
+      "delivery": 20,
+      "liquidity": 15,
+      "stability": 0.0
+    }
+  },
+  {
+    "developer_name": "DAMAC Properties",
+    "project_count": 1,
+    "total_tx": 471,
+    "district_count": 1,
+    "delivery_rate": 100.0,
+    "secondary_tx": 154,
+    "price_stability": 60.4,
+    "composite_score": 64.3,
+    "score_breakdown": {
+      "dominance": 20.8,
+      "delivery": 20,
+      "liquidity": 12.2,
+      "stability": 11.3
+    }
+  },
+  {
+    "developer_name": "Leonardo",
     "project_count": 1,
     "total_tx": 198,
     "district_count": 1,
@@ -61,6 +253,86 @@
       "delivery": 20,
       "liquidity": 10.4,
       "stability": 14.5
+    }
+  },
+  {
+    "developer_name": "ADNEC",
+    "project_count": 1,
+    "total_tx": 182,
+    "district_count": 1,
+    "delivery_rate": 100.0,
+    "secondary_tx": 57,
+    "price_stability": 90.3,
+    "composite_score": 62.8,
+    "score_breakdown": {
+      "dominance": 18.0,
+      "delivery": 20,
+      "liquidity": 9.8,
+      "stability": 15
+    }
+  },
+  {
+    "developer_name": "Imkan Properties",
+    "project_count": 8,
+    "total_tx": 807,
+    "district_count": 2,
+    "delivery_rate": 62.5,
+    "secondary_tx": 49,
+    "price_stability": 42.8,
+    "composite_score": 62.7,
+    "score_breakdown": {
+      "dominance": 29.6,
+      "delivery": 15.6,
+      "liquidity": 9.4,
+      "stability": 8.0
+    }
+  },
+  {
+    "developer_name": "Jubail Island Investment",
+    "project_count": 7,
+    "total_tx": 1507,
+    "district_count": 1,
+    "delivery_rate": 71.4,
+    "secondary_tx": 236,
+    "price_stability": 14.5,
+    "composite_score": 62.5,
+    "score_breakdown": {
+      "dominance": 28.7,
+      "delivery": 17.9,
+      "liquidity": 13.2,
+      "stability": 2.7
+    }
+  },
+  {
+    "developer_name": "International Capital Trading",
+    "project_count": 1,
+    "total_tx": 184,
+    "district_count": 1,
+    "delivery_rate": 100.0,
+    "secondary_tx": 17,
+    "price_stability": 88.3,
+    "composite_score": 59.9,
+    "score_breakdown": {
+      "dominance": 18.1,
+      "delivery": 20,
+      "liquidity": 6.8,
+      "stability": 15
+    }
+  },
+  {
+    "developer_name": "SAAS Properties",
+    "project_count": 1,
+    "total_tx": 228,
+    "district_count": 1,
+    "delivery_rate": 100.0,
+    "secondary_tx": 3,
+    "price_stability": 84.3,
+    "composite_score": 56.3,
+    "score_breakdown": {
+      "dominance": 18.7,
+      "delivery": 20,
+      "liquidity": 2.7,
+      "stability": 15
     }
   },
   {
@@ -80,6 +352,38 @@
     }
   },
   {
+    "developer_name": "Royal Development Group",
+    "project_count": 10,
+    "total_tx": 1124,
+    "district_count": 4,
+    "delivery_rate": 10.0,
+    "secondary_tx": 1,
+    "price_stability": 76.0,
+    "composite_score": 52.9,
+    "score_breakdown": {
+      "dominance": 36.1,
+      "delivery": 2.5,
+      "liquidity": 0.0,
+      "stability": 14.3
+    }
+  },
+  {
+    "developer_name": "Eagle Hills",
+    "project_count": 6,
+    "total_tx": 1321,
+    "district_count": 2,
+    "delivery_rate": 16.7,
+    "secondary_tx": 3,
+    "price_stability": 79.0,
+    "composite_score": 51.2,
+    "score_breakdown": {
+      "dominance": 29.6,
+      "delivery": 4.2,
+      "liquidity": 2.7,
+      "stability": 14.8
+    }
+  },
+  {
     "developer_name": "Baniyas Investment & Development Company - L L C",
     "project_count": 1,
     "total_tx": 137,
@@ -92,6 +396,22 @@
       "dominance": 17.2,
       "delivery": 10.0,
       "liquidity": 7.5,
+      "stability": 15
+    }
+  },
+  {
+    "developer_name": "Abu Dhabi National Hotels",
+    "project_count": 3,
+    "total_tx": 1553,
+    "district_count": 1,
+    "delivery_rate": 33.3,
+    "secondary_tx": 1,
+    "price_stability": 86.7,
+    "composite_score": 49.2,
+    "score_breakdown": {
+      "dominance": 25.8,
+      "delivery": 8.3,
+      "liquidity": 0.0,
       "stability": 15
     }
   },
@@ -109,6 +429,22 @@
       "delivery": 10.0,
       "liquidity": 8.7,
       "stability": 14.7
+    }
+  },
+  {
+    "developer_name": "Fay Al Reeman",
+    "project_count": 2,
+    "total_tx": 292,
+    "district_count": 1,
+    "delivery_rate": 50.0,
+    "secondary_tx": 6,
+    "price_stability": 59.0,
+    "composite_score": 48.1,
+    "score_breakdown": {
+      "dominance": 20.2,
+      "delivery": 12.5,
+      "liquidity": 4.3,
+      "stability": 11.1
     }
   },
   {
@@ -141,6 +477,38 @@
       "delivery": 10.0,
       "liquidity": 9.5,
       "stability": 12.9
+    }
+  },
+  {
+    "developer_name": "TDIC",
+    "project_count": 2,
+    "total_tx": 181,
+    "district_count": 2,
+    "delivery_rate": 50.0,
+    "secondary_tx": 1,
+    "price_stability": 62.9,
+    "composite_score": 45.1,
+    "score_breakdown": {
+      "dominance": 20.8,
+      "delivery": 12.5,
+      "liquidity": 0.0,
+      "stability": 11.8
+    }
+  },
+  {
+    "developer_name": "International Properties",
+    "project_count": 1,
+    "total_tx": 36,
+    "district_count": 1,
+    "delivery_rate": 100.0,
+    "secondary_tx": 4,
+    "price_stability": 43.6,
+    "composite_score": 44.8,
+    "score_breakdown": {
+      "dominance": 13.3,
+      "delivery": 20,
+      "liquidity": 3.3,
+      "stability": 8.2
     }
   },
   {
@@ -187,6 +555,118 @@
     "score_breakdown": {
       "dominance": 15.2,
       "delivery": 10.0,
+      "liquidity": 0.0,
+      "stability": 15
+    }
+  },
+  {
+    "developer_name": "Radisson",
+    "project_count": 2,
+    "total_tx": 425,
+    "district_count": 1,
+    "delivery_rate": 0.0,
+    "secondary_tx": 0,
+    "price_stability": 79.6,
+    "composite_score": 36.2,
+    "score_breakdown": {
+      "dominance": 21.3,
+      "delivery": 0.0,
+      "liquidity": 0.0,
+      "stability": 14.9
+    }
+  },
+  {
+    "developer_name": "Rotana",
+    "project_count": 2,
+    "total_tx": 356,
+    "district_count": 1,
+    "delivery_rate": 0.0,
+    "secondary_tx": 0,
+    "price_stability": 87.1,
+    "composite_score": 35.7,
+    "score_breakdown": {
+      "dominance": 20.7,
+      "delivery": 0.0,
+      "liquidity": 0.0,
+      "stability": 15
+    }
+  },
+  {
+    "developer_name": "RAK Properties",
+    "project_count": 4,
+    "total_tx": 252,
+    "district_count": 1,
+    "delivery_rate": 0.0,
+    "secondary_tx": 0,
+    "price_stability": 73.7,
+    "composite_score": 35.1,
+    "score_breakdown": {
+      "dominance": 21.2,
+      "delivery": 0.0,
+      "liquidity": 0.0,
+      "stability": 13.8
+    }
+  },
+  {
+    "developer_name": "Nine Yards",
+    "project_count": 1,
+    "total_tx": 82,
+    "district_count": 1,
+    "delivery_rate": 0.0,
+    "secondary_tx": 0,
+    "price_stability": 85.6,
+    "composite_score": 30.7,
+    "score_breakdown": {
+      "dominance": 15.7,
+      "delivery": 0.0,
+      "liquidity": 0.0,
+      "stability": 15
+    }
+  },
+  {
+    "developer_name": "Hilton",
+    "project_count": 1,
+    "total_tx": 74,
+    "district_count": 1,
+    "delivery_rate": 0.0,
+    "secondary_tx": 0,
+    "price_stability": 95.8,
+    "composite_score": 30.4,
+    "score_breakdown": {
+      "dominance": 15.4,
+      "delivery": 0.0,
+      "liquidity": 0.0,
+      "stability": 15
+    }
+  },
+  {
+    "developer_name": "Reportage Properties",
+    "project_count": 1,
+    "total_tx": 58,
+    "district_count": 1,
+    "delivery_rate": 0.0,
+    "secondary_tx": 0,
+    "price_stability": 72.6,
+    "composite_score": 28.3,
+    "score_breakdown": {
+      "dominance": 14.7,
+      "delivery": 0.0,
+      "liquidity": 0.0,
+      "stability": 13.6
+    }
+  },
+  {
+    "developer_name": "Manazel",
+    "project_count": 1,
+    "total_tx": 22,
+    "district_count": 1,
+    "delivery_rate": 0.0,
+    "secondary_tx": 0,
+    "price_stability": 86.6,
+    "composite_score": 26.8,
+    "score_breakdown": {
+      "dominance": 11.8,
+      "delivery": 0.0,
       "liquidity": 0.0,
       "stability": 15
     }

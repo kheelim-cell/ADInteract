@@ -1,4 +1,4 @@
-"""
+﻿"""
 Compute developer track record scores from ADREC transaction data.
 
 Score breakdown (100 pts total):
@@ -22,10 +22,11 @@ from pathlib import Path
 
 import pandas as pd
 
-REPO_ROOT = Path(__file__).parent.parent
-TX_PATH   = REPO_ROOT / "static" / "data" / "transactions.parquet"
-SC_PATH   = REPO_ROOT / "static" / "data" / "service_charges.json"
-OUT_PATH  = REPO_ROOT / "static" / "data" / "developer_scores.json"
+REPO_ROOT      = Path(__file__).parent.parent
+TX_PATH        = REPO_ROOT / "static" / "data" / "transactions.parquet"
+SC_PATH        = REPO_ROOT / "static" / "data" / "service_charges.json"
+DEV_MAP_PATH   = Path(__file__).parent / "data" / "developer_mapping.json"
+OUT_PATH       = REPO_ROOT / "static" / "data" / "developer_scores.json"
 
 
 def load_data():
@@ -37,12 +38,31 @@ def load_data():
 
 
 def build_project_developer_map(sc: list) -> dict:
+    """Merge developer_mapping.json (all 245 pipeline projects) with service_charges.json fallback."""
     mapping = {}
+
+    # Seed from service_charges (lower priority)
     for entry in sc:
         proj = entry.get("project_name", "").strip().lower()
         dev  = entry.get("developer_name", "").strip()
         if proj and dev:
             mapping[proj] = dev
+
+    # Override/extend with the scraped+hardcoded developer mapping (higher priority)
+    if DEV_MAP_PATH.exists():
+        with open(DEV_MAP_PATH, encoding="utf-8") as f:
+            dev_map = json.load(f)
+        added = 0
+        for proj_name, dev in dev_map.items():
+            if dev and dev != "Unknown":
+                key = proj_name.strip().lower()
+                if key not in mapping:
+                    added += 1
+                mapping[key] = dev
+        print(f"  developer_mapping.json: {len(dev_map)} entries ({added} new beyond service_charges)")
+    else:
+        print(f"  Warning: {DEV_MAP_PATH} not found — run fetch_developer_mapping.py first")
+
     return mapping
 
 
@@ -151,7 +171,7 @@ def main():
     print(f"  Service charge entries: {len(sc)}")
 
     proj_to_dev = build_project_developer_map(sc)
-    print(f"  Project→developer mappings: {len(proj_to_dev)}")
+    print(f"  Project->developer mappings: {len(proj_to_dev)}")
 
     scores = compute_scores(tx, proj_to_dev)
     print(f"  Developers scored: {len(scores)}")

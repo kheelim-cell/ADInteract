@@ -79,12 +79,7 @@
           return html;
         }
       },
-      legend: {
-        bottom: 4,
-        textStyle: { fontSize: 11, color: '#64748b' },
-        itemWidth: 12,
-        itemHeight: 12,
-      },
+      legend: { show: false },
       xAxis: {
         type: 'category',
         data: rows.map(r => `Yr ${r.year}`),
@@ -95,10 +90,12 @@
       yAxis: [
         {
           type: 'value',
+          name: 'AED',
+          nameTextStyle: { color: '#94a3b8', fontSize: 10 },
           axisLabel: {
             fontSize: 10,
             color: '#94a3b8',
-            formatter: (v: number) => v >= 1e6 ? (v / 1e6).toFixed(1) + 'M' : (v / 1e3).toFixed(0) + 'K',
+            formatter: (v: number) => v >= 1e6 ? (v / 1e6).toFixed(1) + 'M' : v >= 1e3 ? (v / 1e3).toFixed(0) + 'K' : String(v),
           },
           splitLine: { lineStyle: { color: '#f1f5f9', type: 'dashed' } },
           axisLine: { show: false },
@@ -121,21 +118,11 @@
         {
           name: 'Net Cash Flow',
           type: 'bar',
-          barMaxWidth: 28,
+          barMaxWidth: 40,
+          barCategoryGap: '40%',
           data: rows.map(r => Math.round(r.net)),
           itemStyle: {
             color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#34d399' }, { offset: 1, color: '#059669' }] },
-            borderRadius: [4, 4, 0, 0],
-          },
-          z: 2,
-        },
-        {
-          name: 'Property Value',
-          type: 'bar',
-          barMaxWidth: 28,
-          data: rows.map(r => Math.round(r.value)),
-          itemStyle: {
-            color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#60a5fa' }, { offset: 1, color: '#2563eb' }] },
             borderRadius: [4, 4, 0, 0],
           },
           z: 2,
@@ -151,7 +138,7 @@
           symbol: 'circle',
           symbolSize: 7,
           areaStyle: {
-            color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: 'rgba(245,158,11,0.15)' }, { offset: 1, color: 'rgba(245,158,11,0)' }] }
+            color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: 'rgba(245,158,11,0.18)' }, { offset: 1, color: 'rgba(245,158,11,0)' }] }
           },
           z: 3,
         },
@@ -200,8 +187,7 @@
 
     <!-- Colour legend strip -->
     <div class="flex items-center gap-5 px-6 pb-4 bg-white text-[11px] text-gray-500">
-      <span class="flex items-center gap-1.5"><span class="inline-block w-3 h-3 rounded-sm bg-emerald-500"></span> Net Cash Flow</span>
-      <span class="flex items-center gap-1.5"><span class="inline-block w-3 h-3 rounded-sm bg-blue-500"></span> Property Value</span>
+      <span class="flex items-center gap-1.5"><span class="inline-block w-3 h-3 rounded-sm bg-emerald-500"></span> Net Cash Flow (AED)</span>
       <span class="flex items-center gap-1.5"><span class="inline-block w-3 h-3 rounded-full bg-amber-400"></span> Cumulative ROI %</span>
     </div>
 

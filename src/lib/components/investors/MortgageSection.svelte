@@ -63,7 +63,7 @@
   </button>
 
   {#if enabled}
-    <div class="px-6 pb-6 pt-2 space-y-6 bg-white border-t border-gray-100">
+    <div class="px-10 pb-8 pt-5 space-y-6 bg-white border-t border-gray-100">
 
       <!-- LTV slider -->
       <div class="space-y-2">

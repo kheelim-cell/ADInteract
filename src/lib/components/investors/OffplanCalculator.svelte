@@ -799,7 +799,7 @@
   </div><!-- end grid -->
 
   <!-- Mortgage + Cash Flow (full width below grid) -->
-  <div class="mt-6 px-0">
+  <div class="mt-6 px-5 pb-5">
     <MortgageSection
       purchasePrice={cost}
       netAnnualRental={netRental}

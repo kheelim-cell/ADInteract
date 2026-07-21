@@ -1,6 +1,7 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
   import { onMount } from 'svelte';
+  import { decayedGrowth } from '$lib/utils/appreciation';
 
   let {
     purchasePrice = 0,
@@ -38,10 +39,10 @@
   let rows = $derived<YearRow[]>(
     Array.from({ length: years }, (_, i) => {
       const yr     = i + 1;
-      const rental = grossRental * Math.pow(1 + rentalAppPct / 100, yr);
+      const rental = grossRental * decayedGrowth(rentalAppPct, yr);
       const costs  = serviceCharge + (rental * mgmtFeePct / 100) + utilities * 12 + monthlyMortgagePayment * 12;
       const net    = rental - costs;
-      const value  = purchasePrice * Math.pow(1 + annualAppPct / 100, yr);
+      const value  = purchasePrice * decayedGrowth(annualAppPct, yr);
       const cumulativeRoi = purchasePrice > 0 ? ((value - purchasePrice + net * yr) / purchasePrice) * 100 : 0;
       return { year: yr, rental, costs, net, value, cumulativeRoi };
     })
@@ -164,7 +165,7 @@
     <div class="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-100">
       <div>
         <h3 class="text-sm font-semibold text-gray-900">{m.cashflow_section_title()}</h3>
-        <p class="text-[11px] text-gray-400 mt-0.5">Compound growth · {annualAppPct}% annual appreciation</p>
+        <p class="text-[11px] text-gray-400 mt-0.5">{annualAppPct}%/yr yrs 1–2 · half yrs 3–4 · flat from yr 5</p>
       </div>
       <div class="flex rounded-lg border border-gray-200 overflow-hidden text-xs font-semibold">
         <button

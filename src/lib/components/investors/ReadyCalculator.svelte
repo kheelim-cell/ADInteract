@@ -6,6 +6,7 @@
   import ReadyPropertyUpload, { type ReadyExtractionData } from '$lib/components/investors/ReadyPropertyUpload.svelte';
   import { buildDealUrl, buildAgentDealUrl, type ReadyDealSnapshot } from '$lib/utils/dealShare';
   import { isAuthenticated, user } from '$lib/stores/auth';
+  import { decayedGrowth } from '$lib/utils/appreciation';
   import MortgageSection from '$lib/components/investors/MortgageSection.svelte';
   import CashFlowProjection from '$lib/components/investors/CashFlowProjection.svelte';
 
@@ -159,7 +160,7 @@
   let rentalObjective    = $derived(netYield >= 7);
 
   // ── Derived: capital gains ───────────────────────────────────────────────────
-  let sellingPrice    = $derived(comparablePsf * livingArea * Math.pow(1 + annualAppPct / 100, yearsToResale) * (1 + otherAppPct / 100));
+  let sellingPrice    = $derived(comparablePsf * livingArea * decayedGrowth(annualAppPct, yearsToResale) * (1 + otherAppPct / 100));
   let resaleBrokerFee = $derived(sellingPrice * 0.02);
   let netProfit = $derived(
     sellingPrice - price - purchasingFees - mortgageAdminFee - resaleBrokerFee - additionalCapex
@@ -1077,7 +1078,7 @@
 
         <!-- Disclaimer -->
         <p class="text-[10px] text-gray-400 leading-relaxed px-0.5">
-          {m.calc_disclaimer_ready()}
+          {m.calc_disclaimer_ready({ pct: String(annualAppPct) })}
         </p>
 
       </div><!-- end inner padding -->

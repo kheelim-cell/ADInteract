@@ -5,6 +5,7 @@
   import { base } from '$app/paths';
   import { buildDealUrl, buildAgentDealUrl, type OffplanDealSnapshot } from '$lib/utils/dealShare';
   import { isAuthenticated, user } from '$lib/stores/auth';
+  import { decayedGrowth } from '$lib/utils/appreciation';
 
   let shareWithProfile = $state(false);
   import { m } from '$lib/paraglide/messages.js';
@@ -148,7 +149,7 @@
   let totalPurchaseCost  = $derived(cost + registrationFee + devRegistrationFee + handoverAdminFee);
 
   // ── Derived: rental ──────────────────────────────────────────────────────────
-  let baseRentalAfterGrowth = $derived(comparableRent * Math.pow(1 + rentalAppPct / 100, yearsTillHandover));
+  let baseRentalAfterGrowth = $derived(comparableRent * decayedGrowth(rentalAppPct, yearsTillHandover));
   let afterFurnishing       = $derived(baseRentalAfterGrowth * (1 + furnishingPct / 100));
   let grossRental           = $derived(afterFurnishing * (1 + maidsPct / 100));
   let mgmtFee       = $derived(grossRental * mgmtFeePct / 100);
@@ -162,7 +163,7 @@
   let rentalObjective = $derived(netYield >= 7);
 
   // ── Derived: capital gains ────────────────────────────────────────────────────
-  let sellingPrice     = $derived(cost * Math.pow(1 + annualAppPct / 100, yearsToResale) * (1 + otherAppPct / 100));
+  let sellingPrice     = $derived(cost * decayedGrowth(annualAppPct, yearsToResale) * (1 + otherAppPct / 100));
   let resaleBrokerFee  = $derived(sellingPrice * resaleBrokerPct / 100);
   let totalAllInCost   = $derived(totalPurchaseCost + resaleBrokerFee);
   let netProfit        = $derived(sellingPrice - totalAllInCost);

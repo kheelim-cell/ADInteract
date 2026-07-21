@@ -5,10 +5,10 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 0.0,
     "trend_direction": "up",
-    "tx_count_12m": 2472,
+    "tx_count_12m": 2473,
     "median_psf_12m": 1780,
     "offplan_pct": 100.0,
-    "computed_at": "2026-07-20T05:26:29.561862+00:00",
+    "computed_at": "2026-07-21T04:56:08.105376+00:00",
     "gec": {
       "total": 87,
       "velocity": {
@@ -50,7 +50,7 @@
     "tx_count_12m": 214,
     "median_psf_12m": 2804,
     "offplan_pct": 93.0,
-    "computed_at": "2026-07-20T05:26:30.098995+00:00",
+    "computed_at": "2026-07-21T04:56:08.684487+00:00",
     "gec": {
       "total": 76,
       "velocity": {
@@ -89,10 +89,10 @@
     "score_type": "both",
     "ready_pct_alltime": 52.9,
     "trend_direction": "up",
-    "tx_count_12m": 8497,
+    "tx_count_12m": 8482,
     "median_psf_12m": 1605,
-    "offplan_pct": 70.0,
-    "computed_at": "2026-07-20T05:26:29.856455+00:00",
+    "offplan_pct": 70.1,
+    "computed_at": "2026-07-21T04:56:08.422045+00:00",
     "ys": {
       "total": 60,
       "momentum": {
@@ -109,7 +109,7 @@
       "liquidity": {
         "score": 10,
         "max": 20,
-        "recency_ratio": 1.11
+        "recency_ratio": 1.1
       },
       "stability": {
         "score": 8,
@@ -127,12 +127,12 @@
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 3.9
+        "velocity_ratio": 3.85
       },
       "momentum": {
         "score": 17,
         "max": 25,
-        "pct_change": 16.7,
+        "pct_change": 16.8,
         "direction": "up"
       },
       "appreciation": {
@@ -148,7 +148,7 @@
       "entry": {
         "score": 7,
         "max": 10,
-        "entry_ratio": 1.41
+        "entry_ratio": 1.38
       }
     },
     "score": 74,
@@ -160,21 +160,21 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 7.7,
     "trend_direction": "up",
-    "tx_count_12m": 853,
-    "median_psf_12m": 1255,
-    "offplan_pct": 83.7,
-    "computed_at": "2026-07-20T05:26:29.970906+00:00",
+    "tx_count_12m": 846,
+    "median_psf_12m": 1254,
+    "offplan_pct": 83.6,
+    "computed_at": "2026-07-21T04:56:08.547691+00:00",
     "gec": {
       "total": 70,
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 5.22
+        "velocity_ratio": 4.46
       },
       "momentum": {
         "score": 13,
         "max": 25,
-        "pct_change": 3.0,
+        "pct_change": 3.7,
         "direction": "up"
       },
       "appreciation": {
@@ -190,52 +190,10 @@
       "entry": {
         "score": 7,
         "max": 10,
-        "entry_ratio": 1.33
+        "entry_ratio": 1.36
       }
     },
     "score": 70,
-    "color": "amber"
-  },
-  "Al Reef": {
-    "slug": "al-reef",
-    "district_name": "Al Reef",
-    "score_type": "yield_stability",
-    "ready_pct_alltime": 95.7,
-    "trend_direction": "up",
-    "tx_count_12m": 472,
-    "median_psf_12m": 985,
-    "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:29.828698+00:00",
-    "ys": {
-      "total": 68,
-      "momentum": {
-        "score": 26,
-        "max": 30,
-        "pct_change": 31.4,
-        "direction": "up"
-      },
-      "yield": {
-        "score": 22,
-        "max": 25,
-        "gross_yield_pct": 6.3
-      },
-      "liquidity": {
-        "score": 7,
-        "max": 20,
-        "recency_ratio": 0.7
-      },
-      "stability": {
-        "score": 8,
-        "max": 15,
-        "cov": 0.146
-      },
-      "appreciation": {
-        "score": 5,
-        "max": 10,
-        "ratio": null
-      }
-    },
-    "score": 68,
     "color": "amber"
   },
   "Khalifa City": {
@@ -244,16 +202,16 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 32.1,
     "trend_direction": "up",
-    "tx_count_12m": 1253,
+    "tx_count_12m": 1249,
     "median_psf_12m": 1245,
-    "offplan_pct": 69.8,
-    "computed_at": "2026-07-20T05:26:30.161891+00:00",
+    "offplan_pct": 70.1,
+    "computed_at": "2026-07-21T04:56:08.751940+00:00",
     "gec": {
-      "total": 68,
+      "total": 69,
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 3.88
+        "velocity_ratio": 3.87
       },
       "momentum": {
         "score": 15,
@@ -262,9 +220,9 @@
         "direction": "up"
       },
       "appreciation": {
-        "score": 10,
+        "score": 11,
         "max": 20,
-        "ratio": 1.04
+        "ratio": 1.05
       },
       "developer": {
         "score": 11,
@@ -277,6 +235,48 @@
         "entry_ratio": 0.64
       }
     },
+    "score": 69,
+    "color": "amber"
+  },
+  "Al Reef": {
+    "slug": "al-reef",
+    "district_name": "Al Reef",
+    "score_type": "yield_stability",
+    "ready_pct_alltime": 95.7,
+    "trend_direction": "up",
+    "tx_count_12m": 468,
+    "median_psf_12m": 986,
+    "offplan_pct": 0.0,
+    "computed_at": "2026-07-21T04:56:08.393065+00:00",
+    "ys": {
+      "total": 68,
+      "momentum": {
+        "score": 26,
+        "max": 30,
+        "pct_change": 31.2,
+        "direction": "up"
+      },
+      "yield": {
+        "score": 22,
+        "max": 25,
+        "gross_yield_pct": 6.3
+      },
+      "liquidity": {
+        "score": 7,
+        "max": 20,
+        "recency_ratio": 0.71
+      },
+      "stability": {
+        "score": 8,
+        "max": 15,
+        "cov": 0.148
+      },
+      "appreciation": {
+        "score": 5,
+        "max": 10,
+        "ratio": null
+      }
+    },
     "score": 68,
     "color": "amber"
   },
@@ -286,16 +286,16 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 15.2,
     "trend_direction": "up",
-    "tx_count_12m": 5157,
-    "median_psf_12m": 2118,
-    "offplan_pct": 88.5,
-    "computed_at": "2026-07-20T05:26:30.321495+00:00",
+    "tx_count_12m": 5139,
+    "median_psf_12m": 2120,
+    "offplan_pct": 88.6,
+    "computed_at": "2026-07-21T04:56:08.926312+00:00",
     "gec": {
       "total": 68,
       "velocity": {
         "score": 23,
         "max": 30,
-        "velocity_ratio": 2.39
+        "velocity_ratio": 2.34
       },
       "momentum": {
         "score": 20,
@@ -316,10 +316,52 @@
       "entry": {
         "score": 7,
         "max": 10,
-        "entry_ratio": 1.05
+        "entry_ratio": 1.02
       }
     },
     "score": 68,
+    "color": "amber"
+  },
+  "Al Layyan": {
+    "slug": "al-layyan",
+    "district_name": "Al Layyan",
+    "score_type": "yield_stability",
+    "ready_pct_alltime": 65.3,
+    "trend_direction": "up",
+    "tx_count_12m": 258,
+    "median_psf_12m": 951,
+    "offplan_pct": 0.8,
+    "computed_at": "2026-07-21T04:56:08.218981+00:00",
+    "ys": {
+      "total": 65,
+      "momentum": {
+        "score": 22,
+        "max": 30,
+        "pct_change": 21.1,
+        "direction": "up"
+      },
+      "yield": {
+        "score": 22,
+        "max": 25,
+        "gross_yield_pct": 6.8
+      },
+      "liquidity": {
+        "score": 8,
+        "max": 20,
+        "recency_ratio": 0.78
+      },
+      "stability": {
+        "score": 8,
+        "max": 15,
+        "cov": 0.137
+      },
+      "appreciation": {
+        "score": 5,
+        "max": 10,
+        "ratio": null
+      }
+    },
+    "score": 65,
     "color": "amber"
   },
   "Zayed City": {
@@ -328,21 +370,21 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 2.0,
     "trend_direction": "up",
-    "tx_count_12m": 1414,
+    "tx_count_12m": 1406,
     "median_psf_12m": 1488,
     "offplan_pct": 95.7,
-    "computed_at": "2026-07-20T05:26:30.358934+00:00",
+    "computed_at": "2026-07-21T04:56:08.965644+00:00",
     "gec": {
-      "total": 67,
+      "total": 65,
       "velocity": {
-        "score": 27,
+        "score": 25,
         "max": 30,
-        "velocity_ratio": 2.79
+        "velocity_ratio": 2.6
       },
       "momentum": {
         "score": 15,
         "max": 25,
-        "pct_change": 9.0,
+        "pct_change": 9.1,
         "direction": "up"
       },
       "appreciation": {
@@ -358,52 +400,10 @@
       "entry": {
         "score": 7,
         "max": 10,
-        "entry_ratio": 1.01
+        "entry_ratio": 1.02
       }
     },
-    "score": 67,
-    "color": "amber"
-  },
-  "Al Layyan": {
-    "slug": "al-layyan",
-    "district_name": "Al Layyan",
-    "score_type": "yield_stability",
-    "ready_pct_alltime": 65.3,
-    "trend_direction": "up",
-    "tx_count_12m": 260,
-    "median_psf_12m": 953,
-    "offplan_pct": 0.8,
-    "computed_at": "2026-07-20T05:26:29.667761+00:00",
-    "ys": {
-      "total": 66,
-      "momentum": {
-        "score": 23,
-        "max": 30,
-        "pct_change": 22.6,
-        "direction": "up"
-      },
-      "yield": {
-        "score": 22,
-        "max": 25,
-        "gross_yield_pct": 6.8
-      },
-      "liquidity": {
-        "score": 8,
-        "max": 20,
-        "recency_ratio": 0.77
-      },
-      "stability": {
-        "score": 8,
-        "max": 15,
-        "cov": 0.145
-      },
-      "appreciation": {
-        "score": 5,
-        "max": 10,
-        "ratio": null
-      }
-    },
-    "score": 66,
+    "score": 65,
     "color": "amber"
   },
   "Al Jubail Island": {
@@ -412,27 +412,27 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 8.6,
     "trend_direction": "up",
-    "tx_count_12m": 276,
+    "tx_count_12m": 274,
     "median_psf_12m": 1734,
-    "offplan_pct": 60.5,
-    "computed_at": "2026-07-20T05:26:29.607205+00:00",
+    "offplan_pct": 59.9,
+    "computed_at": "2026-07-21T04:56:08.153484+00:00",
     "gec": {
-      "total": 64,
+      "total": 63,
       "velocity": {
-        "score": 13,
+        "score": 12,
         "max": 30,
-        "velocity_ratio": 1.32
+        "velocity_ratio": 1.27
       },
       "momentum": {
         "score": 14,
         "max": 25,
-        "pct_change": 6.3,
+        "pct_change": 5.5,
         "direction": "up"
       },
       "appreciation": {
         "score": 15,
         "max": 20,
-        "ratio": 1.29
+        "ratio": 1.28
       },
       "developer": {
         "score": 15,
@@ -442,10 +442,10 @@
       "entry": {
         "score": 7,
         "max": 10,
-        "entry_ratio": 1.07
+        "entry_ratio": 1.1
       }
     },
-    "score": 64,
+    "score": 63,
     "color": "amber"
   },
   "Rabdan": {
@@ -454,16 +454,16 @@
     "score_type": "yield_stability",
     "ready_pct_alltime": 100.0,
     "trend_direction": "up",
-    "tx_count_12m": 82,
-    "median_psf_12m": 1202,
+    "tx_count_12m": 81,
+    "median_psf_12m": 1201,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:30.235997+00:00",
+    "computed_at": "2026-07-21T04:56:08.833242+00:00",
     "ys": {
-      "total": 61,
+      "total": 60,
       "momentum": {
-        "score": 17,
+        "score": 16,
         "max": 30,
-        "pct_change": 6.0,
+        "pct_change": 5.2,
         "direction": "up"
       },
       "yield": {
@@ -474,7 +474,7 @@
       "liquidity": {
         "score": 8,
         "max": 20,
-        "recency_ratio": 0.84
+        "recency_ratio": 0.86
       },
       "stability": {
         "score": 15,
@@ -487,7 +487,7 @@
         "ratio": null
       }
     },
-    "score": 61,
+    "score": 60,
     "color": "amber"
   },
   "Al Maryah Island": {
@@ -496,16 +496,16 @@
     "score_type": "both",
     "ready_pct_alltime": 49.5,
     "trend_direction": "up",
-    "tx_count_12m": 589,
-    "median_psf_12m": 1881,
-    "offplan_pct": 50.6,
-    "computed_at": "2026-07-20T05:26:29.701266+00:00",
+    "tx_count_12m": 588,
+    "median_psf_12m": 1879,
+    "offplan_pct": 50.7,
+    "computed_at": "2026-07-21T04:56:08.255698+00:00",
     "ys": {
       "total": 59,
       "momentum": {
         "score": 25,
         "max": 30,
-        "pct_change": 27.8,
+        "pct_change": 27.7,
         "direction": "up"
       },
       "yield": {
@@ -534,7 +534,7 @@
       "velocity": {
         "score": 6,
         "max": 30,
-        "velocity_ratio": 0.67
+        "velocity_ratio": 0.61
       },
       "momentum": {
         "score": 6,
@@ -567,16 +567,16 @@
     "score_type": "yield_stability",
     "ready_pct_alltime": 67.9,
     "trend_direction": "up",
-    "tx_count_12m": 1058,
-    "median_psf_12m": 1745,
+    "tx_count_12m": 1059,
+    "median_psf_12m": 1744,
     "offplan_pct": 63.6,
-    "computed_at": "2026-07-20T05:26:29.796265+00:00",
+    "computed_at": "2026-07-21T04:56:08.359112+00:00",
     "ys": {
       "total": 59,
       "momentum": {
         "score": 23,
         "max": 30,
-        "pct_change": 21.6,
+        "pct_change": 21.4,
         "direction": "up"
       },
       "yield": {
@@ -587,12 +587,12 @@
       "liquidity": {
         "score": 13,
         "max": 20,
-        "recency_ratio": 1.47
+        "recency_ratio": 1.49
       },
       "stability": {
         "score": 5,
         "max": 15,
-        "cov": 0.246
+        "cov": 0.245
       },
       "appreciation": {
         "score": 2,
@@ -612,7 +612,7 @@
     "tx_count_12m": 12,
     "median_psf_12m": 1252,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:29.730050+00:00",
+    "computed_at": "2026-07-21T04:56:08.287381+00:00",
     "ys": {
       "total": 55,
       "momentum": {
@@ -645,22 +645,22 @@
     "score": 55,
     "color": "amber"
   },
-  "Al Muwaij'I": {
-    "slug": "al-muwaiji",
-    "district_name": "Al Muwaij'I",
+  "Al Sa`Adah": {
+    "slug": "al-sa-adah",
+    "district_name": "Al Sa`Adah",
     "score_type": "yield_stability",
-    "ready_pct_alltime": 100.0,
+    "ready_pct_alltime": 89.2,
     "trend_direction": "up",
-    "tx_count_12m": 12,
-    "median_psf_12m": 406,
-    "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:29.754022+00:00",
+    "tx_count_12m": 35,
+    "median_psf_12m": 779,
+    "offplan_pct": 5.7,
+    "computed_at": "2026-07-21T04:56:08.457999+00:00",
     "ys": {
       "total": 55,
       "momentum": {
-        "score": 21,
+        "score": 23,
         "max": 30,
-        "pct_change": 18.2,
+        "pct_change": 21.9,
         "direction": "up"
       },
       "yield": {
@@ -671,12 +671,12 @@
       "liquidity": {
         "score": 10,
         "max": 20,
-        "recency_ratio": 1.0
+        "recency_ratio": 1.04
       },
       "stability": {
-        "score": 7,
+        "score": 5,
         "max": 15,
-        "cov": null
+        "cov": 0.213
       },
       "appreciation": {
         "score": 5,
@@ -687,22 +687,22 @@
     "score": 55,
     "color": "amber"
   },
-  "Al Sa`Adah": {
-    "slug": "al-sa-adah",
-    "district_name": "Al Sa`Adah",
+  "Al Jimi": {
+    "slug": "al-jimi",
+    "district_name": "Al Jimi",
     "score_type": "yield_stability",
-    "ready_pct_alltime": 89.1,
+    "ready_pct_alltime": 100.0,
     "trend_direction": "up",
-    "tx_count_12m": 34,
-    "median_psf_12m": 780,
-    "offplan_pct": 5.9,
-    "computed_at": "2026-07-20T05:26:29.887963+00:00",
+    "tx_count_12m": 15,
+    "median_psf_12m": 322,
+    "offplan_pct": 0.0,
+    "computed_at": "2026-07-21T04:56:08.136101+00:00",
     "ys": {
-      "total": 54,
+      "total": 52,
       "momentum": {
-        "score": 23,
+        "score": 20,
         "max": 30,
-        "pct_change": 22.2,
+        "pct_change": 14.2,
         "direction": "up"
       },
       "yield": {
@@ -711,14 +711,14 @@
         "gross_yield_pct": null
       },
       "liquidity": {
-        "score": 9,
+        "score": 10,
         "max": 20,
-        "recency_ratio": 0.92
+        "recency_ratio": 1.09
       },
       "stability": {
         "score": 5,
         "max": 15,
-        "cov": 0.211
+        "cov": 0.261
       },
       "appreciation": {
         "score": 5,
@@ -726,7 +726,7 @@
         "ratio": null
       }
     },
-    "score": 54,
+    "score": 52,
     "color": "amber"
   },
   "Shakhbout City": {
@@ -738,7 +738,7 @@
     "tx_count_12m": 16,
     "median_psf_12m": 754,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:30.272818+00:00",
+    "computed_at": "2026-07-21T04:56:08.873791+00:00",
     "ys": {
       "total": 52,
       "momentum": {
@@ -771,117 +771,33 @@
     "score": 52,
     "color": "amber"
   },
-  "Al Saadiyat Island": {
-    "slug": "al-saadiyat-island",
-    "district_name": "Al Saadiyat Island",
-    "score_type": "growth_early_cycle",
-    "ready_pct_alltime": 17.8,
-    "trend_direction": "up",
-    "tx_count_12m": 2208,
-    "median_psf_12m": 3152,
-    "offplan_pct": 85.8,
-    "computed_at": "2026-07-20T05:26:29.907562+00:00",
-    "gec": {
-      "total": 51,
-      "velocity": {
-        "score": 11,
-        "max": 30,
-        "velocity_ratio": 1.15
-      },
-      "momentum": {
-        "score": 25,
-        "max": 25,
-        "pct_change": 45.4,
-        "direction": "up"
-      },
-      "appreciation": {
-        "score": 0,
-        "max": 20,
-        "ratio": 0.54
-      },
-      "developer": {
-        "score": 11,
-        "max": 15,
-        "project_growth_ratio": 1.07
-      },
-      "entry": {
-        "score": 4,
-        "max": 10,
-        "entry_ratio": 0.79
-      }
-    },
-    "score": 51,
-    "color": "amber"
-  },
-  "Al Jimi": {
-    "slug": "al-jimi",
-    "district_name": "Al Jimi",
-    "score_type": "yield_stability",
-    "ready_pct_alltime": 100.0,
-    "trend_direction": "up",
-    "tx_count_12m": 14,
-    "median_psf_12m": 322,
-    "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:29.591802+00:00",
-    "ys": {
-      "total": 50,
-      "momentum": {
-        "score": 20,
-        "max": 30,
-        "pct_change": 14.2,
-        "direction": "up"
-      },
-      "yield": {
-        "score": 12,
-        "max": 25,
-        "gross_yield_pct": null
-      },
-      "liquidity": {
-        "score": 8,
-        "max": 20,
-        "recency_ratio": 0.82
-      },
-      "stability": {
-        "score": 5,
-        "max": 15,
-        "cov": 0.261
-      },
-      "appreciation": {
-        "score": 5,
-        "max": 10,
-        "ratio": null
-      }
-    },
-    "score": 50,
-    "color": "amber"
-  },
   "Al Kasir": {
     "slug": "al-kasir",
     "district_name": "Al Kasir",
     "score_type": "yield_stability",
     "ready_pct_alltime": 81.8,
     "trend_direction": "down",
-    "tx_count_12m": 50,
-    "median_psf_12m": 2347,
+    "tx_count_12m": 49,
+    "median_psf_12m": 2326,
     "offplan_pct": 2.0,
-    "computed_at": "2026-07-20T05:26:29.622743+00:00",
+    "computed_at": "2026-07-21T04:56:08.169730+00:00",
     "ys": {
-      "total": 50,
+      "total": 51,
       "momentum": {
         "score": 13,
         "max": 30,
-        "pct_change": -3.3,
+        "pct_change": -4.3,
         "direction": "down"
       },
       "yield": {
         "score": 16,
         "max": 25,
-        "gross_yield_pct": 4.6
+        "gross_yield_pct": 5.1
       },
       "liquidity": {
-        "score": 4,
+        "score": 5,
         "max": 20,
-        "recency_ratio": 0.41
+        "recency_ratio": 0.42
       },
       "stability": {
         "score": 12,
@@ -894,19 +810,19 @@
         "ratio": null
       }
     },
-    "score": 50,
+    "score": 51,
     "color": "amber"
   },
-  "Al Tiwayya": {
-    "slug": "al-tiwayya",
-    "district_name": "Al Tiwayya",
+  "Al Muwaij'I": {
+    "slug": "al-muwaiji",
+    "district_name": "Al Muwaij'I",
     "score_type": "yield_stability",
     "ready_pct_alltime": 100.0,
-    "trend_direction": "up",
+    "trend_direction": "flat",
     "tx_count_12m": 11,
-    "median_psf_12m": 533,
+    "median_psf_12m": 329,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:30.000743+00:00",
+    "computed_at": "2026-07-21T04:56:08.313177+00:00",
     "ys": {
       "total": 49,
       "momentum": {
@@ -939,6 +855,132 @@
     "score": 49,
     "color": "red"
   },
+  "Al Saadiyat Island": {
+    "slug": "al-saadiyat-island",
+    "district_name": "Al Saadiyat Island",
+    "score_type": "growth_early_cycle",
+    "ready_pct_alltime": 17.9,
+    "trend_direction": "up",
+    "tx_count_12m": 2202,
+    "median_psf_12m": 3153,
+    "offplan_pct": 85.9,
+    "computed_at": "2026-07-21T04:56:08.478578+00:00",
+    "gec": {
+      "total": 49,
+      "velocity": {
+        "score": 11,
+        "max": 30,
+        "velocity_ratio": 1.14
+      },
+      "momentum": {
+        "score": 25,
+        "max": 25,
+        "pct_change": 45.5,
+        "direction": "up"
+      },
+      "appreciation": {
+        "score": 0,
+        "max": 20,
+        "ratio": 0.54
+      },
+      "developer": {
+        "score": 11,
+        "max": 15,
+        "project_growth_ratio": 1.07
+      },
+      "entry": {
+        "score": 2,
+        "max": 10,
+        "entry_ratio": 0.73
+      }
+    },
+    "score": 49,
+    "color": "red"
+  },
+  "Al Tiwayya": {
+    "slug": "al-tiwayya",
+    "district_name": "Al Tiwayya",
+    "score_type": "yield_stability",
+    "ready_pct_alltime": 100.0,
+    "trend_direction": "up",
+    "tx_count_12m": 11,
+    "median_psf_12m": 533,
+    "offplan_pct": 0.0,
+    "computed_at": "2026-07-21T04:56:08.579134+00:00",
+    "ys": {
+      "total": 49,
+      "momentum": {
+        "score": 15,
+        "max": 30,
+        "pct_change": null,
+        "direction": "flat"
+      },
+      "yield": {
+        "score": 12,
+        "max": 25,
+        "gross_yield_pct": null
+      },
+      "liquidity": {
+        "score": 10,
+        "max": 20,
+        "recency_ratio": 1.12
+      },
+      "stability": {
+        "score": 7,
+        "max": 15,
+        "cov": null
+      },
+      "appreciation": {
+        "score": 5,
+        "max": 10,
+        "ratio": null
+      }
+    },
+    "score": 49,
+    "color": "red"
+  },
+  "Zakhir": {
+    "slug": "zakhir",
+    "district_name": "Zakhir",
+    "score_type": "yield_stability",
+    "ready_pct_alltime": 100.0,
+    "trend_direction": "down",
+    "tx_count_12m": 20,
+    "median_psf_12m": 435,
+    "offplan_pct": 0.0,
+    "computed_at": "2026-07-21T04:56:08.946907+00:00",
+    "ys": {
+      "total": 49,
+      "momentum": {
+        "score": 10,
+        "max": 30,
+        "pct_change": -11.0,
+        "direction": "down"
+      },
+      "yield": {
+        "score": 12,
+        "max": 25,
+        "gross_yield_pct": null
+      },
+      "liquidity": {
+        "score": 20,
+        "max": 20,
+        "recency_ratio": 3.0
+      },
+      "stability": {
+        "score": 2,
+        "max": 15,
+        "cov": 0.438
+      },
+      "appreciation": {
+        "score": 5,
+        "max": 10,
+        "ratio": null
+      }
+    },
+    "score": 49,
+    "color": "red"
+  },
   "Central District": {
     "slug": "central-district",
     "district_name": "Central District",
@@ -948,7 +990,7 @@
     "tx_count_12m": 13,
     "median_psf_12m": 262,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:30.051629+00:00",
+    "computed_at": "2026-07-21T04:56:08.634494+00:00",
     "ys": {
       "total": 48,
       "momentum": {
@@ -990,7 +1032,7 @@
     "tx_count_12m": 1555,
     "median_psf_12m": 3699,
     "offplan_pct": 100.0,
-    "computed_at": "2026-07-20T05:26:30.079051+00:00",
+    "computed_at": "2026-07-21T04:56:08.663814+00:00",
     "gec": {
       "total": 47,
       "velocity": {
@@ -1017,7 +1059,7 @@
       "entry": {
         "score": 2,
         "max": 10,
-        "entry_ratio": 0.23
+        "entry_ratio": 0.22
       }
     },
     "score": 47,
@@ -1032,7 +1074,7 @@
     "tx_count_12m": 650,
     "median_psf_12m": 2087,
     "offplan_pct": 100.0,
-    "computed_at": "2026-07-20T05:26:30.114325+00:00",
+    "computed_at": "2026-07-21T04:56:08.700398+00:00",
     "gec": {
       "total": 47,
       "velocity": {
@@ -1074,7 +1116,7 @@
     "tx_count_12m": 253,
     "median_psf_12m": 3242,
     "offplan_pct": 100.0,
-    "computed_at": "2026-07-20T05:26:30.250640+00:00",
+    "computed_at": "2026-07-21T04:56:08.849175+00:00",
     "gec": {
       "total": 47,
       "velocity": {
@@ -1107,48 +1149,6 @@
     "score": 47,
     "color": "red"
   },
-  "Zakhir": {
-    "slug": "zakhir",
-    "district_name": "Zakhir",
-    "score_type": "yield_stability",
-    "ready_pct_alltime": 100.0,
-    "trend_direction": "down",
-    "tx_count_12m": 20,
-    "median_psf_12m": 435,
-    "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:30.341604+00:00",
-    "ys": {
-      "total": 47,
-      "momentum": {
-        "score": 11,
-        "max": 30,
-        "pct_change": -10.1,
-        "direction": "down"
-      },
-      "yield": {
-        "score": 12,
-        "max": 25,
-        "gross_yield_pct": null
-      },
-      "liquidity": {
-        "score": 17,
-        "max": 20,
-        "recency_ratio": 2.45
-      },
-      "stability": {
-        "score": 2,
-        "max": 15,
-        "cov": 0.51
-      },
-      "appreciation": {
-        "score": 5,
-        "max": 10,
-        "ratio": null
-      }
-    },
-    "score": 47,
-    "color": "red"
-  },
   "Al Sarouj": {
     "slug": "al-sarouj",
     "district_name": "Al Sarouj",
@@ -1158,7 +1158,7 @@
     "tx_count_12m": 10,
     "median_psf_12m": 229,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:29.951519+00:00",
+    "computed_at": "2026-07-21T04:56:08.526396+00:00",
     "ys": {
       "total": 43,
       "momentum": {
@@ -1200,7 +1200,7 @@
     "tx_count_12m": 148,
     "median_psf_12m": 1137,
     "offplan_pct": 68.2,
-    "computed_at": "2026-07-20T05:26:30.032307+00:00",
+    "computed_at": "2026-07-21T04:56:08.613060+00:00",
     "ys": {
       "total": 42,
       "momentum": {
@@ -1217,7 +1217,7 @@
       "liquidity": {
         "score": 8,
         "max": 20,
-        "recency_ratio": 0.79
+        "recency_ratio": 0.76
       },
       "stability": {
         "score": 2,
@@ -1242,7 +1242,7 @@
     "tx_count_12m": 21,
     "median_psf_12m": 388,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:30.205052+00:00",
+    "computed_at": "2026-07-21T04:56:08.799077+00:00",
     "ys": {
       "total": 39,
       "momentum": {
@@ -1284,7 +1284,7 @@
     "tx_count_12m": 14,
     "median_psf_12m": 233,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:29.473786+00:00",
+    "computed_at": "2026-07-21T04:56:08.019145+00:00",
     "ys": {
       "total": 37,
       "momentum": {
@@ -1317,16 +1317,58 @@
     "score": 37,
     "color": "red"
   },
+  "Hili": {
+    "slug": "hili",
+    "district_name": "Hili",
+    "score_type": "yield_stability",
+    "ready_pct_alltime": 100.0,
+    "trend_direction": "down",
+    "tx_count_12m": 10,
+    "median_psf_12m": 258,
+    "offplan_pct": 0.0,
+    "computed_at": "2026-07-21T04:56:08.734092+00:00",
+    "ys": {
+      "total": 37,
+      "momentum": {
+        "score": 2,
+        "max": 30,
+        "pct_change": -33.9,
+        "direction": "down"
+      },
+      "yield": {
+        "score": 12,
+        "max": 25,
+        "gross_yield_pct": null
+      },
+      "liquidity": {
+        "score": 11,
+        "max": 20,
+        "recency_ratio": 1.29
+      },
+      "stability": {
+        "score": 7,
+        "max": 15,
+        "cov": null
+      },
+      "appreciation": {
+        "score": 5,
+        "max": 10,
+        "ratio": null
+      }
+    },
+    "score": 37,
+    "color": "red"
+  },
   "Al Bahyah": {
     "slug": "al-bahyah",
     "district_name": "Al Bahyah",
     "score_type": "growth_early_cycle",
-    "ready_pct_alltime": 2.2,
+    "ready_pct_alltime": 2.1,
     "trend_direction": "up",
-    "tx_count_12m": 970,
-    "median_psf_12m": 497,
-    "offplan_pct": 98.1,
-    "computed_at": "2026-07-20T05:26:29.491699+00:00",
+    "tx_count_12m": 943,
+    "median_psf_12m": 500,
+    "offplan_pct": 98.2,
+    "computed_at": "2026-07-21T04:56:08.037864+00:00",
     "gec": {
       "total": 36,
       "velocity": {
@@ -1337,7 +1379,7 @@
       "momentum": {
         "score": 15,
         "max": 25,
-        "pct_change": 8.5,
+        "pct_change": 9.0,
         "direction": "up"
       },
       "appreciation": {
@@ -1353,49 +1395,7 @@
       "entry": {
         "score": 2,
         "max": 10,
-        "entry_ratio": 0.11
-      }
-    },
-    "score": 36,
-    "color": "red"
-  },
-  "Hili": {
-    "slug": "hili",
-    "district_name": "Hili",
-    "score_type": "yield_stability",
-    "ready_pct_alltime": 100.0,
-    "trend_direction": "down",
-    "tx_count_12m": 11,
-    "median_psf_12m": 258,
-    "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:30.145633+00:00",
-    "ys": {
-      "total": 36,
-      "momentum": {
-        "score": 2,
-        "max": 30,
-        "pct_change": -33.9,
-        "direction": "down"
-      },
-      "yield": {
-        "score": 12,
-        "max": 25,
-        "gross_yield_pct": null
-      },
-      "liquidity": {
-        "score": 10,
-        "max": 20,
-        "recency_ratio": 1.12
-      },
-      "stability": {
-        "score": 7,
-        "max": 15,
-        "cov": null
-      },
-      "appreciation": {
-        "score": 5,
-        "max": 10,
-        "ratio": null
+        "entry_ratio": 0.14
       }
     },
     "score": 36,
@@ -1410,7 +1410,7 @@
     "tx_count_12m": 39,
     "median_psf_12m": 704,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:30.177316+00:00",
+    "computed_at": "2026-07-21T04:56:08.768671+00:00",
     "ys": {
       "total": 35,
       "momentum": {
@@ -1452,7 +1452,7 @@
     "tx_count_12m": 51,
     "median_psf_12m": 348,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:29.651646+00:00",
+    "computed_at": "2026-07-21T04:56:08.201189+00:00",
     "ys": {
       "total": 34,
       "momentum": {
@@ -1494,7 +1494,7 @@
     "tx_count_12m": 20,
     "median_psf_12m": 559,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:29.508823+00:00",
+    "computed_at": "2026-07-21T04:56:08.054631+00:00",
     "ys": {
       "total": 33,
       "momentum": {
@@ -1531,12 +1531,12 @@
     "slug": "al-samhah",
     "district_name": "Al Samhah",
     "score_type": "growth_early_cycle",
-    "ready_pct_alltime": 33.6,
+    "ready_pct_alltime": 33.7,
     "trend_direction": "up",
-    "tx_count_12m": 95,
-    "median_psf_12m": 1132,
+    "tx_count_12m": 86,
+    "median_psf_12m": 1176,
     "offplan_pct": 0.0,
-    "computed_at": "2026-07-20T05:26:29.937650+00:00",
+    "computed_at": "2026-07-21T04:56:08.511463+00:00",
     "gec": {
       "total": 33,
       "velocity": {

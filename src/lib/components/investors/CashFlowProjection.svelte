@@ -204,9 +204,9 @@
             <th class="px-6 py-3 text-end text-[10px] font-semibold text-amber-600 uppercase tracking-wider">{m.cashflow_col_roi()}</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-50">
+        <tbody class="divide-y divide-gray-50 bg-white">
           {#each rows as r}
-            <tr class="hover:bg-gray-50/70 transition-colors">
+            <tr class="bg-white hover:bg-gray-50/70 transition-colors">
               <td class="px-6 py-3 font-semibold text-gray-700">Yr {r.year}</td>
               <td class="px-4 py-3 text-end text-gray-600 tabular-nums">{fmt(r.rental)}</td>
               <td class="px-4 py-3 text-end text-gray-400 tabular-nums">{fmt(r.costs)}</td>

@@ -590,7 +590,7 @@
         </div>
 
         <p class="text-[11px] text-white/30 ps-0.5">
-          {m.calc_selling_price_formula_offplan({ cost: fmtAed(cost), pct: String(annualAppPct), years: String(yearsToResale), extra: otherAppPct > 0 ? ` × (1 + ${otherAppPct}%)` : '' })} <span class="text-amber-400/70">{fmtAed(sellingPrice)}</span>
+          {m.calc_selling_price_formula_offplan({ cost: fmtAed(cost), pct: String(annualAppPct), extra: otherAppPct > 0 ? ` × (1 + ${otherAppPct}%)` : '' })} <span class="text-amber-400/70">{fmtAed(sellingPrice)}</span>
         </p>
       </fieldset>
 

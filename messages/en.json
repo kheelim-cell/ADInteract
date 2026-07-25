@@ -811,6 +811,7 @@
 	"investors_free_banner_desktop": "🎉 Free Access for a Limited Time Only — All Investor Intelligence tools are open to everyone right now.",
 
 	"investors_paywall_title": "Investor Intelligence · Pro",
+	"investors_paywall_title_free": "Investor Intelligence",
 	"investors_paywall_desc": "Price growth rankings, rental yield benchmarks, service charge data, and the ROI calculator — all powered by live ADREC transaction data.",
 	"investors_paywall_feature_1": "Year-on-year price appreciation by district & project",
 	"investors_paywall_feature_2": "Gross rental yield % by community",

@@ -12,10 +12,10 @@ export const supabase = supabaseEnabled
 
 /**
  * When true, the Investor page requires an active Pro subscription (is_pro = true).
- * When false, the Investor page is fully open — no gating at all.
+ * When false (and VITE_INVESTOR_GATING_ENABLED is true), it requires Google sign-in only, free.
  *
- * Toggle: GitHub repo → Settings → Secrets → VITE_INVESTOR_PRO_GATED → update value
- *         then manually trigger the Deploy workflow (~3 min).
+ * Toggle: Vercel dashboard → Project Settings → Environment Variables → VITE_INVESTOR_PRO_GATED
+ *         then redeploy (push a commit, or trigger a redeploy from the Vercel dashboard).
  */
 export const investorProGated =
 	import.meta.env.VITE_INVESTOR_PRO_GATED === 'true';

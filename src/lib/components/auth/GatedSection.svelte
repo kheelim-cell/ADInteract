@@ -6,22 +6,27 @@
   let {
     children,
     /**
-     * proOnly=true  → Investor-page mode.
+     * proOnly=true  → Investor-page mode. Toggled independently via VITE_INVESTOR_GATING_ENABLED
+     * so turning on the Investors sign-in gate never affects Sales/Rental.
      *   • VITE_INVESTOR_PRO_GATED=true  → requires active Pro subscription (is_pro = true).
-     *   • VITE_INVESTOR_PRO_GATED=false → fully open — no gate at all (promo/launch mode).
-     * proOnly=false (default) → standard mode: gate on sign-in (Sales, Rental pages).
+     *   • VITE_INVESTOR_PRO_GATED=false → requires Google sign-in only, free.
+     * proOnly=false (default) → standard mode: gate on sign-in (Sales, Rental pages),
+     * toggled via VITE_AUTH_GATING_ENABLED.
      */
     proOnly = false
   }: { children: import('svelte').Snippet; proOnly?: boolean } = $props();
 
   // ── Lock logic ──────────────────────────────────────────────────────────────
-  // Master toggle: set VITE_AUTH_GATING_ENABLED=true in GitHub Secrets to re-enable all gates.
-  const gatingEnabled = import.meta.env.VITE_AUTH_GATING_ENABLED === 'true';
+  // Sales/Rental and Investors are independent toggles — set the relevant one to
+  // 'true' in Vercel env vars to enable that gate without affecting the other.
+  const authGatingEnabled     = import.meta.env.VITE_AUTH_GATING_ENABLED === 'true';
+  const investorGatingEnabled = import.meta.env.VITE_INVESTOR_GATING_ENABLED === 'true';
+  let gatingEnabled = $derived(proOnly ? investorGatingEnabled : authGatingEnabled);
 
   let locked = $derived(
     !gatingEnabled ? false
     : !supabaseEnabled ? false
-    : proOnly && !investorProGated ? false
+    : proOnly && !investorProGated ? !$isAuthenticated
     : proOnly && investorProGated ? !$isPro
     : !$isAuthenticated
   );

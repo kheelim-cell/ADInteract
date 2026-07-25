@@ -43,6 +43,13 @@
       iconPath: 'M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h6M9 11.25h6M9 15.75h6',
     },
     {
+      href: `${base}/investors/projects`,
+      label: m.investors_nav_projects_label(),
+      short: m.investors_nav_projects_short(),
+      description: m.investors_nav_projects_desc(),
+      iconPath: 'M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z',
+    },
+    {
       href: `${base}/investors/compare`,
       label: m.investors_nav_compare_label(),
       short: m.investors_nav_compare_short(),
@@ -74,25 +81,11 @@
       iconPath: 'M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99',
     },
     {
-      href: `${base}/investors/market-structure`,
-      label: m.investors_nav_marketstructure_label(),
-      short: m.investors_nav_marketstructure_short(),
-      description: m.investors_nav_marketstructure_desc(),
-      iconPath: 'M3.75 21h16.5M5.25 21V8.25L12 3l6.75 5.25V21M9 21v-6h6v6',
-    },
-    {
       href: `${base}/investors/faqs`,
       label: m.investors_nav_faqs_label(),
       short: m.investors_nav_faqs_short(),
       description: m.investors_nav_faqs_desc(),
       iconPath: 'M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z',
-    },
-    {
-      href: `${base}/investors/projects`,
-      label: m.investors_nav_projects_label(),
-      short: m.investors_nav_projects_short(),
-      description: m.investors_nav_projects_desc(),
-      iconPath: 'M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z',
     },
     {
       href: `${base}/investors/developers`,
@@ -129,11 +122,17 @@
   let currentPath = $derived($page.url.pathname);
   let activeNavItem = $derived(NAV_ITEMS.find(n => currentPath === n.href || currentPath.startsWith(n.href + '/')));
 
-  // ── Pro gate — controlled by VITE_AUTH_GATING_ENABLED GitHub Secret ─────────
-  const gatingEnabled = import.meta.env.VITE_AUTH_GATING_ENABLED === 'true';
-  let proLocked = $derived(gatingEnabled && supabaseEnabled && investorProGated && !$isPro);
-  let needsSignIn = $derived(proLocked && !$isAuthenticated);
-  let needsUpgrade = $derived(proLocked && $isAuthenticated && !$isPro);
+  // ── Gate — controlled by VITE_INVESTOR_GATING_ENABLED Vercel env var ────────
+  // Independent from VITE_AUTH_GATING_ENABLED (which gates Sales/Rental) so this
+  // tab can require sign-in without locking the rest of the site.
+  // VITE_INVESTOR_PRO_GATED=true  → requires an active Pro subscription (is_pro = true).
+  // VITE_INVESTOR_PRO_GATED=false → requires Google sign-in only, free (current default).
+  const gatingEnabled = import.meta.env.VITE_INVESTOR_GATING_ENABLED === 'true';
+  let requiresAuth  = $derived(gatingEnabled && supabaseEnabled);
+  let proLocked     = $derived(requiresAuth && investorProGated && !$isPro);
+  let signInLocked  = $derived(requiresAuth && !investorProGated && !$isAuthenticated);
+  let locked        = $derived(proLocked || signInLocked);
+  let needsUpgrade  = $derived(proLocked && $isAuthenticated && !$isPro);
 </script>
 
 <!-- ── Hero ────────────────────────────────────────────────────────────────── -->
@@ -223,8 +222,8 @@
   </div>
 </div>
 
-<!-- ── Free access banner ───────────────────────────────────────────────────── -->
-{#if !proLocked}
+<!-- ── Free access banner (only when no gate is active at all) ─────────────── -->
+{#if !requiresAuth}
   <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 border-b border-amber-400/50">
     <div class="max-w-[1400px] mx-auto px-4 sm:px-8 py-2 sm:py-3 flex items-center justify-center gap-3">
       <svg class="hidden sm:block h-5 w-5 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -242,8 +241,8 @@
 {/if}
 
 <!-- ── Page content ─────────────────────────────────────────────────────────── -->
-{#if proLocked}
-  <!-- Single upgrade wall — replaces all page content when not Pro -->
+{#if locked}
+  <!-- Single wall — replaces all page content until signed in (or Pro, if that mode is on) -->
   <div class="flex flex-col items-center justify-center min-h-[60vh] px-4 py-16 text-center">
     <div class="max-w-md w-full">
 
@@ -255,7 +254,7 @@
       </div>
 
       <!-- Heading -->
-      <h2 class="text-xl font-bold text-gray-900 mb-2">{m.investors_paywall_title()}</h2>
+      <h2 class="text-xl font-bold text-gray-900 mb-2">{investorProGated ? m.investors_paywall_title() : m.investors_paywall_title_free()}</h2>
       <p class="text-sm text-gray-500 mb-8 leading-relaxed">
         {m.investors_paywall_desc()}
       </p>
@@ -304,7 +303,9 @@
           </svg>
           {m.investors_paywall_signin()}
         </button>
-        <p class="mt-3 text-xs text-gray-400">{m.investors_paywall_signin_hint()}</p>
+        {#if investorProGated}
+          <p class="mt-3 text-xs text-gray-400">{m.investors_paywall_signin_hint()}</p>
+        {/if}
       {/if}
 
     </div>

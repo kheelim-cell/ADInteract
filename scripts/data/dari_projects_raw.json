@@ -3,6 +3,94 @@
   "parse_errors": 0,
   "projects": [
     {
+      "name": "Nad Al Dhabi North",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20260000929354",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Jubail Island",
+      "community": "JS",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE703/image-galary/final/236858431036781.jpg"
+    },
+    {
+      "name": "Bab Al Qasr Garden Residence 65",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20260000932334",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Khalifa City",
+      "community": "SE45_02",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE720/image-galary/final/764484448128278.jpeg"
+    },
+    {
+      "name": "QASR AL JURF 3C",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20260000965544",
+      "completion_pct": 0,
+      "classification": null,
+      "district": "Ghadeer Al Tayr",
+      "community": "Al Jarf",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE719/image-galary/final/571023677504184.png"
+    },
+    {
+      "name": "Bashayer Residences 5 & 6.",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20260000929121",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE717/image-galary/final/629041361223600.jpg"
+    },
+    {
+      "name": "Hudayriyat Golf Estates Villas",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20260000881430",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE691/image-galary/final/562958405422576.png"
+    },
+    {
+      "name": "Hudayriyat Golf Estates Townhomes",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20260000881436",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE691/image-galary/final/948390404028958.png"
+    },
+    {
+      "name": "Hudayriyat Golf Estates Waterfront",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20260000881422",
+      "completion_pct": 0,
+      "classification": null,
+      "district": "Al Hidayriyyat",
+      "community": "Al Hidayriyyat Island",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE691/image-galary/final/302847515918923.jpg"
+    },
+    {
+      "name": "The Orchard at Sobha City - Phase 1",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20260000895007",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Al Bahyah",
+      "community": "RBE2",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE713/image-galary/final/702291366449911.jpg"
+    },
+    {
       "name": "Amwaj 1",
       "type": "Building",
       "status": "Built",
@@ -45,94 +133,6 @@
       "district": "Al Shamkhah",
       "community": "SH36",
       "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE701/image-galary/final/931622541563377.jpeg"
-    },
-    {
-      "name": "Al Reeman View",
-      "type": "Building",
-      "status": "New",
-      "project_number": "20260000854065",
-      "completion_pct": 0,
-      "classification": "Residential",
-      "district": "Al Shamkhah",
-      "community": "SH36",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE698/image-galary/final/136474653876974.jpeg"
-    },
-    {
-      "name": "Marbella",
-      "type": "Villas",
-      "status": "New",
-      "project_number": "20250000591588",
-      "completion_pct": 0,
-      "classification": "Residential",
-      "district": "Zayed City",
-      "community": "MZ12",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE622/image-galary/final/616590293718791.jpg"
-    },
-    {
-      "name": "Malaga",
-      "type": "Villas",
-      "status": "New",
-      "project_number": "20250000638221",
-      "completion_pct": 0,
-      "classification": "Residential",
-      "district": "Zayed City",
-      "community": "MZ12",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE629/image-galary/final/503028045727004.JPG"
-    },
-    {
-      "name": "Hudayriyat Golf Estates Waterfront",
-      "type": "Plot",
-      "status": "New",
-      "project_number": "20260000881422",
-      "completion_pct": 0,
-      "classification": null,
-      "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE691/image-galary/final/302847515918923.jpg"
-    },
-    {
-      "name": "Yas Park Place",
-      "type": "Building",
-      "status": "New",
-      "project_number": "20260000826791",
-      "completion_pct": 0,
-      "classification": "Mixed use",
-      "district": "Yas Island",
-      "community": "YN7",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE690/image-galary/final/577387996974642.png"
-    },
-    {
-      "name": "Bab Al Qasr Sea View Residence 51",
-      "type": "Building",
-      "status": "New",
-      "project_number": "20260000846151",
-      "completion_pct": 0,
-      "classification": "Mixed use",
-      "district": "Al Rahah",
-      "community": "RBW6",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE688/image-galary/final/107325826944903.jpeg"
-    },
-    {
-      "name": "Reeman Residence 01",
-      "type": "Building",
-      "status": "New",
-      "project_number": "20250000721091",
-      "completion_pct": 21,
-      "classification": "Mixed use",
-      "district": "Al Shamkhah",
-      "community": "SH36",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE689/image-galary/final/MainPhoto.jpg"
-    },
-    {
-      "name": "Sila",
-      "type": "Building",
-      "status": "New",
-      "project_number": "20260000824467",
-      "completion_pct": 0,
-      "classification": "Residential",
-      "district": "Khalifa City",
-      "community": "SE45_01",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE682/image-galary/final/912474524328821.jpeg"
     }
   ]
 }

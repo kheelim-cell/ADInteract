@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01T05:14:40.242972+00:00",
+  "generated_at": "2026-08-02T05:14:10.127369+00:00",
   "as_of_date": "2026-07-31",
   "project_count": 250,
   "total_registered_sales_alltime": 64170,
@@ -18,11 +18,11 @@
       "last_sale_date": "2026-07-31",
       "median_price_aed": 2090593,
       "median_psf": 2552,
-      "completion_pct": 0,
-      "property_type": "Building",
-      "classification": "Mixed use",
-      "construction_status": "New",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE690/image-galary/final/577387996974642.png"
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "tara-a",
@@ -518,11 +518,11 @@
       "last_sale_date": "2026-07-27",
       "median_price_aed": 3423000,
       "median_psf": 2170,
-      "completion_pct": null,
-      "property_type": null,
-      "classification": null,
-      "construction_status": null,
-      "image_url": null
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Residential",
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE717/image-galary/final/629041361223600.jpg"
     },
     {
       "slug": "novayas",
@@ -578,11 +578,11 @@
       "last_sale_date": "2026-06-10",
       "median_price_aed": 1900000,
       "median_psf": 1538,
-      "completion_pct": null,
-      "property_type": null,
-      "classification": null,
-      "construction_status": null,
-      "image_url": null
+      "completion_pct": 0,
+      "property_type": "Building",
+      "classification": "Mixed use",
+      "construction_status": "New",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE720/image-galary/final/764484448128278.jpeg"
     },
     {
       "slug": "the-sustainable-city---yas-island---phase-1",
@@ -778,11 +778,11 @@
       "last_sale_date": "2026-07-27",
       "median_price_aed": 1243113,
       "median_psf": 1126,
-      "completion_pct": 0,
-      "property_type": "Building",
-      "classification": "Residential",
-      "construction_status": "New",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE698/image-galary/final/136474653876974.jpeg"
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "noya---phase-4---yas-park-gate",
@@ -1378,11 +1378,11 @@
       "last_sale_date": "2026-07-29",
       "median_price_aed": 649999,
       "median_psf": 1502,
-      "completion_pct": 21,
-      "property_type": "Building",
-      "classification": "Mixed use",
-      "construction_status": "New",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE689/image-galary/final/MainPhoto.jpg"
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "manarat-living-iii",
@@ -1458,11 +1458,11 @@
       "last_sale_date": "2026-06-08",
       "median_price_aed": 4305000,
       "median_psf": 1496,
-      "completion_pct": 0,
-      "property_type": "Building",
-      "classification": "Mixed use",
-      "construction_status": "New",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE688/image-galary/final/107325826944903.jpeg"
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "al-reeman-2---phase-2",
@@ -1798,11 +1798,11 @@
       "last_sale_date": "2026-05-21",
       "median_price_aed": 885000,
       "median_psf": 1239,
-      "completion_pct": 21,
-      "property_type": "Building",
-      "classification": "Mixed use",
-      "construction_status": "New",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE689/image-galary/final/MainPhoto.jpg"
+      "completion_pct": null,
+      "property_type": null,
+      "classification": null,
+      "construction_status": null,
+      "image_url": null
     },
     {
       "slug": "bloom-living---seville",

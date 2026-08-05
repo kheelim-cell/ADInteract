@@ -5,16 +5,16 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 0.0,
     "trend_direction": "up",
-    "tx_count_12m": 2481,
+    "tx_count_12m": 2486,
     "median_psf_12m": 1783,
     "offplan_pct": 100.0,
-    "computed_at": "2026-08-04T04:52:12.381320+00:00",
+    "computed_at": "2026-08-05T04:52:15.815725+00:00",
     "gec": {
       "total": 76,
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 5.39
+        "velocity_ratio": 5.37
       },
       "momentum": {
         "score": 19,
@@ -35,7 +35,7 @@
       "entry": {
         "score": 2,
         "max": 10,
-        "entry_ratio": 0.51
+        "entry_ratio": 0.52
       }
     },
     "score": 76,
@@ -50,13 +50,13 @@
     "tx_count_12m": 216,
     "median_psf_12m": 2780,
     "offplan_pct": 93.1,
-    "computed_at": "2026-08-04T04:52:12.814557+00:00",
+    "computed_at": "2026-08-05T04:52:16.385013+00:00",
     "gec": {
       "total": 76,
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 5.88
+        "velocity_ratio": 5.8
       },
       "momentum": {
         "score": 25,
@@ -89,10 +89,10 @@
     "score_type": "both",
     "ready_pct_alltime": 52.9,
     "trend_direction": "up",
-    "tx_count_12m": 8549,
+    "tx_count_12m": 8579,
     "median_psf_12m": 1605,
     "offplan_pct": 69.6,
-    "computed_at": "2026-08-04T04:52:12.623003+00:00",
+    "computed_at": "2026-08-05T04:52:16.127767+00:00",
     "ys": {
       "total": 58,
       "momentum": {
@@ -109,17 +109,17 @@
       "liquidity": {
         "score": 9,
         "max": 20,
-        "recency_ratio": 0.95
+        "recency_ratio": 0.97
       },
       "stability": {
         "score": 8,
         "max": 15,
-        "cov": 0.191
+        "cov": 0.193
       },
       "appreciation": {
         "score": 2,
         "max": 10,
-        "ratio": 0.76
+        "ratio": 0.75
       }
     },
     "gec": {
@@ -127,18 +127,18 @@
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 3.29
+        "velocity_ratio": 3.3
       },
       "momentum": {
         "score": 17,
         "max": 25,
-        "pct_change": 17.4,
+        "pct_change": 17.6,
         "direction": "up"
       },
       "appreciation": {
         "score": 5,
         "max": 20,
-        "ratio": 0.76
+        "ratio": 0.75
       },
       "developer": {
         "score": 15,
@@ -148,10 +148,52 @@
       "entry": {
         "score": 7,
         "max": 10,
-        "entry_ratio": 1.07
+        "entry_ratio": 1.09
       }
     },
     "score": 74,
+    "color": "amber"
+  },
+  "Al Shamkhah": {
+    "slug": "al-shamkhah",
+    "district_name": "Al Shamkhah",
+    "score_type": "growth_early_cycle",
+    "ready_pct_alltime": 8.2,
+    "trend_direction": "up",
+    "tx_count_12m": 890,
+    "median_psf_12m": 1261,
+    "offplan_pct": 82.6,
+    "computed_at": "2026-08-05T04:52:16.249386+00:00",
+    "gec": {
+      "total": 69,
+      "velocity": {
+        "score": 30,
+        "max": 30,
+        "velocity_ratio": 4.55
+      },
+      "momentum": {
+        "score": 14,
+        "max": 25,
+        "pct_change": 6.8,
+        "direction": "up"
+      },
+      "appreciation": {
+        "score": 6,
+        "max": 20,
+        "ratio": 0.8
+      },
+      "developer": {
+        "score": 15,
+        "max": 15,
+        "project_growth_ratio": 2.33
+      },
+      "entry": {
+        "score": 4,
+        "max": 10,
+        "entry_ratio": 0.97
+      }
+    },
+    "score": 69,
     "color": "amber"
   },
   "Fahid Island": {
@@ -160,16 +202,16 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 0.0,
     "trend_direction": "flat",
-    "tx_count_12m": 1569,
+    "tx_count_12m": 1570,
     "median_psf_12m": 3699,
     "offplan_pct": 100.0,
-    "computed_at": "2026-08-04T04:52:12.799473+00:00",
+    "computed_at": "2026-08-05T04:52:16.364269+00:00",
     "gec": {
       "total": 69,
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 434.0
+        "velocity_ratio": 435.0
       },
       "momentum": {
         "score": 12,
@@ -190,7 +232,7 @@
       "entry": {
         "score": 2,
         "max": 10,
-        "entry_ratio": 0.14
+        "entry_ratio": 0.15
       }
     },
     "score": 69,
@@ -205,7 +247,7 @@
     "tx_count_12m": 442,
     "median_psf_12m": 991,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.600799+00:00",
+    "computed_at": "2026-08-05T04:52:16.099101+00:00",
     "ys": {
       "total": 68,
       "momentum": {
@@ -238,64 +280,22 @@
     "score": 68,
     "color": "amber"
   },
-  "Al Shamkhah": {
-    "slug": "al-shamkhah",
-    "district_name": "Al Shamkhah",
-    "score_type": "growth_early_cycle",
-    "ready_pct_alltime": 8.1,
-    "trend_direction": "up",
-    "tx_count_12m": 884,
-    "median_psf_12m": 1261,
-    "offplan_pct": 82.7,
-    "computed_at": "2026-08-04T04:52:12.714169+00:00",
-    "gec": {
-      "total": 68,
-      "velocity": {
-        "score": 30,
-        "max": 30,
-        "velocity_ratio": 4.53
-      },
-      "momentum": {
-        "score": 14,
-        "max": 25,
-        "pct_change": 6.8,
-        "direction": "up"
-      },
-      "appreciation": {
-        "score": 5,
-        "max": 20,
-        "ratio": 0.8
-      },
-      "developer": {
-        "score": 15,
-        "max": 15,
-        "project_growth_ratio": 2.33
-      },
-      "entry": {
-        "score": 4,
-        "max": 10,
-        "entry_ratio": 0.95
-      }
-    },
-    "score": 68,
-    "color": "amber"
-  },
   "Yas Island": {
     "slug": "yas-island",
     "district_name": "Yas Island",
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 15.2,
     "trend_direction": "up",
-    "tx_count_12m": 5099,
-    "median_psf_12m": 2159,
-    "offplan_pct": 88.8,
-    "computed_at": "2026-08-04T04:52:12.992938+00:00",
+    "tx_count_12m": 5125,
+    "median_psf_12m": 2158,
+    "offplan_pct": 88.7,
+    "computed_at": "2026-08-05T04:52:16.625474+00:00",
     "gec": {
       "total": 66,
       "velocity": {
         "score": 22,
         "max": 30,
-        "velocity_ratio": 2.22
+        "velocity_ratio": 2.25
       },
       "momentum": {
         "score": 20,
@@ -306,7 +306,7 @@
       "appreciation": {
         "score": 6,
         "max": 20,
-        "ratio": 0.84
+        "ratio": 0.83
       },
       "developer": {
         "score": 11,
@@ -316,7 +316,7 @@
       "entry": {
         "score": 7,
         "max": 10,
-        "entry_ratio": 1.05
+        "entry_ratio": 1.06
       }
     },
     "score": 66,
@@ -328,10 +328,10 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 2.0,
     "trend_direction": "up",
-    "tx_count_12m": 1385,
-    "median_psf_12m": 1489,
-    "offplan_pct": 95.8,
-    "computed_at": "2026-08-04T04:52:13.021853+00:00",
+    "tx_count_12m": 1386,
+    "median_psf_12m": 1490,
+    "offplan_pct": 95.7,
+    "computed_at": "2026-08-05T04:52:16.664942+00:00",
     "gec": {
       "total": 65,
       "velocity": {
@@ -373,7 +373,7 @@
     "tx_count_12m": 260,
     "median_psf_12m": 951,
     "offplan_pct": 0.8,
-    "computed_at": "2026-08-04T04:52:12.472810+00:00",
+    "computed_at": "2026-08-05T04:52:15.926683+00:00",
     "ys": {
       "total": 64,
       "momentum": {
@@ -415,7 +415,7 @@
     "tx_count_12m": 12,
     "median_psf_12m": 554,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.737123+00:00",
+    "computed_at": "2026-08-05T04:52:16.280798+00:00",
     "ys": {
       "total": 64,
       "momentum": {
@@ -454,16 +454,16 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 32.2,
     "trend_direction": "up",
-    "tx_count_12m": 1242,
-    "median_psf_12m": 1243,
+    "tx_count_12m": 1244,
+    "median_psf_12m": 1244,
     "offplan_pct": 70.4,
-    "computed_at": "2026-08-04T04:52:12.863872+00:00",
+    "computed_at": "2026-08-05T04:52:16.451595+00:00",
     "gec": {
       "total": 64,
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 4.08
+        "velocity_ratio": 4.1
       },
       "momentum": {
         "score": 15,
@@ -484,7 +484,7 @@
       "entry": {
         "score": 2,
         "max": 10,
-        "entry_ratio": 0.57
+        "entry_ratio": 0.58
       }
     },
     "score": 64,
@@ -499,7 +499,7 @@
     "tx_count_12m": 15,
     "median_psf_12m": 1393,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.522935+00:00",
+    "computed_at": "2026-08-05T04:52:15.995126+00:00",
     "ys": {
       "total": 63,
       "momentum": {
@@ -541,7 +541,7 @@
     "tx_count_12m": 580,
     "median_psf_12m": 1869,
     "offplan_pct": 51.9,
-    "computed_at": "2026-08-04T04:52:12.500151+00:00",
+    "computed_at": "2026-08-05T04:52:15.963980+00:00",
     "ys": {
       "total": 60,
       "momentum": {
@@ -576,7 +576,7 @@
       "velocity": {
         "score": 7,
         "max": 30,
-        "velocity_ratio": 0.73
+        "velocity_ratio": 0.71
       },
       "momentum": {
         "score": 5,
@@ -612,7 +612,7 @@
     "tx_count_12m": 80,
     "median_psf_12m": 1202,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.923443+00:00",
+    "computed_at": "2026-08-05T04:52:16.532169+00:00",
     "ys": {
       "total": 59,
       "momentum": {
@@ -654,7 +654,7 @@
     "tx_count_12m": 16,
     "median_psf_12m": 337,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.407389+00:00",
+    "computed_at": "2026-08-05T04:52:15.845666+00:00",
     "ys": {
       "total": 55,
       "momentum": {
@@ -696,13 +696,13 @@
     "tx_count_12m": 272,
     "median_psf_12m": 1734,
     "offplan_pct": 58.5,
-    "computed_at": "2026-08-04T04:52:12.419919+00:00",
+    "computed_at": "2026-08-05T04:52:15.862424+00:00",
     "gec": {
       "total": 54,
       "velocity": {
         "score": 7,
         "max": 30,
-        "velocity_ratio": 0.72
+        "velocity_ratio": 0.75
       },
       "momentum": {
         "score": 13,
@@ -733,12 +733,12 @@
     "slug": "al-rahah",
     "district_name": "Al Rahah",
     "score_type": "yield_stability",
-    "ready_pct_alltime": 67.5,
+    "ready_pct_alltime": 67.4,
     "trend_direction": "up",
-    "tx_count_12m": 1022,
+    "tx_count_12m": 1026,
     "median_psf_12m": 1785,
     "offplan_pct": 64.4,
-    "computed_at": "2026-08-04T04:52:12.575551+00:00",
+    "computed_at": "2026-08-05T04:52:16.065297+00:00",
     "ys": {
       "total": 53,
       "momentum": {
@@ -755,12 +755,12 @@
       "liquidity": {
         "score": 7,
         "max": 20,
-        "recency_ratio": 0.68
+        "recency_ratio": 0.7
       },
       "stability": {
         "score": 5,
         "max": 15,
-        "cov": 0.245
+        "cov": 0.243
       },
       "appreciation": {
         "score": 2,
@@ -780,7 +780,7 @@
     "tx_count_12m": 34,
     "median_psf_12m": 780,
     "offplan_pct": 5.9,
-    "computed_at": "2026-08-04T04:52:12.647837+00:00",
+    "computed_at": "2026-08-05T04:52:16.160799+00:00",
     "ys": {
       "total": 51,
       "momentum": {
@@ -822,7 +822,7 @@
     "tx_count_12m": 23,
     "median_psf_12m": 462,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:13.008048+00:00",
+    "computed_at": "2026-08-05T04:52:16.645914+00:00",
     "ys": {
       "total": 51,
       "momentum": {
@@ -864,7 +864,7 @@
     "tx_count_12m": 10,
     "median_psf_12m": 361,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.541894+00:00",
+    "computed_at": "2026-08-05T04:52:16.020535+00:00",
     "ys": {
       "total": 50,
       "momentum": {
@@ -906,7 +906,7 @@
     "tx_count_12m": 47,
     "median_psf_12m": 2364,
     "offplan_pct": 2.1,
-    "computed_at": "2026-08-04T04:52:12.431477+00:00",
+    "computed_at": "2026-08-05T04:52:15.878671+00:00",
     "ys": {
       "total": 49,
       "momentum": {
@@ -945,16 +945,16 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 17.9,
     "trend_direction": "up",
-    "tx_count_12m": 2237,
-    "median_psf_12m": 3201,
-    "offplan_pct": 86.1,
-    "computed_at": "2026-08-04T04:52:12.663309+00:00",
+    "tx_count_12m": 2239,
+    "median_psf_12m": 3193,
+    "offplan_pct": 86.2,
+    "computed_at": "2026-08-05T04:52:16.181183+00:00",
     "gec": {
       "total": 49,
       "velocity": {
         "score": 11,
         "max": 30,
-        "velocity_ratio": 1.18
+        "velocity_ratio": 1.19
       },
       "momentum": {
         "score": 25,
@@ -987,16 +987,16 @@
     "score_type": "yield_stability",
     "ready_pct_alltime": 68.0,
     "trend_direction": "up",
-    "tx_count_12m": 149,
+    "tx_count_12m": 153,
     "median_psf_12m": 1137,
-    "offplan_pct": 68.5,
-    "computed_at": "2026-08-04T04:52:12.762357+00:00",
+    "offplan_pct": 67.3,
+    "computed_at": "2026-08-05T04:52:16.314385+00:00",
     "ys": {
       "total": 47,
       "momentum": {
         "score": 16,
         "max": 30,
-        "pct_change": 3.4,
+        "pct_change": 4.8,
         "direction": "up"
       },
       "yield": {
@@ -1007,17 +1007,17 @@
       "liquidity": {
         "score": 9,
         "max": 20,
-        "recency_ratio": 0.89
+        "recency_ratio": 0.99
       },
       "stability": {
         "score": 5,
         "max": 15,
-        "cov": 0.295
+        "cov": 0.294
       },
       "appreciation": {
         "score": 1,
         "max": 10,
-        "ratio": 0.68
+        "ratio": 0.69
       }
     },
     "score": 47,
@@ -1032,7 +1032,7 @@
     "tx_count_12m": 15,
     "median_psf_12m": 262,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.777871+00:00",
+    "computed_at": "2026-08-05T04:52:16.335527+00:00",
     "ys": {
       "total": 47,
       "momentum": {
@@ -1074,7 +1074,7 @@
     "tx_count_12m": 658,
     "median_psf_12m": 2091,
     "offplan_pct": 100.0,
-    "computed_at": "2026-08-04T04:52:12.826065+00:00",
+    "computed_at": "2026-08-05T04:52:16.400594+00:00",
     "gec": {
       "total": 47,
       "velocity": {
@@ -1116,7 +1116,7 @@
     "tx_count_12m": 263,
     "median_psf_12m": 3281,
     "offplan_pct": 100.0,
-    "computed_at": "2026-08-04T04:52:12.935270+00:00",
+    "computed_at": "2026-08-05T04:52:16.548115+00:00",
     "gec": {
       "total": 47,
       "velocity": {
@@ -1158,7 +1158,7 @@
     "tx_count_12m": 16,
     "median_psf_12m": 754,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.953268+00:00",
+    "computed_at": "2026-08-05T04:52:16.572297+00:00",
     "ys": {
       "total": 46,
       "momentum": {
@@ -1200,7 +1200,7 @@
     "tx_count_12m": 878,
     "median_psf_12m": 1103,
     "offplan_pct": 98.1,
-    "computed_at": "2026-08-04T04:52:12.326716+00:00",
+    "computed_at": "2026-08-05T04:52:15.748860+00:00",
     "gec": {
       "total": 43,
       "velocity": {
@@ -1242,7 +1242,7 @@
     "tx_count_12m": 17,
     "median_psf_12m": 233,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.312488+00:00",
+    "computed_at": "2026-08-05T04:52:15.730054+00:00",
     "ys": {
       "total": 41,
       "momentum": {
@@ -1284,7 +1284,7 @@
     "tx_count_12m": 11,
     "median_psf_12m": 271,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.850865+00:00",
+    "computed_at": "2026-08-05T04:52:16.433788+00:00",
     "ys": {
       "total": 40,
       "momentum": {
@@ -1326,7 +1326,7 @@
     "tx_count_12m": 10,
     "median_psf_12m": 229,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.698608+00:00",
+    "computed_at": "2026-08-05T04:52:16.228462+00:00",
     "ys": {
       "total": 39,
       "momentum": {
@@ -1368,7 +1368,7 @@
     "tx_count_12m": 35,
     "median_psf_12m": 695,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.875786+00:00",
+    "computed_at": "2026-08-05T04:52:16.467951+00:00",
     "ys": {
       "total": 34,
       "momentum": {
@@ -1410,7 +1410,7 @@
     "tx_count_12m": 87,
     "median_psf_12m": 1183,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.688031+00:00",
+    "computed_at": "2026-08-05T04:52:16.213858+00:00",
     "gec": {
       "total": 33,
       "velocity": {
@@ -1452,7 +1452,7 @@
     "tx_count_12m": 21,
     "median_psf_12m": 388,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.897963+00:00",
+    "computed_at": "2026-08-05T04:52:16.497969+00:00",
     "ys": {
       "total": 33,
       "momentum": {
@@ -1494,7 +1494,7 @@
     "tx_count_12m": 20,
     "median_psf_12m": 559,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.339134+00:00",
+    "computed_at": "2026-08-05T04:52:15.765718+00:00",
     "ys": {
       "total": 31,
       "momentum": {
@@ -1536,7 +1536,7 @@
     "tx_count_12m": 51,
     "median_psf_12m": 236,
     "offplan_pct": 0.0,
-    "computed_at": "2026-08-04T04:52:12.459078+00:00",
+    "computed_at": "2026-08-05T04:52:15.909324+00:00",
     "ys": {
       "total": 30,
       "momentum": {

@@ -1,0 +1,29 @@
+name: Investigate AI Assistant Channel (one-off)
+
+# Manual, read-only investigation — no schedule, writes nothing to the repo.
+# Not meant to be kept long-term; delete once the GA4 findings it surfaces
+# have been folded into geo-monitoring-agent.
+on:
+  workflow_dispatch:
+
+jobs:
+  investigate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Run investigation (read-only, prints to log)
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+        run: python scripts/investigate_ai_channel.py

@@ -1,0 +1,64 @@
+name: Weekly Growth Metrics
+
+# Writes marketing/analytics/growth_metrics.json from GA4 + Supabase, so the
+# growth report has real numbers to read instead of Khee copy-pasting GA4
+# figures by hand. Runs the morning before the weekly digest/report cadence.
+on:
+  schedule:
+    - cron: '0 3 * * 1'   # 07:00 GST (UTC+4) every Monday — 1h before weekly-digest.yml
+  workflow_dispatch:        # manually runnable from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Fetch growth metrics (GA4 + Supabase)
+        env:
+          # GA4_CREDENTIALS_JSON is intentionally not set here — the script
+          # falls back to GOOGLE_CREDENTIALS_JSON (the existing "adinteract-data"
+          # service account, already used for Sheets) once it's granted
+          # Viewer access on the GA4 property. Set GA4_CREDENTIALS_JSON
+          # separately only if a dedicated service account is ever wanted.
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python scripts/fetch_growth_metrics.py
+
+      - name: Commit growth metrics to main
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f marketing/analytics/growth_metrics.json
+          git diff --staged --quiet \
+            || git commit -m "data: weekly growth metrics $(date -u +%Y-%m-%d) [skip ci]"
+          git stash --include-untracked || true
+          git pull --rebase origin main
+          git push
+
+      - name: Alert on failure
+        if: failure()
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
+        run: python scripts/notify_failure.py
+
+# Note: this workflow does NOT deploy the site — growth_metrics.json isn't
+# read by the SvelteKit app, only by scripts (the growth report, once
+# rescoped to read from it instead of manual GA4 copy-paste).

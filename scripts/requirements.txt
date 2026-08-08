@@ -1,6 +1,7 @@
 playwright==1.44.0
 gspread==6.1.2
 google-auth==2.29.0
+google-analytics-data==0.18.16
 pandas==2.2.2
 pyarrow==16.1.0
 requests==2.32.3

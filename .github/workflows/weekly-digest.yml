@@ -26,6 +26,14 @@ jobs:
           GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          # Reuses the existing frontend Supabase URL secret — same project, just
+          # read server-side here. SUPABASE_SERVICE_ROLE_KEY is a NEW secret and
+          # is optional: unset, the digest sends to GMAIL recipient only, exactly
+          # like before this workflow changed. Set it (Supabase dashboard →
+          # Project Settings → API → service_role) to start BCC'ing real
+          # subscribers from email_subscribers.
+          SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: python scripts/send_weekly_digest.py
 
       - name: Upload digest HTML (for review)

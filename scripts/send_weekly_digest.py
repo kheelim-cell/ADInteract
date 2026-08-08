@@ -1,7 +1,13 @@
 """
 send_weekly_digest.py
 ---------------------
-Generates and emails the weekly ADInteract market digest to info@notadubaibroker.com.
+Generates and emails the weekly ADInteract market digest.
+
+Sent to RECIPIENT (kept as a visible "To" copy for Khee's own archive/review)
+and BCC'd to every real subscriber in Supabase `email_subscribers`, if a
+service-role key is configured. Until that key exists, this degrades
+exactly to the old behaviour (RECIPIENT only) — adding the key is what
+turns real subscriber delivery on, no code change needed at that point.
 
 Rotates focus each week across 4 sections:
   Week 0 (mod 4): Volume & price overview
@@ -18,6 +24,15 @@ Required env vars:
   GMAIL_APP_PASSWORD       — Gmail App Password for info@notadubaibroker.com
   GMAIL_SENDER             — sender address (default: info@notadubaibroker.com)
 
+Optional env vars (subscriber BCC — both required together to activate):
+  SUPABASE_URL                — reuse the same value as VITE_SUPABASE_URL
+  SUPABASE_SERVICE_ROLE_KEY   — Supabase service_role key (Project Settings →
+                                 API). NOT the anon key — email_subscribers has
+                                 RLS with an insert-only policy for anon, by
+                                 design, so reading the list requires the
+                                 service role. Keep this out of any VITE_*
+                                 (client-exposed) var. Server-side/CI use only.
+
 Usage:
   python scripts/send_weekly_digest.py
 """
@@ -33,6 +48,7 @@ from email.mime.text import MIMEText
 
 import gspread
 import pandas as pd
+import requests
 from google.oauth2.service_account import Credentials
 
 # ── Config ────────────────────────────────────────────────────────────────────
@@ -42,6 +58,10 @@ SITE_URL      = "https://adinteract.co"
 RECIPIENT     = "info@notadubaibroker.com"
 SENDER        = os.environ.get("GMAIL_SENDER", "info@notadubaibroker.com")
 GMAIL_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD", "")
+
+SUPABASE_URL         = os.environ.get("SUPABASE_URL", "").rstrip("/")
+SUPABASE_SERVICE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+BCC_BATCH_SIZE       = 40  # conservative per-send cap; keeps well under Gmail SMTP limits
 
 # Rotation: which week number mod 4 maps to which focus
 FOCUS_NAMES = [
@@ -429,8 +449,54 @@ def build_email(df: pd.DataFrame, week_num: int) -> tuple[str, str]:
     return subject, html
 
 
+# ── Subscriber list (Supabase) ────────────────────────────────────────────────
+def get_subscriber_emails() -> list[str]:
+    """Fetch active subscriber emails from Supabase `email_subscribers`.
+
+    Requires the service_role key — the table's RLS only grants anon/authenticated
+    an INSERT policy (by design, so the public lead-magnet form can write but
+    can't read the list back). Returns [] (never raises) if the key isn't
+    configured or the request fails, so a missing/misconfigured secret degrades
+    to "RECIPIENT only" rather than breaking the weekly send.
+    """
+    if not (SUPABASE_URL and SUPABASE_SERVICE_KEY):
+        print("Supabase service role key not configured — skipping subscriber BCC.")
+        return []
+
+    try:
+        resp = requests.get(
+            f"{SUPABASE_URL}/rest/v1/email_subscribers",
+            params={"select": "email"},
+            headers={
+                "apikey": SUPABASE_SERVICE_KEY,
+                "Authorization": f"Bearer {SUPABASE_SERVICE_KEY}",
+                "Range": "0-9999",  # PostgREST default page size is 1000; raise the ceiling explicitly
+            },
+            timeout=15,
+        )
+        resp.raise_for_status()
+        rows = resp.json()
+    except Exception as e:
+        print(f"WARNING: failed to fetch subscribers from Supabase ({e}) — skipping BCC.")
+        return []
+
+    emails = sorted({
+        r["email"].strip().lower()
+        for r in rows
+        if r.get("email") and "@" in r["email"]
+    })
+    print(f"  Loaded {len(emails)} subscriber(s) from Supabase.")
+    return emails
+
+
+def chunk(items: list, size: int) -> list[list]:
+    return [items[i:i + size] for i in range(0, len(items), size)]
+
+
 # ── Send via Gmail SMTP ───────────────────────────────────────────────────────
-def send_email(subject: str, html: str) -> None:
+def send_email(subject: str, html: str, bcc_emails: list[str] | None = None) -> None:
+    bcc_emails = bcc_emails or []
+
     if not GMAIL_PASSWORD:
         # No password configured — save HTML to file for manual review
         out = "scripts/data/weekly_digest.html"
@@ -445,12 +511,24 @@ def send_email(subject: str, html: str) -> None:
     msg["From"]    = SENDER
     msg["To"]      = RECIPIENT
     msg.attach(MIMEText(html, "html"))
+    payload = msg.as_string()
 
-    print(f"Sending digest to {RECIPIENT}...")
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
         server.login(SENDER, GMAIL_PASSWORD)
-        server.sendmail(SENDER, [RECIPIENT], msg.as_string())
-    print("Sent.")
+
+        # RECIPIENT always gets the visible "To" copy — unchanged from before.
+        print(f"Sending digest to {RECIPIENT}...")
+        server.sendmail(SENDER, [RECIPIENT], payload)
+
+        # Real subscribers are BCC'd: batched so no single send exposes/relies on
+        # an unbounded recipient list, and RECIPIENT's "To" header is what every
+        # subscriber sees (their own address never appears to anyone else).
+        for batch in chunk(bcc_emails, BCC_BATCH_SIZE):
+            print(f"  BCC batch of {len(batch)} subscriber(s)...")
+            server.sendmail(SENDER, batch, payload)
+
+    total = 1 + len(bcc_emails)
+    print(f"Sent. {total} recipient(s) total (1 To + {len(bcc_emails)} subscriber BCC).")
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
@@ -460,9 +538,10 @@ def main():
 
     df = load_data()
     subject, html = build_email(df, week_num)
+    bcc_emails = get_subscriber_emails()
 
     print(f"Subject: {subject}")
-    send_email(subject, html)
+    send_email(subject, html, bcc_emails)
 
 
 if __name__ == "__main__":

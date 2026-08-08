@@ -35,3 +35,11 @@ jobs:
           name: weekly-digest-${{ github.run_id }}
           path: scripts/data/weekly_digest.html
           retention-days: 30
+
+      - name: Alert on failure
+        if: failure()
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
+        run: python scripts/notify_failure.py

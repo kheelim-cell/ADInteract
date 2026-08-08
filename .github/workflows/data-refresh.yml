@@ -102,6 +102,14 @@ jobs:
           git pull --rebase origin main
           git push
 
+      - name: Alert on failure
+        if: failure()
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
+        run: python scripts/notify_failure.py
+
   # ───────────────────────────────────────────────────────────────────────
   # Job 2: Build SvelteKit and deploy to GitHub Pages
   # ───────────────────────────────────────────────────────────────────────
@@ -144,3 +152,20 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # This job is Node-only otherwise — Python is set up here solely for the
+      # shared notify_failure.py script, and only on the failure path so it
+      # costs nothing on a normal successful deploy.
+      - name: Set up Python (failure alert only)
+        if: failure()
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Alert on failure
+        if: failure()
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
+        run: python scripts/notify_failure.py

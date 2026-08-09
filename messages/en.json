@@ -849,7 +849,7 @@
 	"tx_type_penthouse": "Penthouse",
 	"tx_type_land": "Land",
 	"tx_layout_studio": "Studio",
-	"tx_layout_beds": "Beds {n}",
+	"tx_layout_beds": "{n} Bed",
 	"tx_explore": "Explore",
 	"tx_private": "Private",
 	"tx_transactions_unit": "transactions",

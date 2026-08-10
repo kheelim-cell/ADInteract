@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-08-08T19:14:41.301692+00:00",
+  "generated_at": "2026-08-10T04:43:04.500185+00:00",
   "ga4": {
     "period_7d": {
-      "sessions": 904,
-      "total_users": 427,
-      "new_users": 283,
-      "returning_users_pct": 33.7,
-      "share_events": 8,
+      "sessions": 879,
+      "total_users": 412,
+      "new_users": 271,
+      "returning_users_pct": 34.2,
+      "share_events": 9,
       "top_sources": [
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 415
+          "sessions": 396
         },
         {
           "source": "(direct)",
@@ -21,27 +21,32 @@
         {
           "source": "accounts.google.com",
           "medium": "referral",
-          "sessions": 100
-        },
-        {
-          "source": "bing",
-          "medium": "organic",
-          "sessions": 41
+          "sessions": 98
         },
         {
           "source": "l.instagram.com",
           "medium": "referral",
-          "sessions": 41
+          "sessions": 43
         },
         {
-          "source": "(not set)",
-          "medium": "(not set)",
-          "sessions": 40
+          "source": "bing",
+          "medium": "organic",
+          "sessions": 42
         },
         {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
-          "sessions": 18
+          "sessions": 16
+        },
+        {
+          "source": "(not set)",
+          "medium": "(not set)",
+          "sessions": 8
+        },
+        {
+          "source": "notadubaibroker.com",
+          "medium": "referral",
+          "sessions": 4
         },
         {
           "source": "yahoo",
@@ -52,11 +57,6 @@
           "source": "duckduckgo",
           "medium": "organic",
           "sessions": 2
-        },
-        {
-          "source": "accounts.google.ae",
-          "medium": "referral",
-          "sessions": 1
         }
       ],
       "top_landing_pages": [
@@ -66,39 +66,27 @@
         },
         {
           "page": "(not set)",
-          "sessions": 73
-        },
-        {
-          "page": "",
-          "sessions": 24
-        },
-        {
-          "page": "/rental?rsort=median_rent&rdir=desc",
-          "sessions": 13
+          "sessions": 83
         },
         {
           "page": "/investors/calculator",
-          "sessions": 11
+          "sessions": 13
         },
         {
-          "page": "/investors",
-          "sessions": 10
+          "page": "/rental?rsort=median_rent&rdir=desc",
+          "sessions": 12
+        },
+        {
+          "page": "/5c7766da-f832-4aec-b2c6-7a1204c034a4",
+          "sessions": 9
         },
         {
           "page": "/ar/investors/watchlist",
           "sessions": 9
         },
         {
-          "page": "/5c7766da-f832-4aec-b2c6-7a1204c034a4",
+          "page": "/investors",
           "sessions": 8
-        },
-        {
-          "page": "/?district=Al+Reem+Island",
-          "sessions": 7
-        },
-        {
-          "page": "/?district=Yas+Island",
-          "sessions": 7
         },
         {
           "page": "/?range=1m&type=ready&propType=townhouse+%2F+attached+villa",
@@ -113,56 +101,63 @@
           "sessions": 7
         },
         {
-          "page": "/?district=Al+Reef&project=Radiant+Atrium&range=6m&propType=apartment",
+          "page": "/?district=Al+Reem+Island",
           "sessions": 6
         },
         {
-          "page": "/?district=Yas+Island&type=ready",
+          "page": "/?district=Yas+Island",
+          "sessions": 6
+        },
+        {
+          "page": "/?range=1m",
+          "sessions": 5
+        },
+        {
+          "page": "/?range=3m",
+          "sessions": 5
+        },
+        {
+          "page": "/?range=3m&sort=project_name",
           "sessions": 5
         }
       ]
     },
     "period_30d": {
-      "sessions": 3392,
-      "total_users": 1247,
-      "new_users": 1022,
-      "returning_users_pct": 18.0,
+      "sessions": 3265,
+      "total_users": 1214,
+      "new_users": 1005,
+      "returning_users_pct": 17.2,
       "share_events": 38,
       "top_sources": [
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 1446
+          "sessions": 1397
         },
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 1065
+          "sessions": 1046
         },
         {
           "source": "accounts.google.com",
           "medium": "referral",
-          "sessions": 243
+          "sessions": 242
         },
         {
           "source": "l.instagram.com",
           "medium": "referral",
-          "sessions": 206
+          "sessions": 193
         },
         {
           "source": "bing",
           "medium": "organic",
-          "sessions": 144
+          "sessions": 143
         },
         {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
-          "sessions": 93
-        },
-        {
-          "source": "(not set)",
-          "medium": "(not set)",
-          "sessions": 49
+          "sessions": 86
         },
         {
           "source": "copylink",
@@ -172,10 +167,15 @@
         {
           "source": "facebook.com",
           "medium": "referral",
-          "sessions": 19
+          "sessions": 18
         },
         {
-          "source": "m.facebook.com",
+          "source": "(not set)",
+          "medium": "(not set)",
+          "sessions": 17
+        },
+        {
+          "source": "notadubaibroker.com",
           "medium": "referral",
           "sessions": 12
         }
@@ -183,31 +183,27 @@
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 1752
+          "sessions": 1723
         },
         {
           "page": "(not set)",
-          "sessions": 354
+          "sessions": 345
         },
         {
           "page": "/investors/calculator",
-          "sessions": 64
+          "sessions": 60
         },
         {
           "page": "/rental?rsort=median_rent&rdir=desc",
-          "sessions": 40
+          "sessions": 38
         },
         {
           "page": "/?district=Al+Reef&project=Radiant+Atrium&range=6m&propType=apartment",
-          "sessions": 37
+          "sessions": 35
         },
         {
           "page": "/?range=1m&type=ready&propType=townhouse+%2F+attached+villa",
           "sessions": 27
-        },
-        {
-          "page": "",
-          "sessions": 24
         },
         {
           "page": "/?district=Yas+Island&range=3y&type=off-plan&propType=apartment",
@@ -215,38 +211,42 @@
         },
         {
           "page": "/?range=1m",
-          "sessions": 19
-        },
-        {
-          "page": "/?range=3y",
-          "sessions": 16
-        },
-        {
-          "page": "/?district=Yas+Island",
-          "sessions": 15
-        },
-        {
-          "page": "/?district=Yas+Island&type=ready",
-          "sessions": 15
+          "sessions": 18
         },
         {
           "page": "/ar/investors/watchlist",
           "sessions": 15
         },
         {
-          "page": "/investors",
+          "page": "/?district=Yas+Island",
+          "sessions": 14
+        },
+        {
+          "page": "/?district=Yas+Island&type=ready",
           "sessions": 13
         },
         {
-          "page": "/?district=Al+Reem+Island",
+          "page": "/?district=Al+Reem+Island&type=ready&propType=apartment&layout=studio%2C1+bed",
           "sessions": 12
+        },
+        {
+          "page": "/?project=Bab+Al+Qasr+Garden+Residence+66&range=6m",
+          "sessions": 12
+        },
+        {
+          "page": "/?type=ready&propType=townhouse+%2F+attached+villa",
+          "sessions": 12
+        },
+        {
+          "page": "/?district=Al+Reem+Island",
+          "sessions": 11
         }
       ]
     }
   },
   "signups": {
     "total_signups": 350,
-    "new_signups_7d": 33,
+    "new_signups_7d": 31,
     "new_signups_30d": 50,
     "email_subscribers": 71
   }

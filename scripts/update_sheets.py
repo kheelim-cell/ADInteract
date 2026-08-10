@@ -169,9 +169,19 @@ def update():
             f"order before retrying."
         )
 
-    # Parse existing dates to find the max
+    # Parse existing dates to find the max.
+    # dayfirst=False, matching transform.py's exact convention (and comment)
+    # for the same reason: Google Sheets' API returns date-typed cells back
+    # as M/D/YYYY (US locale) regardless of what format they were written
+    # in, not the original write format. Using dayfirst=True here silently
+    # misread any date with day <= 12, producing bogus max-dates (e.g. a
+    # date meant as month=12 day=05 got flipped to day=12 month=05, or
+    # vice versa) — that's what caused two months of "no new rows to
+    # append" silently, since the wrongly-computed max ended up in the
+    # future. See the sanity check below for defense against this class
+    # of bug recurring from any other cause.
     existing_dates_raw = ws.col_values(date_col_idx)[1:]  # skip header
-    existing_dates = pd.to_datetime(existing_dates_raw, dayfirst=True, errors="coerce").dropna()
+    existing_dates = pd.to_datetime(existing_dates_raw, dayfirst=False, errors="coerce").dropna()
     if len(existing_dates) == 0:
         raise RuntimeError(
             "No parseable dates found in sheet date column. "
@@ -181,8 +191,26 @@ def update():
     max_existing_date = existing_dates.max().date()
     print(f"Max date already in sheet: {max_existing_date}")
 
-    # Keep only rows with a date strictly after the sheet's max date
-    new_df[date_col] = pd.to_datetime(new_df[date_col], dayfirst=True, errors="coerce")
+    # Sanity check: a max date in the future (or implausibly old) means the
+    # parse is almost certainly wrong, not that the sheet genuinely has
+    # future-dated transactions. Fail loudly instead of silently deciding
+    # "nothing new to append" forever — exactly how this bug went
+    # unnoticed for two months in the first place.
+    today = pd.Timestamp.now().date()
+    if max_existing_date > today:
+        raise RuntimeError(
+            f"Max date already in sheet ({max_existing_date}) is in the future — "
+            f"this means date parsing is wrong, not that the sheet has future "
+            f"transactions. Refusing to proceed (would silently skip all real "
+            f"new rows). Check the sheet's actual date column format."
+        )
+
+    # Keep only rows with a date strictly after the sheet's max date.
+    # dayfirst=False here too — ADREC's own CSV export is ISO (YYYY-MM-DD),
+    # unambiguous regardless of this flag (per transform.py's comment), so
+    # this specific call was never the active bug, but kept consistent with
+    # the rest of this file rather than leaving a misleading dayfirst=True.
+    new_df[date_col] = pd.to_datetime(new_df[date_col], dayfirst=False, errors="coerce")
     truly_new = new_df[new_df[date_col].dt.date > max_existing_date].copy()
     truly_new[date_col] = truly_new[date_col].dt.strftime("%Y-%m-%d")
 

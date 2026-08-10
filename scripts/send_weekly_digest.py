@@ -537,6 +537,29 @@ def main():
     week_num = date.today().isocalendar()[1]
 
     df = load_data()
+
+    # Sanity check BEFORE building or sending anything: zero transactions in
+    # the last 7 days means something upstream is broken (stale data source,
+    # a date-parsing bug, etc.) — not that the market genuinely had zero
+    # sales. This is exactly the failure mode that sent an all-zero digest to
+    # real subscribers on 2026-08-10 (root cause: scripts/update_sheets.py's
+    # date-parsing bug, fixed separately in this same PR). Fail loudly here
+    # instead of silently mailing garbage — this exits non-zero, which the
+    # existing "Alert on failure" step in weekly-digest.yml (PR #3) already
+    # catches and emails Khee about, and critically, send_email() below never
+    # runs, so subscribers never receive a broken digest.
+    today = date.today()
+    sanity_check = week_stats(df, today - timedelta(days=7), today)
+    if sanity_check["volume"] == 0:
+        print(
+            f"ABORTING: 0 transactions found in the last 7 days "
+            f"({today - timedelta(days=7)} to {today}) — this almost certainly "
+            f"means the data source is stale or broken, not that the market "
+            f"had zero sales. Refusing to send a digest with zero data to "
+            f"subscribers."
+        )
+        raise SystemExit(1)
+
     subject, html = build_email(df, week_num)
     bcc_emails = get_subscriber_emails()
 

@@ -136,6 +136,59 @@ def normalise_sequence(v) -> str:
     return s
 
 
+def apply_outlier_filters(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Drop rows that don't reflect a genuine market-rate sale:
+      - Nominal / gift-transfer prices  (price < AED 50,000, or rate < AED 100/sqft)
+      - Implausible data-entry errors   (price > AED 100M, or rate > AED 20,000/sqft)
+      - Court-mandated (forced/distressed) sales — real, but not market-rate
+      - Partial-share sales — recorded price may reflect only the fractional
+        share, not the full property value
+
+    Comparisons against a NaN (e.g. rate_per_sqft on a row with no area) evaluate
+    to False in pandas, so rows with missing values are never dropped by that
+    specific condition — only rows with an actual out-of-range value are.
+    """
+    before = len(df)
+
+    nominal   = (df["price_aed"] < 50_000) | (df["rate_per_sqft"] < 100)
+    implausible = (df["price_aed"] > 100_000_000) | (df["rate_per_sqft"] > 20_000)
+    court_mandated = df["sale_type"] == "court-mandated"
+    partial_share   = df["sold_share"] < 1
+
+    drop_mask = nominal | implausible | court_mandated | partial_share
+    print(f"  Outlier filter: nominal={nominal.sum():,}  implausible={implausible.sum():,}  "
+          f"court-mandated={court_mandated.sum():,}  partial-share={partial_share.sum():,}  "
+          f"(overlaps mean these don't simply add up)")
+
+    cleaned = df[~drop_mask].reset_index(drop=True)
+    print(f"  Outlier filter: dropped {before - len(cleaned):,} rows. Remaining: {len(cleaned):,}")
+    return cleaned
+
+
+def build_meta(final: pd.DataFrame) -> dict:
+    def clean_list(series: pd.Series) -> list:
+        return sorted({
+            str(v).strip()
+            for v in series.dropna().unique()
+            if str(v).strip() not in ("", "nan", "None")
+        })
+
+    return {
+        "lastUpdated": datetime.now(timezone.utc).isoformat(),
+        "rowCount":    int(len(final)),
+        "dateRange": {
+            "min": str(final["sale_date"].min().date()),
+            "max": str(final["sale_date"].max().date()),
+        },
+        "districts":     clean_list(final["district"]),
+        "communities":   clean_list(final["community"]),
+        "propertyTypes": clean_list(final["property_type"]),
+        "layouts":       clean_list(final["layout"]),
+        "projects":      clean_list(final["project_name"]),
+    }
+
+
 def load_existing_parquet() -> pd.DataFrame | None:
     """Load the existing parquet as a DataFrame, or return None if absent."""
     if not os.path.exists(OUTPUT_PARQUET):
@@ -289,7 +342,11 @@ def transform(full_rebuild: bool = False):
         else:
             print("  No existing parquet found — doing full write.")
 
-    print(f"  Final row count: {len(final):,}")
+    print(f"  Final row count (before outlier filter): {len(final):,}")
+
+    # ── Outlier filter (self-healing: runs on the full combined dataset, so any
+    #    outliers still sitting in an older parquet get swept up too) ──────────
+    final = apply_outlier_filters(final)
 
     # ── Write Parquet (ZSTD compressed) ────────────────────────────────────
     table = pa.Table.from_pandas(final, preserve_index=False)
@@ -298,29 +355,8 @@ def transform(full_rebuild: bool = False):
     print(f"  Wrote {OUTPUT_PARQUET}  ({size_mb:.1f} MB)")
 
     # ── Write meta.json ────────────────────────────────────────────────────
-    def clean_list(series: pd.Series) -> list:
-        return sorted({
-            str(v).strip()
-            for v in series.dropna().unique()
-            if str(v).strip() not in ("", "nan", "None")
-        })
-
-    meta = {
-        "lastUpdated": datetime.now(timezone.utc).isoformat(),
-        "rowCount":    int(len(final)),
-        "dateRange": {
-            "min": str(final["sale_date"].min().date()),
-            "max": str(final["sale_date"].max().date()),
-        },
-        "districts":     clean_list(final["district"]),
-        "communities":   clean_list(final["community"]),
-        "propertyTypes": clean_list(final["property_type"]),
-        "layouts":       clean_list(final["layout"]),
-        "projects":      clean_list(final["project_name"]),
-    }
-
     with open(OUTPUT_META, "w", encoding="utf-8") as f:
-        json.dump(meta, f, ensure_ascii=False)
+        json.dump(build_meta(final), f, ensure_ascii=False)
     print(f"  Wrote {OUTPUT_META}")
     print("Transform complete.")
 

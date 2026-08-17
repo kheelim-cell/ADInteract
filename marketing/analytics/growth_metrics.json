@@ -1,153 +1,153 @@
 {
-  "generated_at": "2026-08-10T04:43:04.500185+00:00",
+  "generated_at": "2026-08-17T03:54:28.010684+00:00",
   "ga4": {
     "period_7d": {
-      "sessions": 879,
-      "total_users": 412,
-      "new_users": 271,
-      "returning_users_pct": 34.2,
-      "share_events": 9,
+      "sessions": 1039,
+      "total_users": 508,
+      "new_users": 347,
+      "returning_users_pct": 31.7,
+      "share_events": 11,
       "top_sources": [
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 396
+          "sessions": 453
         },
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 268
+          "sessions": 357
         },
         {
           "source": "accounts.google.com",
           "medium": "referral",
-          "sessions": 98
+          "sessions": 89
         },
         {
           "source": "l.instagram.com",
           "medium": "referral",
-          "sessions": 43
-        },
-        {
-          "source": "bing",
-          "medium": "organic",
-          "sessions": 42
+          "sessions": 60
         },
         {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
-          "sessions": 16
+          "sessions": 29
+        },
+        {
+          "source": "bing",
+          "medium": "organic",
+          "sessions": 23
         },
         {
           "source": "(not set)",
           "medium": "(not set)",
-          "sessions": 8
+          "sessions": 9
         },
         {
           "source": "notadubaibroker.com",
           "medium": "referral",
-          "sessions": 4
+          "sessions": 5
         },
         {
-          "source": "yahoo",
-          "medium": "organic",
+          "source": "m.facebook.com",
+          "medium": "referral",
           "sessions": 3
         },
         {
-          "source": "duckduckgo",
-          "medium": "organic",
-          "sessions": 2
+          "source": "perplexity.ai",
+          "medium": "ai-assistant",
+          "sessions": 3
         }
       ],
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 473
+          "sessions": 528
         },
         {
           "page": "(not set)",
-          "sessions": 83
+          "sessions": 87
+        },
+        {
+          "page": "/ar",
+          "sessions": 15
         },
         {
           "page": "/investors/calculator",
           "sessions": 13
         },
         {
-          "page": "/rental?rsort=median_rent&rdir=desc",
-          "sessions": 12
+          "page": "/?range=ytd",
+          "sessions": 10
         },
         {
-          "page": "/5c7766da-f832-4aec-b2c6-7a1204c034a4",
+          "page": "/?district=Al+Hidayriyyat",
           "sessions": 9
         },
         {
-          "page": "/ar/investors/watchlist",
-          "sessions": 9
-        },
-        {
-          "page": "/investors",
+          "page": "/?district=Al+Reef&project=Radiant+Atrium&range=6m&propType=apartment",
           "sessions": 8
         },
         {
-          "page": "/?range=1m&type=ready&propType=townhouse+%2F+attached+villa",
+          "page": "/investors/compare",
+          "sessions": 8
+        },
+        {
+          "page": "/rental?rsort=median_rent&rdir=desc",
+          "sessions": 8
+        },
+        {
+          "page": "/?district=Al+Saadiyat+Island",
           "sessions": 7
-        },
-        {
-          "page": "/?range=ytd",
-          "sessions": 7
-        },
-        {
-          "page": "/ar",
-          "sessions": 7
-        },
-        {
-          "page": "/?district=Al+Reem+Island",
-          "sessions": 6
-        },
-        {
-          "page": "/?district=Yas+Island",
-          "sessions": 6
         },
         {
           "page": "/?range=1m",
+          "sessions": 6
+        },
+        {
+          "page": "/?range=6m&propType=apartment&layout=1+bed",
+          "sessions": 6
+        },
+        {
+          "page": "/?range=custom",
+          "sessions": 6
+        },
+        {
+          "page": "/?district=Al+Reem+Island&range=3m&sort=project_name&dir=asc",
           "sessions": 5
         },
         {
-          "page": "/?range=3m",
-          "sessions": 5
-        },
-        {
-          "page": "/?range=3m&sort=project_name",
+          "page": "/?district=Yas+Island&range=1m",
           "sessions": 5
         }
       ]
     },
     "period_30d": {
-      "sessions": 3265,
-      "total_users": 1214,
-      "new_users": 1005,
-      "returning_users_pct": 17.2,
-      "share_events": 38,
+      "sessions": 3719,
+      "total_users": 1391,
+      "new_users": 1191,
+      "returning_users_pct": 14.4,
+      "share_events": 39,
       "top_sources": [
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 1397
+          "sessions": 1597
         },
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 1046
+          "sessions": 1196
         },
         {
           "source": "accounts.google.com",
           "medium": "referral",
-          "sessions": 242
+          "sessions": 294
         },
         {
           "source": "l.instagram.com",
           "medium": "referral",
-          "sessions": 193
+          "sessions": 204
         },
         {
           "source": "bing",
@@ -157,7 +157,7 @@
         {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
-          "sessions": 86
+          "sessions": 92
         },
         {
           "source": "copylink",
@@ -165,29 +165,29 @@
           "sessions": 23
         },
         {
+          "source": "(not set)",
+          "medium": "(not set)",
+          "sessions": 20
+        },
+        {
           "source": "facebook.com",
           "medium": "referral",
           "sessions": 18
         },
         {
-          "source": "(not set)",
-          "medium": "(not set)",
-          "sessions": 17
-        },
-        {
           "source": "notadubaibroker.com",
           "medium": "referral",
-          "sessions": 12
+          "sessions": 13
         }
       ],
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 1723
+          "sessions": 1941
         },
         {
           "page": "(not set)",
-          "sessions": 345
+          "sessions": 343
         },
         {
           "page": "/investors/calculator",
@@ -195,22 +195,26 @@
         },
         {
           "page": "/rental?rsort=median_rent&rdir=desc",
-          "sessions": 38
+          "sessions": 34
         },
         {
           "page": "/?district=Al+Reef&project=Radiant+Atrium&range=6m&propType=apartment",
-          "sessions": 35
+          "sessions": 32
         },
         {
           "page": "/?range=1m&type=ready&propType=townhouse+%2F+attached+villa",
-          "sessions": 27
+          "sessions": 29
         },
         {
-          "page": "/?district=Yas+Island&range=3y&type=off-plan&propType=apartment",
+          "page": "/ar",
           "sessions": 22
         },
         {
           "page": "/?range=1m",
+          "sessions": 19
+        },
+        {
+          "page": "/?range=ytd",
           "sessions": 18
         },
         {
@@ -218,36 +222,32 @@
           "sessions": 15
         },
         {
+          "page": "/?district=Al+Reem+Island",
+          "sessions": 14
+        },
+        {
           "page": "/?district=Yas+Island",
           "sessions": 14
         },
         {
-          "page": "/?district=Yas+Island&type=ready",
+          "page": "/?district=Al+Hidayriyyat",
           "sessions": 13
+        },
+        {
+          "page": "/?district=Al+Reem+Island&range=3m&type=ready&layout=studio",
+          "sessions": 12
         },
         {
           "page": "/?district=Al+Reem+Island&type=ready&propType=apartment&layout=studio%2C1+bed",
           "sessions": 12
-        },
-        {
-          "page": "/?project=Bab+Al+Qasr+Garden+Residence+66&range=6m",
-          "sessions": 12
-        },
-        {
-          "page": "/?type=ready&propType=townhouse+%2F+attached+villa",
-          "sessions": 12
-        },
-        {
-          "page": "/?district=Al+Reem+Island",
-          "sessions": 11
         }
       ]
     }
   },
   "signups": {
-    "total_signups": 350,
-    "new_signups_7d": 31,
-    "new_signups_30d": 50,
-    "email_subscribers": 71
+    "total_signups": 351,
+    "new_signups_7d": 1,
+    "new_signups_30d": 51,
+    "email_subscribers": 76
   }
 }

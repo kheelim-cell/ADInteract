@@ -308,6 +308,45 @@ async def set_date_range(page, start: date, end: date) -> bool:
 
     FIELD_TIMEOUT = 4_000  # per click/fill call — fail fast on non-interactive matches
 
+    # Strategy 0: Recent Sales' date fields are Flatpickr instances with stable IDs
+    # (#filterFromDate / #filterToDate, #filterFromDateMobile / #filterToDateMobile).
+    # Their displayed placeholder ("DD, MM YYYY") doesn't match the old generic
+    # input[placeholder*='date'] selector below, and they're type="text" not
+    # type="date" — that's why Strategy 1 was finding 0 visible date inputs.
+    # Setting via Flatpickr's own setDate() API is deterministic (no calendar-
+    # popup UI to fight with) and was confirmed against a live page to correctly
+    # narrow the actual export API's fromDate/toDate params.
+    try:
+        set_via_flatpickr = await page.evaluate(
+            """([startIso, endIso]) => {
+                const ids = [
+                    ['filterFromDate', 'filterToDate'],
+                    ['filterFromDateMobile', 'filterToDateMobile'],
+                ];
+                for (const [fromId, toId] of ids) {
+                    const fromEl = document.getElementById(fromId);
+                    const toEl   = document.getElementById(toId);
+                    if (fromEl && fromEl._flatpickr && toEl && toEl._flatpickr) {
+                        fromEl._flatpickr.setDate(startIso, true);
+                        toEl._flatpickr.setDate(endIso, true);
+                        return { fromId, toId, fromValue: fromEl.value, toValue: toEl.value };
+                    }
+                }
+                return null;
+            }""",
+            [start_str_iso, end_str_iso],
+        )
+        if set_via_flatpickr:
+            print(f"  ✓ Date range set via Flatpickr API "
+                  f"(#{set_via_flatpickr['fromId']} = {set_via_flatpickr['fromValue']}, "
+                  f"#{set_via_flatpickr['toId']} = {set_via_flatpickr['toValue']})")
+            await page.wait_for_timeout(500)
+            return True
+        print("  Flatpickr instances not found on #filterFromDate/#filterToDate — "
+              "falling back to generic input selectors")
+    except Exception as exc:
+        print(f"  Flatpickr strategy failed ({exc}) — falling back to generic input selectors")
+
     # Strategy 1: Standard date inputs — only consider ones that are actually visible
     date_inputs_all = page.locator(
         "input[type='date'], "
@@ -477,6 +516,83 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
     # (current layout's Recent Sales table is rendered by default).
     await click_show_results(page)
 
+    saw_valid_export = False  # found correct columns/dates, just nothing new
+
+    async def attempt(btn, label: str) -> str | None:
+        """Try clicking Export locator `btn`. Returns 'downloaded', 'no_new_data',
+        'empty', or None (couldn't get any usable response — try elsewhere)."""
+        nonlocal saw_valid_export
+        try:
+            if not await btn.is_visible(timeout=1_000):
+                return None
+        except Exception:
+            return None
+
+        print(f"  Trying Export button ({label})…")
+        try:
+            await btn.scroll_into_view_if_needed()
+            await page.wait_for_timeout(600)
+            async with page.expect_download(timeout=120_000) as dl_info:
+                await btn.click()
+            dl = await dl_info.value
+            await dl.save_as(tmp)
+            size = os.path.getsize(tmp)
+            print(f"    Downloaded {size:,} bytes")
+
+            # A 0-byte export from the correctly-targeted button means ADREC
+            # simply hasn't published any rows for the requested window yet
+            # (common when the window is "today" and it's early in the day).
+            # This is a clean no-op, NOT a failure.
+            if size == 0:
+                os.remove(tmp)
+                saw_valid_export = True
+                print(f"  ✗ Export ({label}) empty (0 bytes) — ADREC has no rows "
+                      f"in the requested window yet")
+                return "empty"
+
+            # ADREC's "Recent Sales" export no longer ships a header row —
+            # inject one before validation so the downstream pipeline works.
+            inject_header_if_missing(tmp)
+
+            status, reason = validate_csv(tmp, expect_after)
+            if status == "valid":
+                os.replace(tmp, output_path)
+                print(f"  ✓ Export ({label}) accepted")
+                return "downloaded"
+            else:
+                if status == "no_new_data":
+                    saw_valid_export = True
+                os.remove(tmp)
+                print(f"  ✗ Export ({label}) rejected ({status}): {reason}")
+                return status
+        except Exception as exc:
+            print(f"  ✗ Export ({label}) error: {exc}")
+            if os.path.exists(tmp):
+                os.remove(tmp)
+            return None
+
+    # Strategy 0: Recent Sales' real export trigger has a stable id
+    # (#exportTableBtn desktop / #exportTableBtnMobile) confirmed against a
+    # live page — every widget on this dashboard ships TWO elements matching
+    # text "Export" (the real trigger, plus a decoy inside that widget's "All
+    # Filters" panel), which is what made the old text/proximity heuristic
+    # below pick the wrong one. An id selector sidesteps that ambiguity
+    # entirely, so try it first.
+    for btn_id, label in (("exportTableBtn", "#exportTableBtn"),
+                           ("exportTableBtnMobile", "#exportTableBtnMobile")):
+        btn = page.locator(f"#{btn_id}")
+        if await btn.count() == 0:
+            continue
+        result = await attempt(btn, label)
+        if result == "downloaded":
+            return "downloaded"
+        if result in ("empty", "no_new_data"):
+            return "no_new_data"
+        # None/"invalid" — id existed but didn't pan out; fall through to
+        # the legacy heuristics below in case the id itself has changed.
+
+    print("  #exportTableBtn not found/usable — falling back to text/proximity heuristic")
+
     # Also try buttons labelled "Downloading…" — ADREC sometimes uses this
     # label for the same trigger when data is in a loading state
     all_exports = page.locator(
@@ -487,9 +603,9 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
     print(f"  Found {count} Export/Download button(s)")
 
     if count == 0:
-        return "failed"
+        return "no_new_data" if saw_valid_export else "failed"
 
-    # Primary strategy: the single button nearest the "Recent Sales" heading.
+    # Fallback strategy: the single button nearest the "Recent Sales" heading.
     # We trust this targeting once it returns ANY definitive answer (a
     # download, even an empty one, or a structurally-valid-but-stale export)
     # — those answers came from the right widget, so there's no reason to
@@ -508,70 +624,13 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
         primary_indices = []
         fallback_indices = list(range(min(count, 4)))
 
-    saw_valid_export = False  # found correct columns/dates, just nothing new
-
-    async def attempt(i: int) -> str | None:
-        """Try Export button at index i. Returns 'downloaded', 'no_new_data',
-        'empty', or None (couldn't get any usable response — try elsewhere)."""
-        nonlocal saw_valid_export
-        btn = all_exports.nth(i)
-        try:
-            if not await btn.is_visible(timeout=1_000):
-                return None
-        except Exception:
-            return None
-
-        btn_text = (await btn.inner_text()).strip()[:20]
-        print(f"  Trying Export #{i + 1} (index {i}, text={btn_text!r})…")
-        try:
-            await btn.scroll_into_view_if_needed()
-            await page.wait_for_timeout(600)
-            async with page.expect_download(timeout=120_000) as dl_info:
-                await btn.click()
-            dl = await dl_info.value
-            await dl.save_as(tmp)
-            size = os.path.getsize(tmp)
-            print(f"    Downloaded {size:,} bytes")
-
-            # A 0-byte export from the correctly-targeted button means ADREC
-            # simply hasn't published any rows for the requested window yet
-            # (common when the window is "today" and it's early in the day).
-            # This is a clean no-op, NOT a failure.
-            if size == 0:
-                os.remove(tmp)
-                saw_valid_export = True
-                print(f"  ✗ Export #{i + 1} empty (0 bytes) — ADREC has no rows "
-                      f"in the requested window yet")
-                return "empty"
-
-            # ADREC's "Recent Sales" export no longer ships a header row —
-            # inject one before validation so the downstream pipeline works.
-            inject_header_if_missing(tmp)
-
-            status, reason = validate_csv(tmp, expect_after)
-            if status == "valid":
-                os.replace(tmp, output_path)
-                print(f"  ✓ Export #{i + 1} accepted")
-                return "downloaded"
-            else:
-                if status == "no_new_data":
-                    saw_valid_export = True
-                os.remove(tmp)
-                print(f"  ✗ Export #{i + 1} rejected ({status}): {reason}")
-                return status
-        except Exception as exc:
-            print(f"  ✗ Export #{i + 1} error: {exc}")
-            if os.path.exists(tmp):
-                os.remove(tmp)
-            return None
-
     # Try the proximity-targeted button(s) first. Stop immediately on any
     # definitive answer — don't waste time on other widgets once we've heard
     # back from the right one.
     for i in primary_indices:
         if i >= count:
             continue
-        result = await attempt(i)
+        result = await attempt(all_exports.nth(i), f"index {i}")
         if result == "downloaded":
             return "downloaded"
         if result in ("empty", "no_new_data"):
@@ -582,7 +641,7 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
     for i in fallback_indices:
         if i >= count:
             continue
-        result = await attempt(i)
+        result = await attempt(all_exports.nth(i), f"index {i}")
         if result == "downloaded":
             return "downloaded"
 

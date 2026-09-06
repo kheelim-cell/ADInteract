@@ -1,4 +1,57 @@
 User-agent: *
 Allow: /
 
+# ── AI search / citation bots — explicitly allowed ───────────────────────
+# These power search results and real-time citations/answers (ChatGPT
+# search, Claude search, Perplexity answers). Already allowed under the
+# wildcard rule above; named explicitly so a future edit to that rule can't
+# accidentally sweep these up too.
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Perplexity has publicly stated Perplexity-User is "an agent, not a bot"
+# and may not honor robots.txt regardless of what's declared here — this
+# entry documents intent, it isn't a guarantee of compliance.
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Google-Extended controls Gemini training AND Gemini/Vertex grounding
+# together as one toggle — allowing it accepts both. Chosen deliberately:
+# Gemini showed the highest per-session engagement of any AI referrer in
+# GA4 (20+ min avg, n=5) — the citation upside is judged worth the training
+# tradeoff Google bundles here.
+User-agent: Google-Extended
+Allow: /
+
+# ── Training-only crawlers — blocked ──────────────────────────────────────
+# GPTBot (OpenAI) and ClaudeBot / anthropic-ai (Anthropic) crawl for model
+# pretraining: no per-query attribution, no referral traffic back to the
+# site — a different relationship than the search/citation bots above,
+# which remain fully allowed. Blocking these three only affects training
+# use.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
 Sitemap: https://adinteract.co/sitemap.xml

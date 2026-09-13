@@ -8,7 +8,7 @@
     "tx_count_12m": 3113,
     "median_psf_12m": 1876,
     "offplan_pct": 100.0,
-    "computed_at": "2026-09-12T06:36:45.537884+00:00",
+    "computed_at": "2026-09-13T06:52:55.178601+00:00",
     "gec": {
       "total": 82,
       "velocity": {
@@ -50,7 +50,7 @@
     "tx_count_12m": 339,
     "median_psf_12m": 1802,
     "offplan_pct": 96.5,
-    "computed_at": "2026-09-12T06:36:46.042961+00:00",
+    "computed_at": "2026-09-13T06:52:55.698557+00:00",
     "gec": {
       "total": 72,
       "velocity": {
@@ -92,7 +92,7 @@
     "tx_count_12m": 581,
     "median_psf_12m": 2047,
     "offplan_pct": 61.1,
-    "computed_at": "2026-09-12T06:36:45.681650+00:00",
+    "computed_at": "2026-09-13T06:52:55.323768+00:00",
     "ys": {
       "total": 69,
       "momentum": {
@@ -163,7 +163,7 @@
     "tx_count_12m": 900,
     "median_psf_12m": 1260,
     "offplan_pct": 79.7,
-    "computed_at": "2026-09-12T06:36:45.936425+00:00",
+    "computed_at": "2026-09-13T06:52:55.589289+00:00",
     "gec": {
       "total": 69,
       "velocity": {
@@ -205,7 +205,7 @@
     "tx_count_12m": 387,
     "median_psf_12m": 1000,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-12T06:36:45.801272+00:00",
+    "computed_at": "2026-09-13T06:52:55.446633+00:00",
     "ys": {
       "total": 68,
       "momentum": {
@@ -247,7 +247,7 @@
     "tx_count_12m": 252,
     "median_psf_12m": 953,
     "offplan_pct": 0.8,
-    "computed_at": "2026-09-12T06:36:45.647473+00:00",
+    "computed_at": "2026-09-13T06:52:55.287869+00:00",
     "ys": {
       "total": 63,
       "momentum": {
@@ -289,7 +289,7 @@
     "tx_count_12m": 13,
     "median_psf_12m": 390,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-12T06:36:45.572241+00:00",
+    "computed_at": "2026-09-13T06:52:55.208739+00:00",
     "ys": {
       "total": 62,
       "momentum": {
@@ -331,7 +331,7 @@
     "tx_count_12m": 16,
     "median_psf_12m": 1393,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-12T06:36:45.711385+00:00",
+    "computed_at": "2026-09-13T06:52:55.353739+00:00",
     "ys": {
       "total": 62,
       "momentum": {
@@ -373,7 +373,7 @@
     "tx_count_12m": 13,
     "median_psf_12m": 349,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-12T06:36:45.999233+00:00",
+    "computed_at": "2026-09-13T06:52:55.654281+00:00",
     "ys": {
       "total": 60,
       "momentum": {
@@ -415,7 +415,7 @@
     "tx_count_12m": 76,
     "median_psf_12m": 1200,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-12T06:36:46.165812+00:00",
+    "computed_at": "2026-09-13T06:52:55.827314+00:00",
     "ys": {
       "total": 60,
       "momentum": {
@@ -457,7 +457,7 @@
     "tx_count_12m": 8181,
     "median_psf_12m": 1631,
     "offplan_pct": 70.5,
-    "computed_at": "2026-09-12T06:36:45.829698+00:00",
+    "computed_at": "2026-09-13T06:52:55.477112+00:00",
     "ys": {
       "total": 55,
       "momentum": {
@@ -528,7 +528,7 @@
     "tx_count_12m": 31,
     "median_psf_12m": 806,
     "offplan_pct": 6.5,
-    "computed_at": "2026-09-12T06:36:45.860636+00:00",
+    "computed_at": "2026-09-13T06:52:55.510332+00:00",
     "ys": {
       "total": 56,
       "momentum": {
@@ -570,7 +570,7 @@
     "tx_count_12m": 1382,
     "median_psf_12m": 1496,
     "offplan_pct": 96.0,
-    "computed_at": "2026-09-12T06:36:46.280945+00:00",
+    "computed_at": "2026-09-13T06:52:55.948134+00:00",
     "gec": {
       "total": 56,
       "velocity": {
@@ -612,7 +612,7 @@
     "tx_count_12m": 392,
     "median_psf_12m": 3865,
     "offplan_pct": 100.0,
-    "computed_at": "2026-09-12T06:36:46.180534+00:00",
+    "computed_at": "2026-09-13T06:52:55.844319+00:00",
     "gec": {
       "total": 55,
       "velocity": {
@@ -654,7 +654,7 @@
     "tx_count_12m": 986,
     "median_psf_12m": 1838,
     "offplan_pct": 65.3,
-    "computed_at": "2026-09-12T06:36:45.769232+00:00",
+    "computed_at": "2026-09-13T06:52:55.412910+00:00",
     "ys": {
       "total": 54,
       "momentum": {
@@ -696,7 +696,7 @@
     "tx_count_12m": 17,
     "median_psf_12m": 581,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-12T06:36:46.263885+00:00",
+    "computed_at": "2026-09-13T06:52:55.929978+00:00",
     "ys": {
       "total": 54,
       "momentum": {
@@ -738,7 +738,7 @@
     "tx_count_12m": 4785,
     "median_psf_12m": 2200,
     "offplan_pct": 88.1,
-    "computed_at": "2026-09-12T06:36:46.244626+00:00",
+    "computed_at": "2026-09-13T06:52:55.910389+00:00",
     "gec": {
       "total": 53,
       "velocity": {
@@ -780,7 +780,7 @@
     "tx_count_12m": 46,
     "median_psf_12m": 2345,
     "offplan_pct": 2.2,
-    "computed_at": "2026-09-12T06:36:45.602941+00:00",
+    "computed_at": "2026-09-13T06:52:55.240345+00:00",
     "ys": {
       "total": 51,
       "momentum": {
@@ -822,7 +822,7 @@
     "tx_count_12m": 1182,
     "median_psf_12m": 1245,
     "offplan_pct": 72.3,
-    "computed_at": "2026-09-12T06:36:46.091238+00:00",
+    "computed_at": "2026-09-13T06:52:55.748970+00:00",
     "gec": {
       "total": 50,
       "velocity": {
@@ -864,7 +864,7 @@
     "tx_count_12m": 10,
     "median_psf_12m": 820,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-12T06:36:46.198596+00:00",
+    "computed_at": "2026-09-13T06:52:55.863095+00:00",
     "ys": {
       "total": 48,
       "momentum": {
@@ -906,7 +906,7 @@
     "tx_count_12m": 261,
     "median_psf_12m": 1720,
     "offplan_pct": 56.3,
-    "computed_at": "2026-09-12T06:36:45.588176+00:00",
+    "computed_at": "2026-09-13T06:52:55.225024+00:00",
     "gec": {
       "total": 47,
       "velocity": {
@@ -948,7 +948,7 @@
     "tx_count_12m": 665,
     "median_psf_12m": 2096,
     "offplan_pct": 100.0,
-    "computed_at": "2026-09-12T06:36:46.057419+00:00",
+    "computed_at": "2026-09-13T06:52:55.713747+00:00",
     "gec": {
       "total": 47,
       "velocity": {
@@ -990,7 +990,7 @@
     "tx_count_12m": 2200,
     "median_psf_12m": 3189,
     "offplan_pct": 84.7,
-    "computed_at": "2026-09-12T06:36:45.881438+00:00",
+    "computed_at": "2026-09-13T06:52:55.532186+00:00",
     "gec": {
       "total": 46,
       "velocity": {
@@ -1032,7 +1032,7 @@
     "tx_count_12m": 899,
     "median_psf_12m": 1099,
     "offplan_pct": 98.9,
-    "computed_at": "2026-09-12T06:36:45.473405+00:00",
+    "computed_at": "2026-09-13T06:52:55.111423+00:00",
     "gec": {
       "total": 45,
       "velocity": {
@@ -1074,7 +1074,7 @@
     "tx_count_12m": 150,
     "median_psf_12m": 1137,
     "offplan_pct": 76.0,
-    "computed_at": "2026-09-12T06:36:45.983884+00:00",
+    "computed_at": "2026-09-13T06:52:55.638115+00:00",
     "ys": {
       "total": 45,
       "momentum": {
@@ -1116,7 +1116,7 @@
     "tx_count_12m": 948,
     "median_psf_12m": 3758,
     "offplan_pct": 100.0,
-    "computed_at": "2026-09-12T06:36:46.023409+00:00",
+    "computed_at": "2026-09-13T06:52:55.678359+00:00",
     "gec": {
       "total": 39,
       "velocity": {
@@ -1158,7 +1158,7 @@
     "tx_count_12m": 98,
     "median_psf_12m": 1243,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-12T06:36:45.912227+00:00",
+    "computed_at": "2026-09-13T06:52:55.563939+00:00",
     "gec": {
       "total": 37,
       "velocity": {
@@ -1200,7 +1200,7 @@
     "tx_count_12m": 12,
     "median_psf_12m": 613,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-12T06:36:45.488776+00:00",
+    "computed_at": "2026-09-13T06:52:55.127413+00:00",
     "ys": {
       "total": 35,
       "momentum": {
@@ -1242,7 +1242,7 @@
     "tx_count_12m": 21,
     "median_psf_12m": 718,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-12T06:36:46.105926+00:00",
+    "computed_at": "2026-09-13T06:52:55.764457+00:00",
     "ys": {
       "total": 34,
       "momentum": {
@@ -1284,7 +1284,7 @@
     "tx_count_12m": 45,
     "median_psf_12m": 381,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-12T06:36:45.631860+00:00",
+    "computed_at": "2026-09-13T06:52:55.270945+00:00",
     "ys": {
       "total": 31,
       "momentum": {
@@ -1326,7 +1326,7 @@
     "tx_count_12m": 17,
     "median_psf_12m": 427,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-12T06:36:46.133471+00:00",
+    "computed_at": "2026-09-13T06:52:55.793448+00:00",
     "ys": {
       "total": 31,
       "momentum": {

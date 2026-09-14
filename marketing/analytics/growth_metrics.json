@@ -1,245 +1,245 @@
 {
-  "generated_at": "2026-09-07T08:06:21.467442+00:00",
+  "generated_at": "2026-09-14T08:43:35.398672+00:00",
   "ga4": {
     "period_7d": {
-      "sessions": 991,
-      "total_users": 436,
-      "new_users": 245,
-      "returning_users_pct": 43.8,
-      "share_events": 9,
+      "sessions": 996,
+      "total_users": 432,
+      "new_users": 216,
+      "returning_users_pct": 50.0,
+      "share_events": 4,
       "top_sources": [
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 515
+          "sessions": 549
         },
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 346
-        },
-        {
-          "source": "accounts.google.com",
-          "medium": "referral",
-          "sessions": 41
+          "sessions": 332
         },
         {
           "source": "bing",
           "medium": "organic",
-          "sessions": 35
+          "sessions": 46
         },
         {
           "source": "(not set)",
           "medium": "(not set)",
-          "sessions": 29
-        },
-        {
-          "source": "l.instagram.com",
-          "medium": "referral",
-          "sessions": 16
+          "sessions": 28
         },
         {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
-          "sessions": 8
+          "sessions": 20
         },
         {
           "source": "yandex.kz",
           "medium": "referral",
-          "sessions": 8
+          "sessions": 12
         },
         {
-          "source": "ntp.msn.com",
+          "source": "accounts.google.com",
           "medium": "referral",
-          "sessions": 4
+          "sessions": 9
         },
         {
-          "source": "duckduckgo",
-          "medium": "organic",
+          "source": "l.instagram.com",
+          "medium": "referral",
+          "sessions": 9
+        },
+        {
+          "source": "web.telegram.org",
+          "medium": "referral",
+          "sessions": 2
+        },
+        {
+          "source": "whatsapp",
+          "medium": "share",
           "sessions": 2
         }
       ],
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 419
+          "sessions": 453
         },
         {
           "page": "(not set)",
-          "sessions": 100
+          "sessions": 108
         },
         {
           "page": "/investors/calculator",
-          "sessions": 22
+          "sessions": 32
         },
         {
           "page": "",
-          "sessions": 20
-        },
-        {
-          "page": "/ar",
-          "sessions": 14
+          "sessions": 19
         },
         {
           "page": "/?district=Al+Reem+Island&range=3m&sort=project_name&dir=asc",
           "sessions": 13
         },
         {
-          "page": "/rental?rsort=median_rent&rdir=desc",
-          "sessions": 13
-        },
-        {
-          "page": "/?fbclid=PAdGRleATuqndwZG9mAmZkaWQWUMmwc_f3ldTJ-XOs62x1q42mVm219GV4dG4DYWVtAjExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABpyMEpXVGsxNaJ11oThJL7dBO1IxyREFMw8nwX5brZLcUJDKEJMLGsoAdfnGT_aem_bTRxZNixkQWCNUxUOYUtCg",
-          "sessions": 11
-        },
-        {
-          "page": "/?district=Al+Reem+Island",
-          "sessions": 9
-        },
-        {
-          "page": "/?district=Al+Reem+Island&type=off-plan",
-          "sessions": 9
+          "page": "/?project=Sea+La+Vie&range=6m&type=off-plan&layout=2+beds",
+          "sessions": 12
         },
         {
           "page": "/investors/districts",
+          "sessions": 11
+        },
+        {
+          "page": "/?district=Al+Reef&project=Radiant+Atrium&range=6m&propType=apartment",
+          "sessions": 10
+        },
+        {
+          "page": "/?district=Al+Reem+Island&range=1m&type=ready&propType=apartment",
           "sessions": 9
         },
         {
-          "page": "/?project=Sea+La+Vie&range=6m&type=off-plan&layout=2+beds",
-          "sessions": 8
-        },
-        {
-          "page": "/?range=1m",
+          "page": "/rental?rsort=median_rent&rdir=desc",
           "sessions": 7
         },
         {
-          "page": "/?range=1m&propType=apartment&page=3",
-          "sessions": 7
-        },
-        {
-          "page": "/?district=Yas+Island",
+          "page": "/?district=Al+Reem+Island",
           "sessions": 6
+        },
+        {
+          "page": "/?project=Leaf+Tower&range=ytd&type=ready&propType=apartment&layout=1+bed%2C2+beds%2C3+beds",
+          "sessions": 6
+        },
+        {
+          "page": "/?project=Saadiyat+Beach+Residences+-+Block+1&type=ready&sort=area_sqft",
+          "sessions": 6
+        },
+        {
+          "page": "/?range=1m&type=off-plan&layout=1+bed",
+          "sessions": 6
+        },
+        {
+          "page": "/?district=Fahid+Island&range=ytd&propType=apartment&layout=2+beds",
+          "sessions": 5
         }
       ]
     },
     "period_30d": {
-      "sessions": 4167,
-      "total_users": 1524,
-      "new_users": 1285,
-      "returning_users_pct": 15.7,
-      "share_events": 37,
+      "sessions": 4099,
+      "total_users": 1458,
+      "new_users": 1177,
+      "returning_users_pct": 19.3,
+      "share_events": 31,
       "top_sources": [
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 1828
+          "sessions": 1925
         },
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 1504
-        },
-        {
-          "source": "accounts.google.com",
-          "medium": "referral",
-          "sessions": 258
+          "sessions": 1466
         },
         {
           "source": "l.instagram.com",
           "medium": "referral",
-          "sessions": 240
+          "sessions": 198
+        },
+        {
+          "source": "accounts.google.com",
+          "medium": "referral",
+          "sessions": 175
         },
         {
           "source": "bing",
           "medium": "organic",
-          "sessions": 111
+          "sessions": 127
         },
         {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
-          "sessions": 73
+          "sessions": 69
         },
         {
           "source": "(not set)",
           "medium": "(not set)",
-          "sessions": 41
-        },
-        {
-          "source": "notadubaibroker.com",
-          "medium": "referral",
-          "sessions": 11
+          "sessions": 40
         },
         {
           "source": "yandex.kz",
           "medium": "referral",
-          "sessions": 9
+          "sessions": 20
         },
         {
-          "source": "whatsapp",
-          "medium": "share",
-          "sessions": 8
+          "source": "ntp.msn.com",
+          "medium": "referral",
+          "sessions": 7
+        },
+        {
+          "source": "perplexity.ai",
+          "medium": "ai-assistant",
+          "sessions": 7
         }
       ],
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 1883
+          "sessions": 1812
         },
         {
           "page": "(not set)",
-          "sessions": 393
+          "sessions": 410
+        },
+        {
+          "page": "/investors/calculator",
+          "sessions": 81
         },
         {
           "page": "/?project=Al+Muneera+%28Island%29&range=3m&propType=apartment&layout=2+beds",
           "sessions": 72
         },
         {
-          "page": "/investors/calculator",
-          "sessions": 65
-        },
-        {
-          "page": "/ar",
-          "sessions": 38
-        },
-        {
-          "page": "/rental?rsort=median_rent&rdir=desc",
-          "sessions": 36
+          "page": "/?district=Al+Reef&project=Radiant+Atrium&range=6m&propType=apartment",
+          "sessions": 37
         },
         {
           "page": "/?fbclid=PAdGRleATuqndwZG9mAmZkaWQWUMmwc_f3ldTJ-XOs62x1q42mVm219GV4dG4DYWVtAjExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABpyMEpXVGsxNaJ11oThJL7dBO1IxyREFMw8nwX5brZLcUJDKEJMLGsoAdfnGT_aem_bTRxZNixkQWCNUxUOYUtCg",
           "sessions": 35
         },
         {
-          "page": "/?district=Al+Reef&project=Radiant+Atrium&range=6m&propType=apartment",
-          "sessions": 33
+          "page": "/?district=Al+Reem+Island&range=3m&sort=project_name&dir=asc",
+          "sessions": 34
+        },
+        {
+          "page": "/rental?rsort=median_rent&rdir=desc",
+          "sessions": 34
         },
         {
           "page": "/?project=Al+Muneera+%28Mainland%29&range=3m&propType=apartment&layout=2+beds",
           "sessions": 31
         },
         {
-          "page": "/?district=Al+Hidayriyyat",
-          "sessions": 27
-        },
-        {
           "page": "/?range=3m",
+          "sessions": 28
+        },
+        {
+          "page": "/investors/districts",
           "sessions": 27
         },
         {
-          "page": "/?district=Al+Reem+Island&range=3m&sort=project_name&dir=asc",
+          "page": "/ar",
           "sessions": 25
         },
         {
+          "page": "/?district=Al+Hidayriyyat",
+          "sessions": 23
+        },
+        {
           "page": "/?district=Al+Reem+Island",
-          "sessions": 21
+          "sessions": 22
         },
         {
           "page": "/?range=1m",
-          "sessions": 21
-        },
-        {
-          "page": "/?range=ytd",
-          "sessions": 21
+          "sessions": 20
         }
       ]
     }
@@ -247,7 +247,7 @@
   "signups": {
     "total_signups": 351,
     "new_signups_7d": 0,
-    "new_signups_30d": 2,
-    "email_subscribers": 96
+    "new_signups_30d": 0,
+    "email_subscribers": 97
   }
 }

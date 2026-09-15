@@ -356,11 +356,11 @@
   "Al Maryah Island": {
     "slug": "al-maryah-island",
     "tx_count_all": 1141,
-    "tx_count_12m": 580,
-    "median_psf": 2052,
-    "p10_psf": 1089,
-    "p90_psf": 4777,
-    "median_price": 1240594,
+    "tx_count_12m": 572,
+    "median_psf": 2076,
+    "p10_psf": 1094,
+    "p90_psf": 4787,
+    "median_price": 1293108,
     "top_layouts": [
       "studio",
       "2 beds",
@@ -604,11 +604,11 @@
   },
   "Al Reem Island": {
     "slug": "al-reem-island",
-    "tx_count_all": 26737,
-    "tx_count_12m": 8134,
-    "median_psf": 1631,
+    "tx_count_all": 26751,
+    "tx_count_12m": 8059,
+    "median_psf": 1635,
     "p10_psf": 1101,
-    "p90_psf": 2158,
+    "p90_psf": 2160,
     "median_price": 1750000,
     "top_layouts": [
       "1 bed",
@@ -616,7 +616,7 @@
       "studio"
     ],
     "is_12m": true,
-    "last_sale": "2026-09-13"
+    "last_sale": "2026-09-14"
   },
   "Al Sa`Adah": {
     "slug": "al-sa-adah",

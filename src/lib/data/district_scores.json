@@ -8,7 +8,7 @@
     "tx_count_12m": 3113,
     "median_psf_12m": 1876,
     "offplan_pct": 100.0,
-    "computed_at": "2026-09-14T07:17:38.799426+00:00",
+    "computed_at": "2026-09-15T06:51:37.296459+00:00",
     "gec": {
       "total": 82,
       "velocity": {
@@ -50,7 +50,7 @@
     "tx_count_12m": 338,
     "median_psf_12m": 1803,
     "offplan_pct": 96.7,
-    "computed_at": "2026-09-14T07:17:39.209562+00:00",
+    "computed_at": "2026-09-15T06:51:37.813980+00:00",
     "gec": {
       "total": 71,
       "velocity": {
@@ -89,27 +89,27 @@
     "score_type": "both",
     "ready_pct_alltime": 46.5,
     "trend_direction": "up",
-    "tx_count_12m": 580,
-    "median_psf_12m": 2052,
-    "offplan_pct": 61.2,
-    "computed_at": "2026-09-14T07:17:38.914762+00:00",
+    "tx_count_12m": 572,
+    "median_psf_12m": 2076,
+    "offplan_pct": 62.1,
+    "computed_at": "2026-09-15T06:51:37.442146+00:00",
     "ys": {
-      "total": 69,
+      "total": 70,
       "momentum": {
         "score": 30,
         "max": 30,
-        "pct_change": 44.5,
+        "pct_change": 45.1,
         "direction": "up"
       },
       "yield": {
         "score": 25,
         "max": 25,
-        "gross_yield_pct": 13.4
+        "gross_yield_pct": 12.9
       },
       "liquidity": {
-        "score": 7,
+        "score": 8,
         "max": 20,
-        "recency_ratio": 0.73
+        "recency_ratio": 0.75
       },
       "stability": {
         "score": 2,
@@ -123,11 +123,11 @@
       }
     },
     "gec": {
-      "total": 58,
+      "total": 59,
       "velocity": {
-        "score": 19,
+        "score": 20,
         "max": 30,
-        "velocity_ratio": 1.97
+        "velocity_ratio": 2.01
       },
       "momentum": {
         "score": 7,
@@ -151,7 +151,7 @@
         "entry_ratio": 1.03
       }
     },
-    "score": 69,
+    "score": 70,
     "color": "amber"
   },
   "Al Shamkhah": {
@@ -163,13 +163,13 @@
     "tx_count_12m": 899,
     "median_psf_12m": 1261,
     "offplan_pct": 79.6,
-    "computed_at": "2026-09-14T07:17:39.123425+00:00",
+    "computed_at": "2026-09-15T06:51:37.705102+00:00",
     "gec": {
       "total": 69,
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 3.16
+        "velocity_ratio": 3.31
       },
       "momentum": {
         "score": 15,
@@ -205,7 +205,7 @@
     "tx_count_12m": 381,
     "median_psf_12m": 1003,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-14T07:17:39.011609+00:00",
+    "computed_at": "2026-09-15T06:51:37.566234+00:00",
     "ys": {
       "total": 68,
       "momentum": {
@@ -247,7 +247,7 @@
     "tx_count_12m": 13,
     "median_psf_12m": 390,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-14T07:17:38.823539+00:00",
+    "computed_at": "2026-09-15T06:51:37.326698+00:00",
     "ys": {
       "total": 62,
       "momentum": {
@@ -289,7 +289,7 @@
     "tx_count_12m": 249,
     "median_psf_12m": 954,
     "offplan_pct": 0.8,
-    "computed_at": "2026-09-14T07:17:38.885908+00:00",
+    "computed_at": "2026-09-15T06:51:37.406320+00:00",
     "ys": {
       "total": 62,
       "momentum": {
@@ -311,7 +311,7 @@
       "stability": {
         "score": 8,
         "max": 15,
-        "cov": 0.133
+        "cov": 0.138
       },
       "appreciation": {
         "score": 5,
@@ -331,13 +331,13 @@
     "tx_count_12m": 16,
     "median_psf_12m": 1393,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-14T07:17:38.938668+00:00",
+    "computed_at": "2026-09-15T06:51:37.474076+00:00",
     "ys": {
-      "total": 62,
+      "total": 61,
       "momentum": {
-        "score": 13,
+        "score": 12,
         "max": 30,
-        "pct_change": -5.1,
+        "pct_change": -6.6,
         "direction": "down"
       },
       "yield": {
@@ -353,7 +353,7 @@
       "stability": {
         "score": 8,
         "max": 15,
-        "cov": 0.166
+        "cov": 0.172
       },
       "appreciation": {
         "score": 5,
@@ -361,7 +361,7 @@
         "ratio": null
       }
     },
-    "score": 62,
+    "score": 61,
     "color": "amber"
   },
   "Central District": {
@@ -373,7 +373,7 @@
     "tx_count_12m": 13,
     "median_psf_12m": 349,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-14T07:17:39.173759+00:00",
+    "computed_at": "2026-09-15T06:51:37.769155+00:00",
     "ys": {
       "total": 60,
       "momentum": {
@@ -415,7 +415,7 @@
     "tx_count_12m": 76,
     "median_psf_12m": 1200,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-14T07:17:39.312567+00:00",
+    "computed_at": "2026-09-15T06:51:37.943674+00:00",
     "ys": {
       "total": 60,
       "momentum": {
@@ -454,10 +454,10 @@
     "score_type": "both",
     "ready_pct_alltime": 52.2,
     "trend_direction": "up",
-    "tx_count_12m": 8134,
-    "median_psf_12m": 1631,
-    "offplan_pct": 70.6,
-    "computed_at": "2026-09-14T07:17:39.035882+00:00",
+    "tx_count_12m": 8059,
+    "median_psf_12m": 1635,
+    "offplan_pct": 70.2,
+    "computed_at": "2026-09-15T06:51:37.595587+00:00",
     "ys": {
       "total": 55,
       "momentum": {
@@ -474,12 +474,12 @@
       "liquidity": {
         "score": 7,
         "max": 20,
-        "recency_ratio": 0.63
+        "recency_ratio": 0.64
       },
       "stability": {
         "score": 8,
         "max": 15,
-        "cov": 0.199
+        "cov": 0.198
       },
       "appreciation": {
         "score": 2,
@@ -488,16 +488,16 @@
       }
     },
     "gec": {
-      "total": 59,
+      "total": 57,
       "velocity": {
-        "score": 21,
+        "score": 19,
         "max": 30,
-        "velocity_ratio": 2.11
+        "velocity_ratio": 1.95
       },
       "momentum": {
         "score": 17,
         "max": 25,
-        "pct_change": 16.9,
+        "pct_change": 17.5,
         "direction": "up"
       },
       "appreciation": {
@@ -513,10 +513,10 @@
       "entry": {
         "score": 2,
         "max": 10,
-        "entry_ratio": 0.63
+        "entry_ratio": 0.64
       }
     },
-    "score": 59,
+    "score": 57,
     "color": "amber"
   },
   "Al Kasir": {
@@ -528,13 +528,13 @@
     "tx_count_12m": 44,
     "median_psf_12m": 2321,
     "offplan_pct": 2.3,
-    "computed_at": "2026-09-14T07:17:38.848702+00:00",
+    "computed_at": "2026-09-15T06:51:37.359254+00:00",
     "ys": {
       "total": 56,
       "momentum": {
         "score": 12,
         "max": 30,
-        "pct_change": -6.7,
+        "pct_change": -6.6,
         "direction": "down"
       },
       "yield": {
@@ -550,7 +550,7 @@
       "stability": {
         "score": 12,
         "max": 15,
-        "cov": 0.055
+        "cov": 0.056
       },
       "appreciation": {
         "score": 5,
@@ -570,7 +570,7 @@
     "tx_count_12m": 31,
     "median_psf_12m": 806,
     "offplan_pct": 6.5,
-    "computed_at": "2026-09-14T07:17:39.061186+00:00",
+    "computed_at": "2026-09-15T06:51:37.627891+00:00",
     "ys": {
       "total": 56,
       "momentum": {
@@ -612,7 +612,7 @@
     "tx_count_12m": 392,
     "median_psf_12m": 3865,
     "offplan_pct": 100.0,
-    "computed_at": "2026-09-14T07:17:39.325319+00:00",
+    "computed_at": "2026-09-15T06:51:37.959796+00:00",
     "gec": {
       "total": 55,
       "velocity": {
@@ -645,6 +645,48 @@
     "score": 55,
     "color": "amber"
   },
+  "Zakhir": {
+    "slug": "zakhir",
+    "district_name": "Zakhir",
+    "score_type": "yield_stability",
+    "ready_pct_alltime": 100.0,
+    "trend_direction": "up",
+    "tx_count_12m": 17,
+    "median_psf_12m": 581,
+    "offplan_pct": 0.0,
+    "computed_at": "2026-09-15T06:51:38.043668+00:00",
+    "ys": {
+      "total": 55,
+      "momentum": {
+        "score": 18,
+        "max": 30,
+        "pct_change": 9.3,
+        "direction": "up"
+      },
+      "yield": {
+        "score": 12,
+        "max": 25,
+        "gross_yield_pct": null
+      },
+      "liquidity": {
+        "score": 18,
+        "max": 20,
+        "recency_ratio": 2.67
+      },
+      "stability": {
+        "score": 2,
+        "max": 15,
+        "cov": 0.451
+      },
+      "appreciation": {
+        "score": 5,
+        "max": 10,
+        "ratio": null
+      }
+    },
+    "score": 55,
+    "color": "amber"
+  },
   "Zayed City": {
     "slug": "zayed-city",
     "district_name": "Zayed City",
@@ -654,7 +696,7 @@
     "tx_count_12m": 1365,
     "median_psf_12m": 1498,
     "offplan_pct": 96.0,
-    "computed_at": "2026-09-14T07:17:39.407505+00:00",
+    "computed_at": "2026-09-15T06:51:38.062023+00:00",
     "gec": {
       "total": 55,
       "velocity": {
@@ -687,48 +729,6 @@
     "score": 55,
     "color": "amber"
   },
-  "Zakhir": {
-    "slug": "zakhir",
-    "district_name": "Zakhir",
-    "score_type": "yield_stability",
-    "ready_pct_alltime": 100.0,
-    "trend_direction": "up",
-    "tx_count_12m": 17,
-    "median_psf_12m": 581,
-    "offplan_pct": 0.0,
-    "computed_at": "2026-09-14T07:17:39.393242+00:00",
-    "ys": {
-      "total": 54,
-      "momentum": {
-        "score": 17,
-        "max": 30,
-        "pct_change": 7.0,
-        "direction": "up"
-      },
-      "yield": {
-        "score": 12,
-        "max": 25,
-        "gross_yield_pct": null
-      },
-      "liquidity": {
-        "score": 18,
-        "max": 20,
-        "recency_ratio": 2.67
-      },
-      "stability": {
-        "score": 2,
-        "max": 15,
-        "cov": 0.339
-      },
-      "appreciation": {
-        "score": 5,
-        "max": 10,
-        "ratio": null
-      }
-    },
-    "score": 54,
-    "color": "amber"
-  },
   "Al Rahah": {
     "slug": "al-rahah",
     "district_name": "Al Rahah",
@@ -738,7 +738,7 @@
     "tx_count_12m": 981,
     "median_psf_12m": 1842,
     "offplan_pct": 65.5,
-    "computed_at": "2026-09-14T07:17:38.985255+00:00",
+    "computed_at": "2026-09-15T06:51:37.532818+00:00",
     "ys": {
       "total": 53,
       "momentum": {
@@ -780,7 +780,7 @@
     "tx_count_12m": 4769,
     "median_psf_12m": 2200,
     "offplan_pct": 88.1,
-    "computed_at": "2026-09-14T07:17:39.378446+00:00",
+    "computed_at": "2026-09-15T06:51:38.024048+00:00",
     "gec": {
       "total": 53,
       "velocity": {
@@ -807,7 +807,7 @@
       "entry": {
         "score": 2,
         "max": 10,
-        "entry_ratio": 0.55
+        "entry_ratio": 0.54
       }
     },
     "score": 53,
@@ -822,13 +822,13 @@
     "tx_count_12m": 1168,
     "median_psf_12m": 1245,
     "offplan_pct": 73.1,
-    "computed_at": "2026-09-14T07:17:39.249951+00:00",
+    "computed_at": "2026-09-15T06:51:37.865557+00:00",
     "gec": {
       "total": 50,
       "velocity": {
         "score": 16,
         "max": 30,
-        "velocity_ratio": 1.65
+        "velocity_ratio": 1.63
       },
       "momentum": {
         "score": 15,
@@ -864,7 +864,7 @@
     "tx_count_12m": 261,
     "median_psf_12m": 1720,
     "offplan_pct": 56.3,
-    "computed_at": "2026-09-14T07:17:38.836635+00:00",
+    "computed_at": "2026-09-15T06:51:37.343573+00:00",
     "gec": {
       "total": 48,
       "velocity": {
@@ -906,7 +906,7 @@
     "tx_count_12m": 10,
     "median_psf_12m": 820,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-14T07:17:39.340540+00:00",
+    "computed_at": "2026-09-15T06:51:37.979014+00:00",
     "ys": {
       "total": 48,
       "momentum": {
@@ -948,7 +948,7 @@
     "tx_count_12m": 665,
     "median_psf_12m": 2096,
     "offplan_pct": 100.0,
-    "computed_at": "2026-09-14T07:17:39.222170+00:00",
+    "computed_at": "2026-09-15T06:51:37.829602+00:00",
     "gec": {
       "total": 47,
       "velocity": {
@@ -990,13 +990,13 @@
     "tx_count_12m": 2183,
     "median_psf_12m": 3206,
     "offplan_pct": 84.7,
-    "computed_at": "2026-09-14T07:17:39.078713+00:00",
+    "computed_at": "2026-09-15T06:51:37.647985+00:00",
     "gec": {
       "total": 46,
       "velocity": {
         "score": 8,
         "max": 30,
-        "velocity_ratio": 0.84
+        "velocity_ratio": 0.85
       },
       "momentum": {
         "score": 25,
@@ -1032,7 +1032,7 @@
     "tx_count_12m": 899,
     "median_psf_12m": 1099,
     "offplan_pct": 98.9,
-    "computed_at": "2026-09-14T07:17:38.746136+00:00",
+    "computed_at": "2026-09-15T06:51:37.229453+00:00",
     "gec": {
       "total": 45,
       "velocity": {
@@ -1074,7 +1074,7 @@
     "tx_count_12m": 150,
     "median_psf_12m": 1137,
     "offplan_pct": 76.0,
-    "computed_at": "2026-09-14T07:17:39.161172+00:00",
+    "computed_at": "2026-09-15T06:51:37.752449+00:00",
     "ys": {
       "total": 42,
       "momentum": {
@@ -1116,13 +1116,13 @@
     "tx_count_12m": 933,
     "median_psf_12m": 3754,
     "offplan_pct": 100.0,
-    "computed_at": "2026-09-14T07:17:39.192812+00:00",
+    "computed_at": "2026-09-15T06:51:37.793553+00:00",
     "gec": {
       "total": 39,
       "velocity": {
         "score": 3,
         "max": 30,
-        "velocity_ratio": 0.31
+        "velocity_ratio": 0.3
       },
       "momentum": {
         "score": 13,
@@ -1158,7 +1158,7 @@
     "tx_count_12m": 96,
     "median_psf_12m": 1285,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-14T07:17:39.103342+00:00",
+    "computed_at": "2026-09-15T06:51:37.679534+00:00",
     "gec": {
       "total": 37,
       "velocity": {
@@ -1200,7 +1200,7 @@
     "tx_count_12m": 12,
     "median_psf_12m": 613,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-14T07:17:38.759027+00:00",
+    "computed_at": "2026-09-15T06:51:37.246095+00:00",
     "ys": {
       "total": 35,
       "momentum": {
@@ -1242,7 +1242,7 @@
     "tx_count_12m": 21,
     "median_psf_12m": 718,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-14T07:17:39.262406+00:00",
+    "computed_at": "2026-09-15T06:51:37.881409+00:00",
     "ys": {
       "total": 32,
       "momentum": {
@@ -1284,7 +1284,7 @@
     "tx_count_12m": 17,
     "median_psf_12m": 427,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-14T07:17:39.285846+00:00",
+    "computed_at": "2026-09-15T06:51:37.910037+00:00",
     "ys": {
       "total": 31,
       "momentum": {
@@ -1326,7 +1326,7 @@
     "tx_count_12m": 44,
     "median_psf_12m": 381,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-14T07:17:38.872362+00:00",
+    "computed_at": "2026-09-15T06:51:37.389285+00:00",
     "ys": {
       "total": 30,
       "momentum": {

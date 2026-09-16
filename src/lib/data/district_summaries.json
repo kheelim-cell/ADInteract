@@ -604,11 +604,11 @@
   },
   "Al Reem Island": {
     "slug": "al-reem-island",
-    "tx_count_all": 26751,
-    "tx_count_12m": 8059,
+    "tx_count_all": 26773,
+    "tx_count_12m": 8081,
     "median_psf": 1635,
     "p10_psf": 1101,
-    "p90_psf": 2160,
+    "p90_psf": 2159,
     "median_price": 1750000,
     "top_layouts": [
       "1 bed",
@@ -616,7 +616,7 @@
       "studio"
     ],
     "is_12m": true,
-    "last_sale": "2026-09-14"
+    "last_sale": "2026-09-15"
   },
   "Al Sa`Adah": {
     "slug": "al-sa-adah",
@@ -978,11 +978,11 @@
   "Khalifa City": {
     "slug": "khalifa-city",
     "tx_count_all": 4223,
-    "tx_count_12m": 1168,
-    "median_psf": 1245,
-    "p10_psf": 803,
-    "p90_psf": 1689,
-    "median_price": 1218593,
+    "tx_count_12m": 1151,
+    "median_psf": 1239,
+    "p10_psf": 795,
+    "p90_psf": 1695,
+    "median_price": 1202990,
     "top_layouts": [
       "studio",
       "2 beds",

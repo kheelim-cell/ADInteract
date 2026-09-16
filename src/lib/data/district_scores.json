@@ -8,7 +8,7 @@
     "tx_count_12m": 3113,
     "median_psf_12m": 1876,
     "offplan_pct": 100.0,
-    "computed_at": "2026-09-15T06:51:37.296459+00:00",
+    "computed_at": "2026-09-16T06:56:31.680762+00:00",
     "gec": {
       "total": 82,
       "velocity": {
@@ -50,7 +50,7 @@
     "tx_count_12m": 338,
     "median_psf_12m": 1803,
     "offplan_pct": 96.7,
-    "computed_at": "2026-09-15T06:51:37.813980+00:00",
+    "computed_at": "2026-09-16T06:56:32.204914+00:00",
     "gec": {
       "total": 71,
       "velocity": {
@@ -92,7 +92,7 @@
     "tx_count_12m": 572,
     "median_psf_12m": 2076,
     "offplan_pct": 62.1,
-    "computed_at": "2026-09-15T06:51:37.442146+00:00",
+    "computed_at": "2026-09-16T06:56:31.826588+00:00",
     "ys": {
       "total": 70,
       "momentum": {
@@ -163,13 +163,13 @@
     "tx_count_12m": 899,
     "median_psf_12m": 1261,
     "offplan_pct": 79.6,
-    "computed_at": "2026-09-15T06:51:37.705102+00:00",
+    "computed_at": "2026-09-16T06:56:32.094182+00:00",
     "gec": {
       "total": 69,
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 3.31
+        "velocity_ratio": 3.3
       },
       "momentum": {
         "score": 15,
@@ -205,7 +205,7 @@
     "tx_count_12m": 381,
     "median_psf_12m": 1003,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-15T06:51:37.566234+00:00",
+    "computed_at": "2026-09-16T06:56:31.952316+00:00",
     "ys": {
       "total": 68,
       "momentum": {
@@ -247,7 +247,7 @@
     "tx_count_12m": 13,
     "median_psf_12m": 390,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-15T06:51:37.326698+00:00",
+    "computed_at": "2026-09-16T06:56:31.711060+00:00",
     "ys": {
       "total": 62,
       "momentum": {
@@ -289,7 +289,7 @@
     "tx_count_12m": 249,
     "median_psf_12m": 954,
     "offplan_pct": 0.8,
-    "computed_at": "2026-09-15T06:51:37.406320+00:00",
+    "computed_at": "2026-09-16T06:56:31.790541+00:00",
     "ys": {
       "total": 62,
       "momentum": {
@@ -331,7 +331,7 @@
     "tx_count_12m": 16,
     "median_psf_12m": 1393,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-15T06:51:37.474076+00:00",
+    "computed_at": "2026-09-16T06:56:31.859658+00:00",
     "ys": {
       "total": 61,
       "momentum": {
@@ -373,7 +373,7 @@
     "tx_count_12m": 13,
     "median_psf_12m": 349,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-15T06:51:37.769155+00:00",
+    "computed_at": "2026-09-16T06:56:32.159565+00:00",
     "ys": {
       "total": 60,
       "momentum": {
@@ -415,7 +415,7 @@
     "tx_count_12m": 76,
     "median_psf_12m": 1200,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-15T06:51:37.943674+00:00",
+    "computed_at": "2026-09-16T06:56:32.333217+00:00",
     "ys": {
       "total": 60,
       "momentum": {
@@ -454,10 +454,10 @@
     "score_type": "both",
     "ready_pct_alltime": 52.2,
     "trend_direction": "up",
-    "tx_count_12m": 8059,
+    "tx_count_12m": 8081,
     "median_psf_12m": 1635,
     "offplan_pct": 70.2,
-    "computed_at": "2026-09-15T06:51:37.595587+00:00",
+    "computed_at": "2026-09-16T06:56:31.981345+00:00",
     "ys": {
       "total": 55,
       "momentum": {
@@ -474,12 +474,12 @@
       "liquidity": {
         "score": 7,
         "max": 20,
-        "recency_ratio": 0.64
+        "recency_ratio": 0.65
       },
       "stability": {
         "score": 8,
         "max": 15,
-        "cov": 0.198
+        "cov": 0.199
       },
       "appreciation": {
         "score": 2,
@@ -492,12 +492,12 @@
       "velocity": {
         "score": 19,
         "max": 30,
-        "velocity_ratio": 1.95
+        "velocity_ratio": 1.96
       },
       "momentum": {
         "score": 17,
         "max": 25,
-        "pct_change": 17.5,
+        "pct_change": 17.6,
         "direction": "up"
       },
       "appreciation": {
@@ -513,7 +513,7 @@
       "entry": {
         "score": 2,
         "max": 10,
-        "entry_ratio": 0.64
+        "entry_ratio": 0.65
       }
     },
     "score": 57,
@@ -528,7 +528,7 @@
     "tx_count_12m": 44,
     "median_psf_12m": 2321,
     "offplan_pct": 2.3,
-    "computed_at": "2026-09-15T06:51:37.359254+00:00",
+    "computed_at": "2026-09-16T06:56:31.743645+00:00",
     "ys": {
       "total": 56,
       "momentum": {
@@ -570,7 +570,7 @@
     "tx_count_12m": 31,
     "median_psf_12m": 806,
     "offplan_pct": 6.5,
-    "computed_at": "2026-09-15T06:51:37.627891+00:00",
+    "computed_at": "2026-09-16T06:56:32.013717+00:00",
     "ys": {
       "total": 56,
       "momentum": {
@@ -612,7 +612,7 @@
     "tx_count_12m": 392,
     "median_psf_12m": 3865,
     "offplan_pct": 100.0,
-    "computed_at": "2026-09-15T06:51:37.959796+00:00",
+    "computed_at": "2026-09-16T06:56:32.348902+00:00",
     "gec": {
       "total": 55,
       "velocity": {
@@ -654,7 +654,7 @@
     "tx_count_12m": 17,
     "median_psf_12m": 581,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-15T06:51:38.043668+00:00",
+    "computed_at": "2026-09-16T06:56:32.433691+00:00",
     "ys": {
       "total": 55,
       "momentum": {
@@ -696,7 +696,7 @@
     "tx_count_12m": 1365,
     "median_psf_12m": 1498,
     "offplan_pct": 96.0,
-    "computed_at": "2026-09-15T06:51:38.062023+00:00",
+    "computed_at": "2026-09-16T06:56:32.452061+00:00",
     "gec": {
       "total": 55,
       "velocity": {
@@ -738,7 +738,7 @@
     "tx_count_12m": 981,
     "median_psf_12m": 1842,
     "offplan_pct": 65.5,
-    "computed_at": "2026-09-15T06:51:37.532818+00:00",
+    "computed_at": "2026-09-16T06:56:31.918802+00:00",
     "ys": {
       "total": 53,
       "momentum": {
@@ -780,13 +780,13 @@
     "tx_count_12m": 4769,
     "median_psf_12m": 2200,
     "offplan_pct": 88.1,
-    "computed_at": "2026-09-15T06:51:38.024048+00:00",
+    "computed_at": "2026-09-16T06:56:32.414068+00:00",
     "gec": {
       "total": 53,
       "velocity": {
         "score": 13,
         "max": 30,
-        "velocity_ratio": 1.39
+        "velocity_ratio": 1.38
       },
       "momentum": {
         "score": 21,
@@ -813,48 +813,6 @@
     "score": 53,
     "color": "amber"
   },
-  "Khalifa City": {
-    "slug": "khalifa-city",
-    "district_name": "Khalifa City",
-    "score_type": "growth_early_cycle",
-    "ready_pct_alltime": 32.0,
-    "trend_direction": "up",
-    "tx_count_12m": 1168,
-    "median_psf_12m": 1245,
-    "offplan_pct": 73.1,
-    "computed_at": "2026-09-15T06:51:37.865557+00:00",
-    "gec": {
-      "total": 50,
-      "velocity": {
-        "score": 16,
-        "max": 30,
-        "velocity_ratio": 1.63
-      },
-      "momentum": {
-        "score": 15,
-        "max": 25,
-        "pct_change": 8.8,
-        "direction": "up"
-      },
-      "appreciation": {
-        "score": 10,
-        "max": 20,
-        "ratio": 1.0
-      },
-      "developer": {
-        "score": 7,
-        "max": 15,
-        "project_growth_ratio": 0.83
-      },
-      "entry": {
-        "score": 2,
-        "max": 10,
-        "entry_ratio": 0.1
-      }
-    },
-    "score": 50,
-    "color": "amber"
-  },
   "Al Jubail Island": {
     "slug": "al-jubail-island",
     "district_name": "Al Jubail Island",
@@ -864,7 +822,7 @@
     "tx_count_12m": 261,
     "median_psf_12m": 1720,
     "offplan_pct": 56.3,
-    "computed_at": "2026-09-15T06:51:37.343573+00:00",
+    "computed_at": "2026-09-16T06:56:31.727793+00:00",
     "gec": {
       "total": 48,
       "velocity": {
@@ -906,7 +864,7 @@
     "tx_count_12m": 10,
     "median_psf_12m": 820,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-15T06:51:37.979014+00:00",
+    "computed_at": "2026-09-16T06:56:32.368060+00:00",
     "ys": {
       "total": 48,
       "momentum": {
@@ -948,7 +906,7 @@
     "tx_count_12m": 665,
     "median_psf_12m": 2096,
     "offplan_pct": 100.0,
-    "computed_at": "2026-09-15T06:51:37.829602+00:00",
+    "computed_at": "2026-09-16T06:56:32.220494+00:00",
     "gec": {
       "total": 47,
       "velocity": {
@@ -981,6 +939,48 @@
     "score": 47,
     "color": "red"
   },
+  "Khalifa City": {
+    "slug": "khalifa-city",
+    "district_name": "Khalifa City",
+    "score_type": "growth_early_cycle",
+    "ready_pct_alltime": 32.0,
+    "trend_direction": "up",
+    "tx_count_12m": 1151,
+    "median_psf_12m": 1239,
+    "offplan_pct": 72.7,
+    "computed_at": "2026-09-16T06:56:32.256049+00:00",
+    "gec": {
+      "total": 47,
+      "velocity": {
+        "score": 14,
+        "max": 30,
+        "velocity_ratio": 1.44
+      },
+      "momentum": {
+        "score": 14,
+        "max": 25,
+        "pct_change": 7.4,
+        "direction": "up"
+      },
+      "appreciation": {
+        "score": 10,
+        "max": 20,
+        "ratio": 1.01
+      },
+      "developer": {
+        "score": 7,
+        "max": 15,
+        "project_growth_ratio": 0.83
+      },
+      "entry": {
+        "score": 2,
+        "max": 10,
+        "entry_ratio": 0.1
+      }
+    },
+    "score": 47,
+    "color": "red"
+  },
   "Al Saadiyat Island": {
     "slug": "al-saadiyat-island",
     "district_name": "Al Saadiyat Island",
@@ -990,13 +990,13 @@
     "tx_count_12m": 2183,
     "median_psf_12m": 3206,
     "offplan_pct": 84.7,
-    "computed_at": "2026-09-15T06:51:37.647985+00:00",
+    "computed_at": "2026-09-16T06:56:32.035776+00:00",
     "gec": {
       "total": 46,
       "velocity": {
         "score": 8,
         "max": 30,
-        "velocity_ratio": 0.85
+        "velocity_ratio": 0.86
       },
       "momentum": {
         "score": 25,
@@ -1032,7 +1032,7 @@
     "tx_count_12m": 899,
     "median_psf_12m": 1099,
     "offplan_pct": 98.9,
-    "computed_at": "2026-09-15T06:51:37.229453+00:00",
+    "computed_at": "2026-09-16T06:56:31.613817+00:00",
     "gec": {
       "total": 45,
       "velocity": {
@@ -1074,7 +1074,7 @@
     "tx_count_12m": 150,
     "median_psf_12m": 1137,
     "offplan_pct": 76.0,
-    "computed_at": "2026-09-15T06:51:37.752449+00:00",
+    "computed_at": "2026-09-16T06:56:32.142998+00:00",
     "ys": {
       "total": 42,
       "momentum": {
@@ -1116,7 +1116,7 @@
     "tx_count_12m": 933,
     "median_psf_12m": 3754,
     "offplan_pct": 100.0,
-    "computed_at": "2026-09-15T06:51:37.793553+00:00",
+    "computed_at": "2026-09-16T06:56:32.184122+00:00",
     "gec": {
       "total": 39,
       "velocity": {
@@ -1158,7 +1158,7 @@
     "tx_count_12m": 96,
     "median_psf_12m": 1285,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-15T06:51:37.679534+00:00",
+    "computed_at": "2026-09-16T06:56:32.068207+00:00",
     "gec": {
       "total": 37,
       "velocity": {
@@ -1200,7 +1200,7 @@
     "tx_count_12m": 12,
     "median_psf_12m": 613,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-15T06:51:37.246095+00:00",
+    "computed_at": "2026-09-16T06:56:31.630383+00:00",
     "ys": {
       "total": 35,
       "momentum": {
@@ -1242,7 +1242,7 @@
     "tx_count_12m": 21,
     "median_psf_12m": 718,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-15T06:51:37.881409+00:00",
+    "computed_at": "2026-09-16T06:56:32.272043+00:00",
     "ys": {
       "total": 32,
       "momentum": {
@@ -1284,7 +1284,7 @@
     "tx_count_12m": 17,
     "median_psf_12m": 427,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-15T06:51:37.910037+00:00",
+    "computed_at": "2026-09-16T06:56:32.300425+00:00",
     "ys": {
       "total": 31,
       "momentum": {
@@ -1326,7 +1326,7 @@
     "tx_count_12m": 44,
     "median_psf_12m": 381,
     "offplan_pct": 0.0,
-    "computed_at": "2026-09-15T06:51:37.389285+00:00",
+    "computed_at": "2026-09-16T06:56:31.773714+00:00",
     "ys": {
       "total": 30,
       "momentum": {

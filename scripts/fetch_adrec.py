@@ -51,25 +51,34 @@ SYNTHETIC_HEADER = [
     "Share", "Rate (AED/sqm)", "Sale Type", "Sale Sequence",
 ]
 
-# Asset-class tokens that betray a header-less CSV (row 1 is data)
-ASSET_CLASS_VALUES = {
-    "residential", "commercial", "industrial", "land",
-    "office", "retail", "mixed-use", "mixed use", "hospitality",
+# Column-name tokens that identify an actual header row. Deliberately NOT
+# keyed off asset-class values (e.g. "residential") — ADREC has since shipped
+# an "other" asset class that a fixed enum wouldn't recognise, which silently
+# broke headerless-CSV detection on 2026-09-23: a real data row starting with
+# "other,other,2026-09-22,..." was mistaken for a header because "other"
+# wasn't in the whitelist, so validate_csv looked for transaction columns in
+# literal data values and rejected a perfectly good export.
+HEADER_NAME_TOKENS = {
+    "asset class", "property type", "registration", "sold area (sqm)",
+    "plot area (sqm)", "layout", "district", "community", "project",
+    "price (aed)", "share", "rate (aed/sqm)", "sale type", "sale sequence",
 }
 
 
 def looks_headerless(first_row: list[str]) -> bool:
     """Return True if row 1 is clearly data, not a header.
 
-    Heuristic: first cell is a known asset-class token AND somewhere in the
-    row there's a YYYY-MM-DD or DD/MM/YYYY date — ADREC's headerless export
-    pattern.
+    Heuristic: none of the cells are a recognisable header-column name (so
+    row 1 isn't literally the header), AND at least one cell parses as a
+    date (a real header row never contains a date value) — ADREC's
+    headerless export pattern. Content-agnostic w.r.t. asset-class/property-
+    type values, so a new category ADREC introduces can't break this again.
     """
     if not first_row:
         return False
-    first = first_row[0].strip().lower()
-    if first not in ASSET_CLASS_VALUES:
-        return False
+    lowered = [c.strip().lower() for c in first_row]
+    if any(cell in HEADER_NAME_TOKENS for cell in lowered):
+        return False  # row 1 IS the header
     for cell in first_row:
         raw = cell.strip()
         for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%m/%d/%Y"):

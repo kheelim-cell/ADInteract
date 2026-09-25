@@ -207,10 +207,10 @@
   "Al Jubail Island": {
     "slug": "al-jubail-island",
     "tx_count_all": 1556,
-    "tx_count_12m": 256,
-    "median_psf": 1709,
-    "p10_psf": 1419,
-    "p90_psf": 2508,
+    "tx_count_12m": 254,
+    "median_psf": 1720,
+    "p10_psf": 1421,
+    "p90_psf": 2509,
     "median_price": 5800000,
     "top_layouts": [
       "3 beds",
@@ -355,19 +355,19 @@
   },
   "Al Maryah Island": {
     "slug": "al-maryah-island",
-    "tx_count_all": 1153,
-    "tx_count_12m": 570,
-    "median_psf": 2081,
+    "tx_count_all": 1161,
+    "tx_count_12m": 577,
+    "median_psf": 2082,
     "p10_psf": 1111,
-    "p90_psf": 4777,
-    "median_price": 1316500,
+    "p90_psf": 4757,
+    "median_price": 1341872,
     "top_layouts": [
       "studio",
       "2 beds",
       "1 bed"
     ],
     "is_12m": true,
-    "last_sale": "2026-09-21"
+    "last_sale": "2026-09-24"
   },
   "Al Mas'Oudi": {
     "slug": "al-masoudi",
@@ -401,11 +401,11 @@
   "Al Muntazah": {
     "slug": "al-muntazah",
     "tx_count_all": 203,
-    "tx_count_12m": 16,
+    "tx_count_12m": 15,
     "median_psf": 1393,
-    "p10_psf": 842,
-    "p90_psf": 1781,
-    "median_price": 3440000,
+    "p10_psf": 805,
+    "p90_psf": 1784,
+    "median_price": 3500000,
     "top_layouts": [
       "3 beds",
       "4 beds",
@@ -531,11 +531,11 @@
   "Al Rahah": {
     "slug": "al-rahah",
     "tx_count_all": 3423,
-    "tx_count_12m": 973,
-    "median_psf": 1845,
-    "p10_psf": 1376,
+    "tx_count_12m": 971,
+    "median_psf": 1846,
+    "p10_psf": 1378,
     "p90_psf": 2907,
-    "median_price": 2692500,
+    "median_price": 2696000,
     "top_layouts": [
       "2 beds",
       "1 bed",
@@ -592,10 +592,10 @@
   "Al Reef": {
     "slug": "al-reef",
     "tx_count_all": 6491,
-    "tx_count_12m": 364,
+    "tx_count_12m": 362,
     "median_psf": 1016,
-    "p10_psf": 822,
-    "p90_psf": 1312,
+    "p10_psf": 823,
+    "p90_psf": 1314,
     "median_price": 1472500,
     "top_layouts": [
       "2 beds",
@@ -607,11 +607,11 @@
   },
   "Al Reem Island": {
     "slug": "al-reem-island",
-    "tx_count_all": 26922,
+    "tx_count_all": 26934,
     "tx_count_12m": 8090,
-    "median_psf": 1637,
+    "median_psf": 1639,
     "p10_psf": 1100,
-    "p90_psf": 2159,
+    "p90_psf": 2160,
     "median_price": 1750000,
     "top_layouts": [
       "1 bed",
@@ -619,7 +619,7 @@
       "studio"
     ],
     "is_12m": true,
-    "last_sale": "2026-09-23"
+    "last_sale": "2026-09-24"
   },
   "Al Sa`Adah": {
     "slug": "al-sa-adah",
@@ -640,11 +640,11 @@
   "Al Saadiyat Island": {
     "slug": "al-saadiyat-island",
     "tx_count_all": 10452,
-    "tx_count_12m": 2173,
+    "tx_count_12m": 2172,
     "median_psf": 3206,
-    "p10_psf": 1598,
-    "p90_psf": 4857,
-    "median_price": 4996167,
+    "p10_psf": 1600,
+    "p90_psf": 4866,
+    "median_price": 4998083,
     "top_layouts": [
       "2 beds",
       "1 bed",
@@ -724,11 +724,11 @@
   "Al Shamkhah": {
     "slug": "al-shamkhah",
     "tx_count_all": 3343,
-    "tx_count_12m": 899,
+    "tx_count_12m": 897,
     "median_psf": 1261,
-    "p10_psf": 858,
+    "p10_psf": 857,
     "p90_psf": 1548,
-    "median_price": 985000,
+    "median_price": 985178,
     "top_layouts": [
       "studio",
       "2 beds",
@@ -981,10 +981,10 @@
   "Khalifa City": {
     "slug": "khalifa-city",
     "tx_count_all": 4224,
-    "tx_count_12m": 1117,
-    "median_psf": 1236,
-    "p10_psf": 790,
-    "p90_psf": 1695,
+    "tx_count_12m": 1113,
+    "median_psf": 1238,
+    "p10_psf": 792,
+    "p90_psf": 1694,
     "median_price": 1225000,
     "top_layouts": [
       "studio",
@@ -1210,11 +1210,11 @@
   "Yas Island": {
     "slug": "yas-island",
     "tx_count_all": 21426,
-    "tx_count_12m": 4686,
-    "median_psf": 2210,
-    "p10_psf": 1408,
+    "tx_count_12m": 4674,
+    "median_psf": 2211,
+    "p10_psf": 1407,
     "p90_psf": 2837,
-    "median_price": 1992646,
+    "median_price": 1991696,
     "top_layouts": [
       "1 bed",
       "2 beds",
@@ -1241,7 +1241,7 @@
   "Zayed City": {
     "slug": "zayed-city",
     "tx_count_all": 4030,
-    "tx_count_12m": 1354,
+    "tx_count_12m": 1352,
     "median_psf": 1499,
     "p10_psf": 1306,
     "p90_psf": 1673,

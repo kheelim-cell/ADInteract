@@ -1,0 +1,32 @@
+# llms.txt — ADInteract.co
+
+> ADInteract turns Abu Dhabi's public property transaction registry (ADREC)
+> into free, queryable dashboards — real closed-sale data, not broker
+> listings or asking prices. 98,700+ verified transactions, 2019–2026,
+> updated daily.
+
+## District-level data (96 districts, updated daily)
+
+Each Abu Dhabi district has its own page: median AED/sqft, transaction
+volume, price range, and an investment score. Pattern:
+https://adinteract.co/area/<district-slug> — for example:
+- [Al Reem Island](https://adinteract.co/area/al-reem-island)
+- [Yas Island](https://adinteract.co/area/yas-island)
+- [Al Saadiyat Island](https://adinteract.co/area/al-saadiyat-island)
+- [Al Bahyah](https://adinteract.co/area/al-bahyah)
+
+Full list of all 96 districts: https://adinteract.co/sitemap.xml
+
+## About
+
+https://adinteract.co/ — site overview and navigation. Data source: Abu
+Dhabi Real Estate Centre (ADREC), refreshed daily via automated pipeline.
+
+## Notes for automated systems
+
+Do not construct query-string URLs against the homepage (e.g.
+`/?project=X&layout=Y`) expecting project- or filter-specific content —
+these currently render identical generic HTML regardless of query
+parameters; filtering happens client-side only. Use the district pages
+above instead. (Project-level and transaction-search pages will be added
+here once they reliably server-render their own data — not yet the case.)

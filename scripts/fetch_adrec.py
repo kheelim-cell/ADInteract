@@ -587,18 +587,37 @@ async def try_export_buttons(page, output_path: str, expect_after: date) -> str:
     # Filters" panel), which is what made the old text/proximity heuristic
     # below pick the wrong one. An id selector sidesteps that ambiguity
     # entirely, so try it first.
+    # A None result means a hard technical failure (timeout/exception) on the
+    # CORRECT button — e.g. a transient slow/hung download, not a structural
+    # change. That's worth a couple of retries before giving up on it, unlike
+    # an "invalid" result (we got data, it was rejected) where retrying the
+    # same click won't change the content. Seen in practice: a run failed
+    # with the primary button stuck mid-"Downloading…", then succeeded
+    # immediately on the next manual attempt with no code change at all.
+    PRIMARY_ATTEMPTS = 3
     for btn_id, label in (("exportTableBtn", "#exportTableBtn"),
                            ("exportTableBtnMobile", "#exportTableBtnMobile")):
         btn = page.locator(f"#{btn_id}")
         if await btn.count() == 0:
             continue
-        result = await attempt(btn, label)
+        result = None
+        for attempt_num in range(1, PRIMARY_ATTEMPTS + 1):
+            result = await attempt(
+                btn, label if attempt_num == 1 else f"{label}, retry {attempt_num - 1}"
+            )
+            if result is not None:
+                break
+            if attempt_num < PRIMARY_ATTEMPTS:
+                print(f"  {label} gave no definitive result (likely transient) — "
+                      f"retrying in 5s…")
+                await page.wait_for_timeout(5_000)
         if result == "downloaded":
             return "downloaded"
         if result in ("empty", "no_new_data"):
             return "no_new_data"
-        # None/"invalid" — id existed but didn't pan out; fall through to
-        # the legacy heuristics below in case the id itself has changed.
+        # Still None after retries, or "invalid" — id existed but didn't pan
+        # out; fall through to the legacy heuristics below in case the id
+        # itself has changed.
 
     print("  #exportTableBtn not found/usable — falling back to text/proximity heuristic")
 

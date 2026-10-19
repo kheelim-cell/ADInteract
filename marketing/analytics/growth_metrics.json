@@ -1,107 +1,103 @@
 {
-  "generated_at": "2026-10-12T10:30:12.978341+00:00",
+  "generated_at": "2026-10-19T08:39:19.486573+00:00",
   "ga4": {
     "period_7d": {
-      "sessions": 1018,
-      "total_users": 463,
-      "new_users": 248,
-      "returning_users_pct": 46.4,
-      "share_events": 13,
+      "sessions": 949,
+      "total_users": 450,
+      "new_users": 252,
+      "returning_users_pct": 44.0,
+      "share_events": 16,
       "top_sources": [
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 493
+          "sessions": 458
         },
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 421
+          "sessions": 392
         },
         {
           "source": "bing",
           "medium": "organic",
-          "sessions": 31
+          "sessions": 29
         },
         {
           "source": "accounts.google.com",
           "medium": "referral",
-          "sessions": 18
+          "sessions": 19
         },
         {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
-          "sessions": 17
-        },
-        {
-          "source": "l.facebook.com",
-          "medium": "referral",
-          "sessions": 8
-        },
-        {
-          "source": "ntp.msn.com",
-          "medium": "referral",
-          "sessions": 7
-        },
-        {
-          "source": "(not set)",
-          "medium": "(not set)",
-          "sessions": 6
-        },
-        {
-          "source": "l.instagram.com",
-          "medium": "referral",
-          "sessions": 5
+          "sessions": 13
         },
         {
           "source": "yandex.kz",
           "medium": "referral",
-          "sessions": 4
+          "sessions": 11
+        },
+        {
+          "source": "(not set)",
+          "medium": "(not set)",
+          "sessions": 10
+        },
+        {
+          "source": "l.instagram.com",
+          "medium": "referral",
+          "sessions": 6
+        },
+        {
+          "source": "l.facebook.com",
+          "medium": "referral",
+          "sessions": 3
+        },
+        {
+          "source": "ntp.msn.com",
+          "medium": "referral",
+          "sessions": 3
         }
       ],
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 448
+          "sessions": 418
         },
         {
           "page": "(not set)",
-          "sessions": 103
-        },
-        {
-          "page": "/rental?rsort=median_rent&rdir=desc",
-          "sessions": 18
-        },
-        {
-          "page": "/ar",
-          "sessions": 13
-        },
-        {
-          "page": "/?range=3y",
-          "sessions": 11
+          "sessions": 95
         },
         {
           "page": "/investors/calculator",
+          "sessions": 15
+        },
+        {
+          "page": "/ar",
           "sessions": 11
         },
         {
-          "page": "/?district=Al+Reem+Island&range=1m&type=ready&propType=apartment",
+          "page": "/?district=Yas+Island",
           "sessions": 10
         },
         {
-          "page": "/?district=Al+Saadiyat+Island",
-          "sessions": 10
-        },
-        {
-          "page": "/?project=Noya+-+Phase+3+-+Luma&type=ready&propType=villa",
-          "sessions": 10
-        },
-        {
-          "page": "/?range=3m",
+          "page": "/rental?rsort=median_rent&rdir=desc",
           "sessions": 10
         },
         {
           "page": "/?district=Al+Reem+Island",
+          "sessions": 9
+        },
+        {
+          "page": "/?range=1m",
+          "sessions": 8
+        },
+        {
+          "page": "/investors/rental-yield",
+          "sessions": 8
+        },
+        {
+          "page": "/?district=Al+Reem+Island&range=1m&type=ready&propType=apartment",
           "sessions": 7
         },
         {
@@ -109,65 +105,69 @@
           "sessions": 7
         },
         {
-          "page": "/?district=Yas+Island",
+          "page": "/?range=3y&type=off-plan",
           "sessions": 7
         },
         {
-          "page": "/?range=1m&type=off-plan",
+          "page": "/project/Sea La Vie?project=Sea+La+Vie&layout=2+beds",
           "sessions": 7
         },
         {
-          "page": "/?range=6m",
+          "page": "/?project=Noya+-+Phase+3+-+Luma&range=6m&type=ready&propType=villa",
+          "sessions": 6
+        },
+        {
+          "page": "/project/Reem Five?project=Reem+Five",
           "sessions": 6
         }
       ]
     },
     "period_30d": {
-      "sessions": 4122,
-      "total_users": 1409,
-      "new_users": 1065,
-      "returning_users_pct": 24.4,
-      "share_events": 44,
+      "sessions": 3990,
+      "total_users": 1372,
+      "new_users": 1025,
+      "returning_users_pct": 25.3,
+      "share_events": 47,
       "top_sources": [
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 2157
+          "sessions": 2024
         },
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 1555
+          "sessions": 1563
         },
         {
           "source": "bing",
           "medium": "organic",
-          "sessions": 106
+          "sessions": 103
         },
         {
           "source": "accounts.google.com",
           "medium": "referral",
-          "sessions": 66
+          "sessions": 79
         },
         {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
-          "sessions": 62
+          "sessions": 53
         },
         {
           "source": "l.instagram.com",
           "medium": "referral",
-          "sessions": 50
+          "sessions": 41
         },
         {
           "source": "yandex.kz",
           "medium": "referral",
-          "sessions": 32
+          "sessions": 36
         },
         {
           "source": "(not set)",
           "medium": "(not set)",
-          "sessions": 17
+          "sessions": 21
         },
         {
           "source": "ntp.msn.com",
@@ -175,71 +175,71 @@
           "sessions": 12
         },
         {
-          "source": "copylink",
-          "medium": "share",
+          "source": "l.facebook.com",
+          "medium": "referral",
           "sessions": 10
         }
       ],
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 1862
+          "sessions": 1771
         },
         {
           "page": "(not set)",
-          "sessions": 421
+          "sessions": 408
         },
         {
           "page": "/investors/calculator",
-          "sessions": 69
+          "sessions": 51
         },
         {
           "page": "/?district=Al+Reem+Island&range=1m&type=ready&propType=apartment",
-          "sessions": 43
+          "sessions": 42
         },
         {
           "page": "/rental?rsort=median_rent&rdir=desc",
-          "sessions": 40
+          "sessions": 41
         },
         {
           "page": "/?district=Yas+Island",
-          "sessions": 34
+          "sessions": 40
         },
         {
-          "page": "/?project=Sea+La+Vie&range=6m&type=off-plan&layout=2+beds",
+          "page": "/?range=6m",
+          "sessions": 31
+        },
+        {
+          "page": "/ar",
           "sessions": 31
         },
         {
           "page": "/?range=3y",
-          "sessions": 31
+          "sessions": 29
+        },
+        {
+          "page": "/?project=Sea+La+Vie&range=6m&type=off-plan&layout=2+beds",
+          "sessions": 25
         },
         {
           "page": "/?range=3m",
-          "sessions": 28
-        },
-        {
-          "page": "/?range=6m",
-          "sessions": 28
-        },
-        {
-          "page": "/?district=Al+Reef&project=Radiant+Atrium&range=6m&propType=apartment",
-          "sessions": 26
-        },
-        {
-          "page": "/ar",
           "sessions": 23
         },
         {
-          "page": "/?project=Noya+-+Phase+3+-+Luma&type=ready&propType=villa",
+          "page": "/?district=Al+Reem+Island&range=6m&sort=project_name&dir=asc",
+          "sessions": 22
+        },
+        {
+          "page": "/?district=Al+Reef&project=Radiant+Atrium&range=6m&propType=apartment",
           "sessions": 21
         },
         {
-          "page": "/?range=1m&type=off-plan",
-          "sessions": 19
+          "page": "/?district=Al+Reem+Island",
+          "sessions": 20
         },
         {
-          "page": "/?range=3y&type=off-plan",
-          "sessions": 19
+          "page": "/?project=Noya+-+Phase+3+-+Luma&type=ready&propType=villa",
+          "sessions": 20
         }
       ]
     }
@@ -248,6 +248,6 @@
     "total_signups": 351,
     "new_signups_7d": 0,
     "new_signups_30d": 0,
-    "email_subscribers": 116
+    "email_subscribers": 118
   }
 }

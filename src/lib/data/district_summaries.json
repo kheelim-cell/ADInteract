@@ -152,8 +152,8 @@
   },
   "Al Hidayriyyat": {
     "slug": "al-hidayriyyat",
-    "tx_count_all": 4184,
-    "tx_count_12m": 3166,
+    "tx_count_all": 4187,
+    "tx_count_12m": 3169,
     "median_psf": 1924,
     "p10_psf": 1167,
     "p90_psf": 2567,
@@ -164,7 +164,7 @@
       "3 beds"
     ],
     "is_12m": true,
-    "last_sale": "2026-10-20"
+    "last_sale": "2026-10-21"
   },
   "Al Hiyar": {
     "slug": "al-hiyar",
@@ -206,19 +206,19 @@
   },
   "Al Jubail Island": {
     "slug": "al-jubail-island",
-    "tx_count_all": 1570,
+    "tx_count_all": 1571,
     "tx_count_12m": 251,
-    "median_psf": 1748,
+    "median_psf": 1751,
     "p10_psf": 1441,
-    "p90_psf": 2513,
-    "median_price": 5930000,
+    "p90_psf": 2514,
+    "median_price": 6000000,
     "top_layouts": [
       "4 beds",
       "3 beds",
       "5 beds"
     ],
     "is_12m": true,
-    "last_sale": "2026-10-19"
+    "last_sale": "2026-10-21"
   },
   "Al Kasir": {
     "slug": "al-kasir",
@@ -296,11 +296,11 @@
   "Al Layyan": {
     "slug": "al-layyan",
     "tx_count_all": 2194,
-    "tx_count_12m": 380,
+    "tx_count_12m": 378,
     "median_psf": 1165,
-    "p10_psf": 602,
-    "p90_psf": 1501,
-    "median_price": 1687500,
+    "p10_psf": 596,
+    "p90_psf": 1502,
+    "median_price": 1700000,
     "top_layouts": [
       "2 beds",
       "3 beds",
@@ -355,19 +355,19 @@
   },
   "Al Maryah Island": {
     "slug": "al-maryah-island",
-    "tx_count_all": 1203,
-    "tx_count_12m": 561,
-    "median_psf": 2205,
-    "p10_psf": 1170,
-    "p90_psf": 4942,
-    "median_price": 1984423,
+    "tx_count_all": 1204,
+    "tx_count_12m": 547,
+    "median_psf": 2245,
+    "p10_psf": 1185,
+    "p90_psf": 4988,
+    "median_price": 2108875,
     "top_layouts": [
       "2 beds",
       "studio",
       "1 bed"
     ],
     "is_12m": true,
-    "last_sale": "2026-10-20"
+    "last_sale": "2026-10-21"
   },
   "Al Mas'Oudi": {
     "slug": "al-masoudi",
@@ -399,19 +399,19 @@
   },
   "Al Muntazah": {
     "slug": "al-muntazah",
-    "tx_count_all": 206,
-    "tx_count_12m": 17,
-    "median_psf": 1224,
-    "p10_psf": 646,
-    "p90_psf": 1779,
-    "median_price": 3400000,
+    "tx_count_all": 207,
+    "tx_count_12m": 18,
+    "median_psf": 1193,
+    "p10_psf": 641,
+    "p90_psf": 1776,
+    "median_price": 3390000,
     "top_layouts": [
       "3 beds",
       "6+ beds",
       "4 beds"
     ],
     "is_12m": true,
-    "last_sale": "2026-10-19"
+    "last_sale": "2026-10-21"
   },
   "Al Mushrif": {
     "slug": "al-mushrif",
@@ -529,11 +529,11 @@
   },
   "Al Rahah": {
     "slug": "al-rahah",
-    "tx_count_all": 3582,
-    "tx_count_12m": 1100,
-    "median_psf": 1924,
-    "p10_psf": 1421,
-    "p90_psf": 2874,
+    "tx_count_all": 3585,
+    "tx_count_12m": 1102,
+    "median_psf": 1922,
+    "p10_psf": 1420,
+    "p90_psf": 2873,
     "median_price": 2947350,
     "top_layouts": [
       "2 beds",
@@ -541,7 +541,7 @@
       "3 beds"
     ],
     "is_12m": true,
-    "last_sale": "2026-10-19"
+    "last_sale": "2026-10-21"
   },
   "Al Rahbah": {
     "slug": "al-rahbah",
@@ -591,10 +591,10 @@
   "Al Reef": {
     "slug": "al-reef",
     "tx_count_all": 6509,
-    "tx_count_12m": 344,
+    "tx_count_12m": 341,
     "median_psf": 1019,
-    "p10_psf": 838,
-    "p90_psf": 1326,
+    "p10_psf": 837,
+    "p90_psf": 1328,
     "median_price": 1500000,
     "top_layouts": [
       "2 beds",
@@ -606,51 +606,51 @@
   },
   "Al Reem Island": {
     "slug": "al-reem-island",
-    "tx_count_all": 27276,
-    "tx_count_12m": 7671,
-    "median_psf": 1665,
-    "p10_psf": 1096,
-    "p90_psf": 2178,
-    "median_price": 1754777,
+    "tx_count_all": 27307,
+    "tx_count_12m": 7650,
+    "median_psf": 1663,
+    "p10_psf": 1095,
+    "p90_psf": 2166,
+    "median_price": 1750000,
     "top_layouts": [
       "1 bed",
       "2 beds",
       "studio"
     ],
     "is_12m": true,
-    "last_sale": "2026-10-20"
+    "last_sale": "2026-10-21"
   },
   "Al Sa`Adah": {
     "slug": "al-sa-adah",
-    "tx_count_all": 144,
-    "tx_count_12m": 29,
-    "median_psf": 808,
+    "tx_count_all": 145,
+    "tx_count_12m": 30,
+    "median_psf": 847,
     "p10_psf": 560,
-    "p90_psf": 1054,
-    "median_price": 1350000,
+    "p90_psf": 1077,
+    "median_price": 1425000,
     "top_layouts": [
       "1 bed",
-      "6+ beds",
-      "2 beds"
+      "2 beds",
+      "6+ beds"
     ],
     "is_12m": true,
-    "last_sale": "2026-10-07"
+    "last_sale": "2026-10-21"
   },
   "Al Saadiyat Island": {
     "slug": "al-saadiyat-island",
-    "tx_count_all": 10582,
-    "tx_count_12m": 2206,
-    "median_psf": 3176,
+    "tx_count_all": 10595,
+    "tx_count_12m": 2217,
+    "median_psf": 3174,
     "p10_psf": 1590,
-    "p90_psf": 4604,
-    "median_price": 4908100,
+    "p90_psf": 4628,
+    "median_price": 4937688,
     "top_layouts": [
       "2 beds",
       "1 bed",
       "3 beds"
     ],
     "is_12m": true,
-    "last_sale": "2026-10-20"
+    "last_sale": "2026-10-21"
   },
   "Al Sader": {
     "slug": "al-sader",
@@ -724,19 +724,19 @@
   },
   "Al Shamkhah": {
     "slug": "al-shamkhah",
-    "tx_count_all": 3424,
-    "tx_count_12m": 941,
-    "median_psf": 1250,
-    "p10_psf": 847,
+    "tx_count_all": 3429,
+    "tx_count_12m": 940,
+    "median_psf": 1254,
+    "p10_psf": 849,
     "p90_psf": 1548,
-    "median_price": 980000,
+    "median_price": 985000,
     "top_layouts": [
       "studio",
       "2 beds",
       "1 bed"
     ],
     "is_12m": true,
-    "last_sale": "2026-10-20"
+    "last_sale": "2026-10-21"
   },
   "Al Shawamekh": {
     "slug": "al-shawamekh",
@@ -911,11 +911,11 @@
   "Ghantout": {
     "slug": "ghantout",
     "tx_count_all": 680,
-    "tx_count_12m": 548,
-    "median_psf": 2133,
-    "p10_psf": 1541,
+    "tx_count_12m": 536,
+    "median_psf": 2141,
+    "p10_psf": 1543,
     "p90_psf": 2727,
-    "median_price": 5966500,
+    "median_price": 6070500,
     "top_layouts": [
       "3 beds",
       "4 beds",
@@ -980,10 +980,10 @@
   "Khalifa City": {
     "slug": "khalifa-city",
     "tx_count_all": 4270,
-    "tx_count_12m": 1078,
+    "tx_count_12m": 1073,
     "median_psf": 1246,
     "p10_psf": 810,
-    "p90_psf": 1699,
+    "p90_psf": 1698,
     "median_price": 1260000,
     "top_layouts": [
       "studio",
@@ -1051,17 +1051,17 @@
   },
   "Mohamed Bin Zayed City": {
     "slug": "mohamed-bin-zayed-city",
-    "tx_count_all": 174,
-    "tx_count_12m": 19,
-    "median_psf": 387,
-    "p10_psf": 207,
-    "p90_psf": 726,
-    "median_price": 5500000,
+    "tx_count_all": 175,
+    "tx_count_12m": 20,
+    "median_psf": 386,
+    "p10_psf": 218,
+    "p90_psf": 705,
+    "median_price": 5450000,
     "top_layouts": [
       "6+ beds"
     ],
     "is_12m": true,
-    "last_sale": "2026-10-13"
+    "last_sale": "2026-10-21"
   },
   "Mzeer'Ah": {
     "slug": "mzeerah",
@@ -1135,19 +1135,19 @@
   },
   "Ramhan Island": {
     "slug": "ramhan-island",
-    "tx_count_all": 395,
-    "tx_count_12m": 395,
+    "tx_count_all": 396,
+    "tx_count_12m": 396,
     "median_psf": 3869,
     "p10_psf": 2855,
     "p90_psf": 4778,
-    "median_price": 13235888,
+    "median_price": 13242888,
     "top_layouts": [
       "6+ beds",
       "4 beds",
       "5 beds"
     ],
     "is_12m": true,
-    "last_sale": "2026-10-12"
+    "last_sale": "2026-10-21"
   },
   "Shakhbout City": {
     "slug": "shakhbout-city",
@@ -1209,19 +1209,19 @@
   },
   "Yas Island": {
     "slug": "yas-island",
-    "tx_count_all": 21746,
-    "tx_count_12m": 4802,
+    "tx_count_all": 21754,
+    "tx_count_12m": 4805,
     "median_psf": 2239,
     "p10_psf": 1460,
-    "p90_psf": 2921,
-    "median_price": 2015569,
+    "p90_psf": 2922,
+    "median_price": 2015784,
     "top_layouts": [
       "1 bed",
       "2 beds",
       "studio"
     ],
     "is_12m": true,
-    "last_sale": "2026-10-20"
+    "last_sale": "2026-10-21"
   },
   "Zakhir": {
     "slug": "zakhir",

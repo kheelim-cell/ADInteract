@@ -1,163 +1,158 @@
 {
-  "generated_at": "2026-10-19T08:39:19.486573+00:00",
+  "generated_at": "2026-10-26T08:41:44.476528+00:00",
   "ga4": {
     "period_7d": {
-      "sessions": 949,
-      "total_users": 450,
-      "new_users": 252,
-      "returning_users_pct": 44.0,
-      "share_events": 16,
+      "sessions": 1237,
+      "total_users": 667,
+      "new_users": 462,
+      "returning_users_pct": 30.7,
+      "share_events": 7,
       "top_sources": [
-        {
-          "source": "google",
-          "medium": "organic",
-          "sessions": 458
-        },
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 392
+          "sessions": 608
         },
         {
-          "source": "bing",
+          "source": "google",
           "medium": "organic",
-          "sessions": 29
-        },
-        {
-          "source": "accounts.google.com",
-          "medium": "referral",
-          "sessions": 19
+          "sessions": 547
         },
         {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
-          "sessions": 13
+          "sessions": 17
+        },
+        {
+          "source": "bing",
+          "medium": "organic",
+          "sessions": 16
         },
         {
           "source": "yandex.kz",
           "medium": "referral",
-          "sessions": 11
+          "sessions": 13
         },
         {
           "source": "(not set)",
           "medium": "(not set)",
-          "sessions": 10
+          "sessions": 12
         },
         {
           "source": "l.instagram.com",
           "medium": "referral",
-          "sessions": 6
+          "sessions": 7
         },
         {
-          "source": "l.facebook.com",
+          "source": "accounts.google.com",
           "medium": "referral",
-          "sessions": 3
+          "sessions": 5
+        },
+        {
+          "source": "m.facebook.com",
+          "medium": "referral",
+          "sessions": 4
         },
         {
           "source": "ntp.msn.com",
           "medium": "referral",
-          "sessions": 3
+          "sessions": 4
         }
       ],
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 418
+          "sessions": 424
         },
         {
           "page": "(not set)",
-          "sessions": 95
+          "sessions": 106
         },
         {
-          "page": "/investors/calculator",
-          "sessions": 15
+          "page": "/?project=Marina+Gate+I&layout=2+beds",
+          "sessions": 26
         },
         {
-          "page": "/ar",
-          "sessions": 11
+          "page": "/?project=Marina+Gate+I&range=3m&layout=2+beds",
+          "sessions": 26
         },
         {
-          "page": "/?district=Yas+Island",
-          "sessions": 10
+          "page": "/?project=Marina+Gate+Ii&layout=2+beds",
+          "sessions": 18
         },
         {
-          "page": "/rental?rsort=median_rent&rdir=desc",
-          "sessions": 10
+          "page": "/?project=Marina+Gate+Ii&range=3m&layout=2+beds",
+          "sessions": 18
         },
         {
           "page": "/?district=Al+Reem+Island",
-          "sessions": 9
+          "sessions": 17
         },
         {
-          "page": "/?range=1m",
-          "sessions": 8
+          "page": "/ar",
+          "sessions": 17
         },
         {
-          "page": "/investors/rental-yield",
-          "sessions": 8
+          "page": "/investors/calculator",
+          "sessions": 14
         },
         {
-          "page": "/?district=Al+Reem+Island&range=1m&type=ready&propType=apartment",
-          "sessions": 7
-        },
-        {
-          "page": "/?district=Al+Reem+Island&range=6m&sort=project_name&dir=asc",
-          "sessions": 7
-        },
-        {
-          "page": "/?range=3y&type=off-plan",
-          "sessions": 7
+          "page": "/rental?rsort=median_rent&rdir=desc",
+          "sessions": 14
         },
         {
           "page": "/project/Sea La Vie?project=Sea+La+Vie&layout=2+beds",
-          "sessions": 7
+          "sessions": 13
         },
         {
-          "page": "/?project=Noya+-+Phase+3+-+Luma&range=6m&type=ready&propType=villa",
-          "sessions": 6
+          "page": "/?district=Al+Reem+Island&range=custom&from=2026-10-01&to=2026-10-19&type=off-plan&seq=primary&propType=apartment%2Cduplex%2Ctownhouse+%2F+attached+villa%2Cvilla&layout=1+bed%2C2+beds%2C3+beds%2Cstudio%2C4+beds%2C5+beds%2C6%2B+beds",
+          "sessions": 12
         },
         {
-          "page": "/project/Reem Five?project=Reem+Five",
-          "sessions": 6
+          "page": "/?project=Noya+-+Phase+3+-+Luma",
+          "sessions": 9
+        },
+        {
+          "page": "/?project=Riviera+Residences&range=3y",
+          "sessions": 9
+        },
+        {
+          "page": "/investors/projects",
+          "sessions": 8
         }
       ]
     },
     "period_30d": {
-      "sessions": 3990,
-      "total_users": 1372,
-      "new_users": 1025,
-      "returning_users_pct": 25.3,
-      "share_events": 47,
+      "sessions": 4166,
+      "total_users": 1579,
+      "new_users": 1233,
+      "returning_users_pct": 21.9,
+      "share_events": 45,
       "top_sources": [
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 2024
+          "sessions": 2006
         },
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 1563
+          "sessions": 1805
         },
         {
           "source": "bing",
           "medium": "organic",
-          "sessions": 103
+          "sessions": 102
         },
         {
           "source": "accounts.google.com",
           "medium": "referral",
-          "sessions": 79
+          "sessions": 64
         },
         {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
-          "sessions": 53
-        },
-        {
-          "source": "l.instagram.com",
-          "medium": "referral",
-          "sessions": 41
+          "sessions": 64
         },
         {
           "source": "yandex.kz",
@@ -167,78 +162,83 @@
         {
           "source": "(not set)",
           "medium": "(not set)",
-          "sessions": 21
+          "sessions": 31
+        },
+        {
+          "source": "l.instagram.com",
+          "medium": "referral",
+          "sessions": 23
         },
         {
           "source": "ntp.msn.com",
           "medium": "referral",
-          "sessions": 12
+          "sessions": 14
         },
         {
-          "source": "l.facebook.com",
+          "source": "m.facebook.com",
           "medium": "referral",
-          "sessions": 10
+          "sessions": 12
         }
       ],
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 1771
+          "sessions": 1749
         },
         {
           "page": "(not set)",
-          "sessions": 408
-        },
-        {
-          "page": "/investors/calculator",
-          "sessions": 51
-        },
-        {
-          "page": "/?district=Al+Reem+Island&range=1m&type=ready&propType=apartment",
-          "sessions": 42
-        },
-        {
-          "page": "/rental?rsort=median_rent&rdir=desc",
-          "sessions": 41
-        },
-        {
-          "page": "/?district=Yas+Island",
-          "sessions": 40
-        },
-        {
-          "page": "/?range=6m",
-          "sessions": 31
+          "sessions": 406
         },
         {
           "page": "/ar",
-          "sessions": 31
+          "sessions": 47
+        },
+        {
+          "page": "/rental?rsort=median_rent&rdir=desc",
+          "sessions": 47
+        },
+        {
+          "page": "/investors/calculator",
+          "sessions": 45
+        },
+        {
+          "page": "/?district=Al+Reem+Island&range=1m&type=ready&propType=apartment",
+          "sessions": 39
+        },
+        {
+          "page": "/?district=Al+Reem+Island",
+          "sessions": 35
+        },
+        {
+          "page": "/?district=Yas+Island",
+          "sessions": 32
+        },
+        {
+          "page": "/?range=6m",
+          "sessions": 28
+        },
+        {
+          "page": "/?project=Marina+Gate+I&layout=2+beds",
+          "sessions": 27
+        },
+        {
+          "page": "/?project=Marina+Gate+I&range=3m&layout=2+beds",
+          "sessions": 27
         },
         {
           "page": "/?range=3y",
-          "sessions": 29
-        },
-        {
-          "page": "/?project=Sea+La+Vie&range=6m&type=off-plan&layout=2+beds",
-          "sessions": 25
-        },
-        {
-          "page": "/?range=3m",
-          "sessions": 23
+          "sessions": 26
         },
         {
           "page": "/?district=Al+Reem+Island&range=6m&sort=project_name&dir=asc",
           "sessions": 22
         },
         {
-          "page": "/?district=Al+Reef&project=Radiant+Atrium&range=6m&propType=apartment",
-          "sessions": 21
-        },
-        {
-          "page": "/?district=Al+Reem+Island",
+          "page": "/?project=Noya+-+Phase+3+-+Luma&type=ready&propType=villa",
           "sessions": 20
         },
         {
-          "page": "/?project=Noya+-+Phase+3+-+Luma&type=ready&propType=villa",
+          "page": "/investors/rental-yield",
           "sessions": 20
         }
       ]
@@ -248,6 +248,6 @@
     "total_signups": 351,
     "new_signups_7d": 0,
     "new_signups_30d": 0,
-    "email_subscribers": 118
+    "email_subscribers": 123
   }
 }

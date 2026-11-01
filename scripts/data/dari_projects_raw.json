@@ -3,136 +3,136 @@
   "parse_errors": 0,
   "projects": [
     {
-      "name": "Nad Al Dhabi North",
-      "type": "Villas",
-      "status": "New",
-      "project_number": "20260000929354",
-      "completion_pct": 0,
-      "classification": "Residential",
-      "district": "Al Jubail Island",
-      "community": "JS",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE703/image-galary/final/236858431036781.jpg"
-    },
-    {
-      "name": "Bab Al Qasr Garden Residence 65",
+      "name": "Sei Saadiyat 1",
       "type": "Building",
       "status": "New",
-      "project_number": "20260000932334",
+      "project_number": "20260001482662",
       "completion_pct": 0,
       "classification": "Mixed use",
+      "district": "Al Saadiyat Island",
+      "community": "SDN8",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE730/image-galary/final/553285625056881.png"
+    },
+    {
+      "name": "Ohana Development Manchester City Yas Residences - G",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20260001530866",
+      "completion_pct": 0,
+      "classification": null,
+      "district": "Al Rahah",
+      "community": "RBE1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE747/image-galary/final/732544317944740.jpeg"
+    },
+    {
+      "name": "Ohana Development Manchester City Yas Residences - F",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20260001530873",
+      "completion_pct": 0,
+      "classification": null,
+      "district": "Al Rahah",
+      "community": "RBE1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE748/image-galary/final/923186830582086.jpeg"
+    },
+    {
+      "name": "Ohana Development Jacob & Co Beachfront Living - B",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20260001503214",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Ghadeer Al Tayr",
+      "community": "Al Jarf",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE749/image-galary/final/908712819581117.png"
+    },
+    {
+      "name": "Ohana Development Manchester City Yas Residences - E",
+      "type": "Plot",
+      "status": "New",
+      "project_number": "20260001530876",
+      "completion_pct": 0,
+      "classification": null,
+      "district": "Al Rahah",
+      "community": "RBE1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE750/image-galary/final/454699856011890.jpeg"
+    },
+    {
+      "name": "Ohana Development Manchester City Yas Residences - I",
+      "type": "Building",
+      "status": "New",
+      "project_number": "20260000986080",
+      "completion_pct": 0,
+      "classification": "Mixed use",
+      "district": "Al Rahah",
+      "community": "RBE1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE745/image-galary/final/556315870642095.png"
+    },
+    {
+      "name": "Ohana Real Estate Development & Construction Mansions Phase - 3",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20250000692065",
+      "completion_pct": 0,
+      "classification": "Residential",
+      "district": "Ghadeer Al Tayr",
+      "community": "Al Jarf",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE746/image-galary/final/367395105883902.jpg"
+    },
+    {
+      "name": "Fay Hills (Fay Valley)",
+      "type": "Villas",
+      "status": "New",
+      "project_number": "20260000925536",
+      "completion_pct": 0,
+      "classification": "Residential",
       "district": "Khalifa City",
       "community": "SE45_02",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE720/image-galary/final/764484448128278.jpeg"
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE700/image-galary/final/349236896588326.jpg"
     },
     {
-      "name": "QASR AL JURF 3C",
+      "name": "Ohana Development Manchester City Yas Residences - H",
       "type": "Plot",
       "status": "New",
-      "project_number": "20260000965544",
+      "project_number": "20260001522567",
       "completion_pct": 0,
       "classification": null,
-      "district": "Ghadeer Al Tayr",
-      "community": "Al Jarf",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE719/image-galary/final/571023677504184.png"
+      "district": "Al Rahah",
+      "community": "RBE1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE744/image-galary/final/207822174111362.png"
     },
     {
-      "name": "Bashayer Residences 5 & 6.",
-      "type": "Building",
-      "status": "New",
-      "project_number": "20260000929121",
-      "completion_pct": 0,
-      "classification": "Residential",
-      "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE717/image-galary/final/629041361223600.jpg"
-    },
-    {
-      "name": "Hudayriyat Golf Estates Villas",
+      "name": "Al Ghadeer Parks 2",
       "type": "Villas",
       "status": "New",
-      "project_number": "20260000881430",
+      "project_number": "20260001480824",
       "completion_pct": 0,
       "classification": "Residential",
-      "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE691/image-galary/final/562958405422576.png"
+      "district": "Al Layyan",
+      "community": "Seih Al Sedeirah 10",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE732/image-galary/final/953391748991748.png"
     },
     {
-      "name": "Hudayriyat Golf Estates Townhomes",
+      "name": "Yas Canal",
       "type": "Villas",
       "status": "New",
-      "project_number": "20260000881436",
-      "completion_pct": 0,
-      "classification": "Residential",
-      "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE691/image-galary/final/948390404028958.png"
-    },
-    {
-      "name": "Hudayriyat Golf Estates Waterfront",
-      "type": "Plot",
-      "status": "New",
-      "project_number": "20260000881422",
-      "completion_pct": 0,
-      "classification": null,
-      "district": "Al Hidayriyyat",
-      "community": "Al Hidayriyyat Island",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE691/image-galary/final/302847515918923.jpg"
-    },
-    {
-      "name": "The Orchard at Sobha City - Phase 1",
-      "type": "Villas",
-      "status": "New",
-      "project_number": "20260000895007",
-      "completion_pct": 0,
-      "classification": "Residential",
-      "district": "Al Bahyah",
-      "community": "RBE2",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE713/image-galary/final/702291366449911.jpg"
-    },
-    {
-      "name": "Amwaj 1",
-      "type": "Building",
-      "status": "Built",
-      "project_number": "20250000539945",
-      "completion_pct": 100,
+      "project_number": "20260000773844",
+      "completion_pct": 12,
       "classification": "Residential",
       "district": "Al Rahah",
-      "community": "RBW3",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE710/image-galary/final/990547608986881.jpg"
+      "community": "RBE1",
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE743/image-galary/final/820626145464599.png"
     },
     {
-      "name": "Marina Royal Compound",
-      "type": "Villas",
-      "status": "New",
-      "project_number": "20260000831718",
-      "completion_pct": 2,
-      "classification": "Residential",
-      "district": "Al Kasir",
-      "community": "Marina Royal Compound",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE709/image-galary/final/528820535283292.jpeg"
-    },
-    {
-      "name": "QASR AL JURF 3B",
-      "type": "Villa/Building",
-      "status": "New",
-      "project_number": "20250000662582",
-      "completion_pct": 0,
-      "classification": "Residential",
-      "district": "Ghadeer Al Tayr",
-      "community": "Al Jarf",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE707/image-galary/final/671024371563899.png"
-    },
-    {
-      "name": "ICONA Residence",
+      "name": "Zaitouna Residence",
       "type": "Building",
       "status": "New",
-      "project_number": "20260000775027",
-      "completion_pct": 20,
+      "project_number": "20260001484664",
+      "completion_pct": 90,
       "classification": "Mixed use",
       "district": "Al Shamkhah",
       "community": "SH36",
-      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE701/image-galary/final/931622541563377.jpeg"
+      "image_url": "https://dmtstrguae1dev.blob.core.windows.net/public/projects/prd/AE742/image-galary/final/443895237864892.jpeg"
     }
   ]
 }

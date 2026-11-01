@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-01T05:29:33.844441+00:00",
-  "total_licensed": 469,
+  "generated_at": "2026-11-01T08:46:43.063793+00:00",
+  "total_licensed": 450,
   "by_profession": [
     {
       "label": "Brokers",
@@ -8,11 +8,11 @@
     },
     {
       "label": "Surveyors",
-      "count": 164
+      "count": 151
     },
     {
       "label": "Evaluators",
-      "count": 133
+      "count": 131
     },
     {
       "label": "Account trustees",
@@ -20,7 +20,7 @@
     },
     {
       "label": "Developers",
-      "count": 140
+      "count": 136
     },
     {
       "label": "Auctioneers",
@@ -28,14 +28,39 @@
     }
   ],
   "developer_breakdown": {
-    "Primary Developer": 35,
-    "Secondary Developer": 98
+    "Primary Developer": 32,
+    "Secondary Developer": 95,
+    "WEBRIDGE PROPERTIES L.L.C.": 1
   },
   "broker_breakdown": {},
   "samples": {
     "Evaluators": [
       {
+        "name": "3 D APPRAISAL INTERNATIONAL REAL ESTATE VALUATION SERVICES L.L.C - BRANCH OF ABU DHABI 1",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "AARONZ & CO VALUATION SERVICES - BRANCH OF ABU DHABI",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "ABDEL MAJEED MOHAMMAD A M AL KHALIDI",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "ABDULLA ALI SAEED MOHAMMED ALMALEKI ALMASOORI",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "ABHISHEK ROOCHAN",
+        "classification": "Evaluator"
+      },
+      {
         "name": "ABU DHABI COMMERCIAL ENGINEERING SERVICES - L.L.C - S.P.C",
+        "classification": "Evaluator"
+      },
+      {
+        "name": "Abu SALEM REAL ESTATE EST",
         "classification": "Evaluator"
       },
       {
@@ -51,35 +76,11 @@
         "classification": "Evaluator"
       },
       {
+        "name": "AHMED MOHAMED SAYED AHMED MOHAMED",
+        "classification": "Evaluator"
+      },
+      {
         "name": "AHMED W A ALMALLAHI",
-        "classification": "Evaluator"
-      },
-      {
-        "name": "AHMET OZGUR",
-        "classification": "Evaluator"
-      },
-      {
-        "name": "ALBERT CHEN",
-        "classification": "Evaluator"
-      },
-      {
-        "name": "ALEXEY KLETSOV",
-        "classification": "Evaluator"
-      },
-      {
-        "name": "AMER SAKHR MAWAS",
-        "classification": "Evaluator"
-      },
-      {
-        "name": "AMIR NASSIRI",
-        "classification": "Evaluator"
-      },
-      {
-        "name": "ANDREI SHCHETININ",
-        "classification": "Evaluator"
-      },
-      {
-        "name": "ANDREW MARK LAVER",
         "classification": "Evaluator"
       }
     ],
@@ -91,7 +92,19 @@
     ],
     "Surveyors": [
       {
-        "name": "ABDALLA MOHAMED MOHAMED ELSAYED ELMOKABAR",
+        "name": "Profession License Number",
+        "classification": "ABBAS ALI AKBAR ALI AKBAR"
+      },
+      {
+        "name": "ABDALLA ABDELHADI ABDALLA ABDELHADI MAHMOUD GAD",
+        "classification": "Surveying"
+      },
+      {
+        "name": "ABDALLA HOSAMELDIN MOHAMED ABDELALL",
+        "classification": "Surveying"
+      },
+      {
+        "name": "ABDALLAH THEEB ABDELALL YAGHI",
         "classification": "Surveying"
       },
       {
@@ -103,15 +116,7 @@
         "classification": "Surveying"
       },
       {
-        "name": "ABDULSAMIE OTHMAN AHMED MOHAMMED",
-        "classification": "Surveying"
-      },
-      {
-        "name": "ABDULSAMIE OTHMAN AHMED MOHAMMED",
-        "classification": "Surveying"
-      },
-      {
-        "name": "ABDUR RAUF MAJEED ABDUL MAJEED KHAN",
+        "name": "ABHINANDH RAMASAMY RAMASAMY",
         "classification": "Surveying"
       },
       {
@@ -132,10 +137,6 @@
       },
       {
         "name": "AHMED ALI ABDULKARIM AHMED",
-        "classification": "Surveying"
-      },
-      {
-        "name": "AHMED ELOBAED MOHAMMED HAMED",
         "classification": "Surveying"
       }
     ],

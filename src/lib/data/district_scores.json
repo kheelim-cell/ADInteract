@@ -8,7 +8,7 @@
     "tx_count_12m": 3726,
     "median_psf_12m": 1924,
     "offplan_pct": 100.0,
-    "computed_at": "2026-11-04T08:13:05.847889+00:00",
+    "computed_at": "2026-11-05T08:39:32.210411+00:00",
     "gec": {
       "total": 86,
       "velocity": {
@@ -35,7 +35,7 @@
       "entry": {
         "score": 10,
         "max": 10,
-        "entry_ratio": 2.13
+        "entry_ratio": 2.12
       }
     },
     "score": 86,
@@ -47,16 +47,16 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 0.0,
     "trend_direction": "flat",
-    "tx_count_12m": 468,
+    "tx_count_12m": 476,
     "median_psf_12m": 3869,
     "offplan_pct": 100.0,
-    "computed_at": "2026-11-04T08:13:06.562016+00:00",
+    "computed_at": "2026-11-05T08:39:32.955027+00:00",
     "gec": {
       "total": 77,
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 220.0
+        "velocity_ratio": 228.0
       },
       "momentum": {
         "score": 12,
@@ -77,7 +77,7 @@
       "entry": {
         "score": 10,
         "max": 10,
-        "entry_ratio": 2.36
+        "entry_ratio": 2.45
       }
     },
     "score": 77,
@@ -87,12 +87,12 @@
     "slug": "al-layyan",
     "district_name": "Al Layyan",
     "score_type": "both",
-    "ready_pct_alltime": 55.8,
+    "ready_pct_alltime": 55.3,
     "trend_direction": "up",
-    "tx_count_12m": 606,
+    "tx_count_12m": 623,
     "median_psf_12m": 1380,
-    "offplan_pct": 61.9,
-    "computed_at": "2026-11-04T08:13:05.962568+00:00",
+    "offplan_pct": 63.2,
+    "computed_at": "2026-11-05T08:39:32.332986+00:00",
     "ys": {
       "total": 53,
       "momentum": {
@@ -109,7 +109,7 @@
       "liquidity": {
         "score": 20,
         "max": 20,
-        "recency_ratio": 6.37
+        "recency_ratio": 6.73
       },
       "stability": {
         "score": 5,
@@ -127,7 +127,7 @@
       "velocity": {
         "score": 30,
         "max": 30,
-        "velocity_ratio": 373.0
+        "velocity_ratio": 392.0
       },
       "momentum": {
         "score": 12,
@@ -148,7 +148,7 @@
       "entry": {
         "score": 10,
         "max": 10,
-        "entry_ratio": 559.5
+        "entry_ratio": 588.0
       }
     },
     "score": 70,
@@ -163,7 +163,7 @@
     "tx_count_12m": 540,
     "median_psf_12m": 2302,
     "offplan_pct": 68.5,
-    "computed_at": "2026-11-04T08:13:06.005194+00:00",
+    "computed_at": "2026-11-05T08:39:32.376975+00:00",
     "ys": {
       "total": 67,
       "momentum": {
@@ -234,7 +234,7 @@
     "tx_count_12m": 351,
     "median_psf_12m": 1779,
     "offplan_pct": 97.4,
-    "computed_at": "2026-11-04T08:13:06.398040+00:00",
+    "computed_at": "2026-11-05T08:39:32.784295+00:00",
     "gec": {
       "total": 67,
       "velocity": {
@@ -273,16 +273,16 @@
     "score_type": "yield_stability",
     "ready_pct_alltime": 95.7,
     "trend_direction": "up",
-    "tx_count_12m": 343,
-    "median_psf_12m": 1030,
+    "tx_count_12m": 342,
+    "median_psf_12m": 1029,
     "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:06.135382+00:00",
+    "computed_at": "2026-11-05T08:39:32.512905+00:00",
     "ys": {
       "total": 62,
       "momentum": {
         "score": 24,
         "max": 30,
-        "pct_change": 24.8,
+        "pct_change": 24.7,
         "direction": "up"
       },
       "yield": {
@@ -293,7 +293,7 @@
       "liquidity": {
         "score": 9,
         "max": 20,
-        "recency_ratio": 0.88
+        "recency_ratio": 0.89
       },
       "stability": {
         "score": 8,
@@ -313,12 +313,12 @@
     "slug": "al-jubail-island",
     "district_name": "Al Jubail Island",
     "score_type": "growth_early_cycle",
-    "ready_pct_alltime": 9.2,
+    "ready_pct_alltime": 9.3,
     "trend_direction": "up",
-    "tx_count_12m": 268,
+    "tx_count_12m": 270,
     "median_psf_12m": 1859,
-    "offplan_pct": 60.4,
-    "computed_at": "2026-11-04T08:13:05.896954+00:00",
+    "offplan_pct": 60.0,
+    "computed_at": "2026-11-05T08:39:32.262759+00:00",
     "gec": {
       "total": 60,
       "velocity": {
@@ -335,7 +335,7 @@
       "appreciation": {
         "score": 15,
         "max": 20,
-        "ratio": 1.26
+        "ratio": 1.25
       },
       "developer": {
         "score": 15,
@@ -360,7 +360,7 @@
     "tx_count_12m": 11,
     "median_psf_12m": 293,
     "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:06.484699+00:00",
+    "computed_at": "2026-11-05T08:39:32.874591+00:00",
     "ys": {
       "total": 59,
       "momentum": {
@@ -397,14 +397,14 @@
     "slug": "al-kasir",
     "district_name": "Al Kasir",
     "score_type": "yield_stability",
-    "ready_pct_alltime": 81.9,
+    "ready_pct_alltime": 82.1,
     "trend_direction": "down",
-    "tx_count_12m": 31,
+    "tx_count_12m": 33,
     "median_psf_12m": 2367,
-    "offplan_pct": 3.2,
-    "computed_at": "2026-11-04T08:13:05.913334+00:00",
+    "offplan_pct": 3.0,
+    "computed_at": "2026-11-05T08:39:32.279758+00:00",
     "ys": {
-      "total": 56,
+      "total": 58,
       "momentum": {
         "score": 13,
         "max": 30,
@@ -414,12 +414,12 @@
       "yield": {
         "score": 22,
         "max": 25,
-        "gross_yield_pct": 7.3
+        "gross_yield_pct": 7.8
       },
       "liquidity": {
-        "score": 4,
+        "score": 6,
         "max": 20,
-        "recency_ratio": 0.32
+        "recency_ratio": 0.54
       },
       "stability": {
         "score": 12,
@@ -432,7 +432,7 @@
         "ratio": null
       }
     },
-    "score": 56,
+    "score": 58,
     "color": "amber"
   },
   "Rabdan": {
@@ -441,10 +441,10 @@
     "score_type": "yield_stability",
     "ready_pct_alltime": 100.0,
     "trend_direction": "up",
-    "tx_count_12m": 66,
+    "tx_count_12m": 65,
     "median_psf_12m": 1200,
     "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:06.545738+00:00",
+    "computed_at": "2026-11-05T08:39:32.937158+00:00",
     "ys": {
       "total": 56,
       "momentum": {
@@ -461,7 +461,7 @@
       "liquidity": {
         "score": 7,
         "max": 20,
-        "recency_ratio": 0.67
+        "recency_ratio": 0.68
       },
       "stability": {
         "score": 12,
@@ -483,10 +483,10 @@
     "score_type": "yield_stability",
     "ready_pct_alltime": 64.5,
     "trend_direction": "up",
-    "tx_count_12m": 1094,
+    "tx_count_12m": 1092,
     "median_psf_12m": 1927,
-    "offplan_pct": 71.8,
-    "computed_at": "2026-11-04T08:13:06.100341+00:00",
+    "offplan_pct": 71.9,
+    "computed_at": "2026-11-05T08:39:32.476787+00:00",
     "ys": {
       "total": 55,
       "momentum": {
@@ -503,7 +503,7 @@
       "liquidity": {
         "score": 8,
         "max": 20,
-        "recency_ratio": 0.83
+        "recency_ratio": 0.82
       },
       "stability": {
         "score": 5,
@@ -519,48 +519,6 @@
     "score": 55,
     "color": "amber"
   },
-  "Central District": {
-    "slug": "central-district",
-    "district_name": "Central District",
-    "score_type": "yield_stability",
-    "ready_pct_alltime": 100.0,
-    "trend_direction": "up",
-    "tx_count_12m": 12,
-    "median_psf_12m": 316,
-    "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:06.351110+00:00",
-    "ys": {
-      "total": 54,
-      "momentum": {
-        "score": 20,
-        "max": 30,
-        "pct_change": 13.5,
-        "direction": "up"
-      },
-      "yield": {
-        "score": 12,
-        "max": 25,
-        "gross_yield_pct": null
-      },
-      "liquidity": {
-        "score": 10,
-        "max": 20,
-        "recency_ratio": 1.0
-      },
-      "stability": {
-        "score": 7,
-        "max": 15,
-        "cov": null
-      },
-      "appreciation": {
-        "score": 5,
-        "max": 10,
-        "ratio": null
-      }
-    },
-    "score": 54,
-    "color": "amber"
-  },
   "Shakhbout City": {
     "slug": "shakhbout-city",
     "district_name": "Shakhbout City",
@@ -570,7 +528,7 @@
     "tx_count_12m": 10,
     "median_psf_12m": 881,
     "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:06.582068+00:00",
+    "computed_at": "2026-11-05T08:39:32.977294+00:00",
     "ys": {
       "total": 53,
       "momentum": {
@@ -612,7 +570,7 @@
     "tx_count_12m": 19,
     "median_psf_12m": 1163,
     "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:06.037141+00:00",
+    "computed_at": "2026-11-05T08:39:32.410986+00:00",
     "ys": {
       "total": 52,
       "momentum": {
@@ -654,7 +612,7 @@
     "tx_count_12m": 30,
     "median_psf_12m": 847,
     "offplan_pct": 6.7,
-    "computed_at": "2026-11-04T08:13:06.199159+00:00",
+    "computed_at": "2026-11-05T08:39:32.577819+00:00",
     "ys": {
       "total": 52,
       "momentum": {
@@ -691,12 +649,12 @@
     "slug": "yas-island",
     "district_name": "Yas Island",
     "score_type": "growth_early_cycle",
-    "ready_pct_alltime": 15.1,
+    "ready_pct_alltime": 15.2,
     "trend_direction": "up",
-    "tx_count_12m": 4824,
+    "tx_count_12m": 4827,
     "median_psf_12m": 2247,
     "offplan_pct": 88.6,
-    "computed_at": "2026-11-04T08:13:06.630044+00:00",
+    "computed_at": "2026-11-05T08:39:33.025669+00:00",
     "gec": {
       "total": 52,
       "velocity": {
@@ -735,16 +693,16 @@
     "score_type": "both",
     "ready_pct_alltime": 51.5,
     "trend_direction": "up",
-    "tx_count_12m": 7469,
-    "median_psf_12m": 1678,
-    "offplan_pct": 70.1,
-    "computed_at": "2026-11-04T08:13:06.165957+00:00",
+    "tx_count_12m": 7453,
+    "median_psf_12m": 1681,
+    "offplan_pct": 70.2,
+    "computed_at": "2026-11-05T08:39:32.544007+00:00",
     "ys": {
       "total": 51,
       "momentum": {
         "score": 19,
         "max": 30,
-        "pct_change": 13.1,
+        "pct_change": 12.9,
         "direction": "up"
       },
       "yield": {
@@ -806,10 +764,10 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 1.2,
     "trend_direction": "up",
-    "tx_count_12m": 841,
+    "tx_count_12m": 837,
     "median_psf_12m": 1157,
     "offplan_pct": 98.9,
-    "computed_at": "2026-11-04T08:13:05.776543+00:00",
+    "computed_at": "2026-11-05T08:39:32.136300+00:00",
     "gec": {
       "total": 50,
       "velocity": {
@@ -820,7 +778,7 @@
       "momentum": {
         "score": 25,
         "max": 25,
-        "pct_change": 150.9,
+        "pct_change": 150.6,
         "direction": "up"
       },
       "appreciation": {
@@ -836,7 +794,49 @@
       "entry": {
         "score": 7,
         "max": 10,
-        "entry_ratio": 1.43
+        "entry_ratio": 1.49
+      }
+    },
+    "score": 50,
+    "color": "amber"
+  },
+  "Central District": {
+    "slug": "central-district",
+    "district_name": "Central District",
+    "score_type": "yield_stability",
+    "ready_pct_alltime": 100.0,
+    "trend_direction": "up",
+    "tx_count_12m": 12,
+    "median_psf_12m": 316,
+    "offplan_pct": 0.0,
+    "computed_at": "2026-11-05T08:39:32.734847+00:00",
+    "ys": {
+      "total": 50,
+      "momentum": {
+        "score": 20,
+        "max": 30,
+        "pct_change": 13.5,
+        "direction": "up"
+      },
+      "yield": {
+        "score": 12,
+        "max": 25,
+        "gross_yield_pct": null
+      },
+      "liquidity": {
+        "score": 6,
+        "max": 20,
+        "recency_ratio": 0.6
+      },
+      "stability": {
+        "score": 7,
+        "max": 15,
+        "cov": null
+      },
+      "appreciation": {
+        "score": 5,
+        "max": 10,
+        "ratio": null
       }
     },
     "score": 50,
@@ -851,18 +851,18 @@
     "tx_count_12m": 1070,
     "median_psf_12m": 1259,
     "offplan_pct": 79.3,
-    "computed_at": "2026-11-04T08:13:06.452233+00:00",
+    "computed_at": "2026-11-05T08:39:32.840998+00:00",
     "gec": {
       "total": 50,
       "velocity": {
         "score": 11,
         "max": 30,
-        "velocity_ratio": 1.13
+        "velocity_ratio": 1.12
       },
       "momentum": {
         "score": 15,
         "max": 25,
-        "pct_change": 8.3,
+        "pct_change": 8.4,
         "direction": "up"
       },
       "appreciation": {
@@ -893,7 +893,7 @@
     "tx_count_12m": 13,
     "median_psf_12m": 351,
     "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:05.879958+00:00",
+    "computed_at": "2026-11-05T08:39:32.244780+00:00",
     "ys": {
       "total": 48,
       "momentum": {
@@ -932,21 +932,21 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 11.1,
     "trend_direction": "up",
-    "tx_count_12m": 901,
-    "median_psf_12m": 1257,
-    "offplan_pct": 71.8,
-    "computed_at": "2026-11-04T08:13:06.282713+00:00",
+    "tx_count_12m": 899,
+    "median_psf_12m": 1255,
+    "offplan_pct": 71.7,
+    "computed_at": "2026-11-05T08:39:32.662775+00:00",
     "gec": {
       "total": 48,
       "velocity": {
         "score": 11,
         "max": 30,
-        "velocity_ratio": 1.14
+        "velocity_ratio": 1.13
       },
       "momentum": {
         "score": 14,
         "max": 25,
-        "pct_change": 7.2,
+        "pct_change": 6.8,
         "direction": "up"
       },
       "appreciation": {
@@ -962,7 +962,7 @@
       "entry": {
         "score": 2,
         "max": 10,
-        "entry_ratio": 0.36
+        "entry_ratio": 0.35
       }
     },
     "score": 48,
@@ -977,7 +977,7 @@
     "tx_count_12m": 11,
     "median_psf_12m": 720,
     "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:05.793930+00:00",
+    "computed_at": "2026-11-05T08:39:32.154049+00:00",
     "ys": {
       "total": 47,
       "momentum": {
@@ -1014,12 +1014,12 @@
     "slug": "bani-yas",
     "district_name": "Bani Yas",
     "score_type": "yield_stability",
-    "ready_pct_alltime": 65.0,
+    "ready_pct_alltime": 64.8,
     "trend_direction": "up",
-    "tx_count_12m": 152,
+    "tx_count_12m": 153,
     "median_psf_12m": 1137,
-    "offplan_pct": 75.0,
-    "computed_at": "2026-11-04T08:13:06.333841+00:00",
+    "offplan_pct": 75.2,
+    "computed_at": "2026-11-05T08:39:32.716157+00:00",
     "ys": {
       "total": 47,
       "momentum": {
@@ -1036,12 +1036,12 @@
       "liquidity": {
         "score": 6,
         "max": 20,
-        "recency_ratio": 0.53
+        "recency_ratio": 0.56
       },
       "stability": {
         "score": 8,
         "max": 15,
-        "cov": 0.18
+        "cov": 0.176
       },
       "appreciation": {
         "score": 1,
@@ -1058,21 +1058,21 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 18.2,
     "trend_direction": "up",
-    "tx_count_12m": 2238,
-    "median_psf_12m": 3186,
-    "offplan_pct": 84.2,
-    "computed_at": "2026-11-04T08:13:06.222085+00:00",
+    "tx_count_12m": 2250,
+    "median_psf_12m": 3191,
+    "offplan_pct": 84.3,
+    "computed_at": "2026-11-05T08:39:32.599634+00:00",
     "gec": {
-      "total": 45,
+      "total": 46,
       "velocity": {
-        "score": 7,
+        "score": 8,
         "max": 30,
-        "velocity_ratio": 0.79
+        "velocity_ratio": 0.8
       },
       "momentum": {
         "score": 25,
         "max": 25,
-        "pct_change": 44.9,
+        "pct_change": 45.8,
         "direction": "up"
       },
       "appreciation": {
@@ -1088,10 +1088,10 @@
       "entry": {
         "score": 2,
         "max": 10,
-        "entry_ratio": 0.66
+        "entry_ratio": 0.68
       }
     },
-    "score": 45,
+    "score": 46,
     "color": "red"
   },
   "Ghantout": {
@@ -1100,21 +1100,21 @@
     "score_type": "growth_early_cycle",
     "ready_pct_alltime": 0.0,
     "trend_direction": "up",
-    "tx_count_12m": 369,
+    "tx_count_12m": 362,
     "median_psf_12m": 2177,
     "offplan_pct": 100.0,
-    "computed_at": "2026-11-04T08:13:06.414619+00:00",
+    "computed_at": "2026-11-05T08:39:32.801803+00:00",
     "gec": {
       "total": 45,
       "velocity": {
         "score": 2,
         "max": 30,
-        "velocity_ratio": 0.22
+        "velocity_ratio": 0.21
       },
       "momentum": {
         "score": 16,
         "max": 25,
-        "pct_change": 14.1,
+        "pct_change": 13.7,
         "direction": "up"
       },
       "appreciation": {
@@ -1145,7 +1145,7 @@
     "tx_count_12m": 15,
     "median_psf_12m": 615,
     "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:06.650355+00:00",
+    "computed_at": "2026-11-05T08:39:33.047240+00:00",
     "ys": {
       "total": 43,
       "momentum": {
@@ -1187,7 +1187,7 @@
     "tx_count_12m": 1002,
     "median_psf_12m": 1502,
     "offplan_pct": 94.0,
-    "computed_at": "2026-11-04T08:13:06.669940+00:00",
+    "computed_at": "2026-11-05T08:39:33.067190+00:00",
     "gec": {
       "total": 41,
       "velocity": {
@@ -1214,7 +1214,7 @@
       "entry": {
         "score": 4,
         "max": 10,
-        "entry_ratio": 0.86
+        "entry_ratio": 0.85
       }
     },
     "score": 41,
@@ -1229,7 +1229,7 @@
     "tx_count_12m": 105,
     "median_psf_12m": 1361,
     "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:06.255688+00:00",
+    "computed_at": "2026-11-05T08:39:32.634503+00:00",
     "gec": {
       "total": 37,
       "velocity": {
@@ -1271,7 +1271,7 @@
     "tx_count_12m": 627,
     "median_psf_12m": 3771,
     "offplan_pct": 100.0,
-    "computed_at": "2026-11-04T08:13:06.376508+00:00",
+    "computed_at": "2026-11-05T08:39:32.761915+00:00",
     "gec": {
       "total": 37,
       "velocity": {
@@ -1310,10 +1310,10 @@
     "score_type": "yield_stability",
     "ready_pct_alltime": 97.2,
     "trend_direction": "down",
-    "tx_count_12m": 21,
+    "tx_count_12m": 20,
     "median_psf_12m": 387,
     "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:06.510919+00:00",
+    "computed_at": "2026-11-05T08:39:32.900013+00:00",
     "ys": {
       "total": 32,
       "momentum": {
@@ -1330,7 +1330,7 @@
       "liquidity": {
         "score": 13,
         "max": 20,
-        "recency_ratio": 1.5
+        "recency_ratio": 1.62
       },
       "stability": {
         "score": 2,
@@ -1355,7 +1355,7 @@
     "tx_count_12m": 44,
     "median_psf_12m": 389,
     "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:05.944865+00:00",
+    "computed_at": "2026-11-05T08:39:32.314043+00:00",
     "ys": {
       "total": 28,
       "momentum": {
@@ -1397,7 +1397,7 @@
     "tx_count_12m": 22,
     "median_psf_12m": 706,
     "offplan_pct": 0.0,
-    "computed_at": "2026-11-04T08:13:06.468922+00:00",
+    "computed_at": "2026-11-05T08:39:32.858430+00:00",
     "ys": {
       "total": 26,
       "momentum": {

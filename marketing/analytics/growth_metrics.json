@@ -1,60 +1,60 @@
 {
-  "generated_at": "2026-11-02T10:46:16.036290+00:00",
+  "generated_at": "2026-11-09T11:09:35.934744+00:00",
   "ga4": {
     "period_7d": {
-      "sessions": 1508,
-      "total_users": 1021,
-      "new_users": 815,
-      "returning_users_pct": 20.2,
-      "share_events": 8,
+      "sessions": 1214,
+      "total_users": 784,
+      "new_users": 588,
+      "returning_users_pct": 25.0,
+      "share_events": 2,
       "top_sources": [
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 955
+          "sessions": 744
         },
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 492
-        },
-        {
-          "source": "accounts.google.com",
-          "medium": "referral",
-          "sessions": 18
-        },
-        {
-          "source": "(not set)",
-          "medium": "(not set)",
-          "sessions": 15
+          "sessions": 419
         },
         {
           "source": "bing",
           "medium": "organic",
-          "sessions": 14
+          "sessions": 16
+        },
+        {
+          "source": "(not set)",
+          "medium": "(not set)",
+          "sessions": 13
         },
         {
           "source": "yandex.kz",
           "medium": "referral",
-          "sessions": 11
+          "sessions": 13
         },
         {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
-          "sessions": 5
-        },
-        {
-          "source": "duckduckgo",
-          "medium": "organic",
-          "sessions": 3
+          "sessions": 4
         },
         {
           "source": "l.instagram.com",
           "medium": "referral",
+          "sessions": 4
+        },
+        {
+          "source": "yahoo",
+          "medium": "organic",
+          "sessions": 4
+        },
+        {
+          "source": "facebook.com",
+          "medium": "referral",
           "sessions": 2
         },
         {
-          "source": "ntp.msn.com",
+          "source": "snapchat.com",
           "medium": "referral",
           "sessions": 2
         }
@@ -62,132 +62,132 @@
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 368
+          "sessions": 372
         },
         {
           "page": "(not set)",
-          "sessions": 94
-        },
-        {
-          "page": "/?project=Marina+Gate+I&range=3m&layout=2+beds",
-          "sessions": 62
-        },
-        {
-          "page": "/?project=Marina+Gate+I&layout=2+beds",
-          "sessions": 58
-        },
-        {
-          "page": "/?project=Marina+Gate+Ii&layout=2+beds",
-          "sessions": 44
-        },
-        {
-          "page": "/?project=Marina+Gate+Ii&range=3m&layout=2+beds",
-          "sessions": 44
+          "sessions": 72
         },
         {
           "page": "/ar",
-          "sessions": 28
-        },
-        {
-          "page": "/?project=Diva+At+The+Bay+1&range=3m&layout=studio",
-          "sessions": 22
-        },
-        {
-          "page": "/?project=Diva+At+The+Bay+2&range=3m&layout=studio",
-          "sessions": 22
-        },
-        {
-          "page": "/?project=Manarat+Living+Iii&layout=1+bed",
-          "sessions": 22
-        },
-        {
-          "page": "/?project=Manarat+Living+Iii&range=3m&layout=1+bed",
-          "sessions": 22
-        },
-        {
-          "page": "/?project=Manarat+Living+Iii&range=3m&layout=2+beds",
-          "sessions": 22
-        },
-        {
-          "page": "/?district=Al+Reem+Island",
-          "sessions": 19
-        },
-        {
-          "page": "/?district=Al+Reem+Island&range=custom&from=2026-10-01&to=2026-10-19&type=off-plan&seq=primary&propType=apartment%2Cduplex%2Ctownhouse+%2F+attached+villa%2Cvilla&layout=1+bed%2C2+beds%2C3+beds%2Cstudio%2C4+beds%2C5+beds%2C6%2B+beds",
-          "sessions": 13
+          "sessions": 16
         },
         {
           "page": "/project/Sea La Vie?project=Sea+La+Vie&layout=2+beds",
+          "sessions": 13
+        },
+        {
+          "page": "/?district=Al+Reem+Island&range=custom&from=2026-10-01&to=2026-10-19&type=off-plan&seq=primary&propType=apartment%2Cduplex%2Ctownhouse+%2F+attached+villa%2Cvilla&layout=1+bed%2C2+beds%2C3+beds%2Cstudio%2C4+beds%2C5+beds%2C6%2B+beds",
           "sessions": 11
+        },
+        {
+          "page": "",
+          "sessions": 9
+        },
+        {
+          "page": "/?project=Noya+-+Phase+3+-+Luma",
+          "sessions": 9
+        },
+        {
+          "page": "/investors/calculator",
+          "sessions": 8
+        },
+        {
+          "page": "/?district=Al+Reem+Island",
+          "sessions": 7
+        },
+        {
+          "page": "/?project=Al+Zeina",
+          "sessions": 7
+        },
+        {
+          "page": "/?range=1m",
+          "sessions": 7
+        },
+        {
+          "page": "/?district=Yas+Island",
+          "sessions": 6
+        },
+        {
+          "page": "/?layout=2+beds",
+          "sessions": 6
+        },
+        {
+          "page": "/?project=Diva+At+The+Bay+1&layout=1+bed",
+          "sessions": 6
+        },
+        {
+          "page": "/?project=Diva+At+The+Bay+1&range=3m&layout=1+bed",
+          "sessions": 6
         }
       ]
     },
     "period_30d": {
-      "sessions": 4781,
-      "total_users": 2136,
-      "new_users": 1797,
-      "returning_users_pct": 15.9,
-      "share_events": 44,
+      "sessions": 4984,
+      "total_users": 2487,
+      "new_users": 2143,
+      "returning_users_pct": 13.8,
+      "share_events": 36,
       "top_sources": [
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 2393
+          "sessions": 2734
         },
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 2034
+          "sessions": 1948
         },
         {
           "source": "bing",
           "medium": "organic",
-          "sessions": 93
-        },
-        {
-          "source": "accounts.google.com",
-          "medium": "referral",
-          "sessions": 62
-        },
-        {
-          "source": "chatgpt.com",
-          "medium": "ai-assistant",
-          "sessions": 53
+          "sessions": 79
         },
         {
           "source": "yandex.kz",
           "medium": "referral",
-          "sessions": 38
+          "sessions": 48
+        },
+        {
+          "source": "accounts.google.com",
+          "medium": "referral",
+          "sessions": 44
+        },
+        {
+          "source": "chatgpt.com",
+          "medium": "ai-assistant",
+          "sessions": 40
         },
         {
           "source": "(not set)",
           "medium": "(not set)",
-          "sessions": 37
+          "sessions": 34
         },
         {
           "source": "l.instagram.com",
           "medium": "referral",
-          "sessions": 21
+          "sessions": 24
         },
         {
           "source": "ntp.msn.com",
           "medium": "referral",
-          "sessions": 16
+          "sessions": 9
         },
         {
-          "source": "l.facebook.com",
-          "medium": "referral",
-          "sessions": 10
+          "source": "duckduckgo",
+          "medium": "organic",
+          "sessions": 6
         }
       ],
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 1681
+          "sessions": 1640
         },
         {
           "page": "(not set)",
-          "sessions": 407
+          "sessions": 382
         },
         {
           "page": "/?project=Marina+Gate+I&range=3m&layout=2+beds",
@@ -199,7 +199,7 @@
         },
         {
           "page": "/ar",
-          "sessions": 67
+          "sessions": 71
         },
         {
           "page": "/?project=Marina+Gate+Ii&layout=2+beds",
@@ -211,35 +211,35 @@
         },
         {
           "page": "/?district=Al+Reem+Island",
-          "sessions": 50
-        },
-        {
-          "page": "/rental?rsort=median_rent&rdir=desc",
-          "sessions": 50
+          "sessions": 49
         },
         {
           "page": "/investors/calculator",
-          "sessions": 46
-        },
-        {
-          "page": "/?district=Yas+Island",
-          "sessions": 33
-        },
-        {
-          "page": "/?district=Al+Reem+Island&range=1m&type=ready&propType=apartment",
-          "sessions": 32
+          "sessions": 45
         },
         {
           "page": "/project/Sea La Vie?project=Sea+La+Vie&layout=2+beds",
-          "sessions": 31
+          "sessions": 44
+        },
+        {
+          "page": "/rental?rsort=median_rent&rdir=desc",
+          "sessions": 36
+        },
+        {
+          "page": "/?district=Al+Reem+Island&range=custom&from=2026-10-01&to=2026-10-19&type=off-plan&seq=primary&propType=apartment%2Cduplex%2Ctownhouse+%2F+attached+villa%2Cvilla&layout=1+bed%2C2+beds%2C3+beds%2Cstudio%2C4+beds%2C5+beds%2C6%2B+beds",
+          "sessions": 34
         },
         {
           "page": "/?project=Manarat+Living+Iii&layout=1+bed",
-          "sessions": 29
+          "sessions": 34
         },
         {
           "page": "/?project=Manarat+Living+Iii&range=3m&layout=1+bed",
-          "sessions": 29
+          "sessions": 34
+        },
+        {
+          "page": "/?project=Manarat+Living+Iii&range=3m&layout=2+beds",
+          "sessions": 33
         }
       ]
     }
@@ -248,6 +248,6 @@
     "total_signups": 351,
     "new_signups_7d": 0,
     "new_signups_30d": 0,
-    "email_subscribers": 125
+    "email_subscribers": 126
   }
 }

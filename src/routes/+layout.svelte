@@ -24,6 +24,20 @@
   let hreflangEn = $derived(`${SITE_URL}${localizeHref(basePath, { locale: 'en' })}`);
   let hreflangAr = $derived(`${SITE_URL}${localizeHref(basePath, { locale: 'ar' })}`);
 
+  // Reddit Pixel — inert until VITE_REDDIT_PIXEL_ID is set (same pattern as
+  // VITE_STAN_STORE_URL / VITE_INVESTOR_PRO_GATED in src/lib/supabase.ts).
+  // Toggle: Vercel dashboard → Project Settings → Environment Variables →
+  // VITE_REDDIT_PIXEL_ID, then redeploy. Fires site-wide (not scoped to the
+  // /area/ meta exclusion below) since conversion tracking needs every page.
+  const redditPixelId = import.meta.env.VITE_REDDIT_PIXEL_ID as string | undefined;
+  const redditPixelScript = redditPixelId
+    ? `<script>
+!function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+rdt('init','${redditPixelId}');
+rdt('track', 'PageVisit');
+<\/script>`
+    : null;
+
   onMount(async () => {
     try {
       await initDuckDB();
@@ -68,6 +82,10 @@
   <link rel="alternate" hreflang="en" href={hreflangEn} />
   <link rel="alternate" hreflang="ar" href={hreflangAr} />
   <link rel="alternate" hreflang="x-default" href={hreflangEn} />
+
+  {#if redditPixelScript}
+    {@html redditPixelScript}
+  {/if}
 
   <!-- /area/ pages set their own meta (title, description, OG, canonical) — don't double-emit.
        Check the de-localized path so this also catches /ar/area/... pages. -->

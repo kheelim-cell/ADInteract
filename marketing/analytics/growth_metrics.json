@@ -1,32 +1,32 @@
 {
-  "generated_at": "2026-11-16T10:51:04.703855+00:00",
+  "generated_at": "2026-11-23T12:02:03.308979+00:00",
   "ga4": {
     "period_7d": {
-      "sessions": 1406,
-      "total_users": 919,
-      "new_users": 753,
-      "returning_users_pct": 18.1,
-      "share_events": 4,
+      "sessions": 1209,
+      "total_users": 682,
+      "new_users": 497,
+      "returning_users_pct": 27.1,
+      "share_events": 6,
       "top_sources": [
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 913
+          "sessions": 687
         },
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 433
-        },
-        {
-          "source": "(not set)",
-          "medium": "(not set)",
-          "sessions": 24
+          "sessions": 461
         },
         {
           "source": "bing",
           "medium": "organic",
-          "sessions": 24
+          "sessions": 29
+        },
+        {
+          "source": "(not set)",
+          "medium": "(not set)",
+          "sessions": 19
         },
         {
           "source": "yandex.kz",
@@ -34,27 +34,27 @@
           "sessions": 13
         },
         {
-          "source": "yahoo",
-          "medium": "organic",
-          "sessions": 7
-        },
-        {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
           "sessions": 6
         },
         {
-          "source": "m.facebook.com",
-          "medium": "referral",
-          "sessions": 5
-        },
-        {
           "source": "facebook.com",
           "medium": "referral",
-          "sessions": 1
+          "sessions": 3
         },
         {
-          "source": "ntp.msn.com",
+          "source": "yahoo",
+          "medium": "organic",
+          "sessions": 3
+        },
+        {
+          "source": "m.facebook.com",
+          "medium": "referral",
+          "sessions": 2
+        },
+        {
+          "source": "lm.facebook.com",
           "medium": "referral",
           "sessions": 1
         }
@@ -62,192 +62,187 @@
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 360
+          "sessions": 408
         },
         {
           "page": "(not set)",
-          "sessions": 89
-        },
-        {
-          "page": "/ar",
-          "sessions": 21
+          "sessions": 81
         },
         {
           "page": "/investors/calculator",
-          "sessions": 19
+          "sessions": 21
         },
         {
-          "page": "/?project=Noya+-+Phase+3+-+Luma",
-          "sessions": 13
+          "page": "/ar",
+          "sessions": 18
+        },
+        {
+          "page": "/?range=1m",
+          "sessions": 14
         },
         {
           "page": "/project/Sea La Vie?project=Sea+La+Vie&layout=2+beds",
           "sessions": 13
         },
         {
-          "page": "",
-          "sessions": 9
+          "page": "/?district=Yas+Island&range=3m&propType=villa&layout=4+beds",
+          "sessions": 10
         },
         {
-          "page": "/?range=1m",
+          "page": "/rental?rsort=median_rent&rdir=desc",
+          "sessions": 10
+        },
+        {
+          "page": "",
           "sessions": 8
         },
         {
+          "page": "/?project=Noya+-+Phase+3+-+Luma",
+          "sessions": 7
+        },
+        {
+          "page": "/?type=off-plan&sort=layout",
+          "sessions": 7
+        },
+        {
           "page": "/?district=Yas+Island",
-          "sessions": 7
-        },
-        {
-          "page": "/?project=Manarat+Living+Ii&layout=2+beds",
-          "sessions": 7
-        },
-        {
-          "page": "/?project=Manarat+Living+Ii&range=3m&layout=2+beds",
-          "sessions": 7
-        },
-        {
-          "page": "/?project=Saadiyat+Grove+-+The+Heart&range=3m&layout=2+beds",
-          "sessions": 7
-        },
-        {
-          "page": "/?range=1m&page=3",
-          "sessions": 7
-        },
-        {
-          "page": "/project/Rixos Residences Al Reem Island?project=Rixos+Residences+Al+Reem+Island&range=1m",
-          "sessions": 7
+          "sessions": 6
         },
         {
           "page": "/?project=Diva+At+The+Bay+1&layout=3+beds",
+          "sessions": 6
+        },
+        {
+          "page": "/?project=Diva+At+The+Bay+1&range=3m&layout=3+beds",
+          "sessions": 6
+        },
+        {
+          "page": "/?project=Diva+At+The+Bay+2&layout=3+beds",
           "sessions": 6
         }
       ]
     },
     "period_30d": {
-      "sessions": 5428,
-      "total_users": 2975,
-      "new_users": 2638,
-      "returning_users_pct": 11.3,
-      "share_events": 24,
+      "sessions": 5498,
+      "total_users": 3060,
+      "new_users": 2733,
+      "returning_users_pct": 10.7,
+      "share_events": 23,
       "top_sources": [
         {
           "source": "(direct)",
           "medium": "(none)",
-          "sessions": 3255
+          "sessions": 3404
         },
         {
           "source": "google",
           "medium": "organic",
-          "sessions": 1889
+          "sessions": 1800
         },
         {
           "source": "bing",
           "medium": "organic",
-          "sessions": 74
+          "sessions": 81
         },
         {
           "source": "yandex.kz",
           "medium": "referral",
-          "sessions": 51
+          "sessions": 49
         },
         {
           "source": "(not set)",
           "medium": "(not set)",
-          "sessions": 40
+          "sessions": 31
         },
         {
           "source": "chatgpt.com",
           "medium": "ai-assistant",
-          "sessions": 33
+          "sessions": 23
         },
         {
           "source": "accounts.google.com",
           "medium": "referral",
-          "sessions": 28
-        },
-        {
-          "source": "l.instagram.com",
-          "medium": "referral",
-          "sessions": 13
+          "sessions": 19
         },
         {
           "source": "yahoo",
           "medium": "organic",
-          "sessions": 11
+          "sessions": 12
         },
         {
-          "source": "m.facebook.com",
+          "source": "l.instagram.com",
           "medium": "referral",
           "sessions": 9
+        },
+        {
+          "source": "facebook.com",
+          "medium": "referral",
+          "sessions": 6
         }
       ],
       "top_landing_pages": [
         {
           "page": "/",
-          "sessions": 1529
+          "sessions": 1520
         },
         {
           "page": "(not set)",
-          "sessions": 373
-        },
-        {
-          "page": "/?project=Marina+Gate+I&range=3m&layout=2+beds",
-          "sessions": 89
-        },
-        {
-          "page": "/?project=Marina+Gate+I&layout=2+beds",
-          "sessions": 85
+          "sessions": 351
         },
         {
           "page": "/ar",
-          "sessions": 79
+          "sessions": 83
+        },
+        {
+          "page": "/?project=Marina+Gate+I&range=3m&layout=2+beds",
+          "sessions": 73
+        },
+        {
+          "page": "/?project=Marina+Gate+I&layout=2+beds",
+          "sessions": 69
         },
         {
           "page": "/?project=Marina+Gate+Ii&layout=2+beds",
-          "sessions": 62
+          "sessions": 54
         },
         {
           "page": "/?project=Marina+Gate+Ii&range=3m&layout=2+beds",
-          "sessions": 62
-        },
-        {
-          "page": "/project/Sea La Vie?project=Sea+La+Vie&layout=2+beds",
-          "sessions": 51
+          "sessions": 54
         },
         {
           "page": "/investors/calculator",
+          "sessions": 52
+        },
+        {
+          "page": "/project/Sea La Vie?project=Sea+La+Vie&layout=2+beds",
           "sessions": 49
         },
         {
-          "page": "/?district=Al+Reem+Island",
-          "sessions": 43
+          "page": "/?project=Noya+-+Phase+3+-+Luma",
+          "sessions": 36
         },
         {
           "page": "/?project=Manarat+Living+Iii&layout=1+bed",
-          "sessions": 39
+          "sessions": 35
         },
         {
           "page": "/?project=Manarat+Living+Iii&range=3m&layout=1+bed",
-          "sessions": 39
+          "sessions": 35
+        },
+        {
+          "page": "/?project=Diva+At+The+Bay+1&range=3m&layout=studio",
+          "sessions": 34
+        },
+        {
+          "page": "/?project=Diva+At+The+Bay+2&range=3m&layout=studio",
+          "sessions": 34
         },
         {
           "page": "/?project=Manarat+Living+Iii&range=3m&layout=2+beds",
-          "sessions": 38
-        },
-        {
-          "page": "/?project=Noya+-+Phase+3+-+Luma",
-          "sessions": 37
-        },
-        {
-          "page": "/?district=Al+Reem+Island&range=custom&from=2026-10-01&to=2026-10-19&type=off-plan&seq=primary&propType=apartment%2Cduplex%2Ctownhouse+%2F+attached+villa%2Cvilla&layout=1+bed%2C2+beds%2C3+beds%2Cstudio%2C4+beds%2C5+beds%2C6%2B+beds",
-          "sessions": 36
+          "sessions": 34
         }
       ]
     }
   },
-  "signups": {
-    "total_signups": 351,
-    "new_signups_7d": 0,
-    "new_signups_30d": 0,
-    "email_subscribers": 128
-  }
+  "signups": null
 }
